@@ -3,7 +3,7 @@
     "source.fixAll.eslint": true
   },
   "eslint.validate": ["javascript"],
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "javascript.format.enable": false,
   "eslint.alwaysShowStatus": true,
   "emmet.triggerExpansionOnTab": true,
