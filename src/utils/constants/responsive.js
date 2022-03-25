@@ -1,5 +1,11 @@
-export const DESKTOP = '1024px';
-export const TABLET_LARGE = '991px';
-export const TABLET = '768px';
-export const MOBILE = '640px';
-export const MOBILE_SMALL = '553px';
+const size = {
+  mobile: '640px',
+  tablet: '768px',
+  laptop: '1024px',
+  desktop: '2560px',
+};
+
+export const MOBILE = `(min-width: ${size.mobile})`;
+export const TABLET = `(min-width: ${size.tablet})`;
+export const LAPTOP = `(min-width: ${size.laptop})`;
+export const DESKTOP = `(min-width: ${size.desktop})`;

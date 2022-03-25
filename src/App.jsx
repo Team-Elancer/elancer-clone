@@ -1,12 +1,15 @@
+import { Routes, Route } from 'react-router-dom';
+import ListPartner from 'pages/ListPartner';
+
 import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
   return (
     <>
       <GlobalStyles />
-      <div>
-        <h1>hello</h1>
-      </div>
+      <Routes>
+        <Route path="list-partner" element={<ListPartner />} />
+      </Routes>
     </>
   );
 };
