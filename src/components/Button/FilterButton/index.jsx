@@ -2,7 +2,7 @@ import * as S from './style';
 
 const FilterButton = () => {
   return (
-    <S.TopButtonContainer>
+    <S.ContainerTopButton>
       <form>
         <S.TopButton type="submit" primary>
           ⚙️ 개발자
@@ -23,7 +23,7 @@ const FilterButton = () => {
       <form>
         <S.TopButton type="submit"> 🕹 필터 추가하기 </S.TopButton>
       </form>
-    </S.TopButtonContainer>
+    </S.ContainerTopButton>
   );
 };
 

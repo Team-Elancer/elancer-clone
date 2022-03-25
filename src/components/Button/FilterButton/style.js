@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
-export const TopButtonContainer = styled.div`
+export const ContainerTopButton = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2rem;
