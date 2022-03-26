@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
+import { TABLET } from 'utils/constants/responsive';
 
 export const ContainerTopButton = styled.div`
   display: flex;
