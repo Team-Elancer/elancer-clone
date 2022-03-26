@@ -26,6 +26,7 @@ module.exports = {
   },
   plugins: ["react", "prefer-arrow"],
   rules: {
+    "import/prefer-default-export": "off",
     "prefer-arrow/prefer-arrow-functions": [
       "error",
       {
