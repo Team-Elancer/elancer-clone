@@ -1,7 +1,8 @@
-import { AccountCircleOutlined, MenuOutlined } from '@material-ui/icons';
+import { MenuOutlined } from '@material-ui/icons';
 import useStore from 'zustand';
 import * as S from './style';
 import Logo from 'assets/images/elancer_logo.png';
+import Profile from 'assets/images/profile.png';
 
 const Header = () => {
   const changefalse = useStore((state) => state.changefalse);
@@ -23,7 +24,7 @@ const Header = () => {
           <MenuOutlined sx={{ fontSize: 40 }} />
         </S.Span>
         <S.Span>
-          <AccountCircleOutlined sx={{ fontSize: 40 }} />
+          <S.Image src={Profile} alt="profile" />
         </S.Span>
       </S.Menu>
     </S.HeaderDiv>

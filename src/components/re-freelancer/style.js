@@ -10,6 +10,11 @@ export const FirstDiv = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+export const H1 = styled.h1`
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding-bottom: 25px;
+`;
 export const ButtonDiv = styled.div`
   display: flex;
   align-items: center;
@@ -25,7 +30,7 @@ export const SecondDiv = styled.div`
   justify-content: start;
   overflow-x: hidden;
   transition: all 1.5s ease;
-  transform: translateX(${(props) => props.slideIndex * -61}vw);
+  transform: translateX(${(props) => props.slideIndex * -44}vw);
 `;
 export const ProjectDiv = styled.div`
   width: 8.8%;
@@ -62,8 +67,8 @@ export const SpanTag = styled.span`
 `;
 export const HeartBackDiv = styled.div`
   padding: 5px;
-  width: 7%;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   text-align: center;
   background-color: white;
@@ -76,6 +81,7 @@ export const HeartBackDiv = styled.div`
 export const HearDiv = styled.div`
   font-size: 13px;
   text-align: center;
+  margin-top: 3px;
 `;
 export const DownSmallDiv = styled.div`
   width: 80%;
@@ -102,7 +108,8 @@ export const TextaTag = styled.a`
   color: white;
   text-decoration: none;
   position: relative;
-  top: 15%;
+  top: 20%;
+  font-size: 0.95rem;
 `;
 export const FlexDiv = styled.div`
   width: 110%;
@@ -110,30 +117,11 @@ export const FlexDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 80%;
+  top: 90%;
 `;
 export const Ptag = styled.p`
   color: #a5a5a5;
   top: 80%;
-  font-size: 80%;
+  font-size: 0.7rem;
   font-weight: 200;
-`;
-export const LastDiv = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 35px 0;
-`;
-export const LastSpan = styled.span`
-  border: 2px solid #d7d7d7;
-  border-radius: 25px;
-  padding: 8px 15px;
-  font-weight: 600;
-  cursor: pointer;
-  &:hover {
-    border: 2px solid black;
-    background-color: #d7d7d7;
-  }
 `;

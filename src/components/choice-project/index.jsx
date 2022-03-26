@@ -1,4 +1,5 @@
 import * as S from './style';
+import MoreButton from 'components/Button/MoreButton';
 
 const ChoiceProject = () => {
   const liTag = ['⚙️  개발 프로젝트', '🛠  퍼블리싱', '🎨  디자인', '📝  기획', '🕹  기타 프로젝트'];
@@ -17,17 +18,20 @@ const ChoiceProject = () => {
       {eCard.map((item) => {
         return (
           <S.EcardDiv keys={item}>
-            <S.HeartBackDiv>
-              <S.HearDiv>🤍</S.HearDiv>
-            </S.HeartBackDiv>
             <S.FirstDiv>
               <S.EcardUlTag>
+                <S.HeartBackDiv>
+                  <S.HearDiv>🤍</S.HearDiv>
+                </S.HeartBackDiv>
                 {blackLi.map((title) => {
                   return <S.EcardBlackLiTag keys={title}>{title}</S.EcardBlackLiTag>;
                 })}
                 {redLi.map((language) => {
                   return <S.EcardRedLiTag keys={language}>{language}</S.EcardRedLiTag>;
                 })}
+                <S.HeartBackDiv>
+                  <S.HearDiv>🤍</S.HearDiv>
+                </S.HeartBackDiv>
               </S.EcardUlTag>
               <S.HoneTag>[상주] GPM 고도화 프로젝트</S.HoneTag>
               <S.Ptag>
@@ -52,9 +56,7 @@ const ChoiceProject = () => {
           </S.EcardDiv>
         );
       })}
-      <S.LastDiv>
-        <S.LastSpan>더보기</S.LastSpan>
-      </S.LastDiv>
+      <MoreButton />
     </S.Container>
   );
 };
