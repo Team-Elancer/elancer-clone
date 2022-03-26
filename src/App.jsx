@@ -8,7 +8,7 @@ const App = () => {
     <>
       <GlobalStyles />
       <Routes>
-        <Route path="list-partner" element={<ListPartner />} />
+        <Route path="/list-partner" element={<ListPartner />} />
       </Routes>
     </>
   );
