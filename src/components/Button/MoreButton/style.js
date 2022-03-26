@@ -1,0 +1,23 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 35px 0;
+`;
+
+export const LastSpan = styled.span`
+  border: 2px solid #d7d7d7;
+  border-radius: 25px;
+  padding: 13px 17px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid black;
+    background-color: #d7d7d7;
+  }
+`;

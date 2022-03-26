@@ -2,13 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  margin-top: 45px;
+  margin-top: 70px;
   overflow-x: hidden;
 `;
 export const FirstDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+export const H1 = styled.h1`
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding-bottom: 25px;
 `;
 export const ButtonDiv = styled.div`
   display: flex;
@@ -25,11 +30,11 @@ export const SecondDiv = styled.div`
   justify-content: start;
   overflow-x: hidden;
   transition: all 1.5s ease;
-  transform: translateX(${(props) => props.slideIndex * -50}vw);
+  transform: translateX(${(props) => props.slideIndex * -44}vw);
 `;
 export const ProjectDiv = styled.div`
   width: 8.8%;
-  height: 340px;
+  height: 305px;
   border-radius: 8px;
   margin: 15px 15px 15px 0;
 `;
@@ -63,7 +68,8 @@ export const DivTag = styled.div`
 `;
 export const SpanTag = styled.span`
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
+  font-weight: 300;
   padding: 5px;
   border-radius: 5px;
   background-color: #3c3c3c;
@@ -71,8 +77,8 @@ export const SpanTag = styled.span`
 `;
 export const HeartBackDiv = styled.div`
   padding: 5px;
-  width: 7%;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   text-align: center;
   background-color: white;
@@ -85,6 +91,7 @@ export const HeartBackDiv = styled.div`
 export const HearDiv = styled.div`
   font-size: 13px;
   text-align: center;
+  margin-top: 3px;
 `;
 export const DownSmallDiv = styled.div`
   width: 80%;
@@ -96,14 +103,14 @@ export const BigSpan = styled.span`
   display: flex;
   align-items: center;
   justify-content: start;
-  margin: 0 auto;
 `;
 export const MiniSpan = styled.span`
   color: #ff6b6b;
   border: 1px solid #ff6b6b;
   border-radius: 5px;
-  font-size: 0.7rem;
-  padding: 3px;
+  font-size: 0.5rem;
+  font-weight: 300;
+  padding: 5px;
   margin-right: 6px;
 `;
 export const MiniSecond = styled.span`
@@ -119,11 +126,12 @@ export const TextaTag = styled.a`
   color: white;
   text-decoration: none;
   position: relative;
-  top: 15%;
+  top: 25%;
+  font-size: 0.95rem;
 `;
 export const Ptag = styled.p`
   color: #a5a5a5;
-  top: 80%;
-  font-size: 80%;
+  top: 90%;
+  font-size: 0.7rem;
   position: absolute;
 `;

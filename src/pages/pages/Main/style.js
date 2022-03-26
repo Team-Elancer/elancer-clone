@@ -7,28 +7,30 @@ export const Container = styled.div`
   z-index: 0;
   position: relative;
   overflow: hidden;
+  font-family: KoPubWorld Dotum, sans-serif;
 `;
 export const BackImg = styled.div`
   background-image: url(${mainbg});
   width: 100%;
-  height: 670px;
+  height: 100%;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   border-bottom: 1px solid #d3d3d3;
+  padding-bottom: 50px;
 `;
 export const SecondDiv = styled.div`
   padding-top: 70px;
-  width: 42%;
+  width: 43%;
   margin: 0 auto;
   display: flex;
   align-items: end;
   justify-content: start;
 `;
 export const Img = styled.img`
-  width: 60vh;
-  height: 60vh;
-  border-radius: 15px;
+  width: 45vh;
+  height: 45vh;
+  border-radius: 7px;
 `;
 export const TextDiv = styled.div`
   font-family: 'KoPubWorldDotum' sans-serif;
@@ -36,8 +38,9 @@ export const TextDiv = styled.div`
   font-weight: 700;
   bottom: 0;
   padding-left: 30px;
+  line-height: 40px;
 `;
 export const ThirdDiv = styled.div`
-  width: 62%;
+  width: 44%;
   margin: 0 auto;
 `;

@@ -11,7 +11,7 @@ import pub from 'assets/images/pub.png';
 const Eblock = () => {
   return (
     <S.Container>
-      <h1>프로젝트 둘러보기</h1>
+      <S.H1>프로젝트 둘러보기</S.H1>
       <S.FirstDiv>
         <S.IconDiv color="#7485c9">
           <S.Img src={java} alt="java" />

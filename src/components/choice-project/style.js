@@ -9,12 +9,13 @@ export const UlTag = styled.ul`
   display: flex;
   align-items: center;
   justify-content: start;
-  margin: 0 0 30px -40px;
+  margin: 0 0 30px 0;
 `;
 export const LiTag = styled.li`
   list-style: none;
+  font-size: 15px;
   margin: 0 10px 0 0;
-  padding: 10px 15px;
+  padding: 15px 15px;
   border: 2px solid #d7d7d7;
   border-radius: 25px;
   cursor: pointer;
@@ -33,7 +34,7 @@ export const HeartBackDiv = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  margin: 15px 0 0 90%;
+  left: 93%;
 `;
 export const HearDiv = styled.div`
   font-size: 15px;
@@ -48,12 +49,12 @@ export const EcardDiv = styled.div`
   border-radius: 7px;
   margin-top: 15px;
   display: flex;
-  align-items: top;
+  align-items: center;
   justify-content: space-between;
   position: relative;
 `;
 export const FirstDiv = styled.div`
-  width: 92%;
+  width: 80%;
   height: 80%;
   margin: 0 0 0 25px;
   cursor: pointer;
@@ -63,11 +64,11 @@ export const EcardUlTag = styled.ul`
   align-items: center;
   justify-content: start;
   list-style: none;
-  margin-left: -35px;
+  padding-bottom: 20px;
 `;
 export const EcardBlackLiTag = styled.span`
   color: white;
-  background-color: black;
+  background-color: #3c3c3c;
   border-radius: 5px;
   font-size: 0.6rem;
   letter-spacing: 1px;
@@ -92,6 +93,7 @@ export const Ptag = styled.p`
   font-size: 0.96rem;
   font-weight: 600;
   line-height: 1.2rem;
+  padding-top: 15px;
 `;
 export const LastDiv = styled.div`
   width: 100%;
@@ -105,8 +107,8 @@ export const SubDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-top: -27px;
   font-size: 0.8rem;
+  margin-right: -100px;
 `;
 export const BigSpan = styled.span`
   display: flex;
@@ -129,7 +131,8 @@ export const DaySpan = styled.span`
 export const LastSpan = styled.span`
   border: 2px solid #d7d7d7;
   border-radius: 25px;
-  padding: 8px 15px;
+  padding: 13px 17px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   &:hover {
