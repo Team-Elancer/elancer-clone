@@ -1,20 +1,17 @@
-import useStore from 'zustand';
 import * as S from './style';
 import programmer from 'assets/images/programmer.png';
-import Eblock from 'components/arround-project';
-import Blind from 'components/blind';
-import ChoiceProject from 'components/choice-project';
-import Count from 'components/count';
+import Eblock from 'components/Arround-Project';
+// import Blind from 'components/Blind';
+import ChoiceProject from 'components/Choice-Project';
+import Count from 'components/Count';
 import Header from 'components/Header';
-import MenuBar from 'components/menubar';
-import ReFreelancer from 'components/re-freelancer';
-import ReProject from 'components/re-project';
+// import MenuBar from 'components/MenuBar';
+import ReFreelancer from 'components/Re-Freelancer';
+import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
 import Footer from 'layouts/Footer';
 
 const Main = () => {
-  const show = useStore((state) => state.show);
-
   return (
     <S.Container>
       {/* {show === false && (
