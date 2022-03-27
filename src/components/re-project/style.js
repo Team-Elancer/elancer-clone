@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   width: 100%;
@@ -14,6 +15,9 @@ export const H1 = styled.h1`
   font-size: 1.8rem;
   font-weight: 600;
   padding-bottom: 25px;
+  @media ${LAPTOP} {
+    font-size: 25px;
+  }
 `;
 export const ButtonDiv = styled.div`
   display: flex;
@@ -22,6 +26,9 @@ export const ButtonDiv = styled.div`
 `;
 export const Img = styled.img`
   cursor: pointer;
+  @media ${LAPTOP} {
+    width: 28px;
+  }
 `;
 export const SecondDiv = styled.div`
   width: 360%;
@@ -31,18 +38,27 @@ export const SecondDiv = styled.div`
   overflow-x: hidden;
   transition: all 1.5s ease;
   transform: translateX(${(props) => props.slideIndex * -44}vw);
+  @media ${LAPTOP} {
+    transform: translateX(${(props) => props.slideIndex * -28}%);
+  }
 `;
 export const ProjectDiv = styled.div`
   width: 8.8%;
   height: 305px;
-  border-radius: 8px;
   margin: 15px 15px 15px 0;
+  @media ${LAPTOP} {
+    height: 260px;
+  }
 `;
 export const UpDiv = styled.div`
   height: 50%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   background-color: #181818;
+  @media ${LAPTOP} {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 `;
 export const DownDiv = styled.div`
   height: 50%;
@@ -50,6 +66,10 @@ export const DownDiv = styled.div`
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   position: relative;
+  @media ${LAPTOP} {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 `;
 export const BackImg = styled.div`
   z-index: 1;
@@ -60,6 +80,10 @@ export const BackImg = styled.div`
   background-repeat: no-repeat;
   background-image: url(${(props) => props.url});
   cursor: pointer;
+  @media ${LAPTOP} {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 `;
 export const DivTag = styled.div`
   display: flex;
@@ -74,6 +98,11 @@ export const SpanTag = styled.span`
   border-radius: 5px;
   background-color: #3c3c3c;
   margin: 10px 0 0 15px;
+  @media ${LAPTOP} {
+    padding: 7px;
+    font-size: 9px;
+    font-weight: 100;
+  }
 `;
 export const HeartBackDiv = styled.div`
   padding: 5px;
@@ -87,11 +116,18 @@ export const HeartBackDiv = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media ${LAPTOP} {
+    width: 23px;
+    height: 23px;
+  }
 `;
 export const HearDiv = styled.div`
   font-size: 13px;
   text-align: center;
   margin-top: 3px;
+  @media ${LAPTOP} {
+    font-size: 11px;
+  }
 `;
 export const DownSmallDiv = styled.div`
   width: 80%;
@@ -112,6 +148,9 @@ export const MiniSpan = styled.span`
   font-weight: 300;
   padding: 5px;
   margin-right: 6px;
+  @media ${LAPTOP} {
+    font-size: 9px;
+  }
 `;
 export const MiniSecond = styled.span`
   color: white;
@@ -121,6 +160,10 @@ export const MiniSecond = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 6px;
+  @media ${LAPTOP} {
+    font-size: 8px;
+    font-weight: 100;
+  }
 `;
 export const TextaTag = styled.a`
   color: white;
@@ -128,10 +171,18 @@ export const TextaTag = styled.a`
   position: relative;
   top: 25%;
   font-size: 0.95rem;
+  @media ${LAPTOP} {
+    font-size: 14px;
+    line-height: 18px;
+  }
 `;
 export const Ptag = styled.p`
   color: #a5a5a5;
   top: 90%;
   font-size: 0.7rem;
   position: absolute;
+  overflow: hidden;
+  @media ${LAPTOP} {
+    font-size: 10px;
+  }
 `;

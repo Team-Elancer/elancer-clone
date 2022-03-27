@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +9,9 @@ export const Container = styled.div`
   color: #8c8c8c;
   font-size: 0.9rem;
   font-weight: 600;
+  @media ${LAPTOP} {
+    font-size: 0.8rem;
+  }
 `;
 export const FirstDiv = styled.div`
   border-right: 1px solid #d3d3d3;
@@ -30,6 +34,9 @@ export const WordSpan = styled.span`
   font-size: 0.9rem;
   font-weight: 600;
   padding-bottom: 10px;
+  @media ${LAPTOP} {
+    font-size: 13px;
+  }
 `;
 export const NumberSpan = styled.span`
   color: #252525;
@@ -37,4 +44,7 @@ export const NumberSpan = styled.span`
   display: inline-block;
   padding-right: 5px;
   padding-bottom: 10px;
+  @media ${LAPTOP} {
+    font-size: 20px;
+  }
 `;
