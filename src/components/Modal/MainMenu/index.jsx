@@ -9,7 +9,7 @@ const Container = styled.div`
   top: 0px;
 `;
 
-const Blind = () => {
+const MainMenu = () => {
   return (
     <div>
       <Container />
@@ -17,4 +17,4 @@ const Blind = () => {
   );
 };
 
-export default Blind;
+export default MainMenu;

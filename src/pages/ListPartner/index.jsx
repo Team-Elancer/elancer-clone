@@ -1,9 +1,9 @@
 import * as S from './style';
 
 import FilterButton from 'components/Button/FilterButton';
-import Header from 'components/Header';
 import ListFreelancer from 'components/ListFreelancer';
 import Footer from 'layouts/Footer';
+import Header from 'layouts/Header';
 
 const ListPartner = () => {
   return (
