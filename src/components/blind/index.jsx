@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import useStore from 'zustand';
 
 const Container = styled.div`
   width: 100%;
@@ -11,15 +10,9 @@ const Container = styled.div`
 `;
 
 const Blind = () => {
-  const changetrue = useStore((state) => state.changetrue);
-
-  const changeShow = () => {
-    return changetrue();
-  };
-
   return (
     <div>
-      <Container onClick={changeShow} />
+      <Container />
     </div>
   );
 };
