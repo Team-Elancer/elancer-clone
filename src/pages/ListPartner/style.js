@@ -9,7 +9,7 @@ export const FrameListPartner = styled.div`
 
   @media ${TABLET} {
     width: 100%;
-    max-width: 64rem;
+    max-width: 55rem;
     padding: 28px;
     margin: auto;
   }
