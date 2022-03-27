@@ -28,11 +28,11 @@ const GlobalStyles = createGlobalStyle`
     .swiper-button-next {        
         border-radius: 50%;
         width: 48px;
-        height: 48px;
+        height: 48px;                  
     }
 
     .swiper-button-prev::after,
-    .swiper-button-next::after {        
+    .swiper-button-next::after {            
         font-size: 11px;
         color: grey;
         background: #ededed;
@@ -41,7 +41,7 @@ const GlobalStyles = createGlobalStyle`
         height: 30px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center;    
     }
 `;
 

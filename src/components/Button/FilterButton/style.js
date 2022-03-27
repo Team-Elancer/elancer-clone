@@ -22,11 +22,11 @@ export const TopButton = styled.button`
   padding: 0.5rem;
 
   @media ${TABLET} {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    font-size: 1.125rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.1rem;
   }
 
   &:hover {
