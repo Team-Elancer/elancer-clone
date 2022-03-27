@@ -3,6 +3,7 @@ import * as S from './style';
 import FilterButton from 'components/Button/FilterButton';
 import Header from 'components/Header';
 import ListFreelancer from 'components/ListFreelancer';
+import Footer from 'layouts/Footer';
 
 const ListPartner = () => {
   return (
@@ -21,6 +22,7 @@ const ListPartner = () => {
         {/* =======  ListFreelancer Component ======= */}
         <ListFreelancer />
       </S.FrameListPartner>
+      <Footer />
     </>
   );
 };
