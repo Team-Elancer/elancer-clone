@@ -1,15 +1,13 @@
 import * as S from './style';
 import programmer from 'assets/images/programmer.png';
 import Eblock from 'components/Arround-Project';
-// import Blind from 'components/Blind';
 import ChoiceProject from 'components/Choice-Project';
 import Count from 'components/Count';
-import Header from 'components/Header';
-// import MenuBar from 'components/MenuBar';
 import ReFreelancer from 'components/Re-Freelancer';
 import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
 import Footer from 'layouts/Footer';
+import Header from 'layouts/Header';
 
 const Main = () => {
   return (

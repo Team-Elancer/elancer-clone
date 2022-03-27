@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const HeaderDiv = styled.div`
-  width: 43%;
+  width: 42%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 30px auto;
+  @media ${DESKTOP} {
+    width: 42%;
+  }
   @media ${LAPTOP} {
     width: 62%;
   }
