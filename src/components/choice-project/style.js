@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   width: 100%;
@@ -22,6 +23,11 @@ export const LiTag = styled.li`
   &:hover {
     border: 2px solid black;
   }
+  @media ${LAPTOP} {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 15px;
+  }
 `;
 export const HeartBackDiv = styled.div`
   padding: 5px;
@@ -41,6 +47,9 @@ export const HearDiv = styled.div`
   color: #9e9e9e;
   text-align: center;
   cursor: pointer;
+  @media ${LAPTOP} {
+    font-size: 12px;
+  }
 `;
 export const EcardDiv = styled.div`
   width: 100%;
@@ -74,6 +83,9 @@ export const EcardBlackLiTag = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 6px;
+  @media ${LAPTOP} {
+    font-size: 9px;
+  }
 `;
 export const EcardRedLiTag = styled.span`
   color: white;
@@ -83,10 +95,17 @@ export const EcardRedLiTag = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 6px;
+  @media ${LAPTOP} {
+    font-size: 9px;
+  }
 `;
 export const HoneTag = styled.h1`
   font-weight: 500;
   font-size: 1.4rem;
+  @media ${LAPTOP} {
+    font-size: 18px;
+    font-weight: 700;
+  }
 `;
 export const Ptag = styled.p`
   color: #9e9e9e;
@@ -94,6 +113,9 @@ export const Ptag = styled.p`
   font-weight: 600;
   line-height: 1.2rem;
   padding-top: 15px;
+  @media ${LAPTOP} {
+    font-size: 12px;
+  }
 `;
 export const LastDiv = styled.div`
   width: 100%;
@@ -109,6 +131,10 @@ export const SubDiv = styled.div`
   justify-content: end;
   font-size: 0.8rem;
   margin-right: -100px;
+  @media ${LAPTOP} {
+    font-size: 11px;
+    margin-right: -80px;
+  }
 `;
 export const BigSpan = styled.span`
   display: flex;
@@ -127,16 +153,8 @@ export const DaySpan = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   border-radius: 5px;
-`;
-export const LastSpan = styled.span`
-  border: 2px solid #d7d7d7;
-  border-radius: 25px;
-  padding: 13px 17px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  &:hover {
-    border: 2px solid black;
-    background-color: #d7d7d7;
+  @media ${LAPTOP} {
+    font-size: 9px;
+    letter-spacing: 0px;
   }
 `;

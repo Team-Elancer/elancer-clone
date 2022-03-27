@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   display: flex;
@@ -19,6 +20,10 @@ export const InputForm = styled.form`
   background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #7485c9 0, #f16300 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  @media ${LAPTOP} {
+    width: 62%;
+    height: 50px;
+  }
 `;
 
 export const Input = styled.input`
@@ -33,6 +38,9 @@ export const Input = styled.input`
   &::placeholder {
     font-size: 19px;
     font-weight: 600;
+    @media ${LAPTOP} {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -40,4 +48,7 @@ export const Img = styled.img`
   width: 28px;
   cursor: pointer;
   margin-right: 15px;
+  @media ${LAPTOP} {
+    width: 24px;
+  }
 `;
