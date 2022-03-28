@@ -11,8 +11,7 @@ export const ContainerTopButton = styled.div`
 
 export const TopButton = styled.button`
   background: #fff;
-  border: solid 2px rgba(215, 215, 215, 1);
-  border: ${(props) => (props.primary ? 'solid 2px #000000' : 'solid 2px rgba(215, 215, 215, 1)')};
+  border: ${({ primary }) => (primary ? 'solid 2px #000000' : 'solid 2px rgba(215, 215, 215, 1)')};
   border-radius: 9999px;
   cursor: pointer;
   font-weight: 600;
@@ -21,6 +20,10 @@ export const TopButton = styled.button`
   margin: 4px 8px 4px 0;
   padding: 0.5rem;
 
+  &:hover {
+    background: rgba(231, 231, 231, 1);
+  }
+
   @media ${TABLET} {
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
@@ -28,9 +31,15 @@ export const TopButton = styled.button`
     padding-right: 1rem;
     font-size: 1.1rem;
   }
+`;
+
+export const TopButtonDark = styled(TopButton)`
+  color: #fff;
+  background-color: rgba(60, 60, 60, 1);
+  border-color: ${({ primary }) => (primary ? '#fff' : 'rgba(60, 60, 60, 1)')};
 
   &:hover {
-    background: rgba(231, 231, 231, 1);
-    border: solid 2px #000000;
+    border-color: ${({ primary }) => primary && '#fff'};
+    background-color: rgba(75, 75, 75, 1);
   }
 `;

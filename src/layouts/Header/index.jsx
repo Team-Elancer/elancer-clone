@@ -14,7 +14,9 @@ const Header = () => {
           <S.ThreeTag>프리랜서 보기</S.ThreeTag>
         </Link>
         <S.ThreeTag>|</S.ThreeTag>
-        <S.ThreeTag>프로젝트 보기</S.ThreeTag>
+        <Link to="/list-project">
+          <S.ThreeTag>프로젝트 보기</S.ThreeTag>
+        </Link>
       </S.Text>
       <S.Menu>
         <S.Span>
