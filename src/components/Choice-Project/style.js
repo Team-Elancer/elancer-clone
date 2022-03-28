@@ -7,16 +7,15 @@ export const Container = styled.div`
 `;
 
 export const UlTag = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  margin: 0 0 30px 0;
+  display: inline-block;
+  margin-bottom: 1rem;
 `;
 export const LiTag = styled.li`
+  display: inline-block;
   list-style: none;
-  font-size: 15px;
-  margin: 0 10px 0 0;
-  padding: 15px 15px;
+  font-size: 0.7rem;
+  margin: 10px 10px 0 0;
+  padding: 10px 10px;
   border: 2px solid #d7d7d7;
   border-radius: 25px;
   cursor: pointer;
@@ -31,21 +30,18 @@ export const LiTag = styled.li`
 `;
 export const HeartBackDiv = styled.div`
   padding: 5px;
-  width: 3%;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  text-align: center;
   background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 93%;
-`;
-export const HearDiv = styled.div`
-  font-size: 15px;
-  color: #9e9e9e;
   text-align: center;
+  position: absolute;
+  left: 90%;
+`;
+export const HeartDiv = styled.div`
+  font-size: 0.775rem;
+  color: #9e9e9e;
+  margin-top: 4px;
   cursor: pointer;
   @media ${LAPTOP} {
     font-size: 12px;
@@ -59,40 +55,39 @@ export const EcardDiv = styled.div`
   margin-top: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
 `;
 export const FirstDiv = styled.div`
-  width: 80%;
-  height: 80%;
-  margin: 0 0 0 25px;
+  width: 100%;
+  height: 100%;
+  margin: 35px 0 0 10px;
   cursor: pointer;
 `;
 export const EcardUlTag = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: start;
+  display: inline-block;
   list-style: none;
+  width: 90%;
   padding-bottom: 20px;
 `;
-export const EcardBlackLiTag = styled.span`
+export const EcardBlackLiTag = styled.li`
+  display: inline-block;
   color: white;
   background-color: #3c3c3c;
   border-radius: 5px;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
+  font-size: 1px;
   padding: 5px;
-  margin-right: 6px;
+  margin: 0 6px 3px 0;
   @media ${LAPTOP} {
     font-size: 9px;
   }
 `;
-export const EcardRedLiTag = styled.span`
+export const EcardRedLiTag = styled.li`
+  display: inline-block;
   color: white;
   background-color: #ff6b6b;
   border-radius: 5px;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
+  font-size: 1px;
   padding: 5px;
   margin-right: 6px;
   @media ${LAPTOP} {
@@ -100,8 +95,8 @@ export const EcardRedLiTag = styled.span`
   }
 `;
 export const HoneTag = styled.h1`
-  font-weight: 500;
-  font-size: 1.4rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
   @media ${LAPTOP} {
     font-size: 18px;
     font-weight: 700;
@@ -109,7 +104,7 @@ export const HoneTag = styled.h1`
 `;
 export const Ptag = styled.p`
   color: #9e9e9e;
-  font-size: 0.96rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.2rem;
   padding-top: 15px;
@@ -129,8 +124,8 @@ export const SubDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  font-size: 0.8rem;
-  margin-right: -100px;
+  font-size: 0.6875rem;
+  padding-right: 10px;
   @media ${LAPTOP} {
     font-size: 11px;
     margin-right: -80px;
@@ -149,7 +144,7 @@ export const TextpTag = styled.p`
 export const DaySpan = styled.span`
   background-color: #e85656;
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.625rem;
   letter-spacing: 1px;
   padding: 5px;
   border-radius: 5px;

@@ -3,6 +3,7 @@ import programmer from 'assets/images/programmer.png';
 import Eblock from 'components/Arround-Project';
 import ChoiceProject from 'components/Choice-Project';
 import Count from 'components/Count';
+import GridBottom from 'components/Modal/GridBottom';
 import ReFreelancer from 'components/Re-Freelancer';
 import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
@@ -41,6 +42,7 @@ const Main = () => {
         <ReFreelancer />
       </S.ThirdDiv>
       <Footer />
+      <GridBottom />
     </S.Container>
   );
 };

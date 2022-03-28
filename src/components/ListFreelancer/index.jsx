@@ -10,6 +10,7 @@ import 'swiper/css/scrollbar';
 
 import * as S from './style';
 import samsungPic from 'assets/images/samsung.png';
+import GridBottom from 'components/Modal/GridBottom';
 
 const ListFreelancer = () => {
   return (
@@ -441,6 +442,7 @@ const ListFreelancer = () => {
           </S.FreelancerReview>
         </S.ContainerExperience>
       </S.ContainerFreelancer>
+      <GridBottom />
     </S.FrameFreelancer>
   );
 };

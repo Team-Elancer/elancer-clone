@@ -33,8 +33,8 @@ export const IconDiv = styled.div`
   }
 `;
 export const Img = styled.img`
-  width: 5vh;
-  padding-top: 15px;
+  width: 6vh;
+  padding-top: 18px;
   @media ${LAPTOP} {
     width: 23%;
   }
@@ -42,7 +42,7 @@ export const Img = styled.img`
 export const TextSpan = styled.span`
   font-size: 0.75rem;
   color: black;
-  padding-top: 30px;
+  padding-top: 20px;
   border-width: 500;
   @media ${LAPTOP} {
     font-size: 15px;

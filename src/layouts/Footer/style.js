@@ -3,39 +3,38 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   width: 100%;
-  height: 300px;
+  height: 350px;
+  top: 50px;
   background-color: #3c3c3c;
   @media ${LAPTOP} {
     height: 240px;
   }
 `;
 export const SecondDiv = styled.div`
-  width: 43%;
-  height: 100%;
-  margin: 0 auto;
+  width: 100%;
+  height: 70%;
+  margin: 50px 0 0 10px;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   @media ${LAPTOP} {
     width: 62%;
   }
 `;
+export const MarginBottomP = styled.p`
+  padding-bottom: 30px;
+`;
 export const ThirdDiv = styled.div`
   width: 100%;
   position: absolute;
+  display: inline-block;
 `;
 export const FourthDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: -15px 0 40px 0;
+  display: inline-block;
 `;
 export const Fifth = styled.div`
-  display: inline-flex;
-  align-items: end;
-  justify-content: start;
+  display: inline-block;
   font-size: 0.7rem;
+  line-height: 15px;
   color: #b7b7b7;
 `;
 export const Img = styled.img`
@@ -47,8 +46,9 @@ export const Span = styled.span`
 `;
 export const UlTag = styled.ul`
   display: flex;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 800;
+  padding-bottom: 30px;
 `;
 export const LiTag = styled.li`
   list-style: none;
@@ -58,6 +58,4 @@ export const Atag = styled.a`
   text-decoration: none;
   color: white;
 `;
-export const Ptag = styled.p`
-  padding-left: 35px;
-`;
+export const Ptag = styled.p``;
