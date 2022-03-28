@@ -35,7 +35,7 @@ const ReProject = () => {
       endDay: '마감8일전',
       language: 'React',
       language2: 'Javascript',
-      title: '[중급~고급/JAVA/4개월/압구정역] LF 패션몰 구착',
+      title: '[중급~고급/JAVA/4개월/압구정역] LF 패션몰 구착, [중급~고급/JAVA/4개월/압구정역] LF 패션몰 구착',
       subTitle: '중급 / 4개월 / 서울/상남구 / 가격제안',
     },
     {
@@ -109,14 +109,15 @@ const ReProject = () => {
                     <S.MiniSecond>{item.language}</S.MiniSecond>
                     <S.MiniSecond>{item.language2}</S.MiniSecond>
                   </S.BigSpan>
-                  <S.TextaTag href="#">{item.title}</S.TextaTag>
+                  <S.hiddenP>
+                    <S.TextaTag href="#">{item.title}</S.TextaTag>
+                  </S.hiddenP>
                   <S.Ptag>{item.subTitle}</S.Ptag>
                 </S.DownSmallDiv>
               </S.DownDiv>
             </S.ProjectDiv>
           );
         })}
-        ;
       </S.SecondDiv>
     </S.Container>
   );

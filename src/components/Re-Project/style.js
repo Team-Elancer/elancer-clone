@@ -4,7 +4,6 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   margin-top: 70px;
-  overflow-x: hidden;
 `;
 export const FirstDiv = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ export const FirstDiv = styled.div`
   justify-content: space-between;
 `;
 export const H1 = styled.h1`
-  font-size: 1.8rem;
+  font-size: 0.875rem;
   font-weight: 600;
   padding-bottom: 25px;
   @media ${LAPTOP} {
@@ -20,7 +19,7 @@ export const H1 = styled.h1`
   }
 `;
 export const ButtonDiv = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 `;
@@ -31,29 +30,32 @@ export const Img = styled.img`
   }
 `;
 export const SecondDiv = styled.div`
-  width: 360%;
+  width: 100%;
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   align-items: center;
   justify-content: start;
-  overflow-x: hidden;
-  transition: all 1.5s ease;
-  transform: translateX(${(props) => props.slideIndex * -44}vw);
+  /* transition: all 1.5s ease;
+  /* transform: translateX(${(props) => props.slideIndex * -44}vw);
   @media ${LAPTOP} {
     transform: translateX(${(props) => props.slideIndex * -28}%);
-  }
+  } */
 `;
 export const ProjectDiv = styled.div`
-  width: 8.8%;
-  height: 305px;
+  width: 100%;
+  height: 243.23px;
   margin: 15px 15px 15px 0;
   @media ${LAPTOP} {
     height: 260px;
   }
 `;
 export const UpDiv = styled.div`
+  width: 180px;
   height: 50%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   background-color: #181818;
   @media ${LAPTOP} {
     border-top-left-radius: 10px;
@@ -61,10 +63,11 @@ export const UpDiv = styled.div`
   }
 `;
 export const DownDiv = styled.div`
+  width: 100%;
   height: 50%;
   background-color: #3c3c3c;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   position: relative;
   @media ${LAPTOP} {
     border-bottom-left-radius: 10px;
@@ -92,12 +95,12 @@ export const DivTag = styled.div`
 `;
 export const SpanTag = styled.span`
   color: white;
-  font-size: 0.5rem;
+  font-size: 0.625rem;
   font-weight: 300;
-  padding: 5px;
+  padding: 8px;
   border-radius: 5px;
   background-color: #3c3c3c;
-  margin: 10px 0 0 15px;
+  margin: 10px 0 0 10px;
   @media ${LAPTOP} {
     padding: 7px;
     font-size: 9px;
@@ -122,7 +125,7 @@ export const HeartBackDiv = styled.div`
   }
 `;
 export const HearDiv = styled.div`
-  font-size: 13px;
+  font-size: 0.7rem;
   text-align: center;
   margin-top: 3px;
   @media ${LAPTOP} {
@@ -139,12 +142,14 @@ export const BigSpan = styled.span`
   display: flex;
   align-items: center;
   justify-content: start;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 export const MiniSpan = styled.span`
   color: #ff6b6b;
   border: 1px solid #ff6b6b;
   border-radius: 5px;
-  font-size: 0.5rem;
+  font-size: 0.625rem;
   font-weight: 300;
   padding: 5px;
   margin-right: 6px;
@@ -156,7 +161,7 @@ export const MiniSecond = styled.span`
   color: white;
   background-color: #707070;
   border-radius: 5px;
-  font-size: 0.6rem;
+  font-size: 0.625rem;
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 6px;
@@ -165,12 +170,19 @@ export const MiniSecond = styled.span`
     font-weight: 100;
   }
 `;
+export const hiddenP = styled.p`
+  position: relative;
+  top: 15%;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  overflow: hidden;
+  height: 2rem;
+`;
 export const TextaTag = styled.a`
   color: white;
   text-decoration: none;
-  position: relative;
-  top: 25%;
-  font-size: 0.95rem;
+  font-size: 0.6875rem;
   @media ${LAPTOP} {
     font-size: 14px;
     line-height: 18px;
@@ -179,7 +191,7 @@ export const TextaTag = styled.a`
 export const Ptag = styled.p`
   color: #a5a5a5;
   top: 90%;
-  font-size: 0.7rem;
+  font-size: 0.1rem;
   position: absolute;
   overflow: hidden;
   @media ${LAPTOP} {

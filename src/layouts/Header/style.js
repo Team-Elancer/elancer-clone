@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const HeaderDiv = styled.div`
-  width: 42%;
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 30px auto;
+  margin: 10px auto;
+  overflow: hidden;
   @media ${DESKTOP} {
     width: 42%;
   }
@@ -15,7 +16,7 @@ export const HeaderDiv = styled.div`
   }
 `;
 export const Img = styled.img`
-  width: 20vh;
+  width: 95px;
   @media ${LAPTOP} {
     width: 27vh;
   }
@@ -28,15 +29,15 @@ export const Text = styled.div`
 export const ThreeTag = styled.div`
   padding: 0 5px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.65rem;
   font-weight: 800;
   @media ${LAPTOP} {
     font-size: 0.8rem;
   }
 `;
 export const Menu = styled.div`
-  width: 85px;
-  height: 40px;
+  width: 56px;
+  height: 32px;
   background-color: white;
   border: 2px solid #dcdcdc;
   border-radius: 5vh;

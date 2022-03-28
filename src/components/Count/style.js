@@ -2,48 +2,46 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
-  display: flex;
+  display: block;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin: 40px auto;
   color: #8c8c8c;
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   font-weight: 600;
   @media ${LAPTOP} {
     font-size: 0.8rem;
   }
 `;
 export const FirstDiv = styled.div`
-  border-right: 1px solid #d3d3d3;
   text-align: center;
-  width: 300px;
+  padding-bottom: 15px;
 `;
 export const SeconddDiv = styled.div`
-  width: 500px;
   text-align: center;
   margin: 0 auto;
+  border-right: 1px solid #d3d3d3;
+  border-left: 1px solid #d3d3d3;
+  padding-bottom: 15px;
 `;
 export const ThirdDiv = styled.div`
-  width: 300px;
-  border-left: 1px solid #d3d3d3;
   text-align: center;
   padding: 0 40px;
 `;
 export const WordSpan = styled.span`
   display: block;
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   font-weight: 600;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   @media ${LAPTOP} {
     font-size: 13px;
   }
 `;
 export const NumberSpan = styled.span`
   color: #252525;
-  font-size: 1.5rem;
-  display: inline-block;
+  font-size: 2rem;
   padding-right: 5px;
-  padding-bottom: 10px;
+  display: inline-block;
   @media ${LAPTOP} {
     font-size: 20px;
   }
