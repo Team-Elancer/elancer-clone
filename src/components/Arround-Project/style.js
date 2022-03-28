@@ -10,7 +10,7 @@ export const FirstDiv = styled.div`
   justify-content: start;
 `;
 export const H1 = styled.h1`
-  font-size: 1.7rem;
+  font-size: 0.875rem;
   font-weight: 600;
   padding-bottom: 25px;
   @media ${LAPTOP} {
@@ -18,31 +18,32 @@ export const H1 = styled.h1`
   }
 `;
 export const IconDiv = styled.div`
-  width: 23%;
-  height: 60px;
+  width: 16vh;
+  height: 80px;
   background-color: ${(props) => props.color};
   border: 1px solid none;
   border-radius: 8px;
-  margin: 0 15px 15px 0;
+  margin: 0 8px 28px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   @media ${LAPTOP} {
     width: 160px;
     height: 55px;
   }
 `;
 export const Img = styled.img`
-  width: 21%;
-  padding-left: 8px;
+  width: 5vh;
+  padding-top: 15px;
   @media ${LAPTOP} {
     width: 23%;
   }
 `;
 export const TextSpan = styled.span`
-  font-size: 1.1rem;
-  color: white;
-  margin-right: 7px;
+  font-size: 0.75rem;
+  color: black;
+  padding-top: 30px;
+  border-width: 500;
   @media ${LAPTOP} {
     font-size: 15px;
   }

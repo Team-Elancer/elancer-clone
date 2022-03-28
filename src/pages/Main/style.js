@@ -7,14 +7,13 @@ export const Container = styled.div`
   height: 100%;
   z-index: 0;
   position: relative;
-  overflow: hidden;
   font-family: KoPubWorld Dotum, sans-serif;
 `;
 export const BackImg = styled.div`
   background-image: url(${mainbg});
   width: 100%;
   height: 100%;
-  background-size: 100%;
+  background-size: 120%;
   background-repeat: no-repeat;
   background-position: center;
   border-bottom: 1px solid #d3d3d3;
@@ -25,8 +24,8 @@ export const BackImg = styled.div`
   }
 `;
 export const SecondDiv = styled.div`
-  padding-top: 70px;
-  width: 43%;
+  padding-top: 30px;
+  width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: end;
@@ -36,8 +35,8 @@ export const SecondDiv = styled.div`
   }
 `;
 export const Img = styled.img`
-  width: 45vh;
-  height: 45vh;
+  width: 26vh;
+  height: 26vh;
   border-radius: 7px;
   @media ${LAPTOP} {
     width: 60vh;
@@ -46,17 +45,17 @@ export const Img = styled.img`
 `;
 export const TextDiv = styled.div`
   font-family: 'KoPubWorldDotum' sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.1rem;
   font-weight: 700;
   bottom: 0;
-  padding-left: 30px;
-  line-height: 40px;
+  padding-left: 10px;
+  line-height: 3vh;
   @media ${LAPTOP} {
     font-size: 1.6rem;
   }
 `;
 export const ThirdDiv = styled.div`
-  width: 44%;
+  width: 95%;
   margin: 0 auto;
   @media ${LAPTOP} {
     width: 62%;
