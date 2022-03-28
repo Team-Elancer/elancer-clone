@@ -37,9 +37,8 @@ export const SecondDiv = styled.div`
   overflow-y: hidden;
   align-items: center;
   justify-content: start;
-  /* transition: all 1.5s ease;
-  /* transform: translateX(${(props) => props.slideIndex * -44}vw);
-  @media ${LAPTOP} {
+  /* @media ${LAPTOP} {
+      transition: all 1.5s ease;
     transform: translateX(${(props) => props.slideIndex * -28}%);
   } */
 `;

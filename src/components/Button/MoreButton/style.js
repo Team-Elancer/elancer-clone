@@ -13,8 +13,8 @@ export const Container = styled.div`
 export const LastSpan = styled.span`
   border: 2px solid #d7d7d7;
   border-radius: 25px;
-  padding: 13px 17px;
-  font-size: 14px;
+  padding: 10px 6px;
+  font-size: 0.6875rem;
   font-weight: 600;
   cursor: pointer;
   &:hover {

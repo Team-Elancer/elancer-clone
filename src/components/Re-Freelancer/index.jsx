@@ -156,7 +156,9 @@ const ReFreelancer = () => {
                     <S.MiniSpan>{item.language}</S.MiniSpan>
                     <S.MiniSpan>{item.language2}</S.MiniSpan>
                   </S.BigSpan>
-                  <S.TextaTag href="#">{item.title}</S.TextaTag>
+                  <S.hiddenP>
+                    <S.TextaTag href="#">{item.title}</S.TextaTag>
+                  </S.hiddenP>
                   <S.FlexDiv>
                     <S.Ptag>{item.subTitle}</S.Ptag>
                     <S.Ptag> ★{item.rank}</S.Ptag>

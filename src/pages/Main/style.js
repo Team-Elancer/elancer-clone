@@ -5,7 +5,6 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  z-index: 0;
   position: relative;
   font-family: KoPubWorld Dotum, sans-serif;
 `;
@@ -18,7 +17,6 @@ export const BackImg = styled.div`
   background-position: center;
   border-bottom: 1px solid #d3d3d3;
   padding-bottom: 50px;
-
   @media ${LAPTOP} {
     background-size: 120%;
   }

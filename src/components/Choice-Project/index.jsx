@@ -19,19 +19,16 @@ const ChoiceProject = () => {
         return (
           <S.EcardDiv keys={item}>
             <S.FirstDiv>
+              <S.HeartBackDiv>
+                <S.HeartDiv>🤍</S.HeartDiv>
+              </S.HeartBackDiv>
               <S.EcardUlTag>
-                <S.HeartBackDiv>
-                  <S.HearDiv>🤍</S.HearDiv>
-                </S.HeartBackDiv>
                 {blackLi.map((title) => {
                   return <S.EcardBlackLiTag keys={title}>{title}</S.EcardBlackLiTag>;
                 })}
                 {redLi.map((language) => {
                   return <S.EcardRedLiTag keys={language}>{language}</S.EcardRedLiTag>;
                 })}
-                <S.HeartBackDiv>
-                  <S.HearDiv>🤍</S.HearDiv>
-                </S.HeartBackDiv>
               </S.EcardUlTag>
               <S.HoneTag>[상주] GPM 고도화 프로젝트</S.HoneTag>
               <S.Ptag>

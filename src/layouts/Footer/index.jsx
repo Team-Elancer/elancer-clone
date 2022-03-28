@@ -27,11 +27,11 @@ const Footer = () => {
       <S.SecondDiv>
         <S.ThirdDiv>
           <S.FourthDiv>
-            <p>
+            <S.MarginBottomP>
               <S.Img src={Logo} alt="footer-logo" />
               <br />
               <S.Span>Copyright © 2000 - 2022 ELANCER All Rights Reserved.</S.Span>
-            </p>
+            </S.MarginBottomP>
             <S.UlTag>
               {liItem.map((itme, i) => (
                 <S.Atag href={itme.site} keys={i}>
