@@ -17,7 +17,7 @@ const ListFreelancer = () => {
   return (
     <S.FrameFreelancer>
       {DATA.map((list) => (
-        <S.ContainerFreelancer>
+        <S.ContainerFreelancer key={list.id}>
           <S.ContainerSwiper>
             <Swiper
               navigation
@@ -49,7 +49,7 @@ const ListFreelancer = () => {
             <S.FreelancerTitle>{list.title}</S.FreelancerTitle>
             <S.ContainerFreelancerStack>
               {list.stack.map((stack) => (
-                <S.FreelancerStack>{stack}</S.FreelancerStack>
+                <S.FreelancerStack key={stack}>{stack}</S.FreelancerStack>
               ))}
             </S.ContainerFreelancerStack>
             <S.FreelancerDescription>{list.description}</S.FreelancerDescription>
