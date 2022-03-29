@@ -22,15 +22,15 @@ export const LiTag = styled.li`
   &:hover {
     border: 2px solid black;
   }
-  @media ${LAPTOP} {
-    font-size: 13px;
-    font-weight: 600;
-    padding: 12px 15px;
-  }
   @media ${TABLET} {
     font-size: 0.98rem;
     font-weight: 600;
     padding: 12px 15px;
     margin: 10px 15px 0 0;
+  }
+  @media ${LAPTOP} {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 15px;
   }
 `;
