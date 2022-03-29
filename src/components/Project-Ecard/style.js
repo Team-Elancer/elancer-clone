@@ -4,14 +4,17 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const EcardDiv = styled.div`
   width: 100%;
   height: 250px;
-  border: 2px solid #d7d7d7;
+  border: ${({ darkMode }) => (darkMode === 'darkMode' ? 'none' : '2px solid #d7d7d7')};
   border-radius: 7px;
   margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  background-color: #fff;
+  color: #000000;
 `;
+
 export const HeartBackDiv = styled.div`
   padding: 5px;
   width: 28px;

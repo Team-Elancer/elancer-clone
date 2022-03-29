@@ -20,7 +20,7 @@ const ListProject = () => {
           </S.ContainerTopLetter>
           {/* =======  FilterButton Component ======= */}
           <FilterButtonDark />
-          {/* =======  ListFreelancer Component ======= */}
+          {/* =======  ListPortfolio(E-Card) Component ======= */}
           <ListPortfolio />
         </S.FrameList>
       </S.ContainerFrame>
