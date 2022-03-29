@@ -8,7 +8,9 @@ import Profile from 'assets/images/profile.png';
 const Header = () => {
   return (
     <S.HeaderDiv>
-      <S.Img src={Logo} alt="Logo" />
+      <Link to="/">
+        <S.Img src={Logo} alt="Logo" />
+      </Link>
       <S.Text>
         <Link to="/list-partner">
           <S.ThreeTag>프리랜서 보기</S.ThreeTag>
