@@ -138,10 +138,10 @@ const ReFreelancer = () => {
           <S.Img src={right} alt="right" direction="right" onClick={() => handleClick('right')} />
         </S.ButtonDiv>
       </S.FirstDiv>
-      <S.SecondDiv slideIndex={slideIndex}>
+      <S.SecondDiv>
         {mapData.map((item) => {
           return (
-            <S.ProjectDiv key={item.subTitle}>
+            <S.ProjectDiv slideIndex={slideIndex} key={item.subTitle}>
               <S.UpDiv color={item.color} border={item.border}>
                 <S.DivTag>
                   <S.SpanTag>{item.name}</S.SpanTag>

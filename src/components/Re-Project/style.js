@@ -14,6 +14,9 @@ export const H1 = styled.h1`
   font-size: 0.875rem;
   font-weight: 600;
   padding-bottom: 25px;
+  @media ${TABLET} {
+    font-size: 1.8rem;
+  }
   @media ${LAPTOP} {
     font-size: 25px;
   }
@@ -22,9 +25,16 @@ export const ButtonDiv = styled.div`
   display: none;
   align-items: center;
   justify-content: center;
+  @media ${TABLET} {
+    display: flex;
+  }
 `;
 export const Img = styled.img`
   cursor: pointer;
+  @media ${TABLET} {
+    width: 2rem;
+    margin-bottom: 30px;
+  }
   @media ${LAPTOP} {
     width: 28px;
   }
@@ -37,17 +47,20 @@ export const SecondDiv = styled.div`
   overflow-y: hidden;
   align-items: center;
   justify-content: start;
-  /* @media ${LAPTOP} {
-      transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -28}%);
-  } */
 `;
 export const ProjectDiv = styled.div`
   width: 100%;
   height: 243.23px;
   margin: 15px 15px 15px 0;
+  @media ${TABLET} {
+    transition: all 1.5s ease;
+    transform: translateX(${(props) => props.slideIndex * -72}vh);
+    height: 21rem;
+  }
   @media ${LAPTOP} {
     height: 260px;
+    transition: all 1.5s ease;
+    transform: translateX(${(props) => props.slideIndex * -28}%);
   }
 `;
 export const UpDiv = styled.div`
@@ -56,18 +69,26 @@ export const UpDiv = styled.div`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #181818;
+  @media ${TABLET} {
+    width: 16.4rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
   @media ${LAPTOP} {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
 `;
 export const DownDiv = styled.div`
-  width: 100%;
   height: 50%;
   background-color: #3c3c3c;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   position: relative;
+  @media ${TABLET} {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
   @media ${LAPTOP} {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -100,6 +121,9 @@ export const SpanTag = styled.span`
   border-radius: 5px;
   background-color: #3c3c3c;
   margin: 10px 0 0 10px;
+  @media ${TABLET} {
+    font-size: 0.8rem;
+  }
   @media ${LAPTOP} {
     padding: 7px;
     font-size: 9px;
@@ -118,6 +142,10 @@ export const HeartBackDiv = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media ${TABLET} {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
   @media ${LAPTOP} {
     width: 23px;
     height: 23px;
@@ -127,6 +155,9 @@ export const HearDiv = styled.div`
   font-size: 0.7rem;
   text-align: center;
   margin-top: 3px;
+  @media ${TABLET} {
+    font-size: 0.9rem;
+  }
   @media ${LAPTOP} {
     font-size: 11px;
   }
@@ -141,7 +172,7 @@ export const BigSpan = styled.span`
   display: flex;
   align-items: center;
   justify-content: start;
-  overflow: hidden;
+
   white-space: nowrap;
 `;
 export const MiniSpan = styled.span`
@@ -152,6 +183,9 @@ export const MiniSpan = styled.span`
   font-weight: 300;
   padding: 5px;
   margin-right: 6px;
+  @media ${TABLET} {
+    font-size: 0.815rem;
+  }
   @media ${LAPTOP} {
     font-size: 9px;
   }
@@ -164,6 +198,9 @@ export const MiniSecond = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 6px;
+  @media ${TABLET} {
+    font-size: 0.815rem;
+  }
   @media ${LAPTOP} {
     font-size: 8px;
     font-weight: 100;
@@ -177,11 +214,18 @@ export const hiddenP = styled.p`
   justify-content: center;
   overflow: hidden;
   height: 2rem;
+  @media ${TABLET} {
+    top: 20%;
+    height: 2.2rem;
+  }
 `;
 export const TextaTag = styled.a`
   color: white;
   text-decoration: none;
   font-size: 0.6875rem;
+  @media ${TABLET} {
+    font-size: 1.125rem;
+  }
   @media ${LAPTOP} {
     font-size: 14px;
     line-height: 18px;
@@ -193,6 +237,9 @@ export const Ptag = styled.p`
   font-size: 0.1rem;
   position: absolute;
   overflow: hidden;
+  @media ${TABLET} {
+    font-size: 0.8rem;
+  }
   @media ${LAPTOP} {
     font-size: 10px;
   }

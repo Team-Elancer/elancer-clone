@@ -21,12 +21,20 @@ export const HeartBackDiv = styled.div`
   text-align: center;
   position: absolute;
   left: 90%;
+  @media ${TABLET} {
+    width: 2rem;
+    height: 2rem;
+  }
 `;
 export const HeartDiv = styled.div`
   font-size: 0.775rem;
   color: #9e9e9e;
   margin-top: 4px;
   cursor: pointer;
+  @media ${TABLET} {
+    margin-top: 6px;
+    font-size: 0.87rem;
+  }
   @media ${LAPTOP} {
     font-size: 12px;
   }
@@ -36,6 +44,10 @@ export const FirstDiv = styled.div`
   height: 100%;
   margin: 35px 0 0 10px;
   cursor: pointer;
+  @media ${TABLET} {
+    margin: 0;
+    padding: 25px 0 0 30px;
+  }
 `;
 export const EcardUlTag = styled.ul`
   display: inline-block;
@@ -51,6 +63,10 @@ export const EcardBlackLiTag = styled.li`
   font-size: 1px;
   padding: 5px;
   margin: 0 6px 3px 0;
+  @media ${TABLET} {
+    font-size: 0.75rem;
+    padding: 6px 5px 5px 5px;
+  }
   @media ${LAPTOP} {
     font-size: 9px;
   }
@@ -63,6 +79,10 @@ export const EcardRedLiTag = styled.li`
   font-size: 1px;
   padding: 5px;
   margin-right: 6px;
+  @media ${TABLET} {
+    font-size: 0.75rem;
+    padding: 6px 5px 5px 5px;
+  }
   @media ${LAPTOP} {
     font-size: 9px;
   }
@@ -70,6 +90,9 @@ export const EcardRedLiTag = styled.li`
 export const HoneTag = styled.h1`
   font-weight: 700;
   font-size: 0.9375rem;
+  @media ${TABLET} {
+    font-size: 1.56rem;
+  }
   @media ${LAPTOP} {
     font-size: 18px;
     font-weight: 700;
@@ -81,6 +104,9 @@ export const Ptag = styled.p`
   font-weight: 600;
   line-height: 1.2rem;
   padding-top: 15px;
+  @media ${TABLET} {
+    font-size: 0.9rem;
+  }
   @media ${LAPTOP} {
     font-size: 12px;
   }
@@ -99,6 +125,9 @@ export const SubDiv = styled.div`
   justify-content: end;
   font-size: 0.6875rem;
   padding-right: 10px;
+  @media ${TABLET} {
+    font-size: 0.88rem;
+  }
   @media ${LAPTOP} {
     font-size: 11px;
     margin-right: -80px;
@@ -121,6 +150,11 @@ export const DaySpan = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   border-radius: 5px;
+  @media ${TABLET} {
+    font-size: 0.78rem;
+    letter-spacing: 0px;
+    margin-right: 20px;
+  }
   @media ${LAPTOP} {
     font-size: 9px;
     letter-spacing: 0px;

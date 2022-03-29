@@ -89,10 +89,10 @@ const ReProject = () => {
           <S.Img src={right} alt="right" direction="right" onClick={() => handleClick('right')} />
         </S.ButtonDiv>
       </S.FirstDiv>
-      <S.SecondDiv slideIndex={slideIndex}>
+      <S.SecondDiv>
         {mapData.map((item, i) => {
           return (
-            <S.ProjectDiv keys={i}>
+            <S.ProjectDiv keys={i} slideIndex={slideIndex}>
               <S.UpDiv>
                 <S.DivTag>
                   <S.SpanTag>{item.name}</S.SpanTag>
