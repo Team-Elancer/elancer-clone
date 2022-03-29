@@ -17,6 +17,9 @@ export const BackImg = styled.div`
   background-position: center;
   border-bottom: 1px solid #d3d3d3;
   padding-bottom: 50px;
+  @media ${TABLET} {
+    background-size: 100%;
+  }
   @media ${LAPTOP} {
     background-size: 120%;
   }
@@ -28,6 +31,9 @@ export const SecondDiv = styled.div`
   display: flex;
   align-items: end;
   justify-content: start;
+  @media ${TABLET} {
+    padding-top: 55px;
+  }
   @media ${LAPTOP} {
     width: 62%;
   }
@@ -36,6 +42,10 @@ export const Img = styled.img`
   width: 26vh;
   height: 26vh;
   border-radius: 7px;
+  @media ${TABLET} {
+    width: 35vh;
+    height: 35vh;
+  }
   @media ${LAPTOP} {
     width: 60vh;
     height: 60vh;
@@ -48,6 +58,10 @@ export const TextDiv = styled.div`
   bottom: 0;
   padding-left: 10px;
   line-height: 3vh;
+  @media ${TABLET} {
+    font-size: 1.8rem;
+    line-height: 5vh;
+  }
   @media ${LAPTOP} {
     font-size: 1.6rem;
   }
