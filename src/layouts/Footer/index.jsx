@@ -3,9 +3,9 @@ import Logo from 'assets/images/footer-logo.png';
 
 const Footer = () => {
   const liItem = [
-    { name: '(주)이랜서', site: 'https://www.elancer.co.kr/company-main' },
-    { name: '이용약관', site: 'https://www.elancer.co.kr/terms' },
-    { name: '개인정보처리방침', site: 'https://www.elancer.co.kr/policy' },
+    { id: 1, name: '(주)이랜서', site: 'https://www.elancer.co.kr/company-main' },
+    { id: 2, name: '이용약관', site: 'https://www.elancer.co.kr/terms' },
+    { id: 3, name: '개인정보처리방침', site: 'https://www.elancer.co.kr/policy' },
   ];
 
   const firstTag = [
@@ -33,27 +33,27 @@ const Footer = () => {
               <S.Span>Copyright © 2000 - 2022 ELANCER All Rights Reserved.</S.Span>
             </S.MarginBottomP>
             <S.UlTag>
-              {liItem.map((itme, i) => (
-                <S.Atag href={itme.site} keys={i}>
-                  <S.LiTag>{itme.name}</S.LiTag>
+              {liItem.map((item) => (
+                <S.Atag href={item.site} key={item.id}>
+                  <S.LiTag>{item.name}</S.LiTag>
                 </S.Atag>
               ))}
             </S.UlTag>
           </S.FourthDiv>
           <S.Fifth>
             <p>
-              {firstTag.map((item, i) => (
+              {firstTag.forEach((item) => (
                 <>
                   {item}
-                  <br keys={i} />
+                  <br />
                 </>
               ))}
             </p>
             <S.Ptag>
-              {secondTag.map((item, i) => (
+              {secondTag.forEach((item) => (
                 <>
                   {item}
-                  <br keys={i} />
+                  <br />
                 </>
               ))}
             </S.Ptag>
