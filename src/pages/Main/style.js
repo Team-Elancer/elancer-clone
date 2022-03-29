@@ -18,7 +18,7 @@ export const BackImg = styled.div`
   border-bottom: 1px solid #d3d3d3;
   padding-bottom: 50px;
   @media ${TABLET} {
-    background-size: 100%;
+    background-size: 200%;
   }
   @media ${LAPTOP} {
     background-size: 120%;

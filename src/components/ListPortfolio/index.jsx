@@ -1,11 +1,11 @@
 import * as S from './style';
 
-import ChoiceProject from 'components/Choice-Project';
+import Ecard from 'components/Project-Ecard';
 
 const ListPortfolio = () => {
   return (
     <S.FramePortfolio>
-      <ChoiceProject />
+      <Ecard />
     </S.FramePortfolio>
   );
 };
