@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import * as S from './style';
 
-const Ecard = () => {
+const Ecard = ({ darkMode }) => {
   const eCard = [1, 2, 3];
   const blackLi = ['개발자', '상주', '9개월', '서울', '8,000 만원'];
   const redLi = ['무관', 'Javascript', 'React', 'vue.js'];
@@ -9,7 +10,7 @@ const Ecard = () => {
     <>
       {eCard.map((item) => {
         return (
-          <S.EcardDiv keys={item}>
+          <S.EcardDiv keys={item} darkMode={darkMode}>
             <S.FirstDiv>
               <S.HeartBackDiv>
                 <S.HeartDiv>🤍</S.HeartDiv>

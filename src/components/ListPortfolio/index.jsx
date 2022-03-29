@@ -5,7 +5,7 @@ import Ecard from 'components/Project-Ecard';
 const ListPortfolio = () => {
   return (
     <S.FramePortfolio>
-      <Ecard />
+      <Ecard darkMode="darkMode" />
     </S.FramePortfolio>
   );
 };

@@ -13,7 +13,6 @@ import * as S from './style';
 import { DATA } from 'utils/DummyData';
 
 const ListFreelancer = () => {
-  console.log(DATA);
   return (
     <S.FrameFreelancer>
       {DATA.map((list) => (
