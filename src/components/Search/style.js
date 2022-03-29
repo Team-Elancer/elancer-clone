@@ -7,6 +7,16 @@ export const Container = styled.div`
   align-items: center;
   justify-content: start;
   margin: 30px auto;
+  @media ${TABLET} {
+    width: 100%;
+  }
+`;
+
+export const FaBarDiv = styled.div`
+  display: block;
+  @media ${MOBILE} {
+    display: none;
+  }
 `;
 
 export const InputForm = styled.form`
@@ -22,6 +32,11 @@ export const InputForm = styled.form`
   background-origin: border-box;
   background-clip: content-box, border-box;
   margin-left: 15px;
+  @media ${TABLET} {
+    width: 98%;
+    height: 63px;
+    margin: 0 auto;
+  }
   @media ${LAPTOP} {
     width: 62%;
     height: 50px;
@@ -40,6 +55,12 @@ export const Input = styled.input`
   &::placeholder {
     font-size: 0.813rem;
     font-weight: 600;
+    @media ${TABLET} {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-align: start;
+      word-spacing: 2px;
+    }
     @media ${LAPTOP} {
       font-size: 16px;
     }
@@ -50,6 +71,10 @@ export const Img = styled.img`
   width: 20px;
   cursor: pointer;
   margin-right: 15px;
+  @media ${TABLET} {
+    width: 30px;
+    margin-right: 20px;
+  }
   @media ${LAPTOP} {
     width: 24px;
   }

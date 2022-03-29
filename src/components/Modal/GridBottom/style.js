@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   width: 100%;
@@ -7,6 +8,9 @@ export const Container = styled.div`
   position: fixed;
   z-index: 99;
   top: 810px;
+  @media ${TABLET} {
+    display: none;
+  }
 `;
 export const Ultag = styled.ul`
   display: flex;
