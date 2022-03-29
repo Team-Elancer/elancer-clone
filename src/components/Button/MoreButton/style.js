@@ -21,6 +21,11 @@ export const LastSpan = styled.span`
     border: 2px solid black;
     background-color: #d7d7d7;
   }
+  @media ${TABLET} {
+    padding: 15px 17px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
   @media ${LAPTOP} {
     padding: 10px 13px;
     font-size: 13px;

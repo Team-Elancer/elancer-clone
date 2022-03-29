@@ -4,7 +4,6 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   margin-top: 45px;
-  overflow-x: hidden;
 `;
 export const FirstDiv = styled.div`
   display: flex;
@@ -15,6 +14,9 @@ export const H1 = styled.h1`
   font-size: 0.875rem;
   font-weight: 600;
   padding-bottom: 25px;
+  @media ${TABLET} {
+    font-size: 1.8rem;
+  }
   @media ${LAPTOP} {
     font-size: 25px;
   }
@@ -23,9 +25,16 @@ export const ButtonDiv = styled.div`
   display: none;
   align-items: center;
   justify-content: center;
+  @media ${TABLET} {
+    display: flex;
+  }
 `;
 export const Img = styled.img`
   cursor: pointer;
+  @media ${TABLET} {
+    width: 2rem;
+    margin-bottom: 25px;
+  }
   @media ${LAPTOP} {
     width: 28px;
   }
@@ -38,15 +47,16 @@ export const SecondDiv = styled.div`
   overflow-y: hidden;
   align-items: center;
   justify-content: start;
-  /* @media ${LAPTOP} {
-      transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -28}%);
-  } */
 `;
 export const ProjectDiv = styled.div`
   width: 100%;
   height: 243.23px;
   margin: 15px 12px 15px 0;
+  @media ${TABLET} {
+    transition: all 1.5s ease;
+    transform: translateX(${(props) => props.slideIndex * -72}vh);
+    height: 21rem;
+  }
   @media ${LAPTOP} {
     height: 260px;
   }
@@ -58,6 +68,12 @@ export const UpDiv = styled.div`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: ${(props) => props.color};
+  @media ${TABLET} {
+    width: 16.4rem;
+    height: 50%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
   @media ${LAPTOP} {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -70,6 +86,11 @@ export const DownDiv = styled.div`
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   position: relative;
+  @media ${TABLET} {
+    height: 50%;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
 `;
 export const DivTag = styled.div`
   display: flex;
@@ -83,6 +104,9 @@ export const SpanTag = styled.span`
   border-radius: 5px;
   background-color: #3c3c3c;
   margin: 10px 0 0 15px;
+  @media ${TABLET} {
+    font-size: 0.8rem;
+  }
 `;
 export const HeartBackDiv = styled.div`
   padding: 5px;
@@ -96,11 +120,18 @@ export const HeartBackDiv = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media ${TABLET} {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 `;
 export const HearDiv = styled.div`
   font-size: 13px;
   text-align: center;
   margin-top: 3px;
+  @media ${TABLET} {
+    font-size: 0.9rem;
+  }
 `;
 export const DownSmallDiv = styled.div`
   width: 80%;
@@ -122,6 +153,9 @@ export const MiniSpan = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 2px;
+  @media ${TABLET} {
+    font-size: 0.815rem;
+  }
 `;
 export const hiddenP = styled.p`
   position: relative;
@@ -131,11 +165,18 @@ export const hiddenP = styled.p`
   justify-content: center;
   overflow: hidden;
   height: 2rem;
+  @media ${TABLET} {
+    top: 20%;
+    height: 2.2rem;
+  }
 `;
 export const TextaTag = styled.a`
   color: white;
   text-decoration: none;
   font-size: 0.6875rem;
+  @media ${TABLET} {
+    font-size: 1.125rem;
+  }
 `;
 export const FlexDiv = styled.div`
   width: 110%;
@@ -150,4 +191,7 @@ export const Ptag = styled.span`
   top: 80%;
   font-size: 0.625rem;
   font-weight: 200;
+  @media ${TABLET} {
+    font-size: 0.8rem;
+  }
 `;

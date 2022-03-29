@@ -11,6 +11,12 @@ export const Container = styled.div`
   @media ${TABLET} {
     display: none;
   }
+  @media ${LAPTOP} {
+    display: none;
+  }
+  @media ${DESKTOP} {
+    display: none;
+  }
 `;
 export const Ultag = styled.ul`
   display: flex;
