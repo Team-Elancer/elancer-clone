@@ -27,7 +27,7 @@ export const LastSpan = styled.span`
     font-weight: 500;
   }
   @media ${LAPTOP} {
-    padding: 10px 13px;
-    font-size: 13px;
+    padding: 12px 13px;
+    font-size: 1rem;
   }
 `;

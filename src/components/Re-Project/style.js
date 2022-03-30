@@ -58,13 +58,13 @@ export const ProjectDiv = styled.div`
   margin: 15px 15px 15px 0;
   @media ${TABLET} {
     transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -72}vh);
+    transform: translateX(${(props) => props.slideIndex * -46}rem);
     height: 21rem;
   }
   @media ${LAPTOP} {
     height: 334.69px;
     transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -142}vh);
+    transform: translateX(${(props) => props.slideIndex * -50}rem);
   }
 `;
 export const UpDiv = styled.div`
@@ -79,7 +79,7 @@ export const UpDiv = styled.div`
     border-top-right-radius: 12px;
   }
   @media ${LAPTOP} {
-    width: 17rem;
+    width: 16rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
@@ -247,6 +247,6 @@ export const Ptag = styled.p`
   }
   @media ${LAPTOP} {
     top: 90%;
-    font-size: 0.85rem;
+    font-size: 0.81rem;
   }
 `;

@@ -21,7 +21,7 @@ export const H1 = styled.h1`
   }
 `;
 export const IconDiv = styled.div`
-  width: 16vh;
+  width: 85.8px;
   height: 80px;
   background-color: ${(props) => props.color};
   border: 1px solid none;
@@ -31,26 +31,26 @@ export const IconDiv = styled.div`
   align-items: center;
   flex-direction: column;
   @media ${TABLET} {
-    width: 23%;
+    width: 174px;
     height: 4.5rem;
     margin: 0 15px 23px 0;
     flex-direction: row;
     justify-content: space-between;
   }
   @media ${LAPTOP} {
-    width: 23%;
+    width: 197px;
     height: 70px;
   }
 `;
 export const Img = styled.img`
-  width: 6vh;
-  padding-top: 18px;
+  width: 40px;
+  padding-top: 25px;
   @media ${TABLET} {
-    width: 4vh;
+    width: 38px;
     padding: 0 0 0 8px;
   }
   @media ${LAPTOP} {
-    width: 23%;
+    width: 45px;
   }
 `;
 export const TextSpan = styled.span`

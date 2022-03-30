@@ -45,7 +45,7 @@ const Footer = () => {
               {firstTag.map((item) => (
                 <>
                   {item}
-                  <br />
+                  <br keys={item} />
                 </>
               ))}
             </p>
@@ -53,7 +53,7 @@ const Footer = () => {
               {secondTag.map((item) => (
                 <>
                   {item}
-                  <br />
+                  <br keys={item} />
                 </>
               ))}
             </S.Ptag>

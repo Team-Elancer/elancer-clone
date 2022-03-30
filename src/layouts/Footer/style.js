@@ -10,7 +10,7 @@ export const Container = styled.div`
     height: 319px;
   }
   @media ${LAPTOP} {
-    height: 240px;
+    height: 300px;
   }
 `;
 export const SecondDiv = styled.div`
@@ -23,13 +23,21 @@ export const SecondDiv = styled.div`
     display: block;
   }
   @media ${LAPTOP} {
-    width: 62%;
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 export const MarginBottomP = styled.p`
   padding-bottom: 30px;
   @media ${TABLET} {
     padding: 50px 0 30px 0;
+  }
+  @media ${LAPTOP} {
+    width: 500px;
+    margin: 0 auto;
   }
 `;
 export const ThirdDiv = styled.div`
@@ -40,13 +48,19 @@ export const ThirdDiv = styled.div`
     display: block;
   }
   @media ${TABLET} {
-    display: block;
+    padding: 50px 0 30px 0;
   }
 `;
 export const FourthDiv = styled.div`
   display: inline-block;
   @media ${TABLET} {
     display: block;
+  }
+  @media ${LAPTOP} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
   }
 `;
 export const Fifth = styled.div`
@@ -61,6 +75,9 @@ export const Fifth = styled.div`
     justify-content: start;
     font-size: 0.75rem;
     line-height: 18px;
+  }
+  @media ${LAPTOP} {
+    font-size: 0.7rem;
   }
 `;
 export const Img = styled.img`
@@ -83,6 +100,11 @@ export const UlTag = styled.ul`
     align-items: center;
     justify-content: end;
     margin-right: 15px;
+  }
+  @media ${LAPTOP} {
+    width: 896px;
+    padding-top: 30px;
+    margin: 0 auto;
   }
 `;
 export const LiTag = styled.li`

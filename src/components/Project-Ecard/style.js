@@ -78,7 +78,7 @@ export const EcardBlackLiTag = styled.li`
     padding: 6px 5px 5px 5px;
   }
   @media ${LAPTOP} {
-    font-size: 9px;
+    font-size: 0.65rem;
   }
 `;
 export const EcardRedLiTag = styled.li`
@@ -94,7 +94,7 @@ export const EcardRedLiTag = styled.li`
     padding: 6px 5px 5px 5px;
   }
   @media ${LAPTOP} {
-    font-size: 9px;
+    font-size: 0.65rem;
   }
 `;
 export const HoneTag = styled.h1`
@@ -104,8 +104,8 @@ export const HoneTag = styled.h1`
     font-size: 1.56rem;
   }
   @media ${LAPTOP} {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 600;
   }
 `;
 export const Ptag = styled.p`
@@ -118,7 +118,7 @@ export const Ptag = styled.p`
     font-size: 0.9rem;
   }
   @media ${LAPTOP} {
-    font-size: 12px;
+    font-size: 0.93rem;
   }
 `;
 export const LastDiv = styled.div`
@@ -140,7 +140,6 @@ export const SubDiv = styled.div`
   }
   @media ${LAPTOP} {
     font-size: 11px;
-    margin-right: -80px;
   }
 `;
 export const BigSpan = styled.span`
