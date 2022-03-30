@@ -42,7 +42,7 @@ const Footer = () => {
           </S.FourthDiv>
           <S.Fifth>
             <p>
-              {firstTag.forEach((item) => (
+              {firstTag.map((item) => (
                 <>
                   {item}
                   <br />
@@ -50,7 +50,7 @@ const Footer = () => {
               ))}
             </p>
             <S.Ptag>
-              {secondTag.forEach((item) => (
+              {secondTag.map((item) => (
                 <>
                   {item}
                   <br />

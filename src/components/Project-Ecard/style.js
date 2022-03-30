@@ -63,8 +63,8 @@ export const EcardBlackLiTag = styled.li`
   color: white;
   background-color: #3c3c3c;
   border-radius: 5px;
-  font-size: 1px;
-  padding: 5px;
+  font-size: 0.625rem;
+  padding: 7px 5px 7px 5px;
   margin: 0 6px 3px 0;
   @media ${TABLET} {
     font-size: 0.75rem;
@@ -79,8 +79,8 @@ export const EcardRedLiTag = styled.li`
   color: white;
   background-color: #ff6b6b;
   border-radius: 5px;
-  font-size: 1px;
-  padding: 5px;
+  font-size: 0.625rem;
+  padding: 7px 5px 7px 5px;
   margin-right: 6px;
   @media ${TABLET} {
     font-size: 0.75rem;

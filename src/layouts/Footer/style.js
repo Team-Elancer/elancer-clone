@@ -53,6 +53,7 @@ export const Fifth = styled.div`
   display: inline-block;
   font-size: 0.7rem;
   line-height: 15px;
+  width: 100%;
   color: #b7b7b7;
   @media ${TABLET} {
     display: flex;
