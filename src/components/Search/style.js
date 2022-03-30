@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
-  width: 95%;
+  width: 380px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   margin: 30px auto;
   @media ${TABLET} {
-    width: 100%;
+    width: 730px;
   }
   @media ${LAPTOP} {
-    width: 100%;
+    width: 800px;
   }
 `;
 
@@ -23,7 +23,7 @@ export const FaBarDiv = styled.div`
 `;
 
 export const InputForm = styled.form`
-  width: 82%;
+  width: 305px;
   height: 44px;
   display: flex;
   align-items: center;
@@ -36,12 +36,12 @@ export const InputForm = styled.form`
   background-clip: content-box, border-box;
   margin-left: 15px;
   @media ${TABLET} {
-    width: 98%;
+    width: 747px;
     height: 63px;
     margin: 0 auto;
   }
   @media ${LAPTOP} {
-    width: 83%;
+    width: 840px;
     height: 63px;
     margin: 0 auto;
     border: 3px solid transparent;

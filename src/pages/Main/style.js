@@ -26,29 +26,27 @@ export const BackImg = styled.div`
 `;
 export const SecondDiv = styled.div`
   padding-top: 30px;
-  width: 95%;
+  width: 370px;
   margin: 0 auto;
   display: flex;
   align-items: end;
   justify-content: start;
   @media ${TABLET} {
     padding-top: 55px;
+    width: 740px;
   }
   @media ${LAPTOP} {
-    width: 83%;
+    width: 800px;
   }
 `;
 export const Img = styled.img`
-  width: 26vh;
-  height: 26vh;
+  width: 219px;
   border-radius: 7px;
   @media ${TABLET} {
-    width: 35vh;
-    height: 35vh;
+    width: 413px;
   }
   @media ${LAPTOP} {
-    width: 60vh;
-    height: 60vh;
+    width: 480px;
   }
 `;
 export const TextDiv = styled.div`
@@ -67,10 +65,13 @@ export const TextDiv = styled.div`
   }
 `;
 export const ThirdDiv = styled.div`
-  width: 95%;
+  width: 370px;
   margin: 0 auto;
+  @media ${TABLET} {
+    width: 730px;
+  }
   @media ${LAPTOP} {
-    width: 83%;
+    width: 800px;
     margin: 0 auto;
   }
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const HeaderDiv = styled.div`
-  width: 95%;
+  width: 360px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,21 +10,19 @@ export const HeaderDiv = styled.div`
   overflow: hidden;
   padding-top: 1.2rem;
   @media ${TABLET} {
+    width: 730px;
   }
   @media ${LAPTOP} {
-    width: 82%;
-  }
-  @media ${DESKTOP} {
-    width: 42%;
+    width: 800px;
   }
 `;
 export const Img = styled.img`
   width: 95px;
   @media ${TABLET} {
-    width: 18vh;
+    width: 187.78px;
   }
   @media ${LAPTOP} {
-    width: 30vh;
+    width: 187.78px;
   }
 `;
 export const Text = styled.div`
@@ -38,7 +36,7 @@ export const ThreeTag = styled.div`
   font-size: 0.65rem;
   font-weight: 800;
   @media ${TABLET} {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 300;
   }
   @media ${LAPTOP} {

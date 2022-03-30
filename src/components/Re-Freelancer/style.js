@@ -18,7 +18,7 @@ export const H1 = styled.h1`
     font-size: 1.8rem;
   }
   @media ${LAPTOP} {
-    font-size: 25px;
+    font-size: 1.8rem;
   }
 `;
 export const ButtonDiv = styled.div`
@@ -36,7 +36,8 @@ export const Img = styled.img`
     margin-bottom: 25px;
   }
   @media ${LAPTOP} {
-    width: 28px;
+    width: 2.5rem;
+    margin: 0 auto;
   }
 `;
 export const SecondDiv = styled.div`
@@ -47,6 +48,9 @@ export const SecondDiv = styled.div`
   overflow-y: hidden;
   align-items: center;
   justify-content: start;
+  @media ${LAPTOP} {
+    overflow-x: hidden;
+  }
 `;
 export const ProjectDiv = styled.div`
   width: 100%;
@@ -54,11 +58,13 @@ export const ProjectDiv = styled.div`
   margin: 15px 12px 15px 0;
   @media ${TABLET} {
     transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -72}vh);
+    transform: translateX(${(props) => props.slideIndex * -50}rem);
     height: 21rem;
   }
   @media ${LAPTOP} {
-    height: 260px;
+    height: 334.69px;
+    transition: all 1.5s ease;
+    transform: translateX(${(props) => props.slideIndex * -50}rem);
   }
 `;
 export const UpDiv = styled.div`
@@ -75,6 +81,7 @@ export const UpDiv = styled.div`
     border-top-right-radius: 12px;
   }
   @media ${LAPTOP} {
+    width: 16rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
@@ -91,6 +98,10 @@ export const DownDiv = styled.div`
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
   }
+  @media ${LAPTOP} {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 `;
 export const DivTag = styled.div`
   display: flex;
@@ -106,6 +117,9 @@ export const SpanTag = styled.span`
   margin: 10px 0 0 15px;
   @media ${TABLET} {
     font-size: 0.8rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 0.715rem;
   }
 `;
 export const HeartBackDiv = styled.div`
@@ -156,6 +170,9 @@ export const MiniSpan = styled.span`
   @media ${TABLET} {
     font-size: 0.815rem;
   }
+  @media ${LAPTOP} {
+    font-size: 0.5rem;
+  }
 `;
 export const hiddenP = styled.p`
   position: relative;
@@ -176,6 +193,10 @@ export const TextaTag = styled.a`
   font-size: 0.6875rem;
   @media ${TABLET} {
     font-size: 1.125rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 1rem;
+    line-height: 1.2rem;
   }
 `;
 export const FlexDiv = styled.div`
