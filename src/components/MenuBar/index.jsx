@@ -2,11 +2,15 @@ import * as S from './style';
 import BackButton from 'assets/images/ic-back.png';
 import RightButton from 'assets/images/ic-right.png';
 
-const MenuBar = () => {
+const MenuBar = ({ checkBool, setCeckBool }) => {
+  const changeBool = () => {
+    return setCeckBool(true);
+  };
+
   return (
     <S.Container>
       <S.Ultag>
-        <S.DownLiTag>
+        <S.DownLiTag onClick={changeBool}>
           <img src={BackButton} alt="button" />
         </S.DownLiTag>
         <S.UpLiTag>

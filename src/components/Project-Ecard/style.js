@@ -13,6 +13,9 @@ export const EcardDiv = styled.div`
   position: relative;
   background-color: #fff;
   color: #000000;
+  @media ${LAPTOP} {
+    height: 269px;
+  }
 `;
 
 export const HeartBackDiv = styled.div`
@@ -28,6 +31,10 @@ export const HeartBackDiv = styled.div`
     width: 2rem;
     height: 2rem;
   }
+  @media ${LAPTOP} {
+    width: 2rem;
+    height: 2rem;
+  }
 `;
 export const HeartDiv = styled.div`
   font-size: 0.775rem;
@@ -39,7 +46,7 @@ export const HeartDiv = styled.div`
     font-size: 0.87rem;
   }
   @media ${LAPTOP} {
-    font-size: 12px;
+    font-size: 0.9rem;
   }
 `;
 export const FirstDiv = styled.div`

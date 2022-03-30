@@ -29,7 +29,7 @@ export const LiTag = styled.li`
     margin: 10px 15px 0 0;
   }
   @media ${LAPTOP} {
-    font-size: 13px;
+    font-size: 1rem;
     font-weight: 600;
     padding: 12px 15px;
   }

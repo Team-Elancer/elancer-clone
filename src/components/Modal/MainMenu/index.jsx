@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  z-index: 90;
   display: none;
   width: 100%;
   height: 700px;

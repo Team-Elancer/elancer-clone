@@ -17,7 +17,7 @@ export const H1 = styled.h1`
     font-size: 1.8rem;
   }
   @media ${LAPTOP} {
-    font-size: 23px;
+    font-size: 1.8rem;
   }
 `;
 export const IconDiv = styled.div`
@@ -38,8 +38,8 @@ export const IconDiv = styled.div`
     justify-content: space-between;
   }
   @media ${LAPTOP} {
-    width: 160px;
-    height: 55px;
+    width: 23%;
+    height: 70px;
   }
 `;
 export const Img = styled.img`
@@ -64,6 +64,6 @@ export const TextSpan = styled.span`
     color: white;
   }
   @media ${LAPTOP} {
-    font-size: 15px;
+    font-size: 1.2rem;
   }
 `;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import left from 'assets/images/bt-left.png';
 import right from 'assets/images/bt-right.png';
@@ -170,7 +171,9 @@ const ReFreelancer = () => {
         })}
         ;
       </S.SecondDiv>
-      <MoreButton />
+      <Link to="/list-partner">
+        <MoreButton />
+      </Link>
     </S.Container>
   );
 };

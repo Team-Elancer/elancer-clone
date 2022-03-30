@@ -12,7 +12,7 @@ export const HeaderDiv = styled.div`
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
-    width: 62%;
+    width: 82%;
   }
   @media ${DESKTOP} {
     width: 42%;
@@ -24,7 +24,7 @@ export const Img = styled.img`
     width: 18vh;
   }
   @media ${LAPTOP} {
-    width: 27vh;
+    width: 30vh;
   }
 `;
 export const Text = styled.div`
@@ -42,7 +42,8 @@ export const ThreeTag = styled.div`
     font-weight: 300;
   }
   @media ${LAPTOP} {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
   }
 `;
 export const Menu = styled.div`
@@ -59,8 +60,8 @@ export const Menu = styled.div`
     height: 42px;
   }
   @media ${LAPTOP} {
-    width: 70px;
-    height: 34px;
+    width: 87.5px;
+    height: 42px;
   }
 `;
 

@@ -21,13 +21,13 @@ const Main = () => {
       {checkBool === false && (
         <>
           <MainMenu />
-          <MenuBar />
+          <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
         </>
       )}
       {checkBool === true && (
         <>
           <S.BackImg>
-            <Header />
+            <Header checkBool={checkBool} setCeckBool={setCeckBool} />
             <SearchBar />
             <S.SecondDiv>
               <S.Img src={programmer} alr="progammer" />

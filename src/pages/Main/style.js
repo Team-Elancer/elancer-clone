@@ -35,7 +35,7 @@ export const SecondDiv = styled.div`
     padding-top: 55px;
   }
   @media ${LAPTOP} {
-    width: 62%;
+    width: 83%;
   }
 `;
 export const Img = styled.img`
@@ -63,13 +63,14 @@ export const TextDiv = styled.div`
     line-height: 5vh;
   }
   @media ${LAPTOP} {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 `;
 export const ThirdDiv = styled.div`
   width: 95%;
   margin: 0 auto;
   @media ${LAPTOP} {
-    width: 62%;
+    width: 83%;
+    margin: 0 auto;
   }
 `;
