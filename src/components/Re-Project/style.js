@@ -18,7 +18,7 @@ export const H1 = styled.h1`
     font-size: 1.8rem;
   }
   @media ${LAPTOP} {
-    font-size: 25px;
+    font-size: 1.8rem;
   }
 `;
 export const ButtonDiv = styled.div`
@@ -36,7 +36,8 @@ export const Img = styled.img`
     margin-bottom: 30px;
   }
   @media ${LAPTOP} {
-    width: 28px;
+    width: 2.5rem;
+    margin: 0 auto;
   }
 `;
 export const SecondDiv = styled.div`
@@ -47,6 +48,9 @@ export const SecondDiv = styled.div`
   overflow-y: hidden;
   align-items: center;
   justify-content: start;
+  @media ${LAPTOP} {
+    overflow-x: hidden;
+  }
 `;
 export const ProjectDiv = styled.div`
   width: 100%;
@@ -58,9 +62,9 @@ export const ProjectDiv = styled.div`
     height: 21rem;
   }
   @media ${LAPTOP} {
-    height: 260px;
+    height: 334.69px;
     transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -28}%);
+    transform: translateX(${(props) => props.slideIndex * -142}vh);
   }
 `;
 export const UpDiv = styled.div`
@@ -75,6 +79,7 @@ export const UpDiv = styled.div`
     border-top-right-radius: 12px;
   }
   @media ${LAPTOP} {
+    width: 17rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
@@ -125,9 +130,7 @@ export const SpanTag = styled.span`
     font-size: 0.8rem;
   }
   @media ${LAPTOP} {
-    padding: 7px;
-    font-size: 9px;
-    font-weight: 100;
+    font-size: 0.715rem;
   }
 `;
 export const HeartBackDiv = styled.div`
@@ -147,8 +150,8 @@ export const HeartBackDiv = styled.div`
     height: 1.8rem;
   }
   @media ${LAPTOP} {
-    width: 23px;
-    height: 23px;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 `;
 export const HearDiv = styled.div`
@@ -159,7 +162,7 @@ export const HearDiv = styled.div`
     font-size: 0.9rem;
   }
   @media ${LAPTOP} {
-    font-size: 11px;
+    font-size: 0.9rem;
   }
 `;
 export const DownSmallDiv = styled.div`
@@ -187,7 +190,7 @@ export const MiniSpan = styled.span`
     font-size: 0.815rem;
   }
   @media ${LAPTOP} {
-    font-size: 9px;
+    font-size: 0.7rem;
   }
 `;
 export const MiniSecond = styled.span`
@@ -202,8 +205,7 @@ export const MiniSecond = styled.span`
     font-size: 0.815rem;
   }
   @media ${LAPTOP} {
-    font-size: 8px;
-    font-weight: 100;
+    font-size: 0.7rem;
   }
 `;
 export const hiddenP = styled.p`
@@ -218,6 +220,9 @@ export const hiddenP = styled.p`
     top: 20%;
     height: 2.2rem;
   }
+  @media ${LAPTOP} {
+    height: 2.4rem;
+  }
 `;
 export const TextaTag = styled.a`
   color: white;
@@ -227,8 +232,8 @@ export const TextaTag = styled.a`
     font-size: 1.125rem;
   }
   @media ${LAPTOP} {
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 1rem;
+    line-height: 1.2rem;
   }
 `;
 export const Ptag = styled.p`
@@ -241,6 +246,7 @@ export const Ptag = styled.p`
     font-size: 0.8rem;
   }
   @media ${LAPTOP} {
-    font-size: 10px;
+    top: 90%;
+    font-size: 0.85rem;
   }
 `;

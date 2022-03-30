@@ -5,7 +5,11 @@ import * as S from './style';
 import Logo from 'assets/images/elancer_logo.png';
 import Profile from 'assets/images/profile.png';
 
-const Header = () => {
+const Header = ({ checkBool, setCeckBool }) => {
+  const changeBool = () => {
+    return setCeckBool(false);
+  };
+
   return (
     <S.HeaderDiv>
       <Link to="/">
@@ -21,7 +25,7 @@ const Header = () => {
         </Link>
       </S.Text>
       <S.Menu>
-        <S.Span>
+        <S.Span onClick={changeBool}>
           <FaBars size="16" color="gray" />
         </S.Span>
         <S.Span>

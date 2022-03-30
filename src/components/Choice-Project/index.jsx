@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import MoreButton from 'components/Button/MoreButton';
 import Ecard from 'components/Project-Ecard';
@@ -13,7 +14,9 @@ const ChoiceProject = () => {
         })}
       </S.UlTag>
       <Ecard />
-      <MoreButton />
+      <Link to="/list-project">
+        <MoreButton />
+      </Link>
     </S.Container>
   );
 };

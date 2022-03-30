@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
-  width: 100%; 
+  width: 100%;
   z-index: 99;
   background: white;
   position: absolute;
-  overflow-y: hidden;
   @media ${TABLET} {
     width: 210px;
     height: 253px;
@@ -15,9 +14,17 @@ export const Container = styled.div`
     background: white;
     border-radius: 15px;
     left: 74%;
+    position: relative;
+  }
+  @media ${LAPTOP} {
+    width: 210px;
+    height: 253px;
+    border: 1px solid white;
     z-index: 99;
-    position: absolute;
-    margin: 125px 0 0 -120px;
+    background: white;
+    border-radius: 15px;
+    left: 74%;
+    position: relative;
   }
 `;
 export const Ultag = styled.ul`
@@ -27,6 +34,7 @@ export const Ultag = styled.ul`
   color: black;
   font-size: 1rem;
   @media ${TABLET} {
+    list-style: none;
     width: 95%;
     height: 95%;
     margin: 25px 0 0 -20px;

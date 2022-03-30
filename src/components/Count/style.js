@@ -16,7 +16,7 @@ export const Container = styled.div`
     font-size: 1rem;
   }
   @media ${LAPTOP} {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 `;
 export const FirstDiv = styled.div`
@@ -54,7 +54,7 @@ export const WordSpan = styled.span`
     font-size: 0.9rem;
   }
   @media ${LAPTOP} {
-    font-size: 13px;
+    font-size: 1rem;
   }
 `;
 export const NumberSpan = styled.span`
@@ -66,6 +66,6 @@ export const NumberSpan = styled.span`
     font-size: 1.6rem;
   }
   @media ${LAPTOP} {
-    font-size: 20px;
+    font-size: 1.8rem;
   }
 `;

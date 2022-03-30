@@ -10,6 +10,9 @@ export const Container = styled.div`
   @media ${TABLET} {
     width: 100%;
   }
+  @media ${LAPTOP} {
+    width: 100%;
+  }
 `;
 
 export const FaBarDiv = styled.div`
@@ -38,8 +41,11 @@ export const InputForm = styled.form`
     margin: 0 auto;
   }
   @media ${LAPTOP} {
-    width: 62%;
-    height: 50px;
+    width: 83%;
+    height: 63px;
+    margin: 0 auto;
+    border: 3px solid transparent;
+    border-radius: 8vh;
   }
 `;
 
@@ -62,7 +68,10 @@ export const Input = styled.input`
       word-spacing: 2px;
     }
     @media ${LAPTOP} {
-      font-size: 16px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #6b7280;
+      text-align: start;
     }
   }
 `;
