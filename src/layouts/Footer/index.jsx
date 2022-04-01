@@ -43,18 +43,18 @@ const Footer = () => {
           <S.Fifth>
             <p>
               {firstTag.map((item) => (
-                <>
+                <span key={item}>
                   {item}
-                  <br keys={item} />
-                </>
+                  <br />
+                </span>
               ))}
             </p>
             <S.Ptag>
               {secondTag.map((item) => (
-                <>
+                <span key={item}>
                   {item}
-                  <br keys={item} />
-                </>
+                  <br />
+                </span>
               ))}
             </S.Ptag>
           </S.Fifth>

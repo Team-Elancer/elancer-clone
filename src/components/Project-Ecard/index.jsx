@@ -10,17 +10,17 @@ const Ecard = ({ darkMode }) => {
     <>
       {eCard.map((item) => {
         return (
-          <S.EcardDiv keys={item} darkMode={darkMode}>
+          <S.EcardDiv key={item} darkMode={darkMode}>
             <S.FirstDiv>
               <S.HeartBackDiv>
                 <S.HeartDiv>🤍</S.HeartDiv>
               </S.HeartBackDiv>
               <S.EcardUlTag>
                 {blackLi.map((title) => {
-                  return <S.EcardBlackLiTag keys={title}>{title}</S.EcardBlackLiTag>;
+                  return <S.EcardBlackLiTag key={title}>{title}</S.EcardBlackLiTag>;
                 })}
                 {redLi.map((language) => {
-                  return <S.EcardRedLiTag keys={language}>{language}</S.EcardRedLiTag>;
+                  return <S.EcardRedLiTag key={language}>{language}</S.EcardRedLiTag>;
                 })}
               </S.EcardUlTag>
               <S.HoneTag>[상주] GPM 고도화 프로젝트</S.HoneTag>

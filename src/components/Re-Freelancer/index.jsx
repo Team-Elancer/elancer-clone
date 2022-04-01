@@ -142,7 +142,7 @@ const ReFreelancer = () => {
       <S.SecondDiv>
         {mapData.map((item) => {
           return (
-            <S.ProjectDiv slideIndex={slideIndex} key={item.subTitle}>
+            <S.ProjectDiv slideIndex={slideIndex} key={item.title}>
               <S.UpDiv color={item.color} border={item.border}>
                 <S.DivTag>
                   <S.SpanTag>{item.name}</S.SpanTag>
