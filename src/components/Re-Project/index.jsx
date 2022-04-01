@@ -19,6 +19,7 @@ const ReProject = () => {
 
   const mapData = [
     {
+      id: 1,
       name: '개발자 상주 프로젝트',
       icon: '🤍',
       url: `${companyLogo}`,
@@ -29,6 +30,7 @@ const ReProject = () => {
       subTitle: '중급 / 1개월 / 서울/신도림 / 300 만원',
     },
     {
+      id: 2,
       name: '개발자 상주 프로젝트',
       icon: '🤍',
       url: `${companyLogo}`,
@@ -39,6 +41,7 @@ const ReProject = () => {
       subTitle: '중급 / 4개월 / 서울/상남구 / 가격제안',
     },
     {
+      id: 3,
       name: '개발자 상주 프로젝트',
       icon: '🤍',
       url: `${samsung}`,
@@ -49,6 +52,7 @@ const ReProject = () => {
       subTitle: '중급 / 1개월 / 재택 / 300 만원',
     },
     {
+      id: 4,
       name: '개발자 재텍 프로젝트',
       icon: '🤍',
       url: `${cjLogo}`,
@@ -59,6 +63,7 @@ const ReProject = () => {
       subTitle: '중급 / 1개월 / 재택 / 300 만원',
     },
     {
+      id: 5,
       name: '퍼블리셔 상주 프로젝트',
       icon: '🤍',
       url: `${kbLogo}`,
@@ -69,6 +74,7 @@ const ReProject = () => {
       subTitle: '중급 / 1개월 / 재택 / 300 만원',
     },
     {
+      id: 6,
       name: '디자이너 재택 프로젝트',
       icon: '🤍',
       url: `${companyLogo}`,
@@ -90,9 +96,9 @@ const ReProject = () => {
         </S.ButtonDiv>
       </S.FirstDiv>
       <S.SecondDiv>
-        {mapData.map((item, i) => {
+        {mapData.map((item) => {
           return (
-            <S.ProjectDiv keys={i} slideIndex={slideIndex}>
+            <S.ProjectDiv key={item.id} slideIndex={slideIndex}>
               <S.UpDiv>
                 <S.DivTag>
                   <S.SpanTag>{item.name}</S.SpanTag>

@@ -9,8 +9,8 @@ const ChoiceProject = () => {
   return (
     <S.Container>
       <S.UlTag>
-        {liTag.map((a, i) => {
-          return <S.LiTag keys={i}>{a}</S.LiTag>;
+        {liTag.map((a) => {
+          return <S.LiTag key={a}>{a}</S.LiTag>;
         })}
       </S.UlTag>
       <Ecard />
