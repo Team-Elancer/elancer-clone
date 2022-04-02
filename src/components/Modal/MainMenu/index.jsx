@@ -10,7 +10,7 @@ const Container = styled.div`
   top: -10px;
   overflow-y: hidden;
   @media ${TABLET} {
-    background-color: black;
+    background: black;
     opacity: 0.3;
   }
 `;

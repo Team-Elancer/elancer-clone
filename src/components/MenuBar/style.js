@@ -22,6 +22,7 @@ export const Container = styled.div`
     border-radius: 15px;
     top: 7rem;
     left: 32rem;
+    transform: none;
   }
   @media ${LAPTOP} {
     top: 7rem;
