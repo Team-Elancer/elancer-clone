@@ -7,6 +7,9 @@ export const Container = styled.div`
   height: 100%;
   position: relative;
   font-family: KoPubWorld Dotum, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 `;
 export const BackImg = styled.div`
   background-image: url(${mainbg});
@@ -46,7 +49,7 @@ export const Img = styled.img`
     width: 413px;
   }
   @media ${LAPTOP} {
-    width: 480px;
+    width: 413px;
   }
 `;
 export const TextDiv = styled.div`

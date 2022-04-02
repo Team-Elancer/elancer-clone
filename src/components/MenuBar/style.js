@@ -2,31 +2,33 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
-  width: 100%;
+  width: 103%;
+  height: 100%;
   z-index: 99;
   background: white;
   position: absolute;
+  padding-top: 0.8rem;
+  top: -10px;
+  left: 26rem;
+  transition: all 1.5s ease;
+  transform: translateX(${(props) => props.slide}rem);
   @media ${TABLET} {
     width: 210px;
     height: 253px;
     border: 1px solid white;
     z-index: 99;
     background: white;
+    position: absolute;
     border-radius: 15px;
-    left: 74%;
-    position: relative;
+    top: 7rem;
+    left: 32rem;
   }
   @media ${LAPTOP} {
-    width: 210px;
-    height: 253px;
-    border: 1px solid white;
-    z-index: 99;
-    background: white;
-    border-radius: 15px;
-    left: 74%;
-    position: relative;
+    top: 7rem;
+    left: 65rem;
   }
 `;
+
 export const Ultag = styled.ul`
   width: 90%;
   margin: 0 auto;
@@ -35,13 +37,24 @@ export const Ultag = styled.ul`
   font-size: 1rem;
   @media ${TABLET} {
     list-style: none;
-    width: 95%;
-    height: 95%;
-    margin: 25px 0 0 -20px;
+    width: 85%;
+    height: 85%;
     color: black;
-    font-size: 14px;
+    font-size: 0.8rem;
+    padding-top: 1.4rem;
   }
 `;
+export const ImgLi = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  padding-bottom: 1.9rem;
+  @media ${TABLET} {
+    display: none;
+  }
+`;
+
 export const UpLiTag = styled.li`
   padding-bottom: 1.9rem;
   display: flex;
@@ -49,7 +62,7 @@ export const UpLiTag = styled.li`
   justify-content: space-between;
   font-weight: 300;
   @media ${TABLET} {
-    padding-bottom: 8px;
+    padding-bottom: 0.9rem;
     font-weight: 300;
   }
 `;
@@ -60,7 +73,12 @@ export const LineTag = styled.li`
   @media ${TABLET} {
     width: 85%;
     border-bottom: 0.1rem solid #e1e1e1;
-    margin: 8px 0;
+    margin: 5px 0 15px 0;
+  }
+`;
+export const ButtonImg = styled.img`
+  @media ${TABLET} {
+    display: none;
   }
 `;
 export const DownLiTag = styled.li`
@@ -70,7 +88,8 @@ export const DownLiTag = styled.li`
   font-weight: 600;
   padding-bottom: 1.9rem;
   @media ${TABLET} {
-    padding-top: 10px;
-    font-weight: 600;
+    padding-top: 3px;
+    font-weight: 400;
+    padding-bottom: 0.9rem;
   }
 `;
