@@ -37,11 +37,11 @@ export const ThreeTag = styled.div`
   font-weight: 800;
   @media ${TABLET} {
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 600;
   }
   @media ${LAPTOP} {
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 700;
   }
 `;
 export const Menu = styled.div`

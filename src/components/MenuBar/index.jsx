@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import BackButton from 'assets/images/ic-back.png';
 import RightButton from 'assets/images/ic-right.png';
@@ -33,7 +34,9 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
           <S.ButtonImg src={BackButton} alt="button" />
         </S.ImgLi>
         <S.UpLiTag>
-          <a href="/#">로그인</a>
+          <Link to="/login">
+            <span>로그인</span>
+          </Link>
           <S.ButtonImg src={RightButton} alt="button" />
         </S.UpLiTag>
         <S.UpLiTag>
