@@ -7,7 +7,7 @@ export const Container = styled.div`
   background-color: white;
   position: fixed;
   z-index: 99;
-  top: 810px;
+  bottom: 0;
   @media ${TABLET} {
     display: none;
   }
