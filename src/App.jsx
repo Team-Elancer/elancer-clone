@@ -3,6 +3,7 @@ import ListPartner from 'pages/ListPartner';
 import ListProject from 'pages/ListProject';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
+import Signin from 'pages/Signin';
 import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/list-project" element={<ListProject />} />
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
       </Routes>
     </>
   );
