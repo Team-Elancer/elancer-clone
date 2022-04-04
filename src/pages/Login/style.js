@@ -186,8 +186,13 @@ export const MarginAuto = styled.div`
 `;
 
 export const CenterDiv = styled.div`
-  width: 30%;
   margin: 0 auto;
+  @media ${TABLET} {
+    width: 30%;
+  }
+  @media ${LAPTOP} {
+    width: 30%;
+  }
 `;
 
 export const TextSpan = styled.span`
@@ -212,6 +217,7 @@ export const LoginButton = styled.button`
   margin-bottom: 0.2rem;
   font-weight: 800;
   position: relative;
+  cursor: pointer;
   @media ${TABLET} {
     width: 224px;
     background-color: ${(props) => props.tabletBg};

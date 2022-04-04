@@ -1,15 +1,27 @@
+import { useState } from 'react';
 import { ImBubble } from 'react-icons/im';
+import { Link } from 'react-router-dom';
+
 import * as S from './style';
 import naver from 'assets/images/naver.png';
+import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
+import MainMenu from 'components/Modal/MainMenu';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Login = () => {
+  const [checkBool, setCeckBool] = useState(true);
+
   return (
     <S.Container>
-      <Header />
-      {/* <S.BorderDiv /> */}
+      {checkBool === false && (
+        <>
+          <MainMenu setCeckBool={setCeckBool} />
+          <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
+        </>
+      )}
+      <Header checkBool={checkBool} setCeckBool={setCeckBool} />
       <S.SizeDiv>
         <S.H1Div>
           <h1>로그인</h1>
@@ -99,7 +111,9 @@ const Login = () => {
             </S.CenterDiv>
             <S.SigninDiv>
               아직 멤버가 아니십니까?
-              <S.SigninSpan>회원가입</S.SigninSpan>
+              <Link to="/signin">
+                <S.SigninSpan>회원가입</S.SigninSpan>
+              </Link>
             </S.SigninDiv>
           </S.MarginAuto>
         </S.IdForm>
