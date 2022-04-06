@@ -69,6 +69,7 @@ export const Img = styled.img`
   @media ${TABLET} {
     margin-right: ${(props) => props.magin};
     width: 10.1rem;
+    margin-right: 8rem;
   }
   @media ${LAPTOP} {
     margin-right: 0.8rem;

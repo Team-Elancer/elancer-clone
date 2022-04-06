@@ -20,7 +20,11 @@ const SigninFreeLancer = () => {
       )}
       <Header checkBool={checkBool} setCeckBool={setCeckBool} />
       <S.SizeDiv>
-        <InlineBlock />
+        <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
+        <S.ButtonDiv>개인</S.ButtonDiv>
+        <S.H1>기본정보</S.H1>
+        <S.ProfileDiv>hello</S.ProfileDiv>
+        <S.SubmitDiv>hello</S.SubmitDiv>
       </S.SizeDiv>
       <Footer />
       <GridBottom />

@@ -24,7 +24,7 @@ const Signin = () => {
       )}
       <Header checkBool={checkBool} setCeckBool={setCeckBool} />
       <S.SizeDiv>
-        <InlineBlock />
+        <InlineBlock h1="회원가입" text="회원선택" pages="1 / 3" />
         <S.BlockDiv>
           <S.BoxSizeDiv bgcolor="#f6f6f6">
             <S.CenterDiv>
