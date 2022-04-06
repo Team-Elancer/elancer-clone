@@ -66,6 +66,9 @@ export const UpLiTag = styled.li`
     padding-bottom: 0.9rem;
     font-weight: 300;
   }
+  @media ${LAPTOP} {
+    font-weight: 500;
+  }
 `;
 export const LineTag = styled.li`
   width: 110%;
@@ -92,5 +95,8 @@ export const DownLiTag = styled.li`
     padding-top: 3px;
     font-weight: 400;
     padding-bottom: 0.9rem;
+  }
+  @media ${LAPTOP} {
+    font-weight: 700;
   }
 `;

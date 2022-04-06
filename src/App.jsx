@@ -4,6 +4,7 @@ import ListProject from 'pages/ListProject';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import Signin from 'pages/Signin';
+import SigninFreeLancer from 'pages/Signin/freelancer';
 import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/signin/freelancer" element={<SigninFreeLancer />} />
       </Routes>
     </>
   );
