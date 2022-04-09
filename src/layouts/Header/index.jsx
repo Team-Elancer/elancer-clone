@@ -16,11 +16,11 @@ const Header = ({ checkBool, setCeckBool }) => {
         <S.Img src={Logo} alt="Logo" />
       </Link>
       <S.Text>
-        <Link to="/list-partner">
+        <Link to="/partner-list">
           <S.ThreeTag>프리랜서 보기</S.ThreeTag>
         </Link>
         <S.ThreeTag>|</S.ThreeTag>
-        <Link to="/list-project">
+        <Link to="/project-list">
           <S.ThreeTag>프로젝트 보기</S.ThreeTag>
         </Link>
       </S.Text>

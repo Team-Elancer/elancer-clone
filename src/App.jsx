@@ -1,8 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import ListPartner from 'pages/ListPartner';
-import ListProject from 'pages/ListProject';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
+import PartnerDetail from 'pages/Partner/PartnerDetail';
+import PartnerList from 'pages/Partner/PartnerList';
+import ProjectDetail from 'pages/Project/ProjectDetail';
+import ProjectList from 'pages/Project/ProjectList';
 import Signin from 'pages/Signin';
 import SigninFreeLancer from 'pages/Signin/freelancer';
 import GlobalStyles from 'styles/GlobalStyles';
@@ -12,8 +14,10 @@ const App = () => {
     <>
       <GlobalStyles />
       <Routes>
-        <Route path="/list-partner" element={<ListPartner />} />
-        <Route path="/list-project" element={<ListProject />} />
+        <Route path="/partner-list" element={<PartnerList />} />
+        <Route path="/partner-detail" element={<PartnerDetail />} />
+        <Route path="/project-list" element={<ProjectList />} />
+        <Route path="/project-detail" element={<ProjectDetail />} />
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />

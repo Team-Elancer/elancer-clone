@@ -1,15 +1,46 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { TABLET } from 'utils/constants/responsive';
+
+export const ContainerFrame = styled.div`
+  background: ${({ dark }) => dark && 'black'};
+  color: ${({ dark }) => dark && 'white'};
+  width: 100%;
+  height: 100%;
+`;
+
+export const FrameList = styled.div`
+  width: 100%;
+  max-width: 64rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+
+  @media ${TABLET} {
+    width: 100%;
+    max-width: 55rem;
+    padding: 28px;
+    margin: auto;
+  }
+`;
 
 export const FrameFreelancer = styled.div``;
 
 export const ContainerFreelancer = styled.div`
   padding-top: 16px;
   padding-bottom: 16px;
+  border-top: 1px solid rgba(215, 215, 215, 1);
+  user-select: none;
 
   @media ${TABLET} {
     display: flex;
-    border-top: 1px solid rgba(215, 215, 215, 1);
+  }
+`;
+
+export const ContainerLink = styled(Link)`
+  @media ${TABLET} {
+    display: flex;
     user-select: none;
     width: 100%;
     gap: 1.25rem;
