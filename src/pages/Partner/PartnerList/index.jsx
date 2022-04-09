@@ -1,15 +1,15 @@
-import FilterButtonDark from 'components/Button/FilterButton/FilterButtonDark';
-import ListPortfolio from 'components/ListPortfolio';
+import FilterButton from 'components/Button/FilterButton';
+import ListFreelancer from 'components/ListFreelancer';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
-import * as S from 'styles/ListPage';
+import * as S from 'styles/Page';
 
-const ListProject = () => {
+const ListPartner = () => {
   return (
     <>
       <Header />
-      <S.ContainerFrame dark>
+      <S.ContainerFrame>
         <S.FrameList>
           <S.ContainerTopLetter>
             <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
@@ -19,9 +19,9 @@ const ListProject = () => {
             </S.TopLetterSubject>
           </S.ContainerTopLetter>
           {/* =======  FilterButton Component ======= */}
-          <FilterButtonDark />
-          {/* =======  ListPortfolio(E-Card) Component ======= */}
-          <ListPortfolio />
+          <FilterButton />
+          {/* =======  ListFreelancer Component ======= */}
+          <ListFreelancer />
         </S.FrameList>
       </S.ContainerFrame>
       <Footer />
@@ -29,4 +29,4 @@ const ListProject = () => {
   );
 };
 
-export default ListProject;
+export default ListPartner;
