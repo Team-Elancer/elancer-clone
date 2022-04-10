@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as S from './style';
+import Profile from 'assets/images/signin-profile.png';
 import InlineBlock from 'components/Inline-Block';
 import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
@@ -22,6 +23,9 @@ const SigninFreeLancer = () => {
       <S.SizeDiv>
         <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
         <S.ButtonDiv>개인</S.ButtonDiv>
+        <S.MobilePhoto>
+          <S.ProfileImg src={Profile} alt="profile" />
+        </S.MobilePhoto>
         <S.H1>기본정보</S.H1>
         <S.ProfileDiv>hello</S.ProfileDiv>
         <S.SubmitDiv>hello</S.SubmitDiv>
