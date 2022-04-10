@@ -4,6 +4,8 @@ import * as S from './style';
 
 import ProfilePicture from 'assets/images/profile.png';
 
+import InfoDetail from 'components/InfoDetail';
+
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
@@ -86,6 +88,9 @@ const PartnerDetail = () => {
               <S.FontSmall>소개</S.FontSmall>
               <S.FontSmall style={{ marginBottom: '2rem' }}>개발자 김*현</S.FontSmall>
               <S.FontSmall style={{ marginBottom: '6rem' }}>준비된 개발자 김*현</S.FontSmall>
+            </section>
+            <section>
+              <InfoDetail />
             </section>
           </S.FrameList>
         </S.ContainerFrame>
