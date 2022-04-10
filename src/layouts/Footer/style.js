@@ -16,7 +16,8 @@ export const Container = styled.div`
 export const SecondDiv = styled.div`
   width: 100%;
   height: 70%;
-  margin: 50px 0 0 10px;
+  margin-left: 10px;
+  padding: 50px 0 0 10px;
   position: relative;
   display: inline-block;
   @media ${TABLET} {
