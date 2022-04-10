@@ -157,11 +157,11 @@ export const ContainerShareSM = styled.div`
   justify-content: center;
   gap: 0.3rem;
   margin-top: 3.5rem;
-  margin-bottom: 7rem;
+  padding-bottom: 6rem;
 
   @media ${TABLET} {
     margin-top: 10rem;
-    margin-bottom: 15rem;
+    margin-bottom: 12rem;
   }
 `;
 
