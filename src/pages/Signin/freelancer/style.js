@@ -39,7 +39,21 @@ export const ButtonDiv = styled.div`
     font-size: 1.1rem;
   }
 `;
-
+export const MobilePhoto = styled.div`
+  width: 380px;
+  height: 223px;
+  border-top: 1px solid #c4c4c4;
+  margin-top: 1.5rem;
+  text-align: center;
+  background-image: linear-gradient(to bottom, white 0%, #a5a5a5 100%);
+  opacity: 0.5;
+`;
+export const ProfileImg = styled.img`
+  width: 13rem;
+  padding: 0.5rem 0 0 0;
+  z-index: 99;
+  opacity: 1;
+`;
 export const H1 = styled.h1`
   font-size: 0.9rem;
   font-weight: 800;
