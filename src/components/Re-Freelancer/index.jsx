@@ -171,7 +171,7 @@ const ReFreelancer = () => {
         })}
         ;
       </S.SecondDiv>
-      <Link to="/list-partner">
+      <Link to="/partner-list">
         <MoreButton />
       </Link>
     </S.Container>
