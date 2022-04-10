@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import * as S from './style';
 
 import ProfilePicture from 'assets/images/profile.png';
@@ -8,8 +6,6 @@ import InfoDetail from 'components/FreelancerDetail';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-
-import { TABLET } from 'utils/constants/responsive';
 
 const PartnerDetail = () => {
   return (
