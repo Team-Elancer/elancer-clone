@@ -4,7 +4,7 @@ import * as S from './style';
 
 import ProfilePicture from 'assets/images/profile.png';
 
-import InfoDetail from 'components/InfoDetail';
+import InfoDetail from 'components/ProjectDetail';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
