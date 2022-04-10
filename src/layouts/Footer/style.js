@@ -20,8 +20,10 @@ export const SecondDiv = styled.div`
   padding: 50px 0 0 10px;
   position: relative;
   display: inline-block;
+
   @media ${TABLET} {
     display: block;
+    padding: 0;
   }
   @media ${LAPTOP} {
     width: 800px;
