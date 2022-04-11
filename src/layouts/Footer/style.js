@@ -16,7 +16,6 @@ export const Container = styled.div`
 export const SecondDiv = styled.div`
   width: 100%;
   height: 70%;
-  margin-left: 10px;
   padding: 50px 0 0 10px;
   position: relative;
   display: inline-block;
@@ -44,10 +43,11 @@ export const MarginBottomP = styled.p`
   }
 `;
 export const ThirdDiv = styled.div`
-  width: 100%;
+  width: 90%;
   position: absolute;
   display: inline-block;
   @media ${TABLET} {
+    width: 100%;
     display: block;
   }
   @media ${TABLET} {
