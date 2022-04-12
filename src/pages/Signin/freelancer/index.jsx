@@ -5,6 +5,7 @@ import Camera from 'assets/images/camera.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import Profile from 'assets/images/signin-profile.png';
+import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
 import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
@@ -182,6 +183,27 @@ const SigninFreeLancer = () => {
               <S.LiTag>기업관계자 소개</S.LiTag>
             </S.UlTag>
             <S.AgreeDiv>약관동의</S.AgreeDiv>
+            <S.CheckDiv>
+              <S.CheckBox type="checkbox" name="agree1" id="agree1" />
+              <S.CheckPtag>1. 회원가입약관 동의</S.CheckPtag>
+              <S.ATag href="https://www.elancer.co.kr/terms" target="_blank">
+                [보기]
+              </S.ATag>
+            </S.CheckDiv>
+            <S.CheckDiv>
+              <S.CheckBox type="checkbox" name="agree1" id="agree1" />
+              <S.CheckPtag>2. 개인정보 보호정책 동의 </S.CheckPtag>
+              <S.ATag href="https://www.elancer.co.kr/policy" target="_blank">
+                [보기]
+              </S.ATag>
+            </S.CheckDiv>
+            <S.CheckDiv>
+              <S.CheckBox type="checkbox" name="agree1" id="agree1" />
+              <S.CheckPtag>모두 동의</S.CheckPtag>
+            </S.CheckDiv>
+            <S.CenterDiv>
+              <SubmitButton text="확인" heights="0.8rem" sides="1.8rem" />
+            </S.CenterDiv>
           </S.SubmitDiv>
         </form>
       </S.SizeDiv>

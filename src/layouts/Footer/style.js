@@ -23,6 +23,8 @@ export const SecondDiv = styled.div`
   @media ${TABLET} {
     display: block;
     padding: 0;
+    width: 97%;
+    margin: 0 auto;
   }
   @media ${LAPTOP} {
     width: 800px;

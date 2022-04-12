@@ -211,7 +211,38 @@ export const LiTag = styled.li`
 `;
 export const AgreeDiv = styled.div`
   padding-top: 2rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
 `;
-export const RadioUl = styled.ul``;
+export const CheckDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-top: 0.4rem;
+`;
+export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid #999;
+  appearance: none;
+  cursor: pointer;
+  &:checked {
+    background-color: red;
+  }
+`;
+export const CheckPtag = styled.p`
+  font-size: 0.75rem;
+  font-weight: 700;
+`;
+export const ATag = styled.a`
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f16350;
+  padding-left: 2rem;
+`;
+export const CenterDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
