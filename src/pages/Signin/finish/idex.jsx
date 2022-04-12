@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
@@ -32,7 +33,9 @@ const SigninFinish = () => {
               이랜서가 열어가는 IT전문가 세상에서 회원님의 시간이 더욱 빛나길 바랍니다.
             </S.Ptag>
             <S.ButtonSizeDiv>
-              <SubmitButton text="이랜서 둘러보기" heights="1rem" sides="3rem" />
+              <Link to="/">
+                <SubmitButton text="이랜서 둘러보기" heights="1rem" sides="3rem" />
+              </Link>
             </S.ButtonSizeDiv>
           </div>
         </S.FlexDiv>
