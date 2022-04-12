@@ -6,6 +6,7 @@ import PartnerList from 'pages/Partner/PartnerList';
 import ProjectDetail from 'pages/Project/ProjectDetail';
 import ProjectList from 'pages/Project/ProjectList';
 import Signin from 'pages/Signin';
+import SigninFinish from 'pages/Signin/finish/idex';
 import SigninFreeLancer from 'pages/Signin/freelancer';
 import GlobalStyles from 'styles/GlobalStyles';
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signin/freelancer" element={<SigninFreeLancer />} />
+        <Route path="/signin/finish" element={<SigninFinish />} />
       </Routes>
     </>
   );
