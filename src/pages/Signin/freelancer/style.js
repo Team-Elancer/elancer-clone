@@ -86,7 +86,6 @@ export const ProfileDiv = styled.div`
   @media ${LAPTOP} {
   }
 `;
-
 export const SubmitDiv = styled.div`
   @media ${TABLET} {
     display: block;
@@ -107,6 +106,16 @@ export const InputDiv = styled.div`
   @media ${LAPTOP} {
   }
 `;
+export const BlockDiv = styled.div`
+  display: block;
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+  @media ${LAPTOP} {
+  }
+`;
 export const SpanTag = styled.span`
   font-size: 0.75rem;
   font-weight: 800;
@@ -114,6 +123,9 @@ export const SpanTag = styled.span`
   background-size: 5px 5px;
   padding-left: 0.3rem;
   @media ${TABLET} {
+    font-size: 0.98rem;
+    background-size: 10px 10px;
+    padding: 0 ${(props) => props.right} 0 0.7rem;
   }
   @media ${LAPTOP} {
   }
@@ -132,9 +144,21 @@ export const InputTag = styled.input`
     font-weight: 600;
   }
   @media ${TABLET} {
+    width: ${(props) => props.size};
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0 0.6rem 0;
+    &::placeholder {
+      padding-left: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
   }
   @media ${LAPTOP} {
   }
+`;
+export const EmailTop = styled.div`
+  margin-top: -0.8rem;
 `;
 export const ErrorMessage = styled.p`
   color: #ff6b6b;
@@ -142,6 +166,7 @@ export const ErrorMessage = styled.p`
   font-size: 0.4rem;
   font-weight: 800;
   @media ${TABLET} {
+    padding-left: 9rem;
   }
   @media ${LAPTOP} {
   }
@@ -152,6 +177,7 @@ export const CapsMessage = styled.p`
   font-size: 0.4rem;
   font-weight: 800;
   @media ${TABLET} {
+    padding-left: 9rem;
   }
   @media ${LAPTOP} {
   }
@@ -161,18 +187,39 @@ export const EyeImg = styled.img`
   position: absolute;
   top: 0.625rem;
   right: 1.25rem;
+  @media ${TABLET} {
+    top: 1.5rem;
+    right: 19.5rem;
+  }
+  @media ${LAPTOP} {
+    right: 22.5rem;
+  }
 `;
+export const EmailFlex = styled.div`
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
 export const FlexDiv = styled.div`
   padding: 1rem 0 0 0;
   display: flex;
   align-items: center;
   justify-content: start;
+  @media ${TABLET} {
+    padding: ${(props) => props.top} 0 0 0;
+  }
 `;
 export const RadioDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
   width: 7rem;
+  @media ${TABLET} {
+    width: 6rem;
+  }
 `;
 export const RadioInput = styled.input`
   width: 20px;
@@ -182,13 +229,28 @@ export const RadioInput = styled.input`
 export const RadioText = styled.span`
   font-size: 0.75rem;
   font-weight: 800;
+  justify-content: start;
+  @media ${TABLET} {
+    font-size: 0.85rem;
+  }
 `;
 export const DateDiv = styled.div``;
+export const MarginAutoDiv = styled.div`
+  @media ${TABLET} {
+    padding-top: 3rem;
+    width: 90%;
+    margin: 0 auto;
+  }
+`;
 export const BordeDiv = styled.div`
   font-size: 0.75rem;
   font-weight: 800;
   padding-bottom: 0.8rem;
   border-bottom: 1px solid #969696;
+  @media ${TABLET} {
+    font-size: 0.95rem;
+    padding-bottom: 2rem;
+  }
 `;
 export const UlTag = styled.ul`
   display: inline-block;
@@ -208,11 +270,20 @@ export const LiTag = styled.li`
     border: 2px solid black;
     background-color: #e7e7e7;
   }
+  @media ${TABLET} {
+    font-size: 0.95rem;
+    border-radius: 2rem;
+    background-color: white;
+  }
 `;
 export const AgreeDiv = styled.div`
   padding-top: 2rem;
   font-size: 0.75rem;
   font-weight: 800;
+  @media ${TABLET} {
+    font-size: 0.95rem;
+    padding: 2rem 0 1.5rem 0;
+  }
 `;
 export const CheckDiv = styled.div`
   display: flex;
@@ -230,16 +301,32 @@ export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
   &:checked {
     background-color: red;
   }
+  @media ${TABLET} {
+    width: 1.4rem;
+    height: 1.4rem;
+    background-color: white;
+  }
 `;
 export const CheckPtag = styled.p`
   font-size: 0.75rem;
   font-weight: 700;
+  @media ${TABLET} {
+    font-size: 0.88rem;
+    font-weight: 800;
+    word-spacing: -0.1rem;
+  }
+  @media ${LAPTOP} {
+  }
 `;
 export const ATag = styled.a`
   font-size: 0.75rem;
   font-weight: 700;
   color: #f16350;
   padding-left: 2rem;
+  @media ${TABLET} {
+    font-size: 0.88rem;
+    font-weight: 800;
+  }
 `;
 export const CenterDiv = styled.div`
   display: flex;
