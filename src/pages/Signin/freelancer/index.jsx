@@ -65,12 +65,17 @@ const SigninFreeLancer = () => {
           <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
           <S.ButtonDiv>개인</S.ButtonDiv>
           <S.MobilePhoto>
-            <S.ProfileImg src={Profile} alt="profile" />
+            <S.ProfileMobileImg src={Profile} alt="profile" />
             <S.CameraImg src={Camera} alt="Camera" />
           </S.MobilePhoto>
           <S.H1>기본정보</S.H1>
           <S.ProfileDiv>
             <S.MarginAutoDiv>
+              <S.ProfileImgDiv>
+                <S.FileInput type="file" />
+                <S.ProfileImg src={Profile} alt="profile" />
+                <S.BallDiv />
+              </S.ProfileImgDiv>
               <S.InputDiv>
                 <S.BlockDiv>
                   <div>
@@ -161,6 +166,21 @@ const SigninFreeLancer = () => {
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.JobDiv>
+                  <div>
+                    <S.SpanTag right="4.5em">직종</S.SpanTag>
+                  </div>
+                  <S.JobUl>
+                    <S.JobLiBorderLeft>개발자</S.JobLiBorderLeft>
+                    <S.JobLi>퍼블리셔</S.JobLi>
+                    <S.JobLi>디자이너</S.JobLi>
+                    <S.JobLi>기획자</S.JobLi>
+                    <S.JobLi>크라우드워커</S.JobLi>
+                    <S.JobLiBorderRight>기타</S.JobLiBorderRight>
+                  </S.JobUl>
+                </S.JobDiv>
               </S.InputDiv>
               <S.EmailFlex>
                 <S.InputDiv>

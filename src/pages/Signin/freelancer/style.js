@@ -53,7 +53,7 @@ export const MobilePhoto = styled.div`
     display: none;
   }
 `;
-export const ProfileImg = styled.img`
+export const ProfileMobileImg = styled.img`
   width: 13rem;
   padding: 0.5rem 0 0 0;
   z-index: 99;
@@ -82,9 +82,49 @@ export const ProfileDiv = styled.div`
     background-color: #f2f2f2;
     border-radius: 10px;
     height: 63rem;
+    position: relative;
   }
   @media ${LAPTOP} {
   }
+`;
+export const ProfileImgDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    display: block;
+    position: absolute;
+    border: 5px solid #eb6100;
+    border-radius: 50%;
+    left: 38rem;
+    z-index: 99;
+    cursor: pointer;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const ProfileImg = styled.img`
+  position: relative;
+  pointer-events: none;
+`;
+export const BallDiv = styled.div`
+  width: 22px;
+  height: 22px;
+  background-color: #eb6100;
+  border-radius: 50%;
+  position: absolute;
+  top: 3.2rem;
+  left: 3rem;
+`;
+export const FileInput = styled.input`
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 500px;
+  z-index: 0;
+  left: 1rem;
+  top: 2rem;
+  position: absolute;
 `;
 export const SubmitDiv = styled.div`
   @media ${TABLET} {
@@ -97,7 +137,6 @@ export const SubmitDiv = styled.div`
   @media ${LAPTOP} {
   }
 `;
-
 export const InputDiv = styled.div`
   padding-top: 1rem;
   position: relative;
@@ -314,6 +353,76 @@ export const CheckPtag = styled.p`
     font-size: 0.88rem;
     font-weight: 800;
     word-spacing: -0.1rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const JobDiv = styled.div`
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const JobUl = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-bottom: 1.5rem;
+`;
+export const JobLi = styled.li`
+  margin-top: 0.2rem;
+  background-color: #f2f2f2;
+  padding: 0.5rem 0.7rem;
+  font-weight: 800;
+  border: 1px solid #e1e1e1;
+  &:hover {
+    background-color: #eb6100;
+    color: white;
+  }
+  @media ${TABLET} {
+    background-color: white;
+    font-size: 0.9rem;
+    padding: 0.9rem 1.7rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const JobLiBorderLeft = styled.li`
+  margin-top: 0.2rem;
+  background-color: #f2f2f2;
+  padding: 0.5rem 0.7rem;
+  font-weight: 800;
+  border: 1px solid #e1e1e1;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  &:hover {
+    background-color: #eb6100;
+    color: white;
+  }
+  @media ${TABLET} {
+    background-color: white;
+    font-size: 0.9rem;
+    padding: 0.9rem 1.7rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const JobLiBorderRight = styled.li`
+  margin-top: 0.2rem;
+  background-color: #f2f2f2;
+  padding: 0.5rem 0.7rem;
+  font-weight: 800;
+  border: 1px solid #e1e1e1;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  &:hover {
+    background-color: #eb6100;
+    color: white;
+  }
+  @media ${TABLET} {
+    background-color: white;
+    font-size: 0.9rem;
+    padding: 0.9rem 1.7rem;
   }
   @media ${LAPTOP} {
   }
