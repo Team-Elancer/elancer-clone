@@ -69,7 +69,6 @@ const SigninCompany = () => {
       <S.SizeDiv>
         <form>
           <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
-          <S.ButtonDiv>개인</S.ButtonDiv>
           <S.MobilePhoto>
             <S.ProfileMobileImg src={Bici} alt="profile" />
             <S.CameraImg src={Camera} alt="Camera" />

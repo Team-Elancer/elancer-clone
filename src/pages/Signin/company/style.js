@@ -44,7 +44,7 @@ export const MobilePhoto = styled.div`
   width: 390px;
   height: 223px;
   border-top: 1px solid #c4c4c4;
-  margin: 1.5rem -0.6rem 0 -0.6rem;
+  margin: 0 -0.6rem 0 -0.6rem;
   text-align: center;
   background-image: linear-gradient(to bottom, white 0%, #a5a5a5 100%);
   opacity: 1;
