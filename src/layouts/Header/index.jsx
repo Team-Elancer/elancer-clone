@@ -1,5 +1,4 @@
 import { FaBars } from 'react-icons/fa';
-
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Logo from 'assets/images/elancer_logo.png';
