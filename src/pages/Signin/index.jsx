@@ -26,16 +26,18 @@ const Signin = () => {
       <S.SizeDiv>
         <InlineBlock h1="회원가입" text="회원선택" pages="1 / 3" />
         <S.BlockDiv>
-          <S.BoxSizeDiv bgcolor="#f6f6f6">
-            <S.CenterDiv>
-              <S.ImgFlex>
-                <S.Img src={Logo} alt="logo" magin="7rem" />
-                <S.BigText>엔터프라이즈</S.BigText>
-              </S.ImgFlex>
-              <S.TopP color="black">기업 전용 가입하기</S.TopP>
-              <S.BottomP color="#707070">적합한 인재 찾기를 희망한 기업</S.BottomP>
-            </S.CenterDiv>
-          </S.BoxSizeDiv>
+          <Link to="/signin/company">
+            <S.BoxSizeDiv bgcolor="#f6f6f6">
+              <S.CenterDiv>
+                <S.ImgFlex>
+                  <S.Img src={Logo} alt="logo" magin="7rem" />
+                  <S.BigText>엔터프라이즈</S.BigText>
+                </S.ImgFlex>
+                <S.TopP color="black">기업 전용 가입하기</S.TopP>
+                <S.BottomP color="#707070">적합한 인재 찾기를 희망한 기업</S.BottomP>
+              </S.CenterDiv>
+            </S.BoxSizeDiv>
+          </Link>
           <Link to="/signin/freelancer">
             <S.BoxSizeDiv bgcolor="#3c3c3c">
               <S.CenterDiv>

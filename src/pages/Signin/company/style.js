@@ -47,36 +47,24 @@ export const MobilePhoto = styled.div`
   margin: 1.5rem -0.6rem 0 -0.6rem;
   text-align: center;
   background-image: linear-gradient(to bottom, white 0%, #a5a5a5 100%);
-  opacity: 0.5;
+  opacity: 1;
   position: relative;
-  z-index: 99;
-  cursor: none;
   @media ${TABLET} {
     display: none;
   }
 `;
 export const ProfileMobileImg = styled.img`
-  width: 13rem;
+  width: 100%;
   padding: 0.5rem 0 0 0;
-  opacity: 1;
+  z-index: 99;
+  height: 100%;
+  opacity: 0.6;
+  background-color: none;
 `;
 export const CameraImg = styled.img`
   position: absolute;
   top: 11.5rem;
   left: 22rem;
-  z-index: 2;
-`;
-export const MobileFileInput = styled.input`
-  width: 35px;
-  height: 35px;
-  background-color: transparent;
-  border: none;
-  font-size: 500px;
-  z-index: 0;
-  left: 21.5rem;
-  top: 11rem;
-  opacity: 5;
-  position: absolute;
 `;
 export const H1 = styled.h1`
   font-size: 0.9rem;
@@ -129,16 +117,17 @@ export const BallDiv = styled.div`
   left: 3rem;
 `;
 export const FileInput = styled.input`
-  width: 35px;
-  height: 35px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   background-color: transparent;
   border: none;
   color: #ffffff;
   font-size: 500px;
   z-index: 0;
-  left: 1rem;
-  top: 2rem;
+  left: ${(props) => props.left};
+  top: ${(props) => props.top};
   position: absolute;
+  opacity: 0;
 `;
 export const SubmitDiv = styled.div`
   @media ${TABLET} {
@@ -172,13 +161,41 @@ export const BlockDiv = styled.div`
 export const SpanTag = styled.span`
   font-size: 0.75rem;
   font-weight: 800;
-  background: url(${redStar}) left top no-repeat;
+  background: url(${redStar}) left top no-repeat ${(props) => props.star};
   background-size: 5px 5px;
   padding-left: 0.3rem;
   @media ${TABLET} {
     font-size: 0.98rem;
     background-size: 10px 10px;
     padding: 0 ${(props) => props.right} 0 0.7rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const SelectTag = styled.select`
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0.8rem 0 0.6rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: black;
+  width: 7rem;
+  border-bottom: 1px solid #c4c4c4;
+  &::placeholder {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  @media ${TABLET} {
+    width: ${(props) => props.size};
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0 0.6rem 0;
+    &::placeholder {
+      padding-left: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
   }
   @media ${LAPTOP} {
   }
@@ -191,7 +208,9 @@ export const InputTag = styled.input`
   font-size: 1.125rem;
   font-weight: 600;
   color: #707070;
+  width: ${(props) => props.Mobilesize};
   border-bottom: 1px solid #c4c4c4;
+  margin-left: ${(props) => props.MobileMargin};
   &::placeholder {
     font-size: 1.125rem;
     font-weight: 600;
@@ -455,4 +474,23 @@ export const CenterDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const BlacSpan = styled.span`
+  position: relative;
+  background-color: #434343;
+  color: #b7b7b7;
+  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
+  z-index: 3;
+`;
+export const FileMessage = styled.p`
+  font-weight: 800;
+  padding: 3rem 0 2rem 0;
+`;
+export const CancelImg = styled.img`
+  position: absolute;
+  top: 2.5rem;
+  left: 14rem;
 `;
