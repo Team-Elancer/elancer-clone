@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 import * as S from './style';
+import Bici from 'assets/images/bici.png';
 import Camera from 'assets/images/camera.png';
+import Cancel from 'assets/images/cancel-orange.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import Profile from 'assets/images/signin-profile.png';
 import SubmitButton from 'components/Button/SubmitButton';
+import Postcode from 'components/DaumPostCode';
 import InlineBlock from 'components/Inline-Block';
 import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
 import MainMenu from 'components/Modal/MainMenu';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-import 'react-datepicker/dist/react-datepicker.css';
 
-const SigninFreeLancer = () => {
+const SigninCompany = () => {
   const [checkBool, setCeckBool] = useState(true);
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
@@ -25,6 +26,7 @@ const SigninFreeLancer = () => {
   const [commitType, setCommitType] = useState('password');
 
   const [selectedDate, setSelectedDate] = useState(null);
+  const [postCodeShow, setPostCodeShow] = useState(false);
 
   const changeEye = () => {
     setEyeCheck(!eyeCheck);
@@ -32,6 +34,10 @@ const SigninFreeLancer = () => {
 
   const changeSecondEye = () => {
     setEyeCheck2(!eyeCheck2);
+  };
+
+  const changePostCode = () => {
+    setPostCodeShow(!postCodeShow);
   };
 
   useEffect(() => {
@@ -63,26 +69,45 @@ const SigninFreeLancer = () => {
       <S.SizeDiv>
         <form>
           <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
-          <S.ButtonDiv>개인</S.ButtonDiv>
           <S.MobilePhoto>
-            <S.ProfileMobileImg src={Profile} alt="profile" />
+            <S.ProfileMobileImg src={Bici} alt="profile" />
             <S.CameraImg src={Camera} alt="Camera" />
-            {/* <S.MobileFileInput type="file" /> */}
           </S.MobilePhoto>
           <S.H1>기본정보</S.H1>
           <S.ProfileDiv>
             <S.MarginAutoDiv>
               <S.ProfileImgDiv>
-                <S.FileInput type="file" />
+                <S.FileInput type="file" width="35px" height="35px" left="1rem" top="2rem" />
                 <S.ProfileImg src={Profile} alt="profile" />
                 <S.BallDiv />
               </S.ProfileImgDiv>
               <S.InputDiv>
                 <S.BlockDiv>
                   <div>
-                    <S.SpanTag right="6em">성명</S.SpanTag>
+                    <S.SpanTag right="6em">회사명</S.SpanTag>
                   </div>
-                  <S.InputTag size="14.5rem" placeholder="성명" />
+                  <S.InputTag size="14.5rem" placeholder="회사명" />
+                </S.BlockDiv>
+                <S.ErrorMessage />
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="3em">회사 인원수</S.SpanTag>
+                  </div>
+                  <S.InputTag type="number" size="14.5rem" placeholder="회사 인원수" />
+                </S.BlockDiv>
+                <S.ErrorMessage />
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="3em">담장자명</S.SpanTag>
+                  </div>
+                  <S.InputTag Mobilesize="12rem" placeholder="담장자명" />
+                  <S.InputTag MobileMargin="0.4rem" Mobilesize="8rem" placeholder="직책" />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -125,43 +150,10 @@ const SigninFreeLancer = () => {
                 <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
                 <S.EyeImg src={secondEyeImg} alt="eye" onClick={changeSecondEye} />
               </S.InputDiv>
-              <S.EmailFlex>
-                <S.InputDiv>
-                  <S.BlockDiv>
-                    <div>
-                      <S.SpanTag right="5em">이메일</S.SpanTag>
-                    </div>
-                    <S.InputTag size="13rem" placeholder="name@example.com" />
-                  </S.BlockDiv>
-                  <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
-                  <S.CapsMessage />
-                </S.InputDiv>
-                <S.InputDiv>
-                  <S.BlockDiv>
-                    <S.EmailTop>
-                      <S.SpanTag right="0.5em">메일수신 여부</S.SpanTag>
-                    </S.EmailTop>
-                    <S.EmailTop>
-                      <S.FlexDiv top="0">
-                        <S.RadioDiv>
-                          <S.RadioInput type="radio" name="email" value="Y" />
-                          <S.RadioText>수신</S.RadioText>
-                        </S.RadioDiv>
-                        <S.RadioDiv>
-                          <S.RadioInput type="radio" name="email" value="N" />
-                          <S.RadioText>미수신</S.RadioText>
-                        </S.RadioDiv>
-                      </S.FlexDiv>
-                    </S.EmailTop>
-                  </S.BlockDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
-                </S.InputDiv>
-              </S.EmailFlex>
               <S.InputDiv>
                 <S.BlockDiv>
                   <div>
-                    <S.SpanTag right="4.5em">휴대폰</S.SpanTag>
+                    <S.SpanTag right="4.5em">전화번호</S.SpanTag>
                   </div>
                   <S.InputTag size="14.5rem" type="number" placeholder="숫자만 입력" />
                 </S.BlockDiv>
@@ -169,54 +161,101 @@ const SigninFreeLancer = () => {
                 <S.CapsMessage />
               </S.InputDiv>
               <S.InputDiv>
-                <S.JobDiv>
+                <S.BlockDiv>
                   <div>
-                    <S.SpanTag right="4.5em">직종</S.SpanTag>
+                    <S.SpanTag right="4.5em">담당자 휴대폰</S.SpanTag>
                   </div>
-                  <S.JobUl>
-                    <S.JobLiBorderLeft>개발자</S.JobLiBorderLeft>
-                    <S.JobLi>퍼블리셔</S.JobLi>
-                    <S.JobLi>디자이너</S.JobLi>
-                    <S.JobLi>기획자</S.JobLi>
-                    <S.JobLi>크라우드워커</S.JobLi>
-                    <S.JobLiBorderRight>기타</S.JobLiBorderRight>
-                  </S.JobUl>
-                </S.JobDiv>
+                  <S.InputTag size="14.5rem" type="number" placeholder="숫자만 입력" />
+                </S.BlockDiv>
+                <S.ErrorMessage />
+                <S.CapsMessage />
               </S.InputDiv>
-              <S.EmailFlex>
-                <S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
                   <div>
-                    <S.SpanTag right="0">업무가능 여부</S.SpanTag>
+                    <S.SpanTag right="5em">이메일</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem">
-                    <S.RadioDiv>
-                      <S.RadioInput type="radio" name="job" value="Y" />
-                      <S.RadioText>가능</S.RadioText>
-                    </S.RadioDiv>
-                    <S.RadioDiv>
-                      <S.RadioInput type="radio" name="job" value="N" />
-                      <S.RadioText>불가능</S.RadioText>
-                    </S.RadioDiv>
-                  </S.FlexDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
-                </S.InputDiv>
-                <S.InputDiv>
+                  <S.InputTag size="13rem" placeholder="name@example.com" />
+                </S.BlockDiv>
+                <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
                   <div>
-                    <S.SpanTag right="0">업무가능일</S.SpanTag>
+                    <S.SpanTag star="none" right="5em">
+                      웹사이트
+                    </S.SpanTag>
                   </div>
-                  <S.InputTag size="14.5rem" type="number" placeholder={selectedDate} />
-                  <S.DateDiv>
-                    <DatePicker
-                      onChange={(date) => {
-                        setSelectedDate(date.toLocaleDateString());
-                      }}
-                    />
-                  </S.DateDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
-                </S.InputDiv>
-              </S.EmailFlex>
+                  <S.InputTag size="13rem" placeholder="www.example.com" />
+                </S.BlockDiv>
+                <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="5em">주소</S.SpanTag>
+                  </div>
+                  <S.SelectTag type="checkbox" Mobilesize="7rem" size="13rem">
+                    <option value="kr">대한민국</option>
+                    <option value="uk">영국</option>
+                    <option value="us">미국</option>
+                    <option value="jp">일본</option>
+                    <option value="cn">중국</option>
+                  </S.SelectTag>
+                  <S.InputTag Mobilesize="7em" MobileMargin="1rem" size="13rem" placeholder="우편번호" />
+                  <S.BlacSpan onClick={changePostCode}>우편번호 찾기</S.BlacSpan>
+                  {postCodeShow === true && <Postcode />}
+                </S.BlockDiv>
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag star="none" right="5em">
+                      주요 사업내용
+                    </S.SpanTag>
+                  </div>
+                  <S.InputTag size="13rem" placeholder="주요 사업내용" />
+                </S.BlockDiv>
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag star="none" right="5em">
+                      연간 매출액
+                    </S.SpanTag>
+                  </div>
+                  <S.InputTag size="13rem" placeholder="연간 매출액" />
+                </S.BlockDiv>
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="5em">사업자등록번호</S.SpanTag>
+                  </div>
+                  <S.InputTag Mobilesize="15.5rem" size="13rem" placeholder="사업자등록번호" />
+                </S.BlockDiv>
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="5em">사업자등록증</S.SpanTag>
+                  </div>
+                  <S.CancelImg src={Cancel} alt="cancel" />
+                  <S.InputTag Mobilesize="15.5rem" size="13rem" placeholder="사업자등록증" />
+                  <S.BlacSpan>
+                    <S.FileInput type="file" width="75px" height="25px" left="0.2rem" top="0.1rem" />
+                    파일 등록
+                  </S.BlacSpan>
+                  <S.FileMessage>※ 사업자등록증 파일의 크기는 10MB를 초과하지 않아야 합니다</S.FileMessage>
+                </S.BlockDiv>
+                <S.CapsMessage />
+              </S.InputDiv>
             </S.MarginAutoDiv>
           </S.ProfileDiv>
           <S.SubmitDiv>
@@ -267,4 +306,4 @@ const SigninFreeLancer = () => {
   );
 };
 
-export default SigninFreeLancer;
+export default SigninCompany;
