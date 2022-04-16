@@ -30,7 +30,7 @@ const Signin = () => {
             <S.BoxSizeDiv bgcolor="#f6f6f6">
               <S.CenterDiv>
                 <S.ImgFlex>
-                  <S.Img src={Logo} alt="logo" magin="7rem" />
+                  <S.Img src={Logo} alt="logo" magin="10rem" />
                   <S.BigText>엔터프라이즈</S.BigText>
                 </S.ImgFlex>
                 <S.TopP color="black">기업 전용 가입하기</S.TopP>

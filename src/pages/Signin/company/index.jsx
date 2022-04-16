@@ -75,10 +75,10 @@ const SigninCompany = () => {
           <S.H1>기본정보</S.H1>
           <S.ProfileDiv>
             <S.MarginAutoDiv>
-              <S.ProfileImgDiv>
-                <S.ProfileImg src={Bici} alt="profile" />
-                <S.FileInput type="file" width="75px" height="25px" left="0.2rem" top="0.1rem" />
-              </S.ProfileImgDiv>
+              <S.ProfileImg src={Bici} alt="profile" />
+              <div>
+                <S.FileInput type="file" width="234px" height="154px" left="30rem" top="3rem" />
+              </div>
               <S.InputDiv>
                 <S.BlockDiv display="flex">
                   <div>
