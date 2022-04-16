@@ -102,9 +102,11 @@ export const ProfileImgDiv = styled.div`
   }
 `;
 export const ProfileImg = styled.img`
-  position: relative;
+  position: absolute;
   pointer-events: none;
+  left: 30rem;
   width: 234px;
+  z-index: 1;
 `;
 export const FileInput = styled.input`
   width: ${(props) => props.width};
@@ -113,12 +115,13 @@ export const FileInput = styled.input`
   border: none;
   color: #ffffff;
   font-size: 500px;
-  z-index: 0;
   left: ${(props) => props.left};
   top: ${(props) => props.top};
   position: absolute;
   opacity: 0;
+  z-index: 2;
   @media ${TABLET} {
+    cursor: pointer;
   }
 `;
 export const SubmitDiv = styled.div`
