@@ -83,8 +83,9 @@ export const ProfileDiv = styled.div`
     display: block;
     background-color: #f2f2f2;
     border-radius: 10px;
-    height: 63rem;
+    height: 100%;
     position: relative;
+    z-index: 2;
   }
   @media ${LAPTOP} {
   }
@@ -94,10 +95,7 @@ export const ProfileImgDiv = styled.div`
   @media ${TABLET} {
     display: block;
     position: absolute;
-    border: 5px solid #eb6100;
-    border-radius: 50%;
-    left: 38rem;
-    z-index: 99;
+    left: 30rem;
     cursor: pointer;
   }
   @media ${LAPTOP} {
@@ -106,15 +104,7 @@ export const ProfileImgDiv = styled.div`
 export const ProfileImg = styled.img`
   position: relative;
   pointer-events: none;
-`;
-export const BallDiv = styled.div`
-  width: 22px;
-  height: 22px;
-  background-color: #eb6100;
-  border-radius: 50%;
-  position: absolute;
-  top: 3.2rem;
-  left: 3rem;
+  width: 234px;
 `;
 export const FileInput = styled.input`
   width: ${(props) => props.width};
@@ -128,6 +118,8 @@ export const FileInput = styled.input`
   top: ${(props) => props.top};
   position: absolute;
   opacity: 0;
+  @media ${TABLET} {
+  }
 `;
 export const SubmitDiv = styled.div`
   @media ${TABLET} {
@@ -144,6 +136,7 @@ export const InputDiv = styled.div`
   padding-top: 1rem;
   position: relative;
   @media ${TABLET} {
+    padding-left: ${(props) => props.left};
   }
   @media ${LAPTOP} {
   }
@@ -151,7 +144,7 @@ export const InputDiv = styled.div`
 export const BlockDiv = styled.div`
   display: block;
   @media ${TABLET} {
-    display: flex;
+    display: ${(props) => props.display};
     align-items: center;
     justify-content: start;
   }
@@ -165,6 +158,7 @@ export const SpanTag = styled.span`
   background-size: 5px 5px;
   padding-left: 0.3rem;
   @media ${TABLET} {
+    width: 100%;
     font-size: 0.98rem;
     background-size: 10px 10px;
     padding: 0 ${(props) => props.right} 0 0.7rem;
@@ -220,6 +214,7 @@ export const InputTag = styled.input`
     font-size: 0.9rem;
     border-radius: 0.5rem;
     padding: 0.75rem 0 0.6rem 0;
+    margin-right: ${(props) => props.right};
     &::placeholder {
       padding-left: 0.5rem;
       font-size: 0.9rem;
@@ -239,6 +234,7 @@ export const ErrorMessage = styled.p`
   font-weight: 800;
   @media ${TABLET} {
     padding-left: 9rem;
+    word-spacing: -0.2rem;
   }
   @media ${LAPTOP} {
   }
@@ -248,8 +244,10 @@ export const CapsMessage = styled.p`
   padding: 0 0 1rem 0;
   font-size: 0.4rem;
   font-weight: 800;
+  display: ${(props) => props.Mobiledisplay};
   @media ${TABLET} {
     padding-left: 9rem;
+    display: ${(props) => props.display};
   }
   @media ${LAPTOP} {
   }
@@ -261,7 +259,7 @@ export const EyeImg = styled.img`
   right: 1.25rem;
   @media ${TABLET} {
     top: 1.5rem;
-    right: 19.5rem;
+    right: 0.5rem;
   }
   @media ${LAPTOP} {
     right: 22.5rem;
@@ -276,12 +274,11 @@ export const EmailFlex = styled.div`
 `;
 
 export const FlexDiv = styled.div`
-  padding: 1rem 0 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: start;
   @media ${TABLET} {
-    padding: ${(props) => props.top} 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-top: ${(props) => props.top};
   }
 `;
 export const RadioDiv = styled.div`
@@ -477,20 +474,48 @@ export const CenterDiv = styled.div`
 `;
 
 export const BlacSpan = styled.span`
-  position: relative;
   background-color: #434343;
   color: #b7b7b7;
   font-size: 0.75rem;
   padding: 0.4rem 1rem;
   border-radius: 1rem;
   z-index: 3;
+  position: relative;
+  @media ${TABLET} {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 1.5rem;
+    letter-spacing: -0.1rem;
+    margin-left: 1rem;
+  }
 `;
 export const FileMessage = styled.p`
   font-weight: 800;
   padding: 3rem 0 2rem 0;
+  @media ${TABLET} {
+    padding: 2rem 0 2rem 20rem;
+  }
 `;
 export const CancelImg = styled.img`
   position: absolute;
   top: 2.5rem;
   left: 14rem;
+  @media ${TABLET} {
+    top: 3.8rem;
+    left: 7rem;
+  }
+`;
+export const PostCodeDiv = styled.div`
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5.8rem;
+  }
+`;
+export const BorderDiv = styled.div`
+  @media ${TABLET} {
+    padding-top: 4rem;
+    border-bottom: 1px solid #969696;
+  }
 `;
