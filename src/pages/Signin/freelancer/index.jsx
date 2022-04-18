@@ -8,15 +8,12 @@ import OpenEye from 'assets/images/openEye.png';
 import Profile from 'assets/images/signin-profile.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
-import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
-import MainMenu from 'components/Modal/MainMenu';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const SigninFreeLancer = () => {
-  const [checkBool, setCeckBool] = useState(true);
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
   const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
@@ -53,13 +50,7 @@ const SigninFreeLancer = () => {
 
   return (
     <S.Container>
-      {checkBool === false && (
-        <>
-          <MainMenu setCeckBool={setCeckBool} />
-          <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
-        </>
-      )}
-      <Header checkBool={checkBool} setCeckBool={setCeckBool} />
+      <Header />
       <S.SizeDiv>
         <form>
           <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />

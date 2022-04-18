@@ -9,14 +9,11 @@ import OpenEye from 'assets/images/openEye.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import Postcode from 'components/DaumPostCode';
 import InlineBlock from 'components/Inline-Block';
-import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
-import MainMenu from 'components/Modal/MainMenu';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const SigninCompany = () => {
-  const [checkBool, setCeckBool] = useState(true);
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
   const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
@@ -24,7 +21,6 @@ const SigninCompany = () => {
   const [pwType, setPwType] = useState('password');
   const [commitType, setCommitType] = useState('password');
 
-  const [selectedDate, setSelectedDate] = useState(null);
   const [postCodeShow, setPostCodeShow] = useState(false);
 
   const changeEye = () => {
@@ -58,13 +54,7 @@ const SigninCompany = () => {
 
   return (
     <S.Container>
-      {checkBool === false && (
-        <>
-          <MainMenu setCeckBool={setCeckBool} />
-          <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
-        </>
-      )}
-      <Header checkBool={checkBool} setCeckBool={setCeckBool} />
+      <Header />
       <S.SizeDiv>
         <form>
           <InlineBlock h1="기업 회원가입" text="회원정보" pages="2 / 3" />

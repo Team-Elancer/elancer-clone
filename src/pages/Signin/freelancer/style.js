@@ -218,6 +218,8 @@ export const ErrorMessage = styled.p`
   padding: 1rem 0 1rem 0;
   font-size: 0.4rem;
   font-weight: 800;
+  pointer-events: none;
+  user-select: none;
   @media ${TABLET} {
     padding-left: 9rem;
   }
@@ -229,6 +231,8 @@ export const CapsMessage = styled.p`
   padding: 0 0 1rem 0;
   font-size: 0.4rem;
   font-weight: 800;
+  pointer-events: none;
+  user-select: none;
   @media ${TABLET} {
     padding-left: 9rem;
   }
@@ -287,7 +291,18 @@ export const RadioText = styled.span`
     font-size: 0.85rem;
   }
 `;
-export const DateDiv = styled.div``;
+export const DateDiv = styled.div`
+  .react-datepicker {
+    box-shadow: 3px 2px 11px rgb(0 0 0 / 30%);
+  }
+  .react-datepicker__input-container input {
+    position: relative;
+    opacity: 0;
+    top: -2rem;
+    height: 100%;
+    cursor: pointer;
+  }
+`;
 export const MarginAutoDiv = styled.div`
   @media ${TABLET} {
     padding-top: 3rem;

@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react';
 import * as S from './style';
 import programmer from 'assets/images/programmer.png';
 import Eblock from 'components/Arround-Project';
 import ChoiceProject from 'components/Choice-Project';
 import Count from 'components/Count';
-import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
-import MainMenu from 'components/Modal/MainMenu';
 import ReFreelancer from 'components/Re-Freelancer';
 import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
@@ -14,18 +11,10 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Main = () => {
-  const [checkBool, setCeckBool] = useState(true);
-
   return (
     <S.Container>
-      {checkBool === false && (
-        <>
-          <MainMenu setCeckBool={setCeckBool} />
-          <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
-        </>
-      )}
       <S.BackImg>
-        <Header checkBool={checkBool} setCeckBool={setCeckBool} />
+        <Header />
         <SearchBar />
         <S.SecondDiv>
           <S.Img src={programmer} alr="progammer" />
