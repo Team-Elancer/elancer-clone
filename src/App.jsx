@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import DashBoard from 'pages/DashBoard';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import PartnerDetail from 'pages/Partner/PartnerDetail';
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/signin/freelancer" element={<SigninFreeLancer />} />
         <Route path="/signin/finish" element={<SigninFinish />} />
         <Route path="/signin/company" element={<SigninCompany />} />
+        <Route path="/dashboard-enterprise" element={<DashBoard />} />
       </Routes>
     </>
   );
