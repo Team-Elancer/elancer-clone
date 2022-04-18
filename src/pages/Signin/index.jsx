@@ -1,28 +1,17 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Logo from 'assets/images/elancer_logo.png';
 import Freelancer from 'assets/images/freelancer.png';
 import LogoWhite from 'assets/images/logo_white.png';
 import InlineBlock from 'components/Inline-Block';
-import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
-import MainMenu from 'components/Modal/MainMenu';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Signin = () => {
-  const [checkBool, setCeckBool] = useState(true);
-
   return (
     <S.Container>
-      {checkBool === false && (
-        <>
-          <MainMenu setCeckBool={setCeckBool} />
-          <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
-        </>
-      )}
-      <Header checkBool={checkBool} setCeckBool={setCeckBool} />
+      <Header />
       <S.SizeDiv>
         <InlineBlock h1="회원가입" text="회원선택" pages="1 / 3" />
         <S.BlockDiv>
