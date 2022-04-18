@@ -27,6 +27,9 @@ export const ProfileImg = styled.img`
   left: 30rem;
   width: 234px;
   z-index: 1;
+  @media ${LAPTOP} {
+    left: 34.5rem;
+  }
 `;
 export const FileInput = styled.input`
   width: ${(props) => props.width};
@@ -42,6 +45,9 @@ export const FileInput = styled.input`
   z-index: 2;
   @media ${TABLET} {
     cursor: pointer;
+  }
+  @media ${LAPTOP} {
+    left: ${(props) => props.laptopLeft};
   }
 `;
 export const InputTag = styled.input`
@@ -72,6 +78,7 @@ export const InputTag = styled.input`
     }
   }
   @media ${LAPTOP} {
+    width: ${(props) => props.laptopSize};
   }
 `;
 export const InputDiv = styled.div`
@@ -204,6 +211,9 @@ export const PostCodeDiv = styled.div`
     justify-content: center;
     margin-left: 5.8rem;
   }
+  @media ${LAPTOP} {
+    margin-left: 2rem;
+  }
 `;
 export const CancelImg = styled.img`
   position: absolute;
@@ -213,12 +223,18 @@ export const CancelImg = styled.img`
     top: 3.8rem;
     left: 7rem;
   }
+  @media ${LAPTOP} {
+    left: 12rem;
+  }
 `;
 export const FileMessage = styled.p`
   font-weight: 800;
   padding: 3rem 0 2rem 0;
   @media ${TABLET} {
     padding: 2rem 0 2rem 20rem;
+  }
+  @media ${LAPTOP} {
+    padding: 2rem 0 2rem 25rem;
   }
 `;
 export const BorderDiv = styled.div`

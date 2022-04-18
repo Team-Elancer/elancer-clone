@@ -14,7 +14,7 @@ export const SizeDiv = styled.div`
     width: 747px;
   }
   @media ${LAPTOP} {
-    width: 800px;
+    width: 830px;
   }
 `;
 
@@ -191,6 +191,9 @@ export const BordeDiv = styled.div`
     font-size: 0.95rem;
     padding-bottom: 2rem;
   }
+  @media ${LAPTOP} {
+    font-size: 1rem;
+  }
 `;
 export const UlTag = styled.ul`
   display: inline-block;
@@ -215,6 +218,10 @@ export const LiTag = styled.li`
     border-radius: 2rem;
     background-color: white;
   }
+  @media ${LAPTOP} {
+    font-size: 1rem;
+    font-weight: 800;
+  }
 `;
 export const AgreeDiv = styled.div`
   padding-top: 2rem;
@@ -223,6 +230,9 @@ export const AgreeDiv = styled.div`
   @media ${TABLET} {
     font-size: 0.95rem;
     padding: 2rem 0 1.5rem 0;
+  }
+  @media ${LAPTOP} {
+    font-size: 1rem;
   }
 `;
 export const CheckDiv = styled.div`

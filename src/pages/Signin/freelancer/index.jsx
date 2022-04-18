@@ -73,7 +73,7 @@ const SigninFreeLancer = () => {
                   <div>
                     <S.SpanTag right="6em">성명</S.SpanTag>
                   </div>
-                  <S.InputTag size="14.5rem" placeholder="성명" />
+                  <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="성명" />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -83,7 +83,7 @@ const SigninFreeLancer = () => {
                   <div>
                     <S.SpanTag right="3em">회원아이디</S.SpanTag>
                   </div>
-                  <S.InputTag size="14.5rem" placeholder="회원아이디 5~15자 영문,숫자" />
+                  <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="회원아이디 5~15자 영문,숫자" />
                 </S.BlockDiv>
                 <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
                 <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -93,7 +93,14 @@ const SigninFreeLancer = () => {
                   <div>
                     <S.SpanTag right="4em">비밀번호</S.SpanTag>
                   </div>
-                  <S.InputTag size="14.5rem" type={pwType} name="password" autoComplete="on" placeholder="비밀번호" />
+                  <S.InputTag
+                    size="14.5rem"
+                    laptopSize="19rem"
+                    type={pwType}
+                    name="password"
+                    autoComplete="on"
+                    placeholder="비밀번호"
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
                 <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -106,6 +113,7 @@ const SigninFreeLancer = () => {
                   </div>
                   <S.InputTag
                     size="14.5rem"
+                    laptopSize="19rem"
                     type={commitType}
                     name="new-password"
                     autoComplete="on"
@@ -122,7 +130,7 @@ const SigninFreeLancer = () => {
                     <div>
                       <S.SpanTag right="5em">이메일</S.SpanTag>
                     </div>
-                    <S.InputTag size="13rem" placeholder="name@example.com" />
+                    <S.InputTag size="13rem" laptopSize="18rem" placeholder="name@example.com" />
                   </S.BlockDiv>
                   <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
                   <S.CapsMessage />
@@ -152,9 +160,9 @@ const SigninFreeLancer = () => {
               <S.InputDiv>
                 <S.BlockDiv>
                   <div>
-                    <S.SpanTag right="4.5em">휴대폰</S.SpanTag>
+                    <S.SpanTag right="5rem">휴대폰</S.SpanTag>
                   </div>
-                  <S.InputTag size="14.5rem" type="number" placeholder="숫자만 입력" />
+                  <S.InputTag size="14.5rem" laptopSize="19rem" type="number" placeholder="숫자만 입력" />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -245,7 +253,7 @@ const SigninFreeLancer = () => {
               </S.CheckDiv>
               <S.CenterDiv>
                 <Link to="/signin/finish">
-                  <SubmitButton text="완료" heights="0.8rem" sides="1.8rem" />
+                  <SubmitButton text="완료" heights="0.8rem" sides="2rem" />
                 </Link>
               </S.CenterDiv>
             </S.MarginAutoDiv>

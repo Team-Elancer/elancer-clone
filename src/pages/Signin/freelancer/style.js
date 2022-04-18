@@ -14,7 +14,7 @@ export const SizeDiv = styled.div`
     width: 747px;
   }
   @media ${LAPTOP} {
-    width: 800px;
+    width: 840px;
   }
 `;
 
@@ -113,6 +113,7 @@ export const ProfileImgDiv = styled.div`
     cursor: pointer;
   }
   @media ${LAPTOP} {
+    left: 43rem;
   }
 `;
 export const ProfileImg = styled.img`
@@ -208,6 +209,7 @@ export const InputTag = styled.input`
     }
   }
   @media ${LAPTOP} {
+    width: ${(props) => props.laptopSize};
   }
 `;
 export const EmailTop = styled.div`
@@ -343,6 +345,9 @@ export const LiTag = styled.li`
     border-radius: 2rem;
     background-color: white;
   }
+  @media ${LAPTOP} {
+    font-size: 1rem;
+  }
 `;
 export const AgreeDiv = styled.div`
   padding-top: 2rem;
@@ -397,6 +402,11 @@ export const JobUl = styled.ul`
   align-items: center;
   justify-content: start;
   padding-bottom: 1.5rem;
+  @media ${TABLET} {
+    padding-top: 1rem;
+  }
+  @media ${LAPTOP} {
+  }
 `;
 export const JobLi = styled.li`
   margin-top: 0.2rem;
@@ -414,6 +424,7 @@ export const JobLi = styled.li`
     padding: 0.9rem 1.7rem;
   }
   @media ${LAPTOP} {
+    padding: 0.9rem 2rem;
   }
 `;
 export const JobLiBorderLeft = styled.li`
@@ -434,6 +445,9 @@ export const JobLiBorderLeft = styled.li`
     padding: 0.9rem 1.7rem;
   }
   @media ${LAPTOP} {
+    padding: 0.9rem 2.6rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
 `;
 export const JobLiBorderRight = styled.li`
@@ -454,6 +468,9 @@ export const JobLiBorderRight = styled.li`
     padding: 0.9rem 1.7rem;
   }
   @media ${LAPTOP} {
+    padding: 0.9rem 2.6rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 `;
 export const ATag = styled.a`

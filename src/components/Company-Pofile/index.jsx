@@ -50,7 +50,7 @@ const CompanyProfile = () => {
       <S.MarginAutoDiv>
         <S.ProfileImg src={Bici} alt="profile" />
         <div>
-          <S.FileInput type="file" width="234px" height="154px" left="30rem" top="3rem" />
+          <S.FileInput type="file" width="234px" height="154px" left="30rem" top="3rem" laptopLeft="28rem" />
         </div>
         <S.InputDiv>
           <S.BlockDiv display="flex">
@@ -88,7 +88,7 @@ const CompanyProfile = () => {
             <div>
               <S.SpanTag right="3rem">회원아이디</S.SpanTag>
             </div>
-            <S.InputTag size="14.5rem" placeholder="회원아이디 5~15자 영문,숫자" />
+            <S.InputTag size="14.5rem" laptopSize="25rem" placeholder="회원아이디 5~15자 영문,숫자" />
           </S.BlockDiv>
           <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
           <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -99,7 +99,14 @@ const CompanyProfile = () => {
               <div>
                 <S.SpanTag right="4rem">비밀번호</S.SpanTag>
               </div>
-              <S.InputTag size="12rem" type={pwType} name="password" autoComplete="on" placeholder="비밀번호" />
+              <S.InputTag
+                size="12rem"
+                laptopSize="14rem"
+                type={pwType}
+                name="password"
+                autoComplete="on"
+                placeholder="비밀번호"
+              />
             </S.BlockDiv>
             <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
             <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -112,6 +119,7 @@ const CompanyProfile = () => {
               </div>
               <S.InputTag
                 size="12rem"
+                laptopSize="14rem"
                 type={commitType}
                 name="new-password"
                 autoComplete="on"
@@ -129,7 +137,7 @@ const CompanyProfile = () => {
               <div>
                 <S.SpanTag right="4rem">전화번호</S.SpanTag>
               </div>
-              <S.InputTag size="12rem" type="number" placeholder="숫자만 입력" />
+              <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -139,7 +147,7 @@ const CompanyProfile = () => {
               <div>
                 <S.SpanTag right="0.9rem">담당자 휴대폰</S.SpanTag>
               </div>
-              <S.InputTag size="12rem" type="number" placeholder="숫자만 입력" />
+              <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -150,7 +158,7 @@ const CompanyProfile = () => {
             <div>
               <S.SpanTag right="4.8rem">이메일</S.SpanTag>
             </div>
-            <S.InputTag size="13rem" placeholder="name@example.com" />
+            <S.InputTag size="13rem" laptopSize="23rem" placeholder="name@example.com" />
           </S.BlockDiv>
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
           <S.CapsMessage />
@@ -162,7 +170,7 @@ const CompanyProfile = () => {
                 웹사이트
               </S.SpanTag>
             </div>
-            <S.InputTag size="13rem" placeholder="www.example.com" />
+            <S.InputTag size="13rem" laptopSize="23rem" placeholder="www.example.com" />
           </S.BlockDiv>
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
           <S.CapsMessage />
@@ -234,9 +242,9 @@ const CompanyProfile = () => {
               </div>
               <S.CapsMessage Mobiledisplay="none" display="block" />
               <S.CancelImg src={Cancel} alt="cancel" />
-              <S.InputTag Mobilesize="15.5rem" size="8rem" placeholder="사업자등록증" />
+              <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="13.2rem" placeholder="사업자등록증" />
               <S.BlacSpan>
-                <S.FileInput type="file" width="75px" height="25px" left="0.2rem" top="0.1rem" />
+                <S.FileInput type="file" width="75px" height="45px" left="0.2rem" top="0.1rem" />
                 파일 등록
               </S.BlacSpan>
             </S.BlockDiv>
