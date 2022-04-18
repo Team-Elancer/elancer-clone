@@ -58,6 +58,12 @@ export const Input = styled.input`
   outline: none;
   font-weight: bold;
   font-size: 0.813rem;
+  @media ${TABLET} {
+    font-size: 1.2rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 1.3rem;
+  }
   &::placeholder {
     font-size: 0.813rem;
     font-weight: 600;

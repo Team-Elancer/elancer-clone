@@ -18,16 +18,38 @@ export const HeaderDiv = styled.div`
     width: 730px;
   }
   @media ${LAPTOP} {
-    width: 840px;
+    width: ${(props) => props.width};
+  }
+`;
+export const FlexDiv = styled.div`
+  display: block;
+  height: 100%;
+  text-align: center;
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: start;
   }
 `;
 export const Img = styled.img`
   width: 95px;
   @media ${TABLET} {
     width: 187.78px;
+    padding-right: 1rem;
   }
   @media ${LAPTOP} {
     width: 187.78px;
+  }
+`;
+export const BigText = styled.span`
+  font-size: 0.75rem;
+  font-weight: 800;
+  word-spacing: -0.2rem;
+  @media ${TABLET} {
+    font-size: 1.5rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 1.4rem;
   }
 `;
 export const Text = styled.div`

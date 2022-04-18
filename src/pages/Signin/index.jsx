@@ -16,7 +16,7 @@ const Signin = () => {
         <InlineBlock h1="회원가입" text="회원선택" pages="1 / 3" />
         <S.BlockDiv>
           <Link to="/signin/company">
-            <S.BoxSizeDiv bgcolor="#f6f6f6">
+            <S.BoxSizeDiv bgcolor="#f6f6f6" right="1rem">
               <S.CenterDiv>
                 <S.ImgFlex>
                   <S.Img src={Logo} alt="logo" magin="10rem" />

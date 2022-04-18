@@ -10,19 +10,21 @@ export const SizeDiv = styled.div`
   margin: 0 auto;
   padding: 3rem 0 8rem 0;
   @media ${TABLET} {
-    width: 747px;
+    width: 740px;
     padding: 3rem 0 15.8rem 0;
   }
   @media ${LAPTOP} {
-    width: 800px;
+    width: 830px;
   }
 `;
 export const BlockDiv = styled.div`
   display: block;
+  width: 100%;
   @media ${TABLET} {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
 `;
 export const BoxSizeDiv = styled.div`
@@ -37,12 +39,11 @@ export const BoxSizeDiv = styled.div`
   @media ${TABLET} {
     width: 365px;
     height: 15.5rem;
-    margin-right: 1rem;
+    margin-right: ${(props) => props.right};
   }
   @media ${LAPTOP} {
     width: 411px;
     height: 13rem;
-    margin-right: 1rem;
     cursor: pointer;
   }
 `;
