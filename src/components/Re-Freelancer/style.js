@@ -51,6 +51,9 @@ export const SecondDiv = styled.div`
   @media ${LAPTOP} {
     overflow-x: hidden;
   }
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 export const ProjectDiv = styled.div`
   width: 100%;
