@@ -38,7 +38,7 @@ export const OverFlowDiv = styled.div`
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
-    overflow: hidden;
+    overflow: visible;
   }
 `;
 
@@ -99,7 +99,17 @@ export const CardSpan = styled.span`
   }
 `;
 
-export const UlTag = styled.ul``;
+export const UlTag = styled.ul`
+  display: block;
+  @media ${TABLET} {
+    display: ${(props) => props.display};
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+  @media ${LAPTOP} {
+  }
+`;
 export const MenuLi = styled.li`
   font-size: 1.3rem;
   font-weight: 600;
@@ -109,17 +119,29 @@ export const MenuLi = styled.li`
   &:hover {
     background-color: #f2f2f2;
   }
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
 `;
 
 export const LiTag = styled.li`
+  margin: 0 1rem 0.4rem 0;
+`;
+export const LiPtag = styled.p`
   font-size: 0.8rem;
   font-weight: 800;
   background-color: #e1e1e1;
   padding: 0.8rem 0.6rem;
   border-radius: 0.4rem;
-  margin-bottom: 0.4rem;
   @media ${TABLET} {
+    width: 25.7rem;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
   @media ${LAPTOP} {
+    width: 25.7rem;
   }
 `;
