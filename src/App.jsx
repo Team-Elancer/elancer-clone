@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import DashBoard from 'pages/DashBoard';
+import DashBoardProfile from 'pages/DashBoard/Profile';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import PartnerDetail from 'pages/Partner/PartnerDetail';
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/signin/finish" element={<SigninFinish />} />
         <Route path="/signin/company" element={<SigninCompany />} />
         <Route path="/dashboard-enterprise" element={<DashBoard />} />
+        <Route path="/dashboard-profile" element={<DashBoardProfile />} />
       </Routes>
     </>
   );
