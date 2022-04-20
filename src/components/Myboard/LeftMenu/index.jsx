@@ -6,10 +6,10 @@ const LeftMenu = () => {
     <>
       <S.MenuDiv>
         <S.UlTag>
-          <Link to="/">
+          <Link to="/dashboard-enterprise">
             <S.MenuLi>나의 현황</S.MenuLi>
           </Link>
-          <Link to="/">
+          <Link to="/dashboard-profile">
             <S.MenuLi>프로필 관리</S.MenuLi>
           </Link>
           <Link to="/">

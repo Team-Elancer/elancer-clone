@@ -2,9 +2,9 @@ import { FaRegStar, FaStar } from 'react-icons/fa';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 
-const CompanyMyboard = () => {
+const CompanyMyboard = ({ topleft = '0', bottomleft = '0.4rem', right = '0.4rem' }) => {
   return (
-    <S.EcardDiv>
+    <S.EcardDiv topleft={topleft} bottomleft={bottomleft} right={right}>
       <S.EcarcdPaddingDiv display="flex">
         <div>
           <S.ImageDiv>

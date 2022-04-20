@@ -52,15 +52,6 @@ export const FlexDiv = styled.div`
     width: ${(props) => props.width};
   }
 `;
-export const MenuDiv = styled.div`
-  display: none;
-  @media ${TABLET} {
-    display: block;
-  }
-  @media ${LAPTOP} {
-    width: 290px;
-  }
-`;
 
 export const BoardDiv = styled.div`
   width: 100%;
@@ -92,9 +83,9 @@ export const CardSpan = styled.span`
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
-    font-size: 1.1rem;
-    padding: 1.2rem 0.9rem;
-    border-radius: 0.6rem;
+    font-size: ${(props) => props.textSize};
+    padding: ${(props) => props.paddingHeight} ${(props) => props.paddingWidth};
+    border-radius: ${(props) => props.radius};
     margin-right: 0.8rem;
   }
 `;
@@ -144,4 +135,41 @@ export const LiPtag = styled.p`
   @media ${LAPTOP} {
     width: 25.7rem;
   }
+`;
+export const EcardDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #f2f2f2;
+    border-bottom-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const EcarcdPaddingDiv = styled.div`
+  @media ${TABLET} {
+    display: ${(props) => props.display};
+    align-items: center;
+    padding: 1.5rem 1.5rem;
+    margin: 0 auto;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+
+export const ProjectDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-top: ${(props) => props.top};
+`;
+export const ProfileGo = styled.p`
+  text-align: center;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 0.5rem 0.6rem;
+  font: 1rem;
+  font-weight: 800;
 `;

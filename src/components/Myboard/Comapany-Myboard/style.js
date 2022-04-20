@@ -8,8 +8,9 @@ export const EcardDiv = styled.div`
     height: 100%;
     display: block;
     background-color: #f2f2f2;
-    border-bottom-left-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem;
+    border-top-left-radius: ${(props) => props.topleft};
+    border-bottom-left-radius: ${(props) => props.bottomleft};
+    border-bottom-right-radius: ${(props) => props.right};
   }
   @media ${LAPTOP} {
   }
@@ -31,7 +32,7 @@ export const ImageDiv = styled.div`
     background-color: white;
     border-radius: 0.8rem;
     text-align: center;
-    margin-top: -1.2rem;
+    margin-top: -2.1rem;
   }
   @media ${LAPTOP} {
   }
@@ -42,7 +43,7 @@ export const Img = styled.img`
   padding: 0.5rem 0.5rem;
 `;
 export const NameP = styled.p`
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 800;
   padding: 0.5rem 0 1rem 0;
 `;
@@ -58,6 +59,7 @@ export const Ratingspan = styled.span`
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #8c8c8c;
   text-align: center;
+  margin-top: 0.5rem;
 `;
 export const RatingNumberP = styled.p`
   padding-left: ${(props) => props.left};
@@ -75,5 +77,5 @@ export const RatingSmallspan = styled.span`
   display: flex;
   align-items: center;
   justify-content: start;
-  padding-top: 0.5rem;
+  padding-top: 0.8rem;
 `;
