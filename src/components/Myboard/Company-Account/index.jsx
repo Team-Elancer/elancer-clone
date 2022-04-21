@@ -6,7 +6,7 @@ import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import Postcode from 'components/DaumPostCode';
 
-const CompanyProfile = () => {
+const CompanyAccount = () => {
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
   const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
@@ -257,4 +257,4 @@ const CompanyProfile = () => {
   );
 };
 
-export default CompanyProfile;
+export default CompanyAccount;

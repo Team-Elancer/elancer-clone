@@ -1,6 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import DashBoard from 'pages/DashBoard';
+import DashBoardAccount from 'pages/DashBoard/Account';
 import DashBoardProfile from 'pages/DashBoard/Profile';
+import DashBoardProject from 'pages/DashBoard/Project';
+import DashBoardScrap from 'pages/DashBoard/Scrap';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import PartnerDetail from 'pages/Partner/PartnerDetail';
@@ -30,6 +33,9 @@ const App = () => {
         <Route path="/signin/company" element={<SigninCompany />} />
         <Route path="/dashboard-enterprise" element={<DashBoard />} />
         <Route path="/dashboard-profile" element={<DashBoardProfile />} />
+        <Route path="/dashboard-project" element={<DashBoardProject />} />
+        <Route path="/dashboard-scrap" element={<DashBoardScrap />} />
+        <Route path="/dashboard-account" element={<DashBoardAccount />} />
       </Routes>
     </>
   );

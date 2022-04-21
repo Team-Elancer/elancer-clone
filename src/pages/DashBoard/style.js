@@ -30,18 +30,6 @@ export const H1 = styled.h1`
   }
 `;
 
-export const OverFlowDiv = styled.div`
-  overflow: auto;
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-  @media ${TABLET} {
-  }
-  @media ${LAPTOP} {
-    overflow: visible;
-  }
-`;
-
 export const FlexDiv = styled.div`
   display: flex;
   justify-content: start;
@@ -56,9 +44,10 @@ export const FlexDiv = styled.div`
 export const BoardDiv = styled.div`
   width: 100%;
   @media ${TABLET} {
+    width: 730px;
   }
   @media ${LAPTOP} {
-    width: 80%;
+    width: 980px;
     margin: 0 auto;
   }
 `;
