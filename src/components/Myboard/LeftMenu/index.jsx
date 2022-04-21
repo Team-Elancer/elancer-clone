@@ -12,16 +12,16 @@ const LeftMenu = () => {
           <Link to="/dashboard-profile">
             <S.MenuLi>프로필 관리</S.MenuLi>
           </Link>
-          <Link to="/">
+          <Link to="/dashboard-project">
             <S.MenuLi>등록한 프로젝트</S.MenuLi>
           </Link>
-          <Link to="/">
+          <Link to="/dashboard-scrap">
             <S.MenuLi>인재 스크랩</S.MenuLi>
           </Link>
           <Link to="/">
             <S.MenuLi>문의/요청</S.MenuLi>
           </Link>
-          <Link to="/">
+          <Link to="/dashboard-account">
             <S.MenuLi>이랜서 계정</S.MenuLi>
           </Link>
         </S.UlTag>

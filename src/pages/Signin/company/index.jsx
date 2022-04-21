@@ -3,9 +3,9 @@ import * as S from './style';
 import Bici from 'assets/images/bici.png';
 import Camera from 'assets/images/camera.png';
 import SubmitButton from 'components/Button/SubmitButton';
-import CompanyProfile from 'components/Company-Pofile';
 import InlineBlock from 'components/Inline-Block';
 import GridBottom from 'components/Modal/GridBottom';
+import CompanyAccount from 'components/Myboard/Company-Account';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
@@ -21,7 +21,7 @@ const SigninCompany = () => {
             <S.CameraImg src={Camera} alt="Camera" />
           </S.MobilePhoto>
           <S.H1>기본정보</S.H1>
-          <CompanyProfile />
+          <CompanyAccount />
           <S.SubmitDiv>
             <S.MarginAutoDiv>
               <S.BordeDiv>
