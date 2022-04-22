@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
-import Postcode from 'components/DaumPostCode';
+import { ThemeContext } from 'ThemeContext';
 
 const CompanyAccount = () => {
+  const { placePostcode, placeAddress, changeBool } = useContext(ThemeContext);
+
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
   const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
@@ -14,18 +16,12 @@ const CompanyAccount = () => {
   const [pwType, setPwType] = useState('password');
   const [commitType, setCommitType] = useState('password');
 
-  const [postCodeShow, setPostCodeShow] = useState(false);
-
   const changeEye = () => {
     setEyeCheck(!eyeCheck);
   };
 
   const changeSecondEye = () => {
     setEyeCheck2(!eyeCheck2);
-  };
-
-  const changePostCode = () => {
-    setPostCodeShow(!postCodeShow);
   };
 
   useEffect(() => {
@@ -43,7 +39,7 @@ const CompanyAccount = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, changeBool]);
 
   return (
     <S.ProfileDiv>
@@ -187,16 +183,21 @@ const CompanyAccount = () => {
               <option value="jp">일본</option>
               <option value="cn">중국</option>
             </S.SelectTag>
-            <S.InputTag Mobilesize="7em" MobileMargin="1rem" size="6rem" placeholder="우편번호" />
-            <S.BlacSpan onClick={changePostCode}>우편번호 찾기</S.BlacSpan>
+            <S.InputTag Mobilesize="7em" MobileMargin="1rem" size="6rem" placeholder={placePostcode} />
+            <S.BlacSpan
+              onClick={() => {
+                window.open('/postcode', 'PopupWin', 'width=500,height=401');
+              }}
+            >
+              우편번호 찾기
+            </S.BlacSpan>
           </S.BlockDiv>
           <S.CapsMessage />
           <S.CapsMessage />
           <S.PostCodeDiv>
-            <S.InputTag right="1rem" size="17rem" placeholder="우편번호 찾기를 통해 입력하세요." />
+            <S.InputTag right="1rem" size="17rem" placeholder={placeAddress} />
             <S.InputTag Mobilesize="15rem" size="13rem" placeholder="상세 주소를 입력하세요." />
           </S.PostCodeDiv>
-          {postCodeShow === true && <Postcode />}
           <S.CapsMessage />
         </S.InputDiv>
         <S.BorderDiv />
