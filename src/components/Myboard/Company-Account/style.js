@@ -61,6 +61,7 @@ export const InputTag = styled.input`
   width: ${(props) => props.Mobilesize};
   border-bottom: 1px solid #c4c4c4;
   margin-left: ${(props) => props.MobileMargin};
+  pointer-events: ${(props) => props.pointer};
   &::placeholder {
     font-size: 1.125rem;
     font-weight: 600;

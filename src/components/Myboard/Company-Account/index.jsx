@@ -1,13 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
-import { ThemeContext } from 'ThemeContext';
+import Postcode from 'components/DaumPostCode';
 
 const CompanyAccount = () => {
-  const { placePostcode, placeAddress, changeBool } = useContext(ThemeContext);
+  const [placePostcode, setPlacePostcode] = useState('우편번호');
+  const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
+  const [changeBool, setChangeBool] = useState(false);
 
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
@@ -25,6 +27,7 @@ const CompanyAccount = () => {
   };
 
   useEffect(() => {
+    console.log(placeAddress);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -39,7 +42,7 @@ const CompanyAccount = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, changeBool]);
+  }, [eyeCheck, eyeCheck2, placePostcode, placeAddress]);
 
   return (
     <S.ProfileDiv>
@@ -183,19 +186,56 @@ const CompanyAccount = () => {
               <option value="jp">일본</option>
               <option value="cn">중국</option>
             </S.SelectTag>
-            <S.InputTag Mobilesize="7em" MobileMargin="1rem" size="6rem" placeholder={placePostcode} />
+            <S.InputTag
+              Mobilesize="7em"
+              MobileMargin="1rem"
+              size="6rem"
+              pointer="none"
+              readOnly
+              placeholder={placePostcode}
+              onChange={(e) => {
+                if (placePostcode === '') {
+                  setPlacePostcode(e.target.value);
+                } else {
+                  setPlacePostcode(placePostcode);
+                }
+              }}
+            />
             <S.BlacSpan
               onClick={() => {
-                window.open('/postcode', 'PopupWin', 'width=500,height=401');
+                setChangeBool(!changeBool);
               }}
             >
               우편번호 찾기
             </S.BlacSpan>
+            {changeBool === true && (
+              <Postcode
+                setPlacePostcode={setPlacePostcode}
+                setPlaceAddress={setPlaceAddress}
+                setChangeBool={setChangeBool}
+                changeBool={changeBool}
+              />
+            )}
           </S.BlockDiv>
           <S.CapsMessage />
           <S.CapsMessage />
           <S.PostCodeDiv>
-            <S.InputTag right="1rem" size="17rem" placeholder={placeAddress} />
+            <S.InputTag
+              type="text"
+              right="1rem"
+              size="17rem"
+              pointer="none"
+              readOnly
+              placeholder={placeAddress}
+              onChange={(e) => {
+                console.log(placeAddress);
+                if (placeAddress === e.target.value) {
+                  setPlaceAddress(e.target.value);
+                } else {
+                  setPlaceAddress(placeAddress);
+                }
+              }}
+            />
             <S.InputTag Mobilesize="15rem" size="13rem" placeholder="상세 주소를 입력하세요." />
           </S.PostCodeDiv>
           <S.CapsMessage />

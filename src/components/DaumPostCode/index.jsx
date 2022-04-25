@@ -1,26 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import * as S from './style';
-import { ThemeContext } from 'ThemeContext';
 
-const Postcode = () => {
-  const { placePostcode, setPlacePostcode, placeAddress, setPlaceAddress, changeBool, setChangeBool } =
-    useContext(ThemeContext);
-
+const Postcode = ({ setPlacePostcode, setPlaceAddress, setChangeBool, changeBool }) => {
   const handleComplete = (data) => {
     setPlacePostcode(data.zonecode);
     setPlaceAddress(data.address);
     setChangeBool(!changeBool);
   };
 
-  useEffect(() => {
-    console.log(placePostcode, placeAddress, changeBool);
-  }, [changeBool]);
-
-  useEffect(() => {}, []);
+  useEffect(() => {}, [changeBool]);
 
   return (
     <S.Container>
+      <S.Button
+        onClick={() => {
+          setChangeBool(false);
+        }}
+      >
+        닫기
+      </S.Button>
       <DaumPostcode onComplete={handleComplete} />
     </S.Container>
   );
