@@ -18,8 +18,6 @@ const CompanyAccount = () => {
   const [pwType, setPwType] = useState('password');
   const [commitType, setCommitType] = useState('password');
 
-  console.log(placePostcode);
-
   const changeEye = () => {
     setEyeCheck(!eyeCheck);
   };
@@ -29,6 +27,7 @@ const CompanyAccount = () => {
   };
 
   useEffect(() => {
+    console.log(placeAddress);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -43,7 +42,7 @@ const CompanyAccount = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, placePostcode, placeAddress]);
 
   return (
     <S.ProfileDiv>
@@ -187,7 +186,21 @@ const CompanyAccount = () => {
               <option value="jp">일본</option>
               <option value="cn">중국</option>
             </S.SelectTag>
-            <S.InputTag Mobilesize="7em" MobileMargin="1rem" size="6rem" placeholder={placePostcode} />
+            <S.InputTag
+              Mobilesize="7em"
+              MobileMargin="1rem"
+              size="6rem"
+              pointer="none"
+              readOnly
+              placeholder={placePostcode}
+              onChange={(e) => {
+                if (placePostcode === '') {
+                  setPlacePostcode(e.target.value);
+                } else {
+                  setPlacePostcode(placePostcode);
+                }
+              }}
+            />
             <S.BlacSpan
               onClick={() => {
                 setChangeBool(!changeBool);
@@ -207,7 +220,22 @@ const CompanyAccount = () => {
           <S.CapsMessage />
           <S.CapsMessage />
           <S.PostCodeDiv>
-            <S.InputTag right="1rem" size="17rem" placeholder={placeAddress} />
+            <S.InputTag
+              type="text"
+              right="1rem"
+              size="17rem"
+              pointer="none"
+              readOnly
+              placeholder={placeAddress}
+              onChange={(e) => {
+                console.log(placeAddress);
+                if (placeAddress === e.target.value) {
+                  setPlaceAddress(e.target.value);
+                } else {
+                  setPlaceAddress(placeAddress);
+                }
+              }}
+            />
             <S.InputTag Mobilesize="15rem" size="13rem" placeholder="상세 주소를 입력하세요." />
           </S.PostCodeDiv>
           <S.CapsMessage />
