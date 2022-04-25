@@ -30,6 +30,7 @@ export const IconDiv = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
   @media ${TABLET} {
     width: 174px;
     height: 4.5rem;
