@@ -34,9 +34,9 @@ export const BoardDiv = styled.div`
     width: 730px;
   }
   @media ${LAPTOP} {
-    width: 960px;
+    width: 980px;
     margin: 0 auto;
-    padding-right: 2rem;
     overflow: hidden;
+    margin-right: 2rem;
   }
 `;

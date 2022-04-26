@@ -40,7 +40,7 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
           <S.ButtonImg src={RightButton} alt="button" />
         </S.UpLiTag>
         <S.UpLiTag>
-          <Link to="/signin">
+          <Link to="/signin/main">
             <span>회원가입</span>
           </Link>
           <S.ButtonImg src={RightButton} alt="button" />

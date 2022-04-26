@@ -13,9 +13,10 @@ import PartnerList from 'pages/Partner/PartnerList';
 import ProjectDetail from 'pages/Project/ProjectDetail';
 import ProjectList from 'pages/Project/ProjectList';
 import Signin from 'pages/Signin';
-import SigninCompany from 'pages/Signin/company';
-import SigninFinish from 'pages/Signin/finish/idex';
-import SigninFreeLancer from 'pages/Signin/freelancer';
+import SigninCompany from 'pages/Signin/Company';
+import SigninFinish from 'pages/Signin/Finish/idex';
+import SigninFreeLancer from 'pages/Signin/Freelancer';
+import SigninMain from 'pages/Signin/Main';
 import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
@@ -29,10 +30,12 @@ const App = () => {
         <Route path="/project-list" element={<ProjectList />} />
         <Route path="/project-detail" element={<ProjectDetail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signin/freelancer" element={<SigninFreeLancer />} />
-        <Route path="/signin/finish" element={<SigninFinish />} />
-        <Route path="/signin/company" element={<SigninCompany />} />
+        <Route path="signin" element={<Signin />}>
+          <Route path="main" element={<SigninMain />} />
+          <Route path="freelancer" element={<SigninFreeLancer />} />
+          <Route path="finish" element={<SigninFinish />} />
+          <Route path="company" element={<SigninCompany />} />
+        </Route>
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="enterprise" element={<DashBoardEnterprise />} />
           <Route path="profile" element={<DashBoardProfile />} />
