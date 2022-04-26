@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import DashBoard from 'pages/DashBoard';
+
+import Dashboard from 'pages/DashBoard';
 import DashBoardAccount from 'pages/DashBoard/Account';
+import DashBoardEnterprise from 'pages/DashBoard/Enterprise';
 import DashBoardProfile from 'pages/DashBoard/Profile';
 import DashBoardProject from 'pages/DashBoard/Project';
 import DashBoardScrap from 'pages/DashBoard/Scrap';
@@ -21,21 +23,23 @@ const App = () => {
     <>
       <GlobalStyles />
       <Routes>
+        <Route path="/" element={<Main />} />
         <Route path="/partner-list" element={<PartnerList />} />
         <Route path="/partner-detail" element={<PartnerDetail />} />
         <Route path="/project-list" element={<ProjectList />} />
         <Route path="/project-detail" element={<ProjectDetail />} />
-        <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signin/freelancer" element={<SigninFreeLancer />} />
         <Route path="/signin/finish" element={<SigninFinish />} />
         <Route path="/signin/company" element={<SigninCompany />} />
-        <Route path="/dashboard-enterprise" element={<DashBoard />} />
-        <Route path="/dashboard-profile" element={<DashBoardProfile />} />
-        <Route path="/dashboard-project" element={<DashBoardProject />} />
-        <Route path="/dashboard-scrap" element={<DashBoardScrap />} />
-        <Route path="/dashboard-account" element={<DashBoardAccount />} />
+        <Route path="dashboard" element={<Dashboard />}>
+          <Route path="enterprise" element={<DashBoardEnterprise />} />
+          <Route path="profile" element={<DashBoardProfile />} />
+          <Route path="project" element={<DashBoardProject />} />
+          <Route path="scrap" element={<DashBoardScrap />} />
+          <Route path="account" element={<DashBoardAccount />} />
+        </Route>
       </Routes>
     </>
   );
