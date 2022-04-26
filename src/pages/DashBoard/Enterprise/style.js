@@ -77,14 +77,14 @@ export const LiPtag = styled.p`
   padding: 0.8rem 0.6rem;
   border-radius: 0.4rem;
   @media ${TABLET} {
-    width: 25.7rem;
+    width: 25rem;
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
   @media ${LAPTOP} {
-    width: 25.7rem;
+    width: 25rem;
   }
 `;
 export const EcardDiv = styled.div`

@@ -16,13 +16,13 @@ const DashBoardEnterprise = () => {
       </S.H1>
       <S.UlTag display="flex">
         <S.LiTag>
-          <Link to="/dashboard-profile">
+          <Link to="/dashboard/profile">
             <S.LiPtag>📍 프로필 관리 바로가기</S.LiPtag>
           </Link>
           <CompanyMyboard />
         </S.LiTag>
         <S.LiTag>
-          <Link to="/dashboard-project">
+          <Link to="/dashboard/project">
             <S.LiPtag>🗓 프로젝트 관리 바로가기</S.LiPtag>
           </Link>
           <S.EcardDiv>
@@ -75,7 +75,7 @@ const DashBoardEnterprise = () => {
           </S.EcardDiv>
         </S.LiTag>
         <S.LiTag>
-          <Link to="/dashboard-scrap">
+          <Link to="/dashboard/scrap">
             <S.LiPtag>💡 인재 스크랩 바로가기</S.LiPtag>
           </Link>
           <S.EcardDiv>
@@ -95,12 +95,12 @@ const DashBoardEnterprise = () => {
           </S.EcardDiv>
         </S.LiTag>
         <S.LiTag>
-          <Link to="/dashboard-account">
+          <Link to="/dashboard/account">
             <S.LiPtag>👤 이랜서 계정 바로가기</S.LiPtag>
           </Link>
           <S.EcardDiv>
             <S.EcarcdPaddingDiv>
-              <Link to="/dashboard-account">
+              <Link to="/dashboard/account">
                 <S.ProfileGo>이랜서 계정 수정 </S.ProfileGo>
               </Link>
             </S.EcarcdPaddingDiv>
