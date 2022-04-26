@@ -1,34 +1,6 @@
 import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-export const SizeDiv = styled.div`
-  width: 360px;
-  height: 100%;
-  margin: auto;
-  padding: 2rem 0;
-  @media ${TABLET} {
-    width: 770px;
-  }
-  @media ${LAPTOP} {
-    width: 1240px;
-  }
-`;
-export const BoardDiv = styled.div`
-  width: 100%;
-  @media ${TABLET} {
-    width: 730px;
-  }
-  @media ${LAPTOP} {
-    width: 896px;
-    margin: 0 auto;
-    padding-right: 2rem;
-  }
-`;
 export const FlexDiv = styled.div`
   display: ${(props) => props.display};
   justify-content: start;
