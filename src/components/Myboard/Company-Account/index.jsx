@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
+import Camera from 'assets/images/camera.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
+import SubmitButton from 'components/Button/SubmitButton';
 import Postcode from 'components/DaumPostCode';
 
-const CompanyAccount = () => {
+const CompanyAccount = ({ display = 'none' }) => {
   const [placePostcode, setPlacePostcode] = useState('우편번호');
   const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
   const [changeBool, setChangeBool] = useState(false);
@@ -47,10 +49,16 @@ const CompanyAccount = () => {
   return (
     <S.ProfileDiv>
       <S.MarginAutoDiv>
-        <S.ProfileImg src={Bici} alt="profile" />
-        <div>
-          <S.FileInput type="file" width="234px" height="154px" left="30rem" top="3rem" laptopLeft="28rem" />
-        </div>
+        <S.MobilePhoto display={display}>
+          <S.ProfileMobileImg src={Bici} alt="profile" />
+          <S.CameraImg src={Camera} alt="Camera" />
+        </S.MobilePhoto>
+        <S.DisplayDiv>
+          <S.ProfileImg src={Bici} alt="profile" />
+          <div>
+            <S.FileInput type="file" width="234px" height="154px" left="30rem" top="3rem" laptopLeft="28rem" />
+          </div>
+        </S.DisplayDiv>
         <S.InputDiv>
           <S.BlockDiv display="flex">
             <div>
@@ -293,6 +301,14 @@ const CompanyAccount = () => {
           </S.InputDiv>
         </S.FlexDiv>
         <S.FileMessage>※ 사업자등록증 파일의 크기는 10MB를 초과하지 않아야 합니다</S.FileMessage>
+        <S.ButtonDiv display={display}>
+          <S.EndDiv>
+            <S.Secession>회원탈퇴</S.Secession>
+          </S.EndDiv>
+          <S.CenterDiv>
+            <SubmitButton text="저장하기" heights="0.8rem" sides="1.8rem" />
+          </S.CenterDiv>
+        </S.ButtonDiv>
       </S.MarginAutoDiv>
     </S.ProfileDiv>
   );
