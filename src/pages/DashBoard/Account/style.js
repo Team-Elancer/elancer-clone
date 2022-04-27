@@ -33,3 +33,8 @@ export const Img = styled.img`
   @media ${LAPTOP} {
   }
 `;
+// background-color: #f2f2f2;
+export const ButtonDiv = styled.div`
+  background-color: black;
+  width: 100%;
+`;

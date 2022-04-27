@@ -10,7 +10,8 @@ const DashBoardAccount = () => {
         <S.Img src={Back} alt="arrowback" />
         <S.H1>이랜서 계정</S.H1>
       </S.SpacebetweenDiv>
-      <CompanyAccount />
+      <CompanyAccount display="block" />
+      <S.ButtonDiv />
     </>
   );
 };

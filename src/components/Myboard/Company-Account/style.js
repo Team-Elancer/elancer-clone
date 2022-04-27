@@ -2,6 +2,42 @@ import styled from 'styled-components';
 import redStar from 'assets/images/redstar.png';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
+export const MobilePhoto = styled.div`
+  width: 390px;
+  height: 223px;
+  border-top: 1px solid #c4c4c4;
+  margin: 0 -0.6rem 0 -0.6rem;
+  text-align: center;
+  background-image: linear-gradient(to bottom, white 0%, #a5a5a5 100%);
+  opacity: 1;
+  position: relative;
+  display: ${(props) => props.display};
+  @media ${TABLET} {
+    display: none;
+  }
+`;
+export const ProfileMobileImg = styled.img`
+  width: 100%;
+  padding: 0.5rem 0 0 0;
+  z-index: 99;
+  height: 100%;
+  opacity: 0.6;
+  background-color: none;
+`;
+export const CameraImg = styled.img`
+  position: absolute;
+  top: 11.5rem;
+  left: 22rem;
+`;
+export const DisplayDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    display: block;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+
 export const ProfileDiv = styled.div`
   @media ${TABLET} {
     display: block;
@@ -196,14 +232,13 @@ export const BlacSpan = styled.span`
   padding: 0.4rem 1rem;
   border-radius: 1rem;
   z-index: 3;
-  position: relative;
+  cursor: pointer;
   @media ${TABLET} {
     font-size: 0.95rem;
     padding: 0.7rem 0.9rem;
     border-radius: 1.5rem;
     letter-spacing: -0.1rem;
     margin-left: 1rem;
-    cursor: pointer;
   }
 `;
 export const PostCodeDiv = styled.div`
@@ -244,4 +279,39 @@ export const BorderDiv = styled.div`
     padding-top: 4rem;
     border-bottom: 1px solid #969696;
   }
+`;
+
+export const ButtonDiv = styled.div`
+  height: 7rem;
+  display: ${(props) => props.display};
+  @media ${TABLET} {
+    border-top: 1px solid #969696;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const EndDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+`;
+export const Secession = styled.button`
+  border: none;
+  background-color: #cccccc;
+  color: black;
+  font-weight: 800;
+  padding: 0.3rem 0.4rem;
+  border-radius: 0.3rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const CenterDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2rem;
 `;
