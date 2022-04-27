@@ -28,6 +28,7 @@ export const MenuLi = styled.li`
   padding: 1rem 1rem;
   border-radius: 0.6rem;
   margin-bottom: 0.2rem;
+  background-color: ${(props) => props.bgColor};
   &:hover {
     background-color: #f2f2f2;
   }
