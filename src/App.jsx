@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Dashboard from 'pages/DashBoard';
 import DashBoardAccount from 'pages/DashBoard/Account';
+import DashboardContact from 'pages/DashBoard/Contact';
 import DashBoardEnterprise from 'pages/DashBoard/Enterprise';
 import DashBoardProfile from 'pages/DashBoard/Profile';
 import DashBoardProject from 'pages/DashBoard/Project';
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="profile" element={<DashBoardProfile />} />
           <Route path="project" element={<DashBoardProject />} />
           <Route path="scrap" element={<DashBoardScrap />} />
+          <Route path="contact" element={<DashboardContact />} />
           <Route path="account" element={<DashBoardAccount />} />
         </Route>
       </Routes>
