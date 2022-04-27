@@ -30,7 +30,7 @@ export const MenuLi = styled.li`
   margin-bottom: 0.2rem;
   background-color: ${(props) => props.bgColor};
   &:hover {
-    background-color: #f2f2f2;
+    background-color: #b2b2b2;
   }
   @media ${TABLET} {
   }
