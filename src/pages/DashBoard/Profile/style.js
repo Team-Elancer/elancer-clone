@@ -67,6 +67,7 @@ export const EcardDiv = styled.div`
   background-color: #f2f2f2;
   border-radius: 0.5rem;
   @media ${TABLET} {
+    margin-left: -0.5rem;
     border-top-right-radius: ${(props) => props.topleft};
     border-bottom-right-radius: ${(props) => props.right};
   }
