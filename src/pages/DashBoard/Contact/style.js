@@ -4,6 +4,7 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 export const FlexDiv = styled.div`
@@ -63,6 +64,7 @@ export const EcardDiv = styled.div`
   background-color: #f2f2f2;
   border-radius: 0.7rem;
   margin-right: ${(props) => props.mobileRight};
+  cursor: pointer;
   @media ${TABLET} {
     padding: 17.5px;
     width: 200px;
@@ -80,6 +82,7 @@ export const WhiteEcardDiv = styled.div`
   border: 5px solid #f2f2f2;
   border-radius: 0.7rem;
   margin-right: 1.5rem;
+  cursor: pointer;
   @media ${TABLET} {
     padding: 17.5px;
     width: 200px;
