@@ -3,13 +3,17 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   position: absolute;
-  width: 740px;
-  height: 500px;
-  padding: 42px 35px;
+  width: 100%;
+  height: 450px;
+  padding: 20px 15px;
   background-color: #e7e7e7;
   z-index: 99;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   @media ${TABLET} {
+    width: 740px;
+    height: 500px;
+    padding: 42px 35px;
+    border-radius: 1rem;
   }
   @media ${LAPTOP} {
   }
@@ -32,10 +36,13 @@ export const Img = styled.img`
   }
 `;
 export const H1 = styled.h1`
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding-left: 16rem;
+  padding-left: 7rem;
   @media ${TABLET} {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-left: 16rem;
   }
   @media ${LAPTOP} {
   }
@@ -53,9 +60,9 @@ export const H2 = styled.h2`
   width: ${(props) => props.width};
   font-size: 0.9rem;
   font-weight: 600;
-  padding-right: ${(props) => props.right};
   margin-top: ${(props) => props.top};
   @media ${TABLET} {
+    width: ${(props) => props.tabletWidth};
   }
   @media ${LAPTOP} {
   }
