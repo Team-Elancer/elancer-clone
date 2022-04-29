@@ -1,15 +1,26 @@
+import { useState } from 'react';
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
+import ContactModal from 'components/Modal/DashBoardContact';
 
 const DashboardContact = () => {
+  const [modalBool, setModalBool] = useState(false);
+
   return (
     <S.Container>
+      {modalBool === true && <ContactModal setModalBool={setModalBool} />}
       <S.FlexDiv>
         <S.H1 size="2.4rem">문의/요청</S.H1>
-        <S.H1 size="1.4rem" cursor="pointer">
+        <S.H1
+          size="1.4rem"
+          cursor="pointer"
+          onClick={() => {
+            setModalBool(!modalBool);
+          }}
+        >
           문의하기
         </S.H1>
       </S.FlexDiv>

@@ -8,7 +8,7 @@ export const Container = styled.div`
   font-size: 0.8rem;
   font-weight: 800;
   border-radius: 0.5rem;
-  margin-top: 3rem;
+  margin-top: ${(props) => props.marginTop};
   text-align: center;
   cursor: pointer;
 `;

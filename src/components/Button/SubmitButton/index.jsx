@@ -1,8 +1,8 @@
 import * as S from './style';
 
-const SubmitButton = ({ text, sides, heights }) => {
+const SubmitButton = ({ text, sides, heights, marginTop = '3rem' }) => {
   return (
-    <S.Container side={sides} height={heights}>
+    <S.Container side={sides} height={heights} marginTop={marginTop}>
       {text}
     </S.Container>
   );
