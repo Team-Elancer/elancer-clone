@@ -6,6 +6,7 @@ import DashboardContact from 'pages/DashBoard/Contact';
 import DashBoardEnterprise from 'pages/DashBoard/Enterprise';
 import DashBoardProfile from 'pages/DashBoard/Profile';
 import DashBoardProject from 'pages/DashBoard/Project';
+import DashboardProjectAdd from 'pages/DashBoard/ProjectAdd';
 import DashBoardScrap from 'pages/DashBoard/Scrap';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="enterprise" element={<DashBoardEnterprise />} />
           <Route path="profile" element={<DashBoardProfile />} />
           <Route path="project" element={<DashBoardProject />} />
+          <Route path="projectadd" element={<DashboardProjectAdd />} />
           <Route path="scrap" element={<DashBoardScrap />} />
           <Route path="contact" element={<DashboardContact />} />
           <Route path="account" element={<DashBoardAccount />} />

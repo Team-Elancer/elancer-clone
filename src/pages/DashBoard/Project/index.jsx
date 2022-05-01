@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
 import * as S from './style';
 
-import LeftMenu from 'components/Myboard/LeftMenu';
-import MyBoardProject from 'components/Myboard/Project';
+import MyBoardProject from 'components/Myboard/CardSpan';
 
 const DashBoardProject = () => {
   return (
     <>
       <S.SpacebetweenDiv>
         <S.H1>프로젝트 관리</S.H1>
-        <Link to="/">
+        <Link to="/dashboard/projectadd">
           <S.LinkP>프로젝트 등록</S.LinkP>
         </Link>
       </S.SpacebetweenDiv>
