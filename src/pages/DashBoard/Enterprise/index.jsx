@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as S from './style';
+import MyBoardProject from 'components/Myboard/CardSpan';
 import CompanyMyboard from 'components/Myboard/Comapany-Myboard';
-import MyBoardProject from 'components/Myboard/Project';
 
 const DashBoardEnterprise = () => {
   return (
