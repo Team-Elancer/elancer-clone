@@ -16,7 +16,7 @@ import ProjectDetail from 'pages/Project/ProjectDetail';
 import ProjectList from 'pages/Project/ProjectList';
 import Signin from 'pages/Signin';
 import SigninCompany from 'pages/Signin/Company';
-import SigninFinish from 'pages/Signin/Finish/idex';
+import SigninFinish from 'pages/Signin/Finish';
 import SigninFreeLancer from 'pages/Signin/Freelancer';
 import SigninMain from 'pages/Signin/Main';
 import GlobalStyles from 'styles/GlobalStyles';
