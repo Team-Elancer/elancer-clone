@@ -411,6 +411,10 @@ export const JobLi = styled.li`
     padding: 0.9rem 2rem;
   }
 `;
+export const JobInput = styled.input`
+  width: 100%;
+  height: 100%;
+`;
 export const JobLiBorderLeft = styled.li`
   margin-top: 0.2rem;
   background-color: #f2f2f2;
