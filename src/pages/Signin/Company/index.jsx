@@ -17,6 +17,29 @@ const SigninCompany = () => {
   // };
 
   const navi = useNavigate();
+  const [hello, setHello] = useState({
+    userId: 'joinDocsEnterprise',
+    password1: '1234',
+    password2: '1234',
+    name: 'name',
+    phone: '01000000000',
+    email: 'test@gmail.com',
+    companyName: 'test company',
+    companyPeople: 10,
+    position: '사장',
+    telNumber: '01011111111',
+    website: 'www.test.com',
+    address: {
+      country: 'KR',
+      zipcode: '123',
+      mainAddress: '주소1',
+      detailAddress: '주소2',
+    },
+    bizContents: '주요 사업',
+    sales: 10000000,
+    idNumber: '사업자 번호(123-123-123)',
+  });
+  console.log(hello);
 
   const CreateWrite = (event) => {
     console.log('hello');
@@ -25,26 +48,7 @@ const SigninCompany = () => {
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
       data: {
-        userId: 'joinDocsEnterprise',
-        password1: '1234',
-        password2: '1234',
-        name: 'name',
-        phone: '01000000000',
-        email: 'test@gmail.com',
-        companyName: 'test company',
-        companyPeople: 10,
-        position: '사장',
-        telNumber: '01011111111',
-        website: 'www.test.com',
-        address: {
-          country: 'KR',
-          zipcode: '123',
-          mainAddress: '주소1',
-          detailAddress: '주소2',
-        },
-        bizContents: '주요 사업',
-        sales: 10000000,
-        idNumber: '사업자 번호(123-123-123)',
+        hello,
       },
     })
       .then((res) => {
@@ -58,8 +62,8 @@ const SigninCompany = () => {
   };
 
   useEffect(() => {
-    fetchData();
-    console.log(newDatas);
+    // fetchData();
+    // console.log(newDatas);
   }, []);
 
   return (
@@ -70,7 +74,7 @@ const SigninCompany = () => {
         <S.CameraImg src={Camera} alt="Camera" />
       </S.MobilePhoto>
       <S.H1>기본정보</S.H1>
-      <CompanyAccount />
+      <CompanyAccount hello={hello} setHello={setHello} />
       <S.SubmitDiv>
         <S.MarginAutoDiv>
           <S.BordeDiv>
