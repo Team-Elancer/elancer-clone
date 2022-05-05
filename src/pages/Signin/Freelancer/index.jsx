@@ -12,14 +12,62 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const SigninFreeLancer = () => {
   const [link, setLink] = useState('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
-  const [newDatas, setNewDatas] = useState([]);
-  const fetchData = async () => {
-    const res = await fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer/2');
-    const Data = await res.json();
-    return setNewDatas(Data);
-  };
 
   const navi = useNavigate();
+
+  const [eyeCheck, setEyeCheck] = useState(true);
+  const [eyeCheck2, setEyeCheck2] = useState(true);
+  const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
+  const [secondEyeImg, setSecondEyeImg] = useState(CloseEye);
+  const [pwType, setPwType] = useState('password');
+  const [commitType, setCommitType] = useState('password');
+
+  const [name, setName] = useState('');
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailRadio, setEmailRadio] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [job, setJob] = useState('');
+  const [jobRadio, setJobRadio] = useState('');
+  const [selectedDate, setSelectedDate] = useState();
+
+  const nameFuntion = (e) => {
+    setName(e.target.value);
+  };
+  const idFuntion = (e) => {
+    setId(e.target.value);
+  };
+  const passwordFuntion = (e) => {
+    setPassword(e.target.value);
+  };
+  const passwordConfirmFuntion = (e) => {
+    setPasswordConfirm(e.target.value);
+  };
+  const emailFuntion = (e) => {
+    setEmail(e.target.value);
+  };
+  const emailRadioFuntion = (e) => {
+    setEmailRadio(e.target.value);
+  };
+  const phoneNumberFuntion = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+  const jobFuntion = (e) => {
+    setJob(e.target.innerHTML);
+  };
+  const jobRadioFuntion = (e) => {
+    setJobRadio(e.target.value);
+  };
+
+  const changeEye = () => {
+    setEyeCheck(!eyeCheck);
+  };
+
+  const changeSecondEye = () => {
+    setEyeCheck2(!eyeCheck2);
+  };
 
   const CreateWrite = (event) => {
     console.log('hello');
@@ -30,21 +78,20 @@ const SigninFreeLancer = () => {
         'Content-Type': ' application/json;charset=UTF-8',
       },
       body: JSON.stringify({
-        memberName: 'memberName1',
-        memberId: 'memberID1',
-        memberPassword: 'password',
-        memberPasswordCheck: 'password',
-        memberEmail: 'membmer@email.com',
-        mailReceptionState: 'NOT_RECEPTION',
-        memberPhone: 'memberPhone',
-        workPossibleState: 'POSSIBLE',
-        workStartPossibleDate: '2022-10-10',
+        memberName: name,
+        memberId: id,
+        memberPassword: password,
+        memberPasswordCheck: passwordConfirm,
+        memberEmail: email,
+        mailReceptionState: emailRadio,
+        memberPhone: phoneNumber,
+        workPossibleState: jobRadio,
+        workStartPossibleDate: selectedDate,
         thumbnail: null,
       }),
     })
       .then((res) => {
         if (res.ok) {
-          setNewDatas([...newDatas, res]);
           alert('생성이 완료되었습니다.');
           navi('/');
         }
@@ -54,26 +101,8 @@ const SigninFreeLancer = () => {
       });
   };
 
-  const [eyeCheck, setEyeCheck] = useState(true);
-  const [eyeCheck2, setEyeCheck2] = useState(true);
-  const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
-  const [secondEyeImg, setSecondEyeImg] = useState(CloseEye);
-  const [pwType, setPwType] = useState('password');
-  const [commitType, setCommitType] = useState('password');
-
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const changeEye = () => {
-    setEyeCheck(!eyeCheck);
-  };
-
-  const changeSecondEye = () => {
-    setEyeCheck2(!eyeCheck2);
-  };
-
   useEffect(() => {
-    fetchData();
-    console.log(newDatas);
+    console.log(selectedDate);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -88,7 +117,7 @@ const SigninFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, selectedDate]);
 
   return (
     <form onSubmit={CreateWrite}>
@@ -112,7 +141,7 @@ const SigninFreeLancer = () => {
               <div>
                 <S.SpanTag right="6em">성명</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="성명" />
+              <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="성명" value={name} onChange={nameFuntion} />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -122,7 +151,13 @@ const SigninFreeLancer = () => {
               <div>
                 <S.SpanTag right="3em">회원아이디</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="회원아이디 5~15자 영문,숫자" />
+              <S.InputTag
+                size="14.5rem"
+                laptopSize="19rem"
+                placeholder="회원아이디 5~15자 영문,숫자"
+                value={id}
+                onChange={idFuntion}
+              />
             </S.BlockDiv>
             <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
             <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -139,6 +174,8 @@ const SigninFreeLancer = () => {
                 name="password"
                 autoComplete="on"
                 placeholder="비밀번호"
+                value={password}
+                onChange={passwordFuntion}
               />
             </S.BlockDiv>
             <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
@@ -157,6 +194,8 @@ const SigninFreeLancer = () => {
                 name="new-password"
                 autoComplete="on"
                 placeholder="비밀번호 확인"
+                value={passwordConfirm}
+                onChange={passwordConfirmFuntion}
               />
             </S.BlockDiv>
             <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
@@ -169,7 +208,13 @@ const SigninFreeLancer = () => {
                 <div>
                   <S.SpanTag right="5em">이메일</S.SpanTag>
                 </div>
-                <S.InputTag size="13rem" laptopSize="18rem" placeholder="name@example.com" />
+                <S.InputTag
+                  size="13rem"
+                  laptopSize="18rem"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={emailFuntion}
+                />
               </S.BlockDiv>
               <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
               <S.CapsMessage />
@@ -180,7 +225,7 @@ const SigninFreeLancer = () => {
                   <S.SpanTag right="0.5em">메일수신 여부</S.SpanTag>
                 </S.EmailTop>
                 <S.EmailTop>
-                  <S.FlexDiv top="0">
+                  <S.FlexDiv top="0" onChange={emailRadioFuntion}>
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="email" value="Y" />
                       <S.RadioText>수신</S.RadioText>
@@ -201,7 +246,14 @@ const SigninFreeLancer = () => {
               <div>
                 <S.SpanTag right="5rem">휴대폰</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="19rem" type="number" placeholder="숫자만 입력" />
+              <S.InputTag
+                size="14.5rem"
+                laptopSize="19rem"
+                placeholder="숫자만 입력"
+                type="number"
+                value={phoneNumber}
+                onChange={phoneNumberFuntion}
+              />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -212,12 +264,12 @@ const SigninFreeLancer = () => {
                 <S.SpanTag right="4.5em">직종</S.SpanTag>
               </div>
               <S.JobUl>
-                <S.JobLiBorderLeft>개발자</S.JobLiBorderLeft>
-                <S.JobLi>퍼블리셔</S.JobLi>
-                <S.JobLi>디자이너</S.JobLi>
-                <S.JobLi>기획자</S.JobLi>
-                <S.JobLi>크라우드워커</S.JobLi>
-                <S.JobLiBorderRight>기타</S.JobLiBorderRight>
+                <S.JobLiBorderLeft onClick={jobFuntion}>개발자</S.JobLiBorderLeft>
+                <S.JobLi onClick={jobFuntion}>퍼블리셔</S.JobLi>
+                <S.JobLi onClick={jobFuntion}>디자이너</S.JobLi>
+                <S.JobLi onClick={jobFuntion}>기획자</S.JobLi>
+                <S.JobLi onClick={jobFuntion}>크라우드워커</S.JobLi>
+                <S.JobLiBorderRight onClick={jobFuntion}>기타</S.JobLiBorderRight>
               </S.JobUl>
             </S.JobDiv>
           </S.InputDiv>
@@ -226,7 +278,7 @@ const SigninFreeLancer = () => {
               <div>
                 <S.SpanTag right="0">업무가능 여부</S.SpanTag>
               </div>
-              <S.FlexDiv top="1rem">
+              <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
                 <S.RadioDiv>
                   <S.RadioInput type="radio" name="job" value="Y" />
                   <S.RadioText>가능</S.RadioText>
@@ -247,7 +299,7 @@ const SigninFreeLancer = () => {
               <S.DateDiv>
                 <DatePicker
                   onChange={(date) => {
-                    setSelectedDate(date.toLocaleDateString());
+                    setSelectedDate(date.toLocaleDateString().split('.').slice(0, 3).join('-'));
                   }}
                 />
               </S.DateDiv>
