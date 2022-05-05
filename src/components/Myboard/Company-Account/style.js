@@ -81,6 +81,8 @@ export const FileInput = styled.input`
   z-index: 2;
   @media ${TABLET} {
     cursor: pointer;
+    left: ${(props) => props.tabletLeft};
+    top: ${(props) => props.tabletTop};
   }
   @media ${LAPTOP} {
     left: ${(props) => props.laptopLeft};

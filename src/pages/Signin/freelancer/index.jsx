@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Camera from 'assets/images/camera.png';
 import CloseEye from 'assets/images/closeEye.png';
@@ -11,6 +11,49 @@ import InlineBlock from 'components/Inline-Block';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const SigninFreeLancer = () => {
+  const [link, setLink] = useState('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
+  const [newDatas, setNewDatas] = useState([]);
+  const fetchData = async () => {
+    const res = await fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer/2');
+    const Data = await res.json();
+    return setNewDatas(Data);
+  };
+
+  const navi = useNavigate();
+
+  const CreateWrite = (event) => {
+    console.log('hello');
+    event.preventDefault();
+    fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': ' application/json;charset=UTF-8',
+      },
+      body: JSON.stringify({
+        memberName: 'memberName1',
+        memberId: 'memberID1',
+        memberPassword: 'password',
+        memberPasswordCheck: 'password',
+        memberEmail: 'membmer@email.com',
+        mailReceptionState: 'NOT_RECEPTION',
+        memberPhone: 'memberPhone',
+        workPossibleState: 'POSSIBLE',
+        workStartPossibleDate: '2022-10-10',
+        thumbnail: null,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setNewDatas([...newDatas, res]);
+          alert('생성이 완료되었습니다.');
+          navi('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
   const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
@@ -29,6 +72,8 @@ const SigninFreeLancer = () => {
   };
 
   useEffect(() => {
+    fetchData();
+    console.log(newDatas);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -46,7 +91,7 @@ const SigninFreeLancer = () => {
   }, [eyeCheck, eyeCheck2]);
 
   return (
-    <form>
+    <form onSubmit={CreateWrite}>
       <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
       <S.ButtonDiv>개인</S.ButtonDiv>
       <S.MobilePhoto>
@@ -246,9 +291,7 @@ const SigninFreeLancer = () => {
             <S.CheckPtag>모두 동의</S.CheckPtag>
           </S.CheckDiv>
           <S.CenterDiv>
-            <Link to="/signin/finish">
-              <SubmitButton text="완료" heights="0.8rem" sides="2rem" />
-            </Link>
+            <SubmitButton text="완료" heights="0.8rem" sides="2rem" />
           </S.CenterDiv>
         </S.MarginAutoDiv>
       </S.SubmitDiv>
