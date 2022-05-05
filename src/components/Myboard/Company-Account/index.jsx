@@ -293,7 +293,7 @@ const CompanyAccount = ({ display = 'none' }) => {
               <S.CancelImg src={Cancel} alt="cancel" />
               <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="13.2rem" placeholder="사업자등록증" />
               <S.BlacSpan>
-                <S.FileInput type="file" width="75px" height="45px" left="0.2rem" top="0.1rem" />
+                <S.FileInput type="file" width="75px" height="45px" left="15.7rem" top="1.7rem" />
                 파일 등록
               </S.BlacSpan>
             </S.BlockDiv>
