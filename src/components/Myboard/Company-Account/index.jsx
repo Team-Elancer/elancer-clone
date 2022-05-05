@@ -8,9 +8,10 @@ import OpenEye from 'assets/images/openEye.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import Postcode from 'components/DaumPostCode';
 
-const CompanyAccount = ({ display = 'none' }) => {
+const CompanyAccount = ({ display = 'none', hello, setHello }) => {
   const [placePostcode, setPlacePostcode] = useState('우편번호');
   const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
+  const [userAddress, setUserAddress] = useState('');
   const [changeBool, setChangeBool] = useState(false);
 
   const [eyeCheck, setEyeCheck] = useState(true);
@@ -19,6 +20,96 @@ const CompanyAccount = ({ display = 'none' }) => {
   const [secondEyeImg, setSecondEyeImg] = useState(CloseEye);
   const [pwType, setPwType] = useState('password');
   const [commitType, setCommitType] = useState('password');
+
+  const [comName, setComname] = useState('');
+  const [comCount, setComCount] = useState();
+  const [userName, setUserName] = useState('');
+  const [userPosition, setUserPosition] = useState('');
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [userPhoneNumber, setUserPhoneNumber] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [companyWebsite, setCompanyWebsite] = useState('');
+  const [userCountry, setUserCountry] = useState('');
+  const [business, setBusiness] = useState('');
+  const [yearSale, setYearSale] = useState('');
+  const [businessNumber, setBusinessNumber] = useState('');
+
+  const comNameFuntion = (e) => {
+    setComname(e.target.value);
+  };
+  const comCountFuntion = (e) => {
+    setComCount(e.target.value);
+  };
+  const userNameFuntion = (e) => {
+    setUserName(e.target.value);
+  };
+  const userPositionFuntion = (e) => {
+    setUserPosition(e.target.value);
+  };
+  const userIdFuntion = (e) => {
+    setId(e.target.value);
+  };
+  const passwordFuntion = (e) => {
+    setPassword(e.target.value);
+  };
+  const passwordCheckFuntion = (e) => {
+    setPasswordCheck(e.target.value);
+  };
+  const phoneNumberFuntion = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+  const userPhoneNumberFuntion = (e) => {
+    setUserPhoneNumber(e.target.value);
+  };
+  const userEmailFuntion = (e) => {
+    setUserEmail(e.target.value);
+  };
+  const companyWebsiteFuntion = (e) => {
+    setCompanyWebsite(e.target.value);
+  };
+  const userCountryFuntion = (e) => {
+    setUserCountry(e.target.value);
+  };
+  const userAddressFuntion = (e) => {
+    setUserAddress(e.target.value);
+  };
+  const businessFuntion = (e) => {
+    setBusiness(e.target.value);
+  };
+  const yearSaleFuntion = (e) => {
+    setYearSale(e.target.value);
+  };
+  const businessNumberFuntion = (e) => {
+    setBusinessNumber(e.target.value);
+  };
+
+  const changeHello = () => {
+    setHello({
+      userId: id,
+      password1: password,
+      password2: passwordCheck,
+      name: userName,
+      phone: phoneNumber,
+      email: userEmail,
+      companyName: comName,
+      companyPeople: comCount,
+      position: userPosition,
+      telNumber: userPhoneNumber,
+      website: companyWebsite,
+      address: {
+        country: userCountry,
+        zipcode: placePostcode,
+        mainAddress: placeAddress,
+        detailAddress: userAddress,
+      },
+      bizContents: business,
+      sales: yearSale,
+      idNumber: businessNumber,
+    });
+  };
 
   const changeEye = () => {
     setEyeCheck(!eyeCheck);
@@ -29,7 +120,7 @@ const CompanyAccount = ({ display = 'none' }) => {
   };
 
   useEffect(() => {
-    console.log(placeAddress);
+    console.log(businessNumber);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -44,10 +135,10 @@ const CompanyAccount = ({ display = 'none' }) => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, placePostcode, placeAddress]);
+  }, [eyeCheck, eyeCheck2, businessNumber]);
 
   return (
-    <S.ProfileDiv>
+    <S.ProfileDiv onChange={changeHello}>
       <S.MarginAutoDiv>
         <S.MobilePhoto display={display}>
           <S.ProfileMobileImg src={Bici} alt="profile" />
@@ -64,7 +155,7 @@ const CompanyAccount = ({ display = 'none' }) => {
             <div>
               <S.SpanTag right="4.9rem">회사명</S.SpanTag>
             </div>
-            <S.InputTag size="14.5rem" placeholder="회사명" />
+            <S.InputTag size="14.5rem" placeholder="회사명" value={comName} onChange={comNameFuntion} />
           </S.BlockDiv>
           <S.ErrorMessage />
           <S.CapsMessage />
@@ -74,7 +165,13 @@ const CompanyAccount = ({ display = 'none' }) => {
             <div>
               <S.SpanTag right="2.7rem">회사 인원수</S.SpanTag>
             </div>
-            <S.InputTag type="number" size="14.5rem" placeholder="회사 인원수" />
+            <S.InputTag
+              type="number"
+              size="14.5rem"
+              placeholder="회사 인원수"
+              value={comCount}
+              onChange={comCountFuntion}
+            />
           </S.BlockDiv>
           <S.ErrorMessage />
           <S.CapsMessage />
@@ -84,8 +181,14 @@ const CompanyAccount = ({ display = 'none' }) => {
             <div>
               <S.SpanTag right="4rem">담당자명</S.SpanTag>
             </div>
-            <S.InputTag Mobilesize="12rem" placeholder="담장자명" />
-            <S.InputTag MobileMargin="0.4rem" Mobilesize="8rem" placeholder="직책" />
+            <S.InputTag Mobilesize="12rem" placeholder="담장자명" value={userName} onChange={userNameFuntion} />
+            <S.InputTag
+              MobileMargin="0.4rem"
+              Mobilesize="8rem"
+              placeholder="직책"
+              value={userPosition}
+              onChange={userPositionFuntion}
+            />
           </S.BlockDiv>
           <S.ErrorMessage />
           <S.CapsMessage />
@@ -95,7 +198,13 @@ const CompanyAccount = ({ display = 'none' }) => {
             <div>
               <S.SpanTag right="3rem">회원아이디</S.SpanTag>
             </div>
-            <S.InputTag size="14.5rem" laptopSize="25rem" placeholder="회원아이디 5~15자 영문,숫자" />
+            <S.InputTag
+              size="14.5rem"
+              laptopSize="25rem"
+              placeholder="회원아이디 5~15자 영문,숫자"
+              value={id}
+              onChange={userIdFuntion}
+            />
           </S.BlockDiv>
           <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
           <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -113,6 +222,8 @@ const CompanyAccount = ({ display = 'none' }) => {
                 name="password"
                 autoComplete="on"
                 placeholder="비밀번호"
+                value={password}
+                onChange={passwordFuntion}
               />
             </S.BlockDiv>
             <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
@@ -131,6 +242,8 @@ const CompanyAccount = ({ display = 'none' }) => {
                 name="new-password"
                 autoComplete="on"
                 placeholder="비밀번호 확인"
+                value={passwordCheck}
+                onChange={passwordCheckFuntion}
               />
             </S.BlockDiv>
             <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
@@ -144,7 +257,14 @@ const CompanyAccount = ({ display = 'none' }) => {
               <div>
                 <S.SpanTag right="4rem">전화번호</S.SpanTag>
               </div>
-              <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
+              <S.InputTag
+                size="12rem"
+                laptopSize="14rem"
+                type="number"
+                placeholder="숫자만 입력"
+                value={phoneNumber}
+                onChange={phoneNumberFuntion}
+              />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -154,7 +274,14 @@ const CompanyAccount = ({ display = 'none' }) => {
               <div>
                 <S.SpanTag right="0.9rem">담당자 휴대폰</S.SpanTag>
               </div>
-              <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
+              <S.InputTag
+                size="12rem"
+                laptopSize="14rem"
+                type="number"
+                placeholder="숫자만 입력"
+                value={userPhoneNumber}
+                onChange={userPhoneNumberFuntion}
+              />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -165,7 +292,13 @@ const CompanyAccount = ({ display = 'none' }) => {
             <div>
               <S.SpanTag right="4.8rem">이메일</S.SpanTag>
             </div>
-            <S.InputTag size="13rem" laptopSize="23rem" placeholder="name@example.com" />
+            <S.InputTag
+              size="13rem"
+              laptopSize="23rem"
+              placeholder="name@example.com"
+              value={userEmail}
+              onChange={userEmailFuntion}
+            />
           </S.BlockDiv>
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
           <S.CapsMessage />
@@ -177,7 +310,13 @@ const CompanyAccount = ({ display = 'none' }) => {
                 웹사이트
               </S.SpanTag>
             </div>
-            <S.InputTag size="13rem" laptopSize="23rem" placeholder="www.example.com" />
+            <S.InputTag
+              size="13rem"
+              laptopSize="23rem"
+              placeholder="www.example.com"
+              value={companyWebsite}
+              onChange={companyWebsiteFuntion}
+            />
           </S.BlockDiv>
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
           <S.CapsMessage />
@@ -187,7 +326,7 @@ const CompanyAccount = ({ display = 'none' }) => {
             <div>
               <S.SpanTag right="6rem">주소</S.SpanTag>
             </div>
-            <S.SelectTag type="checkbox" Mobilesize="7rem" size="6rem">
+            <S.SelectTag type="checkbox" Mobilesize="7rem" size="6rem" onChange={userCountryFuntion}>
               <option value="kr">대한민국</option>
               <option value="uk">영국</option>
               <option value="us">미국</option>
@@ -244,7 +383,13 @@ const CompanyAccount = ({ display = 'none' }) => {
                 }
               }}
             />
-            <S.InputTag Mobilesize="15rem" size="13rem" placeholder="상세 주소를 입력하세요." />
+            <S.InputTag
+              Mobilesize="15rem"
+              size="13rem"
+              placeholder="상세 주소를 입력하세요."
+              value={userAddress}
+              onChange={userAddressFuntion}
+            />
           </S.PostCodeDiv>
           <S.CapsMessage />
         </S.InputDiv>
@@ -258,7 +403,7 @@ const CompanyAccount = ({ display = 'none' }) => {
                 </S.SpanTag>
               </div>
               <S.CapsMessage Mobiledisplay="none" display="block" />
-              <S.InputTag size="8rem" placeholder="주요 사업내용" />
+              <S.InputTag size="8rem" placeholder="주요 사업내용" value={business} onChange={businessFuntion} />
             </S.BlockDiv>
             <S.CapsMessage />
           </S.InputDiv>
@@ -270,7 +415,13 @@ const CompanyAccount = ({ display = 'none' }) => {
                 </S.SpanTag>
               </div>
               <S.CapsMessage Mobiledisplay="none" display="block" />
-              <S.InputTag size="8rem" placeholder="연간 매출액" />
+              <S.InputTag
+                size="8rem"
+                placeholder="연간 매출액"
+                type="number"
+                value={yearSale}
+                onChange={yearSaleFuntion}
+              />
             </S.BlockDiv>
             <S.CapsMessage />
           </S.InputDiv>
@@ -280,7 +431,14 @@ const CompanyAccount = ({ display = 'none' }) => {
                 <S.SpanTag right="1rem">사업자등록번호</S.SpanTag>
               </div>
               <S.CapsMessage Mobiledisplay="none" display="block" />
-              <S.InputTag Mobilesize="15.5rem" size="8rem" placeholder="사업자등록번호" />
+              <S.InputTag
+                Mobilesize="15.5rem"
+                size="8rem"
+                placeholder="사업자등록번호"
+                type="number"
+                value={businessNumber}
+                onChange={businessNumberFuntion}
+              />
             </S.BlockDiv>
             <S.CapsMessage />
           </S.InputDiv>
