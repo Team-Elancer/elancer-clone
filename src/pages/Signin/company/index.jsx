@@ -9,13 +9,12 @@ import InlineBlock from 'components/Inline-Block';
 import CompanyAccount from 'components/Myboard/Company-Account';
 
 const SigninCompany = () => {
-  const [link, setLink] = useState('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise');
-  const [newDatas, setNewDatas] = useState([]);
-  const fetchData = async () => {
-    const res = await fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise');
-    const Data = await res.json();
-    return setNewDatas(Data);
-  };
+  // const [newDatas, setNewDatas] = useState([]);
+  // const fetchData = async () => {
+  //   const res = await fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise');
+  //   const Data = await res.json();
+  //   return setNewDatas(Data);
+  // };
 
   const navi = useNavigate();
 

@@ -70,7 +70,6 @@ const SigninFreeLancer = () => {
   };
 
   const CreateWrite = (event) => {
-    console.log('hello');
     event.preventDefault();
     fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer', {
       method: 'POST',
@@ -102,7 +101,6 @@ const SigninFreeLancer = () => {
   };
 
   useEffect(() => {
-    console.log(selectedDate);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -117,7 +115,7 @@ const SigninFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, selectedDate]);
+  }, [eyeCheck, eyeCheck2]);
 
   return (
     <form onSubmit={CreateWrite}>
