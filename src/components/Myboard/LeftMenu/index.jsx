@@ -4,7 +4,6 @@ import * as S from './style';
 
 const LeftMenu = () => {
   const lcation = useLocation();
-  console.log(lcation.pathname === '/dashboard/enterprise');
 
   useEffect(() => {}, [lcation]);
 

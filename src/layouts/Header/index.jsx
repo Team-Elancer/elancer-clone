@@ -35,8 +35,8 @@ const Header = () => {
             <S.ThreeTag>프로젝트 보기</S.ThreeTag>
           </Link>
         </S.Text>
-        <S.Menu>
-          <S.Span onClick={changeBool}>
+        <S.Menu onClick={changeBool}>
+          <S.Span>
             <FaBars size="16" color="gray" />
           </S.Span>
           <S.Span>

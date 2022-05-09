@@ -75,43 +75,47 @@ const Login = () => {
                 </S.LoginButton>
               </S.PTag>
               <S.PTag>
-                <S.LoginButton
-                  border="#F9E000"
-                  mobileBg="#F9E000"
-                  tabletBg="#F9E000"
-                  mobileColor="black"
-                  tabletColor="black"
-                  content="start"
-                >
-                  <S.Icon>
-                    <ImBubble size="20" />
-                  </S.Icon>
-                  <S.TextSpan mobilePadding="6.5rem" tabletPadding="3rem" laptoppadding="3rem">
-                    카카오톡으로 간편 로그인
-                  </S.TextSpan>
-                </S.LoginButton>
+                <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">
+                  <S.LoginButton
+                    border="#F9E000"
+                    mobileBg="#F9E000"
+                    tabletBg="#F9E000"
+                    mobileColor="black"
+                    tabletColor="black"
+                    content="start"
+                  >
+                    <S.Icon>
+                      <ImBubble size="20" />
+                    </S.Icon>
+                    <S.TextSpan mobilePadding="6.5rem" tabletPadding="3rem" laptoppadding="3rem">
+                      카카오톡으로 간편 로그인
+                    </S.TextSpan>
+                  </S.LoginButton>
+                </a>
               </S.PTag>
               <S.PTag>
-                <S.LoginButton
-                  border="#03c75a"
-                  mobileBg="#03c75a"
-                  tabletBg="#03c75a"
-                  mobileColor="white"
-                  tabletColor="white"
-                  content="start"
-                >
-                  <S.Icon>
-                    <S.NaverImg src={naver} alt="naver" />
-                  </S.Icon>
-                  <S.TextSpan mobilePadding="7.5rem" tabletPadding="3.5rem" laptoppadding="3.5rem">
-                    네이버로 간편 로그인
-                  </S.TextSpan>
-                </S.LoginButton>
+                <a href="https://nid.naver.com/nidlogin.login">
+                  <S.LoginButton
+                    border="#03c75a"
+                    mobileBg="#03c75a"
+                    tabletBg="#03c75a"
+                    mobileColor="white"
+                    tabletColor="white"
+                    content="start"
+                  >
+                    <S.Icon>
+                      <S.NaverImg src={naver} alt="naver" />
+                    </S.Icon>
+                    <S.TextSpan mobilePadding="7.5rem" tabletPadding="3.5rem" laptoppadding="3.5rem">
+                      네이버로 간편 로그인
+                    </S.TextSpan>
+                  </S.LoginButton>
+                </a>
               </S.PTag>
             </S.CenterDiv>
             <S.SigninDiv>
               아직 멤버가 아니십니까?
-              <Link to="/signin">
+              <Link to="/signin/main">
                 <S.SigninSpan>회원가입</S.SigninSpan>
               </Link>
             </S.SigninDiv>
