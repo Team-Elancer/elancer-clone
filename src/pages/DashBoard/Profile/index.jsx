@@ -8,7 +8,7 @@ const DashBoardProfile = () => {
     <>
       <S.SpacebetweenDiv>
         <S.H1>프로필관리</S.H1>
-        <Link to="/">
+        <Link to="/dashboard/modify">
           <S.LinkP>수정</S.LinkP>
         </Link>
       </S.SpacebetweenDiv>

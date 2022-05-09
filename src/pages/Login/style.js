@@ -204,7 +204,7 @@ export const TextSpan = styled.span`
     padding: 0 0 0 ${(props) => props.laptoppadding};
   }
 `;
-export const LoginButton = styled.button`
+export const LoginButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${(props) => props.content};
