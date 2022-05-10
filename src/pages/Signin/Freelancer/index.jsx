@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Camera from 'assets/images/camera.png';
 import CloseEye from 'assets/images/closeEye.png';
@@ -11,8 +11,6 @@ import InlineBlock from 'components/Inline-Block';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const SigninFreeLancer = () => {
-  const [link, setLink] = useState('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
-
   const navi = useNavigate();
 
   const [eyeCheck, setEyeCheck] = useState(true);
@@ -30,8 +28,9 @@ const SigninFreeLancer = () => {
   const [emailRadio, setEmailRadio] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [job, setJob] = useState('');
+  const [jobType, setJobType] = useState('');
   const [jobRadio, setJobRadio] = useState('');
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const nameFuntion = (e) => {
     setName(e.target.value);
@@ -57,6 +56,26 @@ const SigninFreeLancer = () => {
   const jobFuntion = (e) => {
     setJob(e.target.innerHTML);
   };
+  const jobChoice = () => {
+    if (job === '개발자') {
+      setJobType('DEVELOPER');
+    }
+    if (job === '퍼블리셔') {
+      setJobType('PUBLISHER');
+    }
+    if (job === '디자이너') {
+      setJobType('DESIGNER');
+    }
+    if (job === '기획자') {
+      setJobType('PLANNER');
+    }
+    if (job === '크라우드워커') {
+      setJobType('CROWD_WORKER');
+    }
+    if (job === '기타') {
+      setJobType('ETC');
+    }
+  };
   const jobRadioFuntion = (e) => {
     setJobRadio(e.target.value);
   };
@@ -68,6 +87,11 @@ const SigninFreeLancer = () => {
   const changeSecondEye = () => {
     setEyeCheck2(!eyeCheck2);
   };
+
+  // const dateFunction = (date) => {
+  //   setSelectedDate(date.toLocaleDateString().splice('.'));
+  //   console.log(selectedDate);
+  // };
 
   const CreateWrite = (event) => {
     event.preventDefault();
@@ -84,15 +108,19 @@ const SigninFreeLancer = () => {
         memberEmail: email,
         mailReceptionState: emailRadio,
         memberPhone: phoneNumber,
+        positionType: jobType,
         workPossibleState: jobRadio,
-        workStartPossibleDate: selectedDate,
+        workStartPossibleDate: '2020-05-20',
         thumbnail: null,
       }),
     })
       .then((res) => {
         if (res.ok) {
           alert('생성이 완료되었습니다.');
-          navi('/');
+          navi('/signin/finish');
+        }
+        if (!res.ok) {
+          alert(res);
         }
       })
       .catch((err) => {
@@ -101,6 +129,8 @@ const SigninFreeLancer = () => {
   };
 
   useEffect(() => {
+    jobChoice();
+    console.log(selectedDate);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -115,7 +145,7 @@ const SigninFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, job, jobType, selectedDate]);
 
   return (
     <form onSubmit={CreateWrite}>
@@ -225,11 +255,11 @@ const SigninFreeLancer = () => {
                 <S.EmailTop>
                   <S.FlexDiv top="0" onChange={emailRadioFuntion}>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="email" value="Y" />
+                      <S.RadioInput type="radio" name="email" value="RECEPTION" />
                       <S.RadioText>수신</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="email" value="N" />
+                      <S.RadioInput type="radio" name="email" value="NOT_RECEPTION" />
                       <S.RadioText>미수신</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
@@ -262,12 +292,48 @@ const SigninFreeLancer = () => {
                 <S.SpanTag right="4.5em">직종</S.SpanTag>
               </div>
               <S.JobUl>
-                <S.JobLiBorderLeft onClick={jobFuntion}>개발자</S.JobLiBorderLeft>
-                <S.JobLi onClick={jobFuntion}>퍼블리셔</S.JobLi>
-                <S.JobLi onClick={jobFuntion}>디자이너</S.JobLi>
-                <S.JobLi onClick={jobFuntion}>기획자</S.JobLi>
-                <S.JobLi onClick={jobFuntion}>크라우드워커</S.JobLi>
-                <S.JobLiBorderRight onClick={jobFuntion}>기타</S.JobLiBorderRight>
+                <S.JobLiBorderLeft
+                  bg={job === '개발자' ? '#eb6100' : 'white'}
+                  color={job === '개발자' ? 'white' : 'black'}
+                  onClick={jobFuntion}
+                >
+                  개발자
+                </S.JobLiBorderLeft>
+                <S.JobLi
+                  bg={job === '퍼블리셔' ? '#eb6100' : 'white'}
+                  color={job === '퍼블리셔' ? 'white' : 'black'}
+                  onClick={jobFuntion}
+                >
+                  퍼블리셔
+                </S.JobLi>
+                <S.JobLi
+                  bg={job === '디자이너' ? '#eb6100' : 'white'}
+                  color={job === '디자이너' ? 'white' : 'black'}
+                  onClick={jobFuntion}
+                >
+                  디자이너
+                </S.JobLi>
+                <S.JobLi
+                  bg={job === '기획자' ? '#eb6100' : 'white'}
+                  color={job === '기획자' ? 'white' : 'black'}
+                  onClick={jobFuntion}
+                >
+                  기획자
+                </S.JobLi>
+                <S.JobLi
+                  bg={job === '크라우드워커' ? '#eb6100' : 'white'}
+                  color={job === '크라우드워커' ? 'white' : 'black'}
+                  onClick={jobFuntion}
+                >
+                  크라우드워커
+                </S.JobLi>
+                <S.JobLiBorderRight
+                  bg={job === '기타' ? '#eb6100' : 'white'}
+                  color={job === '기타' ? 'white' : 'black'}
+                  onClick={jobFuntion}
+                >
+                  기타
+                </S.JobLiBorderRight>
               </S.JobUl>
             </S.JobDiv>
           </S.InputDiv>
@@ -278,11 +344,11 @@ const SigninFreeLancer = () => {
               </div>
               <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
                 <S.RadioDiv>
-                  <S.RadioInput type="radio" name="job" value="Y" />
+                  <S.RadioInput type="radio" name="job" value="POSSIBLE" />
                   <S.RadioText>가능</S.RadioText>
                 </S.RadioDiv>
                 <S.RadioDiv>
-                  <S.RadioInput type="radio" name="job" value="N" />
+                  <S.RadioInput type="radio" name="job" value="IMPOSSIBLE" />
                   <S.RadioText>불가능</S.RadioText>
                 </S.RadioDiv>
               </S.FlexDiv>
@@ -296,9 +362,11 @@ const SigninFreeLancer = () => {
               <S.InputTag size="14.5rem" type="number" placeholder={selectedDate} />
               <S.DateDiv>
                 <DatePicker
+                  selected={selectedDate}
                   onChange={(date) => {
-                    setSelectedDate(date.toLocaleDateString().split('.').slice(0, 3).join('-'));
+                    setSelectedDate(date);
                   }}
+                  dateFormat="yyyy-MM-dd"
                 />
               </S.DateDiv>
               <S.ErrorMessage />

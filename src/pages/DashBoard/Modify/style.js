@@ -90,6 +90,7 @@ export const InputTag = styled.input`
   font-size: 1.125rem;
   font-weight: 600;
   color: #707070;
+  width: ${(props) => props.Mobilesize};
   border-bottom: 1px solid #c4c4c4;
   &::placeholder {
     font-size: 1.125rem;
@@ -193,6 +194,7 @@ export const ColorDiv = styled.div`
     position: relative;
   }
   @media ${LAPTOP} {
+    height: 80rem;
   }
 `;
 export const MarginAutoDiv = styled.div`
@@ -200,5 +202,131 @@ export const MarginAutoDiv = styled.div`
     padding-top: 3rem;
     width: 90%;
     margin: 0 auto;
+  }
+`;
+export const CancelImg = styled.img`
+  position: absolute;
+  top: 2.8rem;
+  left: 14rem;
+  @media ${TABLET} {
+    top: 3.8rem;
+    left: 7rem;
+  }
+  @media ${LAPTOP} {
+    top: 1.8rem;
+    left: 40rem;
+  }
+`;
+export const FileInput = styled.input`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 500px;
+  left: ${(props) => props.left};
+  top: ${(props) => props.top};
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+  @media ${TABLET} {
+    cursor: pointer;
+    left: ${(props) => props.tabletLeft};
+    top: ${(props) => props.tabletTop};
+  }
+  @media ${LAPTOP} {
+    left: ${(props) => props.laptopLeft};
+  }
+`;
+export const BlacSpan = styled.span`
+  background-color: #434343;
+  color: #b7b7b7;
+  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
+  z-index: 3;
+  cursor: pointer;
+  @media ${TABLET} {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 1.5rem;
+    letter-spacing: -0.1rem;
+    margin-left: 1rem;
+  }
+`;
+export const BorderDiv = styled.div`
+  @media ${TABLET} {
+    width: 100%;
+    height: 1px;
+    margin: 4rem 0;
+    background-color: #969696;
+  }
+`;
+export const Ul = styled.ul`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  color: #8c8c8c;
+  background-color: #f2f2f2;
+  border-radius: 0.5rem;
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    width: 80%;
+    background-color: white;
+  }
+`;
+export const Li = styled.li`
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.5rem ${(props) => props.right} 0.5rem 0;
+  display: flex;
+  align-items: center;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    font-size: 1rem;
+    padding-right: ${(props) => props.LaptopRight};
+  }
+`;
+export const CheckInput = styled.input.attrs({ type: 'checkbox' })`
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 1px solid #999;
+  margin-right: 0.6rem;
+  appearance: none;
+  cursor: pointer;
+  &:checked {
+    background-color: orange;
+  }
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+export const BottomInput = styled.input`
+  padding: 1rem 1.3rem;
+  background-color: #f2f2f2;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  &::placeholder {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    margin-left: 8.9rem;
+    width: 80%;
+    background-color: white;
   }
 `;

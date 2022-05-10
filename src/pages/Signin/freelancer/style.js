@@ -230,6 +230,7 @@ export const EyeImg = styled.img`
   position: absolute;
   top: 0.625rem;
   right: 1.25rem;
+  cursor: pointer;
   @media ${TABLET} {
     top: 1.5rem;
     right: 19.5rem;
@@ -268,6 +269,7 @@ export const RadioInput = styled.input`
   width: 20px;
   height: 20px;
   border: 1px;
+  cursor: pointer;
 `;
 export const RadioText = styled.span`
   font-size: 0.75rem;
@@ -394,10 +396,11 @@ export const JobUl = styled.ul`
 `;
 export const JobLi = styled.li`
   margin-top: 0.2rem;
-  background-color: #f2f2f2;
   padding: 0.5rem 0.7rem;
   font-weight: 800;
   border: 1px solid #e1e1e1;
+  z-index: 2;
+  cursor: pointer;
   &:hover {
     background-color: #eb6100;
     color: white;
@@ -409,11 +412,15 @@ export const JobLi = styled.li`
   }
   @media ${LAPTOP} {
     padding: 0.9rem 2rem;
+    background-color: ${(props) => props.bg};
+    color: ${(props) => props.color};
   }
 `;
 export const JobInput = styled.input`
   width: 100%;
   height: 100%;
+  position: absolute;
+  display: none;
 `;
 export const JobLiBorderLeft = styled.li`
   margin-top: 0.2rem;
@@ -423,6 +430,10 @@ export const JobLiBorderLeft = styled.li`
   border: 1px solid #e1e1e1;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  background-color: ${(props) => props.bg};
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
   &:hover {
     background-color: #eb6100;
     color: white;
@@ -436,24 +447,27 @@ export const JobLiBorderLeft = styled.li`
     padding: 0.9rem 2.4rem;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    background-color: ${(props) => props.bg};
+    color: ${(props) => props.color};
   }
 `;
 export const JobLiBorderRight = styled.li`
   margin-top: 0.2rem;
-  background-color: #f2f2f2;
   padding: 0.5rem 0.7rem;
   font-weight: 800;
   border: 1px solid #e1e1e1;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  cursor: pointer;
   &:hover {
     background-color: #eb6100;
     color: white;
   }
   @media ${TABLET} {
-    background-color: white;
     font-size: 0.9rem;
     padding: 0.9rem 1.7rem;
+    background-color: ${(props) => props.bg};
+    color: ${(props) => props.color};
   }
   @media ${LAPTOP} {
     padding: 0.9rem 2.4rem;

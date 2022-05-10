@@ -232,7 +232,7 @@ export const LoginButton = styled.div`
     border-radius: 8px;
   }
 `;
-export const PTag = styled.p`
+export const SpanTag = styled.span`
   width: 366px;
   @media ${TABLET} {
     width: 224px;

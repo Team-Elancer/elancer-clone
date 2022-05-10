@@ -39,7 +39,6 @@ const SigninCompany = () => {
     sales: 10000000,
     idNumber: '사업자 번호(123-123-123)',
   });
-  console.log(hello);
 
   const CreateWrite = (event) => {
     console.log('hello');
