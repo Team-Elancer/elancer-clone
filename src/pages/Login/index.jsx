@@ -1,7 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { ImBubble } from 'react-icons/im';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import naver from 'assets/images/naver.png';
 import MenuBar from 'components/MenuBar';
@@ -12,6 +12,27 @@ import Header from 'layouts/Header';
 
 const Login = () => {
   const [checkBool, setCeckBool] = useState(true);
+  const navi = useNavigate();
+
+  const CreateWrite = (event) => {
+    event.preventDefault();
+    axios({
+      method: 'POST',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
+      data: {
+        userId: 'CROWD_WORKER',
+        password: 'wh8107',
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        alert('생성이 완료되었습니다.');
+        navi(`/`);
+      })
+      .catch((err) => {
+        return alert(err.message);
+      });
+  };
 
   return (
     <S.Container>
@@ -62,8 +83,9 @@ const Login = () => {
           </S.AlignCenter>
           <S.MarginAuto>
             <S.CenterDiv>
-              <S.PTag>
+              <S.SpanTag>
                 <S.LoginButton
+                  onClick={CreateWrite}
                   border="#f16300"
                   mobileBg="white"
                   tabletBg="#f16300"
@@ -73,8 +95,8 @@ const Login = () => {
                 >
                   로그인
                 </S.LoginButton>
-              </S.PTag>
-              <S.PTag>
+              </S.SpanTag>
+              <S.SpanTag>
                 <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">
                   <S.LoginButton
                     border="#F9E000"
@@ -92,8 +114,8 @@ const Login = () => {
                     </S.TextSpan>
                   </S.LoginButton>
                 </a>
-              </S.PTag>
-              <S.PTag>
+              </S.SpanTag>
+              <S.SpanTag>
                 <a href="https://nid.naver.com/nidlogin.login">
                   <S.LoginButton
                     border="#03c75a"
@@ -111,7 +133,7 @@ const Login = () => {
                     </S.TextSpan>
                   </S.LoginButton>
                 </a>
-              </S.PTag>
+              </S.SpanTag>
             </S.CenterDiv>
             <S.SigninDiv>
               아직 멤버가 아니십니까?
