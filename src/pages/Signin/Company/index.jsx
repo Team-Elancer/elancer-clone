@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 import Camera from 'assets/images/camera.png';
