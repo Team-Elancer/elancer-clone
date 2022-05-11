@@ -17,7 +17,7 @@ const Dashboard = () => {
           </S.BoardDiv>
         </S.FlexDiv>
       </S.SizeDiv>
-      <Footer />
+      <Footer toBottom />
       <GridBottom />
     </S.Container>
   );

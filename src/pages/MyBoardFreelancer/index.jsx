@@ -11,8 +11,9 @@ const MyBoardFreelancer = () => {
   return (
     <S.Container>
       <Header freelancerBoard />
+
       <LeftMenuMyBoard />
-      <Footer />
+      <Footer toBottom />
       <GridBottom />
     </S.Container>
   );
