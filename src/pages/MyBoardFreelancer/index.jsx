@@ -11,9 +11,15 @@ const MyBoardFreelancer = () => {
   return (
     <S.Container>
       <Header freelancerBoard />
-
-      <LeftMenuMyBoard />
-      <Footer toBottom />
+      <S.SizeDiv>
+        <S.FlexDiv>
+          <LeftMenuMyBoard />
+          <S.BoardDiv>
+            <Outlet />
+          </S.BoardDiv>
+        </S.FlexDiv>
+      </S.SizeDiv>
+      <Footer />
       <GridBottom />
     </S.Container>
   );
