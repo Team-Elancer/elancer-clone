@@ -88,10 +88,23 @@ const SigninFreeLancer = () => {
     setEyeCheck2(!eyeCheck2);
   };
 
-  // const dateFunction = (date) => {
-  //   setSelectedDate(date.toLocaleDateString().splice('.'));
-  //   console.log(selectedDate);
-  // };
+  const dateFunction = (date) => {
+    setSelectedDate(
+      date
+        .toLocaleDateString()
+        .split(' ')
+        .join('')
+        .split('.')
+        .filter((data) => data !== '')
+        .map((a) => {
+          return a < 10 ? a.padStart(2, '0') : a;
+        })
+        .join('-'),
+    );
+    if (selectedDate[1] < 10) {
+      selectedDate[1].padStart(2, '0');
+    }
+  };
 
   const CreateWrite = (event) => {
     event.preventDefault();
@@ -362,11 +375,9 @@ const SigninFreeLancer = () => {
               <S.InputTag size="14.5rem" type="number" placeholder={selectedDate} />
               <S.DateDiv>
                 <DatePicker
-                  selected={selectedDate}
                   onChange={(date) => {
-                    setSelectedDate(date);
+                    dateFunction(date);
                   }}
-                  dateFormat="yyyy-MM-dd"
                 />
               </S.DateDiv>
               <S.ErrorMessage />

@@ -32,16 +32,17 @@ const App = () => {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/partner-list" element={<PartnerList />} />
-        <Route path="/partner-detail" element={<PartnerDetail />} />
-        <Route path="/project-list" element={<ProjectList />} />
-        <Route path="/project-detail" element={<ProjectDetail />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="partner-list" element={<PartnerList />} />
+        <Route path="partner-detail" element={<PartnerDetail />} />
+        <Route path="project-list" element={<ProjectList />} />
+        <Route path="project-detail" element={<ProjectDetail />} />
+        <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />}>
           <Route path="main" element={<SigninMain />} />
           <Route path="freelancer" element={<SigninFreeLancer />} />
           <Route path="finish" element={<SigninFinish />} />
           <Route path="company" element={<SigninCompany />} />
+          <Route path="/signin" element={<SigninMain />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="enterprise" element={<DashBoardEnterprise />} />
