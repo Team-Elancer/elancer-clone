@@ -2,10 +2,12 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
+  position: ${(props) => props.toBottom && 'absolute'};
   width: 100%;
   height: 350px;
-  top: 50px;
+  bottom: 0;
   background-color: #3c3c3c;
+
   @media ${TABLET} {
     height: 319px;
   }

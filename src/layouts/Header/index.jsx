@@ -3,11 +3,12 @@ import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Logo from 'assets/images/elancer_logo.png';
+import LogoFreelancer from 'assets/images/freelancer-logo.png';
 import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const Header = () => {
+const Header = ({ freelancerBoard }) => {
   const [checkBool, setCeckBool] = useState(true);
 
   const changeBool = () => {
@@ -15,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <S.Container>
+    <S.Container freelancerBoard={freelancerBoard}>
       {checkBool === false && (
         <>
           <MainMenu setCeckBool={setCeckBool} />
@@ -24,7 +25,7 @@ const Header = () => {
       )}
       <S.HeaderDiv>
         <Link to="/">
-          <S.Img src={Logo} alt="Logo" />
+          {freelancerBoard ? <S.Img src={LogoFreelancer} alt="Logo" /> : <S.Img src={Logo} alt="Logo" />}
         </Link>
         <S.Text>
           <Link to="/partner-list">
