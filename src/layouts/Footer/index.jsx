@@ -1,7 +1,7 @@
 import * as S from './style';
 import Logo from 'assets/images/footer-logo.png';
 
-const Footer = () => {
+const Footer = ({ toBottom }) => {
   const liItem = [
     { id: 1, name: '(주)이랜서', site: 'https://www.elancer.co.kr/company-main' },
     { id: 2, name: '이용약관', site: 'https://www.elancer.co.kr/terms' },
@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <S.Container>
+    <S.Container toBottom={toBottom}>
       <S.SecondDiv>
         <S.ThirdDiv>
           <S.FourthDiv>
