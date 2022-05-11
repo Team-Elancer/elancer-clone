@@ -4,6 +4,8 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  background: ${(props) => (props.freelancerBoard ? '#252525' : 'white')};
+  color: ${(props) => (props.freelancerBoard ? 'white' : 'black')};
 `;
 
 export const HeaderDiv = styled.div`
@@ -13,7 +15,10 @@ export const HeaderDiv = styled.div`
   justify-content: space-between;
   margin: 10px auto;
   overflow: hidden;
-  padding-top: 1.2rem;
+  margin-top: 0;
+  padding-bottom: 2.25rem;
+  padding-top: 2.25rem;
+
   @media ${TABLET} {
     width: 730px;
   }

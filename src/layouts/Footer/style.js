@@ -3,8 +3,9 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   width: 100%;
+  position: absolute;
   height: 350px;
-  top: 50px;
+  bottom: 0;
   background-color: #3c3c3c;
   @media ${TABLET} {
     height: 319px;

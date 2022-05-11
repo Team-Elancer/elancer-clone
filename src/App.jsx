@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
+import PrivateRoute from 'components/PrivateRoute';
 import Dashboard from 'pages/DashBoard';
 import DashBoardAccount from 'pages/DashBoard/Account';
 import DashboardContact from 'pages/DashBoard/Contact';
@@ -11,6 +12,9 @@ import DashboardProjectAdd from 'pages/DashBoard/ProjectAdd';
 import DashBoardScrap from 'pages/DashBoard/Scrap';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
+
+import MyBoardFreelancer from 'pages/MyBoardFreelancer';
+
 import PartnerDetail from 'pages/Partner/PartnerDetail';
 import PartnerList from 'pages/Partner/PartnerList';
 import ProjectDetail from 'pages/Project/ProjectDetail';
@@ -48,6 +52,12 @@ const App = () => {
           <Route path="scrap" element={<DashBoardScrap />} />
           <Route path="contact" element={<DashboardContact />} />
           <Route path="account" element={<DashBoardAccount />} />
+          <Route path="/dashboard" element={<DashBoardEnterprise />} />
+        </Route>
+        <Route path="/myboard-freelancer" element={<PrivateRoute />}>
+          <Route path="/myboard-freelancer" element={<MyBoardFreelancer freelancerBoard />}>
+            <Route path="/myboard-freelancer/*" element={<MyBoardFreelancer freelancerBoard />} />
+          </Route>
         </Route>
       </Routes>
     </>
