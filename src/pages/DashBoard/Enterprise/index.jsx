@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as S from './style';
+import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import MyBoardProject from 'components/Myboard/CardSpan';
-import CompanyMyboard from 'components/Myboard/Comapany-Myboard';
 
 const DashBoardEnterprise = () => {
   return (
@@ -18,7 +18,7 @@ const DashBoardEnterprise = () => {
           <Link to="/dashboard/profile">
             <S.LiPtag>📍 프로필 관리 바로가기</S.LiPtag>
           </Link>
-          <CompanyMyboard />
+          <CompanyDashBoard />
         </S.LiTag>
         <S.LiTag>
           <Link to="/dashboard/project">
@@ -84,7 +84,7 @@ const DashBoardEnterprise = () => {
           </S.EcardDiv>
         </S.LiTag>
         <S.LiTag>
-          <Link to="/">
+          <Link to="/dashboard/contact">
             <S.LiPtag>☎️ 문의 / 요청 바로가기</S.LiPtag>
           </Link>
           <S.EcardDiv>

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 
 import OnGoingCard from 'components/Card/OnGoingCard';
+import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import MyBoardProject from 'components/Myboard/CardSpan';
-import CompanyMyboard from 'components/Myboard/Comapany-Myboard';
 
 const MyBoardOnGoing = () => {
   return (
@@ -21,7 +21,7 @@ const MyBoardOnGoing = () => {
           <Link to="/myboard-freelancer/profile">
             <S.LiPtag>📍 프로필 관리 바로가기</S.LiPtag>
           </Link>
-          <CompanyMyboard />
+          <CompanyDashBoard />
         </S.LiTag>
         <S.LiTag>
           <Link to="/myboard-freelancer/project">

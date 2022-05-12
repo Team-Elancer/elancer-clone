@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom';
 import * as S from './style';
 
 import OnGoingCard from 'components/Card/OnGoingCard';
 import MyBoardProject from 'components/Myboard/CardSpan';
-import CompanyMyboard from 'components/Myboard/Comapany-Myboard';
 
 const MyBoardManageProject = () => {
   return (

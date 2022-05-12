@@ -1,7 +1,7 @@
 import * as S from './style';
 
 import Back from 'assets/images/arrowback.png';
-import CompanyAccount from 'components/Myboard/Company-Account';
+import CompanyAccount from 'components/DashBoard/Company-Account';
 
 const DashBoardAccount = () => {
   return (

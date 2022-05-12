@@ -5,8 +5,8 @@ import * as S from './style';
 import Bici from 'assets/images/bici.png';
 import Camera from 'assets/images/camera.png';
 import SubmitButton from 'components/Button/SubmitButton';
+import CompanyAccount from 'components/DashBoard/Company-Account';
 import InlineBlock from 'components/Inline-Block';
-import CompanyAccount from 'components/Myboard/Company-Account';
 
 const SignUpCompany = () => {
   // const [newDatas, setNewDatas] = useState([]);
