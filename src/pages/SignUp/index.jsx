@@ -4,7 +4,7 @@ import GridBottom from 'components/Modal/GridBottom';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
-const Signin = () => {
+const SignUp = () => {
   return (
     <S.Container>
       <Header />
@@ -17,4 +17,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignUp;
