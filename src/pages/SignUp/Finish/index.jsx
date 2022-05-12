@@ -3,7 +3,7 @@ import * as S from './style';
 import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
 
-const SigninFinish = () => {
+const SignUpFinish = () => {
   return (
     <>
       <InlineBlock h1="회원가입" text="회원선택" pages="3 / 3" />
@@ -28,4 +28,4 @@ const SigninFinish = () => {
   );
 };
 
-export default SigninFinish;
+export default SignUpFinish;

@@ -5,12 +5,12 @@ import Freelancer from 'assets/images/freelancer.png';
 import LogoWhite from 'assets/images/logo_white.png';
 import InlineBlock from 'components/Inline-Block';
 
-const SigninMain = () => {
+const SignUpMain = () => {
   return (
     <>
       <InlineBlock h1="회원가입" text="회원선택" pages="1 / 3" />
       <S.BlockDiv>
-        <Link to="/signin/company">
+        <Link to="/signup/company">
           <S.BoxSizeDiv bgcolor="#f6f6f6" right="1rem">
             <S.CenterDiv>
               <S.ImgFlex>
@@ -22,7 +22,7 @@ const SigninMain = () => {
             </S.CenterDiv>
           </S.BoxSizeDiv>
         </Link>
-        <Link to="/signin/freelancer">
+        <Link to="/signup/freelancer">
           <S.BoxSizeDiv bgcolor="#3c3c3c">
             <S.CenterDiv>
               <S.ImgFlex>
@@ -39,4 +39,4 @@ const SigninMain = () => {
   );
 };
 
-export default SigninMain;
+export default SignUpMain;

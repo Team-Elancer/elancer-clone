@@ -8,7 +8,7 @@ import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
 import CompanyAccount from 'components/Myboard/Company-Account';
 
-const SigninCompany = () => {
+const SignUpCompany = () => {
   // const [newDatas, setNewDatas] = useState([]);
   // const fetchData = async () => {
   //   const res = await fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise');
@@ -53,7 +53,7 @@ const SigninCompany = () => {
       .then((res) => {
         console.log(res);
         alert('생성이 완료되었습니다.');
-        navi(`/`);
+        navi('/signup/finish');
       })
       .catch((err) => {
         return alert(err.message);
@@ -116,4 +116,4 @@ const SigninCompany = () => {
   );
 };
 
-export default SigninCompany;
+export default SignUpCompany;

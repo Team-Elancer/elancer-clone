@@ -21,11 +21,11 @@ import PartnerDetail from 'pages/Partner/PartnerDetail';
 import PartnerList from 'pages/Partner/PartnerList';
 import ProjectDetail from 'pages/Project/ProjectDetail';
 import ProjectList from 'pages/Project/ProjectList';
-import Signin from 'pages/Signin';
-import SigninCompany from 'pages/Signin/Company';
-import SigninFinish from 'pages/Signin/Finish';
-import SigninFreeLancer from 'pages/Signin/Freelancer';
-import SigninMain from 'pages/Signin/Main';
+import SignUp from 'pages/SignUp';
+import SignUpCompany from 'pages/SignUp/Company';
+import SignUpFinish from 'pages/SignUp/Finish';
+import SignUpFreeLancer from 'pages/SignUp/Freelancer';
+import SignUpMain from 'pages/SignUp/Main';
 import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
@@ -39,12 +39,12 @@ const App = () => {
         <Route path="project-list" element={<ProjectList />} />
         <Route path="project-detail" element={<ProjectDetail />} />
         <Route path="login" element={<Login />} />
-        <Route path="signin" element={<Signin />}>
-          <Route path="main" element={<SigninMain />} />
-          <Route path="freelancer" element={<SigninFreeLancer />} />
-          <Route path="finish" element={<SigninFinish />} />
-          <Route path="company" element={<SigninCompany />} />
-          <Route path="/signin" element={<SigninMain />} />
+        <Route path="signup" element={<SignUp />}>
+          <Route path="main" element={<SignUpMain />} />
+          <Route path="freelancer" element={<SignUpFreeLancer />} />
+          <Route path="finish" element={<SignUpFinish />} />
+          <Route path="company" element={<SignUpCompany />} />
+          <Route path="/signup" element={<SignUpMain />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="enterprise" element={<DashBoardEnterprise />} />

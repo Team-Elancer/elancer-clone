@@ -10,7 +10,7 @@ import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const SigninFreeLancer = () => {
+const SignUpFreeLancer = () => {
   const navi = useNavigate();
 
   const [eyeCheck, setEyeCheck] = useState(true);
@@ -101,9 +101,6 @@ const SigninFreeLancer = () => {
         })
         .join('-'),
     );
-    if (selectedDate[1] < 10) {
-      selectedDate[1].padStart(2, '0');
-    }
   };
 
   const CreateWrite = (event) => {
@@ -123,14 +120,14 @@ const SigninFreeLancer = () => {
         memberPhone: phoneNumber,
         positionType: jobType,
         workPossibleState: jobRadio,
-        workStartPossibleDate: '2020-05-20',
+        workStartPossibleDate: selectedDate,
         thumbnail: null,
       }),
     })
       .then((res) => {
         if (res.ok) {
           alert('생성이 완료되었습니다.');
-          navi('/signin/finish');
+          navi('/signup/finish');
         }
         if (!res.ok) {
           alert(res);
@@ -428,4 +425,4 @@ const SigninFreeLancer = () => {
   );
 };
 
-export default SigninFreeLancer;
+export default SignUpFreeLancer;
