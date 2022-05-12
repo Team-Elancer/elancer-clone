@@ -14,6 +14,8 @@ import Login from 'pages/Login';
 import Main from 'pages/Main';
 
 import MyBoardFreelancer from 'pages/MyBoardFreelancer';
+import MyBoardManageProject from 'pages/MyBoardFreelancer/MyBoardManageProject';
+import MyBoardOnGoing from 'pages/MyBoardFreelancer/MyBoardOnGoing';
 
 import PartnerDetail from 'pages/Partner/PartnerDetail';
 import PartnerList from 'pages/Partner/PartnerList';
@@ -57,7 +59,12 @@ const App = () => {
         </Route>
         <Route path="/myboard-freelancer" element={<PrivateRoute />}>
           <Route path="/myboard-freelancer" element={<MyBoardFreelancer freelancerBoard />}>
-            <Route path="/myboard-freelancer/*" element={<MyBoardFreelancer freelancerBoard />} />
+            <Route path="ongoing" element={<MyBoardOnGoing />} />
+            {/* <Route path="profile" element={<MyBoardOnGoing />} /> */}
+            <Route path="project" element={<MyBoardManageProject />} />
+            <Route path="career" element={<MyBoardOnGoing />} />
+            <Route path="contact" element={<MyBoardOnGoing />} />
+            <Route path="account" element={<MyBoardOnGoing />} />
           </Route>
         </Route>
       </Routes>
