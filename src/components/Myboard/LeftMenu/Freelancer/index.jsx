@@ -8,12 +8,12 @@ const LeftMenuMyBoard = () => {
     <>
       <S.MenuDiv>
         <S.UlTag>
-          <Link to="/myboard-freelancer/enterprise">
+          <Link to="/myboard-freelancer/ongoing">
             <S.MenuLi
               bgColor={
                 location.pathname === '/myboard-freelancer' ||
                 location.pathname === '/myboard-freelancer/' ||
-                location.pathname === '/myboard-freelancer/enterprise'
+                location.pathname === '/myboard-freelancer/ongoing'
                   ? '#f2f2f2'
                   : 'white'
               }
@@ -28,12 +28,12 @@ const LeftMenuMyBoard = () => {
           </Link>
           <Link to="/myboard-freelancer/project">
             <S.MenuLi bgColor={location.pathname === '/myboard-freelancer/project' ? '#f2f2f2' : 'white'}>
-              등록한 프로젝트
+              수주 관리
             </S.MenuLi>
           </Link>
-          <Link to="/myboard-freelancer/scrap">
-            <S.MenuLi bgColor={location.pathname === '/myboard-freelancer/scrap' ? '#f2f2f2' : 'white'}>
-              인재 스크랩
+          <Link to="/myboard-freelancer/career">
+            <S.MenuLi bgColor={location.pathname === '/myboard-freelancer/career' ? '#f2f2f2' : 'white'}>
+              커리어 관리
             </S.MenuLi>
           </Link>
           <Link to="/myboard-freelancer/contact">

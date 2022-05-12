@@ -31,9 +31,11 @@ export const FlexDiv = styled.div`
 export const BoardDiv = styled.div`
   width: 100%;
   height: 100%;
+
   @media ${TABLET} {
     width: 730px;
   }
+
   @media ${LAPTOP} {
     width: 980px;
     margin: 0 auto;
