@@ -58,6 +58,8 @@ export const InputDiv = styled.div`
 `;
 export const BlockDiv = styled.div`
   display: block;
+  position: relative;
+  margin-top: ${(props) => props.top};
   @media ${TABLET} {
     display: flex;
     align-items: center;
@@ -112,12 +114,13 @@ export const InputTag = styled.input`
   }
 `;
 export const ErrorMessage = styled.p`
-  color: #ff6b6b;
+  color: black;
   padding: 1rem 0 1rem 0;
   font-size: 0.4rem;
-  font-weight: 800;
+  font-weight: 600;
   pointer-events: none;
   user-select: none;
+  line-height: 1rem;
   @media ${TABLET} {
     padding-left: 9rem;
   }
@@ -141,6 +144,7 @@ export const ProfileDiv = styled.div`
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
+    margin-bottom: 3.5rem;
   }
 `;
 export const ProfileInput = styled.input`
@@ -153,6 +157,7 @@ export const ProfileInput = styled.input`
   font-weight: 800;
   border-radius: 0.5rem;
   color: #707070;
+  position: absolute;
   &::placeholder {
     font-size: 1.1rem;
     font-weight: 600;
@@ -167,6 +172,7 @@ export const ProfileInput = styled.input`
     font-weight: 800;
     border-radius: 0.5rem;
     color: #707070;
+    width: 66%;
     &::placeholder {
       font-size: 0.8rem;
       font-weight: 300;
@@ -194,27 +200,28 @@ export const ColorDiv = styled.div`
     position: relative;
   }
   @media ${LAPTOP} {
-    height: 80rem;
+    height: 100%;
   }
 `;
 export const MarginAutoDiv = styled.div`
   @media ${TABLET} {
-    padding-top: 3rem;
+    padding: 3rem 0;
     width: 90%;
     margin: 0 auto;
   }
 `;
 export const CancelImg = styled.img`
   position: absolute;
-  top: 2.8rem;
-  left: 14rem;
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  cursor: pointer;
   @media ${TABLET} {
     top: 3.8rem;
     left: 7rem;
   }
   @media ${LAPTOP} {
-    top: 1.8rem;
-    left: 40rem;
+    top: ${(props) => props.laptopTop};
+    left: ${(props) => props.laptopLeft};
   }
 `;
 export const FileInput = styled.input`
@@ -245,7 +252,9 @@ export const BlacSpan = styled.span`
   padding: 0.4rem 1rem;
   border-radius: 1rem;
   z-index: 3;
+  margin: 0 ${(props) => props.margiRight} 0 0;
   cursor: pointer;
+  position: relative;
   @media ${TABLET} {
     font-size: 0.95rem;
     padding: 0.7rem 0.9rem;
@@ -328,5 +337,24 @@ export const BottomInput = styled.input`
     margin-left: 8.9rem;
     width: 80%;
     background-color: white;
+  }
+`;
+export const MarginTopDiv = styled.div`
+  margin-top: 1rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    margin-top: 0;
+  }
+`;
+export const CenterDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  @media ${LAPTOP} {
   }
 `;

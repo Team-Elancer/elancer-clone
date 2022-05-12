@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import CompanyMyboard from 'components/Myboard/Comapany-Myboard';
-import LeftMenu from 'components/Myboard/LeftMenu';
+import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 
 const DashBoardProfile = () => {
   return (
@@ -14,7 +13,7 @@ const DashBoardProfile = () => {
       </S.SpacebetweenDiv>
       <S.FlexDiv display="block">
         <S.EcardSize>
-          <CompanyMyboard EcardDiv="block" topleft="0.6rem" bottomleft="0.6rem" right="0" />
+          <CompanyDashBoard EcardDiv="block" topleft="0.6rem" bottomleft="0.6rem" right="0" />
         </S.EcardSize>
         <S.EcardSize>
           <S.LineDiv />

@@ -2,7 +2,7 @@ import { FaRegStar, FaStar } from 'react-icons/fa';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 
-const CompanyMyboard = ({
+const CompanyDashBoard = ({
   EcardDiv = 'none',
   height = '0.7rem',
   topleft = '0',
@@ -117,4 +117,4 @@ const RatingSmall = ({ mobilesize, mobileleft, title, size, left, color, persent
   );
 };
 
-export default CompanyMyboard;
+export default CompanyDashBoard;

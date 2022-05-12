@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 import Back from 'assets/images/arrowback.png';
 import Cancel from 'assets/images/cancel-orange.png';
+import SubmitButton from 'components/Button/SubmitButton';
 
 const DashBoardModify = () => {
   return (
@@ -58,10 +59,10 @@ const DashBoardModify = () => {
               <div>
                 <S.SpanTag right="2.4em">사업자등록증</S.SpanTag>
               </div>
-              <S.CancelImg src={Cancel} alt="cancel" />
+              <S.CancelImg src={Cancel} alt="cancel" top="1.8rem" left="13rem" laptopTop="0.8rem" laptopLeft="40rem" />
               <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="32.2rem" placeholder="사업자등록증" />
               <S.BlacSpan>
-                <S.FileInput type="file" width="75px" height="45px" left="15.7rem" top="2.8rem" />
+                <S.FileInput type="file" width="85px" height="35px" left="0" top="0" />
                 파일 등록
               </S.BlacSpan>
             </S.BlockDiv>
@@ -209,6 +210,53 @@ const DashBoardModify = () => {
           <S.BottomInput placeholder="직접 입력" />
         </S.MarginAutoDiv>
       </S.ColorDiv>
+      <S.Title>포트폴리오 및 기타문서</S.Title>
+      <S.ColorDiv>
+        <S.MarginAutoDiv>
+          <S.BlockDiv>
+            <div>
+              <S.SpanTag right="2rem" star="none">
+                경력기술서
+              </S.SpanTag>
+            </div>
+            <S.CancelImg src={Cancel} alt="cancel" top="1.8rem" left="22rem" laptopTop="0.8rem" laptopLeft="31rem" />
+            <S.InputTag size="14.5rem" laptopSize="25rem" placeholder="팀 소개서" />
+            <S.MarginTopDiv>
+              <S.BlacSpan margiRight="0.5rem">
+                <S.FileInput type="file" width="105px" height="45px" left="0.1rem" top="-0.3rem" />
+                양식 다운로드
+              </S.BlacSpan>
+              <S.BlacSpan>
+                <S.FileInput type="file" width="65px" height="35px" left="0.1rem" top="-0.3rem" />
+                업로드
+              </S.BlacSpan>
+            </S.MarginTopDiv>
+          </S.BlockDiv>
+          <S.ErrorMessage>
+            ※ 경력기술서 파일은 다운로드한 양식으로 작성하여 업로드 바랍니다. 첨부파일의 크기는 10MB를 초과하지 않아야
+            합니다.
+          </S.ErrorMessage>
+          <S.BlockDiv top="1rem">
+            <div>
+              <S.SpanTag right="2rem" star="none">
+                포트폴리오
+              </S.SpanTag>
+            </div>
+            <S.CancelImg src={Cancel} alt="cancel" top="1.8rem" left="22rem" laptopTop="0.8rem" laptopLeft="31rem" />
+            <S.InputTag size="14.5rem" laptopSize="25rem" placeholder="팀 포트폴리오" />
+            <S.MarginTopDiv>
+              <S.BlacSpan>
+                <S.FileInput type="file" width="65px" height="35px" left="0.1rem" top="-0.3rem" />
+                업로드
+              </S.BlacSpan>
+            </S.MarginTopDiv>
+          </S.BlockDiv>
+          <S.ErrorMessage>※ 포트폴리오 첨부파일의 크기는 20MB를 초과하지 않아야 합니다</S.ErrorMessage>
+        </S.MarginAutoDiv>
+      </S.ColorDiv>
+      <S.CenterDiv>
+        <SubmitButton text="저장" heights="1rem" sides="3rem" />
+      </S.CenterDiv>
     </S.Container>
   );
 };
