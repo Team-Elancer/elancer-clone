@@ -3,7 +3,7 @@ import * as S from './style';
 
 import OnGoingCard from 'components/Card/OnGoingCard';
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
-import MyBoardProject from 'components/Myboard/CardSpan';
+import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const MyBoardOnGoing = () => {
   return (
@@ -11,7 +11,7 @@ const MyBoardOnGoing = () => {
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
         클론코딩님 이랜서가 응원해요
       </S.H1>
-      <MyBoardProject />
+      <BoardCardSpan />
       <OnGoingCard />
       <S.H1 top="3rem" bottom="1rem" laptoptop="8rem" laptopBottom="2.5rem">
         클론코딩 마이보드
