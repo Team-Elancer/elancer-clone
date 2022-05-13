@@ -1,10 +1,15 @@
 import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
+import useClickOutside from 'hooks/useCloseOutside';
 
 const ContactModal = ({ setModalBool }) => {
+  const domNode = useClickOutside(() => {
+    setModalBool(false);
+  });
+
   return (
-    <S.Container>
+    <S.Container ref={domNode}>
       <S.FlexDiv>
         <S.Img
           src={Cancel}
