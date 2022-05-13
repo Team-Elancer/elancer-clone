@@ -1,10 +1,10 @@
 import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
-import useClickOutside from 'hooks/useCloseOutside';
+import useCloseOutside from 'hooks/useCloseOutside';
 
 const ContactModal = ({ setModalBool }) => {
-  const domNode = useClickOutside(() => {
+  const domNode = useCloseOutside(() => {
     setModalBool(false);
   });
 

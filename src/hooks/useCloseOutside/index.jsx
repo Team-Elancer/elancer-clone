@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const useClickOutside = (handler) => {
+const useCloseOutside = (handler) => {
   const domNode = useRef();
 
   useEffect(() => {
@@ -20,4 +20,4 @@ const useClickOutside = (handler) => {
   return domNode;
 };
 
-export default useClickOutside;
+export default useCloseOutside;
