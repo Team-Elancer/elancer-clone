@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
-import MyBoardProject from 'components/Myboard/CardSpan';
+import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const DashBoardEnterprise = () => {
   return (
@@ -9,7 +9,7 @@ const DashBoardEnterprise = () => {
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
         클론코딩님 이랜서가 응원해요
       </S.H1>
-      <MyBoardProject />
+      <BoardCardSpan />
       <S.H1 top="3rem" bottom="1rem" laptoptop="8rem" laptopBottom="2.5rem">
         클론코딩 마이보드
       </S.H1>

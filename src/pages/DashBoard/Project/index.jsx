@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as S from './style';
 
-import MyBoardProject from 'components/Myboard/CardSpan';
+import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const DashBoardProject = () => {
   return (
@@ -12,7 +12,7 @@ const DashBoardProject = () => {
           <S.LinkP>프로젝트 등록</S.LinkP>
         </Link>
       </S.SpacebetweenDiv>
-      <MyBoardProject />
+      <BoardCardSpan />
       <S.H1 top="4rem" laptoptop="4rem">
         헤드헌팅 리스트 (0)
       </S.H1>
