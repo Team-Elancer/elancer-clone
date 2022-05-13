@@ -1,6 +1,6 @@
 import * as S from './style';
 
-const MyBoardProject = () => {
+const BoardCardSpan = () => {
   return (
     <S.OverFlowDiv>
       <S.FlexDiv width="129%">
@@ -27,4 +27,4 @@ const MyBoardProject = () => {
   );
 };
 
-export default MyBoardProject;
+export default BoardCardSpan;
