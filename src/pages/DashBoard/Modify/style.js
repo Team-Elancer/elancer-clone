@@ -151,13 +151,14 @@ export const ProfileInput = styled.input`
   border: none;
   outline: none;
   background-color: #f2f2f2;
-  width: 100%;
+  width: 95%;
   padding: 0.7rem 0.7rem;
   font-size: 1.1rem;
   font-weight: 800;
   border-radius: 0.5rem;
   color: #707070;
   position: absolute;
+  margin: 1rem 0;
   &::placeholder {
     font-size: 1.1rem;
     font-weight: 600;
@@ -165,6 +166,7 @@ export const ProfileInput = styled.input`
     color: #707070;
   }
   @media ${TABLET} {
+    width: 66%;
   }
   @media ${LAPTOP} {
     padding: 0.9rem 0.9rem;
@@ -172,7 +174,7 @@ export const ProfileInput = styled.input`
     font-weight: 800;
     border-radius: 0.5rem;
     color: #707070;
-    width: 66%;
+    width: 53rem;
     &::placeholder {
       font-size: 0.8rem;
       font-weight: 300;
@@ -185,6 +187,7 @@ export const Title = styled.div`
   font-size: 0.9rem;
   font-weight: 800;
   padding: 2rem 0;
+  margin-top: 4rem;
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
