@@ -14,6 +14,7 @@ import Login from 'pages/Login';
 import Main from 'pages/Main';
 
 import MyBoardFreelancer from 'pages/MyBoardFreelancer';
+import MyBoardContact from 'pages/MyBoardFreelancer/MyBoardContact';
 import MyBoardManageProject from 'pages/MyBoardFreelancer/MyBoardManageProject';
 import MyBoardOnGoing from 'pages/MyBoardFreelancer/MyBoardOnGoing';
 
@@ -63,7 +64,7 @@ const App = () => {
             {/* <Route path="profile" element={<MyBoardOnGoing />} /> */}
             <Route path="project" element={<MyBoardManageProject />} />
             <Route path="career" element={<MyBoardOnGoing />} />
-            <Route path="contact" element={<MyBoardOnGoing />} />
+            <Route path="contact" element={<MyBoardContact />} />
             <Route path="account" element={<MyBoardOnGoing />} />
           </Route>
         </Route>
