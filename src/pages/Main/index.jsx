@@ -35,7 +35,7 @@ const Main = () => {
         <ChoiceProject />
         <ReFreelancer />
       </S.ThirdDiv>
-      <Footer />
+      <Footer toBottom="static" />
       <GridBottom />
     </S.Container>
   );

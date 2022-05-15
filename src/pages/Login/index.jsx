@@ -144,7 +144,7 @@ const Login = () => {
           </S.MarginAuto>
         </S.IdForm>
       </S.SizeDiv>
-      <Footer />
+      <Footer toBottom="static" />
       <GridBottom />
     </S.Container>
   );

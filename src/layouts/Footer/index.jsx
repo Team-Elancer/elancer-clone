@@ -1,7 +1,7 @@
 import * as S from './style';
 import Logo from 'assets/images/footer-logo.png';
 
-const Footer = ({ toBottom }) => {
+const Footer = ({ toBottom = 'absolute' }) => {
   const liItem = [
     { id: 1, name: '(주)이랜서', site: 'https://www.elancer.co.kr/company-main' },
     { id: 2, name: '이용약관', site: 'https://www.elancer.co.kr/terms' },

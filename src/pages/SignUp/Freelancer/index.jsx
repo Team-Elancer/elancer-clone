@@ -27,7 +27,6 @@ const SignUpFreeLancer = () => {
   const [email, setEmail] = useState('');
   const [emailRadio, setEmailRadio] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [job, setJob] = useState('');
   const [jobType, setJobType] = useState('');
   const [jobRadio, setJobRadio] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
@@ -54,27 +53,7 @@ const SignUpFreeLancer = () => {
     setPhoneNumber(e.target.value);
   };
   const jobFuntion = (e) => {
-    setJob(e.target.innerHTML);
-  };
-  const jobChoice = () => {
-    if (job === '개발자') {
-      setJobType('DEVELOPER');
-    }
-    if (job === '퍼블리셔') {
-      setJobType('PUBLISHER');
-    }
-    if (job === '디자이너') {
-      setJobType('DESIGNER');
-    }
-    if (job === '기획자') {
-      setJobType('PLANNER');
-    }
-    if (job === '크라우드워커') {
-      setJobType('CROWD_WORKER');
-    }
-    if (job === '기타') {
-      setJobType('ETC');
-    }
+    setJobType(e.target.value);
   };
   const jobRadioFuntion = (e) => {
     setJobRadio(e.target.value);
@@ -139,8 +118,6 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
-    jobChoice();
-    console.log(selectedDate);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -155,7 +132,7 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, job, jobType, selectedDate]);
+  }, [eyeCheck, eyeCheck2]);
 
   return (
     <form onSubmit={CreateWrite}>
@@ -297,58 +274,104 @@ const SignUpFreeLancer = () => {
             <S.CapsMessage />
           </S.InputDiv>
           <S.InputDiv>
-            <S.JobDiv>
-              <div>
-                <S.SpanTag right="4.5em">직종</S.SpanTag>
-              </div>
-              <S.JobUl>
-                <S.JobLiBorderLeft
-                  bg={job === '개발자' ? '#eb6100' : 'white'}
-                  color={job === '개발자' ? 'white' : 'black'}
+            <div>
+              <S.SpanTag right="4.5em">직종</S.SpanTag>
+            </div>
+            <S.JobUl>
+              <S.JobRadioLi>
+                <S.JobInputLeft
+                  name="job"
+                  id="job1"
+                  type="radio"
+                  value="DEVELOPER"
+                  bgColor={jobType === 'DEVELOPER' ? '#f16300' : '#f2f2f2'}
+                  tabletColor={jobType === 'DEVELOPER' ? '#f16300' : 'white'}
                   onClick={jobFuntion}
-                >
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.JobLabel color={jobType === 'DEVELOPER' ? 'white' : 'black'} htmlFor="job1">
                   개발자
-                </S.JobLiBorderLeft>
-                <S.JobLi
-                  bg={job === '퍼블리셔' ? '#eb6100' : 'white'}
-                  color={job === '퍼블리셔' ? 'white' : 'black'}
+                </S.JobLabel>
+              </S.JobRadioLi>
+              <S.JobRadioLi left="-0.5rem">
+                <S.JobInput
+                  name="job"
+                  id="job2"
+                  type="radio"
+                  value="PUBLISHER"
+                  bgColor={jobType === 'PUBLISHER' ? '#f16300' : '#f2f2f2'}
+                  tabletColor={jobType === 'PUBLISHER' ? '#f16300' : 'white'}
                   onClick={jobFuntion}
-                >
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.JobLabel color={jobType === 'PUBLISHER' ? 'white' : 'black'} htmlFor="job2">
                   퍼블리셔
-                </S.JobLi>
-                <S.JobLi
-                  bg={job === '디자이너' ? '#eb6100' : 'white'}
-                  color={job === '디자이너' ? 'white' : 'black'}
+                </S.JobLabel>
+              </S.JobRadioLi>
+              <S.JobRadioLi left="-0.5rem">
+                <S.JobInput
+                  name="job"
+                  id="job3"
+                  type="radio"
+                  value="DESIGNER"
+                  bgColor={jobType === 'DESIGNER' ? '#f16300' : '#f2f2f2'}
+                  tabletColor={jobType === 'DESIGNER' ? '#f16300' : 'white'}
                   onClick={jobFuntion}
-                >
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.JobLabel color={jobType === 'DESIGNER' ? 'white' : 'black'} htmlFor="job3">
                   디자이너
-                </S.JobLi>
-                <S.JobLi
-                  bg={job === '기획자' ? '#eb6100' : 'white'}
-                  color={job === '기획자' ? 'white' : 'black'}
+                </S.JobLabel>
+              </S.JobRadioLi>
+              <S.JobRadioLi left="-0.5rem">
+                <S.JobInput
+                  name="job"
+                  id="job4"
+                  type="radio"
+                  value="PLANNER"
+                  bgColor={jobType === 'PLANNER' ? '#f16300' : '#f2f2f2'}
+                  tabletColor={jobType === 'PLANNER' ? '#f16300' : 'white'}
                   onClick={jobFuntion}
-                >
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.JobLabel color={jobType === 'PLANNER' ? 'white' : 'black'} htmlFor="job4">
                   기획자
-                </S.JobLi>
-                <S.JobLi
-                  bg={job === '크라우드워커' ? '#eb6100' : 'white'}
-                  color={job === '크라우드워커' ? 'white' : 'black'}
+                </S.JobLabel>
+              </S.JobRadioLi>
+              <S.JobRadioLi left="-0.5rem">
+                <S.JobInput
+                  name="job"
+                  id="job5"
+                  type="radio"
+                  value="CROWD_WORKER"
+                  bgColor={jobType === 'CROWD_WORKER' ? '#f16300' : '#f2f2f2'}
+                  tabletColor={jobType === 'CROWD_WORKER' ? '#f16300' : 'white'}
                   onClick={jobFuntion}
-                >
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.JobLabel color={jobType === 'CROWD_WORKER' ? 'white' : 'black'} htmlFor="job5">
                   크라우드워커
-                </S.JobLi>
-                <S.JobLiBorderRight
-                  bg={job === '기타' ? '#eb6100' : 'white'}
-                  color={job === '기타' ? 'white' : 'black'}
+                </S.JobLabel>
+              </S.JobRadioLi>
+              <S.JobRadioLi left="-0.5rem">
+                <S.JobInputRight
+                  name="job"
+                  id="job6"
+                  type="radio"
+                  value="ETC"
+                  bgColor={jobType === 'ETC' ? '#f16300' : '#f2f2f2'}
+                  tabletColor={jobType === 'ETC' ? '#f16300' : 'white'}
                   onClick={jobFuntion}
-                >
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.JobLabel color={jobType === 'ETC' ? 'white' : 'black'} htmlFor="job6">
                   기타
-                </S.JobLiBorderRight>
-              </S.JobUl>
-            </S.JobDiv>
+                </S.JobLabel>
+              </S.JobRadioLi>
+            </S.JobUl>
           </S.InputDiv>
           <S.EmailFlex>
-            <S.InputDiv>
+            <S.InputDiv top="0">
               <div>
                 <S.SpanTag right="0">업무가능 여부</S.SpanTag>
               </div>
@@ -369,14 +392,16 @@ const SignUpFreeLancer = () => {
               <div>
                 <S.SpanTag right="0">업무가능일</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" type="number" placeholder={selectedDate} />
-              <S.DateDiv>
-                <DatePicker
-                  onChange={(date) => {
-                    dateFunction(date);
-                  }}
-                />
-              </S.DateDiv>
+              <S.MaginDiv>
+                <S.InputTag size="14.5rem" type="number" placeholder={selectedDate} />
+                <S.DateDiv>
+                  <DatePicker
+                    onChange={(date) => {
+                      dateFunction(date);
+                    }}
+                  />
+                </S.DateDiv>
+              </S.MaginDiv>
               <S.ErrorMessage />
               <S.CapsMessage />
             </S.InputDiv>
