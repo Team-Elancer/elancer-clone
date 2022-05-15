@@ -11,7 +11,7 @@ const SignUp = () => {
       <S.SizeDiv>
         <Outlet />
       </S.SizeDiv>
-      <Footer />
+      <Footer toBottom="static" />
       <GridBottom />
     </S.Container>
   );

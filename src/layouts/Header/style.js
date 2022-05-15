@@ -23,7 +23,7 @@ export const HeaderDiv = styled.div`
     width: 730px;
   }
   @media ${LAPTOP} {
-    width: 1240px;
+    width: 840px;
   }
 `;
 export const Img = styled.img`

@@ -142,6 +142,7 @@ export const InputDiv = styled.div`
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
+    padding-top: ${(props) => props.top};
   }
 `;
 export const BlockDiv = styled.div`
@@ -152,6 +153,11 @@ export const BlockDiv = styled.div`
     justify-content: start;
   }
   @media ${LAPTOP} {
+  }
+`;
+export const MaginDiv = styled.div`
+  @media ${LAPTOP} {
+    margin-top: 1rem;
   }
 `;
 export const SpanTag = styled.span`
@@ -397,9 +403,7 @@ export const JobUl = styled.ul`
 export const JobLi = styled.li`
   margin-top: 0.2rem;
   padding: 0.5rem 0.7rem;
-  font-weight: 800;
   border: 1px solid #e1e1e1;
-  z-index: 2;
   cursor: pointer;
   &:hover {
     background-color: #eb6100;
@@ -407,7 +411,6 @@ export const JobLi = styled.li`
   }
   @media ${TABLET} {
     background-color: white;
-    font-size: 0.9rem;
     padding: 0.9rem 1.7rem;
   }
   @media ${LAPTOP} {
@@ -416,63 +419,77 @@ export const JobLi = styled.li`
     color: ${(props) => props.color};
   }
 `;
-export const JobInput = styled.input`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: none;
-`;
-export const JobLiBorderLeft = styled.li`
-  margin-top: 0.2rem;
-  background-color: #f2f2f2;
-  padding: 0.5rem 0.7rem;
-  font-weight: 800;
-  border: 1px solid #e1e1e1;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-color: ${(props) => props.bg};
-  cursor: pointer;
-  z-index: 2;
+export const JobRadioLi = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  &:hover {
-    background-color: #eb6100;
-    color: white;
-  }
+  margin-left: ${(props) => props.left};
   @media ${TABLET} {
-    background-color: white;
-    font-size: 0.9rem;
-    padding: 0.9rem 1.7rem;
   }
   @media ${LAPTOP} {
-    padding: 0.9rem 2.4rem;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: ${(props) => props.bg};
-    color: ${(props) => props.color};
   }
 `;
-export const JobLiBorderRight = styled.li`
-  margin-top: 0.2rem;
-  padding: 0.5rem 0.7rem;
-  font-weight: 800;
-  border: 1px solid #e1e1e1;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: #eb6100;
-    color: white;
-  }
+export const JobInputLeft = styled.input`
+  width: 61px;
+  height: 29px;
+  border: 1px solid #e6e6e6;
+  outline: none;
+  appearance: none;
+  background-color: ${(props) => props.bgColor};
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
   @media ${TABLET} {
-    font-size: 0.9rem;
-    padding: 0.9rem 1.7rem;
-    background-color: ${(props) => props.bg};
-    color: ${(props) => props.color};
+    background-color: ${(props) => props.tabletColor};
   }
   @media ${LAPTOP} {
-    padding: 0.9rem 2.4rem;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    width: 126px;
+    height: 44px;
+  }
+`;
+export const JobLabel = styled.label`
+  position: absolute;
+  font-weight: 600;
+  color: ${(props) => props.color};
+  font-size: 0.625rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    font-size: 0.9rem;
+  }
+`;
+export const JobInput = styled.input`
+  width: 61px;
+  height: 29px;
+  background-color: ${(props) => props.bgColor};
+  border: 1px solid #e6e6e6;
+  outline: none;
+  appearance: none;
+  @media ${TABLET} {
+    background-color: ${(props) => props.tabletColor};
+  }
+  @media ${LAPTOP} {
+    width: 126px;
+    height: 44px;
+  }
+`;
+
+export const JobInputRight = styled.input`
+  width: 61px;
+  height: 29px;
+  background-color: ${(props) => props.bgColor};
+  border: 1px solid #e6e6e6;
+  outline: none;
+  appearance: none;
+  z-index: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  @media ${TABLET} {
+    background-color: ${(props) => props.tabletColor};
+  }
+  @media ${LAPTOP} {
+    width: 126px;
+    height: 44px;
   }
 `;
 export const ATag = styled.a`

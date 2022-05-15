@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import redStar from 'assets/images/redstar.png';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
@@ -30,12 +31,12 @@ export const Img = styled.img`
 export const H1 = styled.h1`
   font-size: 0.8rem;
   font-weight: 800;
-  padding: 1rem 0;
+  padding: 2rem 0;
   @media ${TABLET} {
     font-size: 2.2rem;
   }
   @media ${LAPTOP} {
-    font-size: 1.2rem;
+    font-size: ${(props) => props.ftszie};
   }
 `;
 export const Save = styled.div`
@@ -51,90 +52,13 @@ export const JobUl = styled.ul`
   display: flex;
   align-items: center;
   justify-content: start;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
   }
 `;
-export const JobLi = styled.li`
-  width: 35%;
-  text-align: center;
-  margin-top: 0.2rem;
-  padding: 0.5rem 0.7rem;
-  font-weight: 800;
-  border: 1px solid #e1e1e1;
-  z-index: 2;
-  cursor: pointer;
-  color: ${(props) => props.color};
-  background-color: ${(props) => props.bgColor};
-  &:hover {
-    background-color: #eb6100;
-    color: white;
-  }
-  @media ${TABLET} {
-    font-size: 0.9rem;
-    padding: 0.9rem 1.7rem;
-  }
-  @media ${LAPTOP} {
-    padding: 0.9rem 2rem;
-  }
-`;
-export const JobLiBorderLeft = styled.li`
-  width: 35%;
-  text-align: center;
-  background-color: ${(props) => props.bgColor};
-  color: ${(props) => props.color};
-  margin-top: 0.2rem;
-  padding: 0.5rem 0.7rem;
-  font-weight: 800;
-  border: 1px solid #e1e1e1;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-color: ${(props) => props.bg};
-  cursor: pointer;
-  z-index: 2;
-  position: relative;
-  &:hover {
-    background-color: #eb6100;
-    color: white;
-  }
-  @media ${TABLET} {
-    font-size: 0.9rem;
-    padding: 0.9rem 1.7rem;
-  }
-  @media ${LAPTOP} {
-    padding: 0.9rem 2.4rem;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-`;
-export const JobLiBorderRight = styled.li`
-  width: 35%;
-  text-align: center;
-  background-color: ${(props) => props.bgColor};
-  color: ${(props) => props.color};
-  margin-top: 0.2rem;
-  padding: 0.5rem 0.7rem;
-  font-weight: 800;
-  border: 1px solid #e1e1e1;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: #eb6100;
-    color: white;
-  }
-  @media ${TABLET} {
-    font-size: 0.9rem;
-    padding: 0.9rem 1.7rem;
-  }
-  @media ${LAPTOP} {
-    padding: 0.9rem 2.4rem;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-`;
+
 export const Title = styled.div`
   font-size: 0.9rem;
   font-weight: 800;
@@ -241,5 +165,248 @@ export const FileInput = styled.input`
   }
   @media ${LAPTOP} {
     left: ${(props) => props.laptopLeft};
+    top: ${(props) => props.laptopTop};
+  }
+`;
+export const ColorDiv = styled.div`
+  @media ${TABLET} {
+    display: block;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    height: 63rem;
+    position: relative;
+  }
+  @media ${LAPTOP} {
+    height: 100%;
+  }
+`;
+export const MarginAutoDiv = styled.div`
+  @media ${TABLET} {
+    padding: 3rem 0;
+    width: 90%;
+    margin: 0 auto;
+  }
+`;
+
+export const InputDiv = styled.div`
+  padding-top: 1rem;
+  position: relative;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    margin-left: ${(props) => props.left};
+  }
+`;
+export const BlockDiv = styled.div`
+  display: block;
+  position: relative;
+  margin-top: ${(props) => props.top};
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const SpanTag = styled.span`
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: url(${redStar}) left top no-repeat ${(props) => props.star};
+  background-size: 5px 5px;
+  padding-left: 0.3rem;
+  @media ${TABLET} {
+    width: 100%;
+    font-size: 0.98rem;
+    background-size: 10px 10px;
+    padding: 0 ${(props) => props.right} 0 0.7rem;
+  }
+  @media ${LAPTOP} {
+    display: ${(props) => props.display};
+  }
+`;
+export const InputTag = styled.input`
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0.8rem 0 0.6rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #707070;
+  width: ${(props) => props.Mobilesize};
+  margin-top: 0.5rem;
+  border-bottom: 1px solid #c4c4c4;
+  &::placeholder {
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-bottom: none;
+  }
+  @media ${TABLET} {
+    width: ${(props) => props.size};
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0 0.6rem 0;
+    border-bottom: none;
+    &::placeholder {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+  @media ${LAPTOP} {
+    padding-left: 1rem;
+    width: ${(props) => props.laptopSize};
+  }
+`;
+export const JobRadioLi = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: ${(props) => props.left};
+  width: 100%;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const JobInputLeft = styled.input`
+  width: 100%;
+  height: 29px;
+  border: 1px solid #e6e6e6;
+  outline: none;
+  appearance: none;
+  background-color: ${(props) => props.bgColor};
+  z-index: 0;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  cursor: pointer;
+  @media ${TABLET} {
+    background-color: ${(props) => props.tabletColor};
+  }
+  @media ${LAPTOP} {
+    width: 100%;
+    height: 44px;
+  }
+`;
+export const JobLabel = styled.label`
+  position: absolute;
+  z-index: 1;
+  font-weight: 600;
+  color: ${(props) => props.color};
+  font-size: ${(props) => props.size};
+  cursor: pointer;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    font-size: 0.9rem;
+  }
+`;
+export const JobInput = styled.input`
+  width: 100%;
+  height: 29px;
+  background-color: ${(props) => props.bgColor};
+  border: 1px solid #e6e6e6;
+  outline: none;
+  appearance: none;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+  @media ${TABLET} {
+    background-color: ${(props) => props.tabletColor};
+  }
+  @media ${LAPTOP} {
+    width: 100%;
+    height: 44px;
+  }
+`;
+
+export const JobInputRight = styled.input`
+  width: 100%;
+  height: 29px;
+  background-color: ${(props) => props.bgColor};
+  border: 1px solid #e6e6e6;
+  outline: none;
+  appearance: none;
+  z-index: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  cursor: pointer;
+  @media ${TABLET} {
+    background-color: ${(props) => props.tabletColor};
+  }
+  @media ${LAPTOP} {
+    width: 100%;
+    height: 44px;
+  }
+`;
+export const Select = styled.select`
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  font-size: 1.125rem;
+  color: #707070;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  @media ${TABLET} {
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border-bottom: none;
+    padding: 0.5rem 1rem;
+    width: 40rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    border-bottom: none;
+    padding: 0.5rem 1rem;
+    width: 40rem;
+  }
+`;
+export const ErrorMessage = styled.p`
+  color: #ff6b6b;
+  padding: 1rem 0 1rem 0;
+  font-size: 0.4rem;
+  font-weight: 800;
+  @media ${TABLET} {
+    padding-left: 9rem;
+    word-spacing: -0.2rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const CapsMessage = styled.p`
+  color: #ff6b6b;
+  padding: 0 0 1rem 0;
+  font-size: 0.4rem;
+  font-weight: 800;
+  display: ${(props) => props.Mobiledisplay};
+  @media ${TABLET} {
+    padding-left: 9rem;
+    display: ${(props) => props.display};
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const FlexDiv = styled.div`
+  display: ${(props) => props.flex};
+  align-items: center;
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-top: ${(props) => props.top};
+  }
+`;
+export const SapnTag = styled.span`
+  font-size: 1rem;
+  color: #cc3838;
+  font-weight: 600;
+  word-spacing: 0.11rem;
+  letter-spacing: -0.1rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    margin: 1rem 0 0 1rem;
   }
 `;
