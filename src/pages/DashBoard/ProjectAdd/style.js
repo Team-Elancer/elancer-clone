@@ -236,6 +236,16 @@ export const InputTag = styled.input`
   width: ${(props) => props.Mobilesize};
   margin-top: 0.5rem;
   border-bottom: 1px solid #c4c4c4;
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+  }
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+  }
   &::placeholder {
     font-size: 1.125rem;
     font-weight: 600;
@@ -408,5 +418,49 @@ export const SapnTag = styled.span`
   }
   @media ${LAPTOP} {
     margin: 1rem 0 0 1rem;
+  }
+`;
+export const BorderDiv = styled.div`
+  @media ${TABLET} {
+    padding-top: 2rem;
+    border-bottom: 1px solid #969696;
+  }
+`;
+export const PTag = styled.p`
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.6rem 0.5rem 0 1rem;
+  font-weight: 600;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const SelectTag = styled.select`
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0.8rem 0 0.6rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: black;
+  width: 7rem;
+  border-bottom: 1px solid #c4c4c4;
+  &::placeholder {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  @media ${TABLET} {
+    width: ${(props) => props.size};
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0 0.6rem 0;
+    &::placeholder {
+      padding-left: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+  @media ${LAPTOP} {
   }
 `;

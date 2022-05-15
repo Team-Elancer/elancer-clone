@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ImBubble } from 'react-icons/im';
 import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
@@ -13,6 +13,17 @@ import Header from 'layouts/Header';
 const Login = () => {
   const [checkBool, setCeckBool] = useState(true);
   const navi = useNavigate();
+
+  const [newDatas, setNewDatas] = useState([]);
+  const fetchData = async () => {
+    try {
+      const res = await axios('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
+      const Data = await res.data;
+      setNewDatas(Data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const CreateWrite = (event) => {
     event.preventDefault();
@@ -33,6 +44,10 @@ const Login = () => {
         return alert(err.message);
       });
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <S.Container>

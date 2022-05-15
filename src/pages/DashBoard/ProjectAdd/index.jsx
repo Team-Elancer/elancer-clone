@@ -1,14 +1,23 @@
 import { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Back from 'assets/images/arrowback.png';
 import Logo from 'assets/images/logo-none.png';
+import 'react-datepicker/dist/react-datepicker.css';
+import PostCode from 'components/DashBoard/PostCode';
 
 const DashboardProjectAdd = () => {
   const [titleName, setTitleName] = useState('');
   const [bgColor, setBgColor] = useState('');
   const [projectColor, setProjectColor] = useState('');
   const [jobChoice, setJobChoice] = useState(null);
+
+  const [placePostcode, setPlacePostcode] = useState('우편번호');
+  const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
+  const [userCountry, setUserCountry] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [changeBool, setChangeBool] = useState(false);
 
   const changeTitleColor = (e) => {
     setTitleName(e.target.value);
@@ -312,6 +321,110 @@ const DashboardProjectAdd = () => {
             <S.CapsMessage />
           </S.MarginAutoDiv>
         </S.ColorDiv>
+        <S.H1>프로젝트 정보 *</S.H1>
+        <S.ColorDiv>
+          <S.MarginAutoDiv>
+            <S.InputDiv>
+              <S.BlockDiv>
+                <div>
+                  <S.SpanTag right="2rem">프로젝트 명</S.SpanTag>
+                </div>
+                <S.InputTag size="14.5rem" laptopSize="15rem" placeholder="프로젝트 제목을 입력해주세요.  " />
+              </S.BlockDiv>
+            </S.InputDiv>
+            <S.ErrorMessage />
+            <S.CapsMessage />
+            <S.FlexDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="3rem">모집 입원</S.SpanTag>
+                  </div>
+                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
+                </S.BlockDiv>
+                <S.ErrorMessage />
+                <S.CapsMessage />
+              </S.InputDiv>
+              <S.InputDiv left="1rem">
+                <S.BlockDiv>
+                  <div>
+                    <S.SpanTag right="0.9rem">총 투입인력</S.SpanTag>
+                  </div>
+                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="총 투입인력" />
+                </S.BlockDiv>
+                <S.ErrorMessage />
+                <S.CapsMessage />
+              </S.InputDiv>
+            </S.FlexDiv>
+            <S.BorderDiv />
+            <PostCode
+              setUserCountry={setUserCountry}
+              placePostcode={placePostcode}
+              setPlacePostcode={setPlacePostcode}
+              setChangeBool={setChangeBool}
+              changeBool={changeBool}
+              placeAddress={placeAddress}
+              setPlaceAddress={setPlaceAddress}
+              userAddress={userAddress}
+              setUserAddress={setUserAddress}
+            />
+            <S.BorderDiv />
+            <S.FlexDiv flex="flex">
+              <S.InputDiv>
+                <S.BlockDiv display="flex">
+                  <div>
+                    <S.SpanTag right="2.5rem">예상월단가</S.SpanTag>
+                  </div>
+                  <S.FlexDiv flex="flex">
+                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="6,000,000" />
+                    <div>
+                      <S.PTag>원~</S.PTag>
+                    </div>
+                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="6,500,000" />
+                    <S.PTag>원</S.PTag>
+                  </S.FlexDiv>
+                </S.BlockDiv>
+              </S.InputDiv>
+            </S.FlexDiv>
+            <S.ErrorMessage />
+            <S.CapsMessage />
+            <S.FlexDiv flex="flex">
+              <S.InputDiv>
+                <S.BlockDiv display="flex">
+                  <div>
+                    <S.SpanTag right="3rem">희망 경력</S.SpanTag>
+                  </div>
+                  <S.FlexDiv flex="flex">
+                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <div>
+                      <S.PTag>년</S.PTag>
+                    </div>
+                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <S.PTag>개월</S.PTag>
+                  </S.FlexDiv>
+                </S.BlockDiv>
+              </S.InputDiv>
+            </S.FlexDiv>
+            <S.ErrorMessage />
+            <S.CapsMessage />
+            <S.FlexDiv flex="flex">
+              <S.InputDiv>
+                <S.BlockDiv display="flex">
+                  <div>
+                    <S.SpanTag right="3rem">희망 연령</S.SpanTag>
+                  </div>
+                  <S.FlexDiv flex="flex">
+                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <div>
+                      <S.PTag>~</S.PTag>
+                    </div>
+                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                  </S.FlexDiv>
+                </S.BlockDiv>
+              </S.InputDiv>
+            </S.FlexDiv>
+          </S.MarginAutoDiv>
+        </S.ColorDiv>
         <S.FlexDiv flex="flex">
           <S.H1>기업정보 *</S.H1>
           <S.SapnTag>회원님의 정보를 최신으로 업데이트 해주세요!</S.SapnTag>
@@ -334,7 +447,7 @@ const DashboardProjectAdd = () => {
                   <div>
                     <S.SpanTag right="3.5rem">담당자명</S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="담당자명" />
+                  <S.InputTag size="12rem" laptopSize="14rem" type="text" placeholder="담당자명" />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -346,7 +459,7 @@ const DashboardProjectAdd = () => {
                       직책
                     </S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="예) 차장, 과장 , 팀장" />
+                  <S.InputTag size="12rem" laptopSize="14rem" type="text" placeholder="예) 차장, 과장 , 팀장" />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
