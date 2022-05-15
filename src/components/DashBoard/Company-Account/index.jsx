@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PostCode from '../PostCode';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 import Camera from 'assets/images/camera.png';
@@ -6,7 +7,6 @@ import Cancel from 'assets/images/cancel-orange.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import SubmitButton from 'components/Button/SubmitButton';
-import Postcode from 'components/DaumPostCode';
 
 const CompanyAccount = ({ display = 'none', hello, setHello }) => {
   const [placePostcode, setPlacePostcode] = useState('우편번호');
@@ -69,12 +69,6 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
   };
   const companyWebsiteFuntion = (e) => {
     setCompanyWebsite(e.target.value);
-  };
-  const userCountryFuntion = (e) => {
-    setUserCountry(e.target.value);
-  };
-  const userAddressFuntion = (e) => {
-    setUserAddress(e.target.value);
   };
   const businessFuntion = (e) => {
     setBusiness(e.target.value);
@@ -321,78 +315,17 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
           <S.CapsMessage />
         </S.InputDiv>
-        <S.InputDiv>
-          <S.BlockDiv display="flex">
-            <div>
-              <S.SpanTag right="6rem">주소</S.SpanTag>
-            </div>
-            <S.SelectTag type="checkbox" Mobilesize="7rem" size="6rem" onChange={userCountryFuntion}>
-              <option value="kr">대한민국</option>
-              <option value="uk">영국</option>
-              <option value="us">미국</option>
-              <option value="jp">일본</option>
-              <option value="cn">중국</option>
-            </S.SelectTag>
-            <S.InputTag
-              Mobilesize="7em"
-              MobileMargin="1rem"
-              size="6rem"
-              pointer="none"
-              readOnly
-              placeholder={placePostcode}
-              onChange={(e) => {
-                if (placePostcode === '') {
-                  setPlacePostcode(e.target.value);
-                } else {
-                  setPlacePostcode(placePostcode);
-                }
-              }}
-            />
-            <S.BlacSpan
-              onClick={() => {
-                setChangeBool(!changeBool);
-              }}
-            >
-              우편번호 찾기
-            </S.BlacSpan>
-            {changeBool === true && (
-              <Postcode
-                setPlacePostcode={setPlacePostcode}
-                setPlaceAddress={setPlaceAddress}
-                setChangeBool={setChangeBool}
-                changeBool={changeBool}
-              />
-            )}
-          </S.BlockDiv>
-          <S.CapsMessage />
-          <S.CapsMessage />
-          <S.PostCodeDiv>
-            <S.InputTag
-              type="text"
-              right="1rem"
-              size="17rem"
-              pointer="none"
-              readOnly
-              placeholder={placeAddress}
-              onChange={(e) => {
-                console.log(placeAddress);
-                if (placeAddress === e.target.value) {
-                  setPlaceAddress(e.target.value);
-                } else {
-                  setPlaceAddress(placeAddress);
-                }
-              }}
-            />
-            <S.InputTag
-              Mobilesize="15rem"
-              size="13rem"
-              placeholder="상세 주소를 입력하세요."
-              value={userAddress}
-              onChange={userAddressFuntion}
-            />
-          </S.PostCodeDiv>
-          <S.CapsMessage />
-        </S.InputDiv>
+        <PostCode
+          setUserCountry={setUserCountry}
+          placePostcode={placePostcode}
+          setPlacePostcode={setPlacePostcode}
+          setChangeBool={setChangeBool}
+          changeBool={changeBool}
+          placeAddress={placeAddress}
+          setPlaceAddress={setPlaceAddress}
+          userAddress={userAddress}
+          setUserAddress={setUserAddress}
+        />
         <S.BorderDiv />
         <S.FlexDiv top="2rem">
           <S.InputDiv>
