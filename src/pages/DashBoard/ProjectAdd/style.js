@@ -464,3 +464,88 @@ export const SelectTag = styled.select`
   @media ${LAPTOP} {
   }
 `;
+export const MarginTop = styled.div`
+  margin-top: 1rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+
+export const DateDiv = styled.div`
+  width: 2rem;
+  .react-datepicker {
+    box-shadow: 3px 2px 11px rgb(0 0 0 / 30%);
+  }
+  .react-datepicker__input-container input {
+    margin: ${(props) => props.top} 0 0 ${(props) => props.left};
+    width: ${(props) => props.width};
+    position: absolute;
+    opacity: 0;
+    height: 2rem;
+    cursor: pointer;
+  }
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    margin-left: -2rem;
+    z-index: 99;
+    .react-datepicker {
+      box-shadow: 3px 2px 11px rgb(0 0 0 / 30%);
+      margin: 2rem 0 0 -15rem;
+    }
+    .react-datepicker__input-container input {
+      margin: -1rem 0 0 -16rem;
+      width: 15rem;
+      position: absolute;
+      opacity: 0;
+      height: 2rem;
+      cursor: pointer;
+    }
+  }
+`;
+export const TextArea = styled.textarea`
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #707070;
+  &::placeholder {
+    color: #707070;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-bottom: none;
+  }
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    width: 33rem;
+  }
+`;
+export const RedText = styled.p`
+  padding: 1rem 0;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.5rem;
+  color: #cc3838;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    padding-left: 11rem;
+  }
+`;
+export const CancelImg = styled.img`
+  position: absolute;
+  top: 2.5rem;
+  left: 14rem;
+  @media ${TABLET} {
+    top: 3.8rem;
+    left: 7rem;
+  }
+  @media ${LAPTOP} {
+    top: 1.3rem;
+    left: 22rem;
+  }
+`;
