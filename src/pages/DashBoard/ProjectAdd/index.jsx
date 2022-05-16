@@ -3,12 +3,16 @@ import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Back from 'assets/images/arrowback.png';
+import Cancel from 'assets/images/cancel-orange.png';
 import Logo from 'assets/images/logo-none.png';
 import 'react-datepicker/dist/react-datepicker.css';
 import PostCode from 'components/DashBoard/PostCode';
 
 const DashboardProjectAdd = () => {
   const [titleName, setTitleName] = useState('');
+  const [textArea, setTextArea] = useState(
+    '1.프로젝트명: 2.현재개발진행사항 1총투입인력: 2현재설계개발상태: 3.담당업무 1 4.업무범위:5.전달사항또는(개발)우대사항: 1 6.필요인력: 명 7.개발자필요Spec 1 2 8.근무지: 9.개발기간: 10.월단가:제시바람 11.장비지참여부:',
+  );
   const [bgColor, setBgColor] = useState('');
   const [projectColor, setProjectColor] = useState('');
   const [jobChoice, setJobChoice] = useState(null);
@@ -19,8 +23,16 @@ const DashboardProjectAdd = () => {
   const [userAddress, setUserAddress] = useState('');
   const [changeBool, setChangeBool] = useState(false);
 
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   const changeTitleColor = (e) => {
     setTitleName(e.target.value);
+  };
+
+  const changeTextArea = (e) => {
+    setTextArea(e.target.value);
   };
 
   const changeBgColor = (e) => {
@@ -33,6 +45,49 @@ const DashboardProjectAdd = () => {
 
   const changeJobChoice = (e) => {
     setJobChoice(e.target.value);
+  };
+
+  const dateFunction = (date) => {
+    setSelectedDate(
+      date
+        .toLocaleDateString()
+        .split(' ')
+        .join('')
+        .split('.')
+        .filter((data) => data !== '')
+        .map((a) => {
+          return a < 10 ? a.padStart(2, '0') : a;
+        })
+        .join('-'),
+    );
+  };
+  const startDateFunction = (date) => {
+    setStartDate(
+      date
+        .toLocaleDateString()
+        .split(' ')
+        .join('')
+        .split('.')
+        .filter((data) => data !== '')
+        .map((a) => {
+          return a < 10 ? a.padStart(2, '0') : a;
+        })
+        .join('-'),
+    );
+  };
+  const endDateFunction = (date) => {
+    setEndDate(
+      date
+        .toLocaleDateString()
+        .split(' ')
+        .join('')
+        .split('.')
+        .filter((data) => data !== '')
+        .map((a) => {
+          return a < 10 ? a.padStart(2, '0') : a;
+        })
+        .join('-'),
+    );
   };
 
   useEffect(() => {
@@ -356,19 +411,89 @@ const DashboardProjectAdd = () => {
                 <S.CapsMessage />
               </S.InputDiv>
             </S.FlexDiv>
+            <S.InputDiv>
+              <S.BlockDiv>
+                <div>
+                  <S.SpanTag right="2rem">프로젝트 상세내용</S.SpanTag>
+                </div>
+                <S.TextArea
+                  rows="5"
+                  placeholder="프로젝트 제목을 입력해주세요."
+                  value={textArea}
+                  onChange={changeTextArea}
+                >
+                  {textArea}
+                </S.TextArea>
+              </S.BlockDiv>
+              <S.RedText>(최적의 프리랜서님들이 지원하실 수 있도록 상세하게 작성해 주세요.)</S.RedText>
+            </S.InputDiv>
+            <S.ErrorMessage />
+            <S.CapsMessage />
             <S.BorderDiv />
-            <PostCode
-              setUserCountry={setUserCountry}
-              placePostcode={placePostcode}
-              setPlacePostcode={setPlacePostcode}
-              setChangeBool={setChangeBool}
-              changeBool={changeBool}
-              placeAddress={placeAddress}
-              setPlaceAddress={setPlaceAddress}
-              userAddress={userAddress}
-              setUserAddress={setUserAddress}
-            />
+            <S.FlexDiv flex="flex">
+              <S.InputDiv>
+                <S.BlockDiv display="flex">
+                  <div>
+                    <S.SpanTag right="3rem">프로젝트 기간</S.SpanTag>
+                  </div>
+                  <S.FlexDiv flex="flex">
+                    <S.InputTag Mobilesize="8rem" laptopSize="15rem" type="number" placeholder={startDate} />
+                    <S.DateDiv top="-0.9rem" left="-8rem" width="8rem">
+                      <DatePicker
+                        onChange={(date) => {
+                          startDateFunction(date);
+                        }}
+                      />
+                    </S.DateDiv>
+                    <div>
+                      <S.PTag>~</S.PTag>
+                    </div>
+                    <S.InputTag Mobilesize="8rem" laptopSize="15rem" type="number" placeholder={endDate} />
+                    <S.DateDiv top="-0.9rem" left="-8rem" width="8rem">
+                      <DatePicker
+                        onChange={(date) => {
+                          endDateFunction(date);
+                        }}
+                      />
+                    </S.DateDiv>
+                  </S.FlexDiv>
+                </S.BlockDiv>
+              </S.InputDiv>
+            </S.FlexDiv>
+            <S.InputDiv>
+              <S.BlockDiv>
+                <div>
+                  <S.SpanTag right="4rem">모집 마감일</S.SpanTag>
+                </div>
+                <S.InputTag size="14.5rem" laptopSize="18rem" type="number" placeholder={selectedDate} />
+                <S.DateDiv top="-2.5rem" left="0">
+                  <DatePicker
+                    onChange={(date) => {
+                      dateFunction(date);
+                    }}
+                  />
+                </S.DateDiv>
+              </S.BlockDiv>
+            </S.InputDiv>
             <S.BorderDiv />
+            {titleName === '상주 프로젝트' && (
+              <>
+                <S.MarginTop>
+                  <PostCode
+                    setUserCountry={setUserCountry}
+                    placePostcode={placePostcode}
+                    setPlacePostcode={setPlacePostcode}
+                    setChangeBool={setChangeBool}
+                    changeBool={changeBool}
+                    placeAddress={placeAddress}
+                    setPlaceAddress={setPlaceAddress}
+                    userAddress={userAddress}
+                    setUserAddress={setUserAddress}
+                  />
+                </S.MarginTop>
+                <S.BorderDiv />
+              </>
+            )}
             <S.FlexDiv flex="flex">
               <S.InputDiv>
                 <S.BlockDiv display="flex">
@@ -423,6 +548,20 @@ const DashboardProjectAdd = () => {
                 </S.BlockDiv>
               </S.InputDiv>
             </S.FlexDiv>
+            <S.BorderDiv />
+            <S.InputDiv>
+              <S.BlockDiv>
+                <div>
+                  <S.SpanTag right="2rem">요구사항 정의서</S.SpanTag>
+                </div>
+                <S.CancelImg src={Cancel} alt="cancel" />
+                <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="13.2rem" placeholder="사업자등록증" />
+                <S.BlacSpan>
+                  <S.FileInput type="file" width="110px" height="35px" laptopTop="0" left="0.1rem" top="0" />
+                  파일 등록
+                </S.BlacSpan>
+              </S.BlockDiv>
+            </S.InputDiv>
           </S.MarginAutoDiv>
         </S.ColorDiv>
         <S.FlexDiv flex="flex">
