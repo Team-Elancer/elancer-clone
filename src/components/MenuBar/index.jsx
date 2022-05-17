@@ -23,47 +23,114 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
     setCeckBool(true);
   }
 
+  const checkEffect = () => {
+    setCeckBool(true);
+  };
+
   useEffect(() => {
     setTimeOut(timeSet, 2000);
   }, []);
 
   return (
-    <S.Container slide={timeOut}>
+    <S.Container
+      height={window.localStorage.accessToken === undefined ? '254px' : '304px'}
+      slide={timeOut}
+      onClick={checkEffect}
+    >
       <S.Ultag>
-        <S.ImgLi onClick={changeBool}>
-          <S.ButtonImg src={BackButton} alt="button" />
-        </S.ImgLi>
-        <S.UpLiTag>
-          <Link to="/login">
-            <span>로그인</span>
-          </Link>
-          <S.ButtonImg src={RightButton} alt="button" />
-        </S.UpLiTag>
-        <S.UpLiTag>
-          <Link to="/signup/main">
-            <span>회원가입</span>
-          </Link>
-          <S.ButtonImg src={RightButton} alt="button" />
-        </S.UpLiTag>
-        <S.LineTag />
-        <S.DownLiTag>
-          <a href="/#">커뮤니티</a>
-          <S.ButtonImg src={RightButton} alt="button" />
-        </S.DownLiTag>
-        <S.DownLiTag>
-          <a href="/#">이용안내</a>
-          <S.ButtonImg src={RightButton} alt="button" />
-        </S.DownLiTag>
-        <S.DownLiTag>
-          <a href="/#">코워킹 스페이스</a>
-          <S.ButtonImg src={RightButton} alt="button" />
-        </S.DownLiTag>
-        <S.DownLiTag>
-          <a href="/#">굿즈</a>
-          <S.ButtonImg src={RightButton} alt="button" />
-        </S.DownLiTag>
+        {window.localStorage.accessToken === undefined && (
+          <>
+            <S.ImgLi onClick={changeBool}>
+              <S.ButtonImg src={BackButton} alt="button" />
+            </S.ImgLi>
+            <S.UpLiTag>
+              <Link to="/login">
+                <span>로그인</span>
+              </Link>
+              <S.ButtonImg src={RightButton} alt="button" />
+            </S.UpLiTag>
+            <S.UpLiTag>
+              <Link to="/signup/main">
+                <span>회원가입</span>
+              </Link>
+              <S.ButtonImg src={RightButton} alt="button" />
+            </S.UpLiTag>
+            <S.LineTag />
+            <S.DownLiTag>
+              <a href="/#">커뮤니티</a>
+              <S.ButtonImg src={RightButton} alt="button" />
+            </S.DownLiTag>
+            <S.DownLiTag>
+              <a href="/#">이용안내</a>
+              <S.ButtonImg src={RightButton} alt="button" />
+            </S.DownLiTag>
+            <S.DownLiTag>
+              <a href="/#">코워킹 스페이스</a>
+              <S.ButtonImg src={RightButton} alt="button" />
+            </S.DownLiTag>
+            <S.DownLiTag>
+              <a href="/#">굿즈</a>
+              <S.ButtonImg src={RightButton} alt="button" />
+            </S.DownLiTag>
+          </>
+        )}
+        {window.localStorage.accessToken !== undefined && (
+          <EnterpriseMenuBar changeBool={changeBool} setCeckBool={setCeckBool} />
+        )}
       </S.Ultag>
     </S.Container>
+  );
+};
+
+const EnterpriseMenuBar = ({ changeBool, setCeckBool }) => {
+  const removeLocal = () => {
+    window.localStorage.clear();
+    setCeckBool(true);
+  };
+
+  return (
+    <>
+      <S.ImgLi onClick={changeBool}>
+        <S.ButtonImg src={BackButton} alt="button" />
+      </S.ImgLi>
+      <S.UpLiTag onClick={removeLocal}>
+        <span>LogOut</span>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.UpLiTag>
+      <S.UpLiTag>
+        <Link to="/dashboard/projectadd">
+          <span>프로젝트 등록하기</span>
+        </Link>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.UpLiTag>
+      <S.UpLiTag>
+        <Link to="/dashboard">
+          <span>대시보드</span>
+        </Link>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.UpLiTag>
+      <S.LineTag />
+      <S.DownLiTag>
+        <a href="/#">커뮤니티</a>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.DownLiTag>
+      <S.DownLiTag>
+        <a href="/#">ERG 이알지</a>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.DownLiTag>
+      <S.DownLiTag>
+        <a href="/#">이용안내</a>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.DownLiTag>
+      <S.DownLiTag>
+        <a href="/#">코워킹 스페이스</a>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.DownLiTag>
+      <S.DownLiTag>
+        <a href="/#">굿즈</a>
+        <S.ButtonImg src={RightButton} alt="button" />
+      </S.DownLiTag>
+    </>
   );
 };
 

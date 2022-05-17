@@ -36,7 +36,9 @@ const Login = () => {
       },
     })
       .then((res) => {
-        console.log(res);
+        window.localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
+        window.localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
+        window.localStorage.setItem('userName', JSON.stringify(res.data.username));
         alert('생성이 완료되었습니다.');
         navi(`/`);
       })
