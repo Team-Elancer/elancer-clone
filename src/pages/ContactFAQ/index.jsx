@@ -1,13 +1,21 @@
-import CategoryFAQButton from 'components/Button/CategoryFAQButton';
+import FAQLists from './FAQLists';
+
+import * as S from './style';
+
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
+
+import CategoryFAQButton from 'pages/ContactFAQ/CategoryFAQButton';
 
 const ContactFAQ = () => {
   return (
     <>
       <Header />
-      <CategoryFAQButton />
-      <Footer toBottom />
+      <S.FrameFAQ>
+        <CategoryFAQButton />
+        <FAQLists />
+      </S.FrameFAQ>
+      {/* <Footer toBottom /> */}
     </>
   );
 };
