@@ -32,8 +32,7 @@ export const ButtonLabel = styled.label`
   display: inline-block;
   cursor: pointer;
   background-color: ${({ active }) => active && 'rgba(231, 231, 231, 1)'};
-
-  border: 2px solid rgba(0, 0, 0, 1);
+  border: ${({ active }) => (active ? '2px solid rgba(0, 0, 0, 1)' : '2px solid rgba(215, 215, 215, 1)')};
   border-radius: 9999px;
 
   text-align: center;
