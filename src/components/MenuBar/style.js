@@ -14,7 +14,7 @@ export const Container = styled.div`
   transform: translateX(${(props) => props.slide}rem);
   @media ${TABLET} {
     width: 210px;
-    height: 253px;
+    height: ${(props) => props.height};
     border: 1px solid white;
     z-index: 99;
     background: white;
@@ -62,6 +62,7 @@ export const UpLiTag = styled.li`
   align-items: center;
   justify-content: space-between;
   font-weight: 300;
+  cursor: pointer;
   @media ${TABLET} {
     padding-bottom: 0.9rem;
     font-weight: 300;
