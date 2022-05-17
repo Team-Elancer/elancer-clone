@@ -43,6 +43,8 @@ export const ProfileMobileImg = styled.img`
   width: 13rem;
   padding: 0.5rem 0 0 0;
   opacity: 1;
+  max-height: 13.5rem;
+  z-index: 99;
 `;
 export const CameraImg = styled.img`
   position: absolute;
@@ -94,6 +96,8 @@ export const ProfileImgDiv = styled.div`
     border-radius: 50%;
     left: 38rem;
     z-index: 99;
+    height: 6rem;
+    width: 6rem;
     cursor: pointer;
   }
   @media ${LAPTOP} {
@@ -103,6 +107,12 @@ export const ProfileImgDiv = styled.div`
 export const ProfileImg = styled.img`
   position: relative;
   pointer-events: none;
+  max-height: 5rem;
+  min-width: 5rem;
+  max-width: 5rem;
+  min-height: 100%;
+  border-radius: 50%;
+  left: 0.2rem;
 `;
 export const BallDiv = styled.div`
   width: 22px;
@@ -110,8 +120,8 @@ export const BallDiv = styled.div`
   background-color: #eb6100;
   border-radius: 50%;
   position: absolute;
-  top: 3.2rem;
-  left: 3rem;
+  top: 3.7rem;
+  left: 4rem;
 `;
 export const FileInput = styled.input`
   width: 35px;
