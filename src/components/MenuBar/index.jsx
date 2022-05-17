@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import BackButton from 'assets/images/ic-back.png';
 import RightButton from 'assets/images/ic-right.png';
@@ -83,9 +83,14 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
 };
 
 const EnterpriseMenuBar = ({ changeBool, setCeckBool }) => {
+  const navi = useNavigate();
+
   const removeLocal = () => {
     window.localStorage.clear();
+    alert('로그아웃 완료');
     setCeckBool(true);
+    navi('/');
+    window.location.reload();
   };
 
   return (
