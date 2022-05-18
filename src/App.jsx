@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from 'components/PrivateRoute';
 import ContactFAQ from 'pages/ContactFAQ';
+import CategoryFAQButton from 'pages/ContactFAQ/CategoryFAQButton';
+import FAQLists from 'pages/ContactFAQ/FAQLists';
 
 import Dashboard from 'pages/DashBoard';
 import DashBoardAccount from 'pages/DashBoard/Account';
@@ -71,7 +73,12 @@ const App = () => {
             <Route path="account" element={<MyBoardOnGoing />} />
           </Route>
         </Route>
-        <Route path="/contact-faq" element={<ContactFAQ />} />
+        <Route path="/contact-faq" element={<ContactFAQ />}>
+          <Route path="project" element={<FAQLists />} />
+          <Route path="account" element={<FAQLists />} />
+          <Route path="career" element={<FAQLists />} />
+          <Route path="/contact-faq/*" element={<ContactFAQ />} />
+        </Route>
       </Routes>
     </>
   );

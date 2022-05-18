@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
 import ContactModal from 'components/Modal/DashBoardContact';
@@ -31,7 +31,7 @@ const MyBoardContact = () => {
             <S.H2>문의 카테고리를 선택해주세요.</S.H2>
             <S.H3 color="#a5a5a5">원하시는 종류의 문의 카테고리를 선택해주세요</S.H3>
           </S.EcardDiv>
-          <Link to="/contact-faq">
+          <Link to="/contact-faq/project">
             <S.WhiteEcardDiv>
               <S.IconDiv color="#f16300">
                 <IoMdDesktop size="100%" />
@@ -42,20 +42,24 @@ const MyBoardContact = () => {
               <S.H3 color="	#4B4B4B">프로젝트에 관한 궁금증을 풀어드립니다.</S.H3>
             </S.WhiteEcardDiv>
           </Link>
-          <S.EcardDiv mobileRight="1.5rem" tabletRight="1rem">
-            <S.IconDiv mobileTop="0.3rem" top="0.2rem">
-              <CgFileDocument size="100%" />
-            </S.IconDiv>
-            <S.Title top="1rem">이력정보</S.Title>
-            <S.H4 top="0.9rem">이력정보에 관한 궁금증을 풀어드립니다.</S.H4>
-          </S.EcardDiv>
-          <S.EcardDiv>
-            <S.IconDiv mobileTop="0.8rem" top="0.6rem">
-              <FaUserAlt size="75%" />
-            </S.IconDiv>
-            <S.Title top="1.2rem">회원정보 수정</S.Title>
-            <S.H4 top="0.9rem">회원정보 수정에 관한 궁금증을 풀어드립니다.</S.H4>
-          </S.EcardDiv>
+          <Link to="/contact-faq/career">
+            <S.EcardDiv mobileRight="1.5rem" tabletRight="1rem">
+              <S.IconDiv mobileTop="0.3rem" top="0.2rem">
+                <CgFileDocument size="100%" />
+              </S.IconDiv>
+              <S.Title top="1rem">이력정보</S.Title>
+              <S.H4 top="0.9rem">이력정보에 관한 궁금증을 풀어드립니다.</S.H4>
+            </S.EcardDiv>
+          </Link>
+          <Link to="/contact-faq/account">
+            <S.EcardDiv>
+              <S.IconDiv mobileTop="0.8rem" top="0.6rem">
+                <FaUserAlt size="75%" />
+              </S.IconDiv>
+              <S.Title top="1.2rem">회원정보 수정</S.Title>
+              <S.H4 top="0.9rem">회원정보 수정에 관한 궁금증을 풀어드립니다.</S.H4>
+            </S.EcardDiv>
+          </Link>
         </S.WidthDiv>
       </S.OverflowDiv>
       <S.H1 size="2.4rem">원하는 질문을 검색해보세요.</S.H1>
