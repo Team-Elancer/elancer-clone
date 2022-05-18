@@ -15,7 +15,9 @@ export const FAQH1 = styled.h1`
   padding-bottom: 2.5rem;
 
   @media ${TABLET} {
-    font-size: 2rem;
+    font-size: 2.7rem;
+    padding-top: 5rem;
+    padding-bottom: 6rem;
   }
 `;
 
@@ -47,45 +49,18 @@ export const ButtonLabel = styled.label`
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   margin-right: 0.375rem;
+
+  @media ${TABLET} {
+    font-size: 1.2rem;
+    border: ${({ active }) => (active ? '3px solid rgba(0, 0, 0, 1)' : '3px solid rgba(215, 215, 215, 1)')};
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-right: 0.8rem;
+  }
 `;
 
 export const ButtonOption = styled.input`
   display: none;
 `;
-
-/*
-export const TopButton = styled.button`
-  background: #fff;
-  border: ${({ primary }) => (primary ? 'solid 2px #000000' : 'solid 2px rgba(215, 215, 215, 1)')};
-  border-radius: 9999px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 11px;
-  text-align: center;
-  margin: 4px 8px 4px 0;
-  padding: 0.5rem;
-
-  &:hover {
-    background: rgba(231, 231, 231, 1);
-  }
-
-  @media ${TABLET} {
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-size: 1.1rem;
-  }
-`;
-
-export const TopButtonDark = styled(TopButton)`
-  color: #fff;
-  background-color: rgba(60, 60, 60, 1);
-  border-color: ${({ primary }) => (primary ? '#fff' : 'rgba(60, 60, 60, 1)')};
-
-  &:hover {
-    border-color: ${({ primary }) => primary && '#fff'};
-    background-color: rgba(75, 75, 75, 1);
-  }
-`;
-*/

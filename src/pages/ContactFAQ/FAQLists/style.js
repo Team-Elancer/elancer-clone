@@ -17,6 +17,11 @@ export const FAQlist = styled.li`
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   margin-bottom: 0.3rem;
+
+  @media ${TABLET} {
+    font-size: 1rem;
+    padding: 1rem;
+  }
 `;
 
 export const ContainerQuestion = styled.div`
