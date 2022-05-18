@@ -115,7 +115,6 @@ const DashboardProjectAdd = () => {
               tabletColor={titleName === '상주 프로젝트' ? '#eb6100' : '#f2f2f2'}
               onClick={changeTitleColor}
             />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <S.JobLabel size="0.7rem" color={titleName === '상주 프로젝트' ? 'white' : 'black'} htmlFor="title1">
               상주 프로젝트
             </S.JobLabel>
@@ -130,7 +129,6 @@ const DashboardProjectAdd = () => {
               tabletColor={titleName === '재택 프로젝트' ? '#eb6100' : '#f2f2f2'}
               onClick={changeTitleColor}
             />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <S.JobLabel size="0.7rem" color={titleName === '재택 프로젝트' ? 'white' : 'black'} htmlFor="title2">
               재택 프로젝트
             </S.JobLabel>
@@ -145,7 +143,6 @@ const DashboardProjectAdd = () => {
               tabletColor={titleName === '헤드헌팅' ? '#eb6100' : '#f2f2f2'}
               onClick={changeTitleColor}
             />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <S.JobLabel size="0.7rem" color={titleName === '헤드헌팅' ? 'white' : 'black'} htmlFor="title3">
               헤드헌팅
             </S.JobLabel>

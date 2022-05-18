@@ -30,6 +30,7 @@ const SignUpFreeLancer = () => {
   const [jobType, setJobType] = useState('');
   const [jobRadio, setJobRadio] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectImg, setSelectImg] = useState(null);
 
   const nameFuntion = (e) => {
     setName(e.target.value);
@@ -82,6 +83,20 @@ const SignUpFreeLancer = () => {
     );
   };
 
+  const changeProfileImg = (e) => {
+    // console.log(e.target.files[0]);
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onloadend = () => {
+      const imgUrl = reader.result;
+      if (imgUrl) {
+        setSelectImg(imgUrl);
+      }
+    };
+  };
+
   const CreateWrite = (event) => {
     event.preventDefault();
     fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer', {
@@ -100,7 +115,7 @@ const SignUpFreeLancer = () => {
         positionType: jobType,
         workPossibleState: jobRadio,
         workStartPossibleDate: selectedDate,
-        thumbnail: null,
+        thumbnail: selectImg,
       }),
     })
       .then((res) => {
@@ -118,6 +133,7 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
+    console.log(typeof selectImg);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -132,23 +148,23 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, selectImg]);
 
   return (
     <form onSubmit={CreateWrite}>
       <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
       <S.ButtonDiv>개인</S.ButtonDiv>
       <S.MobilePhoto>
-        <S.ProfileMobileImg src={Profile} alt="profile" />
+        <S.ProfileMobileImg src={selectImg !== null ? selectImg : Profile} alt="profile" />
         <S.CameraImg src={Camera} alt="Camera" />
-        {/* <S.MobileFileInput type="file" /> */}
+        <S.MobileFileInput accept="image/*" type="file" onChange={changeProfileImg} />
       </S.MobilePhoto>
       <S.H1>기본정보</S.H1>
       <S.ProfileDiv>
         <S.MarginAutoDiv>
           <S.ProfileImgDiv>
-            <S.FileInput type="file" />
-            <S.ProfileImg src={Profile} alt="profile" />
+            <S.FileInput type="file" accept="image/*" onChange={changeProfileImg} />
+            <S.ProfileImg src={selectImg !== null ? selectImg : Profile} alt="profile" />
             <S.BallDiv />
           </S.ProfileImgDiv>
           <S.InputDiv>
