@@ -13,19 +13,19 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Main = () => {
-  // const [newDatas, setNewDatas] = useState();
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await axios('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
-  //     const Data = await res.data;
-  //     setNewDatas(Data);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
+  const [newDatas, setNewDatas] = useState();
+  const fetchData = async () => {
+    try {
+      const res = await axios('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
+      const Data = await res.data;
+      setNewDatas(Data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   useEffect(() => {
-    // fetchData();
+    fetchData();
     console.log(window.localStorage.accessToken);
   }, []);
 

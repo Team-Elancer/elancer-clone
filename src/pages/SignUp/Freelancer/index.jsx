@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +32,8 @@ const SignUpFreeLancer = () => {
   const [jobRadio, setJobRadio] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectImg, setSelectImg] = useState(null);
+  const [checkImg, setCheckImg] = useState(null);
+  const formData = new FormData();
 
   const nameFuntion = (e) => {
     setName(e.target.value);
@@ -84,25 +87,23 @@ const SignUpFreeLancer = () => {
   };
 
   const changeProfileImg = (e) => {
-    // console.log(e.target.files[0]);
+    const file = e.target.files[0];
+    setCheckImg(e.target.files[0]);
     const reader = new FileReader();
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-    }
-    reader.onloadend = () => {
-      const imgUrl = reader.result;
-      if (imgUrl) {
-        setSelectImg(imgUrl);
-      }
+    reader.onloadend = (e) => {
+      setSelectImg(e.target.result);
     };
+    reader.readAsDataURL(file);
   };
 
   const CreateWrite = (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append('img', checkImg);
     fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer', {
       method: 'POST',
       headers: {
-        'Content-Type': ' application/json;charset=UTF-8',
+        'Content-Type': 'application/json;charset=UTF-8',
       },
       body: JSON.stringify({
         memberName: name,
@@ -115,16 +116,13 @@ const SignUpFreeLancer = () => {
         positionType: jobType,
         workPossibleState: jobRadio,
         workStartPossibleDate: selectedDate,
-        thumbnail: selectImg,
+        thumbnail: formData,
       }),
     })
       .then((res) => {
         if (res.ok) {
           alert('생성이 완료되었습니다.');
           navi('/signup/finish');
-        }
-        if (!res.ok) {
-          alert(res);
         }
       })
       .catch((err) => {
@@ -133,7 +131,7 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
-    console.log(typeof selectImg);
+    console.log(checkImg);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -148,7 +146,7 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, selectImg]);
+  }, [eyeCheck, eyeCheck2, checkImg]);
 
   return (
     <form onSubmit={CreateWrite}>
