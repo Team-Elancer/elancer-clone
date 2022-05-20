@@ -1,4 +1,7 @@
 import * as S from './style';
+
+import Logo from 'assets/images/logo_white.png';
+
 import GridBottom from 'components/Modal/GridBottom';
 import Footer from 'layouts/Footer';
 import CompanyHeader from 'layouts/Header/Company';
@@ -7,7 +10,7 @@ const MainEnterprise = () => {
   return (
     <S.Container>
       <S.BgDiv>
-        <CompanyHeader bgColor="#0000" color="white" />
+        <CompanyHeader bgColor="#0000" color="white" logo={Logo} width="840px" />
         <S.CenterDiv>
           <S.H1>
             일하고 싶은만큼 언제 어디서나!
