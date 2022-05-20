@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as S from './style';
-import Logo from 'assets/images/logo_white.png';
+import Logo from 'assets/images/elancer_logo.png';
 import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const CompanyHeader = ({ width, bgColor = 'white', color = 'black' }) => {
+const CompanyHeader = ({ width, bgColor = 'white', color = 'black', logo }) => {
   const [checkBool, setCeckBool] = useState(true);
+  const location = useLocation();
 
   const changeBool = () => {
     return setCeckBool(false);
   };
+
+  console.log(location.pathname);
 
   return (
     <S.Container bgColor={bgColor} color={color}>
@@ -25,7 +28,7 @@ const CompanyHeader = ({ width, bgColor = 'white', color = 'black' }) => {
       <S.HeaderDiv width={width}>
         <S.FlexDiv>
           <Link to="/">
-            <S.Img src={Logo} alt="Logo" />
+            <S.Img src={location.pathname === '/enterprise' ? logo : Logo} alt="Logo" />
           </Link>
           <div>
             <Link to="/enterprise">

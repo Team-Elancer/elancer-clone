@@ -23,7 +23,7 @@ export const CenterDiv = styled.div`
   }
   @media ${LAPTOP} {
   }
-  margin: 0 20rem;
+  padding: 0 33.5rem 8rem 33.5rem;
 `;
 export const H1 = styled.h1`
   color: white;
