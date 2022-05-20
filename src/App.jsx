@@ -18,6 +18,7 @@ import DashBoardScrap from 'pages/DashBoard/Scrap';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 
+import MainEnterprise from 'pages/Main/Enterprise';
 import MyBoardFreelancer from 'pages/MyBoardFreelancer';
 import MyBoardContact from 'pages/MyBoardFreelancer/MyBoardContact';
 import MyBoardManageProject from 'pages/MyBoardFreelancer/MyBoardManageProject';
@@ -40,6 +41,7 @@ const App = () => {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="enterprise" element={<MainEnterprise />} />
         <Route path="partner-list" element={<PartnerList />} />
         <Route path="partner-detail" element={<PartnerDetail />} />
         <Route path="project-list" element={<ProjectList />} />

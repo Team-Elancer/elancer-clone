@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import Logo from 'assets/images/elancer_logo.png';
+import Logo from 'assets/images/logo_white.png';
 import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const CompanyHeader = ({ width }) => {
+const CompanyHeader = ({ width, bgColor = 'white', color = 'black' }) => {
   const [checkBool, setCeckBool] = useState(true);
 
   const changeBool = () => {
@@ -15,7 +15,7 @@ const CompanyHeader = ({ width }) => {
   };
 
   return (
-    <S.Container>
+    <S.Container bgColor={bgColor} color={color}>
       {checkBool === false && (
         <>
           <MainMenu setCeckBool={setCeckBool} />
@@ -28,7 +28,7 @@ const CompanyHeader = ({ width }) => {
             <S.Img src={Logo} alt="Logo" />
           </Link>
           <div>
-            <Link to="/">
+            <Link to="/enterprise">
               <S.BigText>엔터프라이즈</S.BigText>
             </Link>
           </div>

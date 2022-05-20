@@ -4,6 +4,8 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.bgColor};
 `;
 
 export const HeaderDiv = styled.div`
