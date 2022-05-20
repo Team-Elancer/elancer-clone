@@ -14,17 +14,6 @@ const Login = () => {
   const [checkBool, setCeckBool] = useState(true);
   const navi = useNavigate();
 
-  const [newDatas, setNewDatas] = useState([]);
-  const fetchData = async () => {
-    try {
-      const res = await axios('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer');
-      const Data = await res.data;
-      setNewDatas(Data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
   const CreateWrite = (event) => {
     event.preventDefault();
     axios({
@@ -36,7 +25,7 @@ const Login = () => {
       },
     })
       .then((res) => {
-        window.localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
+        window.localStorage.setItem('accessToken', res.data.accessToken);
         window.localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
         window.localStorage.setItem('userName', JSON.stringify(res.data.username));
         alert('생성이 완료되었습니다.');
@@ -47,9 +36,7 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <S.Container>
