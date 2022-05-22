@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 import * as S from './style';
 
 import GridBottom from 'components/Modal/GridBottom';
@@ -20,10 +21,15 @@ const MyBoardFreelancer = () => {
           </S.BoardDiv>
         </S.FlexDiv>
       </S.SizeDiv>
+      <BlankContainer />
       <Footer />
       <GridBottom />
     </S.Container>
   );
 };
+
+const BlankContainer = styled.div`
+  margin-top: 5rem;
+`;
 
 export default MyBoardFreelancer;
