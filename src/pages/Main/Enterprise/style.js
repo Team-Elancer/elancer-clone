@@ -12,6 +12,9 @@ export const BgDiv = styled.div`
   width: 100%;
   height: 100%;
   background-image: url(${mainEnterprise});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   @media ${TABLET} {
   }
   @media ${LAPTOP} {
@@ -19,20 +22,33 @@ export const BgDiv = styled.div`
 `;
 
 export const CenterDiv = styled.div`
+  width: 93%;
+  margin: 0 auto;
+  height: 100%;
+  padding-bottom: 5rem;
   @media ${TABLET} {
+    padding-bottom: 8rem;
+    width: 62%;
   }
   @media ${LAPTOP} {
+    padding-bottom: 8rem;
+    width: 62%;
   }
-  padding: 0 33.5rem 8rem 33.5rem;
 `;
 export const H1 = styled.h1`
   color: white;
   font-family: 'KoPubWorldDotum', sans-serif;
+  font-size: 1.2rem;
+  padding-top: 3rem;
   @media ${TABLET} {
+    font-size: 2.2rem;
+    line-height: 3rem;
+    width: 800;
   }
   @media ${LAPTOP} {
     font-size: 2.2rem;
     line-height: 3rem;
+    width: 800;
   }
 `;
 export const PTag = styled.p`
@@ -42,10 +58,85 @@ export const PTag = styled.p`
   font-size: 0.8rem;
   font-weight: 800;
   width: 148px;
+  height: 100%;
   text-align: center;
   margin-top: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   @media ${TABLET} {
+    border-radius: 0.5rem;
+  }
+  @media ${LAPTOP} {
+    border-radius: 0.5rem;
+  }
+`;
+export const FlexDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    border-radius: 3rem;
+    width: 840px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: ${(props) => props.color};
+    margin: 5rem auto;
+    z-index: 99;
+    position: relative;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const jobButton = styled.button`
+  @media ${TABLET} {
+    width: ${(props) => props.width};
+    height: 98%;
+    border: none;
+    outline: none;
+    background-color: #0000;
+    text-align: start;
+    padding: 0 2rem;
+    border-radius: 5rem;
+    cursor: pointer;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const Span = styled.span`
+  @media ${TABLET} {
+    font-size: 0.8rem;
+    color: ${(props) => props.color};
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const ButtonP = styled.p`
+  @media ${TABLET} {
+    font-size: 1.3rem;
+    color: ${(props) => props.color};
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const LineDiv = styled.div`
+  @media ${TABLET} {
+    width: 1px;
+    height: 3rem;
+    background-color: ${(props) => props.color};
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const Img = styled.img`
+  width: 50px;
+  cursor: pointer;
+  margin-right: 15px;
+`;
+export const MainDiv = styled.div`
+  width: 390px;
+  height: 100%;
+  margin: 0 auto;
+  @media ${TABLET} {
+    width: 800px;
   }
   @media ${LAPTOP} {
   }
