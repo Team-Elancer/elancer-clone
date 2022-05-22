@@ -4,7 +4,7 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 const Container = styled.div`
   z-index: 90;
   width: 100%;
-  height: 107%;
+  height: 122%;
   background: linear-gradient(to top, #7485c9 0, #f16300 100%);
   position: absolute;
   top: -10px;
@@ -15,9 +15,9 @@ const Container = styled.div`
   }
 `;
 
-const MainMenu = ({ setCeckBool }) => {
+const EnterpriseMainMenu = ({ setChangeBack }) => {
   const changeBool = () => {
-    setCeckBool(true);
+    setChangeBack(true);
   };
   return (
     <div>
@@ -26,4 +26,4 @@ const MainMenu = ({ setCeckBool }) => {
   );
 };
 
-export default MainMenu;
+export default EnterpriseMainMenu;
