@@ -15,7 +15,7 @@ import Header from 'layouts/Header';
 const authAxios = axios.create({
   baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
   headers: {
-    Authorization: `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1iZXJJZCIsImlhdCI6MTY1MjE4MzE0MiwiZXhwIjoxNjUyMTgzMjI5fQ.qA1_-MhNhpOWQoaia7uM8lW73AkgeFAZMfPTIKX4tKg`,
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1iZXJJZCIsImlhdCI6MTY1MjE4MzE0MiwiZXhwIjoxNjUyMTgzMjI5fQ.qA1_-MhNhpOWQoaia7uM8lW73AkgeFAZMfPTIKX4tKg`,
   },
 });
 

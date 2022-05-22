@@ -33,7 +33,6 @@ const SignUpFreeLancer = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectImg, setSelectImg] = useState(null);
   const [checkImg, setCheckImg] = useState(null);
-  const formData = new FormData();
 
   const nameFuntion = (e) => {
     setName(e.target.value);
@@ -96,21 +95,23 @@ const SignUpFreeLancer = () => {
       setSelectImg(e.target.result);
     };
     reader.readAsDataURL(file);
-    fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: JSON.stringify({
-        file: formData,
-      }),
-    })
-      .then((res) => {
-        console.log(res);
+    if (checkImg !== null) {
+      fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: JSON.stringify({
+          file: checkImg,
+        }),
       })
-      .catch((error) => {
-        alert(error.message);
-      });
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
   };
 
   const CreateWrite = (event) => {
@@ -146,6 +147,7 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
+    console.log(checkImg);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -160,7 +162,7 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, checkImg]);
 
   return (
     <form onSubmit={CreateWrite}>
