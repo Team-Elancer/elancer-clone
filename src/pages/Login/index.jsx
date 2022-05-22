@@ -14,14 +14,25 @@ const Login = () => {
   const [checkBool, setCeckBool] = useState(true);
   const navi = useNavigate();
 
+  const [Id, setId] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+
+  const idChange = (e) => {
+    setId(e.target.value);
+  };
+
+  const passwordChange = (e) => {
+    setUserPassword(e.target.value);
+  };
+
   const CreateWrite = (event) => {
     event.preventDefault();
     axios({
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
       data: {
-        userId: 'CROWD_WORKER',
-        password: 'wh8107',
+        userId: Id,
+        password: userPassword,
       },
     })
       .then((res) => {
@@ -65,14 +76,14 @@ const Login = () => {
           <S.FlexDiv>
             <S.Label>아이디</S.Label>
             <S.PaddingDiv>
-              <S.IdInput placeholder="아이디" />
+              <S.IdInput placeholder="아이디" value={Id} onChange={idChange} />
             </S.PaddingDiv>
           </S.FlexDiv>
           <S.ErrorMessageDiv>아이디를 입력하세요.</S.ErrorMessageDiv>
           <S.FlexDiv>
             <S.Label>비밀번호</S.Label>
             <S.PaddingDiv>
-              <S.IdInput type="password" placeholder="비밀번호" />
+              <S.IdInput type="password" placeholder="비밀번호" value={userPassword} onChange={passwordChange} />
             </S.PaddingDiv>
           </S.FlexDiv>
           <S.ErrorMessageDiv>비밀번호를 입력하세요.</S.ErrorMessageDiv>
