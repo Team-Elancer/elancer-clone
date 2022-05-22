@@ -4,7 +4,7 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background: ${(props) => (props.freelancerBoard ? '#252525' : 'white')};
+  background: ${(props) => (props.freelancerBoard ? '#252525' : '#0000')};
   color: ${(props) => (props.freelancerBoard ? 'white' : 'black')};
 `;
 

@@ -24,7 +24,7 @@ export const BackImg = styled.div`
     background-size: 200%;
   }
   @media ${LAPTOP} {
-    background-size: 120%;
+    background-size: cover;
   }
 `;
 export const SecondDiv = styled.div`
