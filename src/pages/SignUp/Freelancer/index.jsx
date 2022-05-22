@@ -89,23 +89,38 @@ const SignUpFreeLancer = () => {
   const changeProfileImg = (e) => {
     const file = e.target.files[0];
     setCheckImg(e.target.files[0]);
+    const formData = new FormData();
+    formData.append('img', file);
     const reader = new FileReader();
     reader.onloadend = (e) => {
       setSelectImg(e.target.result);
     };
     reader.readAsDataURL(file);
+    fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: JSON.stringify({
+        file: formData,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const CreateWrite = (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('img', checkImg);
-    fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer', {
+    axios({
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-      body: JSON.stringify({
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
+      data: {
         memberName: name,
         memberId: id,
         memberPassword: password,
@@ -116,8 +131,8 @@ const SignUpFreeLancer = () => {
         positionType: jobType,
         workPossibleState: jobRadio,
         workStartPossibleDate: selectedDate,
-        thumbnail: formData,
-      }),
+        thumbnail: null,
+      },
     })
       .then((res) => {
         if (res.ok) {
@@ -131,7 +146,6 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
-    console.log(checkImg);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -146,7 +160,7 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, checkImg]);
+  }, [eyeCheck, eyeCheck2]);
 
   return (
     <form onSubmit={CreateWrite}>
