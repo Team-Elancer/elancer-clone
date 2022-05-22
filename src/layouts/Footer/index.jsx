@@ -23,7 +23,7 @@ const Footer = ({ toBottom = 'absolute' }) => {
   ];
 
   return (
-    <S.Container toBottom={toBottom}>
+    <S.Container>
       <S.SecondDiv>
         <S.ThirdDiv>
           <S.FourthDiv>

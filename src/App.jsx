@@ -20,6 +20,7 @@ import Main from 'pages/Main';
 
 import MainEnterprise from 'pages/Main/Enterprise';
 import MyBoardFreelancer from 'pages/MyBoardFreelancer';
+import MyBoardCareer from 'pages/MyBoardFreelancer/MyBoardCareer';
 import MyBoardContact from 'pages/MyBoardFreelancer/MyBoardContact';
 import MyBoardManageProject from 'pages/MyBoardFreelancer/MyBoardManageProject';
 import MyBoardOnGoing from 'pages/MyBoardFreelancer/MyBoardOnGoing';
@@ -70,7 +71,7 @@ const App = () => {
             <Route path="ongoing" element={<MyBoardOnGoing />} />
             {/* <Route path="profile" element={<MyBoardOnGoing />} /> */}
             <Route path="project" element={<MyBoardManageProject />} />
-            <Route path="career" element={<MyBoardOnGoing />} />
+            <Route path="career" element={<MyBoardCareer />} />
             <Route path="contact" element={<MyBoardContact />} />
             <Route path="account" element={<MyBoardOnGoing />} />
           </Route>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import styled from 'styled-components';
+
 import FAQLists from './FAQLists';
 
 import * as S from './style';
@@ -53,9 +55,14 @@ const ContactFAQ = () => {
           setDefaultPrimary={setDefaultPrimary}
         />
       </S.FrameFAQ>
+      <BlankContainer />
       <Footer />
     </>
   );
 };
+
+const BlankContainer = styled.div`
+  margin-top: 10rem;
+`;
 
 export default ContactFAQ;
