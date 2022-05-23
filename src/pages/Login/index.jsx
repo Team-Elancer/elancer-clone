@@ -38,16 +38,14 @@ const Login = () => {
       .then((res) => {
         window.localStorage.setItem('accessToken', res.data.accessToken);
         window.localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
-        window.localStorage.setItem('userName', JSON.stringify(res.data.username));
-        alert('생성이 완료되었습니다.');
-        navi(`/`);
+        if (window.localStorage !== undefined) {
+          navi(`/`);
+        }
       })
       .catch((err) => {
         return alert(err.message);
       });
   };
-
-  useEffect(() => {}, []);
 
   return (
     <S.Container>

@@ -12,18 +12,18 @@ import SearchBar from 'components/Search';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
-const authAxios = axios.create({
-  baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-  headers: {
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1iZXJJZCIsImlhdCI6MTY1MjE4MzE0MiwiZXhwIjoxNjUyMTgzMjI5fQ.qA1_-MhNhpOWQoaia7uM8lW73AkgeFAZMfPTIKX4tKg`,
-  },
-});
-
 const Main = () => {
+  const [hello, setHello] = useState(true);
   const [newDatas, setNewDatas] = useState();
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
   const fetchData = async () => {
     try {
-      const res = await authAxios('/freelancer');
+      const res = await authAxios('/enterprise');
       const Data = await res.data;
       setNewDatas(Data);
     } catch (err) {
@@ -33,7 +33,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchData();
-    console.log(newDatas, window.localStorage.accessToken);
+    console.log(newDatas);
   }, []);
 
   return (

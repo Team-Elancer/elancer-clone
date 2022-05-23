@@ -9,22 +9,15 @@ import CompanyAccount from 'components/DashBoard/Company-Account';
 import InlineBlock from 'components/Inline-Block';
 
 const SignUpCompany = () => {
-  // const [newDatas, setNewDatas] = useState([]);
-  // const fetchData = async () => {
-  //   const res = await fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise');
-  //   const Data = await res.json();
-  //   return setNewDatas(Data);
-  // };
-
   const navi = useNavigate();
-  const [hello, setHello] = useState({
-    userId: 'joinDocsEnterprise',
-    password1: '1234',
-    password2: '1234',
+  const [companyData, setCompanyData] = useState({
+    userId: 'user810700000',
+    password1: 'wh8107',
+    password2: 'wh8107',
     name: 'name',
     phone: '01000000000',
     email: 'test@gmail.com',
-    companyName: 'test company',
+    companyName: 'test',
     companyPeople: 10,
     position: '사장',
     telNumber: '01011111111',
@@ -32,26 +25,38 @@ const SignUpCompany = () => {
     address: {
       country: 'KR',
       zipcode: '123',
-      mainAddress: '주소1',
+      mainAddress: '"서울 양천구 목동서로 9"',
       detailAddress: '주소2',
     },
     bizContents: '주요 사업',
     sales: 10000000,
-    idNumber: '사업자 번호(123-123-123)',
+    idNumber: '0000000000',
   });
 
   const CreateWrite = (event) => {
-    console.log('hello');
+    console.log(companyData);
     event.preventDefault();
     axios({
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
-      data: {
-        hello,
-      },
+      data: companyData,
     })
       .then((res) => {
-        console.log(res);
+        axios({
+          method: 'POST',
+          url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
+          data: {
+            userId: companyData.userId,
+            password: companyData.password1,
+          },
+        })
+          .then((res) => {
+            window.localStorage.setItem('accessToken', res.data.accessToken);
+            window.localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
+          })
+          .catch((err) => {
+            return alert(err.message);
+          });
         alert('생성이 완료되었습니다.');
         navi('/signup/finish');
       })
@@ -61,9 +66,8 @@ const SignUpCompany = () => {
   };
 
   useEffect(() => {
-    // fetchData();
-    // console.log(newDatas);
-  }, []);
+    console.log(companyData);
+  }, [companyData]);
 
   return (
     <form onSubmit={CreateWrite}>
@@ -73,7 +77,7 @@ const SignUpCompany = () => {
         <S.CameraImg src={Camera} alt="Camera" />
       </S.MobilePhoto>
       <S.H1>기본정보</S.H1>
-      <CompanyAccount hello={hello} setHello={setHello} />
+      <CompanyAccount companyData={companyData} setCompanyData={setCompanyData} />
       <S.SubmitDiv>
         <S.MarginAutoDiv>
           <S.BordeDiv>
