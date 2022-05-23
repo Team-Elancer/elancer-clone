@@ -55,10 +55,11 @@ export const InputBox = styled.input`
 `;
 
 export const CloseButton = styled.span`
+  cursor: pointer;
   font-size: 1rem;
   position: absolute;
-  left: calc(100% - 70px);
-  top: 10px;
+  left: calc(100% - 75px);
+  padding: 10px;
 `;
 
 export const UploadButton = styled.img`
