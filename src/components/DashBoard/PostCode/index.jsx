@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import * as S from './style';
-import redStar from 'assets/images/redstar.png';
 import DaumPostcode from 'components/DaumPostCode';
 
 const PostCode = ({
@@ -26,11 +24,13 @@ const PostCode = ({
             <S.SpanTag right="6rem">주소</S.SpanTag>
           </div>
           <S.SelectTag type="checkbox" Mobilesize="7rem" size="6rem" onChange={userCountryFuntion}>
-            <option value="kr">대한민국</option>
-            <option value="uk">영국</option>
-            <option value="us">미국</option>
-            <option value="jp">일본</option>
-            <option value="cn">중국</option>
+            <option value="KR" defaultValue>
+              대한민국
+            </option>
+            <option value="UK">영국</option>
+            <option value="US">미국</option>
+            <option value="JP">일본</option>
+            <option value="CN">중국</option>
           </S.SelectTag>
           <S.InputTag
             Mobilesize="7em"

@@ -95,39 +95,23 @@ const SignUpFreeLancer = () => {
       setSelectImg(e.target.result);
     };
     reader.readAsDataURL(file);
-    // if (checkImg !== null) {
-    //   fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //     body: JSON.stringify({
-    //       file: checkImg,
-    //     }),
-    //   })
-    //     .then((res) => {
-    //       console.log(res);
-    //     })
-    //     .catch((error) => {
-    //       alert(error.message);
-    //     });
-    // }
-    axios({
-      method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload',
-      data: {
-        file: formData,
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          alert('생성이 완료되었습니다.');
-          navi('/signup/finish');
-        }
+    if (checkImg !== null) {
+      fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: JSON.stringify({
+          file: checkImg,
+        }),
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
   };
   const CreateWrite = (event) => {
     event.preventDefault();

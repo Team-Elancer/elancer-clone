@@ -8,7 +8,7 @@ import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import SubmitButton from 'components/Button/SubmitButton';
 
-const CompanyAccount = ({ display = 'none', hello, setHello }) => {
+const CompanyAccount = ({ display = 'none', setCompanyData }) => {
   const [placePostcode, setPlacePostcode] = useState('우편번호');
   const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
   const [userAddress, setUserAddress] = useState('');
@@ -22,7 +22,7 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
   const [commitType, setCommitType] = useState('password');
 
   const [comName, setComname] = useState('');
-  const [comCount, setComCount] = useState();
+  const [comCount, setComCount] = useState('');
   const [userName, setUserName] = useState('');
   const [userPosition, setUserPosition] = useState('');
   const [id, setId] = useState('');
@@ -32,7 +32,7 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
   const [userPhoneNumber, setUserPhoneNumber] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [companyWebsite, setCompanyWebsite] = useState('');
-  const [userCountry, setUserCountry] = useState('');
+  const [userCountry, setUserCountry] = useState('KR');
   const [business, setBusiness] = useState('');
   const [yearSale, setYearSale] = useState('');
   const [businessNumber, setBusinessNumber] = useState('');
@@ -41,7 +41,7 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
     setComname(e.target.value);
   };
   const comCountFuntion = (e) => {
-    setComCount(e.target.value);
+    setComCount(Number(e.target.value));
   };
   const userNameFuntion = (e) => {
     setUserName(e.target.value);
@@ -74,14 +74,14 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
     setBusiness(e.target.value);
   };
   const yearSaleFuntion = (e) => {
-    setYearSale(e.target.value);
+    setYearSale(Number(e.target.value));
   };
   const businessNumberFuntion = (e) => {
     setBusinessNumber(e.target.value);
   };
 
   const changeHello = () => {
-    setHello({
+    setCompanyData({
       userId: id,
       password1: password,
       password2: passwordCheck,
@@ -114,7 +114,7 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
   };
 
   useEffect(() => {
-    console.log(businessNumber);
+    console.log(comCount);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -129,7 +129,7 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, businessNumber]);
+  }, [eyeCheck, eyeCheck2, comCount]);
 
   return (
     <S.ProfileDiv onChange={changeHello}>
@@ -316,6 +316,7 @@ const CompanyAccount = ({ display = 'none', hello, setHello }) => {
           <S.CapsMessage />
         </S.InputDiv>
         <PostCode
+          userCountry={userCountry}
           setUserCountry={setUserCountry}
           placePostcode={placePostcode}
           setPlacePostcode={setPlacePostcode}
