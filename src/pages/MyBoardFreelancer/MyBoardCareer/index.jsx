@@ -1,23 +1,31 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import * as S from './style';
 
-const AutoFolioSpan = styled.span`
-  font-size: 0.8125rem;
-  font-weight: bold;
-  margin-top: 0.75rem;
-  margin-right: 0.3rem;
-  margin-bottom: 2.5rem;
-  margin-left: 0.3rem;
-`;
-
 const MyBoardCareer = () => {
   const inputFile = useRef(null);
+  const fileName = useRef(null);
 
-  const handleFileUpload = () => {
+  const handleInputFile = () => {
     inputFile.current.click();
   };
+
+  const onFileChangeCapture = (e) => {
+    if (e?.target?.files[0]?.name) {
+      fileName.current.placeholder = e.target.files[0].name;
+    }
+  };
+
+  const removeOnFile = () => {
+    inputFile.current.type = '';
+    fileName.current.placeholder = '경력기술서';
+    inputFile.current.type = 'file';
+  };
+
+  useEffect(() => {
+    onFileChangeCapture();
+  }, [fileName.current]);
 
   return (
     <S.FrameContainer>
@@ -39,11 +47,23 @@ const MyBoardCareer = () => {
       <S.ContainerUpload>
         <S.FormUpload action="">
           <S.ContainerResume>
-            <S.InputBox type="text" placeholder="경력기술서" readOnly onClick={handleFileUpload} />
-            <S.InputBox type="file" file ref={inputFile} />
-            <S.CloseButton style={{ color: 'orange', fontWeight: 'bold', fontSize: '1.3rem' }}> X </S.CloseButton>
+            <S.InputBox
+              type="text"
+              ref={fileName}
+              placeholder={fileName.current ? fileName.current.placeholder : '경력기술서'}
+              readOnly
+              onClick={handleInputFile}
+            />
+            <S.InputBox type="file" file ref={inputFile} onChangeCapture={onFileChangeCapture} accept=".docx, doc" />
+            <S.CloseButton style={{ color: 'orange', fontWeight: 'bold', fontSize: '1.5rem' }} onClick={removeOnFile}>
+              X
+            </S.CloseButton>
           </S.ContainerResume>
-          <S.UploadButton src="https://www.elancer.co.kr/public/images/img-add-product.png" alt="" />
+          <S.UploadButton
+            src="https://www.elancer.co.kr/public/images/img-add-product.png"
+            alt=""
+            onClick={handleInputFile}
+          />
           <S.UploadH2>AutoFolio로 포트폴리오를 자동 등록하세요</S.UploadH2>
           <S.UploadH3>
             AutoFolio 기술로 내 컴퓨터에 저장된 <br />
@@ -70,5 +90,14 @@ const MyBoardCareer = () => {
     </S.FrameContainer>
   );
 };
+
+const AutoFolioSpan = styled.span`
+  font-size: 0.8125rem;
+  font-weight: bold;
+  margin-top: 0.75rem;
+  margin-right: 0.3rem;
+  margin-bottom: 2.5rem;
+  margin-left: 0.3rem;
+`;
 
 export default MyBoardCareer;
