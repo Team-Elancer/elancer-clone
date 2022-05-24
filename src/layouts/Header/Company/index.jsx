@@ -15,8 +15,6 @@ const CompanyHeader = ({ width, bgColor = 'white', color = 'black', logo }) => {
     return setCeckBool(false);
   };
 
-  console.log(location.pathname);
-
   return (
     <S.Container bgColor={bgColor} color={color}>
       {checkBool === false && (

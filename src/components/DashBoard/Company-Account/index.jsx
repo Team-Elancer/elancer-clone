@@ -114,7 +114,6 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
   };
 
   useEffect(() => {
-    console.log(comCount);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -129,7 +128,7 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, comCount]);
+  }, [eyeCheck, eyeCheck2]);
 
   return (
     <S.ProfileDiv onChange={changeHello}>

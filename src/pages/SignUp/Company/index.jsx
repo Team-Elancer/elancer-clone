@@ -34,7 +34,6 @@ const SignUpCompany = () => {
   });
 
   const CreateWrite = (event) => {
-    console.log(companyData);
     event.preventDefault();
     axios({
       method: 'POST',
@@ -64,10 +63,6 @@ const SignUpCompany = () => {
         return alert(err.message);
       });
   };
-
-  useEffect(() => {
-    console.log(companyData);
-  }, [companyData]);
 
   return (
     <form onSubmit={CreateWrite}>

@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import GoogleLogin from 'react-google-login';
 import { ImBubble } from 'react-icons/im';
 import { Link, useNavigate } from 'react-router-dom';
+
 import * as S from './style';
+
 import naver from 'assets/images/naver.png';
+
 import MenuBar from 'components/MenuBar';
 import GridBottom from 'components/Modal/GridBottom';
 import MainMenu from 'components/Modal/MainMenu';
@@ -45,6 +49,26 @@ const Login = () => {
       .catch((err) => {
         return alert(err.message);
       });
+  };
+
+  const googleSuccess = (respone) => {
+    axios({
+      method: 'POST',
+      url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
+      data: {
+        requestData: respone,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        return alert(err.message);
+      });
+  };
+
+  const googleFail = (respone) => {
+    console.log(respone);
   };
 
   return (
@@ -108,6 +132,15 @@ const Login = () => {
                 >
                   로그인
                 </S.LoginButton>
+              </S.SpanTag>
+              <S.SpanTag>
+                <GoogleLogin
+                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={googleSuccess}
+                  onFailure={googleFail}
+                  cookiePolicy="single_host_origin"
+                />
               </S.SpanTag>
               <S.SpanTag>
                 <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">

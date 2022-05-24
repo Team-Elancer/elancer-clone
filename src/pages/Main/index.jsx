@@ -13,7 +13,6 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Main = () => {
-  const [hello, setHello] = useState(true);
   const [newDatas, setNewDatas] = useState();
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
@@ -23,7 +22,7 @@ const Main = () => {
   });
   const fetchData = async () => {
     try {
-      const res = await authAxios('/enterprise');
+      const res = await authAxios('/freelancer');
       const Data = await res.data;
       setNewDatas(Data);
     } catch (err) {
