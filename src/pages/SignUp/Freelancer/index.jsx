@@ -128,17 +128,15 @@ const SignUpFreeLancer = () => {
         memberEmail: email,
         mailReceptionState: emailRadio,
         memberPhone: phoneNumber,
-        positionType: jobType,
         workPossibleState: jobRadio,
+        positionType: jobType,
         workStartPossibleDate: selectedDate,
         thumbnail: null,
       },
     })
       .then((res) => {
-        if (res.ok) {
-          alert('생성이 완료되었습니다.');
-          navi('/signup/finish');
-        }
+        alert('생성이 완료되었습니다.');
+        navi('/signup/finish');
       })
       .catch((err) => {
         console.log(err.message);
@@ -146,7 +144,7 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
-    console.log(checkImg);
+    console.log(emailRadio);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -161,7 +159,7 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, checkImg]);
+  }, [eyeCheck, eyeCheck2, emailRadio]);
 
   return (
     <form onSubmit={CreateWrite}>
