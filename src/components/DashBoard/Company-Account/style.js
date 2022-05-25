@@ -139,6 +139,17 @@ export const BlockDiv = styled.div`
   @media ${LAPTOP} {
   }
 `;
+
+export const IdBlockDiv = styled.div`
+  display: ${(props) => props.display};
+  @media ${TABLET} {
+    display: ${(props) => props.tabletDisplay};
+    align-items: center;
+    justify-content: start;
+  }
+  @media ${LAPTOP} {
+  }
+`;
 export const SpanTag = styled.span`
   font-size: 0.75rem;
   font-weight: 800;
