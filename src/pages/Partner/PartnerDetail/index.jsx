@@ -3,6 +3,7 @@ import * as S from './style';
 import ProfilePicture from 'assets/images/profile.png';
 
 import InfoDetail from 'components/FreelancerDetail';
+import DetailShare from 'components/FreelancerDetail/DetailShare';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
@@ -87,6 +88,7 @@ const PartnerDetail = () => {
             </section>
             <section>
               <InfoDetail />
+              <DetailShare />
             </section>
           </S.FrameList>
         </S.ContainerFrame>
