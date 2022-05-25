@@ -8,10 +8,20 @@ import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import SubmitButton from 'components/Button/SubmitButton';
 
-const CompanyAccount = ({ display = 'none', setCompanyData }) => {
-  const [placePostcode, setPlacePostcode] = useState('우편번호');
-  const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
-  const [userAddress, setUserAddress] = useState('');
+const CompanyAccount = ({
+  display = 'none',
+  idDisplay = 'block',
+  tabletDisplay = 'flex',
+  setCompanyData,
+  userData,
+  setCompanyDatas,
+  fetchData,
+}) => {
+  const [placePostcode, setPlacePostcode] = useState(userData ? userData.address.zipcode : '우편번호');
+  const [placeAddress, setPlaceAddress] = useState(
+    userData ? userData.address.mainAddress : '우편번호 찾기를 통해 입력하세요.',
+  );
+  const [userAddress, setUserAddress] = useState(userData ? userData.address.detailAddress : '상세 주소를 입력하세요.');
   const [changeBool, setChangeBool] = useState(false);
 
   const [eyeCheck, setEyeCheck] = useState(true);
@@ -22,20 +32,21 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
   const [commitType, setCommitType] = useState('password');
 
   const [comName, setComname] = useState('');
-  const [comCount, setComCount] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userPosition, setUserPosition] = useState('');
+  // userData ? userData.companyName
+  const [comCount, setComCount] = useState(userData ? userData.companyPeople : '');
+  const [userName, setUserName] = useState(userData ? userData.name : '');
+  const [userPosition, setUserPosition] = useState(userData ? userData.position : '');
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [userPhoneNumber, setUserPhoneNumber] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [companyWebsite, setCompanyWebsite] = useState('');
-  const [userCountry, setUserCountry] = useState('KR');
-  const [business, setBusiness] = useState('');
-  const [yearSale, setYearSale] = useState('');
-  const [businessNumber, setBusinessNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(userData ? userData.phone : '');
+  const [userPhoneNumber, setUserPhoneNumber] = useState(userData ? userData.telNumber : '');
+  const [userEmail, setUserEmail] = useState(userData ? userData.email : '');
+  const [companyWebsite, setCompanyWebsite] = useState(userData ? userData.website : '');
+  const [userCountry, setUserCountry] = useState(userData ? userData.address.country : 'KR');
+  const [business, setBusiness] = useState(userData ? userData.bizContents : '');
+  const [yearSale, setYearSale] = useState(userData ? userData.sales : '');
+  const [businessNumber, setBusinessNumber] = useState(userData ? userData.idNumber : '');
 
   const comNameFuntion = (e) => {
     setComname(e.target.value);
@@ -81,28 +92,52 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
   };
 
   const changeHello = () => {
-    setCompanyData({
-      userId: id,
-      password1: password,
-      password2: passwordCheck,
-      name: userName,
-      phone: phoneNumber,
-      email: userEmail,
-      companyName: comName,
-      companyPeople: comCount,
-      position: userPosition,
-      telNumber: userPhoneNumber,
-      website: companyWebsite,
-      address: {
-        country: userCountry,
-        zipcode: placePostcode,
-        mainAddress: placeAddress,
-        detailAddress: userAddress,
-      },
-      bizContents: business,
-      sales: yearSale,
-      idNumber: businessNumber,
-    });
+    if (userData) {
+      setCompanyDatas({
+        password1: password,
+        password2: passwordCheck,
+        name: userName,
+        phone: phoneNumber,
+        email: userEmail,
+        companyName: comName,
+        companyPeople: comCount,
+        position: userPosition,
+        telNumber: userPhoneNumber,
+        website: companyWebsite,
+        address: {
+          country: userCountry,
+          zipcode: placePostcode,
+          mainAddress: placeAddress,
+          detailAddress: userAddress,
+        },
+        bizContents: business,
+        sales: yearSale,
+        idNumber: businessNumber,
+      });
+    } else {
+      setCompanyData({
+        userId: id,
+        password1: password,
+        password2: passwordCheck,
+        name: userName,
+        phone: phoneNumber,
+        email: userEmail,
+        companyName: comName,
+        companyPeople: comCount,
+        position: userPosition,
+        telNumber: userPhoneNumber,
+        website: companyWebsite,
+        address: {
+          country: userCountry,
+          zipcode: placePostcode,
+          mainAddress: placeAddress,
+          detailAddress: userAddress,
+        },
+        bizContents: business,
+        sales: yearSale,
+        idNumber: businessNumber,
+      });
+    }
   };
 
   const changeEye = () => {
@@ -114,6 +149,9 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
   };
 
   useEffect(() => {
+    if (userData) {
+      setComname(userData.companyName);
+    }
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -174,7 +212,7 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
             <div>
               <S.SpanTag right="4rem">담당자명</S.SpanTag>
             </div>
-            <S.InputTag Mobilesize="12rem" placeholder="담장자명" value={userName} onChange={userNameFuntion} />
+            <S.InputTag Mobilesize="12rem" placeholder="담당자 명" value={userName} onChange={userNameFuntion} />
             <S.InputTag
               MobileMargin="0.4rem"
               Mobilesize="8rem"
@@ -187,7 +225,7 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
           <S.CapsMessage />
         </S.InputDiv>
         <S.InputDiv>
-          <S.BlockDiv display="flex">
+          <S.IdBlockDiv display={idDisplay} tabletDisplay={tabletDisplay}>
             <div>
               <S.SpanTag right="3rem">회원아이디</S.SpanTag>
             </div>
@@ -198,9 +236,9 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
               value={id}
               onChange={userIdFuntion}
             />
-          </S.BlockDiv>
-          <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
-          <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+            <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
+            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+          </S.IdBlockDiv>
         </S.InputDiv>
         <S.FlexDiv>
           <S.InputDiv>
@@ -306,7 +344,7 @@ const CompanyAccount = ({ display = 'none', setCompanyData }) => {
             <S.InputTag
               size="13rem"
               laptopSize="23rem"
-              placeholder="www.example.com"
+              placeholder="name@example.com"
               value={companyWebsite}
               onChange={companyWebsiteFuntion}
             />

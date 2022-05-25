@@ -85,7 +85,7 @@ const PostCode = ({
           <S.InputTag
             Mobilesize="15rem"
             size="13rem"
-            placeholder="상세 주소를 입력하세요."
+            placeholder={userAddress}
             value={userAddress}
             onChange={(e) => {
               setUserAddress(e.target.value);
