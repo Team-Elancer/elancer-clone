@@ -17,11 +17,9 @@ const CompanyAccount = ({
   setCompanyDatas,
   fetchData,
 }) => {
-  const [placePostcode, setPlacePostcode] = useState(userData ? userData.address.zipcode : '우편번호');
-  const [placeAddress, setPlaceAddress] = useState(
-    userData ? userData.address.mainAddress : '우편번호 찾기를 통해 입력하세요.',
-  );
-  const [userAddress, setUserAddress] = useState(userData ? userData.address.detailAddress : '상세 주소를 입력하세요.');
+  const [placePostcode, setPlacePostcode] = useState('우편번호');
+  const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
+  const [userAddress, setUserAddress] = useState('상세 주소를 입력하세요.');
   const [changeBool, setChangeBool] = useState(false);
 
   const [eyeCheck, setEyeCheck] = useState(true);
@@ -32,21 +30,20 @@ const CompanyAccount = ({
   const [commitType, setCommitType] = useState('password');
 
   const [comName, setComname] = useState('');
-  // userData ? userData.companyName
-  const [comCount, setComCount] = useState(userData ? userData.companyPeople : '');
-  const [userName, setUserName] = useState(userData ? userData.name : '');
-  const [userPosition, setUserPosition] = useState(userData ? userData.position : '');
+  const [comCount, setComCount] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userPosition, setUserPosition] = useState('');
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(userData ? userData.phone : '');
-  const [userPhoneNumber, setUserPhoneNumber] = useState(userData ? userData.telNumber : '');
-  const [userEmail, setUserEmail] = useState(userData ? userData.email : '');
-  const [companyWebsite, setCompanyWebsite] = useState(userData ? userData.website : '');
-  const [userCountry, setUserCountry] = useState(userData ? userData.address.country : 'KR');
-  const [business, setBusiness] = useState(userData ? userData.bizContents : '');
-  const [yearSale, setYearSale] = useState(userData ? userData.sales : '');
-  const [businessNumber, setBusinessNumber] = useState(userData ? userData.idNumber : '');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [userPhoneNumber, setUserPhoneNumber] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [companyWebsite, setCompanyWebsite] = useState('');
+  const [userCountry, setUserCountry] = useState('KR');
+  const [business, setBusiness] = useState('');
+  const [yearSale, setYearSale] = useState('');
+  const [businessNumber, setBusinessNumber] = useState('');
 
   const comNameFuntion = (e) => {
     setComname(e.target.value);
@@ -151,6 +148,20 @@ const CompanyAccount = ({
   useEffect(() => {
     if (userData) {
       setComname(userData.companyName);
+      setComCount(userData.companyPeople);
+      setUserName(userData.name);
+      setUserPosition(userData.position);
+      setPhoneNumber(userData.phone);
+      setUserPhoneNumber(userData.telNumber);
+      setUserEmail(userData.email);
+      setCompanyWebsite(userData.website);
+      setBusiness(userData.bizContents);
+      setYearSale(userData.sales);
+      setBusinessNumber(userData.idNumber);
+      setUserCountry(userData.address.country);
+      setPlacePostcode(userData.address.zipcode);
+      setPlaceAddress(userData.address.mainAddress);
+      setUserAddress(userData.address.detailAddress);
     }
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
@@ -166,7 +177,7 @@ const CompanyAccount = ({
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2]);
+  }, [eyeCheck, eyeCheck2, userData]);
 
   return (
     <S.ProfileDiv onChange={changeHello}>

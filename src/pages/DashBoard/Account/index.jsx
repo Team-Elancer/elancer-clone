@@ -77,15 +77,11 @@ const DashBoardAccount = () => {
 
   useEffect(() => {
     fetchData();
-    // if (userData) {
-    //   setUserAddress(Object.values(userData.address));
-    // }
-  }, [check, hello]);
+  }, [check]);
 
   return (
     <form onSubmit={changeUser}>
       <S.SpacebetweenDiv>
-        <h1>{userData.idNumber}</h1>
         <S.Img src={Back} alt="arrowback" />
         <S.H1>이랜서 계정</S.H1>
       </S.SpacebetweenDiv>
