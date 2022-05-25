@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from 'components/PrivateRoute';
 import ContactFAQ from 'pages/ContactFAQ';
-import CategoryFAQButton from 'pages/ContactFAQ/CategoryFAQButton';
+
 import FAQLists from 'pages/ContactFAQ/FAQLists';
 
 import Dashboard from 'pages/DashBoard';
@@ -25,6 +25,7 @@ import MyBoardCareer from 'pages/MyBoardFreelancer/MyBoardCareer';
 import MyBoardContact from 'pages/MyBoardFreelancer/MyBoardContact';
 import MyBoardManageProject from 'pages/MyBoardFreelancer/MyBoardManageProject';
 import MyBoardOnGoing from 'pages/MyBoardFreelancer/MyBoardOnGoing';
+import MyBoardProfile from 'pages/MyBoardFreelancer/MyBoardProfile';
 
 import PartnerDetail from 'pages/Partner/PartnerDetail';
 import PartnerList from 'pages/Partner/PartnerList';
@@ -70,7 +71,7 @@ const App = () => {
         <Route path="/myboard-freelancer" element={<PrivateRoute />}>
           <Route path="/myboard-freelancer" element={<MyBoardFreelancer freelancerBoard />}>
             <Route path="ongoing" element={<MyBoardOnGoing />} />
-            {/* <Route path="profile" element={<MyBoardOnGoing />} /> */}
+            <Route path="profile" element={<MyBoardProfile />} />
             <Route path="project" element={<MyBoardManageProject />} />
             <Route path="career" element={<MyBoardCareer />} />
             <Route path="contact" element={<MyBoardContact />} />
