@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import redStar from 'assets/images/redstar.png';
 import { TABLET, LAPTOP } from 'utils/constants/responsive';
 
+export const FlexRow = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const FrameAccount = styled.div`
   width: 100%;
 `;
@@ -200,7 +205,9 @@ export const SubmitDiv = styled.div`
   }
 `;
 export const InputDiv = styled.div`
-  padding-top: 1rem;
+  padding-top: 0.5rem;
+  padding-top: ${(props) => props.top}rem;
+
   position: relative;
 
   @media ${TABLET} {
@@ -325,6 +332,7 @@ export const FlexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
+
   @media ${TABLET} {
     padding: ${(props) => props.top} 0 0 0;
   }
@@ -336,25 +344,16 @@ export const RadioDiv = styled.div`
   width: 7rem;
 
   @media ${TABLET} {
-    width: 6rem;
+    width: 8rem;
   }
-`;
-
-const Item = styled.div`
-  position: absolute;
-  top: 25%;
-  left: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: white;
-  border: 1px solid #bebebe;
 `;
 
 export const RadioText = styled.label`
   font-size: 0.75rem;
   font-weight: 800;
   justify-content: start;
+  margin-top: 3px;
+  margin-left: 3px;
 
   @media ${TABLET} {
     font-size: 0.85rem;
@@ -366,13 +365,6 @@ export const RadioInput = styled.input`
   height: 20px;
   border: 1px;
   cursor: pointer;
-
-  ::before {
-    background: red;
-  }
-  &:checked + ::before {
-    background: red;
-  }
 `;
 
 export const DateDiv = styled.div`
@@ -389,9 +381,10 @@ export const DateDiv = styled.div`
 `;
 export const MarginAutoDiv = styled.div`
   @media ${TABLET} {
-    padding-top: 3rem;
+    padding-top: 1rem;
     width: 90%;
     margin: 0 auto;
+    border-top: ${(props) => props.last && '1px solid black'};
   }
 `;
 export const BordeDiv = styled.div`
@@ -607,4 +600,67 @@ export const JobFieldInput = styled.input`
   padding-bottom: 0.625rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-bottom: 2rem;
+`;
+
+export const FrameInputNumbers = styled(SpanTag)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const InputNumbers = styled.input`
+  border: none;
+  border-bottom: 2px solid rgba(196, 196, 196, 1);
+  outline: none;
+  display: inline-block;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  padding-left: 0px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+`;
+export const SpanInput = styled.span`
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+`;
+
+export const ContainerDeactivateSave = styled.div`
+  border: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
+export const ButtonDeactivate = styled.button`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(204, 204, 204, 1);
+  border-radius: 5px;
+  width: 70px;
+  border: none;
+`;
+
+export const ButtonSave = styled.button`
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  background-color: #eb6100;
+  border-radius: 5px;
+  width: 100px;
+  border: none;
 `;
