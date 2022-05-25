@@ -273,8 +273,146 @@ const MyBoardAccount = () => {
               </S.MarginAutoDiv>
             </div>
             <S.MarginAutoDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <S.FrameInputNumbers right="4.1rem">
+                    <span>경력년수</span>
+                    <S.FlexRow>
+                      <S.FlexRow>
+                        <S.InputNumbers type="text" />
+                        <S.SpanInput>년</S.SpanInput>
+                      </S.FlexRow>
+                      <S.FlexRow>
+                        <S.InputNumbers type="text" />
+                        <S.SpanInput>개월</S.SpanInput>
+                      </S.FlexRow>
+                    </S.FlexRow>
+                  </S.FrameInputNumbers>
+                </S.BlockDiv>
+              </S.InputDiv>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv>
+              <S.InputDiv>
+                <S.BlockDiv>
+                  <S.FrameInputNumbers right="4.1rem">
+                    <span>희망 월단가</span>
+                    <S.FlexRow>
+                      <S.FlexRow>
+                        <S.InputNumbers type="text" />
+                        <S.SpanInput>~</S.SpanInput>
+                      </S.FlexRow>
+                      <S.FlexRow>
+                        <S.InputNumbers type="text" />
+                        <S.SpanInput>원</S.SpanInput>
+                      </S.FlexRow>
+                    </S.FlexRow>
+                  </S.FrameInputNumbers>
+                </S.BlockDiv>
+              </S.InputDiv>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv>
               <S.EmailFlex>
                 <S.InputDiv top="1">
+                  <div>
+                    <S.SpanTag right="0">KOSA보유</S.SpanTag>
+                  </div>
+                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="kosa" value="kosa" />
+                      <S.RadioText>가능</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="kosa" value="kosa" />
+                      <S.RadioText>불가능</S.RadioText>
+                    </S.RadioDiv>
+                  </S.FlexDiv>
+                  <S.ErrorMessage />
+                  <S.CapsMessage />
+                </S.InputDiv>
+              </S.EmailFlex>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv>
+              <S.EmailFlex>
+                <S.InputDiv>
+                  <div>
+                    <S.SpanTag right="0">메일수신 여부</S.SpanTag>
+                  </div>
+                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="email" value="POSSIBLE" />
+                      <S.RadioText>수신</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="email" value="IMPOSSIBLE" />
+                      <S.RadioText>미수신</S.RadioText>
+                    </S.RadioDiv>
+                  </S.FlexDiv>
+                  <S.ErrorMessage />
+                  <S.CapsMessage />
+                </S.InputDiv>
+              </S.EmailFlex>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv>
+              <S.EmailFlex>
+                <S.InputDiv>
+                  <div>
+                    <S.SpanTag right="0">현재 업무상태</S.SpanTag>
+                  </div>
+                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="employed" value="POSSIBLE" />
+                      <S.RadioText>구직중</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="employed" value="IMPOSSIBLE" />
+                      <S.RadioText>정규직[재직중]</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="employed" value="IMPOSSIBLE" />
+                      <S.RadioText>프리랜서[상주]</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="employed" value="IMPOSSIBLE" />
+                      <S.RadioText>프리랜서[재택]</S.RadioText>
+                    </S.RadioDiv>
+                  </S.FlexDiv>
+                  <S.ErrorMessage />
+                  <S.CapsMessage />
+                </S.InputDiv>
+              </S.EmailFlex>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv>
+              <S.EmailFlex>
+                <S.InputDiv>
+                  <div>
+                    <S.SpanTag right="0">희망 업무형태</S.SpanTag>
+                  </div>
+                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="environment" value="POSSIBLE" />
+                      <S.RadioText>상주</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="environment" value="IMPOSSIBLE" />
+                      <S.RadioText>재택</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="environment" value="IMPOSSIBLE" />
+                      <S.RadioText>정규직</S.RadioText>
+                    </S.RadioDiv>
+                    <S.RadioDiv>
+                      <S.RadioInput type="radio" name="environment" value="IMPOSSIBLE" />
+                      <S.RadioText>관계없음</S.RadioText>
+                    </S.RadioDiv>
+                  </S.FlexDiv>
+                  <S.ErrorMessage />
+                  <S.CapsMessage />
+                </S.InputDiv>
+              </S.EmailFlex>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv>
+              <S.EmailFlex>
+                <S.InputDiv>
                   <div>
                     <S.SpanTag right="0">업무가능 여부</S.SpanTag>
                   </div>
@@ -292,6 +430,12 @@ const MyBoardAccount = () => {
                   <S.CapsMessage />
                 </S.InputDiv>
               </S.EmailFlex>
+            </S.MarginAutoDiv>
+            <S.MarginAutoDiv last>
+              <S.ContainerDeactivateSave>
+                <S.ButtonDeactivate type="submit">회원탈퇴</S.ButtonDeactivate>
+                <S.ButtonSave type="submit">저장하기</S.ButtonSave>
+              </S.ContainerDeactivateSave>
             </S.MarginAutoDiv>
           </S.ProfileDiv>
         </S.SecondContainer>
