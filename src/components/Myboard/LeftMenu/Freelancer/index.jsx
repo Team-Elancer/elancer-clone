@@ -22,7 +22,14 @@ const LeftMenuMyBoard = () => {
             </S.MenuLi>
           </Link>
           <Link to="/myboard-freelancer/profile">
-            <S.MenuLi bgColor={location.pathname === '/myboard-freelancer/profile' ? '#f2f2f2' : 'white'}>
+            <S.MenuLi
+              bgColor={
+                location.pathname === '/myboard-freelancer/profile' ||
+                location.pathname === '/myboard-freelancer/profile-modify'
+                  ? '#f2f2f2'
+                  : 'white'
+              }
+            >
               프로필 관리
             </S.MenuLi>
           </Link>
