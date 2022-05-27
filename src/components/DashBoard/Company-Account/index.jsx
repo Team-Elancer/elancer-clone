@@ -15,7 +15,7 @@ const CompanyAccount = ({
   setCompanyData,
   userData,
   setCompanyDatas,
-  fetchData,
+  deleteUser,
 }) => {
   const [placePostcode, setPlacePostcode] = useState('우편번호');
   const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
@@ -88,7 +88,7 @@ const CompanyAccount = ({
     setBusinessNumber(e.target.value);
   };
 
-  const changeHello = () => {
+  const changeData = () => {
     if (userData) {
       setCompanyDatas({
         password1: password,
@@ -180,7 +180,7 @@ const CompanyAccount = ({
   }, [eyeCheck, eyeCheck2, userData]);
 
   return (
-    <S.ProfileDiv onChange={changeHello}>
+    <S.ProfileDiv onChange={changeData}>
       <S.MarginAutoDiv>
         <S.MobilePhoto display={display}>
           <S.ProfileMobileImg src={Bici} alt="profile" />
@@ -442,7 +442,7 @@ const CompanyAccount = ({
         </S.FlexDiv>
         <S.FileMessage>※ 사업자등록증 파일의 크기는 10MB를 초과하지 않아야 합니다</S.FileMessage>
         <S.ButtonDiv display={display}>
-          <S.EndDiv>
+          <S.EndDiv onClick={deleteUser}>
             <S.Secession>회원탈퇴</S.Secession>
           </S.EndDiv>
           <S.CenterDiv>
