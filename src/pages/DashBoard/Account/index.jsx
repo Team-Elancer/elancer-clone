@@ -9,7 +9,6 @@ import CompanyAccount from 'components/DashBoard/Company-Account';
 
 const DashBoardAccount = () => {
   const [userData, setUserData] = useState('');
-  const [hello, sethello] = useState(true);
 
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
@@ -30,8 +29,6 @@ const DashBoardAccount = () => {
 
   const [userAddress, setUserAddress] = useState('');
   const [check, setCheck] = useState(true);
-
-  const navi = useNavigate();
 
   const [companyDatas, setCompanyDatas] = useState({
     companyName: userData.companyName,
@@ -74,9 +71,34 @@ const DashBoardAccount = () => {
         setCheck(!check);
       });
   };
+  const deleteUser = (e) => {
+    e.preventDefault();
+    const checkConfrim = window.confirm('삭제하시겠습니까?');
+    if (checkConfrim) {
+      axios({
+        method: 'DELETE',
+        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+      })
+        .then((res) => {
+          alert('삭제가 완료되었습니다.');
+        })
+        .catch((err) => {
+          alert(err.message);
+          setCheck(!check);
+        });
+    } else {
+      console.log('취소');
+    }
+  };
 
   useEffect(() => {
     fetchData();
+    if (userData) {
+      setUserAddress(Object.values(userData.address));
+    }
   }, [check]);
 
   return (
@@ -92,8 +114,8 @@ const DashBoardAccount = () => {
         userData={userData}
         fetchData={fetchData}
         setCompanyDatas={setCompanyDatas}
+        deleteUser={deleteUser}
       />
-      <S.ButtonDiv />
     </form>
   );
 };

@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Back from 'assets/images/arrowback.png';
@@ -5,6 +7,40 @@ import Cancel from 'assets/images/cancel-orange.png';
 import SubmitButton from 'components/Button/SubmitButton';
 
 const DashBoardModify = () => {
+  const [userData, setUserData] = useState('');
+  const [business, setBusiness] = useState('');
+  const [businessSale, setBusinessSale] = useState('');
+  const [businessNumber, setBusinessNumber] = useState('');
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/enterprise/profile');
+      const Data = await res.data;
+      setUserData(Data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(userData);
+
+  useEffect(() => {
+    if (userData === '') {
+      fetchData();
+    }
+    if (userData) {
+      setBusiness(userData.bizContents);
+      setBusinessSale(userData.sales);
+      setBusinessNumber(userData.idNumber);
+    }
+  }, [userData]);
+
   return (
     <S.Container>
       <S.SpacebetweenDiv>
@@ -29,7 +65,15 @@ const DashBoardModify = () => {
               <div>
                 <S.SpanTag right="2rem">주요 사업내용</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="주요 사업내용" />
+              <S.InputTag
+                size="14.5rem"
+                laptopSize="19rem"
+                placeholder="주요 사업내용"
+                value={business}
+                onChange={(e) => {
+                  setBusiness(e.target.value);
+                }}
+              />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -41,7 +85,15 @@ const DashBoardModify = () => {
                   연간 매출액
                 </S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="연간 매출액" />
+              <S.InputTag
+                size="14.5rem"
+                laptopSize="19rem"
+                placeholder="연간 매출액"
+                value={businessSale}
+                onChange={(e) => {
+                  setBusinessSale(e.target.value);
+                }}
+              />
             </S.BlockDiv>
             <S.CapsMessage />
           </S.InputDiv>
@@ -50,7 +102,15 @@ const DashBoardModify = () => {
               <div>
                 <S.SpanTag right="1.3rem">사업자등록번호</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="38rem" placeholder="주요 사업내용" />
+              <S.InputTag
+                size="14.5rem"
+                laptopSize="38rem"
+                placeholder="사업자 등록번호"
+                value={businessNumber}
+                onChange={(e) => {
+                  setBusinessNumber(e.target.value);
+                }}
+              />
             </S.BlockDiv>
             <S.CapsMessage />
           </S.InputDiv>
@@ -76,27 +136,27 @@ const DashBoardModify = () => {
               </div>
               <S.Ul>
                 <S.Li right="3rem" LaptopRight="8rem">
-                  <S.CheckInput type="checkbox" name="웹개발" id="" />
+                  <S.CheckInput type="checkbox" name="웹개발" id="sub_keyword_1" />
                   웹개발
                 </S.Li>
                 <S.Li right="3rem" LaptopRight="7rem">
-                  <S.CheckInput type="checkbox" name="앱개발" id="" />
+                  <S.CheckInput type="checkbox" name="앱개발" id="sub_keyword_2" />
                   앱개발
                 </S.Li>
                 <S.Li right="2rem" LaptopRight="2rem">
-                  <S.CheckInput type="checkbox" name="솔루션개발" id="" />
+                  <S.CheckInput type="checkbox" name="솔루션개발" id="sub_keyword_3" />
                   솔루션개발
                 </S.Li>
                 <S.Li right="2.5rem" LaptopRight="7.4rem">
-                  <S.CheckInput type="checkbox" name="GIS개발" id="" />
+                  <S.CheckInput type="checkbox" name="GIS개발" id="sub_keyword_4" />
                   GIS개발
                 </S.Li>
                 <S.Li right="2.35rem" LaptopRight="6.1rem">
-                  <S.CheckInput type="checkbox" name="POS개발" id="" />
+                  <S.CheckInput type="checkbox" name="POS개발" id="sub_keyword_5" />
                   POS개발
                 </S.Li>
                 <S.Li right="2rem" LaptopRight="2rem">
-                  <S.CheckInput type="checkbox" name="SI사업" id="" />
+                  <S.CheckInput type="checkbox" name="SI사업" id="sub_keyword_6" />
                   SI사업
                 </S.Li>
               </S.Ul>
