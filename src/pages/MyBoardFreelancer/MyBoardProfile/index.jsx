@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import * as S from './style';
 import ProfilePicture from 'assets/images/profile.png';
 import InfoDetail from 'components/FreelancerDetail';
@@ -8,7 +10,9 @@ const MyBoardProfile = () => {
     <S.FrameProfile>
       <S.ContainerTop>
         <S.FontLarge>프로필관리</S.FontLarge>
-        <S.EditButton>수정</S.EditButton>
+        <Link to="/myboard-freelancer/profile-modify">
+          <S.EditButton>수정</S.EditButton>
+        </Link>
       </S.ContainerTop>
       <S.ContainerFrame>
         <S.FrameList>

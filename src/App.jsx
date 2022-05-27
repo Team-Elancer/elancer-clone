@@ -26,6 +26,7 @@ import MyBoardContact from 'pages/MyBoardFreelancer/MyBoardContact';
 import MyBoardManageProject from 'pages/MyBoardFreelancer/MyBoardManageProject';
 import MyBoardOnGoing from 'pages/MyBoardFreelancer/MyBoardOnGoing';
 import MyBoardProfile from 'pages/MyBoardFreelancer/MyBoardProfile';
+import MyBoardProfileModify from 'pages/MyBoardFreelancer/MyBoardProfileModify';
 
 import PartnerDetail from 'pages/Partner/PartnerDetail';
 import PartnerList from 'pages/Partner/PartnerList';
@@ -72,6 +73,7 @@ const App = () => {
           <Route path="/myboard-freelancer" element={<MyBoardFreelancer freelancerBoard />}>
             <Route path="ongoing" element={<MyBoardOnGoing />} />
             <Route path="profile" element={<MyBoardProfile />} />
+            <Route path="profile-modify" element={<MyBoardProfileModify />} />
             <Route path="project" element={<MyBoardManageProject />} />
             <Route path="career" element={<MyBoardCareer />} />
             <Route path="contact" element={<MyBoardContact />} />
