@@ -14,9 +14,10 @@ const DashBoardModify = () => {
   const [business, setBusiness] = useState('');
   const [businessSale, setBusinessSale] = useState(0);
   const [businessNumber, setBusinessNumber] = useState('');
+  const [bizCodes, setBizCodes] = useState([]);
   const [businessEtc, setBusinessEtc] = useState('');
-  const [bizCodes, setBizCodes] = useState(['main_etc']);
 
+  const [workCodes, setWorkCodes] = useState([]);
   const [workEtc, setWorkEtc] = useState('');
 
   const authAxios = axios.create({
@@ -37,14 +38,44 @@ const DashBoardModify = () => {
   };
 
   const changeMainEtc = (e) => {
-    console.log(e.target.id);
     setBusinessEtc(e.target.value);
+    if (businessEtc.length < 2) {
+      setBizCodes(bizCodes.filter((element) => element !== 'main_etc'));
+    } else if (businessEtc.length > 1) {
+      if (!bizCodes.includes('main_etc')) {
+        setBizCodes([...bizCodes, 'main_etc']);
+      }
+    }
   };
 
   const changeWorkEtc = (e) => {
-    console.log(e.target.id);
     setWorkEtc(e.target.value);
+    if (workEtc.length < 2) {
+      setWorkCodes(workCodes.filter((element) => element !== 'sub_etc'));
+    } else if (workEtc.length > 1) {
+      if (!workCodes.includes('sub_etc')) {
+        setWorkCodes([...workCodes, 'sub_etc']);
+      }
+    }
   };
+
+  const checkInput = (e) => {
+    if (bizCodes.filter((a) => a === e.target.id).length === 1) {
+      setBizCodes(bizCodes.filter((element) => e.target.id !== element));
+    }
+  };
+
+  const checkInput2 = (e) => {
+    if (workCodes.filter((a) => a === e.target.id).length === 1) {
+      setWorkCodes(workCodes.filter((element) => e.target.id !== element));
+    }
+    if (workCodes.length > 3) {
+      alert('최대3개만 선택이 가능합니다.');
+      setWorkCodes(workCodes.filter((element) => e.target.id !== element));
+    }
+  };
+
+  console.log(workCodes);
 
   const putModify = (e) => {
     e.preventDefault();
@@ -61,7 +92,7 @@ const DashBoardModify = () => {
         idNumber: businessNumber,
         mainBizCodes: bizCodes,
         mainEtc: businessEtc,
-        subBizCodes: ['sub_biz1', 'sub_biz2', 'sub_biz3', 'sub_etc'],
+        subBizCodes: workCodes,
         subEtc: workEtc,
       },
     })
@@ -83,6 +114,10 @@ const DashBoardModify = () => {
       setBusiness(userData.bizContents);
       setBusinessSale(Number(userData.sales));
       setBusinessNumber(userData.idNumber);
+      setBizCodes(userData.mainBizCodes);
+      setBusinessEtc(userData.mainEtc);
+      setWorkCodes(userData.subBizCodes);
+      setWorkEtc(userData.subEtc);
     }
   }, [userData]);
 
@@ -192,7 +227,7 @@ const DashBoardModify = () => {
                 <div>
                   <S.SpanTag right="4rem">사업 분야</S.SpanTag>
                 </div>
-                <S.Ul>
+                <S.Ul onChange={checkInput}>
                   <S.Li right="3rem" LaptopRight="8rem">
                     <S.CheckInput
                       type="checkbox"
@@ -245,7 +280,7 @@ const DashBoardModify = () => {
                     <S.CheckInput
                       type="checkbox"
                       name="POS개발"
-                      id="sub_keyword_5"
+                      id="main_biz5"
                       checked={bizCodes.includes('main_biz5') && true}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
@@ -257,7 +292,7 @@ const DashBoardModify = () => {
                     <S.CheckInput
                       type="checkbox"
                       name="SI사업"
-                      id="sub_keyword_6"
+                      id="main_biz6"
                       checked={bizCodes.includes('main_biz6') && true}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
@@ -282,97 +317,281 @@ const DashBoardModify = () => {
                 <div>
                   <S.SpanTag right="4rem">업무 분야</S.SpanTag>
                 </div>
-                <S.Ul>
+                <S.Ul onChange={checkInput2}>
                   <S.Li right="3rem" LaptopRight="8rem">
-                    <S.CheckInput type="checkbox" name="웹개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="웹개발"
+                      id="sub_biz1"
+                      checked={workCodes.includes('sub_biz1') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     쇼핑몰
                   </S.Li>
                   <S.Li right="3rem" LaptopRight="7rem">
-                    <S.CheckInput type="checkbox" name="앱개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="앱개발"
+                      id="sub_biz2"
+                      checked={workCodes.includes('sub_biz2') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     여행사
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="솔루션개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="솔루션개발"
+                      id="sub_biz3"
+                      checked={workCodes.includes('sub_biz3') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     금융
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="9rem">
-                    <S.CheckInput type="checkbox" name="GIS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="GIS개발"
+                      id="sub_biz4"
+                      checked={workCodes.includes('sub_biz4') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     증권
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="8rem">
-                    <S.CheckInput type="checkbox" name="POS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="POS개발"
+                      id="sub_biz5"
+                      checked={workCodes.includes('sub_biz5') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     카드
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="SI사업" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="SI사업"
+                      id="sub_biz6"
+                      checked={workCodes.includes('sub_biz6') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     보험
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="9rem">
-                    <S.CheckInput type="checkbox" name="웹개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="웹개발"
+                      id="sub_biz7"
+                      checked={workCodes.includes('sub_biz7') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     병원
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="8rem">
-                    <S.CheckInput type="checkbox" name="앱개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="앱개발"
+                      id="sub_biz8"
+                      checked={workCodes.includes('sub_biz8') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     대학
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="솔루션개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="솔루션개발"
+                      id="sub_biz9"
+                      checked={workCodes.includes('sub_biz9') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     공공기관
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="9rem">
-                    <S.CheckInput type="checkbox" name="GIS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="GIS개발"
+                      id="sub_biz10"
+                      checked={workCodes.includes('sub_biz10') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     물류
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="8rem">
-                    <S.CheckInput type="checkbox" name="POS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="POS개발"
+                      id="sub_biz11"
+                      checked={workCodes.includes('sub_biz11') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     회계
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="SI사업" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="SI사업"
+                      id="sub_biz12"
+                      checked={workCodes.includes('sub_biz12') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     제조
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="9rem">
-                    <S.CheckInput type="checkbox" name="웹개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="웹개발"
+                      id="sub_biz13"
+                      checked={workCodes.includes('sub_biz13') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     건설
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="8rem">
-                    <S.CheckInput type="checkbox" name="앱개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="앱개발"
+                      id="sub_biz15"
+                      checked={workCodes.includes('sub_biz15') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     통신
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="솔루션개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="솔루션개발"
+                      id="sub_biz16"
+                      checked={workCodes.includes('sub_biz16') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     유통
                   </S.Li>
                   <S.Li right="3.7rem" LaptopRight="9rem">
-                    <S.CheckInput type="checkbox" name="GIS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="GIS개발"
+                      id="sub_biz17"
+                      checked={workCodes.includes('sub_biz17') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     생산
                   </S.Li>
                   <S.Li right="3rem" LaptopRight="7rem">
-                    <S.CheckInput type="checkbox" name="POS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="POS개발"
+                      id="sub_biz18"
+                      checked={workCodes.includes('sub_biz18') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     미다어
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="SI사업" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="SI사업"
+                      id="sub_biz19"
+                      checked={workCodes.includes('sub_biz19') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     교육
                   </S.Li>
                   <S.Li right="2.9rem" LaptopRight="8rem">
-                    <S.CheckInput type="checkbox" name="웹개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="웹개발"
+                      id="sub_biz20"
+                      checked={workCodes.includes('sub_biz20') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     반도체
                   </S.Li>
                   <S.Li right="3rem" LaptopRight="7rem">
-                    <S.CheckInput type="checkbox" name="앱개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="앱개발"
+                      id="sub_biz21"
+                      checked={workCodes.includes('sub_biz21') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     자동차
                   </S.Li>
                   <S.Li right="2rem" LaptopRight="2rem">
-                    <S.CheckInput type="checkbox" name="솔루션개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="솔루션개발"
+                      id="sub_biz22"
+                      checked={workCodes.includes('sub_biz22') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     암호화폐
                   </S.Li>
                   <S.Li right="2.1rem" LaptopRight="7rem">
-                    <S.CheckInput type="checkbox" name="GIS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="GIS개발"
+                      id="sub_biz23"
+                      checked={workCodes.includes('sub_biz23') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     블록체인
                   </S.Li>
                   <S.Li right="1rem" LaptopRight="1rem">
-                    <S.CheckInput type="checkbox" name="POS개발" id="" />
+                    <S.CheckInput
+                      type="checkbox"
+                      name="POS개발"
+                      id="sub_biz24"
+                      checked={workCodes.includes('sub_biz24') && true}
+                      onChange={(e) => {
+                        setWorkCodes([...workCodes, e.target.id]);
+                      }}
+                    />
                     기타
                   </S.Li>
                 </S.Ul>
