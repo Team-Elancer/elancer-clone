@@ -192,6 +192,7 @@ export const Title = styled.div`
   }
   @media ${LAPTOP} {
     font-size: 2.2rem;
+    padding: ${(props) => props.top} 0 2rem 0;
   }
 `;
 export const ColorDiv = styled.div`
