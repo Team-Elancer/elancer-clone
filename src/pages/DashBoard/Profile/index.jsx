@@ -1,8 +1,33 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 
 const DashBoardProfile = () => {
+  const [userDatas, setUserDatas] = useState('');
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/enterprise');
+      const data = await res.data;
+      setUserDatas(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  console.log(userDatas);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <S.SpacebetweenDiv>
@@ -25,11 +50,11 @@ const DashBoardProfile = () => {
               </S.PTag>
               <S.PTag top="1rem">
                 연간매출액
-                <S.SpanTag textSize="0.9rem">-</S.SpanTag>
+                <S.SpanTag textSize="0.9rem">{userDatas ? userDatas.sales : '-'}</S.SpanTag>
               </S.PTag>
               <S.PTag top="1rem">
                 사업자등록번호
-                <S.SpanTag textSize="0.95rem">0000000000</S.SpanTag>
+                <S.SpanTag textSize="0.95rem">{userDatas ? userDatas.idNumber : '-'}</S.SpanTag>
               </S.PTag>
             </S.EcarcdPaddingDiv>
           </S.EcardDiv>
