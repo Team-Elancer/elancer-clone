@@ -14,6 +14,41 @@ export const FlexColumn = styled.div`
   flex-direction: column;
 `;
 
+export const ButtonAddExtra = styled.button`
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-align: center;
+  margin: 0.3rem;
+  cursor: pointer;
+`;
+
+export const RemoveButton = styled.span`
+  background-color: rgba(60, 60, 60, 1);
+  border-color: rgba(255, 255, 255, 1);
+  border-width: 1px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  display: inline-block;
+  text-align: center;
+
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 0.7rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  margin-left: 0.4rem;
+`;
+
 export const ProfileButton = styled.button`
   background-color: rgba(235, 97, 0, 1);
   border-radius: 5px;
@@ -57,6 +92,7 @@ export const ContainerTop = styled.div`
 
 export const FontLarge = styled.p`
   margin-top: 2rem;
+  margin-bottom: 1rem;
   font-weight: bold;
   font-size: 0.8rem;
 
@@ -155,6 +191,7 @@ export const SubjectInput = styled.input`
 
 export const BoxFrame = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -232,7 +269,6 @@ export const IntroInputName = styled(IntroInput)`
     border-radius: 10px;
     border-width: 0px;
     font-weight: 600;
-
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.625rem;
@@ -306,4 +342,61 @@ export const JobFieldInput = styled.input`
   padding-left: 1rem;
   padding-right: 1rem;
   margin-bottom: 2rem;
+`;
+
+export const EducationContainer = styled.div`
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @media ${TABLET} {
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const TextLabel = styled.label`
+  font-weight: bold;
+  font-size: 0.7rem;
+  display: inline-block;
+
+  @media ${TABLET} {
+    font-size: 1rem;
+    width: 110px;
+  }
+`;
+
+export const ContainerSelectOption = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media ${TABLET} {
+    width: ${(props) => props.width}px;
+  }
+`;
+
+export const SelectInputName = styled.select`
+  background-color: rgba(246, 246, 246, 1);
+
+  display: inline-block;
+
+  border-color: rgba(196, 196, 196, 1);
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  color: rgba(140, 140, 140, 1);
+
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-left: 0px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+
+  margin-left: 0.75rem;
+`;
+
+export const BetweenInputSpan = styled.span`
+  font-size: 1rem;
 `;
