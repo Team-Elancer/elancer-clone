@@ -205,7 +205,7 @@ export const IntroLetters = styled(FontLarge)`
 
   @media ${TABLET} {
     font-size: 1rem;
-    margin-top: 0;
+    margin-top: 0.5rem;
     width: 126px;
   }
 `;
@@ -264,6 +264,38 @@ export const IntroInputName = styled(IntroInput)`
   @media ${TABLET} {
     width: 410px;
 
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(140, 140, 140, 1);
+    border-radius: 10px;
+    border-width: 0px;
+    font-weight: 600;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+`;
+
+export const InputTextArea = styled.textarea`
+  background-color: rgba(246, 246, 246, 1);
+  border-color: rgba(196, 196, 196, 1);
+  color: rgba(0, 0, 0, 1);
+  display: inline-block;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-left: 0px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  position: relative;
+  width: 100%;
+  height: 140px;
+  outline: none;
+
+  @media ${TABLET} {
     background-color: rgba(255, 255, 255, 1);
     color: rgba(140, 140, 140, 1);
     border-radius: 10px;
@@ -351,7 +383,7 @@ export const EducationContainer = styled.div`
   @media ${TABLET} {
     margin-bottom: 3rem;
     display: flex;
-    align-items: center;
+    align-items: ${(props) => !props.noFlex && 'center'};
   }
 `;
 
@@ -363,6 +395,7 @@ export const TextLabel = styled.label`
   @media ${TABLET} {
     font-size: 1rem;
     width: 110px;
+    margin-top: ${(props) => props.marginTop}rem;
   }
 `;
 
@@ -399,4 +432,100 @@ export const SelectInputName = styled.select`
 
 export const BetweenInputSpan = styled.span`
   font-size: 1rem;
+`;
+
+export const MarginAutoDiv = styled.div`
+  @media ${TABLET} {
+    /* padding-top: 1rem; */
+    width: 90%;
+    margin: 0 auto;
+    border-top: ${(props) => props.last && '1px solid black'};
+  }
+`;
+
+export const EmailFlex = styled.div`
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+export const InputDiv = styled.div`
+  /* padding-top: 0.5rem; */
+  padding-top: ${(props) => props.top}rem;
+
+  position: relative;
+
+  @media ${TABLET} {
+    padding-top: ${(props) => props.top}rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+
+export const FlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  @media ${TABLET} {
+    padding: ${(props) => props.top} 0 0 0;
+  }
+`;
+
+export const RadioDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 7rem;
+
+  @media ${TABLET} {
+    width: 8rem;
+  }
+`;
+
+export const RadioText = styled.label`
+  font-size: 0.75rem;
+  font-weight: 800;
+  justify-content: start;
+  margin-top: 3px;
+  margin-left: 3px;
+
+  @media ${TABLET} {
+    font-size: 0.85rem;
+  }
+`;
+
+export const RadioInput = styled.input`
+  width: 20px;
+  height: 20px;
+  border: 1px;
+  cursor: pointer;
+`;
+
+export const SpanTag = styled.span`
+  font-size: 0.75rem;
+  font-weight: 800;
+  background-size: 5px 5px;
+  padding-left: 0.3rem;
+
+  @media ${TABLET} {
+    font-size: 0.98rem;
+    background-size: 10px 10px;
+    padding: 0 ${(props) => props.right} 0 0.7rem;
+  }
+
+  @media ${LAPTOP} {
+  }
+`;
+
+export const InputText = styled(IntroInputName)`
+  width: 5rem;
+
+  @media ${TABLET} {
+    width: 6rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
 `;

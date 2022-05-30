@@ -18,10 +18,20 @@ export const ContainerAccountSave = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 0.875rem;
+  font-weight: bold;
+
+  @media ${TABLET} {
+    justify-content: start;
+    font-size: 2rem;
+  }
 `;
 
 export const SaveSpan = styled.div`
   cursor: pointer;
+
+  @media ${TABLET} {
+    display: none;
+  }
 `;
 
 export const ContainerImageProfile = styled.div`
@@ -36,6 +46,10 @@ export const ContainerImageProfile = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+
+  @media ${TABLET} {
+    display: none;
+  }
 `;
 
 export const ImageProfile = styled.img`
@@ -308,13 +322,15 @@ export const CapsMessage = styled.p`
 
 export const EyeImg = styled.img`
   position: absolute;
-  top: 0.625rem;
+  top: 30px;
   right: 1.25rem;
   cursor: pointer;
+
   @media ${TABLET} {
-    top: 1.5rem;
+    top: 17px;
     right: 19.5rem;
   }
+
   @media ${LAPTOP} {
     right: 22.5rem;
   }
