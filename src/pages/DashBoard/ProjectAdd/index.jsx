@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 import Back from 'assets/images/arrowback.png';
@@ -9,10 +9,12 @@ import Cancel from 'assets/images/cancel-orange.png';
 import Logo from 'assets/images/logo-none.png';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import SubmitButton from 'components/Button/SubmitButton';
 import PostCode from 'components/DashBoard/PostCode';
 
 const DashboardProjectAdd = () => {
   const [companyData, setCompanyData] = useState('');
+  const navi = useNavigate();
 
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
@@ -39,16 +41,28 @@ const DashboardProjectAdd = () => {
   const [projectColor, setProjectColor] = useState('');
   const [jobfield, setJobfield] = useState('');
   const [jobChoice, setJobChoice] = useState(null);
+  const [jobSkill, setJobSkill] = useState('');
 
-  const [placePostcode, setPlacePostcode] = useState('우편번호');
-  const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
-  const [userCountry, setUserCountry] = useState('');
-  const [userAddress, setUserAddress] = useState('');
-  const [changeBool, setChangeBool] = useState(false);
+  const [projectTitle, setProjectTitle] = useState('');
+  const [projectPeople, setProjectPeople] = useState('');
+  const [totalPeople, setTotalPeople] = useState('');
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const [userCountry, setUserCountry] = useState('');
+  const [placePostcode, setPlacePostcode] = useState('우편번호');
+  const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
+  const [userAddress, setUserAddress] = useState('');
+  const [changeBool, setChangeBool] = useState(false);
+
+  const [miniMoney, setMiniMoney] = useState('');
+  const [bigMoney, setBigMoney] = useState('');
+  const [careYear, setcareYear] = useState('');
+  const [careMonth, setCareMonth] = useState('');
+  const [miniAge, setMiniAge] = useState('');
+  const [bigAge, setBigAge] = useState('');
 
   const [comName, setComName] = useState('');
   const [employeeName, setEmployeeName] = useState('');
@@ -58,12 +72,7 @@ const DashboardProjectAdd = () => {
   const [comWebsite, setComWebsite] = useState('');
 
   const changeTitleColor = (e) => {
-    console.log(titleName);
     setTitleName(e.target.value);
-  };
-
-  const changeTextArea = (e) => {
-    setTextArea(e.target.value);
   };
 
   const changeBgColor = (e) => {
@@ -72,10 +81,6 @@ const DashboardProjectAdd = () => {
 
   const changeProjectColor = (e) => {
     setProjectColor(e.target.value);
-  };
-
-  const changeJobChoice = (e) => {
-    setJobChoice(e.target.value);
   };
 
   const dateFunction = (date) => {
@@ -125,7 +130,7 @@ const DashboardProjectAdd = () => {
     e.preventDefault();
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/project-save',
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },
@@ -135,37 +140,38 @@ const DashboardProjectAdd = () => {
         enterpriseLogo: 'COUPANG',
         projectStep: projectColor,
         mainBiz: jobfield,
-        positionKind: 'DEVELOPER',
-        skill: '자바',
-        projectName: '쇼핑몰 프로젝트',
-        headCount: 10,
-        inputHeadCount: 10,
-        content: '프로젝트 상세내용',
-        projectStateDate: '2022-05-30',
-        projectEndDate: '2022-06-30',
-        recruitEndDate: '2022-06-04',
+        positionKind: jobChoice,
+        skill: jobSkill,
+        projectName: projectTitle,
+        headCount: projectPeople,
+        inputHeadCount: totalPeople,
+        content: textArea,
+        projectStateDate: startDate,
+        projectEndDate: endDate,
+        recruitEndDate: selectedDate,
         address: {
-          country: 'KR',
-          zipcode: '우편번호',
-          mainAddress: '주소',
-          detailAddress: '상세주소',
+          country: userCountry,
+          zipcode: placePostcode,
+          mainAddress: placeAddress,
+          detailAddress: userAddress,
         },
-        minMoney: 1000000,
-        maxMoney: 10000000,
-        careerYear: 3,
-        careerMonth: 3,
-        minDesiredAge: 30,
-        maxDesiredAge: 35,
-        companyName: '테스트회사',
-        name: '담당자명',
-        position: '사장',
-        phone: '010-0000-0000',
-        telNumber: '010-1111-1111',
-        email: 'project@gmail.com',
+        minMoney: miniMoney,
+        maxMoney: bigMoney,
+        careerYear: careYear,
+        careerMonth: careMonth,
+        minDesiredAge: miniAge,
+        maxDesiredAge: bigAge,
+        companyName: comName,
+        name: employeeName,
+        position: emplyeePosition,
+        phone: comPhone,
+        telNumber: comTele,
+        email: comWebsite,
       },
     })
       .then((res) => {
-        alert('정보를 수정했습니다.');
+        alert('프로젝트를 등록했습니다.');
+        navi('/dashboard/project');
       })
       .catch((err) => {
         alert(err.message);
@@ -449,7 +455,11 @@ const DashboardProjectAdd = () => {
                 <div>
                   <S.SpanTag right="2rem">구인직종</S.SpanTag>
                 </div>
-                <S.Select onChange={changeJobChoice}>
+                <S.Select
+                  onChange={(e) => {
+                    setJobChoice(e.target.value);
+                  }}
+                >
                   <option value="">=== 선택하세요 ===</option>
                   <option value="DEVELOPER">개발자</option>
                   <option value="PUBLISHER">퍼블리셔</option>
@@ -466,7 +476,15 @@ const DashboardProjectAdd = () => {
                 <div>
                   <S.SpanTag right="2rem">관련기술</S.SpanTag>
                 </div>
-                <S.InputTag size="14.5rem" laptopSize="40rem" placeholder="예) Java, .Net, C#, PHP, Python" />
+                <S.InputTag
+                  size="14.5rem"
+                  laptopSize="40rem"
+                  placeholder="예) Java, .Net, C#, PHP, Python"
+                  value={jobSkill}
+                  onChange={(e) => {
+                    setJobSkill(e.target.value);
+                  }}
+                />
               </S.BlockDiv>
             </S.InputDiv>
             <S.ErrorMessage />
@@ -481,7 +499,15 @@ const DashboardProjectAdd = () => {
                 <div>
                   <S.SpanTag right="2rem">프로젝트 명</S.SpanTag>
                 </div>
-                <S.InputTag size="14.5rem" laptopSize="15rem" placeholder="프로젝트 제목을 입력해주세요.  " />
+                <S.InputTag
+                  size="14.5rem"
+                  laptopSize="15rem"
+                  placeholder="프로젝트 제목을 입력해주세요."
+                  value={projectTitle}
+                  onChange={(e) => {
+                    setProjectTitle(e.target.value);
+                  }}
+                />
               </S.BlockDiv>
             </S.InputDiv>
             <S.ErrorMessage />
@@ -492,7 +518,16 @@ const DashboardProjectAdd = () => {
                   <div>
                     <S.SpanTag right="3rem">모집 입원</S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
+                  <S.InputTag
+                    size="12rem"
+                    laptopSize="14rem"
+                    type="number"
+                    placeholder="숫자만 입력"
+                    value={projectPeople}
+                    onChange={(e) => {
+                      setProjectPeople(Number(e.target.value));
+                    }}
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -502,7 +537,16 @@ const DashboardProjectAdd = () => {
                   <div>
                     <S.SpanTag right="0.9rem">총 투입인력</S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="총 투입인력" />
+                  <S.InputTag
+                    size="12rem"
+                    laptopSize="14rem"
+                    type="number"
+                    placeholder="총 투입인력"
+                    value={totalPeople}
+                    onChange={(e) => {
+                      setTotalPeople(e.target.value);
+                    }}
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -517,7 +561,9 @@ const DashboardProjectAdd = () => {
                   rows="5"
                   placeholder="프로젝트 제목을 입력해주세요."
                   value={textArea}
-                  onChange={changeTextArea}
+                  onChange={(e) => {
+                    setTextArea(e.target.value);
+                  }}
                 >
                   {textArea}
                 </S.TextArea>
@@ -535,7 +581,7 @@ const DashboardProjectAdd = () => {
                   </div>
                   <S.FlexDiv flex="flex">
                     <S.InputTag Mobilesize="8rem" laptopSize="15rem" type="number" placeholder={startDate} />
-                    <S.DateDiv top="-0.9rem" left="-8rem" width="8rem">
+                    <S.DateDiv top="-0.9rem" left="-8rem" width="8rem" dateTop="2rem">
                       <DatePicker
                         onChange={(date) => {
                           startDateFunction(date);
@@ -573,7 +619,7 @@ const DashboardProjectAdd = () => {
               </S.BlockDiv>
             </S.InputDiv>
             <S.BorderDiv />
-            {titleName === '상주 프로젝트' && (
+            {titleName === 'WORKING' && (
               <>
                 <S.MarginTop>
                   <PostCode
@@ -598,11 +644,29 @@ const DashboardProjectAdd = () => {
                     <S.SpanTag right="2.5rem">예상월단가</S.SpanTag>
                   </div>
                   <S.FlexDiv flex="flex">
-                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="6,000,000" />
+                    <S.InputTag
+                      Mobilesize="7rem"
+                      laptopSize="9rem"
+                      type="number"
+                      placeholder="6,000,000"
+                      value={miniMoney}
+                      onChange={(e) => {
+                        setMiniMoney(Number(e.target.value));
+                      }}
+                    />
                     <div>
                       <S.PTag>원~</S.PTag>
                     </div>
-                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="6,500,000" />
+                    <S.InputTag
+                      Mobilesize="7rem"
+                      laptopSize="9rem"
+                      type="number"
+                      placeholder="6,500,000"
+                      value={bigMoney}
+                      onChange={(e) => {
+                        setBigMoney(Number(e.target.value));
+                      }}
+                    />
                     <S.PTag>원</S.PTag>
                   </S.FlexDiv>
                 </S.BlockDiv>
@@ -617,11 +681,29 @@ const DashboardProjectAdd = () => {
                     <S.SpanTag right="3rem">희망 경력</S.SpanTag>
                   </div>
                   <S.FlexDiv flex="flex">
-                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <S.InputTag
+                      Mobilesize="7rem"
+                      laptopSize="9rem"
+                      type="number"
+                      placeholder="숫자로만 입력하세요"
+                      value={careYear}
+                      onChange={(e) => {
+                        setcareYear(Number(e.target.value));
+                      }}
+                    />
                     <div>
                       <S.PTag>년</S.PTag>
                     </div>
-                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <S.InputTag
+                      Mobilesize="7rem"
+                      laptopSize="9rem"
+                      type="number"
+                      placeholder="숫자로만 입력하세요"
+                      value={careMonth}
+                      onChange={(e) => {
+                        setCareMonth(Number(e.target.value));
+                      }}
+                    />
                     <S.PTag>개월</S.PTag>
                   </S.FlexDiv>
                 </S.BlockDiv>
@@ -636,11 +718,29 @@ const DashboardProjectAdd = () => {
                     <S.SpanTag right="3rem">희망 연령</S.SpanTag>
                   </div>
                   <S.FlexDiv flex="flex">
-                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <S.InputTag
+                      Mobilesize="7rem"
+                      laptopSize="9rem"
+                      type="number"
+                      placeholder="숫자로만 입력하세요"
+                      value={miniAge}
+                      onChange={(e) => {
+                        setMiniAge(Number(e.target.value));
+                      }}
+                    />
                     <div>
                       <S.PTag>~</S.PTag>
                     </div>
-                    <S.InputTag Mobilesize="7rem" laptopSize="9rem" type="number" placeholder="숫자로만 입력하세요" />
+                    <S.InputTag
+                      Mobilesize="7rem"
+                      laptopSize="9rem"
+                      type="number"
+                      placeholder="숫자로만 입력하세요"
+                      value={bigAge}
+                      onChange={(e) => {
+                        setBigAge(Number(e.target.value));
+                      }}
+                    />
                   </S.FlexDiv>
                 </S.BlockDiv>
               </S.InputDiv>
@@ -777,6 +877,9 @@ const DashboardProjectAdd = () => {
             <S.CapsMessage />
           </S.MarginAutoDiv>
         </S.ColorDiv>
+        <S.ButtonDiv>
+          <SubmitButton text="저장하기" heights="0.8rem" sides="1.8rem" />
+        </S.ButtonDiv>
       </form>
     </S.Container>
   );
