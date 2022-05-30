@@ -1,20 +1,43 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 import * as S from './style';
+
 import Back from 'assets/images/arrowback.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import Logo from 'assets/images/logo-none.png';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import PostCode from 'components/DashBoard/PostCode';
 
 const DashboardProjectAdd = () => {
+  const [companyData, setCompanyData] = useState('');
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/enterprise');
+      const Data = await res.data;
+      setCompanyData(Data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const [titleName, setTitleName] = useState('');
   const [textArea, setTextArea] = useState(
     '1.프로젝트명: 2.현재개발진행사항 1총투입인력: 2현재설계개발상태: 3.담당업무 1 4.업무범위:5.전달사항또는(개발)우대사항: 1 6.필요인력: 명 7.개발자필요Spec 1 2 8.근무지: 9.개발기간: 10.월단가:제시바람 11.장비지참여부:',
   );
   const [bgColor, setBgColor] = useState('');
   const [projectColor, setProjectColor] = useState('');
+  const [jobfield, setJobfield] = useState('');
   const [jobChoice, setJobChoice] = useState(null);
 
   const [placePostcode, setPlacePostcode] = useState('우편번호');
@@ -27,7 +50,15 @@ const DashboardProjectAdd = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  const [comName, setComName] = useState('');
+  const [employeeName, setEmployeeName] = useState('');
+  const [emplyeePosition, setEmplyeePosition] = useState('');
+  const [comPhone, setComPhone] = useState('');
+  const [comTele, setComTele] = useState('');
+  const [comWebsite, setComWebsite] = useState('');
+
   const changeTitleColor = (e) => {
+    console.log(titleName);
     setTitleName(e.target.value);
   };
 
@@ -90,13 +121,74 @@ const DashboardProjectAdd = () => {
     );
   };
 
+  const PostProject = (e) => {
+    e.preventDefault();
+    axios({
+      method: 'POST',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
+      headers: {
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: {
+        projectType: titleName,
+        projectBackGround: bgColor,
+        enterpriseLogo: 'COUPANG',
+        projectStep: projectColor,
+        mainBiz: jobfield,
+        positionKind: 'DEVELOPER',
+        skill: '자바',
+        projectName: '쇼핑몰 프로젝트',
+        headCount: 10,
+        inputHeadCount: 10,
+        content: '프로젝트 상세내용',
+        projectStateDate: '2022-05-30',
+        projectEndDate: '2022-06-30',
+        recruitEndDate: '2022-06-04',
+        address: {
+          country: 'KR',
+          zipcode: '우편번호',
+          mainAddress: '주소',
+          detailAddress: '상세주소',
+        },
+        minMoney: 1000000,
+        maxMoney: 10000000,
+        careerYear: 3,
+        careerMonth: 3,
+        minDesiredAge: 30,
+        maxDesiredAge: 35,
+        companyName: '테스트회사',
+        name: '담당자명',
+        position: '사장',
+        phone: '010-0000-0000',
+        telNumber: '010-1111-1111',
+        email: 'project@gmail.com',
+      },
+    })
+      .then((res) => {
+        alert('정보를 수정했습니다.');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   useEffect(() => {
-    console.log(titleName);
-  }, [titleName]);
+    if (companyData.length < 1) {
+      fetchData();
+    }
+    if (companyData) {
+      setComName(companyData.companyName);
+      setEmployeeName(companyData.name);
+      setEmplyeePosition(companyData.position);
+      setComPhone(companyData.phone);
+      setComTele(companyData.telNumber);
+      setComWebsite(companyData.website);
+    }
+  }, [companyData]);
 
   return (
     <S.Container>
-      <form>
+      <form onSubmit={PostProject}>
         <S.SpacebetweenDiv>
           <Link to="/dashboard/project">
             <S.Img src={Back} alt="arrowback" />
@@ -110,12 +202,12 @@ const DashboardProjectAdd = () => {
               name="title"
               id="title1"
               type="radio"
-              value="상주 프로젝트"
-              bgColor={titleName === '상주 프로젝트' ? '#eb6100' : '#f2f2f2'}
-              tabletColor={titleName === '상주 프로젝트' ? '#eb6100' : '#f2f2f2'}
+              value="WORKING"
+              bgColor={titleName === 'WORKING' ? '#eb6100' : '#f2f2f2'}
+              tabletColor={titleName === 'WORKING' ? '#eb6100' : '#f2f2f2'}
               onClick={changeTitleColor}
             />
-            <S.JobLabel size="0.7rem" color={titleName === '상주 프로젝트' ? 'white' : 'black'} htmlFor="title1">
+            <S.JobLabel size="0.7rem" color={titleName === 'WORKING' ? 'white' : 'black'} htmlFor="title1">
               상주 프로젝트
             </S.JobLabel>
           </S.JobRadioLi>
@@ -124,12 +216,12 @@ const DashboardProjectAdd = () => {
               name="title"
               id="title2"
               type="radio"
-              value="재택 프로젝트"
-              bgColor={titleName === '재택 프로젝트' ? '#eb6100' : '#f2f2f2'}
-              tabletColor={titleName === '재택 프로젝트' ? '#eb6100' : '#f2f2f2'}
+              value="TELEWORKING"
+              bgColor={titleName === 'TELEWORKING' ? '#eb6100' : '#f2f2f2'}
+              tabletColor={titleName === 'TELEWORKING' ? '#eb6100' : '#f2f2f2'}
               onClick={changeTitleColor}
             />
-            <S.JobLabel size="0.7rem" color={titleName === '재택 프로젝트' ? 'white' : 'black'} htmlFor="title2">
+            <S.JobLabel size="0.7rem" color={titleName === 'TELEWORKING' ? 'white' : 'black'} htmlFor="title2">
               재택 프로젝트
             </S.JobLabel>
           </S.JobRadioLi>
@@ -247,13 +339,13 @@ const DashboardProjectAdd = () => {
                     name="job"
                     id="job1"
                     type="radio"
-                    value="분석/설계"
-                    bgColor={projectColor === '분석/설계' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === '분석/설계' ? '#f16300' : 'white'}
+                    value="ANALYSIS"
+                    bgColor={projectColor === 'ANALYSIS' ? '#f16300' : '#f2f2f2'}
+                    tabletColor={projectColor === 'ANALYSIS' ? '#f16300' : 'white'}
                     onClick={changeProjectColor}
                   />
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === '분석/설계' ? 'white' : 'black'} htmlFor="job1">
+                  <S.JobLabel color={projectColor === 'ANALYSIS' ? 'white' : 'black'} htmlFor="job1">
                     분석/설계
                   </S.JobLabel>
                 </S.JobRadioLi>
@@ -262,13 +354,13 @@ const DashboardProjectAdd = () => {
                     name="job"
                     id="job2"
                     type="radio"
-                    value="기획"
-                    bgColor={projectColor === '기획' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === '기획' ? '#f16300' : 'white'}
+                    value="PLAN"
+                    bgColor={projectColor === 'PLAN' ? '#f16300' : '#f2f2f2'}
+                    tabletColor={projectColor === 'PLAN' ? '#f16300' : 'white'}
                     onClick={changeProjectColor}
                   />
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === '기획' ? 'white' : 'black'} htmlFor="job2">
+                  <S.JobLabel color={projectColor === 'PLAN' ? 'white' : 'black'} htmlFor="job2">
                     기획
                   </S.JobLabel>
                 </S.JobRadioLi>
@@ -277,13 +369,13 @@ const DashboardProjectAdd = () => {
                     name="job"
                     id="job3"
                     type="radio"
-                    value="디자인"
-                    bgColor={projectColor === '디자인' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === '디자인' ? '#f16300' : 'white'}
+                    value="DESIGN"
+                    bgColor={projectColor === 'DESIGN' ? '#f16300' : '#f2f2f2'}
+                    tabletColor={projectColor === 'DESIGN' ? '#f16300' : 'white'}
                     onClick={changeProjectColor}
                   />
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === '디자인' ? 'white' : 'black'} htmlFor="job3">
+                  <S.JobLabel color={projectColor === 'DESIGN' ? 'white' : 'black'} htmlFor="job3">
                     디자인
                   </S.JobLabel>
                 </S.JobRadioLi>
@@ -292,13 +384,13 @@ const DashboardProjectAdd = () => {
                     name="job"
                     id="job4"
                     type="radio"
-                    value="퍼블리싱"
-                    bgColor={projectColor === '퍼블리싱' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === '퍼블리싱' ? '#f16300' : 'white'}
+                    value="PUBLISHING"
+                    bgColor={projectColor === 'PUBLISHING' ? '#f16300' : '#f2f2f2'}
+                    tabletColor={projectColor === 'PUBLISHING' ? '#f16300' : 'white'}
                     onClick={changeProjectColor}
                   />
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === '퍼블리싱' ? 'white' : 'black'} htmlFor="job4">
+                  <S.JobLabel color={projectColor === 'PUBLISHING' ? 'white' : 'black'} htmlFor="job4">
                     퍼블리싱
                   </S.JobLabel>
                 </S.JobRadioLi>
@@ -307,13 +399,13 @@ const DashboardProjectAdd = () => {
                     name="job"
                     id="job5"
                     type="radio"
-                    value="개발"
-                    bgColor={projectColor === '개발' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === '개발' ? '#f16300' : 'white'}
+                    value="DEVELOP"
+                    bgColor={projectColor === 'DEVELOP' ? '#f16300' : '#f2f2f2'}
+                    tabletColor={projectColor === 'DEVELOP' ? '#f16300' : 'white'}
                     onClick={changeProjectColor}
                   />
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === '개발' ? 'white' : 'black'} htmlFor="job5">
+                  <S.JobLabel color={projectColor === 'DEVELOP' ? 'white' : 'black'} htmlFor="job5">
                     개발
                   </S.JobLabel>
                 </S.JobRadioLi>
@@ -322,13 +414,13 @@ const DashboardProjectAdd = () => {
                     name="job"
                     id="job6"
                     type="radio"
-                    value="운영중"
-                    bgColor={projectColor === '운영중' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === '운영중' ? '#f16300' : 'white'}
+                    value="OPERATION"
+                    bgColor={projectColor === 'OPERATION' ? '#f16300' : '#f2f2f2'}
+                    tabletColor={projectColor === 'OPERATION' ? '#f16300' : 'white'}
                     onClick={changeProjectColor}
                   />
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === '운영중' ? 'white' : 'black'} htmlFor="job6">
+                  <S.JobLabel color={projectColor === 'OPERATION' ? 'white' : 'black'} htmlFor="job6">
                     운영중
                   </S.JobLabel>
                 </S.JobRadioLi>
@@ -339,7 +431,15 @@ const DashboardProjectAdd = () => {
                 <div>
                   <S.SpanTag right="2rem">업무분야</S.SpanTag>
                 </div>
-                <S.InputTag size="14.5rem" laptopSize="22rem" placeholder="예) 쇼핑몰, 여행사, 금융, 카드, 공공" />
+                <S.InputTag
+                  size="14.5rem"
+                  laptopSize="22rem"
+                  placeholder="예) 쇼핑몰, 여행사, 금융, 카드, 공공"
+                  value={jobfield}
+                  onChange={(e) => {
+                    setJobfield(e.target.value);
+                  }}
+                />
               </S.BlockDiv>
             </S.InputDiv>
             <S.ErrorMessage />
@@ -572,7 +672,15 @@ const DashboardProjectAdd = () => {
                 <div>
                   <S.SpanTag right="4.5rem">회사명</S.SpanTag>
                 </div>
-                <S.InputTag size="14.5rem" laptopSize="37.5rem" placeholder="회사명" />
+                <S.InputTag
+                  size="14.5rem"
+                  laptopSize="37.5rem"
+                  placeholder="회사명"
+                  value={comName}
+                  onChange={(e) => {
+                    setComName(e.target.value);
+                  }}
+                />
               </S.BlockDiv>
             </S.InputDiv>
             <S.ErrorMessage />
@@ -583,7 +691,14 @@ const DashboardProjectAdd = () => {
                   <div>
                     <S.SpanTag right="3.5rem">담당자명</S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="text" placeholder="담당자명" />
+                  <S.InputTag
+                    size="12rem"
+                    laptopSize="14rem"
+                    type="text"
+                    placeholder="담당자명"
+                    value={employeeName}
+                    onChange={(e) => setEmployeeName(e.target.value)}
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -595,7 +710,14 @@ const DashboardProjectAdd = () => {
                       직책
                     </S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="text" placeholder="예) 차장, 과장 , 팀장" />
+                  <S.InputTag
+                    size="12rem"
+                    laptopSize="14rem"
+                    type="text"
+                    placeholder="예) 차장, 과장 , 팀장"
+                    value={emplyeePosition}
+                    onChange={(e) => setEmplyeePosition(e.target.value)}
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -607,7 +729,14 @@ const DashboardProjectAdd = () => {
                   <div>
                     <S.SpanTag right="1.2rem">회사 전화번호</S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
+                  <S.InputTag
+                    size="12rem"
+                    laptopSize="14rem"
+                    type="number"
+                    placeholder="숫자만 입력"
+                    value={comPhone}
+                    onChange={(e) => setComPhone(e.target.value)}
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -617,7 +746,14 @@ const DashboardProjectAdd = () => {
                   <div>
                     <S.SpanTag right="0.9rem">담당자 휴대폰</S.SpanTag>
                   </div>
-                  <S.InputTag size="12rem" laptopSize="14rem" type="number" placeholder="숫자만 입력" />
+                  <S.InputTag
+                    size="12rem"
+                    laptopSize="14rem"
+                    type="number"
+                    placeholder="숫자만 입력"
+                    value={comTele}
+                    onChange={(e) => setComTele(e.target.value)}
+                  />
                 </S.BlockDiv>
                 <S.ErrorMessage />
                 <S.CapsMessage />
@@ -628,7 +764,13 @@ const DashboardProjectAdd = () => {
                 <div>
                   <S.SpanTag right="4.5rem">이메일</S.SpanTag>
                 </div>
-                <S.InputTag size="14.5rem" laptopSize="37.5rem" placeholder="name@example.com" />
+                <S.InputTag
+                  size="14.5rem"
+                  laptopSize="37.5rem"
+                  placeholder="name@example.com"
+                  value={comWebsite}
+                  onChange={(e) => setComWebsite(e.target.value)}
+                />
               </S.BlockDiv>
             </S.InputDiv>
             <S.ErrorMessage />
