@@ -492,12 +492,11 @@ export const DateDiv = styled.div`
     z-index: 99;
     .react-datepicker {
       box-shadow: 3px 2px 11px rgb(0 0 0 / 30%);
-      margin: 2rem 0 0 -15rem;
+      margin: ${(props) => props.dateTop} 0 0 0;
     }
     .react-datepicker__input-container input {
-      margin: -1rem 0 0 -16rem;
+      margin: -1rem 0 0 0;
       width: 15rem;
-      position: absolute;
       opacity: 0;
       height: 2rem;
       cursor: pointer;
@@ -547,5 +546,16 @@ export const CancelImg = styled.img`
   @media ${LAPTOP} {
     top: 1.3rem;
     left: 22rem;
+  }
+`;
+export const ButtonDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media ${LAPTOP} {
   }
 `;
