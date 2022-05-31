@@ -7,11 +7,13 @@ import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const DashBoardProject = () => {
   const [projectData, setProjectData] = useState('');
+  const [refresh, setRefresh] = useState(null);
 
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {
       Authorization: `${window.localStorage.accessToken}`,
+      refresh,
     },
   });
 
@@ -22,10 +24,11 @@ const DashBoardProject = () => {
       setProjectData(Data);
     } catch (err) {
       console.log(err);
+      if (err.message === '만료된 토큰입니다. Refresh 토큰이 필요합니다.') {
+        setRefresh(window.localStorage.refresh);
+      }
     }
   };
-
-  console.log(projectData);
 
   useEffect(() => {
     if (projectData.length < 1) {

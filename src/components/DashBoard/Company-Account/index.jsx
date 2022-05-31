@@ -45,49 +45,6 @@ const CompanyAccount = ({
   const [yearSale, setYearSale] = useState('');
   const [businessNumber, setBusinessNumber] = useState('');
 
-  const comNameFuntion = (e) => {
-    setComname(e.target.value);
-  };
-  const comCountFuntion = (e) => {
-    setComCount(Number(e.target.value));
-  };
-  const userNameFuntion = (e) => {
-    setUserName(e.target.value);
-  };
-  const userPositionFuntion = (e) => {
-    setUserPosition(e.target.value);
-  };
-  const userIdFuntion = (e) => {
-    setId(e.target.value);
-  };
-  const passwordFuntion = (e) => {
-    setPassword(e.target.value);
-  };
-  const passwordCheckFuntion = (e) => {
-    setPasswordCheck(e.target.value);
-  };
-  const phoneNumberFuntion = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-  const userPhoneNumberFuntion = (e) => {
-    setUserPhoneNumber(e.target.value);
-  };
-  const userEmailFuntion = (e) => {
-    setUserEmail(e.target.value);
-  };
-  const companyWebsiteFuntion = (e) => {
-    setCompanyWebsite(e.target.value);
-  };
-  const businessFuntion = (e) => {
-    setBusiness(e.target.value);
-  };
-  const yearSaleFuntion = (e) => {
-    setYearSale(Number(e.target.value));
-  };
-  const businessNumberFuntion = (e) => {
-    setBusinessNumber(e.target.value);
-  };
-
   const changeData = () => {
     if (userData) {
       setCompanyDatas({
@@ -197,7 +154,14 @@ const CompanyAccount = ({
             <div>
               <S.SpanTag right="4.9rem">회사명</S.SpanTag>
             </div>
-            <S.InputTag size="14.5rem" placeholder="회사명" value={comName} onChange={comNameFuntion} />
+            <S.InputTag
+              size="14.5rem"
+              placeholder="회사명"
+              value={comName}
+              onChange={(e) => {
+                setComname(e.target.value);
+              }}
+            />
           </S.BlockDiv>
           <S.ErrorMessage />
           <S.CapsMessage />
@@ -212,7 +176,9 @@ const CompanyAccount = ({
               size="14.5rem"
               placeholder="회사 인원수"
               value={comCount}
-              onChange={comCountFuntion}
+              onChange={(e) => {
+                setComCount(Number(e.target.value));
+              }}
             />
           </S.BlockDiv>
           <S.ErrorMessage />
@@ -223,13 +189,22 @@ const CompanyAccount = ({
             <div>
               <S.SpanTag right="4rem">담당자명</S.SpanTag>
             </div>
-            <S.InputTag Mobilesize="12rem" placeholder="담당자 명" value={userName} onChange={userNameFuntion} />
+            <S.InputTag
+              Mobilesize="12rem"
+              placeholder="담당자 명"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+            />
             <S.InputTag
               MobileMargin="0.4rem"
               Mobilesize="8rem"
               placeholder="직책"
               value={userPosition}
-              onChange={userPositionFuntion}
+              onChange={(e) => {
+                setUserPosition(e.target.value);
+              }}
             />
           </S.BlockDiv>
           <S.ErrorMessage />
@@ -245,7 +220,9 @@ const CompanyAccount = ({
               laptopSize="25rem"
               placeholder="회원아이디 5~15자 영문,숫자"
               value={id}
-              onChange={userIdFuntion}
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
             />
             <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
             <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
@@ -265,7 +242,9 @@ const CompanyAccount = ({
                 autoComplete="on"
                 placeholder="비밀번호"
                 value={password}
-                onChange={passwordFuntion}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </S.BlockDiv>
             <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
@@ -285,7 +264,9 @@ const CompanyAccount = ({
                 autoComplete="on"
                 placeholder="비밀번호 확인"
                 value={passwordCheck}
-                onChange={passwordCheckFuntion}
+                onChange={(e) => {
+                  setPasswordCheck(e.target.value);
+                }}
               />
             </S.BlockDiv>
             <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
@@ -305,7 +286,9 @@ const CompanyAccount = ({
                 type="number"
                 placeholder="숫자만 입력"
                 value={phoneNumber}
-                onChange={phoneNumberFuntion}
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                }}
               />
             </S.BlockDiv>
             <S.ErrorMessage />
@@ -322,7 +305,9 @@ const CompanyAccount = ({
                 type="number"
                 placeholder="숫자만 입력"
                 value={userPhoneNumber}
-                onChange={userPhoneNumberFuntion}
+                onChange={(e) => {
+                  setUserPhoneNumber(e.target.value);
+                }}
               />
             </S.BlockDiv>
             <S.ErrorMessage />
@@ -339,7 +324,9 @@ const CompanyAccount = ({
               laptopSize="23rem"
               placeholder="name@example.com"
               value={userEmail}
-              onChange={userEmailFuntion}
+              onChange={(e) => {
+                setUserEmail(e.target.value);
+              }}
             />
           </S.BlockDiv>
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
@@ -357,7 +344,9 @@ const CompanyAccount = ({
               laptopSize="23rem"
               placeholder="name@example.com"
               value={companyWebsite}
-              onChange={companyWebsiteFuntion}
+              onChange={(e) => {
+                setCompanyWebsite(e.target.value);
+              }}
             />
           </S.BlockDiv>
           <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
@@ -385,7 +374,14 @@ const CompanyAccount = ({
                 </S.SpanTag>
               </div>
               <S.CapsMessage Mobiledisplay="none" display="block" />
-              <S.InputTag size="8rem" placeholder="주요 사업내용" value={business} onChange={businessFuntion} />
+              <S.InputTag
+                size="8rem"
+                placeholder="주요 사업내용"
+                value={business}
+                onChange={(e) => {
+                  setBusiness(e.target.value);
+                }}
+              />
             </S.BlockDiv>
             <S.CapsMessage />
           </S.InputDiv>
@@ -402,7 +398,9 @@ const CompanyAccount = ({
                 placeholder="연간 매출액"
                 type="number"
                 value={yearSale}
-                onChange={yearSaleFuntion}
+                onChange={(e) => {
+                  setYearSale(Number(e.target.value));
+                }}
               />
             </S.BlockDiv>
             <S.CapsMessage />
@@ -419,7 +417,9 @@ const CompanyAccount = ({
                 placeholder="사업자등록번호"
                 type="number"
                 value={businessNumber}
-                onChange={businessNumberFuntion}
+                onChange={(e) => {
+                  setBusinessNumber(e.target.value);
+                }}
               />
             </S.BlockDiv>
             <S.CapsMessage />
