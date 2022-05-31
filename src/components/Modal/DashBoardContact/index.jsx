@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
@@ -7,6 +10,41 @@ const ContactModal = ({ setModalBool }) => {
   const domNode = useCloseOutside(() => {
     setModalBool(false);
   });
+
+  const [userData, setUserData] = useState('');
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/enterprise');
+      const data = await res.data;
+      setUserData(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  console.log(userData);
+
+  const [comName, setComName] = useState('');
+  const [comPhone, setComPhone] = useState('');
+  const [comEmail, setComEmail] = useState('');
+
+  useEffect(() => {
+    if (userData.length < 1) {
+      fetchData();
+    }
+    if (userData) {
+      setComName(userData.name);
+      setComPhone(userData.phone);
+      setComEmail(userData.email);
+    }
+  }, [userData]);
 
   return (
     <S.Container ref={domNode}>
@@ -24,19 +62,37 @@ const ContactModal = ({ setModalBool }) => {
         <S.H2 width="200px" tabletWidth="151px">
           성명
         </S.H2>
-        <S.Input />
+        <S.Input
+          value={comName}
+          onChange={(e) => {
+            setComName(e.target.value);
+          }}
+        />
       </S.FlexInputDiv>
       <S.FlexInputDiv top="0.8rem">
         <S.H2 width="198px" tabletWidth="150px">
           휴대폰
         </S.H2>
-        <S.Input />
+        <S.Input
+          value={comPhone}
+          onChange={(e) => {
+            setComPhone(e.target.value);
+            if (comPhone.length === 13) {
+              setComPhone(comPhone.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+            }
+          }}
+        />
       </S.FlexInputDiv>
       <S.FlexInputDiv top="0.8rem">
         <S.H2 width="198px" tabletWidth="150px">
           이메일
         </S.H2>
-        <S.Input />
+        <S.Input
+          value={comEmail}
+          onChange={(e) => {
+            setComEmail(e.target.value);
+          }}
+        />
       </S.FlexInputDiv>
       <S.FlexInputDiv top="0.8rem">
         <S.H2 width="200px" tabletWidth="151px">
