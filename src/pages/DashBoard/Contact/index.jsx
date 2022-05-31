@@ -1,18 +1,49 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
+
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
 import ContactModal from 'components/Modal/DashBoardContact';
 
 const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
+  const [contentBool, setContentBool] = useState(false);
+
+  const [ContactData, setContactData] = useState('');
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+
+  const FetchData = async () => {
+    try {
+      const res = await authAxios('/contacts');
+      const data = await res.data;
+      setContactData(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  console.log(ContactData);
+
+  useEffect(() => {
+    if (ContactData === '') {
+      FetchData();
+    }
+  }, [ContactData]);
 
   return (
     <S.Container>
       {modalBool === true && <ContactModal setModalBool={setModalBool} />}
-      <S.FlexDiv>
+      <S.FlexDiv top="2.2rem">
         <S.H1 size="2.4rem">문의/요청</S.H1>
         <S.H1
           size="1.4rem"
@@ -73,11 +104,43 @@ const DashboardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         프로젝트 문의 (0)
       </S.H1>
-      <S.BorderDiv />
+      <S.BorderDiv display="none" />
       <S.H1 top="3rem" size="2.4rem">
         나의 문의/요청 (0)
       </S.H1>
-      <S.BorderDiv />
+      <S.Colordiv>
+        <S.FlexDiv>
+          <S.DisplayFlexDiv>
+            <S.NoAnwser>미답변</S.NoAnwser>
+            <S.TitleP>{ContactData.length > 1 ? ContactData[0].title : ''}</S.TitleP>
+          </S.DisplayFlexDiv>
+          <S.DisplayFlexDiv>
+            <S.DateP>2022-06-01</S.DateP>
+            <S.ButtonP
+              onClick={(e) => {
+                e.preventDefault();
+                setContentBool(!contentBool);
+              }}
+            >
+              hello
+            </S.ButtonP>
+          </S.DisplayFlexDiv>
+        </S.FlexDiv>
+        {contentBool === true && (
+          <S.SecondDiv>
+            <S.DisplayFlexDiv>
+              <S.BlueSpan>[문의내용]</S.BlueSpan>
+              <S.TitleP>{ContactData.length > 1 ? ContactData[0].content : ''}</S.TitleP>
+            </S.DisplayFlexDiv>
+            <S.BorderDiv />
+            <S.FlexEndDiv>
+              <S.ButtonDiv color="#7485c9">수정</S.ButtonDiv>
+              <S.ButtonDiv color="#b7b7b7">삭제</S.ButtonDiv>
+            </S.FlexEndDiv>
+          </S.SecondDiv>
+        )}
+      </S.Colordiv>
+      <S.BorderDiv display="none" />
     </S.Container>
   );
 };
