@@ -35,6 +35,31 @@ const ContactModal = ({ setModalBool }) => {
   const [comPhone, setComPhone] = useState('');
   const [comEmail, setComEmail] = useState('');
 
+  const [contactTitle, setContactTitle] = useState('');
+  const [contactContent, setContactContent] = useState('');
+
+  const SubmitContact = (e) => {
+    e.preventDefault();
+    axios({
+      method: 'POST',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-save',
+      headers: {
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: {
+        title: contactTitle,
+        content: contactContent,
+      },
+    })
+      .then((res) => {
+        alert('문의가 등록되었습니다.');
+        setModalBool(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   useEffect(() => {
     if (userData.length < 1) {
       fetchData();
@@ -48,69 +73,65 @@ const ContactModal = ({ setModalBool }) => {
 
   return (
     <S.Container ref={domNode}>
-      <S.FlexDiv>
-        <S.Img
-          src={Cancel}
-          alt="cancel"
-          onClick={() => {
-            setModalBool(false);
-          }}
-        />
-        <S.H1>1:1 문의/요청</S.H1>
-      </S.FlexDiv>
-      <S.FlexInputDiv top="0.3rem">
-        <S.H2 width="200px" tabletWidth="151px">
-          성명
-        </S.H2>
-        <S.Input
-          value={comName}
-          onChange={(e) => {
-            setComName(e.target.value);
-          }}
-        />
-      </S.FlexInputDiv>
-      <S.FlexInputDiv top="0.8rem">
-        <S.H2 width="198px" tabletWidth="150px">
-          휴대폰
-        </S.H2>
-        <S.Input
-          value={comPhone}
-          onChange={(e) => {
-            setComPhone(e.target.value);
-            if (comPhone.length === 13) {
-              setComPhone(comPhone.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
-            }
-          }}
-        />
-      </S.FlexInputDiv>
-      <S.FlexInputDiv top="0.8rem">
-        <S.H2 width="198px" tabletWidth="150px">
-          이메일
-        </S.H2>
-        <S.Input
-          value={comEmail}
-          onChange={(e) => {
-            setComEmail(e.target.value);
-          }}
-        />
-      </S.FlexInputDiv>
-      <S.FlexInputDiv top="0.8rem">
-        <S.H2 width="200px" tabletWidth="151px">
-          제목
-        </S.H2>
-        <S.Input placeholder="제목입니다." />
-      </S.FlexInputDiv>
-      <S.FlexInputDiv top="0.9rem">
-        <S.H2 width="85px" tabletWidth="140px" top="-2rem">
-          문의내용
-        </S.H2>
-        <S.Textarea placeholder="문의내용을 입력해주세요." />
-      </S.FlexInputDiv>
-      <S.BorderDiv>
-        <S.ButtonDiv>
-          <SubmitButton text="문의하기" heights="0.8rem" marginTop="1rem" />
-        </S.ButtonDiv>
-      </S.BorderDiv>
+      <form onSubmit={SubmitContact}>
+        <S.FlexDiv>
+          <S.Img
+            src={Cancel}
+            alt="cancel"
+            onClick={() => {
+              setModalBool(false);
+            }}
+          />
+          <S.H1>1:1 문의/요청</S.H1>
+        </S.FlexDiv>
+        <S.FlexInputDiv top="0.3rem">
+          <S.H2 width="200px" tabletWidth="151px">
+            성명
+          </S.H2>
+          <S.Input value={comName} readOnly />
+        </S.FlexInputDiv>
+        <S.FlexInputDiv top="0.8rem">
+          <S.H2 width="198px" tabletWidth="150px">
+            휴대폰
+          </S.H2>
+          <S.Input value={comPhone} readOnly />
+        </S.FlexInputDiv>
+        <S.FlexInputDiv top="0.8rem">
+          <S.H2 width="198px" tabletWidth="150px">
+            이메일
+          </S.H2>
+          <S.Input value={comEmail} readonly />
+        </S.FlexInputDiv>
+        <S.FlexInputDiv top="0.8rem">
+          <S.H2 width="200px" tabletWidth="151px">
+            제목
+          </S.H2>
+          <S.Input
+            placeholder="제목입니다."
+            value={contactTitle}
+            onChange={(e) => {
+              setContactTitle(e.target.value);
+            }}
+          />
+        </S.FlexInputDiv>
+        <S.FlexInputDiv top="0.9rem">
+          <S.H2 width="85px" tabletWidth="140px" top="-2rem">
+            문의내용
+          </S.H2>
+          <S.Textarea
+            placeholder="문의내용을 입력해주세요."
+            value={contactContent}
+            onChange={(e) => {
+              setContactContent(e.target.value);
+            }}
+          />
+        </S.FlexInputDiv>
+        <S.BorderDiv>
+          <S.ButtonDiv>
+            <SubmitButton text="문의하기" heights="0.8rem" marginTop="1rem" />
+          </S.ButtonDiv>
+        </S.BorderDiv>
+      </form>
     </S.Container>
   );
 };
