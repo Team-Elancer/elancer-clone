@@ -14,6 +14,7 @@ import Header from 'layouts/Header';
 
 const Main = () => {
   const [newDatas, setNewDatas] = useState();
+
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {
@@ -32,7 +33,6 @@ const Main = () => {
 
   useEffect(() => {
     fetchData();
-    console.log(newDatas);
   }, []);
 
   return (
