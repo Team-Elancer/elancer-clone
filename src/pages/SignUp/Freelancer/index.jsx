@@ -113,10 +113,11 @@ const SignUpFreeLancer = () => {
         });
     }
   };
+
   const CreateWrite = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('img', checkImg);
+    formData.append('file', checkImg);
     axios({
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
@@ -139,12 +140,12 @@ const SignUpFreeLancer = () => {
         navi('/signup/finish');
       })
       .catch((err) => {
+        console.log('error');
         console.log(err.message);
       });
   };
 
   useEffect(() => {
-    console.log(emailRadio);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
