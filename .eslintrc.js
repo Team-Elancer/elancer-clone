@@ -18,11 +18,12 @@ module.exports = {
     "eslint-config-prettier",
     "plugin:prettier/recommended",
   ],
-  parser: "babel-eslint",
+  parser: "@babel/eslint-parser",
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: "module",
     ecmaFeatures: { modules: true },
+    jsx: true,
   },
   plugins: ["react", "prefer-arrow"],
   rules: {

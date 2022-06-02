@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import JobField from './JobField';
 
@@ -12,6 +12,7 @@ import ProfileImgDefault from 'assets/images/signin-profile.png';
 
 const MyBoardAccount = () => {
   const navi = useNavigate();
+  const [userData, setUserData] = useOutletContext();
 
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
@@ -33,9 +34,13 @@ const MyBoardAccount = () => {
   const [selectImg, setSelectImg] = useState(null);
   const [website, setWebsite] = useState('');
 
+  // console.log(userData);
+  // console.log(name);
+
   const nameFuntion = (e) => {
     setName(e.target.value);
   };
+
   const idFuntion = (e) => {
     setId(e.target.value);
   };
@@ -147,7 +152,7 @@ const MyBoardAccount = () => {
                       size="14.5rem"
                       laptopSize="19rem"
                       placeholder="성명"
-                      value={name}
+                      value={userData.name}
                       onChange={nameFuntion}
                     />
                   </S.BlockDiv>

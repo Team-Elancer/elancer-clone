@@ -85,38 +85,67 @@ const SignUpFreeLancer = () => {
     );
   };
 
-  const changeProfileImg = (e) => {
-    const file = e.target.files[0];
-    setCheckImg(e.target.files[0]);
+  const changeProfileImg = async (e) => {
+    const file = e.target?.files[0];
+    setCheckImg(e.target?.files[0]);
+
     const formData = new FormData();
-    formData.append('img', file);
+    formData.append('file', file);
+
     const reader = new FileReader();
+
     reader.onloadend = (e) => {
       setSelectImg(e.target.result);
     };
+
     reader.readAsDataURL(file);
-    if (checkImg !== null) {
-      fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        body: JSON.stringify({
-          file: checkImg,
-        }),
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
+
+    try {
+      const res = await axios.post(
+        'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload',
+        formData,
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
     }
   };
+
+  // const changeProfileImg = (e) => {
+  //   const file = e.target.files[0];
+  //   setCheckImg(e.target.files[0]);
+  //   const formData = new FormData();
+  //   formData.append('img', file);
+  //   console.log(formData);
+  //   const reader = new FileReader();
+  //   reader.onloadend = (e) => {
+  //     setSelectImg(e.target.result);
+  //   };
+  //   reader.readAsDataURL(file);
+  //   if (checkImg !== null) {
+  //     fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //       body: JSON.stringify({
+  //         file: checkImg,
+  //       }),
+  //     })
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((error) => {
+  //         alert(error.message);
+  //       });
+  //   }
+  // };
+
   const CreateWrite = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('img', checkImg);
+    formData.append('file', checkImg);
+
     axios({
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
@@ -128,9 +157,9 @@ const SignUpFreeLancer = () => {
         memberEmail: email,
         mailReceptionState: emailRadio,
         memberPhone: phoneNumber,
-        workPossibleState: jobRadio,
         positionType: jobType,
-        workStartPossibleDate: selectedDate,
+        workPossibleState: jobRadio,
+        workStartPossibleDate: '2022-06-01',
         thumbnail: null,
       },
     })
@@ -139,6 +168,9 @@ const SignUpFreeLancer = () => {
         navi('/signup/finish');
       })
       .catch((err) => {
+        console.log(err.response);
+        console.log(err.response.data);
+        console.log('error');
         console.log(err.message);
       });
   };
