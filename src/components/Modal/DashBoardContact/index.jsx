@@ -6,10 +6,12 @@ import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
 
-const ContactModal = ({ setModalBool }) => {
+const ContactModal = ({ setModalBool, index, NumTitle, NumContent, text = '문의하기' }) => {
   const domNode = useCloseOutside(() => {
     setModalBool(false);
   });
+
+  console.log(index);
 
   const [userData, setUserData] = useState('');
 
@@ -29,7 +31,6 @@ const ContactModal = ({ setModalBool }) => {
       console.log(err.message);
     }
   };
-  console.log(userData);
 
   const [comName, setComName] = useState('');
   const [comPhone, setComPhone] = useState('');
@@ -128,7 +129,7 @@ const ContactModal = ({ setModalBool }) => {
         </S.FlexInputDiv>
         <S.BorderDiv>
           <S.ButtonDiv>
-            <SubmitButton text="문의하기" heights="0.8rem" marginTop="1rem" />
+            <SubmitButton text={index ? text : '문의하기'} heights="0.8rem" marginTop="1rem" />
           </S.ButtonDiv>
         </S.BorderDiv>
       </form>

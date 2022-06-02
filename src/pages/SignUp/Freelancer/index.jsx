@@ -177,7 +177,6 @@ const SignUpFreeLancer = () => {
 
   useEffect(() => {
     console.log(selectedDate);
-
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
