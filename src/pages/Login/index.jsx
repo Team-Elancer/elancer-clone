@@ -41,7 +41,7 @@ const Login = () => {
     })
       .then((res) => {
         window.localStorage.setItem('accessToken', res.data.accessToken);
-        window.localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
+        window.localStorage.setItem('refreshToken', res.data.refreshToken);
         window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
         if (window.localStorage !== undefined) {
           navi(`/`);
