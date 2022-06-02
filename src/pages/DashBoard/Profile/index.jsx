@@ -6,12 +6,33 @@ import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 
 const DashBoardProfile = () => {
   const [userDatas, setUserDatas] = useState('');
+
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {
       Authorization: `${window.localStorage.accessToken}`,
+      // 'Refresh-Authorization': `${window.localStorage.refreshToken}`,
     },
   });
+
+  // const fetchData = async () => {
+  //   try {
+  //     const res = await authAxios('/reissue');
+  //     const Data = await res.data;
+  //     window.localStorage.setItem('accessToken', Data.accessToken);
+  //     window.localStorage.setItem('refreshToken', Data.refreshToken);
+  //     setUserDatas(Data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // const authAxios = axios.create({
+  //   baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+  //   headers: {
+  //     Authorization: `${window.localStorage.accessToken}`,
+  //   },
+  // });
   const fetchData = async () => {
     try {
       const res = await authAxios('/enterprise');

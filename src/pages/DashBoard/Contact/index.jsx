@@ -11,7 +11,6 @@ import ContactModal from 'components/Modal/DashBoardContact';
 
 const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
-  const [contentBool, setContentBool] = useState(false);
 
   const [ContactData, setContactData] = useState('');
 
@@ -108,40 +107,70 @@ const DashboardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         나의 문의/요청 (0)
       </S.H1>
-      <S.Colordiv>
-        <S.FlexDiv>
+      {ContactData !== '' &&
+        ContactData.map((data, i) => {
+          return (
+            <MyContact
+              key={data.num}
+              ContactData={ContactData}
+              modalBool={modalBool}
+              setModalBool={setModalBool}
+              title={data.title}
+              content={data.content}
+              index={data.num}
+            />
+          );
+        })}
+      <S.BorderDiv display="none" />
+      {modalBool === true && <ContactModal setModalBool={setModalBool} />}
+    </S.Container>
+  );
+};
+
+const MyContact = ({ ContactData, modalBool, setModalBool, title, content, index }) => {
+  const [contentBool, setContentBool] = useState(false);
+
+  return (
+    <S.Colordiv>
+      <S.FlexDiv>
+        <S.DisplayFlexDiv>
+          <S.NoAnwser>미답변</S.NoAnwser>
+          <S.TitleP>{ContactData.length > 1 ? title : ''}</S.TitleP>
+        </S.DisplayFlexDiv>
+        <S.DisplayFlexDiv>
+          <S.DateP>2022-06-01</S.DateP>
+          <S.ButtonP
+            onClick={(e) => {
+              e.preventDefault();
+              setContentBool(!contentBool);
+            }}
+          >
+            hello
+          </S.ButtonP>
+        </S.DisplayFlexDiv>
+      </S.FlexDiv>
+      {contentBool === true && (
+        <S.SecondDiv>
           <S.DisplayFlexDiv>
-            <S.NoAnwser>미답변</S.NoAnwser>
-            <S.TitleP>{ContactData.length > 1 ? ContactData[0].title : ''}</S.TitleP>
+            <S.BlueSpan>[문의내용]</S.BlueSpan>
+            <S.TitleP>{ContactData.length > 1 ? content : ''}</S.TitleP>
           </S.DisplayFlexDiv>
-          <S.DisplayFlexDiv>
-            <S.DateP>2022-06-01</S.DateP>
-            <S.ButtonP
-              onClick={(e) => {
-                e.preventDefault();
-                setContentBool(!contentBool);
+          <S.BorderDiv />
+          <S.FlexEndDiv>
+            <S.ButtonDiv
+              color="#7485c9"
+              onClick={() => {
+                setModalBool(!modalBool);
+                window.scrollTo(0, 0);
               }}
             >
-              hello
-            </S.ButtonP>
-          </S.DisplayFlexDiv>
-        </S.FlexDiv>
-        {contentBool === true && (
-          <S.SecondDiv>
-            <S.DisplayFlexDiv>
-              <S.BlueSpan>[문의내용]</S.BlueSpan>
-              <S.TitleP>{ContactData.length > 1 ? ContactData[0].content : ''}</S.TitleP>
-            </S.DisplayFlexDiv>
-            <S.BorderDiv />
-            <S.FlexEndDiv>
-              <S.ButtonDiv color="#7485c9">수정</S.ButtonDiv>
-              <S.ButtonDiv color="#b7b7b7">삭제</S.ButtonDiv>
-            </S.FlexEndDiv>
-          </S.SecondDiv>
-        )}
-      </S.Colordiv>
-      <S.BorderDiv display="none" />
-    </S.Container>
+              수정
+            </S.ButtonDiv>
+            <S.ButtonDiv color="#b7b7b7">삭제</S.ButtonDiv>
+          </S.FlexEndDiv>
+        </S.SecondDiv>
+      )}
+    </S.Colordiv>
   );
 };
 

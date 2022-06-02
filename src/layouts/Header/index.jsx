@@ -15,7 +15,6 @@ const Header = ({ freelancerBoard }) => {
   const changeBool = () => {
     return setCeckBool(false);
   };
-
   return (
     <>
       {window.localStorage.accessToken === undefined && (
@@ -50,7 +49,7 @@ const Header = ({ freelancerBoard }) => {
           </S.HeaderDiv>
         </S.Container>
       )}
-      {window.localStorage.accessToken !== undefined && <CompanyHeader width="830px" />}
+      {window.localStorage.memberType === '"ENTERPRISE"' && <CompanyHeader width="830px" />}
     </>
   );
 };

@@ -73,7 +73,7 @@ const SignUpFreeLancer = () => {
   const dateFunction = (date) => {
     setSelectedDate(
       date
-        .toLocaleDateString()
+        .toLocaleDateString('ko-KR')
         .split(' ')
         .join('')
         .split('.')
@@ -144,7 +144,7 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
-    console.log(emailRadio);
+    console.log(selectedDate);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');
@@ -159,7 +159,7 @@ const SignUpFreeLancer = () => {
       setSecondEyeImg(OpenEye);
       setCommitType('text');
     }
-  }, [eyeCheck, eyeCheck2, emailRadio]);
+  }, [eyeCheck, eyeCheck2, selectedDate]);
 
   return (
     <form onSubmit={CreateWrite}>
