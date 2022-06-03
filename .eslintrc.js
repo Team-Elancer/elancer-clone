@@ -44,6 +44,7 @@ module.exports = {
       },
     ],
     "import/no-unresolved": "off",
+    "import/no-named-as-default": 0,
     "import/prefer-default-export": "off",
     "prefer-arrow/prefer-arrow-functions": [
       "error",

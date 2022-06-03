@@ -12,16 +12,11 @@ import ProfileImgDefault from 'assets/images/signin-profile.png';
 
 const MyBoardAccount = () => {
   const navi = useNavigate();
+
   const [userData, setUserData] = useOutletContext();
 
-  const [eyeCheck, setEyeCheck] = useState(true);
-  const [eyeCheck2, setEyeCheck2] = useState(true);
-  const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
-  const [secondEyeImg, setSecondEyeImg] = useState(CloseEye);
-  const [pwType, setPwType] = useState('password');
-  const [commitType, setCommitType] = useState('password');
+  const [name, setName] = useState(userData.name);
 
-  const [name, setName] = useState('');
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -34,50 +29,20 @@ const MyBoardAccount = () => {
   const [selectImg, setSelectImg] = useState(null);
   const [website, setWebsite] = useState('');
 
-  // console.log(userData);
-  // console.log(name);
+  const [eyeCheck, setEyeCheck] = useState(true);
+  const [eyeCheck2, setEyeCheck2] = useState(true);
+  const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
+  const [secondEyeImg, setSecondEyeImg] = useState(CloseEye);
+  const [pwType, setPwType] = useState('password');
+  const [commitType, setCommitType] = useState('password');
 
-  const nameFuntion = (e) => {
-    setName(e.target.value);
-  };
-
-  const idFuntion = (e) => {
-    setId(e.target.value);
-  };
-  const passwordFuntion = (e) => {
-    setPassword(e.target.value);
-  };
-  const passwordConfirmFuntion = (e) => {
-    setPasswordConfirm(e.target.value);
-  };
-  const emailFuntion = (e) => {
-    setEmail(e.target.value);
-  };
-  const emailRadioFuntion = (e) => {
-    setEmailRadio(e.target.value);
-  };
-  const phoneNumberFuntion = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const jobFuntion = (e) => {
-    setJobType(e.target.value);
-  };
-  const jobRadioFuntion = (e) => {
-    setJobRadio(e.target.value);
-  };
-
-  const changeEye = () => {
-    setEyeCheck(!eyeCheck);
-  };
-
-  const changeSecondEye = () => {
-    setEyeCheck2(!eyeCheck2);
-  };
-
-  const changeWebsite = (e) => {
-    setWebsite(e.target.value);
-  };
+  useEffect(() => {
+    if (userData) {
+      setName(userData.name);
+      setPhoneNumber(userData.phone);
+      setEmail(userData.email);
+    }
+  }, [userData]);
 
   const dateFunction = (date) => {
     setSelectedDate(
@@ -152,8 +117,8 @@ const MyBoardAccount = () => {
                       size="14.5rem"
                       laptopSize="19rem"
                       placeholder="성명"
-                      value={userData.name}
-                      onChange={nameFuntion}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </S.BlockDiv>
                   <S.ErrorMessage />
@@ -172,12 +137,12 @@ const MyBoardAccount = () => {
                       autoComplete="on"
                       placeholder="비밀번호"
                       value={password}
-                      onChange={passwordFuntion}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </S.BlockDiv>
                   <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
                   <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
-                  <S.EyeImg src={firstEyeImg} alt="eye" onClick={changeEye} />
+                  <S.EyeImg src={firstEyeImg} alt="eye" onClick={(e) => setEyeCheck(!eyeCheck)} />
                 </S.InputDiv>
                 <S.InputDiv>
                   <S.BlockDiv>
@@ -192,12 +157,12 @@ const MyBoardAccount = () => {
                       autoComplete="on"
                       placeholder="비밀번호 확인"
                       value={passwordConfirm}
-                      onChange={passwordConfirmFuntion}
+                      onChange={(e) => setPasswordConfirm(e.target.value)}
                     />
                   </S.BlockDiv>
                   <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
                   <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
-                  <S.EyeImg src={secondEyeImg} alt="eye" onClick={changeSecondEye} />
+                  <S.EyeImg src={secondEyeImg} alt="eye" onClick={(e) => setEyeCheck2(!eyeCheck2)} />
                 </S.InputDiv>
                 <S.EmailFlex>
                   <S.InputDiv>
@@ -210,7 +175,7 @@ const MyBoardAccount = () => {
                         laptopSize="18rem"
                         placeholder="name@example.com"
                         value={email}
-                        onChange={emailFuntion}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </S.BlockDiv>
                     <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
@@ -232,7 +197,7 @@ const MyBoardAccount = () => {
                       placeholder="숫자만 입력"
                       type="text"
                       value={phoneNumber}
-                      onChange={phoneNumberFuntion}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </S.BlockDiv>
                   <S.ErrorMessage />
@@ -249,7 +214,7 @@ const MyBoardAccount = () => {
                       placeholder="www.example.com"
                       type="text"
                       value={website}
-                      onChange={changeWebsite}
+                      onChange={(e) => setWebsite(e.target.value)}
                     />
                   </S.BlockDiv>
                   <S.ErrorMessage />
@@ -321,7 +286,7 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">KOSA보유</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="kosa" value="kosa" />
                       <S.RadioText>가능</S.RadioText>
@@ -342,7 +307,7 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">메일수신 여부</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="email" value="POSSIBLE" />
                       <S.RadioText>수신</S.RadioText>
@@ -363,7 +328,7 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">현재 업무상태</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="employed" value="POSSIBLE" />
                       <S.RadioText>구직중</S.RadioText>
@@ -392,7 +357,7 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">희망 업무형태</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="environment" value="POSSIBLE" />
                       <S.RadioText>상주</S.RadioText>
@@ -421,7 +386,7 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">업무가능 여부</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="job" value="POSSIBLE" />
                       <S.RadioText>가능</S.RadioText>
@@ -445,6 +410,7 @@ const MyBoardAccount = () => {
           </S.ProfileDiv>
         </S.SecondContainer>
       </form>
+      )
     </S.FrameAccount>
   );
 };

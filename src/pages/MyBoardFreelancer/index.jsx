@@ -12,6 +12,8 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const MyBoardFreelancer = () => {
+  const [tokenData, setTokenData] = useState(false);
+
   const [userData, setUserData] = useState({
     birthDate: null,
     careerMonth: 0,
@@ -41,40 +43,47 @@ const MyBoardFreelancer = () => {
   });
 
   const CLIENT = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {
       Authorization: `${window.localStorage.accessToken}`,
     },
   });
 
   const CLIENT_GET_REFRESHTOKEN = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/reissue',
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {
       Authorization: `${window.localStorage.accessToken}`,
       'Refresh-Authorization': `${window.localStorage.refreshToken}`,
     },
   });
 
+  const getNewToken = async () => {
+    console.log('access token 재발급 시작');
+
+    const response = await CLIENT_GET_REFRESHTOKEN('/reissue');
+    const TOKEN = await response.data;
+
+    localStorage.setItem('accessToken', TOKEN.accessToken);
+    localStorage.setItem('refreshToken', TOKEN.refreshToken);
+
+    console.log('access token 재발급 완료', TOKEN);
+  };
+
   const fetchData = async () => {
     try {
-      // const CLIENT_DATA = await CLIENT.get();
-      // const REFRESH = await CLIENT_GET_REFRESHTOKEN.get();
-      // const DATA = await REFRESH.data();
+      const response = await CLIENT('/freelancer');
 
-      // console.log(DATA);
-
-      const res = await CLIENT_GET_REFRESHTOKEN.get();
-      console.log(res.data);
-
-      if (res.data.code === '402') {
-        console.log('402 checked');
-        const res = await CLIENT_GET_REFRESHTOKEN();
-        console.log(res);
+      if (response.data.code === '402') {
+        console.log('402 checked - accessToken 만료');
+        getNewToken();
+        setTokenData(true);
       }
 
-      const Data = await res.data;
+      const fetchedData = await response.data;
 
-      setUserData(Data);
+      if (fetchedData) {
+        setUserData(fetchedData);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +91,7 @@ const MyBoardFreelancer = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [tokenData]);
 
   return (
     <S.Container>
