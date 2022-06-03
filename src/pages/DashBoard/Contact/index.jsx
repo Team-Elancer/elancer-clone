@@ -7,6 +7,7 @@ import { IoMdDesktop } from 'react-icons/io';
 
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
+import ContactPutModal from 'components/Modal/ContactPut';
 import ContactModal from 'components/Modal/DashBoardContact';
 
 const DashboardContact = () => {
@@ -32,7 +33,6 @@ const DashboardContact = () => {
   };
 
   console.log(ContactData);
-
   useEffect(() => {
     if (ContactData === '') {
       FetchData();
@@ -122,13 +122,13 @@ const DashboardContact = () => {
           );
         })}
       <S.BorderDiv display="none" />
-      {modalBool === true && <ContactModal setModalBool={setModalBool} />}
     </S.Container>
   );
 };
 
-const MyContact = ({ ContactData, modalBool, setModalBool, title, content, index }) => {
+const MyContact = ({ ContactData, title, content, index }) => {
   const [contentBool, setContentBool] = useState(false);
+  const [putmodalBool, setPutModalBool] = useState(false);
 
   return (
     <S.Colordiv>
@@ -151,6 +151,9 @@ const MyContact = ({ ContactData, modalBool, setModalBool, title, content, index
       </S.FlexDiv>
       {contentBool === true && (
         <S.SecondDiv>
+          {putmodalBool === true && (
+            <ContactPutModal setPutModalBool={setPutModalBool} NumTitle={title} NumContent={content} index={index} />
+          )}
           <S.DisplayFlexDiv>
             <S.BlueSpan>[문의내용]</S.BlueSpan>
             <S.TitleP>{ContactData.length > 1 ? content : ''}</S.TitleP>
@@ -160,7 +163,7 @@ const MyContact = ({ ContactData, modalBool, setModalBool, title, content, index
             <S.ButtonDiv
               color="#7485c9"
               onClick={() => {
-                setModalBool(!modalBool);
+                setPutModalBool(!putmodalBool);
                 window.scrollTo(0, 0);
               }}
             >

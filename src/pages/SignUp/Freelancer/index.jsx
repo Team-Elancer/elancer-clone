@@ -165,6 +165,9 @@ const SignUpFreeLancer = () => {
     })
       .then((res) => {
         alert('생성이 완료되었습니다.');
+        window.localStorage.setItem('accessToken', res.data.accessToken);
+        window.localStorage.setItem('refreshToken', res.data.refreshToken);
+        window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
         navi('/signup/finish');
       })
       .catch((err) => {

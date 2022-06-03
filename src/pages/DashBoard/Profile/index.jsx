@@ -5,19 +5,20 @@ import * as S from './style';
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 
 const DashBoardProfile = () => {
-  const [userDatas, setUserDatas] = useState('');
+  const [userDatas, setUserDatas] = useState({});
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-      // 'Refresh-Authorization': `${window.localStorage.refreshToken}`,
-    },
-  });
+  // const authAxios = axios.create({
+  //   baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+  //   headers: {
+  //     Authorization: `${window.localStorage.accessToken}`,
+  //     'Refresh-Authorization': `${window.localStorage.refreshToken}`,
+  //   },
+  // });
 
   // const fetchData = async () => {
   //   try {
   //     const res = await authAxios('/reissue');
+  //     console.log(res);
   //     const Data = await res.data;
   //     window.localStorage.setItem('accessToken', Data.accessToken);
   //     window.localStorage.setItem('refreshToken', Data.refreshToken);
@@ -27,12 +28,12 @@ const DashBoardProfile = () => {
   //   }
   // };
 
-  // const authAxios = axios.create({
-  //   baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-  //   headers: {
-  //     Authorization: `${window.localStorage.accessToken}`,
-  //   },
-  // });
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
   const fetchData = async () => {
     try {
       const res = await authAxios('/enterprise');
@@ -42,8 +43,6 @@ const DashBoardProfile = () => {
       console.log(error.message);
     }
   };
-
-  console.log(userDatas);
 
   useEffect(() => {
     fetchData();
