@@ -15,7 +15,7 @@ const MyBoardAccount = () => {
 
   const [userData, setUserData] = useOutletContext();
 
-  const [name, setName] = useState(userData.name);
+  const [name, setName] = useState('');
 
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +41,7 @@ const MyBoardAccount = () => {
       setName(userData.name);
       setPhoneNumber(userData.phone);
       setEmail(userData.email);
+      setWebsite(userData.website);
     }
   }, [userData]);
 
@@ -77,17 +78,71 @@ const MyBoardAccount = () => {
   }, [eyeCheck, eyeCheck2]);
 
   useEffect(() => {
-    if (phoneNumber.length === 10) {
+    if (phoneNumber?.length === 10) {
       setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
     }
-    if (phoneNumber.length === 13) {
+    if (phoneNumber?.length === 13) {
       setPhoneNumber(phoneNumber.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
     }
   }, [phoneNumber]);
 
+  const editFreelancerAccount = () => {
+    const newData = {
+      name,
+      password,
+      passwordCheck: passwordConfirm,
+      birthDate: '2000-01-01',
+      email,
+      phone: phoneNumber,
+      website,
+      countryType: 'KR',
+      zipcode: '경기도',
+      mainAddress: '성남시',
+      detailAddress: '중원구',
+      freelancerWorkTypes: ['ACCOUNTING', 'BIGDATA'],
+      workEtcField: null,
+      careerForm: null,
+      careerYear: 9,
+      careerMonth: 5,
+      hopeMonthMinPay: 400,
+      hopeMonthMaxPay: 600,
+      kosaState: 'NOT_POSSESS',
+      mailReceptionState: 'RECEPTION',
+      presentWorkState: 'FREE_AT_COMPANY',
+      hopeWorkState: 'AT_COMPANY',
+      workPossibleState: 'POSSIBLE',
+      workStartPossibleDate: '2022-02-01',
+      hopeWorkCountry: 'KR',
+      hopeWorkCity: 'seoul',
+    };
+
+    axios({
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: newData,
+    })
+      .then(() => {
+        setUserData(newData);
+        alert('정보를 수정했습니다.');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        if (newData) alert('필드값 다시 사용확인');
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editFreelancerAccount();
+  };
+
   return (
     <S.FrameAccount>
-      <form>
+      <form onSubmit={handleSubmit}>
         <S.FirstContainer>
           <S.ContainerAccountSave>
             <div>&nbsp; </div>
@@ -117,7 +172,7 @@ const MyBoardAccount = () => {
                       size="14.5rem"
                       laptopSize="19rem"
                       placeholder="성명"
-                      value={name}
+                      value={name || ''}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </S.BlockDiv>
@@ -136,7 +191,7 @@ const MyBoardAccount = () => {
                       name="password"
                       autoComplete="on"
                       placeholder="비밀번호"
-                      value={password}
+                      value={password || ''}
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </S.BlockDiv>
@@ -156,7 +211,7 @@ const MyBoardAccount = () => {
                       name="new-password"
                       autoComplete="on"
                       placeholder="비밀번호 확인"
-                      value={passwordConfirm}
+                      value={passwordConfirm || ''}
                       onChange={(e) => setPasswordConfirm(e.target.value)}
                     />
                   </S.BlockDiv>
@@ -174,7 +229,7 @@ const MyBoardAccount = () => {
                         size="13rem"
                         laptopSize="18rem"
                         placeholder="name@example.com"
-                        value={email}
+                        value={email || ''}
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </S.BlockDiv>
@@ -196,7 +251,7 @@ const MyBoardAccount = () => {
                       laptopSize="19rem"
                       placeholder="숫자만 입력"
                       type="text"
-                      value={phoneNumber}
+                      value={phoneNumber || ''}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </S.BlockDiv>
@@ -213,7 +268,7 @@ const MyBoardAccount = () => {
                       laptopSize="19rem"
                       placeholder="www.example.com"
                       type="text"
-                      value={website}
+                      value={website || ''}
                       onChange={(e) => setWebsite(e.target.value)}
                     />
                   </S.BlockDiv>
@@ -416,3 +471,10 @@ const MyBoardAccount = () => {
 };
 
 export default MyBoardAccount;
+
+// const CLIENT_FREELANCER = axios.create({
+//   baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+//   headers: {
+//     Authorization: `${window.localStorage.accessToken}`,
+//   },
+// });
