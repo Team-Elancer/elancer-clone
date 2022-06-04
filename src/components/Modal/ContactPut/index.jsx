@@ -11,8 +11,6 @@ const ContactPutModal = ({ setPutModalBool, index, NumTitle, NumContent }) => {
     setPutModalBool(false);
   });
 
-  console.log(index);
-
   const [userData, setUserData] = useState('');
 
   const authAxios = axios.create({
@@ -31,7 +29,6 @@ const ContactPutModal = ({ setPutModalBool, index, NumTitle, NumContent }) => {
       console.log(err.message);
     }
   };
-  console.log(NumTitle);
 
   const [comName, setComName] = useState('');
   const [comPhone, setComPhone] = useState('');

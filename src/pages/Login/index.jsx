@@ -15,6 +15,7 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Login = () => {
+  axios.defaults.withCredentials = true;
   const [checkBool, setCeckBool] = useState(true);
   const navi = useNavigate();
 
@@ -51,16 +52,27 @@ const Login = () => {
         return alert(err.message);
       });
   };
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
 
-  const googleSuccess = (respone) => {
+  const googleSuccess = async (a) => {
+    // const pageUrl =
+    //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google';
+    // document.location.href = pageUrl;
     axios({
       method: 'POST',
       url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
+      headers: { 'Access-Control-Allow-Origin': '*' },
       data: {
-        requestData: respone,
+        data: a,
       },
     })
       .then((res) => {
+        navi('http://localhost:3000/');
         console.log(res);
       })
       .catch((err) => {
@@ -82,9 +94,7 @@ const Login = () => {
       )}
       <Header checkBool={checkBool} setCeckBool={setCeckBool} />
       <S.SizeDiv>
-        <S.H1Div>
-          <h1>로그인</h1>
-        </S.H1Div>
+        <S.H1Div>로그인</S.H1Div>
         <S.TextDiv>
           함께 나눌수록 더욱 커지는 가치,
           <br />
@@ -122,8 +132,19 @@ const Login = () => {
           <S.MarginAuto>
             <S.CenterDiv>
               <S.SpanTag>
+                <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google">
+                  로그인
+                </a>
+              </S.SpanTag>
+              <S.SpanTag>
+                {/* <GoogleLogin
+                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={googleSuccess}
+                  onFailure={googleFail}
+                  cookiePolicy="single_host_origin"
+                /> */}
                 <S.LoginButton
-                  onClick={CreateWrite}
                   border="#f16300"
                   mobileBg="white"
                   tabletBg="#f16300"
@@ -133,15 +154,6 @@ const Login = () => {
                 >
                   로그인
                 </S.LoginButton>
-              </S.SpanTag>
-              <S.SpanTag>
-                <GoogleLogin
-                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={googleSuccess}
-                  onFailure={googleFail}
-                  cookiePolicy="single_host_origin"
-                />
               </S.SpanTag>
               <S.SpanTag>
                 <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">
