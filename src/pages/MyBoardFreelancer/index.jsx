@@ -66,6 +66,7 @@ const MyBoardFreelancer = () => {
     localStorage.setItem('accessToken', TOKEN.accessToken);
     localStorage.setItem('refreshToken', TOKEN.refreshToken);
 
+    setTokenData(true);
     console.log('access token 재발급 완료', TOKEN);
   };
 
@@ -76,7 +77,6 @@ const MyBoardFreelancer = () => {
       if (response.data.code === '402') {
         console.log('402 checked - accessToken 만료');
         getNewToken();
-        setTokenData(true);
       }
 
       const fetchedData = await response.data;
@@ -90,8 +90,14 @@ const MyBoardFreelancer = () => {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
     fetchData();
-  }, [tokenData]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [setTokenData]);
 
   return (
     <S.Container>
