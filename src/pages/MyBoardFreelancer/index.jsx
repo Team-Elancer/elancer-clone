@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { Outlet } from 'react-router-dom';
@@ -10,6 +9,8 @@ import LeftMenuMyBoard from 'components/Myboard/LeftMenu/Freelancer';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
+
+import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const MyBoardFreelancer = () => {
   const [tokenData, setTokenData] = useState(false);
@@ -42,25 +43,10 @@ const MyBoardFreelancer = () => {
     zipcode: null,
   });
 
-  const CLIENT = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
-  const CLIENT_GET_REFRESHTOKEN = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-      'Refresh-Authorization': `${window.localStorage.refreshToken}`,
-    },
-  });
-
   const getNewToken = async () => {
     console.log('access token 재발급 시작');
 
-    const response = await CLIENT_GET_REFRESHTOKEN('/reissue');
+    const response = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
     const TOKEN = await response.data;
 
     localStorage.setItem('accessToken', TOKEN.accessToken);
@@ -72,7 +58,7 @@ const MyBoardFreelancer = () => {
 
   const fetchData = async () => {
     try {
-      const response = await CLIENT('/freelancer');
+      const response = await CLIENT_FREELANCER('/freelancer');
 
       if (response.data.code === '402') {
         console.log('402 checked - accessToken 만료');

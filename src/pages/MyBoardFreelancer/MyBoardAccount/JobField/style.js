@@ -15,12 +15,16 @@ export const FAQH1 = styled.h1`
 export const FrameOptions = styled.div`
   border-top: 1px solid #969696;
   border-bottom: 1px solid #969696;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const ContainerOptions = styled.ul`
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
   border: 1px;
 `;
 

@@ -17,17 +17,43 @@ const MyBoardAccount = () => {
 
   const [name, setName] = useState('');
 
-  const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [email, setEmail] = useState('');
-  const [emailRadio, setEmailRadio] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [website, setWebsite] = useState('');
+  const [workType, setWorkType] = useState([
+    '쇼핑몰',
+    '여행사',
+    '금융증권',
+    '카드보험',
+    '대학병원',
+    '공공기관',
+    '물류',
+    '회계',
+    '제조',
+    '건설',
+    '통신',
+    '유통',
+    '생산',
+    '미디어',
+    '교육',
+    '반도체',
+    '자동차',
+    '암호화폐',
+    '블록체인',
+    '빅데이터',
+    '기타',
+  ]);
+  const [workTypeField, setWorkTypeField] = useState([]);
+  const [workEtcField, setWorkEtcField] = useState('');
+
+  const [id, setId] = useState('');
+  const [emailRadio, setEmailRadio] = useState('');
   const [jobType, setJobType] = useState('');
   const [jobRadio, setJobRadio] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectImg, setSelectImg] = useState(null);
-  const [website, setWebsite] = useState('');
 
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
@@ -42,6 +68,7 @@ const MyBoardAccount = () => {
       setPhoneNumber(userData.phone);
       setEmail(userData.email);
       setWebsite(userData.website);
+      setWorkEtcField(userData.workEtcField);
     }
   }, [userData]);
 
@@ -87,6 +114,8 @@ const MyBoardAccount = () => {
   }, [phoneNumber]);
 
   const editFreelancerAccount = () => {
+    console.log('workTypeField', workTypeField);
+
     const newData = {
       name,
       password,
@@ -99,8 +128,8 @@ const MyBoardAccount = () => {
       zipcode: '경기도',
       mainAddress: '성남시',
       detailAddress: '중원구',
-      freelancerWorkTypes: ['ACCOUNTING', 'BIGDATA'],
-      workEtcField: null,
+      freelancerWorkTypes: workTypeField,
+      workEtcField,
       careerForm: null,
       careerYear: 9,
       careerMonth: 5,
@@ -293,8 +322,13 @@ const MyBoardAccount = () => {
                   <S.ErrorMessage />
                   <S.CapsMessage />
                 </S.InputDiv>
-                <JobField />
-                <S.JobFieldInput type="text" placeholder="직접입력" />
+                <JobField workType={workType} workTypeField={workTypeField} setWorkTypeField={setWorkTypeField} />
+                <S.JobFieldInput
+                  type="text"
+                  placeholder="직접입력"
+                  value={workEtcField || ''}
+                  onChange={(e) => setWorkEtcField(e.target.value)}
+                />
               </S.MarginAutoDiv>
             </div>
             <S.MarginAutoDiv>
