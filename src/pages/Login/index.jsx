@@ -132,18 +132,6 @@ const Login = () => {
           <S.MarginAuto>
             <S.CenterDiv>
               <S.SpanTag>
-                <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google">
-                  로그인
-                </a>
-              </S.SpanTag>
-              <S.SpanTag>
-                {/* <GoogleLogin
-                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={googleSuccess}
-                  onFailure={googleFail}
-                  cookiePolicy="single_host_origin"
-                /> */}
                 <S.LoginButton
                   border="#f16300"
                   mobileBg="white"
@@ -153,6 +141,27 @@ const Login = () => {
                   content="center"
                   onClick={CreateWrite}
                 >
+                  {/* <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google"> */}
+                  로그인
+                  {/* </a> */}
+                </S.LoginButton>
+              </S.SpanTag>
+              <S.SpanTag>
+                <S.LoginButton
+                  border="#f16300"
+                  mobileBg="white"
+                  tabletBg="#f16300"
+                  mobileColor="#f16300"
+                  tabletColor="white"
+                  content="center"
+                >
+                  {/* <GoogleLogin
+                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={googleSuccess}
+                  onFailure={googleFail}
+                  cookiePolicy="single_host_origin"
+                /> */}
                   로그인
                 </S.LoginButton>
               </S.SpanTag>
