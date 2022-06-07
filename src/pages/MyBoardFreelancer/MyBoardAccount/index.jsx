@@ -25,9 +25,12 @@ const MyBoardAccount = () => {
   const [workType, setWorkType] = useState([
     '쇼핑몰',
     '여행사',
-    '금융증권',
-    '카드보험',
-    '대학병원',
+    '금융',
+    '증권',
+    '카드',
+    '보험',
+    '대학',
+    '병원',
     '공공기관',
     '물류',
     '회계',
@@ -45,8 +48,41 @@ const MyBoardAccount = () => {
     '빅데이터',
     '기타',
   ]);
+
+  const [fieldDataBase, setFieldDataBase] = useState([
+    'SHOPPING_MALL',
+    'TRAVEL_AGENCY',
+    'FINANCE',
+    'STOCK',
+    'CARD',
+    'INSURANCE',
+    'UNIVERSITY',
+    'HOSPITAL',
+    'PUBLIC_OFFICE',
+    'DISTRIBUTION',
+    'ACCOUNTING',
+    'PRODUCTION',
+    'CONSTRUCTION',
+    'COMMUNICATION',
+    'CIRCULATION',
+    'PRODUCE',
+    'MEDIA',
+    'EDUCATION',
+    'SEMICONDUCTOR',
+    'VEHICLE',
+    'CRYPTOCURRENCY',
+    'BLOCKCHAIN',
+    'BIGDATA',
+    'ETC',
+  ]);
+
   const [workTypeField, setWorkTypeField] = useState([]);
+
   const [workEtcField, setWorkEtcField] = useState('');
+  const [careerYear, setCareerYear] = useState('');
+  const [careerMonth, setCareerMonth] = useState('');
+  const [hopeMonthMinPay, setHopeMonthMinPay] = useState('');
+  const [hopeMonthMaxPay, setHopeMonthMaxPay] = useState('');
 
   const [id, setId] = useState('');
   const [emailRadio, setEmailRadio] = useState('');
@@ -68,7 +104,12 @@ const MyBoardAccount = () => {
       setPhoneNumber(userData.phone);
       setEmail(userData.email);
       setWebsite(userData.website);
+      setWorkTypeField(userData.freelancerWorkTypes);
       setWorkEtcField(userData.workEtcField);
+      setCareerYear(userData.careerYear);
+      setCareerMonth(userData.careerMonth);
+      setHopeMonthMinPay(userData.hopeMonthMinPay);
+      setHopeMonthMaxPay(userData.hopeMonthMaxPay);
     }
   }, [userData]);
 
@@ -114,8 +155,6 @@ const MyBoardAccount = () => {
   }, [phoneNumber]);
 
   const editFreelancerAccount = () => {
-    console.log('workTypeField', workTypeField);
-
     const newData = {
       name,
       password,
@@ -131,10 +170,10 @@ const MyBoardAccount = () => {
       freelancerWorkTypes: workTypeField,
       workEtcField,
       careerForm: null,
-      careerYear: 9,
-      careerMonth: 5,
-      hopeMonthMinPay: 400,
-      hopeMonthMaxPay: 600,
+      careerYear,
+      careerMonth,
+      hopeMonthMinPay,
+      hopeMonthMaxPay,
       kosaState: 'NOT_POSSESS',
       mailReceptionState: 'RECEPTION',
       presentWorkState: 'FREE_AT_COMPANY',
@@ -322,7 +361,12 @@ const MyBoardAccount = () => {
                   <S.ErrorMessage />
                   <S.CapsMessage />
                 </S.InputDiv>
-                <JobField workType={workType} workTypeField={workTypeField} setWorkTypeField={setWorkTypeField} />
+                <JobField
+                  workType={workType}
+                  workTypeField={workTypeField}
+                  setWorkTypeField={setWorkTypeField}
+                  fieldDataBase={fieldDataBase}
+                />
                 <S.JobFieldInput
                   type="text"
                   placeholder="직접입력"
@@ -338,11 +382,19 @@ const MyBoardAccount = () => {
                     <span>경력년수</span>
                     <S.FlexRow>
                       <S.FlexRow>
-                        <S.InputNumbers type="text" />
+                        <S.InputNumbers
+                          type="text"
+                          value={Number(careerYear) || ''}
+                          onChange={(e) => setCareerYear(Number(e.target.value))}
+                        />
                         <S.SpanInput>년</S.SpanInput>
                       </S.FlexRow>
                       <S.FlexRow>
-                        <S.InputNumbers type="text" />
+                        <S.InputNumbers
+                          type="text"
+                          value={Number(careerMonth) || ''}
+                          onChange={(e) => setCareerMonth(Number(e.target.value))}
+                        />
                         <S.SpanInput>개월</S.SpanInput>
                       </S.FlexRow>
                     </S.FlexRow>
@@ -357,11 +409,19 @@ const MyBoardAccount = () => {
                     <span>희망 월단가</span>
                     <S.FlexRow>
                       <S.FlexRow>
-                        <S.InputNumbers type="text" />
+                        <S.InputNumbers
+                          type="text"
+                          value={Number(hopeMonthMinPay) || ''}
+                          onChange={(e) => setHopeMonthMinPay(Number(e.target.value))}
+                        />
                         <S.SpanInput>~</S.SpanInput>
                       </S.FlexRow>
                       <S.FlexRow>
-                        <S.InputNumbers type="text" />
+                        <S.InputNumbers
+                          type="text"
+                          value={Number(hopeMonthMaxPay) || ''}
+                          onChange={(e) => setHopeMonthMaxPay(Number(e.target.value))}
+                        />
                         <S.SpanInput>원</S.SpanInput>
                       </S.FlexRow>
                     </S.FlexRow>
@@ -505,10 +565,3 @@ const MyBoardAccount = () => {
 };
 
 export default MyBoardAccount;
-
-// const CLIENT_FREELANCER = axios.create({
-//   baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-//   headers: {
-//     Authorization: `${window.localStorage.accessToken}`,
-//   },
-// });

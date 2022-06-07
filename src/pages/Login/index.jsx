@@ -151,6 +151,7 @@ const Login = () => {
                   mobileColor="#f16300"
                   tabletColor="white"
                   content="center"
+                  onClick={CreateWrite}
                 >
                   로그인
                 </S.LoginButton>
