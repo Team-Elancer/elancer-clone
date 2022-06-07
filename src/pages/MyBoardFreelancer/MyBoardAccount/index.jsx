@@ -22,72 +22,19 @@ const MyBoardAccount = () => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [website, setWebsite] = useState('');
-  const [workType, setWorkType] = useState([
-    '쇼핑몰',
-    '여행사',
-    '금융',
-    '증권',
-    '카드',
-    '보험',
-    '대학',
-    '병원',
-    '공공기관',
-    '물류',
-    '회계',
-    '제조',
-    '건설',
-    '통신',
-    '유통',
-    '생산',
-    '미디어',
-    '교육',
-    '반도체',
-    '자동차',
-    '암호화폐',
-    '블록체인',
-    '빅데이터',
-    '기타',
-  ]);
-
-  const [fieldDataBase, setFieldDataBase] = useState([
-    'SHOPPING_MALL',
-    'TRAVEL_AGENCY',
-    'FINANCE',
-    'STOCK',
-    'CARD',
-    'INSURANCE',
-    'UNIVERSITY',
-    'HOSPITAL',
-    'PUBLIC_OFFICE',
-    'DISTRIBUTION',
-    'ACCOUNTING',
-    'PRODUCTION',
-    'CONSTRUCTION',
-    'COMMUNICATION',
-    'CIRCULATION',
-    'PRODUCE',
-    'MEDIA',
-    'EDUCATION',
-    'SEMICONDUCTOR',
-    'VEHICLE',
-    'CRYPTOCURRENCY',
-    'BLOCKCHAIN',
-    'BIGDATA',
-    'ETC',
-  ]);
-
   const [workTypeField, setWorkTypeField] = useState([]);
-
   const [workEtcField, setWorkEtcField] = useState('');
   const [careerYear, setCareerYear] = useState('');
   const [careerMonth, setCareerMonth] = useState('');
   const [hopeMonthMinPay, setHopeMonthMinPay] = useState('');
   const [hopeMonthMaxPay, setHopeMonthMaxPay] = useState('');
 
-  const [id, setId] = useState('');
-  const [emailRadio, setEmailRadio] = useState('');
-  const [jobType, setJobType] = useState('');
-  const [jobRadio, setJobRadio] = useState('');
+  const [kosaState, setKosaState] = useState('');
+  const [mailReceptionState, setMailReceptionState] = useState('');
+  const [presentWorkState, setPresentWorkState] = useState('');
+  const [hopeWorkState, setHopeWorkState] = useState('');
+  const [workPossibleState, setWorkPossibleState] = useState('');
+
   const [selectedDate, setSelectedDate] = useState('');
   const [selectImg, setSelectImg] = useState(null);
 
@@ -110,6 +57,12 @@ const MyBoardAccount = () => {
       setCareerMonth(userData.careerMonth);
       setHopeMonthMinPay(userData.hopeMonthMinPay);
       setHopeMonthMaxPay(userData.hopeMonthMaxPay);
+
+      setKosaState(userData.kosaState);
+      setMailReceptionState(userData.mailReceptionState);
+      setPresentWorkState(userData.presentWorkState);
+      setHopeWorkState(userData.hopeWorkState);
+      setWorkPossibleState(userData.workPossibleState);
     }
   }, [userData]);
 
@@ -174,11 +127,11 @@ const MyBoardAccount = () => {
       careerMonth,
       hopeMonthMinPay,
       hopeMonthMaxPay,
-      kosaState: 'NOT_POSSESS',
-      mailReceptionState: 'RECEPTION',
-      presentWorkState: 'FREE_AT_COMPANY',
-      hopeWorkState: 'AT_COMPANY',
-      workPossibleState: 'POSSIBLE',
+      kosaState,
+      mailReceptionState,
+      presentWorkState,
+      hopeWorkState,
+      workPossibleState,
       workStartPossibleDate: '2022-02-01',
       hopeWorkCountry: 'KR',
       hopeWorkCity: 'seoul',
@@ -361,12 +314,7 @@ const MyBoardAccount = () => {
                   <S.ErrorMessage />
                   <S.CapsMessage />
                 </S.InputDiv>
-                <JobField
-                  workType={workType}
-                  workTypeField={workTypeField}
-                  setWorkTypeField={setWorkTypeField}
-                  fieldDataBase={fieldDataBase}
-                />
+                <JobField workTypeField={workTypeField} setWorkTypeField={setWorkTypeField} />
                 <S.JobFieldInput
                   type="text"
                   placeholder="직접입력"
@@ -435,14 +383,24 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">KOSA보유</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
+                  <S.FlexDiv top="1rem">
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="kosa" value="kosa" />
-                      <S.RadioText>가능</S.RadioText>
+                      <S.RadioInput
+                        type="radio"
+                        name="POSSESS"
+                        checked={kosaState === 'POSSESS'}
+                        onChange={(e) => setKosaState(e.target.name)}
+                      />
+                      <S.RadioText>있다</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="kosa" value="kosa" />
-                      <S.RadioText>불가능</S.RadioText>
+                      <S.RadioInput
+                        type="radio"
+                        name="NOT_POSSESS"
+                        checked={kosaState === 'NOT_POSSESS'}
+                        onChange={(e) => setKosaState(e.target.name)}
+                      />
+                      <S.RadioText>없다</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
                   <S.ErrorMessage />
@@ -456,13 +414,23 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">메일수신 여부</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
+                  <S.FlexDiv top="1rem">
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="email" value="POSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="RECEPTION"
+                        checked={mailReceptionState === 'RECEPTION'}
+                        onChange={(e) => setMailReceptionState(e.target.name)}
+                      />
                       <S.RadioText>수신</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="email" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="NOT_RECEPTION"
+                        checked={mailReceptionState === 'NOT_RECEPTION'}
+                        onChange={(e) => setMailReceptionState(e.target.name)}
+                      />
                       <S.RadioText>미수신</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
@@ -477,21 +445,41 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">현재 업무상태</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
+                  <S.FlexDiv top="1rem">
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="employed" value="POSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="JOB_HUNTING"
+                        checked={presentWorkState === 'JOB_HUNTING'}
+                        onChange={(e) => setPresentWorkState(e.target.name)}
+                      />
                       <S.RadioText>구직중</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="employed" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="REGULAR"
+                        checked={presentWorkState === 'REGULAR'}
+                        onChange={(e) => setPresentWorkState(e.target.name)}
+                      />
                       <S.RadioText>정규직[재직중]</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="employed" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="FREE_AT_COMPANY"
+                        checked={presentWorkState === 'FREE_AT_COMPANY'}
+                        onChange={(e) => setPresentWorkState(e.target.name)}
+                      />
                       <S.RadioText>프리랜서[상주]</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="employed" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="FREE_AT_HOME"
+                        checked={presentWorkState === 'FREE_AT_HOME'}
+                        onChange={(e) => setPresentWorkState(e.target.name)}
+                      />
                       <S.RadioText>프리랜서[재택]</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
@@ -506,21 +494,41 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">희망 업무형태</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
+                  <S.FlexDiv top="1rem">
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="environment" value="POSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="AT_COMPANY"
+                        checked={hopeWorkState === 'AT_COMPANY'}
+                        onChange={(e) => setHopeWorkState(e.target.name)}
+                      />
                       <S.RadioText>상주</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="environment" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="AT_HOME"
+                        checked={hopeWorkState === 'AT_HOME'}
+                        onChange={(e) => setHopeWorkState(e.target.name)}
+                      />
                       <S.RadioText>재택</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="environment" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="REGULAR"
+                        checked={hopeWorkState === 'REGULAR'}
+                        onChange={(e) => setHopeWorkState(e.target.name)}
+                      />
                       <S.RadioText>정규직</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="environment" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="NO_MATTER"
+                        checked={hopeWorkState === 'NO_MATTER'}
+                        onChange={(e) => setHopeWorkState(e.target.name)}
+                      />
                       <S.RadioText>관계없음</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
@@ -535,13 +543,23 @@ const MyBoardAccount = () => {
                   <div>
                     <S.SpanTag right="0">업무가능 여부</S.SpanTag>
                   </div>
-                  <S.FlexDiv top="1rem" onChange={(e) => setJobRadio(e.target.value)}>
+                  <S.FlexDiv top="1rem">
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="job" value="POSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="POSSIBLE"
+                        checked={workPossibleState === 'POSSIBLE'}
+                        onChange={(e) => setWorkPossibleState(e.target.name)}
+                      />
                       <S.RadioText>가능</S.RadioText>
                     </S.RadioDiv>
                     <S.RadioDiv>
-                      <S.RadioInput type="radio" name="job" value="IMPOSSIBLE" />
+                      <S.RadioInput
+                        type="radio"
+                        name="IMPOSSIBLE"
+                        checked={workPossibleState === 'IMPOSSIBLE'}
+                        onChange={(e) => setWorkPossibleState(e.target.name)}
+                      />
                       <S.RadioText>불가능</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
@@ -559,7 +577,6 @@ const MyBoardAccount = () => {
           </S.ProfileDiv>
         </S.SecondContainer>
       </form>
-      )
     </S.FrameAccount>
   );
 };
