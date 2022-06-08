@@ -80,7 +80,7 @@ export const FlexDiv = styled.div`
     justify-content: start;
     background-color: ${(props) => props.color};
     margin: 5rem auto;
-    z-index: 99;
+    z-index: 98;
     position: relative;
   }
   @media ${LAPTOP} {
