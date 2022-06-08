@@ -13,28 +13,6 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Main = () => {
-  const [newDatas, setNewDatas] = useState();
-
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-  const fetchData = async () => {
-    try {
-      const res = await authAxios('/freelancer');
-      const Data = await res.data;
-      setNewDatas(Data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
     <S.Container>
       <S.BackImg>

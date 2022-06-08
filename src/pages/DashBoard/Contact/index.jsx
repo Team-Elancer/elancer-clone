@@ -32,7 +32,6 @@ const DashboardContact = () => {
     }
   };
 
-  console.log(ContactData);
   useEffect(() => {
     if (ContactData === '') {
       FetchData();

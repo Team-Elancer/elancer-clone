@@ -75,8 +75,6 @@ const DashBoardModify = () => {
     }
   };
 
-  console.log(workCodes);
-
   const putModify = (e) => {
     e.preventDefault();
     axios({

@@ -40,7 +40,7 @@ const DashBoardProfile = () => {
       const data = await res.data;
       setUserDatas(data);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 
