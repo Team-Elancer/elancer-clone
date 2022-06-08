@@ -6,7 +6,7 @@ import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
 
-const ContactPutModal = ({ setPutModalBool, index, NumTitle, NumContent }) => {
+const ContactPutModal = ({ setReLoading, setPutModalBool, index, NumTitle, NumContent }) => {
   const domNode = useCloseOutside(() => {
     setPutModalBool(false);
   });
@@ -54,6 +54,7 @@ const ContactPutModal = ({ setPutModalBool, index, NumTitle, NumContent }) => {
     })
       .then((res) => {
         alert('문의가 수정되었습니다.');
+        setReLoading(true);
         setPutModalBool(false);
       })
       .catch((err) => {

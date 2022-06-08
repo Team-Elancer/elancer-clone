@@ -307,6 +307,7 @@ export const DateP = styled.p`
 `;
 export const ButtonP = styled.p`
   padding-left: 1rem;
+  cursor: pointer;
   @media ${TABLET} {
   }
   @media ${LAPTOP} {

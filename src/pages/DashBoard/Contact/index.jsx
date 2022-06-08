@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
+import { IoArrowUpCircleOutline, IoArrowDownCircleOutline } from 'react-icons/io5';
 
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
@@ -12,6 +13,7 @@ import ContactModal from 'components/Modal/DashBoardContact';
 
 const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
+  const [reLoading, setReLoading] = useState(false);
 
   const [ContactData, setContactData] = useState('');
 
@@ -33,14 +35,15 @@ const DashboardContact = () => {
   };
 
   useEffect(() => {
-    if (ContactData === '') {
+    if (ContactData === '' || reLoading) {
       FetchData();
+      setReLoading(false);
     }
-  }, [ContactData]);
+  }, [ContactData, reLoading]);
 
   return (
     <S.Container>
-      {modalBool === true && <ContactModal setModalBool={setModalBool} />}
+      {modalBool === true && <ContactModal setModalBool={setModalBool} setReLoading={setReLoading} />}
       <S.FlexDiv top="2.2rem">
         <S.H1 size="2.4rem">문의/요청</S.H1>
         <S.H1
@@ -114,6 +117,7 @@ const DashboardContact = () => {
               ContactData={ContactData}
               modalBool={modalBool}
               setModalBool={setModalBool}
+              setReLoading={setReLoading}
               title={data.title}
               content={data.content}
               index={data.num}
@@ -125,9 +129,34 @@ const DashboardContact = () => {
   );
 };
 
-const MyContact = ({ ContactData, title, content, index }) => {
+const MyContact = ({ ContactData, title, content, index, setReLoading }) => {
   const [contentBool, setContentBool] = useState(false);
   const [putmodalBool, setPutModalBool] = useState(false);
+
+  const deleteContact = (e) => {
+    e.preventDefault();
+    console.log(index);
+    const checkConfrim = window.confirm('삭제하시겠습니까?');
+    if (checkConfrim) {
+      axios({
+        method: 'DELETE',
+        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-delete',
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          contactNum: index,
+        },
+      })
+        .then((res) => {
+          alert('문의가 삭제되었습니다.');
+          setReLoading(true);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
 
   return (
     <S.Colordiv>
@@ -144,14 +173,20 @@ const MyContact = ({ ContactData, title, content, index }) => {
               setContentBool(!contentBool);
             }}
           >
-            hello
+            {contentBool ? <IoArrowUpCircleOutline font-size="32px" /> : <IoArrowDownCircleOutline font-size="32px" />}
           </S.ButtonP>
         </S.DisplayFlexDiv>
       </S.FlexDiv>
       {contentBool === true && (
         <S.SecondDiv>
           {putmodalBool === true && (
-            <ContactPutModal setPutModalBool={setPutModalBool} NumTitle={title} NumContent={content} index={index} />
+            <ContactPutModal
+              setReLoading={setReLoading}
+              setPutModalBool={setPutModalBool}
+              NumTitle={title}
+              NumContent={content}
+              index={index}
+            />
           )}
           <S.DisplayFlexDiv>
             <S.BlueSpan>[문의내용]</S.BlueSpan>
@@ -168,7 +203,9 @@ const MyContact = ({ ContactData, title, content, index }) => {
             >
               수정
             </S.ButtonDiv>
-            <S.ButtonDiv color="#b7b7b7">삭제</S.ButtonDiv>
+            <S.ButtonDiv color="#b7b7b7" onClick={deleteContact}>
+              삭제
+            </S.ButtonDiv>
           </S.FlexEndDiv>
         </S.SecondDiv>
       )}

@@ -6,7 +6,7 @@ import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
 
-const ContactModal = ({ setModalBool, index, NumTitle, NumContent, text = '문의하기' }) => {
+const ContactModal = ({ setModalBool, index, setReLoading }) => {
   const domNode = useCloseOutside(() => {
     setModalBool(false);
   });
@@ -55,6 +55,7 @@ const ContactModal = ({ setModalBool, index, NumTitle, NumContent, text = '문�
       .then((res) => {
         alert('문의가 등록되었습니다.');
         setModalBool(false);
+        setReLoading(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -129,7 +130,7 @@ const ContactModal = ({ setModalBool, index, NumTitle, NumContent, text = '문�
         </S.FlexInputDiv>
         <S.BorderDiv>
           <S.ButtonDiv>
-            <SubmitButton text={index ? text : '문의하기'} heights="0.8rem" marginTop="1rem" />
+            <SubmitButton text="문의하기" heights="0.8rem" marginTop="1rem" />
           </S.ButtonDiv>
         </S.BorderDiv>
       </form>
