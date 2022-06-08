@@ -107,7 +107,7 @@ const DashboardContact = () => {
       </S.H1>
       <S.BorderDiv display="none" />
       <S.H1 top="3rem" size="2.4rem">
-        나의 문의/요청 (0)
+        나의 문의/요청 ({ContactData.length})
       </S.H1>
       {ContactData !== '' &&
         ContactData.map((data, i) => {
