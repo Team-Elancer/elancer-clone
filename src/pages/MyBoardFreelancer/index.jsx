@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import * as S from './style';
 
@@ -13,6 +13,8 @@ import Header from 'layouts/Header';
 import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const MyBoardFreelancer = () => {
+  const navigate = useNavigate();
+
   const [tokenData, setTokenData] = useState(false);
 
   const [userData, setUserData] = useState({
@@ -49,6 +51,8 @@ const MyBoardFreelancer = () => {
     const response = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
     const TOKEN = await response.data;
 
+    console.log('localstorage에 새로운 토큰 저장 시작');
+
     localStorage.setItem('accessToken', TOKEN.accessToken);
     localStorage.setItem('refreshToken', TOKEN.refreshToken);
 
@@ -62,7 +66,14 @@ const MyBoardFreelancer = () => {
 
       if (response.data.code === '402') {
         console.log('402 checked - accessToken 만료');
-        getNewToken();
+
+        if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
+          getNewToken();
+          window.location.reload();
+        } else {
+          window.localStorage.clear();
+          navigate('/login');
+        }
       }
 
       const fetchedData = await response.data;

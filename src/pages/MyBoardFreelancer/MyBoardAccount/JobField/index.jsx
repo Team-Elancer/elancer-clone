@@ -56,7 +56,7 @@ const JobField = ({ workTypeField, setWorkTypeField }) => {
   ];
 
   // Filter the database index for CSS(active)
-  const filteredIndex = workTypeField.map((typeIndex) => FIELD_DATABASE_FORMAT.indexOf(typeIndex));
+  const filteredIndex = workTypeField?.map((typeIndex) => FIELD_DATABASE_FORMAT.indexOf(typeIndex));
 
   const handleThreeJobField = (e) => {
     const jobType = e.target.id;
@@ -80,7 +80,7 @@ const JobField = ({ workTypeField, setWorkTypeField }) => {
 
   return (
     <S.FrameOptions>
-      {WORKTYPE.map((type, index) => (
+      {WORKTYPE?.map((type, index) => (
         <S.ContainerOptions key={type}>
           <S.ContainerList>
             <S.ButtonLabel
@@ -90,7 +90,7 @@ const JobField = ({ workTypeField, setWorkTypeField }) => {
                 handleThreeJobField(e);
               }}
               // Handle CSS: compare index
-              active={filteredIndex.includes(index)}
+              active={filteredIndex?.includes(index)}
             >
               {type}
             </S.ButtonLabel>
