@@ -455,7 +455,7 @@ const SignUpFreeLancer = () => {
                 <S.SpanTag right="0">업무가능일</S.SpanTag>
               </div>
               <S.MaginDiv>
-                <S.InputTag size="14.5rem" type="number" placeholder={selectedDate} />
+                <S.InputTag size="14.5rem" placeholder={selectedDate} />
                 <S.DateDiv>
                   <DatePicker
                     onChange={(date) => {

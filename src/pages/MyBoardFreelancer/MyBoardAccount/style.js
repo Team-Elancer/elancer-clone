@@ -5,6 +5,15 @@ import { TABLET, LAPTOP } from 'utils/constants/responsive';
 export const FlexRow = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 0.5rem;
+`;
+
+export const MobileFlexRow = styled.div`
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
 `;
 
 export const FrameAccount = styled.div`
@@ -17,6 +26,8 @@ export const SecondContainer = styled.section``;
 export const ContainerAccountSave = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   font-size: 0.875rem;
   font-weight: bold;
 
@@ -26,8 +37,12 @@ export const ContainerAccountSave = styled.div`
   }
 `;
 
-export const SaveSpan = styled.div`
+export const SaveSpan = styled.button`
   cursor: pointer;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: bold;
+  background: none;
 
   @media ${TABLET} {
     display: none;
@@ -161,6 +176,8 @@ export const ProfileDiv = styled.div`
 `;
 export const ProfileImgDiv = styled.div`
   display: none;
+  margin-top: 3rem;
+
   @media ${TABLET} {
     display: block;
     position: absolute;
@@ -221,31 +238,40 @@ export const SubmitDiv = styled.div`
 export const InputDiv = styled.div`
   padding-top: 0.5rem;
   padding-top: ${(props) => props.top}rem;
+  padding-bottom: ${(props) => props.bottom}rem;
 
   position: relative;
 
   @media ${TABLET} {
-    padding-top: ${(props) => props.top}rem;
+    padding-bottom: 1.8rem;
+    padding-bottom: ${(props) => props.bottom}rem;
   }
   @media ${LAPTOP} {
   }
 `;
 export const BlockDiv = styled.div`
   display: block;
+
   @media ${TABLET} {
     display: flex;
     align-items: center;
     justify-content: start;
+    margin-left: ${(props) => props.left};
   }
+
   @media ${LAPTOP} {
   }
 `;
 export const MaginDiv = styled.div`
-  @media ${LAPTOP} {
-    margin-top: 1rem;
+  @media ${TABLET} {
+    margin-top: ${(props) => props.tabletTop}rem;
   }
 `;
+
 export const SpanTag = styled.span`
+  display: inline-block;
+  margin-bottom: 0.5rem;
+
   font-size: 0.75rem;
   font-weight: 800;
   background: url(${redStar}) left top no-repeat;
@@ -256,6 +282,7 @@ export const SpanTag = styled.span`
     font-size: 0.98rem;
     background-size: 10px 10px;
     padding: 0 ${(props) => props.right} 0 0.7rem;
+    margin-bottom: 0;
   }
   @media ${LAPTOP} {
   }
@@ -265,21 +292,26 @@ export const InputTag = styled.input`
   outline: none;
   border: none;
   padding: 0.8rem 0 0.6rem 0;
+
   font-size: 1.125rem;
   font-weight: 600;
   color: #707070;
   border-bottom: 1px solid #c4c4c4;
+
   &::placeholder {
     font-size: 1.125rem;
     font-weight: 600;
   }
+
   @media ${TABLET} {
     width: ${(props) => props.size};
     font-size: 0.9rem;
     border-radius: 0.5rem;
     padding: 0.75rem 0 0.6rem 0;
+
+    padding-left: 1rem !important;
+
     &::placeholder {
-      padding-left: 0.5rem;
       font-size: 0.9rem;
       font-weight: 600;
     }
@@ -392,12 +424,15 @@ export const DateDiv = styled.div`
     opacity: 0;
     top: -2rem;
     height: 100%;
+    width: 100%;
     cursor: pointer;
   }
 `;
 export const MarginAutoDiv = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
   @media ${TABLET} {
-    padding-top: 1rem;
     width: 90%;
     margin: 0 auto;
     border-top: ${(props) => props.last && '1px solid black'};
@@ -622,6 +657,7 @@ export const JobFieldInput = styled.input`
 export const FrameInputNumbers = styled(SpanTag)`
   display: flex;
   flex-direction: column;
+  background: none;
 `;
 
 export const InputNumbers = styled.input`
@@ -634,7 +670,7 @@ export const InputNumbers = styled.input`
   border-left-width: 0;
   font-weight: 600;
   font-size: 1rem;
-  padding-left: 0px;
+  padding-left: 1rem;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 `;
@@ -664,6 +700,7 @@ export const ButtonDeactivate = styled.button`
   border-radius: 5px;
   width: 70px;
   border: none;
+  margin-top: 0.3rem;
 `;
 
 export const ButtonSave = styled.button`
@@ -671,7 +708,7 @@ export const ButtonSave = styled.button`
   display: flex;
   justify-content: center;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-bottom: 2rem;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
@@ -679,4 +716,168 @@ export const ButtonSave = styled.button`
   border-radius: 5px;
   width: 100px;
   border: none;
+`;
+
+export const ContainerCountryType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  margin-bottom: 2rem;
+
+  position: relative;
+  width: 100%;
+
+  @media ${TABLET} {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 1rem;
+  }
+`;
+
+export const ContainerCountrySelect = styled.select`
+  display: inline-block;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+
+  width: 100%;
+
+  outline: none;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #707070;
+  border-bottom: 1px solid #c4c4c4;
+
+  @media ${TABLET} {
+    width: 130px;
+    height: 45px;
+    margin-right: 2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+
+    text-align: center;
+  }
+  @media ${LAPTOP} {
+    width: ${(props) => props.laptopSize};
+  }
+`;
+
+export const InputWorkCity = styled(InputTag)`
+  width: 100%;
+  position: relative;
+
+  @media ${TABLET} {
+    padding: 1rem;
+    padding-left: 0.5rem;
+    width: 250px;
+    height: 45px;
+
+    &::placeholder {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+`;
+
+export const ContainerAddress = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  /* padding-top: 0.625rem; */
+  padding-bottom: 0.625rem;
+
+  width: 100%;
+
+  outline: none;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #707070;
+
+  @media ${TABLET} {
+    font-size: 1rem;
+    border-radius: 0.5rem;
+
+    text-align: center;
+  }
+  @media ${LAPTOP} {
+    width: ${(props) => props.laptopSize};
+  }
+`;
+
+export const InputReadOnly = styled(InputTag)`
+  width: 130px;
+  height: 45px;
+`;
+
+export const ContainerKoreanAddress = styled.div`
+  width: 130px;
+  height: 45px;
+  margin-right: 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+
+  text-align: center;
+
+  @media ${TABLET} {
+    display: inline-block;
+    border: 1px;
+    font-weight: 600;
+    font-size: 1.125rem;
+
+    padding-bottom: 0.625rem;
+
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #707070;
+  }
+`;
+
+export const InputKoreanAddress = styled(InputTag)`
+  width: ${(props) => props.width};
+
+  @media ${TABLET} {
+    margin-right: 1rem;
+  }
+`;
+
+export const ButtonZipCode = styled.button`
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+
+  @media ${TABLET} {
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    margin-left: 1rem;
+  }
 `;

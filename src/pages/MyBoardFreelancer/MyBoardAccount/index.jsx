@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import JobField from './JobField';
@@ -10,32 +11,42 @@ import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
 import ProfileImgDefault from 'assets/images/signin-profile.png';
 
+import DaumPostcode from 'components/DaumPostCode';
+import 'react-datepicker/dist/react-datepicker.css';
+
 const MyBoardAccount = () => {
+  const [changeBool, setChangeBool] = useState(false);
+
   const navi = useNavigate();
 
   const [userData, setUserData] = useOutletContext();
 
   const [name, setName] = useState('');
-
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [birthDate, setBirthDate] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [website, setWebsite] = useState('');
+  const [countryType, setCountryType] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [mainAddress, setMainAddress] = useState('');
+  const [detailAddress, setDetailAddress] = useState('');
   const [workTypeField, setWorkTypeField] = useState([]);
   const [workEtcField, setWorkEtcField] = useState('');
   const [careerYear, setCareerYear] = useState('');
   const [careerMonth, setCareerMonth] = useState('');
   const [hopeMonthMinPay, setHopeMonthMinPay] = useState('');
   const [hopeMonthMaxPay, setHopeMonthMaxPay] = useState('');
-
   const [kosaState, setKosaState] = useState('');
   const [mailReceptionState, setMailReceptionState] = useState('');
   const [presentWorkState, setPresentWorkState] = useState('');
   const [hopeWorkState, setHopeWorkState] = useState('');
   const [workPossibleState, setWorkPossibleState] = useState('');
+  const [workStartPossibleDate, setWorkStartPossibleDate] = useState('');
+  const [hopeWorkCountry, setHopeWorkCountry] = useState('');
+  const [hopeWorkCity, setHopeWorkCity] = useState('');
 
-  const [selectedDate, setSelectedDate] = useState('');
   const [selectImg, setSelectImg] = useState(null);
 
   const [eyeCheck, setEyeCheck] = useState(true);
@@ -48,9 +59,17 @@ const MyBoardAccount = () => {
   useEffect(() => {
     if (userData) {
       setName(userData.name);
+      setBirthDate(userData.birthDate);
       setPhoneNumber(userData.phone);
       setEmail(userData.email);
       setWebsite(userData.website);
+      setCountryType(userData.countryType);
+
+      setZipcode(userData.zipcode);
+      setMainAddress(userData.mainAddress);
+
+      setDetailAddress(userData.detailAddress);
+
       setWorkTypeField(userData.freelancerWorkTypes);
       setWorkEtcField(userData.workEtcField);
       setCareerYear(userData.careerYear);
@@ -63,22 +82,41 @@ const MyBoardAccount = () => {
       setPresentWorkState(userData.presentWorkState);
       setHopeWorkState(userData.hopeWorkState);
       setWorkPossibleState(userData.workPossibleState);
+      setWorkStartPossibleDate(userData.workStartPossibleDate);
+
+      setHopeWorkCountry(userData.hopeWorkCountry);
+      setHopeWorkCity(userData.hopeWorkCity);
     }
   }, [userData]);
 
-  const dateFunction = (date) => {
-    setSelectedDate(
-      date
-        .toLocaleDateString()
-        .split(' ')
-        .join('')
-        .split('.')
-        .filter((data) => data !== '')
-        .map((a) => {
-          return a < 10 ? a.padStart(2, '0') : a;
-        })
-        .join('-'),
-    );
+  const handleDatePicker = (date, str) => {
+    if (str === 'birthDate') {
+      setBirthDate(
+        date
+          .toLocaleDateString('ko-KR')
+          .split(' ')
+          .join('')
+          .split('.')
+          .filter((data) => data !== '')
+          .map((a) => {
+            return a < 10 ? a.padStart(2, '0') : a;
+          })
+          .join('-'),
+      );
+    }
+    if (str === 'workStartPossibleDate')
+      setWorkStartPossibleDate(
+        date
+          .toLocaleDateString('ko-KR')
+          .split(' ')
+          .join('')
+          .split('.')
+          .filter((data) => data !== '')
+          .map((a) => {
+            return a < 10 ? a.padStart(2, '0') : a;
+          })
+          .join('-'),
+      );
   };
 
   useEffect(() => {
@@ -112,14 +150,14 @@ const MyBoardAccount = () => {
       name,
       password,
       passwordCheck: passwordConfirm,
-      birthDate: '2000-01-01',
+      birthDate,
       email,
       phone: phoneNumber,
       website,
-      countryType: 'KR',
-      zipcode: '경기도',
-      mainAddress: '성남시',
-      detailAddress: '중원구',
+      countryType,
+      zipcode,
+      mainAddress,
+      detailAddress,
       freelancerWorkTypes: workTypeField,
       workEtcField,
       careerForm: null,
@@ -132,9 +170,9 @@ const MyBoardAccount = () => {
       presentWorkState,
       hopeWorkState,
       workPossibleState,
-      workStartPossibleDate: '2022-02-01',
-      hopeWorkCountry: 'KR',
-      hopeWorkCity: 'seoul',
+      workStartPossibleDate,
+      hopeWorkCountry,
+      hopeWorkCity,
     };
 
     axios({
@@ -171,7 +209,7 @@ const MyBoardAccount = () => {
               <span>⬅ &nbsp; </span>
               <span>이랜서 계정</span>
             </div>
-            <S.SaveSpan>저장</S.SaveSpan>
+            <S.SaveSpan type="submit">저장</S.SaveSpan>
           </S.ContainerAccountSave>
           <S.ContainerImageProfile>
             <S.ImageProfile src="https://www.elancer.co.kr/public/images/img-user-none.png" alt="" />
@@ -184,7 +222,7 @@ const MyBoardAccount = () => {
                   <S.ProfileImg src={selectImg !== null ? selectImg : ProfileImgDefault} alt="profile" />
                   <S.BallDiv />
                 </S.ProfileImgDiv>
-                <S.InputDiv>
+                <S.InputDiv top="3" bottom="3">
                   <S.BlockDiv>
                     <div>
                       <S.SpanTag right="6em">성명</S.SpanTag>
@@ -197,8 +235,6 @@ const MyBoardAccount = () => {
                       onChange={(e) => setName(e.target.value)}
                     />
                   </S.BlockDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
                 <S.InputDiv>
                   <S.BlockDiv>
@@ -240,6 +276,25 @@ const MyBoardAccount = () => {
                   <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
                   <S.EyeImg src={secondEyeImg} alt="eye" onClick={(e) => setEyeCheck2(!eyeCheck2)} />
                 </S.InputDiv>
+
+                <S.InputDiv>
+                  <S.BlockDiv>
+                    <div>
+                      <S.SpanTag right="4em">생년월일</S.SpanTag>
+                    </div>
+                    <S.MaginDiv>
+                      <S.InputTag size="14.5rem" placeholder={birthDate} readOnly />
+                      <S.DateDiv>
+                        <DatePicker
+                          onChange={(date) => {
+                            handleDatePicker(date, 'birthDate');
+                          }}
+                        />
+                      </S.DateDiv>
+                    </S.MaginDiv>
+                  </S.BlockDiv>
+                </S.InputDiv>
+
                 <S.EmailFlex>
                   <S.InputDiv>
                     <S.BlockDiv>
@@ -257,11 +312,8 @@ const MyBoardAccount = () => {
                     <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
                     <S.CapsMessage />
                   </S.InputDiv>
-                  <S.InputDiv>
-                    {/* <S.ErrorMessage /> */}
-                    <S.CapsMessage />
-                  </S.InputDiv>
                 </S.EmailFlex>
+
                 <S.InputDiv>
                   <S.BlockDiv>
                     <div>
@@ -276,10 +328,9 @@ const MyBoardAccount = () => {
                       onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </S.BlockDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
-                <S.InputDiv>
+
+                <S.InputDiv top="2">
                   <S.BlockDiv>
                     <div>
                       <S.SpanTag right="4.1rem">웹싸이트</S.SpanTag>
@@ -293,8 +344,65 @@ const MyBoardAccount = () => {
                       onChange={(e) => setWebsite(e.target.value)}
                     />
                   </S.BlockDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
+                </S.InputDiv>
+
+                <S.InputDiv top="2" bottom="3">
+                  <S.BlockDiv>
+                    <S.SpanTag right="4.1rem" style={{ width: '131px', display: 'block' }}>
+                      주소
+                    </S.SpanTag>
+
+                    <S.ContainerAddress>
+                      <S.ContainerKoreanAddress>
+                        <S.ContainerCountrySelect
+                          width="8"
+                          value={countryType || ''}
+                          onChange={(e) => setCountryType(e.target.value)}
+                        >
+                          <option value="KR" checked={countryType === 'KR'}>
+                            대한민국
+                          </option>
+                          <option value="UK" checked={countryType === 'UK'}>
+                            영국
+                          </option>
+                          <option value="US" checked={countryType === 'US'}>
+                            미국
+                          </option>
+                          <option value="JP" checked={countryType === 'JP'}>
+                            일본
+                          </option>
+                          <option value="CN" checked={countryType === 'CN'}>
+                            중국
+                          </option>
+                        </S.ContainerCountrySelect>
+                      </S.ContainerKoreanAddress>
+
+                      <S.InputReadOnly readOnly value={zipcode || ''} />
+                      <S.ButtonZipCode type="button" onClick={() => setChangeBool((prev) => !prev)}>
+                        우편번호 찾기
+                      </S.ButtonZipCode>
+                      {changeBool && (
+                        <DaumPostcode
+                          setChangeBool={setChangeBool}
+                          changeBool={changeBool}
+                          setZipcode={setZipcode}
+                          setMainAddress={setMainAddress}
+                        />
+                      )}
+                    </S.ContainerAddress>
+                  </S.BlockDiv>
+                  <S.BlockDiv left="130px">
+                    <div>
+                      <S.InputKoreanAddress size="17rem" readOnly value={mainAddress || ''} />
+                      <S.InputKoreanAddress
+                        width="205px"
+                        placeholder="상세 주소를 입력하세요."
+                        type="text"
+                        value={detailAddress || ''}
+                        onChange={(e) => setDetailAddress(e.target.value)}
+                      />
+                    </div>
+                  </S.BlockDiv>
                 </S.InputDiv>
               </S.MarginAutoDiv>
             </S.ProfileDiv>
@@ -304,15 +412,13 @@ const MyBoardAccount = () => {
           <S.ProfileDiv>
             <div>
               <S.MarginAutoDiv>
-                <S.InputDiv>
+                <S.InputDiv top="3">
                   <S.BlockDiv>
                     <S.SpanTag right="4.1rem">
                       <span>업무분야 &nbsp;</span>
                       <span style={{ color: 'rgba(183,183,183,1)' }}>(3개까지만 선택 가능합니다.)</span>
                     </S.SpanTag>
                   </S.BlockDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
                 <JobField workTypeField={workTypeField} setWorkTypeField={setWorkTypeField} />
                 <S.JobFieldInput
@@ -403,8 +509,6 @@ const MyBoardAccount = () => {
                       <S.RadioText>없다</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
               </S.EmailFlex>
             </S.MarginAutoDiv>
@@ -434,8 +538,6 @@ const MyBoardAccount = () => {
                       <S.RadioText>미수신</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
               </S.EmailFlex>
             </S.MarginAutoDiv>
@@ -483,8 +585,6 @@ const MyBoardAccount = () => {
                       <S.RadioText>프리랜서[재택]</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
               </S.EmailFlex>
             </S.MarginAutoDiv>
@@ -532,42 +632,100 @@ const MyBoardAccount = () => {
                       <S.RadioText>관계없음</S.RadioText>
                     </S.RadioDiv>
                   </S.FlexDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
                 </S.InputDiv>
               </S.EmailFlex>
             </S.MarginAutoDiv>
+
             <S.MarginAutoDiv>
-              <S.EmailFlex>
-                <S.InputDiv>
-                  <div>
-                    <S.SpanTag right="0">업무가능 여부</S.SpanTag>
-                  </div>
-                  <S.FlexDiv top="1rem">
-                    <S.RadioDiv>
-                      <S.RadioInput
-                        type="radio"
-                        name="POSSIBLE"
-                        checked={workPossibleState === 'POSSIBLE'}
-                        onChange={(e) => setWorkPossibleState(e.target.name)}
-                      />
-                      <S.RadioText>가능</S.RadioText>
-                    </S.RadioDiv>
-                    <S.RadioDiv>
-                      <S.RadioInput
-                        type="radio"
-                        name="IMPOSSIBLE"
-                        checked={workPossibleState === 'IMPOSSIBLE'}
-                        onChange={(e) => setWorkPossibleState(e.target.name)}
-                      />
-                      <S.RadioText>불가능</S.RadioText>
-                    </S.RadioDiv>
-                  </S.FlexDiv>
-                  <S.ErrorMessage />
-                  <S.CapsMessage />
-                </S.InputDiv>
-              </S.EmailFlex>
+              <S.MobileFlexRow>
+                <S.MarginAutoDiv style={{ marginBottom: '2rem' }}>
+                  <S.EmailFlex>
+                    <S.InputDiv>
+                      <div>
+                        <S.SpanTag right="0">업무가능 여부</S.SpanTag>
+                      </div>
+                      <S.FlexDiv top="1rem">
+                        <S.RadioDiv>
+                          <S.RadioInput
+                            type="radio"
+                            name="POSSIBLE"
+                            checked={workPossibleState === 'POSSIBLE'}
+                            onChange={(e) => setWorkPossibleState(e.target.name)}
+                          />
+                          <S.RadioText>가능</S.RadioText>
+                        </S.RadioDiv>
+                        <S.RadioDiv>
+                          <S.RadioInput
+                            type="radio"
+                            name="IMPOSSIBLE"
+                            checked={workPossibleState === 'IMPOSSIBLE'}
+                            onChange={(e) => setWorkPossibleState(e.target.name)}
+                          />
+                          <S.RadioText>불가능</S.RadioText>
+                        </S.RadioDiv>
+                      </S.FlexDiv>
+                    </S.InputDiv>
+                  </S.EmailFlex>
+                </S.MarginAutoDiv>
+
+                <S.MarginAutoDiv>
+                  <S.EmailFlex>
+                    <S.InputDiv top="0">
+                      <div>
+                        <S.SpanTag right="0">업무가능일</S.SpanTag>
+                      </div>
+                      <S.MaginDiv tabletTop="1">
+                        <S.InputTag size="14.5rem" placeholder={workStartPossibleDate} readOnly />
+                        <S.DateDiv>
+                          <DatePicker
+                            onChange={(date) => {
+                              handleDatePicker(date, 'workStartPossibleDate');
+                            }}
+                          />
+                        </S.DateDiv>
+                      </S.MaginDiv>
+                    </S.InputDiv>
+                  </S.EmailFlex>
+                </S.MarginAutoDiv>
+              </S.MobileFlexRow>
             </S.MarginAutoDiv>
+
+            <S.MarginAutoDiv>
+              <S.SpanTag right="0">희망지역</S.SpanTag>
+              <S.ContainerCountryType>
+                <S.ContainerCountrySelect
+                  width="8"
+                  value={hopeWorkCountry || ''}
+                  onChange={(e) => setHopeWorkCountry(e.target.value)}
+                >
+                  <option value="KR" checked={hopeWorkCountry === 'KR'}>
+                    대한민국
+                  </option>
+                  <option value="UK" checked={hopeWorkCountry === 'UK'}>
+                    영국
+                  </option>
+                  <option value="US" checked={hopeWorkCountry === 'US'}>
+                    미국
+                  </option>
+                  <option value="JP" checked={hopeWorkCountry === 'JP'}>
+                    일본
+                  </option>
+                  <option value="CN" checked={hopeWorkCountry === 'CN'}>
+                    중국
+                  </option>
+                </S.ContainerCountrySelect>
+
+                <S.InputWorkCity
+                  size="14.5rem"
+                  laptopSize="19rem"
+                  placeholder="도시 입력 예)서울:인천:대전"
+                  type="text"
+                  value={hopeWorkCity || ''}
+                  onChange={(e) => setHopeWorkCity(e.target.value)}
+                />
+              </S.ContainerCountryType>
+            </S.MarginAutoDiv>
+
             <S.MarginAutoDiv last>
               <S.ContainerDeactivateSave>
                 <S.ButtonDeactivate type="submit">회원탈퇴</S.ButtonDeactivate>

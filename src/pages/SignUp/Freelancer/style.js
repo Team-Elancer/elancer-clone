@@ -304,6 +304,7 @@ export const DateDiv = styled.div`
     opacity: 0;
     top: -2rem;
     height: 100%;
+    width: 100%;
     cursor: pointer;
   }
 `;
