@@ -1,18 +1,43 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
 import { Link, useSearchParams } from 'react-router-dom';
+
+import ContactQneOnOne from './ContactOneOnOne';
+
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
-import ContactModal from 'components/Modal/DashBoardContact';
+
+import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact';
+import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const MyBoardContact = () => {
   const [modalBool, setModalBool] = useState(false);
+  const [ContactData, setContactData] = useState('');
+
+  const FetchData = async () => {
+    try {
+      const res = await CLIENT_FREELANCER('/contacts');
+      const data = await res.data;
+
+      setContactData(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    if (ContactData === '') {
+      FetchData();
+    }
+  }, [ContactData]);
 
   return (
     <S.Container>
-      {modalBool === true && <ContactModal setModalBool={setModalBool} />}
+      {modalBool === true && <ModalFreelancerContactModal setModalBool={setModalBool} FetchData={FetchData} />}
       <S.FlexDiv>
         <S.H1 size="2.4rem">문의/요청</S.H1>
         <S.H1
@@ -82,8 +107,20 @@ const MyBoardContact = () => {
       </S.H1>
       <S.BorderDiv />
       <S.H1 top="3rem" size="2.4rem">
-        나의 문의/요청 (0)
+        1:1 문의 (0)
       </S.H1>
+      {ContactData !== '' &&
+        ContactData?.map((data, idx) => {
+          return (
+            <ContactQneOnOne
+              key={data.num}
+              ContactData={ContactData}
+              contactNum={data.num}
+              FetchData={FetchData}
+              idx={idx}
+            />
+          );
+        })}
       <S.BorderDiv />
     </S.Container>
   );

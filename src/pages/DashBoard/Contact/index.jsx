@@ -173,7 +173,7 @@ const MyContact = ({ ContactData, title, content, index, setReLoading }) => {
               setContentBool(!contentBool);
             }}
           >
-            {contentBool ? <IoArrowUpCircleOutline font-size="32px" /> : <IoArrowDownCircleOutline font-size="32px" />}
+            {contentBool ? <IoArrowUpCircleOutline fontSize="32px" /> : <IoArrowDownCircleOutline fontSize="32px" />}
           </S.ButtonP>
         </S.DisplayFlexDiv>
       </S.FlexDiv>
