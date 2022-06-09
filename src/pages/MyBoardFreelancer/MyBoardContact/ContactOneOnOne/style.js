@@ -12,7 +12,7 @@ export const FlexDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   @media ${TABLET} {
-    margin-top: 2.2rem;
+    margin-top: ${(props) => props.top};
   }
   @media ${LAPTOP} {
   }
@@ -241,14 +241,110 @@ export const Input = styled.input`
   @media ${LAPTOP} {
   }
 `;
-
 export const BorderDiv = styled.div`
-  display: none;
+  display: ${(props) => props.display};
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #cccccc;
   @media ${TABLET} {
     display: block;
-    height: 50px;
-    width: 100%;
-    border-bottom: 1px solid #cccccc;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const Colordiv = styled.div`
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  @media ${TABLET} {
+    margin-top: 2rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const DisplayFlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const NoAnwser = styled.div`
+  font-size: 0.7rem;
+  font-weight: 600;
+  background-color: #b7b7b7;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.8rem 0.5rem;
+  @media ${TABLET} {
+    font-size: 0.9rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const TitleP = styled.p`
+  color: #707070;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding-left: 0.7rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const DateP = styled.p`
+  color: #707070;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding-left: 0.7rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const ButtonP = styled.p`
+  padding-left: 1rem;
+  cursor: pointer;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const SecondDiv = styled.div`
+  padding: 2rem 1rem;
+`;
+export const BlueSpan = styled.span`
+  color: #6b9bff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const FlexEndDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-top: 1rem;
+`;
+export const ButtonDiv = styled.div`
+  font-size: 0.7rem;
+  font-weight: 600;
+  background-color: ${(props) => props.color};
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.5rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  @media ${TABLET} {
+    font-size: 0.9rem;
   }
   @media ${LAPTOP} {
   }
