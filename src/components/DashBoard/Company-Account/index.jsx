@@ -224,10 +224,10 @@ const CompanyAccount = ({
                 setId(e.target.value);
               }}
             />
-            <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
-            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
           </S.IdBlockDiv>
         </S.InputDiv>
+        <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
+        <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
         <S.FlexDiv>
           <S.InputDiv>
             <S.BlockDiv display="flex">
