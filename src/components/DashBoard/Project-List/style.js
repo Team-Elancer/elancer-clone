@@ -82,3 +82,72 @@ export const DayPTag = styled.p`
   @media ${LAPTOP} {
   }
 `;
+export const UlTag = styled.ul`
+  margin: 2rem 0 3rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  @media ${TABLET} {
+    margin: 3rem 0 4rem 3rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+
+export const RelativeLi = styled.li`
+  position: relative;
+  margin-top: -2rem;
+`;
+export const BorderTopDiv = styled.div`
+  border-color: rgba(241, 99, 0, 1);
+  border-top: 2px ${(props) => props.type} ${(props) => props.color};
+  position: absolute;
+  height: 0.25rem;
+  top: 1rem;
+  width: 2rem;
+  left: ${(props) => props.left};
+  @media ${TABLET} {
+    border-width: 4px;
+    left: ${(props) => props.laptopLeft};
+    width: 5rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const Circlediv = styled.div`
+  position: absolute;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px solid ${(props) => props.color};
+  border-radius: 50%;
+  height: 0.725rem;
+  left: ${(props) => props.left};
+  top: 0.75rem;
+  width: 0.725rem;
+  @media ${TABLET} {
+    border-width: 4px;
+    height: 1.425rem;
+    width: 1.425rem;
+    top: 0.45rem;
+    left: ${(props) => props.laptopLeft};
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const PTag = styled.p`
+  text-align: center;
+  color: #4b4b4b;
+  font-weight: 600;
+  line-height: 0.8rem;
+  position: absolute;
+  width: 30px;
+  top: 1.8rem;
+  left: ${(props) => props.left};
+  @media ${TABLET} {
+    font-size: 0.8rem;
+    width: 50px;
+    top: 2.1rem;
+    left: ${(props) => props.laptopLeft};
+  }
+  @media ${LAPTOP} {
+  }
+`;
