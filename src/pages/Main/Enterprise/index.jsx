@@ -18,6 +18,8 @@ const MainEnterprise = () => {
   const [checkButton, setCheckButton] = useState('');
   const [serchBarBool, setSerchBarBool] = useState();
   const [jobField, setJobField] = useState('개발');
+  const [locationState, setLocationState] = useState('선택');
+  const [careerState, setCareerState] = useState('선택');
 
   const changeSearch = () => {
     setChangeBack(false);
@@ -60,7 +62,7 @@ const MainEnterprise = () => {
               }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>근무 위치</S.Span>
-              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>선택</S.ButtonP>
+              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{locationState}</S.ButtonP>
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
@@ -70,7 +72,7 @@ const MainEnterprise = () => {
               }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>숙련도</S.Span>
-              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>선택</S.ButtonP>
+              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{careerState}</S.ButtonP>
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
@@ -86,10 +88,10 @@ const MainEnterprise = () => {
           </S.FlexDiv>
           <S.CenterDiv>
             {changeBack === false && serchBarBool === 'job' ? (
-              <S.JobFieldDiv>
+              <S.ModalDiv width="550px" height="105px">
                 <S.UlTag>
-                  <S.JobLiTag>
-                    <S.JobInput
+                  <S.LiTag>
+                    <S.Input
                       bgColor={jobField === '개발' ? '#e7e7e7' : 'white'}
                       brColor={jobField === '개발' ? 'black' : '#d7d7d7'}
                       type="radio"
@@ -105,9 +107,9 @@ const MainEnterprise = () => {
                     >
                       ⚙️ 개발
                     </S.RadioLabel>
-                  </S.JobLiTag>
-                  <S.JobLiTag>
-                    <S.JobInput
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
                       bgColor={jobField === '퍼블리싱' ? '#e7e7e7' : 'white'}
                       brColor={jobField === '퍼블리싱' ? 'black' : '#d7d7d7'}
                       type="radio"
@@ -123,9 +125,9 @@ const MainEnterprise = () => {
                     >
                       🛠 퍼블리싱
                     </S.RadioLabel>
-                  </S.JobLiTag>
-                  <S.JobLiTag>
-                    <S.JobInput
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
                       bgColor={jobField === '디자인' ? '#e7e7e7' : 'white'}
                       brColor={jobField === '디자인' ? 'black' : '#d7d7d7'}
                       type="radio"
@@ -141,9 +143,9 @@ const MainEnterprise = () => {
                     >
                       🎨 디자인
                     </S.RadioLabel>
-                  </S.JobLiTag>
-                  <S.JobLiTag>
-                    <S.JobInput
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
                       bgColor={jobField === '기획' ? '#e7e7e7' : 'white'}
                       brColor={jobField === '기획' ? 'black' : '#d7d7d7'}
                       type="radio"
@@ -159,9 +161,9 @@ const MainEnterprise = () => {
                     >
                       📝 기획
                     </S.RadioLabel>
-                  </S.JobLiTag>
-                  <S.JobLiTag>
-                    <S.JobInput
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
                       bgColor={jobField === '기타' ? '#e7e7e7' : 'white'}
                       brColor={jobField === '기타' ? 'black' : '#d7d7d7'}
                       type="radio"
@@ -177,9 +179,122 @@ const MainEnterprise = () => {
                     >
                       🔗 기타
                     </S.RadioLabel>
-                  </S.JobLiTag>
+                  </S.LiTag>
                 </S.UlTag>
-              </S.JobFieldDiv>
+              </S.ModalDiv>
+            ) : (
+              <div> </div>
+            )}
+            {changeBack === false && serchBarBool === 'location' ? (
+              <S.ModalDiv width="250px" height="105px" left="15rem" laptopLeft="19rem">
+                <S.UlTag>
+                  <S.LiTag>
+                    <S.Input
+                      bgColor={locationState === '상주' ? '#e7e7e7' : 'white'}
+                      brColor={locationState === '상주' ? 'black' : '#d7d7d7'}
+                      type="radio"
+                      name="location"
+                      id="company"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <S.RadioLabel
+                      htmlFor="company"
+                      onClick={(e) => {
+                        setLocationState('상주');
+                      }}
+                    >
+                      🏢 상주
+                    </S.RadioLabel>
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
+                      bgColor={locationState === '재택' ? '#e7e7e7' : 'white'}
+                      brColor={locationState === '재택' ? 'black' : '#d7d7d7'}
+                      type="radio"
+                      name="location"
+                      id="home"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <S.RadioLabel
+                      htmlFor="home"
+                      onClick={(e) => {
+                        setLocationState('재택');
+                      }}
+                    >
+                      🏠 재택
+                    </S.RadioLabel>
+                  </S.LiTag>
+                </S.UlTag>
+              </S.ModalDiv>
+            ) : (
+              <div> </div>
+            )}
+            {changeBack === false && serchBarBool === 'career' ? (
+              <S.ModalDiv width="250px" height="105px" left="23rem" laptopLeft="28rem">
+                <S.UlTag>
+                  <S.LiTag>
+                    <S.Input
+                      bgColor={careerState === '초급' ? '#e7e7e7' : 'white'}
+                      brColor={careerState === '초급' ? 'black' : '#d7d7d7'}
+                      type="radio"
+                      name="career"
+                      id="beginner"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <S.RadioLabel
+                      htmlFor="beginner"
+                      onClick={(e) => {
+                        setCareerState('초급');
+                      }}
+                    >
+                      초급
+                    </S.RadioLabel>
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
+                      bgColor={careerState === '중급' ? '#e7e7e7' : 'white'}
+                      brColor={careerState === '중급' ? 'black' : '#d7d7d7'}
+                      type="radio"
+                      name="career"
+                      id="middle"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <S.RadioLabel
+                      htmlFor="middle"
+                      onClick={(e) => {
+                        setCareerState('중급');
+                      }}
+                    >
+                      중급
+                    </S.RadioLabel>
+                  </S.LiTag>
+                  <S.LiTag>
+                    <S.Input
+                      bgColor={careerState === '상급' ? '#e7e7e7' : 'white'}
+                      brColor={careerState === '상급' ? 'black' : '#d7d7d7'}
+                      type="radio"
+                      name="career"
+                      id="advanced"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <S.RadioLabel
+                      htmlFor="advanced"
+                      onClick={(e) => {
+                        setCareerState('상급');
+                      }}
+                    >
+                      상급
+                    </S.RadioLabel>
+                  </S.LiTag>
+                </S.UlTag>
+              </S.ModalDiv>
+            ) : (
+              <div> </div>
+            )}
+            {changeBack === false && serchBarBool === 'searchBar' ? (
+              <S.ModalDiv width="350px" height="105px" left="30rem" laptopLeft="35 rem">
+                <EnterpriseSearchBar display="block" width="300px" />
+              </S.ModalDiv>
             ) : (
               <div> </div>
             )}

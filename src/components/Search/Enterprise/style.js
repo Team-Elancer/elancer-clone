@@ -8,12 +8,12 @@ export const Container = styled.div`
   justify-content: center;
   margin: 30px auto;
   @media ${TABLET} {
-    display: none;
+    display: ${(props) => props.display};
   }
 `;
 
 export const InputForm = styled.form`
-  width: 380px;
+  width: ${(props) => props.width};
   height: 44px;
   display: flex;
   align-items: center;
@@ -24,6 +24,7 @@ export const InputForm = styled.form`
   background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #7485c9 0, #f16300 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  margin: 0 auto;
 `;
 
 export const Input = styled.input`

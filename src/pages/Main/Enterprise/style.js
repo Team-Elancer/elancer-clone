@@ -150,11 +150,11 @@ export const MainDiv = styled.div`
     width: 800px;
   }
 `;
-export const JobFieldDiv = styled.div`
+export const ModalDiv = styled.div`
   display: none;
   @media ${TABLET} {
-    width: 550px;
-    height: 105px;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
     background-color: white;
     border-radius: 3rem;
     display: flex;
@@ -162,8 +162,10 @@ export const JobFieldDiv = styled.div`
     justify-content: center;
     z-index: 98;
     position: relative;
+    margin-left: ${(props) => props.left};
   }
   @media ${LAPTOP} {
+    margin-left: ${(props) => props.laptopLeft};
   }
 `;
 export const UlTag = styled.ul`
@@ -171,10 +173,10 @@ export const UlTag = styled.ul`
   align-items: center;
   justify-content: center;
 `;
-export const JobLiTag = styled.li`
+export const LiTag = styled.li`
   padding-right: 0.5rem;
 `;
-export const JobInput = styled.input`
+export const Input = styled.input`
   appearance: none;
   border: 2px solid ${(props) => props.brColor};
   width: 100%;
