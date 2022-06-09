@@ -5,7 +5,8 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: -10px;
+  margin-top: ${(props) => props.top};
+  position: ${(props) => props.relative};
 `;
 
 export const BgDiv = styled.div`
@@ -20,19 +21,23 @@ export const BgDiv = styled.div`
   @media ${LAPTOP} {
   }
 `;
+export const WhiteDiv = styled.div``;
 
 export const CenterDiv = styled.div`
-  width: 93%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 64rem;
+  margin-left: 0.5rem;
   height: 100%;
   padding-bottom: 5rem;
   @media ${TABLET} {
+    margin: 0 auto;
     padding-bottom: 8rem;
-    width: 62%;
+    width: 740px;
   }
   @media ${LAPTOP} {
+    margin: 0 auto;
     padding-bottom: 8rem;
-    width: 62%;
+    width: 840px;
   }
 `;
 export const H1 = styled.h1`
@@ -41,12 +46,14 @@ export const H1 = styled.h1`
   font-size: 1.2rem;
   padding-top: 3rem;
   @media ${TABLET} {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
+    letter-spacing: -1px;
+    font-weight: 800;
     line-height: 3rem;
     width: 800;
   }
   @media ${LAPTOP} {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     line-height: 3rem;
     width: 800;
   }
@@ -73,17 +80,18 @@ export const FlexDiv = styled.div`
   display: none;
   @media ${TABLET} {
     border-radius: 3rem;
-    width: 840px;
+    width: 740px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: start;
     background-color: ${(props) => props.color};
-    margin: 5rem auto;
+    margin: 0 auto;
     z-index: 98;
     position: relative;
   }
   @media ${LAPTOP} {
+    width: 840px;
   }
 `;
 export const jobButton = styled.button`
@@ -136,8 +144,50 @@ export const MainDiv = styled.div`
   height: 100%;
   margin: 0 auto;
   @media ${TABLET} {
+    width: 750px;
+  }
+  @media ${LAPTOP} {
     width: 800px;
+  }
+`;
+export const JobFieldDiv = styled.div`
+  display: none;
+  @media ${TABLET} {
+    width: 550px;
+    height: 105px;
+    background-color: white;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 98;
+    position: relative;
   }
   @media ${LAPTOP} {
   }
+`;
+export const UlTag = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const JobLiTag = styled.li`
+  padding-right: 0.5rem;
+`;
+export const JobInput = styled.input`
+  appearance: none;
+  border: 2px solid ${(props) => props.brColor};
+  width: 100%;
+  height: 42px;
+  border-radius: 3rem;
+  margin: 1rem 1rem 0 0;
+  background-color: ${(props) => props.bgColor};
+`;
+export const RadioLabel = styled.label`
+  top: -1.9rem;
+  left: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  position: relative;
+  cursor: pointer;
 `;
