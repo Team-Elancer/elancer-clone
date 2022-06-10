@@ -24,6 +24,10 @@ const MyBoardProfileModify = () => {
     setCarrerTextArea(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <S.FrameProfile>
       <S.ContainerTop>
@@ -38,7 +42,8 @@ const MyBoardProfileModify = () => {
         <S.FontLargeSubject>프로필 제목</S.FontLargeSubject>
         <S.SubjectInput type="text" name="intro_title" id="intro_title" placeholder="프로필 제목을 입력해주세요" />
       </S.ContainerSubject>
-      {/* ============== Introduction ============== */}
+
+      {/* ============== Introduction 소개정보 ============== */}
       <S.FontLarge>소개정보</S.FontLarge>
       <S.BoxFrame>
         <form action="">
@@ -161,7 +166,8 @@ const MyBoardProfileModify = () => {
           </S.FlexCenter>
         </form>
       </S.BoxFrame>
-      {/* ============== JobSkill ============== */}
+
+      {/* ============== JobSkill 스킬 ============== */}
       <S.FontLarge>스킬</S.FontLarge>
       <S.BoxFrame>
         <form action="">
@@ -197,59 +203,14 @@ const MyBoardProfileModify = () => {
           </S.FlexCenter>
         </form>
       </S.BoxFrame>
-      {/* ============== EducationInfo ============== */}
+
+      {/* ============== EducationInfo 학력사항 ============== */}
       <S.FontLarge>학력사항</S.FontLarge>
       <S.BoxFrame>
-        <form action="">
-          <EducationInfo />
-          {/* 학교명 */}
-          <S.EducationContainer>
-            <S.TextLabel>학교명</S.TextLabel>
-            <S.ContainerSelectOption>
-              <S.IntroInputName type="text" placeholder="학교명" />
-              <S.SelectInputName name="school">
-                <option value="school">고등학교</option>
-                <option value="school">대학(2,3년)</option>
-                <option value="school">대학교(4년)</option>
-                <option value="school">대학원(석사)</option>
-                <option value="school">대학원(박사)</option>
-              </S.SelectInputName>
-            </S.ContainerSelectOption>
-          </S.EducationContainer>
-          {/* 재학기간 */}
-          <S.EducationContainer>
-            <S.TextLabel>재학기간</S.TextLabel>
-            <S.ContainerSelectOption width="130">
-              <S.IntroInputName type="text" placeholder="2000.03" />
-              <S.BetweenInputSpan> ~ </S.BetweenInputSpan>
-              <S.IntroInputName type="text" placeholder="2003.02" />
-              <S.SelectInputName name="duration">
-                <option value="duration">재학</option>
-                <option value="duration">휴학</option>
-                <option value="duration">중퇴</option>
-                <option value="duration">졸업</option>
-                <option value="duration">수료/이수</option>
-              </S.SelectInputName>
-            </S.ContainerSelectOption>
-          </S.EducationContainer>
-          {/* 전공명 */}
-          <S.EducationContainer>
-            <S.TextLabel>전공명</S.TextLabel>
-            <S.IntroInputLarge
-              type="text"
-              name="intro_name"
-              placeholder="
-전공명
-"
-            />
-          </S.EducationContainer>
-          <S.FlexCenter>
-            <S.ProfileButton type="button"> 학력사항 저장 </S.ProfileButton>
-          </S.FlexCenter>
-        </form>
+        <EducationInfo />
       </S.BoxFrame>
 
-      {/* ============== CareerInfo (add/remove) ============== */}
+      {/* ============== CareerInfo (add/remove) 근무경력 ============== */}
       <S.FontLarge>근무경력</S.FontLarge>
       <S.BoxFrame>
         <form action="">
@@ -286,7 +247,7 @@ const MyBoardProfileModify = () => {
         </form>
       </S.BoxFrame>
 
-      {/* ============== Certificate (add/remove) ============== */}
+      {/* ============== Certificate (add/remove) 교육 및 자격사항 ============== */}
       <S.FontLarge>교육 및 자격사항</S.FontLarge>
       <S.BoxFrame>
         <form action="">
@@ -319,8 +280,8 @@ const MyBoardProfileModify = () => {
         </form>
       </S.BoxFrame>
 
-      {/* ==============  (add/remove) ============== */}
-      <S.FontLarge>프로젝트 수행이력*</S.FontLarge>
+      {/* ==============  프로젝트 수행이력 (add/remove) ============== */}
+      <S.FontLarge>프로젝트 수행이력</S.FontLarge>
       <S.BoxFrame>
         <form action="">
           <S.EducationContainer>
