@@ -120,6 +120,7 @@ const DashboardContact = () => {
               setReLoading={setReLoading}
               title={data.title}
               content={data.content}
+              Date={data.localDate}
               index={data.num}
             />
           );
@@ -129,7 +130,7 @@ const DashboardContact = () => {
   );
 };
 
-const MyContact = ({ ContactData, title, content, index, setReLoading }) => {
+const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) => {
   const [contentBool, setContentBool] = useState(false);
   const [putmodalBool, setPutModalBool] = useState(false);
 
@@ -166,7 +167,7 @@ const MyContact = ({ ContactData, title, content, index, setReLoading }) => {
           <S.TitleP>{ContactData.length > 1 ? title : ''}</S.TitleP>
         </S.DisplayFlexDiv>
         <S.DisplayFlexDiv>
-          <S.DateP>2022-06-01</S.DateP>
+          <S.DateP>{Date}</S.DateP>
           <S.ButtonP
             onClick={(e) => {
               e.preventDefault();
