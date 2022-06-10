@@ -38,6 +38,7 @@ const DashboardProjectAdd = () => {
     '1.프로젝트명: 2.현재개발진행사항 1총투입인력: 2현재설계개발상태: 3.담당업무 1 4.업무범위:5.전달사항또는(개발)우대사항: 1 6.필요인력: 명 7.개발자필요Spec 1 2 8.근무지: 9.개발기간: 10.월단가:제시바람 11.장비지참여부:',
   );
   const [bgColor, setBgColor] = useState('');
+  const [logoBgColor, setLogoBgColor] = useState('');
   const [projectColor, setProjectColor] = useState('');
   const [jobfield, setJobfield] = useState('');
   const [jobChoice, setJobChoice] = useState(null);
@@ -76,7 +77,9 @@ const DashboardProjectAdd = () => {
   };
 
   const changeBgColor = (e) => {
+    console.log(e.target);
     setBgColor(e.target.value);
+    setLogoBgColor(e.target.id);
   };
 
   const changeProjectColor = (e) => {
@@ -248,76 +251,76 @@ const DashboardProjectAdd = () => {
         </S.JobUl>
         <S.H1 ftszie="1.2rem">배경</S.H1>
         <S.ColorUl>
-          <S.Boxli liColor={bgColor === '#181818' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'BLACK' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#181818"
               name="color"
-              id="black"
+              id="#181818"
               type="radio"
-              value="#181818"
+              value="BLACK"
               onClick={changeBgColor}
             />
           </S.Boxli>
           <S.Boxli liColor={bgColor === 'white' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput bgColor="white" name="color" id="black" type="radio" value="white" onClick={changeBgColor} />
+            <S.ColorInput bgColor="white" name="color" id="white" type="radio" value="white" onClick={changeBgColor} />
           </S.Boxli>
-          <S.Boxli liColor={bgColor === '#7485c9' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'BLUE' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#7485c9"
               name="color"
-              id="black"
+              id="#7485c9"
               type="radio"
-              value="#7485c9"
+              value="BLUE"
               onClick={changeBgColor}
             />
           </S.Boxli>
-          <S.Boxli liColor={bgColor === '#8a7fa4' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'INDIGO' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#8a7fa4"
               name="color"
-              id="black"
+              id="#8a7fa4"
               type="radio"
-              value="#8a7fa4"
+              value="INDIGO"
               onClick={changeBgColor}
             />
           </S.Boxli>
-          <S.Boxli liColor={bgColor === '#9d7985' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'ROSSYBROWN' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#9d7985"
               name="color"
-              id="black"
+              id="#9d7985"
               type="radio"
-              value="#9d7985"
+              value="ROSSYBROWN"
               onClick={changeBgColor}
             />
           </S.Boxli>
-          <S.Boxli liColor={bgColor === '#b57360' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'BROWN' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#b57360"
               name="color"
-              id="black"
+              id="#b57360"
               type="radio"
-              value="#b57360"
+              value="BROWN"
               onClick={changeBgColor}
             />
           </S.Boxli>
-          <S.Boxli liColor={bgColor === '#d56b2d' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'CHOCOLATE' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#d56b2d"
               name="color"
-              id="black"
+              id="#d56b2d"
               type="radio"
-              value="#d56b2d"
+              value="CHOCOLATE"
               onClick={changeBgColor}
             />
           </S.Boxli>
-          <S.Boxli liColor={bgColor === '#f16300' ? '#eb6100' : '#e1e1e1'}>
+          <S.Boxli liColor={bgColor === 'ORANGE' ? '#eb6100' : '#e1e1e1'}>
             <S.ColorInput
               bgColor="#f16300"
               name="color"
-              id="black"
+              id="#f16300"
               type="radio"
-              value="#f16300"
+              value="ORANGE"
               onClick={changeBgColor}
             />
           </S.Boxli>
@@ -329,7 +332,7 @@ const DashboardProjectAdd = () => {
             로고 직접 등록
           </S.BlacSpan>
         </div>
-        <S.ResultColor bgColor={bgColor}>
+        <S.ResultColor bgColor={logoBgColor}>
           <S.LogImage src={Logo} alt="logo" />
         </S.ResultColor>
         <S.H1>기본정보 *</S.H1>

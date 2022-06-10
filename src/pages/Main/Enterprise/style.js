@@ -193,3 +193,10 @@ export const RadioLabel = styled.label`
   position: relative;
   cursor: pointer;
 `;
+export const TextInput = styled.input`
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 28px;
+  background-color: ${(props) => props.bgColor};
+`;

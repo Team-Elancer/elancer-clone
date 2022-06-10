@@ -20,6 +20,7 @@ const MainEnterprise = () => {
   const [jobField, setJobField] = useState('개발');
   const [locationState, setLocationState] = useState('선택');
   const [careerState, setCareerState] = useState('선택');
+  const [skillState, setSkillState] = useState('');
 
   const changeSearch = () => {
     setChangeBack(false);
@@ -52,7 +53,14 @@ const MainEnterprise = () => {
               }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>스킬</S.Span>
-              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>선택</S.ButtonP>
+              <S.TextInput
+                type="text"
+                bgColor={changeBack === false ? '#f6f6f6' : '#f16300'}
+                value={skillState}
+                onChange={(e) => {
+                  setSkillState(e.target.value);
+                }}
+              />
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
