@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
+export const FlexCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+`;
+
 export const JobUl = styled.ul`
   width: 100%;
   display: flex;
@@ -59,6 +65,8 @@ export const JobRadioLi = styled.li`
 `;
 
 export const JobInputLeft = styled.input`
+  cursor: pointer;
+
   width: 100%;
   height: 29px;
   border: 1px solid #e6e6e6;
@@ -78,6 +86,7 @@ export const JobInputLeft = styled.input`
 `;
 
 export const JobLabel = styled.label`
+  cursor: pointer;
   position: absolute;
   font-weight: 600;
   color: ${(props) => props.color};
@@ -92,6 +101,7 @@ export const JobLabel = styled.label`
 `;
 
 export const JobInput = styled.input`
+  cursor: pointer;
   width: 100%;
   height: 29px;
   background-color: ${(props) => props.bgColor};
@@ -109,6 +119,7 @@ export const JobInput = styled.input`
 `;
 
 export const JobInputRight = styled.input`
+  cursor: pointer;
   width: 100%;
   height: 29px;
   background-color: ${(props) => props.bgColor};
@@ -204,3 +215,93 @@ export const IntroInputLarge = styled(IntroInputName)`
     width: 613px;
   }
 `;
+
+export const EducationContainer = styled.div`
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @media ${TABLET} {
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: ${(props) => !props.noFlex && 'center'};
+  }
+`;
+
+export const TextLabel = styled.label`
+  font-weight: bold;
+  font-size: 0.7rem;
+  display: inline-block;
+
+  @media ${TABLET} {
+    font-size: 1rem;
+    width: 110px;
+    margin-top: ${(props) => props.marginTop}rem;
+  }
+`;
+
+export const ContainerSelectOption = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media ${TABLET} {
+    width: ${(props) => props.width}px;
+  }
+`;
+
+export const SelectInputName = styled.select`
+  background-color: rgba(246, 246, 246, 1);
+
+  display: inline-block;
+
+  border-color: rgba(196, 196, 196, 1);
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  color: rgba(140, 140, 140, 1);
+
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-left: 0px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+
+  margin-left: 0.75rem;
+`;
+
+export const BetweenInputSpan = styled.span`
+  font-size: 1rem;
+`;
+
+export const ProfileButton = styled.button`
+  background-color: rgba(235, 97, 0, 1);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+  display: inline-block;
+  font-size: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+
+  @media ${TABLET} {
+    border-radius: 10px;
+    font-size: 0.938rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+  }
+`;
+
+export const IntroInputNameDate = styled(IntroInputName)`
+  ::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1);
+  }
+  color-scheme: dark;
+`;
+
+export const ContainerDate = styled.div``;
