@@ -173,6 +173,7 @@ export const UlTag = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 export const LiTag = styled.li`
   padding-right: 0.5rem;
