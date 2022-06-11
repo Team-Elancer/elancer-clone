@@ -44,7 +44,7 @@ const ContactQneOnOne = ({ ContactData, contactNum, FetchData, idx }) => {
           <S.TitleP>{ContactData[idx].title}</S.TitleP>
         </S.DisplayFlexDiv>
         <S.DisplayFlexDiv>
-          <S.DateP>{new Date().toISOString().split('T')[0]}</S.DateP>
+          <S.DateP>{ContactData[idx].localDate}</S.DateP>
           <S.ButtonP
             onClick={(e) => {
               e.preventDefault();

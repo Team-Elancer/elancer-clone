@@ -56,7 +56,6 @@ const MyBoardFreelancer = () => {
     localStorage.setItem('accessToken', TOKEN.accessToken);
     localStorage.setItem('refreshToken', TOKEN.refreshToken);
 
-    setTokenData(true);
     console.log('access token 재발급 완료', TOKEN);
   };
 
@@ -69,7 +68,6 @@ const MyBoardFreelancer = () => {
 
         if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
           getNewToken();
-          window.location.reload();
         } else {
           window.localStorage.clear();
           navigate('/login');
@@ -94,7 +92,7 @@ const MyBoardFreelancer = () => {
     return () => {
       isMounted = false;
     };
-  }, [setTokenData]);
+  }, []);
 
   return (
     <S.Container>
