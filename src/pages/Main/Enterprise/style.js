@@ -105,6 +105,7 @@ export const jobButton = styled.button`
     padding: 0 2rem;
     border-radius: 5rem;
     cursor: pointer;
+    overflow: hidden;
   }
   @media ${LAPTOP} {
   }
@@ -192,11 +193,4 @@ export const RadioLabel = styled.label`
   font-weight: 600;
   position: relative;
   cursor: pointer;
-`;
-export const TextInput = styled.input`
-  border: none;
-  outline: none;
-  width: 100%;
-  height: 28px;
-  background-color: ${(props) => props.bgColor};
 `;
