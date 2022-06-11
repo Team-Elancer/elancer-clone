@@ -304,4 +304,4 @@ export const IntroInputNameDate = styled(IntroInputName)`
   color-scheme: dark;
 `;
 
-export const ContainerDate = styled.div``;
+

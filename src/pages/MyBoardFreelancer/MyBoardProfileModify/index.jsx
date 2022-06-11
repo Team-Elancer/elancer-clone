@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CareerInfo from './CareerInfo';
 import EducationInfo from './EducationInfo';
 import JobSkill from './JobSkill';
 import DeveloperSkillList from './SkillLists/DeveloperSkillList';
@@ -11,10 +12,6 @@ const MyBoardProfileModify = () => {
   const [carrerTextArea, setCarrerTextArea] = useState(
     'ex00은행 채용시스템 고도화 개발-관리자 경력에 따른 채용 기능 추가-경력에 따른 DB정보 검색 기능개발-개인정보 관련하여 수정사항 개발',
   );
-
-  const changeBgColor = (e) => {
-    setBgColor(e.target.value);
-  };
 
   const jobRadioFuntion = (e) => {
     setJobRadio(e.target.value);
@@ -60,70 +57,63 @@ const MyBoardProfileModify = () => {
                 <S.ColorInput
                   bgColor="#181818"
                   name="color"
-                  id="black"
                   type="radio"
                   value="#181818"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === 'white' ? '#eb6100' : '#e1e1e1'}>
                 <S.ColorInput
                   bgColor="white"
                   name="color"
-                  id="black"
                   type="radio"
                   value="white"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === '#7485c9' ? '#eb6100' : '#e1e1e1'}>
                 <S.ColorInput
                   bgColor="#7485c9"
                   name="color"
-                  id="black"
                   type="radio"
                   value="#7485c9"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === '#8a7fa4' ? '#eb6100' : '#e1e1e1'}>
                 <S.ColorInput
                   bgColor="#8a7fa4"
                   name="color"
-                  id="black"
                   type="radio"
                   value="#8a7fa4"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === '#9d7985' ? '#eb6100' : '#e1e1e1'}>
                 <S.ColorInput
                   bgColor="#9d7985"
                   name="color"
-                  id="black"
                   type="radio"
                   value="#9d7985"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === '#b57360' ? '#eb6100' : '#e1e1e1'}>
                 <S.ColorInput
                   bgColor="#b57360"
                   name="color"
-                  id="black"
                   type="radio"
                   value="#b57360"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === '#d56b2d' ? '#eb6100' : '#e1e1e1'}>
                 <S.ColorInput
                   bgColor="#d56b2d"
                   name="color"
-                  id="black"
                   type="radio"
                   value="#d56b2d"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
               <S.Boxli liColor={bgColor === '#f16300' ? '#eb6100' : '#e1e1e1'}>
@@ -133,7 +123,7 @@ const MyBoardProfileModify = () => {
                   id="black"
                   type="radio"
                   value="#f16300"
-                  onClick={changeBgColor}
+                  onClick={(e) => setBgColor(e.target.value)}
                 />
               </S.Boxli>
             </S.ColorUl>
@@ -213,38 +203,7 @@ const MyBoardProfileModify = () => {
       {/* ============== CareerInfo (add/remove) 근무경력 ============== */}
       <S.FontLarge>근무경력</S.FontLarge>
       <S.BoxFrame>
-        <form action="">
-          <S.EducationContainer>
-            <S.TextLabel>회사명</S.TextLabel>
-            <S.ContainerSelectOption width="300">
-              <S.IntroInputName type="text" placeholder="회사명" />
-              <S.IntroInputName type="text" placeholder="부서명을 입력하세요" />
-              <S.SelectInputName name="position">
-                <option value="position">회장</option>
-                <option value="position">부회장</option>
-                <option value="position">사장</option>
-                <option value="position">사원</option>
-                <option value="position">기타</option>
-              </S.SelectInputName>
-              <S.RemoveButton>X</S.RemoveButton>
-            </S.ContainerSelectOption>
-          </S.EducationContainer>
-          {/* 근무년월 */}
-          <S.EducationContainer>
-            <S.TextLabel>근무년월</S.TextLabel>
-            <S.ContainerSelectOption width="130">
-              <S.IntroInputName type="text" placeholder="2000.03" />
-              <S.BetweenInputSpan> ~ </S.BetweenInputSpan>
-              <S.IntroInputName type="text" placeholder="2003.02" />
-            </S.ContainerSelectOption>
-          </S.EducationContainer>
-          <S.FlexCenter>
-            <S.ButtonAddExtra type="button">경력 추가+ </S.ButtonAddExtra>
-          </S.FlexCenter>
-          <S.FlexCenter>
-            <S.ProfileButton type="button"> 근무경력 저장 </S.ProfileButton>
-          </S.FlexCenter>
-        </form>
+        <CareerInfo />
       </S.BoxFrame>
 
       {/* ============== Certificate (add/remove) 교육 및 자격사항 ============== */}

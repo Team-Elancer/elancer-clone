@@ -529,3 +529,11 @@ export const InputText = styled(IntroInputName)`
     margin-bottom: 1rem;
   }
 `;
+
+export const IntroInputNameDate = styled(IntroInputName)`
+  ::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1);
+  }
+  color-scheme: dark;
+`;
