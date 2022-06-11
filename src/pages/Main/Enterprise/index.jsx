@@ -199,142 +199,13 @@ const MainEnterprise = () => {
               <div> </div>
             )}
             {changeBack === false && serchBarBool === 'select' ? (
-              <S.ModalDiv width="840px" height="105px" left="0rem" laptopLeft="0rem">
+              <S.ModalDiv width="840px" height="155px" left="0rem" laptopLeft="0rem">
                 <S.UlTag>
-                  {jobField === '개발' && (
-                    <>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('JAVA') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('JAVA') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="JAVA"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="JAVA" onClick={skillFunction}>
-                          JAVA
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('iOS') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('iOS') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="iOS"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="iOS" onClick={skillFunction}>
-                          iOS
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('Android') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('Android') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="Android"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="Android" onClick={skillFunction}>
-                          Android
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('PHP') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('PHP') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="PHP"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="PHP" onClick={skillFunction}>
-                          PHP
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('ASP') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('ASP') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="ASP"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="ASP" onClick={skillFunction}>
-                          ASP
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('.NET') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('.NET') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id=".NET"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor=".NET" onClick={skillFunction}>
-                          .NET
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('JavaScript') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('JavaScript') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="JavaScript"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="JavaScript" onClick={skillFunction}>
-                          JavaScript
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('C') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('C') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="C"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="C" onClick={skillFunction}>
-                          C
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('C++') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('C++') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="C++"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="C++" onClick={skillFunction}>
-                          C++
-                        </S.RadioLabel>
-                      </S.LiTag>
-                      <S.LiTag>
-                        <S.Input
-                          bgColor={skillState.includes('DB') ? '#e7e7e7' : 'white'}
-                          brColor={skillState.includes('DB') ? 'black' : '#d7d7d7'}
-                          type="checkbox"
-                          name="select"
-                          id="DB"
-                        />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <S.RadioLabel htmlFor="DB" onClick={skillFunction}>
-                          DB
-                        </S.RadioLabel>
-                      </S.LiTag>
-                    </>
-                  )}
+                  {jobField === '개발' && <DevelopSkils skillState={skillState} skillFunction={skillFunction} />}
+                  {jobField === '퍼블리싱' && <PublisingSkils skillState={skillState} skillFunction={skillFunction} />}
+                  {jobField === '디자인' && <DesignSkils skillState={skillState} skillFunction={skillFunction} />}
+                  {jobField === '기획' && <PlanSkils skillState={skillState} skillFunction={skillFunction} />}
+                  {jobField === '기타' && <EtcSkils skillState={skillState} skillFunction={skillFunction} />}
                 </S.UlTag>
               </S.ModalDiv>
             ) : (
@@ -472,6 +343,185 @@ const MainEnterprise = () => {
       <Footer toBottom="static" />
       <GridBottom />
     </S.Container>
+  );
+};
+
+const DevelopSkils = ({ skillState, skillFunction }) => {
+  const DevelopArray = ['JAVA', 'iOS', 'Android', 'PHP', 'ASP', '.NET', 'JavaScript', 'C', 'C++', 'DB'];
+
+  return (
+    <>
+      {DevelopArray.map((data) => {
+        return (
+          <S.LiTag>
+            <S.Input
+              bgColor={skillState.includes(data) ? '#e7e7e7' : 'white'}
+              brColor={skillState.includes(data) ? 'black' : '#d7d7d7'}
+              type="checkbox"
+              name="select"
+              id={data}
+            />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <S.RadioLabel htmlFor={data} onClick={skillFunction}>
+              {data}
+            </S.RadioLabel>
+          </S.LiTag>
+        );
+      })}
+    </>
+  );
+};
+
+const PublisingSkils = ({ skillState, skillFunction }) => {
+  const PublisingArray = [
+    'HTML5',
+    'CSS',
+    'ActionScript',
+    'jQuery',
+    'React.js',
+    'Vue.js',
+    'JavaScript',
+    'WordPress',
+    'BootStrap',
+    'Photoshop',
+    'Flash',
+    '웹접근성',
+    '웹표준',
+    'Git',
+  ];
+  return (
+    <>
+      {PublisingArray.map((data) => {
+        return (
+          <S.LiTag>
+            <S.Input
+              bgColor={skillState.includes(data) ? '#e7e7e7' : 'white'}
+              brColor={skillState.includes(data) ? 'black' : '#d7d7d7'}
+              type="checkbox"
+              name="select"
+              id={data}
+            />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <S.RadioLabel htmlFor={data} onClick={skillFunction}>
+              {data}
+            </S.RadioLabel>
+          </S.LiTag>
+        );
+      })}
+    </>
+  );
+};
+
+const DesignSkils = ({ skillState, skillFunction }) => {
+  const DesginArray = [
+    '웹디자인',
+    '앱디자인',
+    '출판/편집 디자인',
+    '게임 디자인',
+    '판촉물 디자인',
+    '3D 디자인',
+    '그래픽 디자인',
+    '패키지 디자인',
+    '아트 디렉션',
+    '애니메이션',
+    '로고 브랜딩',
+  ];
+
+  return (
+    <>
+      {DesginArray.map((a) => {
+        return (
+          <S.LiTag key={a}>
+            <S.Input
+              bgColor={skillState.includes(a) ? '#e7e7e7' : 'white'}
+              brColor={skillState.includes(a) ? 'black' : '#d7d7d7'}
+              type="checkbox"
+              name="select"
+              id={a}
+            />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <S.RadioLabel htmlFor={a} onClick={skillFunction}>
+              {a}
+            </S.RadioLabel>
+          </S.LiTag>
+        );
+      })}
+    </>
+  );
+};
+
+const PlanSkils = ({ skillState, skillFunction }) => {
+  const palnArray = [
+    'PM',
+    'PL',
+    'PMO(사업관리)',
+    '시스템분석/설계',
+    '웹기획',
+    '앱기획',
+    '컨설팅',
+    '제안',
+    '쇼핑몰',
+    '여행사',
+    '금융',
+    '증권',
+    '카드',
+    '보험',
+    '대학',
+    '병원',
+    '공공기관',
+    '물류',
+    '회계',
+    '제조',
+    '건설',
+    '암호화폐',
+  ];
+
+  return (
+    <>
+      {palnArray.map((a) => {
+        return (
+          <S.LiTag key={a}>
+            <S.Input
+              bgColor={skillState.includes(a) ? '#e7e7e7' : 'white'}
+              brColor={skillState.includes(a) ? 'black' : '#d7d7d7'}
+              type="checkbox"
+              name="select"
+              id={a}
+            />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <S.RadioLabel htmlFor={a} onClick={skillFunction}>
+              {a}
+            </S.RadioLabel>
+          </S.LiTag>
+        );
+      })}
+    </>
+  );
+};
+
+const EtcSkils = ({ skillState, skillFunction }) => {
+  const etcArray = ['PM', 'PL', '시스템분석/설계', 'DA', 'DBA', 'TA', 'AA', 'NA', 'PMO', 'SE', 'QA', 'QC'];
+
+  return (
+    <>
+      {etcArray.map((a) => {
+        return (
+          <S.LiTag key={a}>
+            <S.Input
+              bgColor={skillState.includes(a) ? '#e7e7e7' : 'white'}
+              brColor={skillState.includes(a) ? 'black' : '#d7d7d7'}
+              type="checkbox"
+              name="select"
+              id={a}
+            />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <S.RadioLabel htmlFor={a} onClick={skillFunction}>
+              {a}
+            </S.RadioLabel>
+          </S.LiTag>
+        );
+      })}
+    </>
   );
 };
 
