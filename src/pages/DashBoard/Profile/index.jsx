@@ -49,7 +49,7 @@ const DashBoardProfile = () => {
   }, []);
 
   return (
-    <>
+    <S.Container>
       <S.SpacebetweenDiv>
         <S.H1>프로필관리</S.H1>
         <Link to="/dashboard/modify">
@@ -80,10 +80,7 @@ const DashBoardProfile = () => {
           </S.EcardDiv>
         </S.EcardSize>
       </S.FlexDiv>
-      <S.H1 top="2rem" laptoptop="2rem" laptopBottom="4rem">
-        프로젝트 리스트 (0)
-      </S.H1>
-    </>
+    </S.Container>
   );
 };
 

@@ -15,19 +15,31 @@ import CompanyHeader from 'layouts/Header/Company';
 
 const MainEnterprise = () => {
   const [changeBack, setChangeBack] = useState(true);
-  const [checkButton, setCheckButton] = useState('');
   const [serchBarBool, setSerchBarBool] = useState();
   const [jobField, setJobField] = useState('개발');
   const [locationState, setLocationState] = useState('선택');
   const [careerState, setCareerState] = useState('선택');
-  const [skillState, setSkillState] = useState('');
+  const [skillState, setSkillState] = useState('선택');
 
   const changeSearch = () => {
     setChangeBack(false);
   };
-  const changeButton = (e) => {
-    setCheckButton(e.target.value);
+
+  const skillFunction = (e) => {
+    if (skillState.includes('선택')) {
+      setSkillState([e.target.htmlFor, ',']);
+    } else if (skillState.includes(e.target.htmlFor)) {
+      const setIndex = skillState.indexOf(e.target.htmlFor) + 1;
+      setSkillState(skillState.splice(setIndex, 1));
+      setSkillState(skillState.filter((element) => element !== e.target.htmlFor));
+    } else {
+      setSkillState([...skillState, e.target.htmlFor, ',']);
+    }
   };
+
+  useEffect(() => {
+    setSkillState(['선택']);
+  }, [jobField]);
 
   return (
     <S.Container top="-10px">
@@ -38,7 +50,7 @@ const MainEnterprise = () => {
           <S.FlexDiv color={changeBack === false ? '#f6f6f6' : '#f16300'} onClick={changeSearch}>
             <S.jobButton
               width="26%"
-              onClick={(e) => {
+              onClick={() => {
                 setSerchBarBool('job');
               }}
             >
@@ -48,24 +60,17 @@ const MainEnterprise = () => {
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
               width="17%"
-              onClick={(e) => {
+              onClick={() => {
                 setSerchBarBool('select');
               }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>스킬</S.Span>
-              <S.TextInput
-                type="text"
-                bgColor={changeBack === false ? '#f6f6f6' : '#f16300'}
-                value={skillState}
-                onChange={(e) => {
-                  setSkillState(e.target.value);
-                }}
-              />
+              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{skillState}</S.ButtonP>
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
               width="17%"
-              onClick={(e) => {
+              onClick={() => {
                 setSerchBarBool('location');
               }}
             >
@@ -75,7 +80,7 @@ const MainEnterprise = () => {
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
               width="17%"
-              onClick={(e) => {
+              onClick={() => {
                 setSerchBarBool('career');
               }}
             >
@@ -85,7 +90,7 @@ const MainEnterprise = () => {
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
               width="17%"
-              onClick={(e) => {
+              onClick={() => {
                 setSerchBarBool('searchBar');
               }}
             >
@@ -109,7 +114,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="DEVELOPER"
-                      onClick={(e) => {
+                      onClick={() => {
                         setJobField('개발');
                       }}
                     >
@@ -127,7 +132,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="PUBLISHER"
-                      onClick={(e) => {
+                      onClick={() => {
                         setJobField('퍼블리싱');
                       }}
                     >
@@ -145,7 +150,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="DESIGNER"
-                      onClick={(e) => {
+                      onClick={() => {
                         setJobField('디자인');
                       }}
                     >
@@ -163,7 +168,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="PLANNER"
-                      onClick={(e) => {
+                      onClick={() => {
                         setJobField('기획');
                       }}
                     >
@@ -181,13 +186,155 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="ETC"
-                      onClick={(e) => {
+                      onClick={() => {
                         setJobField('기타');
                       }}
                     >
                       🔗 기타
                     </S.RadioLabel>
                   </S.LiTag>
+                </S.UlTag>
+              </S.ModalDiv>
+            ) : (
+              <div> </div>
+            )}
+            {changeBack === false && serchBarBool === 'select' ? (
+              <S.ModalDiv width="840px" height="105px" left="0rem" laptopLeft="0rem">
+                <S.UlTag>
+                  {jobField === '개발' && (
+                    <>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('JAVA') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('JAVA') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="JAVA"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="JAVA" onClick={skillFunction}>
+                          JAVA
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('iOS') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('iOS') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="iOS"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="iOS" onClick={skillFunction}>
+                          iOS
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('Android') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('Android') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="Android"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="Android" onClick={skillFunction}>
+                          Android
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('PHP') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('PHP') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="PHP"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="PHP" onClick={skillFunction}>
+                          PHP
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('ASP') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('ASP') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="ASP"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="ASP" onClick={skillFunction}>
+                          ASP
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('.NET') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('.NET') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id=".NET"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor=".NET" onClick={skillFunction}>
+                          .NET
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('JavaScript') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('JavaScript') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="JavaScript"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="JavaScript" onClick={skillFunction}>
+                          JavaScript
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('C') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('C') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="C"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="C" onClick={skillFunction}>
+                          C
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('C++') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('C++') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="C++"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="C++" onClick={skillFunction}>
+                          C++
+                        </S.RadioLabel>
+                      </S.LiTag>
+                      <S.LiTag>
+                        <S.Input
+                          bgColor={skillState.includes('DB') ? '#e7e7e7' : 'white'}
+                          brColor={skillState.includes('DB') ? 'black' : '#d7d7d7'}
+                          type="checkbox"
+                          name="select"
+                          id="DB"
+                        />
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                        <S.RadioLabel htmlFor="DB" onClick={skillFunction}>
+                          DB
+                        </S.RadioLabel>
+                      </S.LiTag>
+                    </>
+                  )}
                 </S.UlTag>
               </S.ModalDiv>
             ) : (
@@ -207,7 +354,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="company"
-                      onClick={(e) => {
+                      onClick={() => {
                         setLocationState('상주');
                       }}
                     >
@@ -225,7 +372,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="home"
-                      onClick={(e) => {
+                      onClick={() => {
                         setLocationState('재택');
                       }}
                     >
@@ -251,7 +398,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="beginner"
-                      onClick={(e) => {
+                      onClick={() => {
                         setCareerState('초급');
                       }}
                     >
@@ -269,7 +416,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="middle"
-                      onClick={(e) => {
+                      onClick={() => {
                         setCareerState('중급');
                       }}
                     >
@@ -287,7 +434,7 @@ const MainEnterprise = () => {
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <S.RadioLabel
                       htmlFor="advanced"
-                      onClick={(e) => {
+                      onClick={() => {
                         setCareerState('상급');
                       }}
                     >

@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
+export const Container = styled.div`
+  width: 100%;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    height: 524px;
+  }
+`;
+
 export const FlexDiv = styled.div`
   display: ${(props) => props.display};
   justify-content: start;
