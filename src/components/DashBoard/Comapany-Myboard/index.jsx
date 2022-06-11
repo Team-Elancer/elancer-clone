@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
@@ -10,7 +11,23 @@ const CompanyDashBoard = ({
   bottomleft = '0.4rem',
   right = '0.4rem',
 }) => {
-  console.log(Datas);
+  const [htotalActiveScorello, setTotalActiveScore] = useState();
+  const [expertise, setExpertise] = useState();
+  const [scheduleAdherence, setScheduleAdherence] = useState();
+  const [initiative, setInitiative] = useState();
+  const [communication, setCommunication] = useState();
+  const [reEmploymentIntention, setReEmploymentIntention] = useState();
+
+  useEffect(() => {
+    if (Datas) {
+      setTotalActiveScore(Datas.totalActiveScore);
+      setExpertise(Datas.expertise);
+      setScheduleAdherence(Datas.scheduleAdherence);
+      setInitiative(Datas.initiative);
+      setCommunication(Datas.communication);
+      setReEmploymentIntention(Datas.reEmploymentIntention);
+    }
+  }, [Datas]);
 
   return (
     <S.EcardDiv display={EcardDiv} topleft={topleft} bottomleft={bottomleft} right={right}>
@@ -25,22 +42,22 @@ const CompanyDashBoard = ({
           <S.Ratingspan>
             활동평가
             <S.RatingNumberP mobilesize="0.75rem" mobileleft="6.7rem" size="1.1rem" left="2rem">
-              <S.StarIcon color={Datas.totalActiveScore > 0 ? 'orange' : ''}>
+              <S.StarIcon color={htotalActiveScorello > 0 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={Datas.totalActiveScore > 1 ? 'orange' : ''}>
+              <S.StarIcon color={htotalActiveScorello > 1 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={Datas.totalActiveScore > 2 ? 'orange' : ''}>
+              <S.StarIcon color={htotalActiveScorello > 2 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={Datas.totalActiveScore > 3 ? 'orange' : ''}>
+              <S.StarIcon color={htotalActiveScorello > 3 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={Datas.totalActiveScore > 4 ? 'orange' : ''}>
+              <S.StarIcon color={htotalActiveScorello > 4 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              {Datas ? Datas.totalActiveScore : '0'}
+              {Datas ? htotalActiveScorello : '0'}
             </S.RatingNumberP>
           </S.Ratingspan>
           <RatingSmall
@@ -50,8 +67,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="4rem"
             color="orange"
-            persent={Datas ? `${Datas.expertise}%` : '0%'}
-            rank={Datas.expertise}
+            persent={Datas ? `${expertise}%` : '0%'}
+            rank={expertise}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -60,8 +77,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="3.15rem"
             color="orange"
-            persent={Datas ? `${Datas.scheduleAdherence}%` : '0%'}
-            rank={Datas.scheduleAdherence}
+            persent={Datas ? `${scheduleAdherence}%` : '0%'}
+            rank={scheduleAdherence}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -70,8 +87,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="4rem"
             color="orange"
-            persent={Datas ? `${Datas.initiative}%` : '0%'}
-            rank={Datas.initiative}
+            persent={Datas ? `${initiative}%` : '0%'}
+            rank={initiative}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -80,8 +97,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="3.15rem"
             color="orange"
-            persent={Datas ? `${Datas.communication}%` : '0%'}
-            rank={Datas.communication}
+            persent={Datas ? `${communication}%` : '0%'}
+            rank={communication}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -90,8 +107,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="2rem"
             color="orange"
-            persent={Datas ? `${Datas.reEmploymentIntention}%` : '0%'}
-            rank={Datas.reEmploymentIntention}
+            persent={Datas ? `${reEmploymentIntention}%` : '0%'}
+            rank={reEmploymentIntention}
           />
         </S.RatingDiv>
       </S.EcarcdPaddingDiv>
