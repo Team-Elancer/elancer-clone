@@ -53,8 +53,8 @@ const MyBoardFreelancer = () => {
 
     console.log('localstorage에 새로운 토큰 저장 시작');
 
-    localStorage.setItem('accessToken', TOKEN.accessToken);
-    localStorage.setItem('refreshToken', TOKEN.refreshToken);
+    localStorage.setItem('accessToken', TOKEN?.accessToken);
+    localStorage.setItem('refreshToken', TOKEN?.refreshToken);
 
     console.log('access token 재발급 완료', TOKEN);
   };
@@ -62,6 +62,15 @@ const MyBoardFreelancer = () => {
   const fetchData = async () => {
     try {
       const response = await CLIENT_FREELANCER('/freelancer');
+
+      if (response.data.message === '.refresh가 만료되었습니다. 다시 로그인해주세요') {
+        console.log('refresh token 만료. 다시 로그인 필요함.');
+        alert('다시 로그인해주세요');
+
+        window.localStorage.clear();
+        navigate('/login');
+        return;
+      }
 
       if (response.data.code === '402') {
         console.log('402 checked - accessToken 만료');
