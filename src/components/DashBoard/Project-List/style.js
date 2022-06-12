@@ -64,6 +64,7 @@ export const ProjectSpan = styled.span`
   font-weight: 800;
   border-radius: 0.2rem;
   margin-right: 0.3rem;
+  cursor: pointer;
   @media ${TABLET} {
     font-size: 0.75rem;
     padding: 0.6rem 0.8rem;

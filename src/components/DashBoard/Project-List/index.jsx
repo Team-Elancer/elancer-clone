@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import * as S from './style';
 
+import ProjectInterview from 'components/Modal/ProjectInterview';
+
 const ProjectList = () => {
+  const [interviewModal, setInterviewModal] = useState(true);
+
   return (
     <S.Container>
+      {interviewModal === false && <ProjectInterview setInterviewModal={setInterviewModal} />}
       <S.ColorDiv>
         <S.BetweenDiv>
           <S.SpanTag bgColor="#8a7fa4">지원현황 프로젝트</S.SpanTag>
@@ -81,8 +87,22 @@ const ProjectList = () => {
         <S.BetweenDiv top="1rem">
           <S.DayPTag>프로젝트를 20222-06-08에 등록하였습니다.</S.DayPTag>
           <S.FlexDiv>
-            <S.ProjectSpan bgColor="#ff6b6b">지원자 0</S.ProjectSpan>
-            <S.ProjectSpan bgColor="#ff6b6b">인터뷰요청자 0</S.ProjectSpan>
+            <S.ProjectSpan
+              bgColor="#ff6b6b"
+              onClick={() => {
+                setInterviewModal(false);
+              }}
+            >
+              지원자 0
+            </S.ProjectSpan>
+            <S.ProjectSpan
+              bgColor="#ff6b6b"
+              onClick={() => {
+                setInterviewModal(false);
+              }}
+            >
+              인터뷰요청자 0
+            </S.ProjectSpan>
           </S.FlexDiv>
         </S.BetweenDiv>
       </S.ColorDiv>
