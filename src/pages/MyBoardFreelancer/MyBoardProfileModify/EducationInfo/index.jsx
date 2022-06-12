@@ -29,8 +29,6 @@ const EducationInfo = () => {
 
   const [userSchoolData, setUserSchoolData] = useState('');
 
-  console.log(userSchoolData);
-
   const SCHOOL_LEVEL = {
     HIGH_SCHOOL: '고등학교',
     COLLEGE: '대학교(2,3년)',
