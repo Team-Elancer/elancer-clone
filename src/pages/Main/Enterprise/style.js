@@ -24,12 +24,14 @@ export const BgDiv = styled.div`
 export const WhiteDiv = styled.div``;
 
 export const CenterDiv = styled.div`
+  display: ${(props) => props.display};
   width: 100%;
   max-width: 64rem;
   margin-left: 0.5rem;
   height: 100%;
   padding-bottom: 5rem;
   @media ${TABLET} {
+    display: block;
     margin: 0 auto;
     padding-bottom: 8rem;
     width: 740px;
@@ -140,7 +142,7 @@ export const Img = styled.img`
   margin-right: 15px;
 `;
 export const MainDiv = styled.div`
-  width: 390px;
+  width: 370px;
   height: 100%;
   margin: 0 auto;
   @media ${TABLET} {

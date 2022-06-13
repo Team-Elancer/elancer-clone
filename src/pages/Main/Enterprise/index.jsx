@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 
 import arrowLeft from 'assets/images/arrow_left.png';
@@ -144,7 +145,7 @@ const MainEnterprise = () => {
             </S.jobButton>
             <S.Img src={changeBack === false ? zoom : zoomWhite} alt="searchImg" />
           </S.FlexDiv>
-          <S.CenterDiv>
+          <S.CenterDiv display="none">
             {changeBack === false && serchBarBool === 'job' ? (
               <S.ModalDiv width="550px" height="105px">
                 <S.UlTag>
@@ -452,7 +453,9 @@ const MainEnterprise = () => {
             </S.FreelancerFlexDiv>
           );
         })}
-        <MoreButton />
+        <Link to="/partner-list">
+          <MoreButton />
+        </Link>
       </S.MainDiv>
       <Footer toBottom="static" />
       <GridBottom />
