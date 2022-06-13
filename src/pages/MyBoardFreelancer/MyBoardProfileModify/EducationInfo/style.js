@@ -253,6 +253,8 @@ export const SelectInputName = styled.select`
   background-color: rgba(246, 246, 246, 1);
 
   display: inline-block;
+  outline: none;
+  cursor: pointer;
 
   border-color: rgba(196, 196, 196, 1);
   border-bottom-width: 1px;
@@ -303,5 +305,3 @@ export const IntroInputNameDate = styled(IntroInputName)`
   }
   color-scheme: dark;
 `;
-
-

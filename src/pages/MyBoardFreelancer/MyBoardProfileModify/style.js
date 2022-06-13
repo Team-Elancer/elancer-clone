@@ -3,6 +3,11 @@ import redStar from 'assets/images/redstar.png';
 
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
+export const HRline = styled.hr`
+  border: 1px solid rgba(235, 97, 0, 1);
+  width: 100%;
+`;
+
 export const FlexCenter = styled.div`
   display: flex;
   justify-content: center;
@@ -379,8 +384,10 @@ export const JobFieldInput = styled.input`
 export const EducationContainer = styled.div`
   width: 100%;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 
   @media ${TABLET} {
+    margin-top: 3rem;
     margin-bottom: 3rem;
     display: flex;
     align-items: ${(props) => !props.noFlex && 'center'};
@@ -413,6 +420,8 @@ export const SelectInputName = styled.select`
   background-color: rgba(246, 246, 246, 1);
 
   display: inline-block;
+  outline: none;
+  cursor: pointer;
 
   border-color: rgba(196, 196, 196, 1);
   border-bottom-width: 1px;
@@ -536,4 +545,11 @@ export const IntroInputNameDate = styled(IntroInputName)`
     filter: invert(1);
   }
   color-scheme: dark;
+`;
+
+export const FrameCareerContainer = styled.div`
+  width: 100%;
+
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
 `;
