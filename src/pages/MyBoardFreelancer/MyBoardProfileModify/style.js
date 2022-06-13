@@ -349,7 +349,11 @@ export const ColorInput = styled.input`
   outline: none;
   appearance: none;
   cursor: pointer;
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.introBackGround};
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 
   @media ${TABLET} {
   }
@@ -357,6 +361,24 @@ export const ColorInput = styled.input`
   @media ${LAPTOP} {
     margin: 0 0 0 0;
   }
+`;
+
+export const ColorPatternInput1 = styled(ColorInput)`
+  background-color: none;
+  background-image: url('https://www.elancer.co.kr/public/images/mask_01.png');
+`;
+export const ColorPatternInput2 = styled(ColorInput)`
+  background-color: none;
+  background-image: url('https://www.elancer.co.kr/public/images/mask_02.png');
+`;
+export const ColorPatternInput3 = styled(ColorInput)`
+  background-image: url('https://www.elancer.co.kr/public/images/mask_03.png');
+`;
+export const ColorPatternInput4 = styled(ColorInput)`
+  background-image: url('https://www.elancer.co.kr/public/images/mask_04.png');
+`;
+export const ColorPatternInput5 = styled(ColorInput)`
+  background-image: url('https://www.elancer.co.kr/public/images/mask_05.png');
 `;
 
 export const TextInfo = styled.span`
