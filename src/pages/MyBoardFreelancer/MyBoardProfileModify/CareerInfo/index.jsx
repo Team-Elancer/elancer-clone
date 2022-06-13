@@ -29,14 +29,16 @@ const CareerInfo = () => {
   };
 
   // ======== Handle state (onChange) ========
-  const handleStateChange = (e, index) => {
+  const handleStateChange = (e, index, STATE) => {
     const { name, value } = e.target;
 
-    const STATE_LIST = [...CAREER_STATE];
+    const STATE_LIST = [...STATE];
 
     STATE_LIST[index][name] = value;
 
-    SET_CAREER_STATE(STATE_LIST);
+    if (STATE === 'EDUCATION_STATE') {
+      SET_CAREER_STATE(STATE_LIST);
+    }
   };
 
   // ======== Add state + component (onChange) ========
@@ -95,6 +97,9 @@ const CareerInfo = () => {
             />
           );
         })}
+
+      <S.HRline />
+
       <S.FlexCenter>
         <S.ButtonAddExtra type="button" onClick={onAddCareerTemplate}>
           경력 추가+

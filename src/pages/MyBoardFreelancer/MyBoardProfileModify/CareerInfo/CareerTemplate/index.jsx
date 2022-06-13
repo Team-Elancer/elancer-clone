@@ -6,7 +6,7 @@ const CareerTemplate = ({ onDeleteTemplate, handleStateChange, state, index }) =
   const { companyName, departmentName, companyPosition, careerStartDate, careerEndDate } = state;
 
   return (
-    <FrameCareerContainer>
+    <S.FrameCareerContainer>
       <S.EducationContainer>
         <S.TextLabel>회사명</S.TextLabel>
         <S.ContainerSelectOption width="300">
@@ -88,12 +88,8 @@ const CareerTemplate = ({ onDeleteTemplate, handleStateChange, state, index }) =
           </label>
         </S.ContainerSelectOption>
       </S.EducationContainer>
-    </FrameCareerContainer>
+    </S.FrameCareerContainer>
   );
 };
 
 export default CareerTemplate;
-
-const FrameCareerContainer = styled.div`
-  width: 100%;
-`;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CareerInfo from './CareerInfo';
+import Certificate from './Certificate';
 import EducationInfo from './EducationInfo';
 import JobSkill from './JobSkill';
 import DeveloperSkillList from './SkillLists/DeveloperSkillList';
@@ -209,34 +210,7 @@ const MyBoardProfileModify = () => {
       {/* ============== Certificate (add/remove) 교육 및 자격사항 ============== */}
       <S.FontLarge>교육 및 자격사항</S.FontLarge>
       <S.BoxFrame>
-        <form action="">
-          <S.EducationContainer>
-            <S.TextLabel>교육명</S.TextLabel>
-            <S.ContainerSelectOption width="300">
-              <S.IntroInputName type="text" placeholder="교육명" />
-              <S.IntroInputName type="text" placeholder="교육기관 입력하세요" />
-
-              <S.RemoveButton>X</S.RemoveButton>
-            </S.ContainerSelectOption>
-          </S.EducationContainer>
-          {/* 교육기간 */}
-          <S.EducationContainer>
-            <S.TextLabel>교육기간</S.TextLabel>
-            <S.ContainerSelectOption width="130">
-              <S.IntroInputName type="text" placeholder="2000.03" />
-              <S.BetweenInputSpan> ~ </S.BetweenInputSpan>
-              <S.IntroInputName type="text" placeholder="2003.02" />
-            </S.ContainerSelectOption>
-          </S.EducationContainer>
-          <S.FlexCenter>
-            <S.ButtonAddExtra type="button">교육 추가+ </S.ButtonAddExtra>
-            <S.ButtonAddExtra type="button">자격증 추가+ </S.ButtonAddExtra>
-            <S.ButtonAddExtra type="button">어학 추가+ </S.ButtonAddExtra>
-          </S.FlexCenter>
-          <S.FlexCenter>
-            <S.ProfileButton type="button"> 교육 및 자격사항 저장 </S.ProfileButton>
-          </S.FlexCenter>
-        </form>
+        <Certificate />
       </S.BoxFrame>
 
       {/* ==============  프로젝트 수행이력 (add/remove) ============== */}

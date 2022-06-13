@@ -109,8 +109,8 @@ const MyBoardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         1:1 문의 (0)
       </S.H1>
-      {ContactData !== '' &&
-        ContactData?.map((data, idx) => {
+      {ContactData &&
+        ContactData.map((data, idx) => {
           return (
             <ContactQneOnOne
               key={data.num}
