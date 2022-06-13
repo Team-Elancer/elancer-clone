@@ -95,7 +95,13 @@ export const Label = styled.label`
   @media ${LAPTOP} {
   }
 `;
-export const PaddingDiv = styled.div``;
+export const PaddingDiv = styled.div`
+  @media ${TABLET} {
+    margin-left: ${(props) => props.left};
+  }
+  @media ${LAPTOP} {
+  }
+`;
 export const IdInput = styled.input`
   border: none;
   outline: none;
@@ -109,12 +115,12 @@ export const IdInput = styled.input`
     font-weight: 700;
     color: #707070;
     margin-top: -3rem;
-    padding-left: 0.5rem;
   }
   @media ${TABLET} {
     width: 336px;
     border-radius: 8px;
     font-size: 0.9rem;
+    padding-left: 1rem;
     &::placeholder {
       font-size: 0.9rem;
       padding-bottom: 35px;

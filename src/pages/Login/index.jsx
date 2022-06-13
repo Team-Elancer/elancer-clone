@@ -21,6 +21,7 @@ const Login = () => {
 
   const [Id, setId] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [loginFail, setLoginFail] = useState('');
 
   const idChange = (e) => {
     setId(e.target.value);
@@ -49,7 +50,8 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        return alert(err.message);
+        alert(err.message);
+        setLoginFail('로그인에 실패 했습니다. 아이디와 패스워드를 다시 확인 하세요.');
       });
   };
   const authAxios = axios.create({
@@ -105,21 +107,21 @@ const Login = () => {
           연결합니다
         </S.TextDiv>
         <S.IdForm>
-          <S.LoginError>로그인에 실패 했습니다. 아이디와 패스워드를 다시 확인 하세요.</S.LoginError>
+          <S.LoginError>{loginFail}</S.LoginError>
           <S.FlexDiv>
             <S.Label>아이디</S.Label>
-            <S.PaddingDiv>
+            <S.PaddingDiv left="0.9rem">
               <S.IdInput placeholder="아이디" value={Id} onChange={idChange} />
             </S.PaddingDiv>
           </S.FlexDiv>
-          <S.ErrorMessageDiv>아이디를 입력하세요.</S.ErrorMessageDiv>
+          <S.ErrorMessageDiv>{Id === '' && '아이디를 입력하세요.'}</S.ErrorMessageDiv>
           <S.FlexDiv>
             <S.Label>비밀번호</S.Label>
             <S.PaddingDiv>
               <S.IdInput type="password" placeholder="비밀번호" value={userPassword} onChange={passwordChange} />
             </S.PaddingDiv>
           </S.FlexDiv>
-          <S.ErrorMessageDiv>비밀번호를 입력하세요.</S.ErrorMessageDiv>
+          <S.ErrorMessageDiv>{userPassword === '' && '비밀번호를 입력하세요.'}</S.ErrorMessageDiv>
           <S.AlignCenter>
             <S.SpaceBetween>
               <S.CheckBox type="checkbox" />
@@ -206,7 +208,7 @@ const Login = () => {
             </S.CenterDiv>
             <S.SigninDiv>
               아직 멤버가 아니십니까?
-              <Link to="/signin/main">
+              <Link to="/signup/main">
                 <S.SigninSpan>회원가입</S.SigninSpan>
               </Link>
             </S.SigninDiv>

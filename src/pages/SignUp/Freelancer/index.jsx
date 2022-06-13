@@ -14,6 +14,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 const SignUpFreeLancer = () => {
   const navi = useNavigate();
 
+  const [capsLockFlag, setCapsLockFlag] = useState(false);
+
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
   const [firstEyeImg, setFirsEyeImg] = useState(CloseEye);
@@ -34,40 +36,13 @@ const SignUpFreeLancer = () => {
   const [selectImg, setSelectImg] = useState(null);
   const [checkImg, setCheckImg] = useState(null);
 
-  const nameFuntion = (e) => {
-    setName(e.target.value);
-  };
-  const idFuntion = (e) => {
-    setId(e.target.value);
-  };
-  const passwordFuntion = (e) => {
-    setPassword(e.target.value);
-  };
-  const passwordConfirmFuntion = (e) => {
-    setPasswordConfirm(e.target.value);
-  };
-  const emailFuntion = (e) => {
-    setEmail(e.target.value);
-  };
-  const emailRadioFuntion = (e) => {
-    setEmailRadio(e.target.value);
-  };
-  const phoneNumberFuntion = (e) => {
-    setPhoneNumber(e.target.value);
-  };
   const jobFuntion = (e) => {
     setJobType(e.target.value);
   };
-  const jobRadioFuntion = (e) => {
-    setJobRadio(e.target.value);
-  };
 
-  const changeEye = () => {
-    setEyeCheck(!eyeCheck);
-  };
-
-  const changeSecondEye = () => {
-    setEyeCheck2(!eyeCheck2);
+  const checkCapsLock = (e) => {
+    const capsLock = e.getModifierState('CapsLock');
+    setCapsLockFlag(capsLock);
   };
 
   const dateFunction = (date) => {
@@ -218,7 +193,15 @@ const SignUpFreeLancer = () => {
               <div>
                 <S.SpanTag right="6em">성명</S.SpanTag>
               </div>
-              <S.InputTag size="14.5rem" laptopSize="19rem" placeholder="성명" value={name} onChange={nameFuntion} />
+              <S.InputTag
+                size="14.5rem"
+                laptopSize="19rem"
+                placeholder="성명"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
             </S.BlockDiv>
             <S.ErrorMessage />
             <S.CapsMessage />
@@ -233,11 +216,16 @@ const SignUpFreeLancer = () => {
                 laptopSize="19rem"
                 placeholder="회원아이디 5~15자 영문,숫자"
                 value={id}
-                onChange={idFuntion}
+                onKeyDown={(e) => {
+                  checkCapsLock(e);
+                }}
+                onChange={(e) => {
+                  setId(e.target.value);
+                }}
               />
             </S.BlockDiv>
-            <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
-            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+            <S.ErrorMessage>{id === '' && '* 아이디는 5~20자 이내로 입력하세요.'}</S.ErrorMessage>
+            <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
           </S.InputDiv>
           <S.InputDiv>
             <S.BlockDiv>
@@ -252,12 +240,23 @@ const SignUpFreeLancer = () => {
                 autoComplete="on"
                 placeholder="비밀번호"
                 value={password}
-                onChange={passwordFuntion}
+                onKeyDown={(e) => {
+                  checkCapsLock(e);
+                }}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </S.BlockDiv>
-            <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
-            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
-            <S.EyeImg src={firstEyeImg} alt="eye" onClick={changeEye} />
+            <S.ErrorMessage>{password === '' && '* 6~15자 영문, 숫자, 특수문자를 사용하세요.'}</S.ErrorMessage>
+            <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}.</S.CapsMessage>
+            <S.EyeImg
+              src={firstEyeImg}
+              alt="eye"
+              onClick={() => {
+                setEyeCheck(!eyeCheck);
+              }}
+            />
           </S.InputDiv>
           <S.InputDiv>
             <S.BlockDiv>
@@ -272,12 +271,23 @@ const SignUpFreeLancer = () => {
                 autoComplete="on"
                 placeholder="비밀번호 확인"
                 value={passwordConfirm}
-                onChange={passwordConfirmFuntion}
+                onKeyDown={(e) => {
+                  checkCapsLock(e);
+                }}
+                onChange={(e) => {
+                  setPasswordConfirm(e.target.value);
+                }}
               />
             </S.BlockDiv>
-            <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
-            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
-            <S.EyeImg src={secondEyeImg} alt="eye" onClick={changeSecondEye} />
+            <S.ErrorMessage>{passwordConfirm !== password && '* 비밀번호가 일치하지 않습니다.'}</S.ErrorMessage>
+            <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
+            <S.EyeImg
+              src={secondEyeImg}
+              alt="eye"
+              onClick={() => {
+                setEyeCheck2(!eyeCheck2);
+              }}
+            />
           </S.InputDiv>
           <S.EmailFlex>
             <S.InputDiv>
@@ -290,10 +300,14 @@ const SignUpFreeLancer = () => {
                   laptopSize="18rem"
                   placeholder="name@example.com"
                   value={email}
-                  onChange={emailFuntion}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </S.BlockDiv>
-              <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
+              <S.ErrorMessage>
+                {email.includes('@') && email.includes('.') ? ' ' : '* 이메일 주소 형식이 아닙니다.'}
+              </S.ErrorMessage>
               <S.CapsMessage />
             </S.InputDiv>
             <S.InputDiv>
@@ -302,7 +316,12 @@ const SignUpFreeLancer = () => {
                   <S.SpanTag right="0.5em">메일수신 여부</S.SpanTag>
                 </S.EmailTop>
                 <S.EmailTop>
-                  <S.FlexDiv top="0" onChange={emailRadioFuntion}>
+                  <S.FlexDiv
+                    top="0"
+                    onChange={(e) => {
+                      setEmailRadio(e.target.value);
+                    }}
+                  >
                     <S.RadioDiv>
                       <S.RadioInput type="radio" name="email" value="RECEPTION" />
                       <S.RadioText>수신</S.RadioText>
@@ -329,7 +348,9 @@ const SignUpFreeLancer = () => {
                 placeholder="숫자만 입력"
                 type="number"
                 value={phoneNumber}
-                onChange={phoneNumberFuntion}
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                }}
               />
             </S.BlockDiv>
             <S.ErrorMessage />
@@ -437,7 +458,12 @@ const SignUpFreeLancer = () => {
               <div>
                 <S.SpanTag right="0">업무가능 여부</S.SpanTag>
               </div>
-              <S.FlexDiv top="1rem" onChange={jobRadioFuntion}>
+              <S.FlexDiv
+                top="1rem"
+                onChange={(e) => {
+                  setJobRadio(e.target.value);
+                }}
+              >
                 <S.RadioDiv>
                   <S.RadioInput type="radio" name="job" value="POSSIBLE" />
                   <S.RadioText>가능</S.RadioText>

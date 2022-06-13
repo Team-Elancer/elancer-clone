@@ -108,10 +108,9 @@ export const InputTag = styled.input`
     width: ${(props) => props.size};
     font-size: 0.9rem;
     border-radius: 0.5rem;
-    padding: 0.75rem 0 0.6rem 0;
+    padding: 0.75rem 0 0.6rem 0.5rem;
     margin-right: ${(props) => props.right};
     &::placeholder {
-      padding-left: 0.5rem;
       font-size: 0.9rem;
       font-weight: 600;
     }
