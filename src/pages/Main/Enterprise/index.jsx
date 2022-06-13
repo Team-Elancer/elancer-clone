@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import * as S from './style';
 
+import arrowLeft from 'assets/images/arrow_left.png';
+import arrowRight from 'assets/images/arrow_right.png';
 import Logo from 'assets/images/logo_white.png';
 import zoom from 'assets/images/search_big.png';
 import zoomWhite from 'assets/images/search_white.png';
 
 import Eblock from 'components/Arround-Project';
+import HeartButton from 'components/Button/HeartButton';
+import MoreButton from 'components/Button/MoreButton';
 import GridBottom from 'components/Modal/GridBottom';
 import EnterpriseMainMenu from 'components/Modal/MainMenu/Enterprise';
 import ReFreelancer from 'components/Re-Freelancer';
@@ -20,6 +24,45 @@ const MainEnterprise = () => {
   const [locationState, setLocationState] = useState('선택');
   const [careerState, setCareerState] = useState('선택');
   const [skillState, setSkillState] = useState('선택');
+
+  const [fullStack, setFullStack] = useState('⚙️ 상주');
+  const fullStackArray = ['⚙️ 상주', '🛠 반상주', '🎨 재택', '🛠 초급', '🎨 중급', '🕹  고급'];
+
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [slidEach, setSlideEach] = useState('');
+  const [ecardMap, setEcardMap] = useState([
+    {
+      id: 0,
+      name: '개발자 홍*동',
+      user: '안*호 | 7년 경력 개발자',
+      title: '항상 최선을 다하는 개발자 안*호입니다.',
+      skils: ['java', 'react'],
+      info: '수행 프로젝트 : KT 연구개발센터 KTmMPAY 소액결제시스템 구축, 삼성전자 G-ERP PDA UI 디자인 및 관리자 웹화면디자인 및 구축, 고객사 NMS/SMS 대시보드 디자인 및 구축, 통합 네트워크 관리시스템/웹운영 ',
+    },
+    {
+      id: 1,
+      name: '개발자 홍*동',
+      user: '안*호 | 7년 경력 개발자',
+      title: '항상 최선을 다하는 개발자 안*호입니다.',
+      skils: ['java', 'javascript', 'python'],
+      info: '수행 프로젝트 : KT 연구개발센터 KTmMPAY 소액결제시스템 구축, 삼성전자 G-ERP PDA UI 디자인 및 관리자 웹화면디자인 및 구축, 고객사 NMS/SMS 대시보드 디자인 및 구축, 통합 네트워크 관리시스템/웹운영 ',
+    },
+    {
+      id: 2,
+      name: '개발자 홍*동',
+      user: '안*호 | 7년 경력 개발자',
+      title: '항상 최선을 다하는 개발자 안*호입니다.',
+      skils: ['java', 'css', 'html', 'spring', 'C++'],
+      info: '수행 프로젝트 : KT 연구개발센터 KTmMPAY 소액결제시스템 구축, 삼성전자 G-ERP PDA UI 디자인 및 관리자 웹화면디자인 및 구축, 고객사 NMS/SMS 대시보드 디자인 및 구축, 통합 네트워크 관리시스템/웹운영 ',
+    },
+  ]);
+  const handleClick = (alt) => {
+    if (alt === 'left') {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 1);
+    } else {
+      setSlideIndex(slideIndex < 1 ? slideIndex + 1 : 0);
+    }
+  };
 
   const changeSearch = () => {
     setChangeBack(false);
@@ -36,10 +79,12 @@ const MainEnterprise = () => {
       setSkillState([...skillState, e.target.htmlFor, ',']);
     }
   };
+  console.log(ecardMap[0].skils);
 
   useEffect(() => {
     setSkillState(['선택']);
-  }, [jobField]);
+    console.log(fullStack);
+  }, [jobField, fullStack]);
 
   return (
     <S.Container top="-10px">
@@ -339,6 +384,75 @@ const MainEnterprise = () => {
       <S.MainDiv>
         <Eblock />
         <ReFreelancer />
+      </S.MainDiv>
+      <S.MainDiv>
+        <S.SubTitle>300명 이상의 개발자</S.SubTitle>
+        <S.Title>풀 스택 개발자들</S.Title>
+        <S.JobUl>
+          {fullStackArray.map((data) => {
+            return (
+              <S.LiTag right="1rem">
+                <S.TypeInput
+                  bgColor={fullStack === data ? '#e7e7e7' : 'white'}
+                  brColor={fullStack === data ? 'black' : '#d7d7d7'}
+                  type="radio"
+                  name="select"
+                  value={data}
+                  id={data}
+                  onClick={(e) => {
+                    setFullStack(e.target.value);
+                  }}
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <S.TypeLabel htmlFor={data}>{data}</S.TypeLabel>
+              </S.LiTag>
+            );
+          })}
+        </S.JobUl>
+        {ecardMap.map((data, i) => {
+          return (
+            <S.FreelancerFlexDiv key={data.id}>
+              <S.OverFlowDiv>
+                <S.LeftButton
+                  src={arrowLeft}
+                  direction="left"
+                  onClick={() => {
+                    setSlideEach(data.id);
+                    handleClick('left');
+                  }}
+                />
+                <S.RigtButton
+                  src={arrowRight}
+                  direction="right"
+                  onClick={() => {
+                    setSlideEach(data.id);
+                    handleClick('right');
+                  }}
+                />
+                <S.Wrapper slideIndex={data.id === slidEach && slideIndex} color="red">
+                  <S.Slide bg="red">{data.name}</S.Slide>
+                  <S.Slide bg="blue">
+                    <S.LogoImg src={Logo} alt="logo" />
+                  </S.Slide>
+                </S.Wrapper>
+              </S.OverFlowDiv>
+              <S.InfoDiv>
+                <S.InfoFlex content="space-between">
+                  <S.SubTitle>{data.user}</S.SubTitle>
+                  <HeartButton position="static" />
+                </S.InfoFlex>
+                <S.EcardTitle>{data.title}</S.EcardTitle>
+                <S.InfoFlex top="0.5rem">
+                  {ecardMap[i].skils.map((a) => {
+                    return <S.SpanSkill key={a}>{a}</S.SpanSkill>;
+                  })}
+                </S.InfoFlex>
+                <S.InfoPTag>{data.info}</S.InfoPTag>
+              </S.InfoDiv>
+            </S.FreelancerFlexDiv>
+          );
+        })}
+        <MoreButton />
       </S.MainDiv>
       <Footer toBottom="static" />
       <GridBottom />
