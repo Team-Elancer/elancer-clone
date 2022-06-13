@@ -1,14 +1,21 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import * as S from './style';
+import { Link, Outlet } from 'react-router-dom';
 
-import ProjectList from 'components/DashBoard/Project-List';
+import ProjectFinish from './Finish';
+import ProjectInterview from './Interview';
+import ProjectMain from './Main';
+import ProjectParticipate from './Participate';
+import ProjectProceeding from './Proceeding';
+import * as S from './style';
+import ProjectTuning from './Tuning';
+
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const DashBoardProject = () => {
   const [projectData, setProjectData] = useState('');
   const [refresh, setRefresh] = useState(null);
+  const [changeList, setChangeList] = useState('');
 
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
@@ -45,14 +52,13 @@ const DashBoardProject = () => {
           <S.LinkP>프로젝트 등록</S.LinkP>
         </Link>
       </S.SpacebetweenDiv>
-      <BoardCardSpan />
-      <S.H1 top="4rem" laptoptop="4rem">
-        프로젝트 리스트 (0)
-      </S.H1>
-      <ProjectList />
-      <S.H1 top="4rem" laptoptop="4rem">
-        헤드헌팅 리스트 (0)
-      </S.H1>
+      <BoardCardSpan setChangeList={setChangeList} />
+      {changeList === '' && <ProjectMain />}
+      {changeList === '지원현황' && <ProjectParticipate />}
+      {changeList === '인터뷰요청' && <ProjectInterview />}
+      {changeList === '조율중' && <ProjectTuning />}
+      {changeList === '진행중' && <ProjectProceeding />}
+      {changeList === '완료프로젝트' && <ProjectFinish />}
     </>
   );
 };
