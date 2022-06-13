@@ -61,7 +61,7 @@ const SignUpCompany = () => {
         navi('/signup/finish');
       })
       .catch((err) => {
-        return alert(err.message);
+        return alert('별표시가 있는곳은 모두 입력해주세요.');
       });
   };
 

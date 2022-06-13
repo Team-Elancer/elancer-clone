@@ -45,6 +45,8 @@ const CompanyAccount = ({
   const [yearSale, setYearSale] = useState('');
   const [businessNumber, setBusinessNumber] = useState('');
 
+  const [capsLockFlag, setCapsLockFlag] = useState(false);
+
   const changeData = () => {
     if (userData) {
       setCompanyDatas({
@@ -92,6 +94,11 @@ const CompanyAccount = ({
         idNumber: businessNumber,
       });
     }
+  };
+
+  const checkCapsLock = (e) => {
+    const capsLock = e.getModifierState('CapsLock');
+    setCapsLockFlag(capsLock);
   };
 
   const changeEye = () => {
@@ -220,14 +227,17 @@ const CompanyAccount = ({
               laptopSize="25rem"
               placeholder="회원아이디 5~15자 영문,숫자"
               value={id}
+              onKeyDown={(e) => {
+                checkCapsLock(e);
+              }}
               onChange={(e) => {
                 setId(e.target.value);
               }}
             />
           </S.IdBlockDiv>
         </S.InputDiv>
-        <S.ErrorMessage>* 아이디는 5~20자 이내로 입력하세요.</S.ErrorMessage>
-        <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+        <S.ErrorMessage>{id === '' && '* 아이디는 5~20자 이내로 입력하세요.'}</S.ErrorMessage>
+        <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
         <S.FlexDiv>
           <S.InputDiv>
             <S.BlockDiv display="flex">
@@ -242,13 +252,16 @@ const CompanyAccount = ({
                 autoComplete="on"
                 placeholder="비밀번호"
                 value={password}
+                onKeyDown={(e) => {
+                  checkCapsLock(e);
+                }}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
             </S.BlockDiv>
-            <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
-            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+            <S.ErrorMessage>{password === '' && '* 6~15자 영문, 숫자, 특수문자를 사용하세요.'}</S.ErrorMessage>
+            <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
             <S.EyeImg src={firstEyeImg} alt="eye" onClick={changeEye} />
           </S.InputDiv>
           <S.InputDiv left="1rem">
@@ -264,13 +277,16 @@ const CompanyAccount = ({
                 autoComplete="on"
                 placeholder="비밀번호 확인"
                 value={passwordCheck}
+                onKeyDown={(e) => {
+                  checkCapsLock(e);
+                }}
                 onChange={(e) => {
                   setPasswordCheck(e.target.value);
                 }}
               />
             </S.BlockDiv>
-            <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
-            <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+            <S.ErrorMessage>{passwordCheck !== password && '* 비밀번호가 일치하지 않습니다.'}</S.ErrorMessage>
+            <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
             <S.EyeImg src={secondEyeImg} alt="eye" onClick={changeSecondEye} />
           </S.InputDiv>
         </S.FlexDiv>
@@ -329,7 +345,9 @@ const CompanyAccount = ({
               }}
             />
           </S.BlockDiv>
-          <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
+          <S.ErrorMessage>
+            {userEmail.includes('@') && userEmail.includes('.') ? ' ' : '* 이메일 주소 형식이 아닙니다.'}
+          </S.ErrorMessage>
           <S.CapsMessage />
         </S.InputDiv>
         <S.InputDiv>
@@ -349,7 +367,7 @@ const CompanyAccount = ({
               }}
             />
           </S.BlockDiv>
-          <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
+          <S.ErrorMessage />
           <S.CapsMessage />
         </S.InputDiv>
         <PostCode
