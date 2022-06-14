@@ -1,17 +1,10 @@
-import { useState } from 'react';
-
 import * as S from '../../style';
 
-import {
-  PUBLISHING_DETAIL_SKILL_FRONT,
-  PUBLISHING_DETAIL_SKILL_DB,
-} from 'utils/constants/freelancerPosition/publisher';
+import { ETC_DETAIL_ROLE_FRONT, ETC_DETAIL_ROLE_DB } from 'utils/constants/freelancerPosition/etc';
 
-const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishingEtcSkill, handleThreeJobField }) => {
+const ETC = ({ ETCDetailRoleSTATE, positionEtcRole, setPositionEtcRole, handleThreeJobField }) => {
   // Filter the database index for CSS(active)
-  const PublishingDetailFilteredIndex = PublishingDetailSkillSTATE.map((frontIndex) =>
-    PUBLISHING_DETAIL_SKILL_DB.indexOf(frontIndex),
-  );
+  const ETCDetailFilteredIndex = ETCDetailRoleSTATE.map((frontIndex) => ETC_DETAIL_ROLE_DB.indexOf(frontIndex));
 
   return (
     <>
@@ -19,7 +12,7 @@ const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishi
         <S.ContainerIntro>
           <S.FlexColumn>
             <S.IntroStarLetters fullWidth="100" marginBottom="1">
-              스킬 & 경험 (각 언어별로 3개씩 까지만 선택가능)
+              역할 (3개까지만 선택 가능합니다.)
             </S.IntroStarLetters>
           </S.FlexColumn>
         </S.ContainerIntro>
@@ -29,15 +22,15 @@ const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishi
       <S.FrameLists>
         <S.FrameOptions>
           <S.ContainerOptions>
-            {PUBLISHING_DETAIL_SKILL_FRONT.map((type, index) => (
+            {ETC_DETAIL_ROLE_FRONT.map((type, index) => (
               <S.ContainerList key={type}>
                 <S.ButtonLabel
                   id={index}
-                  htmlFor={PUBLISHING_DETAIL_SKILL_DB[index]}
+                  htmlFor={ETC_DETAIL_ROLE_DB[index]}
                   // Compare front[index] with back[index]
-                  active={PublishingDetailFilteredIndex.includes(index)}
+                  active={ETCDetailFilteredIndex.includes(index)}
                   onClick={(e) => {
-                    handleThreeJobField(e, 'publisher');
+                    handleThreeJobField(e, 'etc');
                   }}
                 >
                   {type}
@@ -53,11 +46,11 @@ const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishi
       <S.JobFieldInput
         type="text"
         placeholder="직접입력"
-        value={publishingEtcSkill || ''}
-        onChange={(e) => setPublishingEtcSkill(e.target.value)}
+        value={positionEtcRole || ''}
+        onChange={(e) => setPositionEtcRole(e.target.value)}
       />
     </>
   );
 };
 
-export default Publisher;
+export default ETC;

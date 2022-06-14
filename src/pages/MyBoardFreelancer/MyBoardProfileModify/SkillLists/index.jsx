@@ -3,10 +3,19 @@ import { useState } from 'react';
 
 import * as S from '../style';
 
+import Designer from './Designer';
+
 import Developer from './Developer';
+import ETC from './ETC';
 import JobSkill from './JobSkill';
+import ProjectManager from './ProjectManager';
+import Publisher from './Publisher';
 
 const SkillLists = () => {
+  /* ======= */
+
+  const [positionKeyword, setPositionKeyword] = useState('DEVELOPER');
+
   /* =========  /freelancer-profile/developer  ========= */
   const [JavaDetailSkillSTATE, setJavaDetailSkillSTATE] = useState([]);
   const [MobileAppDetailSkillSTATE, setMobileAppDetailSkillSTATE] = useState([]);
@@ -19,6 +28,126 @@ const SkillLists = () => {
   const [focusSkills, setFocusSkills] = useState([]);
   const [roles, setRoles] = useState([]);
   const [etcSkill, setEtcSkill] = useState('');
+
+  /* =========  /freelancer-profile/publisher  ========= */
+  const [PublishingDetailSkillSTATE, setPublishingDetailSkillSTATE] = useState([]);
+  const [publishingEtcSkill, setPublishingEtcSkill] = useState('');
+
+  /* =========  /freelancer-profile/designer  ========= */
+  const [DesignDetailRolesSTATE, setDesignDetailRolesSTATE] = useState([]);
+  const [DesignDetailSkillsSTATE, setDesignDetailSkillsSTATE] = useState([]);
+
+  const [designEtcRole, setDesignEtcRole] = useState('');
+  const [designEtcSkill, setDesignEtcSkill] = useState('');
+
+  /* =========  /freelancer-profile/planner  ========= */
+
+  const [PlannerDetailSkillSTATE, setPlannerDetailSkillSTATE] = useState([]);
+  const [plannerEtcField, setPlannerEtcField] = useState('');
+
+  /* =========  /freelancer-profile/etc  ========= */
+
+  const [ETCDetailRoleSTATE, setETCDetailRoleSTATE] = useState([]);
+  const [positionEtcRole, setPositionEtcRole] = useState('');
+
+  // ================= 3개 업무 =================
+
+  const handleThreeJobField = (e, str) => {
+    const FRONT_TYPE = e.target.id;
+    const DB_TYPE = e.target.htmlFor;
+
+    // ================= publisher =================
+    if (str === 'publisher') {
+      // Handle clicked data
+      if (FRONT_TYPE && !PublishingDetailSkillSTATE.includes(DB_TYPE)) {
+        if (PublishingDetailSkillSTATE.length < 3) {
+          setPublishingDetailSkillSTATE((prev) => [...prev, DB_TYPE]);
+        } else {
+          alert('3개까지만 선택이 가능합니다.');
+        }
+        return;
+      }
+
+      // Unclick DB_TYPE
+      if (PublishingDetailSkillSTATE.includes(DB_TYPE)) {
+        setPublishingDetailSkillSTATE((prev) => prev.filter((type) => type !== DB_TYPE));
+      }
+    }
+
+    // ================= Designer =================
+
+    if (str === 'designerRole') {
+      // Handle clicked data
+      if (FRONT_TYPE && !DesignDetailRolesSTATE.includes(DB_TYPE)) {
+        if (DesignDetailRolesSTATE.length < 3) {
+          setDesignDetailRolesSTATE((prev) => [...prev, DB_TYPE]);
+        } else {
+          alert('3개까지만 선택이 가능합니다.');
+        }
+        return;
+      }
+
+      // Unclick DB_TYPE
+      if (DesignDetailRolesSTATE.includes(DB_TYPE)) {
+        setDesignDetailRolesSTATE((prev) => prev.filter((type) => type !== DB_TYPE));
+      }
+    }
+
+    if (str === 'designSkill') {
+      // Handle clicked data
+      if (FRONT_TYPE && !DesignDetailSkillsSTATE.includes(DB_TYPE)) {
+        if (DesignDetailSkillsSTATE.length < 3) {
+          setDesignDetailSkillsSTATE((prev) => [...prev, DB_TYPE]);
+        } else {
+          alert('3개까지만 선택이 가능합니다.');
+        }
+        return;
+      }
+
+      // Unclick DB_TYPE
+      if (DesignDetailSkillsSTATE.includes(DB_TYPE)) {
+        setDesignDetailSkillsSTATE((prev) => prev.filter((type) => type !== DB_TYPE));
+      }
+    }
+
+    // ================= Project Manager =================
+
+    if (str === 'planner') {
+      // Handle clicked data
+      if (FRONT_TYPE && !PlannerDetailSkillSTATE.includes(DB_TYPE)) {
+        if (PlannerDetailSkillSTATE.length < 3) {
+          setPlannerDetailSkillSTATE((prev) => [...prev, DB_TYPE]);
+        } else {
+          alert('3개까지만 선택이 가능합니다.');
+        }
+        return;
+      }
+
+      // Unclick DB_TYPE
+      if (PlannerDetailSkillSTATE.includes(DB_TYPE)) {
+        setPlannerDetailSkillSTATE((prev) => prev.filter((type) => type !== DB_TYPE));
+      }
+    }
+
+    // ================= Project Manager =================
+
+    if (str === 'etc') {
+      // Handle clicked data
+      if (FRONT_TYPE && !ETCDetailRoleSTATE.includes(DB_TYPE)) {
+        if (ETCDetailRoleSTATE.length < 3) {
+          setETCDetailRoleSTATE((prev) => [...prev, DB_TYPE]);
+        } else {
+          alert('3개까지만 선택이 가능합니다.');
+        }
+        return;
+      }
+
+      // Unclick DB_TYPE
+      if (ETCDetailRoleSTATE.includes(DB_TYPE)) {
+        setETCDetailRoleSTATE((prev) => prev.filter((type) => type !== DB_TYPE));
+      }
+    }
+  };
 
   const handleTwoJobField = (e, str) => {
     const FRONT_TYPE = e.target.id;
@@ -190,25 +319,76 @@ const SkillLists = () => {
 
   return (
     <>
-      <JobSkill />
+      <JobSkill positionKeyword={positionKeyword} setPositionKeyword={setPositionKeyword} />
 
       {/* =========  /freelancer-profile/developer ========= */}
-      <Developer
-        handleTwoJobField={handleTwoJobField}
-        JavaDetailSkillSTATE={JavaDetailSkillSTATE}
-        MobileAppDetailSkillSTATE={MobileAppDetailSkillSTATE}
-        PhpOrAspDetailSkillSTATE={PhpOrAspDetailSkillSTATE}
-        DotNetDetailSkillSTATE={DotNetDetailSkillSTATE}
-        JavaScriptDetailSkillSTATE={JavaScriptDetailSkillSTATE}
-        CDetailSkillSTATE={CDetailSkillSTATE}
-        DBDetailSkillSTATE={DBDetailSkillSTATE}
-        focusSkills={focusSkills}
-        setFocusSkills={setFocusSkills}
-        roles={roles}
-        setRoles={setRoles}
-        etcSkill={etcSkill}
-        setEtcSkill={setEtcSkill}
-      />
+      {positionKeyword === 'DEVELOPER' && (
+        <Developer
+          handleTwoJobField={handleTwoJobField}
+          JavaDetailSkillSTATE={JavaDetailSkillSTATE}
+          MobileAppDetailSkillSTATE={MobileAppDetailSkillSTATE}
+          PhpOrAspDetailSkillSTATE={PhpOrAspDetailSkillSTATE}
+          DotNetDetailSkillSTATE={DotNetDetailSkillSTATE}
+          JavaScriptDetailSkillSTATE={JavaScriptDetailSkillSTATE}
+          CDetailSkillSTATE={CDetailSkillSTATE}
+          DBDetailSkillSTATE={DBDetailSkillSTATE}
+          focusSkills={focusSkills}
+          setFocusSkills={setFocusSkills}
+          roles={roles}
+          setRoles={setRoles}
+          etcSkill={etcSkill}
+          setEtcSkill={setEtcSkill}
+        />
+      )}
+
+      {/* =========  /freelancer-profile/publisher ========= */}
+      {positionKeyword === 'PUBLISHER' && (
+        <Publisher
+          PublishingDetailSkillSTATE={PublishingDetailSkillSTATE}
+          publishingEtcSkill={publishingEtcSkill}
+          setPublishingEtcSkill={setPublishingEtcSkill}
+          handleThreeJobField={handleThreeJobField}
+        />
+      )}
+
+      {/* =========  /freelancer-profile/designer ========= */}
+
+      {positionKeyword === 'DESIGNER' && (
+        <Designer
+          DesignDetailRolesSTATE={DesignDetailRolesSTATE}
+          DesignDetailSkillsSTATE={DesignDetailSkillsSTATE}
+          designEtcRole={designEtcRole}
+          setDesignEtcRole={setDesignEtcRole}
+          designEtcSkill={designEtcSkill}
+          setDesignEtcSkill={setDesignEtcSkill}
+          handleThreeJobField={handleThreeJobField}
+        />
+      )}
+
+      {/* =========  /freelancer-profile/planner ========= */}
+
+      {positionKeyword === 'PLANNER' && (
+        <ProjectManager
+          PlannerDetailSkillSTATE={PlannerDetailSkillSTATE}
+          plannerEtcField={plannerEtcField}
+          setPlannerEtcField={setPlannerEtcField}
+          handleThreeJobField={handleThreeJobField}
+        />
+      )}
+
+      {/* {positionKeyword === 'CROWD_WORKER' && (
+        <CrowdWorker/>
+        )}
+    */}
+
+      {positionKeyword === 'ETC' && (
+        <ETC
+          ETCDetailRoleSTATE={ETCDetailRoleSTATE}
+          positionEtcRole={positionEtcRole}
+          setPositionEtcRole={setPositionEtcRole}
+          handleThreeJobField={handleThreeJobField}
+        />
+      )}
 
       <S.FlexCenter>
         <S.ProfileButton type="button" onClick={submitSkill}>
