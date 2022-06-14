@@ -1,7 +1,3 @@
-export const JavaScriptDetailSkill = [];
-export const CDetailSkill = [];
-export const DBDetailSkill = [];
-
 // ============  JavaDetailSkill 구성 ============
 export const JAVA_DETAIL_SKILL_FRONT = [
   'Front-End',

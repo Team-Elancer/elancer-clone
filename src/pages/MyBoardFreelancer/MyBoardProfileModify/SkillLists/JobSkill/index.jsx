@@ -2,99 +2,93 @@ import { useState } from 'react';
 
 import * as S from './style';
 
-const JobSkill = () => {
-  const [jobType, setJobType] = useState('');
-
-  const jobFuntion = (e) => {
-    setJobType(e.target.value);
-  };
-
+const JobSkill = ({ positionKeyword, setPositionKeyword }) => {
   return (
     <S.JobUl>
       <S.JobRadioLi>
         <S.JobInputLeft
-          name="job"
-          id="job1"
+          id="DEVELOPER"
           type="radio"
+          name="DEVELOPER"
           value="DEVELOPER"
-          bgColor={jobType === 'DEVELOPER' ? '#f16300' : '#f2f2f2'}
-          tabletColor={jobType === 'DEVELOPER' ? '#f16300' : 'white'}
-          onClick={jobFuntion}
+          bgColor={positionKeyword === 'DEVELOPER' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'DEVELOPER' ? '#f16300' : '#f2f2f2'}
+          onClick={(e) => setPositionKeyword(e.target.name)}
         />
 
-        <S.JobLabel color={jobType === 'DEVELOPER' ? 'white' : 'black'} htmlFor="job1">
+        <S.JobLabel color={positionKeyword === 'DEVELOPER' ? 'white' : 'black'} htmlFor="DEVELOPER">
           개발자
         </S.JobLabel>
       </S.JobRadioLi>
       <S.JobRadioLi left="-0.5rem">
         <S.JobInput
-          name="job"
-          id="job2"
+          id="PUBLISHER"
+          name="PUBLISHER"
           type="radio"
-          value="PUBLISHER"
-          bgColor={jobType === 'PUBLISHER' ? '#f16300' : '#f2f2f2'}
-          tabletColor={jobType === 'PUBLISHER' ? '#f16300' : 'white'}
-          onClick={jobFuntion}
+          // value="PUBLISHER"
+          bgColor={positionKeyword === 'PUBLISHER' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'PUBLISHER' ? '#f16300' : 'white'}
+          onClick={(e) => setPositionKeyword(e.target.name)}
         />
 
-        <S.JobLabel color={jobType === 'PUBLISHER' ? 'white' : 'black'} htmlFor="job2">
+        <S.JobLabel color={positionKeyword === 'PUBLISHER' ? 'white' : 'black'} htmlFor="PUBLISHER">
           퍼블리셔
         </S.JobLabel>
       </S.JobRadioLi>
       <S.JobRadioLi left="-0.5rem">
         <S.JobInput
-          name="job"
-          id="job3"
+          id="DESIGNER"
+          name="DESIGNER"
           type="radio"
           value="DESIGNER"
-          bgColor={jobType === 'DESIGNER' ? '#f16300' : '#f2f2f2'}
-          tabletColor={jobType === 'DESIGNER' ? '#f16300' : 'white'}
-          onClick={jobFuntion}
+          bgColor={positionKeyword === 'DESIGNER' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'DESIGNER' ? '#f16300' : 'white'}
+          onClick={(e) => setPositionKeyword(e.target.name)}
         />
 
-        <S.JobLabel color={jobType === 'DESIGNER' ? 'white' : 'black'} htmlFor="job3">
+        <S.JobLabel color={positionKeyword === 'DESIGNER' ? 'white' : 'black'} htmlFor="DESIGNER">
           디자이너
         </S.JobLabel>
       </S.JobRadioLi>
       <S.JobRadioLi left="-0.5rem">
         <S.JobInput
-          name="job"
-          id="job4"
+          id="PLANNER"
+          name="PLANNER"
           type="radio"
           value="PLANNER"
-          bgColor={jobType === 'PLANNER' ? '#f16300' : '#f2f2f2'}
-          tabletColor={jobType === 'PLANNER' ? '#f16300' : 'white'}
-          onClick={jobFuntion}
+          bgColor={positionKeyword === 'PLANNER' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'PLANNER' ? '#f16300' : 'white'}
+          onClick={(e) => setPositionKeyword(e.target.name)}
         />
-        <S.JobLabel color={jobType === 'PLANNER' ? 'white' : 'black'} htmlFor="job4">
+        <S.JobLabel color={positionKeyword === 'PLANNER' ? 'white' : 'black'} htmlFor="PLANNER">
           기획자
         </S.JobLabel>
       </S.JobRadioLi>
       <S.JobRadioLi left="-0.5rem">
         <S.JobInput
-          name="job"
-          id="job5"
+          id="CROWD_WORKER"
+          name="CROWD_WORKER"
           type="radio"
           value="CROWD_WORKER"
-          bgColor={jobType === 'CROWD_WORKER' ? '#f16300' : '#f2f2f2'}
-          tabletColor={jobType === 'CROWD_WORKER' ? '#f16300' : 'white'}
-          onClick={jobFuntion}
+          bgColor={positionKeyword === 'CROWD_WORKER' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'CROWD_WORKER' ? '#f16300' : 'white'}
+          onClick={(e) => setPositionKeyword(e.target.name)}
         />
-        <S.JobLabel color={jobType === 'CROWD_WORKER' ? 'white' : 'black'} htmlFor="job5">
+        <S.JobLabel color={positionKeyword === 'CROWD_WORKER' ? 'white' : 'black'} htmlFor="CROWD_WORKER">
           크라우드워커
         </S.JobLabel>
       </S.JobRadioLi>
       <S.JobRadioLi left="-0.5rem">
         <S.JobInputRight
-          name="job"
-          id="job6"
+          id="ETC"
+          name="ETC"
           type="radio"
           value="ETC"
-          bgColor={jobType === 'ETC' ? '#f16300' : '#f2f2f2'}
-          tabletColor={jobType === 'ETC' ? '#f16300' : 'white'}
-          onClick={jobFuntion}
+          bgColor={positionKeyword === 'ETC' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'ETC' ? '#f16300' : 'white'}
+          onClick={(e) => setPositionKeyword(e.target.name)}
         />
-        <S.JobLabel color={jobType === 'ETC' ? 'white' : 'black'} htmlFor="job6">
+        <S.JobLabel color={positionKeyword === 'ETC' ? 'white' : 'black'} htmlFor="ETC">
           기타
         </S.JobLabel>
       </S.JobRadioLi>

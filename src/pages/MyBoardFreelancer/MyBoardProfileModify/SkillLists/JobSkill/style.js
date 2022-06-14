@@ -59,6 +59,8 @@ export const JobRadioLi = styled.li`
 `;
 
 export const JobInputLeft = styled.input`
+  cursor: pointer;
+
   width: 100%;
   height: 29px;
   border: 1px solid #e6e6e6;
@@ -78,6 +80,7 @@ export const JobInputLeft = styled.input`
 `;
 
 export const JobLabel = styled.label`
+  cursor: pointer;
   position: absolute;
   font-weight: 600;
   color: ${(props) => props.color};
@@ -92,6 +95,7 @@ export const JobLabel = styled.label`
 `;
 
 export const JobInput = styled.input`
+  cursor: pointer;
   width: 100%;
   height: 29px;
   background-color: ${(props) => props.bgColor};
@@ -109,6 +113,7 @@ export const JobInput = styled.input`
 `;
 
 export const JobInputRight = styled.input`
+  cursor: pointer;
   width: 100%;
   height: 29px;
   background-color: ${(props) => props.bgColor};
