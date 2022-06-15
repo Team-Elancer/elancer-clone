@@ -21,6 +21,12 @@ const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishi
             <S.IntroStarLetters fullWidth="100" marginBottom="1">
               스킬 & 경험 (각 언어별로 3개씩 까지만 선택가능)
             </S.IntroStarLetters>
+            <S.EtalkTriangleDIV>
+              <S.EtalkTriangleShape>
+                회원님의 전문분야를 바탕으로 프로젝트 정보를 제공 받으실 수 있습니다.
+              </S.EtalkTriangleShape>
+              <S.EtalkTriangleOthers>.</S.EtalkTriangleOthers>
+            </S.EtalkTriangleDIV>
           </S.FlexColumn>
         </S.ContainerIntro>
       </S.FrameJobSkill>

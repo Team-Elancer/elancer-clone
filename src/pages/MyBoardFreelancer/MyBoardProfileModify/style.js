@@ -648,3 +648,148 @@ export const SubjectTitle = styled.h2`
     font-size: 1rem;
   }
 `;
+
+export const ContainerMainLanguage = styled.div`
+  width: 613px;
+  background-color: rgba(246, 246, 246, 1);
+  border-color: rgba(196, 196, 196, 1);
+  color: rgba(0, 0, 0, 1);
+  display: inline-block;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-left: 0px;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  outline: none;
+  font-size: 1rem;
+
+  border-bottom: 1px solid rgba(196, 196, 196, 1);
+
+  @media ${TABLET} {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(140, 140, 140, 1);
+    border-radius: 10px;
+    border-width: 0px;
+    font-weight: 600;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+`;
+
+export const InputHero = styled.input`
+  position: relative;
+  height: 100%;
+  outline: none;
+  border: none;
+  background-color: rgba(246, 246, 246, 1);
+
+  @media ${TABLET} {
+    position: relative;
+    height: 100%;
+    width: auto;
+    outline: none;
+    border: none;
+    background: none;
+  }
+`;
+
+export const ContainerMainSpan = styled.div`
+  display: absolute;
+`;
+
+export const LangaugeDIV = styled.div`
+  width: 100%;
+`;
+
+export const ContainerMainContent = styled.div`
+  display: inline;
+  margin-right: 10px;
+  background-color: #5bc0de;
+  border-radius: 5px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+`;
+
+export const MainContentSpan = styled.span`
+  display: absolute;
+  color: white;
+
+  width: 150px;
+  font-size: 15px;
+`;
+
+export const MainContentDeleteSpan = styled(MainContentSpan)`
+  margin-left: 5px;
+  cursor: pointer;
+`;
+
+export const EtalkTriangleContainer = styled.div`
+  margin-left: 5.5rem;
+  width: 100%;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0.6875rem;
+
+  position: relative;
+  color: rgba(255, 255, 255, 1);
+`;
+
+export const EtalkTriangleSpan = styled.span`
+  background-color: rgba(255, 107, 107, 1);
+  position: absolute;
+  left: 2.5rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+`;
+
+export const EtalkTriangle = styled.span`
+  background-color: rgba(255, 107, 107, 1);
+  color: rgba(255, 107, 107, 1);
+  height: 0.75rem;
+  position: absolute;
+  left: 4.5rem;
+  width: 0.75rem;
+  bottom: -29px;
+  transform: rotate(-45deg);
+  z-index: 0;
+`;
+
+export const EtalkTriangleDIV = styled.div`
+  left: 21rem;
+  top: -2.2rem;
+  width: 330px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0.6875rem;
+  position: relative;
+  color: rgba(255, 255, 255, 1);
+`;
+
+export const EtalkTriangleShape = styled.span`
+  background-color: rgba(255, 107, 107, 1);
+  position: absolute;
+  padding: 0.4rem;
+  border-radius: 5px;
+`;
+
+export const EtalkTriangleOthers = styled.span`
+  background-color: rgba(255, 107, 107, 1);
+  color: rgba(255, 107, 107, 1);
+  height: 0.75rem;
+  position: absolute;
+  left: 4.5rem;
+  width: 0.75rem;
+  bottom: -30px;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  z-index: 0;
+`;

@@ -18,6 +18,12 @@ const ProjectManager = ({ PlannerDetailSkillSTATE, plannerEtcField, setPlannerEt
             <S.IntroStarLetters fullWidth="100" marginBottom="1">
               업무분야 (3개까지만 선택 가능합니다.)
             </S.IntroStarLetters>
+            <S.EtalkTriangleDIV>
+              <S.EtalkTriangleShape>
+                회원님의 전문분야를 바탕으로 프로젝트 정보를 제공 받으실 수 있습니다.
+              </S.EtalkTriangleShape>
+              <S.EtalkTriangleOthers>.</S.EtalkTriangleOthers>
+            </S.EtalkTriangleDIV>
           </S.FlexColumn>
         </S.ContainerIntro>
       </S.FrameJobSkill>
