@@ -4,15 +4,7 @@ const BoardCardSpan = ({ setChangeList }) => {
   return (
     <S.OverFlowDiv>
       <S.FlexDiv width="129%">
-        <S.CardSpan
-          textSize="1.1rem"
-          paddingHeight="1.2rem"
-          paddingWidth="0.9rem"
-          bgcolor="#7485c9"
-          radiud="0.6rem"
-          id="헤드헌팅"
-          onClick={(e) => setChangeList(e.target.id)}
-        >
+        <S.CardSpan textSize="1.1rem" paddingHeight="1.2rem" paddingWidth="0.9rem" bgcolor="#7485c9" radiud="0.6rem">
           헤드헌팅 0
         </S.CardSpan>
         <S.CardSpan
