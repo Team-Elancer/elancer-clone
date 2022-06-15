@@ -20,6 +20,23 @@ const DashboardProjectAdd = () => {
   const [textArea, setTextArea] = useState(
     '1.프로젝트명: 2.현재개발진행사항 1총투입인력: 2현재설계개발상태: 3.담당업무 1 4.업무범위:5.전달사항또는(개발)우대사항: 1 6.필요인력: 명 7.개발자필요Spec 1 2 8.근무지: 9.개발기간: 10.월단가:제시바람 11.장비지참여부:',
   );
+  const [bgColorArray, setBgColorArray] = useState([
+    { boxColor: '#181818', boxValue: 'BLACK' },
+    { boxColor: '#FFFFFF', boxValue: 'WHITE' },
+    { boxColor: '#7485c9', boxValue: 'BLUE' },
+    { boxColor: '#8a7fa4', boxValue: 'INDIGO' },
+    { boxColor: '#9d7985', boxValue: 'ROSSYBROWN' },
+    { boxColor: '#b57360', boxValue: 'BROWN' },
+    { boxColor: '#d56b2d', boxValue: 'CHOCOLATE' },
+    { boxColor: '#f16300', boxValue: 'ORANGE' },
+  ]);
+  const [jobChoiceArray, setJobChoiceArray] = useState([
+    { jobId: 'job2', jobValue: 'PLAN', jobName: '기획' },
+    { jobId: 'job3', jobValue: 'DESIGN', jobName: '디자인' },
+    { jobId: 'job4', jobValue: 'PUBLISHING', jobName: '퍼블리싱' },
+    { jobId: 'job5', jobValue: 'DEVELOP', jobName: '개발' },
+  ]);
+
   const [bgColor, setBgColor] = useState('');
   const [logoBgColor, setLogoBgColor] = useState('');
   const [projectColor, setProjectColor] = useState('');
@@ -232,79 +249,20 @@ const DashboardProjectAdd = () => {
         </S.JobUl>
         <S.H1 ftszie="1.2rem">배경</S.H1>
         <S.ColorUl>
-          <S.Boxli liColor={bgColor === 'BLACK' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#181818"
-              name="color"
-              id="#181818"
-              type="radio"
-              value="BLACK"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'white' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput bgColor="white" name="color" id="white" type="radio" value="white" onClick={changeBgColor} />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'BLUE' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#7485c9"
-              name="color"
-              id="#7485c9"
-              type="radio"
-              value="BLUE"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'INDIGO' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#8a7fa4"
-              name="color"
-              id="#8a7fa4"
-              type="radio"
-              value="INDIGO"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'ROSSYBROWN' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#9d7985"
-              name="color"
-              id="#9d7985"
-              type="radio"
-              value="ROSSYBROWN"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'BROWN' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#b57360"
-              name="color"
-              id="#b57360"
-              type="radio"
-              value="BROWN"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'CHOCOLATE' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#d56b2d"
-              name="color"
-              id="#d56b2d"
-              type="radio"
-              value="CHOCOLATE"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
-          <S.Boxli liColor={bgColor === 'ORANGE' ? '#eb6100' : '#e1e1e1'}>
-            <S.ColorInput
-              bgColor="#f16300"
-              name="color"
-              id="#f16300"
-              type="radio"
-              value="ORANGE"
-              onClick={changeBgColor}
-            />
-          </S.Boxli>
+          {bgColorArray.map((data) => {
+            return (
+              <S.Boxli key={data.boxColor} liColor={bgColor === `${data.boxValue}` ? '#eb6100' : '#e1e1e1'}>
+                <S.ColorInput
+                  bgColor={data.boxColor}
+                  name="color"
+                  id={data.boxColor}
+                  type="radio"
+                  value={data.boxValue}
+                  onClick={changeBgColor}
+                />
+              </S.Boxli>
+            );
+          })}
         </S.ColorUl>
         <div>
           <S.H1 ftszie="1.2rem">기업로고</S.H1>
@@ -339,66 +297,25 @@ const DashboardProjectAdd = () => {
                     분석/설계
                   </S.JobLabel>
                 </S.JobRadioLi>
-                <S.JobRadioLi left="-0.5rem">
-                  <S.JobInput
-                    name="job"
-                    id="job2"
-                    type="radio"
-                    value="PLAN"
-                    bgColor={projectColor === 'PLAN' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === 'PLAN' ? '#f16300' : 'white'}
-                    onClick={changeProjectColor}
-                  />
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === 'PLAN' ? 'white' : 'black'} htmlFor="job2">
-                    기획
-                  </S.JobLabel>
-                </S.JobRadioLi>
-                <S.JobRadioLi left="-0.5rem">
-                  <S.JobInput
-                    name="job"
-                    id="job3"
-                    type="radio"
-                    value="DESIGN"
-                    bgColor={projectColor === 'DESIGN' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === 'DESIGN' ? '#f16300' : 'white'}
-                    onClick={changeProjectColor}
-                  />
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === 'DESIGN' ? 'white' : 'black'} htmlFor="job3">
-                    디자인
-                  </S.JobLabel>
-                </S.JobRadioLi>
-                <S.JobRadioLi left="-0.5rem">
-                  <S.JobInput
-                    name="job"
-                    id="job4"
-                    type="radio"
-                    value="PUBLISHING"
-                    bgColor={projectColor === 'PUBLISHING' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === 'PUBLISHING' ? '#f16300' : 'white'}
-                    onClick={changeProjectColor}
-                  />
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === 'PUBLISHING' ? 'white' : 'black'} htmlFor="job4">
-                    퍼블리싱
-                  </S.JobLabel>
-                </S.JobRadioLi>
-                <S.JobRadioLi left="-0.5rem">
-                  <S.JobInput
-                    name="job"
-                    id="job5"
-                    type="radio"
-                    value="DEVELOP"
-                    bgColor={projectColor === 'DEVELOP' ? '#f16300' : '#f2f2f2'}
-                    tabletColor={projectColor === 'DEVELOP' ? '#f16300' : 'white'}
-                    onClick={changeProjectColor}
-                  />
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <S.JobLabel color={projectColor === 'DEVELOP' ? 'white' : 'black'} htmlFor="job5">
-                    개발
-                  </S.JobLabel>
-                </S.JobRadioLi>
+                {jobChoiceArray.map((data) => {
+                  return (
+                    <S.JobRadioLi left="-0.5rem">
+                      <S.JobInput
+                        name="job"
+                        id={data.jobId}
+                        type="radio"
+                        value={data.jobValue}
+                        bgColor={projectColor === `${data.jobValue}` ? '#f16300' : '#f2f2f2'}
+                        tabletColor={projectColor === `${data.jobValue}` ? '#f16300' : 'white'}
+                        onClick={changeProjectColor}
+                      />
+                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                      <S.JobLabel color={projectColor === `${data.jobValue}` ? 'white' : 'black'} htmlFor={data.jobId}>
+                        {data.jobName}
+                      </S.JobLabel>
+                    </S.JobRadioLi>
+                  );
+                })}
                 <S.JobRadioLi left="-0.5rem">
                   <S.JobInputRight
                     name="job"
