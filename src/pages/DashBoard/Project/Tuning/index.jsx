@@ -1,7 +1,7 @@
 import * as S from './style';
 import ProjectList from 'components/DashBoard/Project-List';
 
-const ProjectProceeding = () => {
+const ProjectTuning = () => {
   return (
     <>
       <S.H1 top="4rem" laptoptop="4rem">
@@ -12,4 +12,4 @@ const ProjectProceeding = () => {
   );
 };
 
-export default ProjectProceeding;
+export default ProjectTuning;

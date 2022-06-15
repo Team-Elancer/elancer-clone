@@ -2,10 +2,15 @@ import * as S from './style';
 
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
+import useCloseOutside from 'hooks/useCloseOutside';
 
 const ProjectInterview = ({ setInterviewModal }) => {
+  const domNode = useCloseOutside(() => {
+    setInterviewModal(true);
+  });
+
   return (
-    <S.Container>
+    <S.Container ref={domNode}>
       <S.FlexDiv>
         <S.Img
           src={Cancel}
