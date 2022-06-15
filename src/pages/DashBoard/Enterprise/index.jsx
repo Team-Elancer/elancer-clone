@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
+
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const DashBoardEnterprise = () => {
+  const [cardArray, setCardArray] = useState([
+    { backColor: '#7485c9', title: '헤드헌팅 0' },
+    { backColor: '#8a7fa4', title: '지원 현황 0' },
+    { backColor: '#9f7985', title: '인터뷰 요청 0' },
+    { backColor: '#d56b2d', title: '진행중 프로젝트 0' },
+  ]);
+
   return (
     <>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
@@ -26,50 +35,21 @@ const DashBoardEnterprise = () => {
           </Link>
           <S.EcardDiv>
             <S.EcarcdPaddingDiv>
-              <S.ProjectDiv top="1rem">
-                <S.CardSpan
-                  textSize="1rem"
-                  paddingHeight="0.5rem"
-                  paddingWidth="0.6rem"
-                  bgcolor="#7485c9"
-                  radiud="0.4rem"
-                >
-                  헤드헌팅 0
-                </S.CardSpan>
-              </S.ProjectDiv>
-              <S.ProjectDiv top="2rem">
-                <S.CardSpan
-                  textSize="1rem"
-                  paddingHeight="0.5rem"
-                  paddingWidth="0.6rem"
-                  bgcolor="#8a7fa4"
-                  radiud="0.4rem"
-                >
-                  지원 현황 0
-                </S.CardSpan>
-              </S.ProjectDiv>
-              <S.ProjectDiv top="2rem">
-                <S.CardSpan
-                  textSize="1rem"
-                  paddingHeight="0.5rem"
-                  paddingWidth="0.6rem"
-                  bgcolor="#9f7985"
-                  radiud="0.4rem"
-                >
-                  인터뷰 요청 0
-                </S.CardSpan>
-              </S.ProjectDiv>
-              <S.ProjectDiv top="2rem">
-                <S.CardSpan
-                  textSize="1rem"
-                  paddingHeight="0.5rem"
-                  paddingWidth="0.6rem"
-                  bgcolor="#d56b2d"
-                  radiud="0.4rem"
-                >
-                  진행중 프로젝트 0
-                </S.CardSpan>
-              </S.ProjectDiv>
+              {cardArray.map((data) => {
+                return (
+                  <S.ProjectDiv key={data.title} top="1.75rem">
+                    <S.CardSpan
+                      textSize="1rem"
+                      paddingHeight="0.5rem"
+                      paddingWidth="0.6rem"
+                      bgcolor={data.backColor}
+                      radiud="0.4rem"
+                    >
+                      {data.title}
+                    </S.CardSpan>
+                  </S.ProjectDiv>
+                );
+              })}
             </S.EcarcdPaddingDiv>
           </S.EcardDiv>
         </S.LiTag>
