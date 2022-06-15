@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import * as S from './style';
 import Back from 'assets/images/arrowback.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import SubmitButton from 'components/Button/SubmitButton';
 
 const DashBoardModify = () => {
-  const [userData, setUserData] = useState('');
   const [check, setCheck] = useState(true);
+
+  const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
   const [businessTitle, setBusinessTitle] = useState('');
   const [business, setBusiness] = useState('');
@@ -20,22 +21,7 @@ const DashBoardModify = () => {
   const [workCodes, setWorkCodes] = useState([]);
   const [workEtc, setWorkEtc] = useState('');
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
-  const fetchData = async () => {
-    try {
-      const res = await authAxios('/enterprise/profile');
-      const Data = await res.data;
-      setUserData(Data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  console.log(bizCodes, workCodes);
 
   const changeMainEtc = (e) => {
     setBusinessEtc(e.target.value);
@@ -102,22 +88,21 @@ const DashBoardModify = () => {
         setCheck(!check);
       });
   };
+  console.log(Datas);
 
   useEffect(() => {
-    if (userData === '') {
-      fetchData();
+    setaxiosUrl('/enterprise/profile');
+    if (Datas) {
+      setBusinessTitle(Datas.introTitle);
+      setBusiness(Datas.bizContents);
+      setBusinessSale(Number(Datas.sales));
+      setBusinessNumber(Datas.idNumber);
+      setBizCodes(Datas.mainBizCodes);
+      setBusinessEtc(Datas.mainEtc);
+      setWorkCodes(Datas.subBizCodes);
+      setWorkEtc(Datas.subEtc);
     }
-    if (userData) {
-      setBusinessTitle(userData.introTitle);
-      setBusiness(userData.bizContents);
-      setBusinessSale(Number(userData.sales));
-      setBusinessNumber(userData.idNumber);
-      setBizCodes(userData.mainBizCodes);
-      setBusinessEtc(userData.mainEtc);
-      setWorkCodes(userData.subBizCodes);
-      setWorkEtc(userData.subEtc);
-    }
-  }, [userData]);
+  }, [Datas, axiosUrl]);
 
   return (
     <S.Container>
@@ -231,7 +216,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="웹개발"
                       id="main_biz1"
-                      checked={bizCodes.includes('main_biz1') && true}
+                      checked={bizCodes !== undefined && bizCodes.includes('main_biz1') ? true : null}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
                       }}
@@ -243,7 +228,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="앱개발"
                       id="main_biz2"
-                      checked={bizCodes.includes('main_biz2') && true}
+                      checked={bizCodes !== undefined && bizCodes.includes('main_biz2') ? true : null}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
                       }}
@@ -255,7 +240,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="솔루션개발"
                       id="main_biz3"
-                      checked={bizCodes.includes('main_biz3') && true}
+                      checked={bizCodes !== undefined && bizCodes.includes('main_biz3') ? true : null}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
                       }}
@@ -267,7 +252,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="GIS개발"
                       id="main_biz4"
-                      checked={bizCodes.includes('main_biz4') && true}
+                      checked={bizCodes !== undefined && bizCodes.includes('main_biz4') ? true : null}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
                       }}
@@ -279,7 +264,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="POS개발"
                       id="main_biz5"
-                      checked={bizCodes.includes('main_biz5') && true}
+                      checked={bizCodes !== undefined && bizCodes.includes('main_biz5') ? true : null}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
                       }}
@@ -291,7 +276,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="SI사업"
                       id="main_biz6"
-                      checked={bizCodes.includes('main_biz6') && true}
+                      checked={bizCodes !== undefined && bizCodes.includes('main_biz6') ? true : null}
                       onChange={(e) => {
                         setBizCodes([...bizCodes, e.target.id]);
                       }}
@@ -321,7 +306,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="웹개발"
                       id="sub_biz1"
-                      checked={workCodes.includes('sub_biz1') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz1') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -333,7 +318,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="앱개발"
                       id="sub_biz2"
-                      checked={workCodes.includes('sub_biz2') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz2') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -345,7 +330,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="솔루션개발"
                       id="sub_biz3"
-                      checked={workCodes.includes('sub_biz3') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz3') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -357,7 +342,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="GIS개발"
                       id="sub_biz4"
-                      checked={workCodes.includes('sub_biz4') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz4') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -369,7 +354,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="POS개발"
                       id="sub_biz5"
-                      checked={workCodes.includes('sub_biz5') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz5') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -381,7 +366,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="SI사업"
                       id="sub_biz6"
-                      checked={workCodes.includes('sub_biz6') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz6') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -393,7 +378,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="웹개발"
                       id="sub_biz7"
-                      checked={workCodes.includes('sub_biz7') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz7') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -405,7 +390,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="앱개발"
                       id="sub_biz8"
-                      checked={workCodes.includes('sub_biz8') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz8') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -417,7 +402,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="솔루션개발"
                       id="sub_biz9"
-                      checked={workCodes.includes('sub_biz9') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz9') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -429,7 +414,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="GIS개발"
                       id="sub_biz10"
-                      checked={workCodes.includes('sub_biz10') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz10') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -441,7 +426,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="POS개발"
                       id="sub_biz11"
-                      checked={workCodes.includes('sub_biz11') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz11') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -453,7 +438,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="SI사업"
                       id="sub_biz12"
-                      checked={workCodes.includes('sub_biz12') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz12') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -465,7 +450,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="웹개발"
                       id="sub_biz13"
-                      checked={workCodes.includes('sub_biz13') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz13') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -477,7 +462,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="앱개발"
                       id="sub_biz15"
-                      checked={workCodes.includes('sub_biz15') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz15') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -489,7 +474,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="솔루션개발"
                       id="sub_biz16"
-                      checked={workCodes.includes('sub_biz16') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz16') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -501,7 +486,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="GIS개발"
                       id="sub_biz17"
-                      checked={workCodes.includes('sub_biz17') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz17') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -513,7 +498,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="POS개발"
                       id="sub_biz18"
-                      checked={workCodes.includes('sub_biz18') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz18') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -525,7 +510,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="SI사업"
                       id="sub_biz19"
-                      checked={workCodes.includes('sub_biz19') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz19') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -537,7 +522,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="웹개발"
                       id="sub_biz20"
-                      checked={workCodes.includes('sub_biz20') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz20') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -549,7 +534,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="앱개발"
                       id="sub_biz21"
-                      checked={workCodes.includes('sub_biz21') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz21') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -561,7 +546,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="솔루션개발"
                       id="sub_biz22"
-                      checked={workCodes.includes('sub_biz22') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz22') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -573,7 +558,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="GIS개발"
                       id="sub_biz23"
-                      checked={workCodes.includes('sub_biz23') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz23') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}
@@ -585,7 +570,7 @@ const DashBoardModify = () => {
                       type="checkbox"
                       name="POS개발"
                       id="sub_biz24"
-                      checked={workCodes.includes('sub_biz24') && true}
+                      checked={workCodes !== undefined && workCodes.includes('sub_biz24') ? true : null}
                       onChange={(e) => {
                         setWorkCodes([...workCodes, e.target.id]);
                       }}

@@ -6,6 +6,8 @@ import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
 import { IoArrowUpCircleOutline, IoArrowDownCircleOutline } from 'react-icons/io5';
 
+import { useOutletContext } from 'react-router-dom';
+
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
 import ContactPutModal from 'components/Modal/ContactPut';
@@ -14,32 +16,16 @@ import ContactModal from 'components/Modal/DashBoardContact';
 const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
   const [reLoading, setReLoading] = useState(false);
-
-  const [ContactData, setContactData] = useState('');
-
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
-  const FetchData = async () => {
-    try {
-      const res = await authAxios('/contacts');
-      const data = await res.data;
-      setContactData(data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+  const [newArray, setNewArray] = useState([]);
+  const [Datas, setDatas, axiosUrl, setaxiosUrl, changeHello, setChangeHello, fetchData] = useOutletContext();
 
   useEffect(() => {
-    if (ContactData === '' || reLoading) {
-      FetchData();
+    setaxiosUrl('/contacts');
+    setNewArray(Datas);
+    if (Datas === '' || reLoading) {
       setReLoading(false);
     }
-  }, [ContactData, reLoading]);
+  }, [Datas, reLoading, axiosUrl]);
 
   return (
     <S.Container>
@@ -107,14 +93,14 @@ const DashboardContact = () => {
       </S.H1>
       <S.BorderDiv display="none" />
       <S.H1 top="3rem" size="2.4rem">
-        나의 문의/요청 ({ContactData.length})
+        나의 문의/요청 ({Datas.length})
       </S.H1>
-      {ContactData !== '' &&
-        ContactData.map((data, i) => {
+      {newArray.length > 1 &&
+        newArray.map((data, i) => {
           return (
             <MyContact
               key={data.num}
-              ContactData={ContactData}
+              ContactData={Datas}
               modalBool={modalBool}
               setModalBool={setModalBool}
               setReLoading={setReLoading}

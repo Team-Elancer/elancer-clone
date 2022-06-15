@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import * as S from './style';
 
+import Loading from 'components/Loading';
 import GridBottom from 'components/Modal/GridBottom';
 import LeftMenu from 'components/Myboard/LeftMenu';
 import Footer from 'layouts/Footer';
@@ -32,17 +33,16 @@ const Dashboard = () => {
     }
   };
 
-  console.log(Datas);
-
   useEffect(() => {
-    if (axiosUrl) {
-      fetchData();
-    }
+    fetchData();
   }, [axiosUrl]);
 
   return (
     <S.Container>
       <CompanyHeader width="1224px" />
+      {/* {Datas === '' ? (
+        <Loading />
+      ) : ( */}
       <S.SizeDiv>
         <S.FlexDiv>
           <LeftMenu />
@@ -51,6 +51,7 @@ const Dashboard = () => {
           </S.BoardDiv>
         </S.FlexDiv>
       </S.SizeDiv>
+      {/* )} */}
       <Footer toBottom="static" />
       <GridBottom />
     </S.Container>

@@ -7,8 +7,6 @@ import Loading from 'components/Loading';
 const DashBoardProfile = () => {
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
-  console.log(Datas, 'check', axiosUrl);
-
   useEffect(() => {
     setaxiosUrl('/enterprise-profile');
   }, []);
