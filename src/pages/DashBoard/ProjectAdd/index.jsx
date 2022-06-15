@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
 import Back from 'assets/images/arrowback.png';
@@ -13,25 +13,8 @@ import SubmitButton from 'components/Button/SubmitButton';
 import PostCode from 'components/DashBoard/PostCode';
 
 const DashboardProjectAdd = () => {
-  const [companyData, setCompanyData] = useState('');
   const navi = useNavigate();
-
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
-  const fetchData = async () => {
-    try {
-      const res = await authAxios('/enterprise');
-      const Data = await res.data;
-      setCompanyData(Data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
   const [titleName, setTitleName] = useState('');
   const [textArea, setTextArea] = useState(
@@ -182,18 +165,16 @@ const DashboardProjectAdd = () => {
   };
 
   useEffect(() => {
-    if (companyData.length < 1) {
-      fetchData();
+    setaxiosUrl('/enterprise');
+    if (Datas) {
+      setComName(Datas.companyName);
+      setEmployeeName(Datas.name);
+      setEmplyeePosition(Datas.position);
+      setComPhone(Datas.phone);
+      setComTele(Datas.telNumber);
+      setComWebsite(Datas.website);
     }
-    if (companyData) {
-      setComName(companyData.companyName);
-      setEmployeeName(companyData.name);
-      setEmplyeePosition(companyData.position);
-      setComPhone(companyData.phone);
-      setComTele(companyData.telNumber);
-      setComWebsite(companyData.website);
-    }
-  }, [companyData]);
+  }, [Datas]);
 
   return (
     <S.Container>
