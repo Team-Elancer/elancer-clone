@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import styled from 'styled-components';
 import * as S from '../../style';
 
 import {
@@ -58,31 +59,100 @@ const Developer = ({
 
   const DBDetailFilteredIndex = DBDetailSkillSTATE.map((frontIndex) => DB_DETAIL_DB.indexOf(frontIndex));
 
+  const [focusSkillsText, setFocusSkillsText] = useState('');
+  const [rolesText, setRolesText] = useState('');
+
+  const handleText = (e, str) => {
+    if (str === 'skills') {
+      setFocusSkillsText('');
+      if (focusSkills.length < 3 && e.target.value) {
+        setFocusSkills((prev) => e.target.value !== prev && [...prev, e.target.value]);
+      }
+    }
+
+    if (str === 'roles') {
+      setRolesText('');
+      if (roles.length < 3 && e.target.value) {
+        setRoles((prev) => e.target.value !== prev && [...prev, e.target.value]);
+      }
+    }
+  };
+
+  const onDeleteText = (idx, str) => {
+    if (str === 'skills') {
+      const newList = [...focusSkills];
+      newList.splice(idx, 1);
+
+      setFocusSkills(newList);
+    }
+
+    if (str === 'roles') {
+      const newList = [...roles];
+      newList.splice(idx, 1);
+
+      setRoles(newList);
+    }
+  };
+
   return (
     <>
+      <S.EtalkTriangleContainer>
+        <S.EtalkTriangleSpan>회원님의 전문분야를 바탕으로 프로젝트 정보를 제공 받으실 수 있습니다.</S.EtalkTriangleSpan>
+        <S.EtalkTriangle>.</S.EtalkTriangle>
+      </S.EtalkTriangleContainer>
       <S.FrameJobSkill>
         <S.ContainerIntro>
           <S.IntroStarLetters>주언어</S.IntroStarLetters>
-          <S.IntroInputLarge
-            type="text"
-            name="main_language"
-            placeholder="주언어"
-            value={focusSkills || ''}
-            onChange={(e) => setFocusSkills(e.target.value)}
-          />
+          <S.ContainerMainSpan>
+            <S.ContainerMainLanguage>
+              <S.LangaugeDIV>
+                {focusSkills?.map((word, index) => (
+                  <S.ContainerMainContent key={`MainContentSpan${index + 1}`} id={index}>
+                    <S.MainContentSpan> {word} </S.MainContentSpan>
+                    <S.MainContentDeleteSpan onClick={() => onDeleteText(index, 'skills')}> x </S.MainContentDeleteSpan>
+                  </S.ContainerMainContent>
+                ))}
+                <S.InputHero
+                  type="text"
+                  autoComplete="off"
+                  name="main_language"
+                  value={focusSkillsText || ''}
+                  onChange={(e) => setFocusSkillsText(e.target.value)}
+                  onBlur={(e) => {
+                    handleText(e, 'skills');
+                  }}
+                />
+              </S.LangaugeDIV>
+            </S.ContainerMainLanguage>
+          </S.ContainerMainSpan>
         </S.ContainerIntro>
         <S.TextInfo>예) JAVA, MobileApp, PHP, ASP, .NET, JavaScript, C, C++, DB</S.TextInfo>
       </S.FrameJobSkill>
       <S.FrameJobSkill>
         <S.ContainerIntro>
           <S.IntroStarLetters>역할</S.IntroStarLetters>
-          <S.IntroInputLarge
-            type="text"
-            name="main_language"
-            placeholder="역할"
-            value={roles || ''}
-            onChange={(e) => setRoles(e.target.value)}
-          />
+          <S.ContainerMainSpan>
+            <S.ContainerMainLanguage>
+              <S.LangaugeDIV>
+                {roles?.map((word, index) => (
+                  <S.ContainerMainContent key={`MainRoleSpan${index + 1}`} id={index}>
+                    <S.MainContentSpan> {word} </S.MainContentSpan>
+                    <S.MainContentDeleteSpan onClick={() => onDeleteText(index, 'roles')}> x </S.MainContentDeleteSpan>
+                  </S.ContainerMainContent>
+                ))}
+                <S.InputHero
+                  type="text"
+                  autoComplete="off"
+                  name="main_language"
+                  value={rolesText || ''}
+                  onChange={(e) => setRolesText(e.target.value)}
+                  onBlur={(e) => {
+                    handleText(e, 'roles');
+                  }}
+                />
+              </S.LangaugeDIV>
+            </S.ContainerMainLanguage>
+          </S.ContainerMainSpan>
         </S.ContainerIntro>
         <S.TextInfo>예) PM, PL, DBA, TA, PMO, SE</S.TextInfo>
       </S.FrameJobSkill>
