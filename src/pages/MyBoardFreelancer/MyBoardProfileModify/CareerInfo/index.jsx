@@ -29,16 +29,13 @@ const CareerInfo = () => {
   };
 
   // ======== Handle state (onChange) ========
-  const handleStateChange = (e, index, STATE) => {
+  const handleStateChange = (e, index) => {
     const { name, value } = e.target;
 
-    const STATE_LIST = [...STATE];
+    const STATE_LIST = [...CAREER_STATE];
 
     STATE_LIST[index][name] = value;
-
-    if (STATE === 'EDUCATION_STATE') {
-      SET_CAREER_STATE(STATE_LIST);
-    }
+    SET_CAREER_STATE(STATE_LIST);
   };
 
   // ======== Add state + component (onChange) ========
