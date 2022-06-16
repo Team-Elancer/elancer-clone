@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import styled from 'styled-components';
 import * as S from '../../style';
 
 import {
@@ -35,6 +34,7 @@ const Developer = ({
   setRoles,
   etcSkill,
   setEtcSkill,
+  submitDeveloper,
 }) => {
   // Filter the database index for CSS(active)
   const JavaDetailFilteredIndex = JavaDetailSkillSTATE.map((frontIndex) => JAVA_DETAIL_SKILL_DB.indexOf(frontIndex));
@@ -348,6 +348,12 @@ const Developer = ({
         value={etcSkill || ''}
         onChange={(e) => setEtcSkill(e.target.value)}
       />
+
+      <S.FlexCenter>
+        <S.ProfileButton type="button" onClick={submitDeveloper}>
+          스킬 저장
+        </S.ProfileButton>
+      </S.FlexCenter>
     </>
   );
 };

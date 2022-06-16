@@ -7,7 +7,13 @@ import {
   PUBLISHING_DETAIL_SKILL_DB,
 } from 'utils/constants/freelancerPosition/publisher';
 
-const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishingEtcSkill, handleThreeJobField }) => {
+const Publisher = ({
+  PublishingDetailSkillSTATE,
+  publishingEtcSkill,
+  setPublishingEtcSkill,
+  handleThreeJobField,
+  submitPublisher,
+}) => {
   // Filter the database index for CSS(active)
   const PublishingDetailFilteredIndex = PublishingDetailSkillSTATE.map((frontIndex) =>
     PUBLISHING_DETAIL_SKILL_DB.indexOf(frontIndex),
@@ -62,6 +68,12 @@ const Publisher = ({ PublishingDetailSkillSTATE, publishingEtcSkill, setPublishi
         value={publishingEtcSkill || ''}
         onChange={(e) => setPublishingEtcSkill(e.target.value)}
       />
+
+      <S.FlexCenter>
+        <S.ProfileButton type="button" onClick={submitPublisher}>
+          스킬 저장
+        </S.ProfileButton>
+      </S.FlexCenter>
     </>
   );
 };

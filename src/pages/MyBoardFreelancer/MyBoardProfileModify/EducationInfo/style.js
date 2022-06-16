@@ -288,6 +288,13 @@ export const ProfileButton = styled.button`
   border: none;
   cursor: pointer;
 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+
+  :hover {
+    transition: opacity 0.1s ease-in-out;
+    transform: scale(1.1, 1.1);
+  }
+
   @media ${TABLET} {
     border-radius: 10px;
     font-size: 0.938rem;

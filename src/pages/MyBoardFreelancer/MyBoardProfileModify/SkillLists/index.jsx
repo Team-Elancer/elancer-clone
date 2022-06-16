@@ -280,12 +280,12 @@ const SkillLists = () => {
     }
   };
 
-  const submitSkill = (e) => {
+  const submitDeveloper = (e) => {
     e.preventDefault();
 
     const newData = {
-      focusSkills: [focusSkills],
-      roles: [roles],
+      focusSkills,
+      roles,
       javaDetailSkills: JavaDetailSkillSTATE,
       mobileAppDetailSkills: MobileAppDetailSkillSTATE,
       phpOrAspDetailSkills: PhpOrAspDetailSkillSTATE,
@@ -296,10 +296,124 @@ const SkillLists = () => {
       etcSkill,
     };
 
+    axios({
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/developer',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: newData,
+    })
+      .then(() => {
+        console.log(newData);
+        alert('정보를 수정했습니다.');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        if (newData) alert('필드값 다시 사용확인');
+      });
+  };
+
+  const submitPublisher = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      publishingDetailSkills: PublishingDetailSkillSTATE,
+      etcSkill: publishingEtcSkill,
+    };
+
     console.log(newData);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/developer',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/publisher',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: newData,
+    })
+      .then(() => {
+        console.log(newData);
+        alert('정보를 수정했습니다.');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        if (newData) alert('필드값 다시 사용확인');
+      });
+  };
+
+  const submitDesigner = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      designDetailRoles: DesignDetailRolesSTATE,
+      etcRole: designEtcRole,
+      designDetailSkills: DesignDetailSkillsSTATE,
+      etcSkill: designEtcSkill,
+    };
+
+    axios({
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/designer',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: newData,
+    })
+      .then(() => {
+        console.log(newData);
+        alert('정보를 수정했습니다.');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        if (newData) alert('필드값 다시 사용확인');
+      });
+  };
+
+  const submitPlanner = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      plannerDetailFields: PlannerDetailSkillSTATE,
+      etcField: plannerEtcField,
+    };
+
+    console.log(newData);
+
+    axios({
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/planner',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: newData,
+    })
+      .then(() => {
+        console.log(newData);
+        alert('정보를 수정했습니다.');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        if (newData) alert('필드값 다시 사용확인');
+      });
+  };
+
+  const submitETC = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      etcDetailRoles: ETCDetailRoleSTATE,
+      positionEtcRole,
+    };
+
+    console.log(newData);
+
+    axios({
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/planner',
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -338,6 +452,7 @@ const SkillLists = () => {
           setRoles={setRoles}
           etcSkill={etcSkill}
           setEtcSkill={setEtcSkill}
+          submitDeveloper={submitDeveloper}
         />
       )}
 
@@ -348,6 +463,7 @@ const SkillLists = () => {
           publishingEtcSkill={publishingEtcSkill}
           setPublishingEtcSkill={setPublishingEtcSkill}
           handleThreeJobField={handleThreeJobField}
+          submitPublisher={submitPublisher}
         />
       )}
 
@@ -362,6 +478,7 @@ const SkillLists = () => {
           designEtcSkill={designEtcSkill}
           setDesignEtcSkill={setDesignEtcSkill}
           handleThreeJobField={handleThreeJobField}
+          submitDesigner={submitDesigner}
         />
       )}
 
@@ -373,6 +490,7 @@ const SkillLists = () => {
           plannerEtcField={plannerEtcField}
           setPlannerEtcField={setPlannerEtcField}
           handleThreeJobField={handleThreeJobField}
+          submitPlanner={submitPlanner}
         />
       )}
 
@@ -387,14 +505,9 @@ const SkillLists = () => {
           positionEtcRole={positionEtcRole}
           setPositionEtcRole={setPositionEtcRole}
           handleThreeJobField={handleThreeJobField}
+          submitETC={submitETC}
         />
       )}
-
-      <S.FlexCenter>
-        <S.ProfileButton type="button" onClick={submitSkill}>
-          스킬 저장
-        </S.ProfileButton>
-      </S.FlexCenter>
     </>
   );
 };

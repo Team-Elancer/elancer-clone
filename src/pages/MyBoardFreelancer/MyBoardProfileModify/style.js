@@ -22,17 +22,60 @@ export const FlexColumn = styled.div`
 export const ButtonAddExtra = styled.button`
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  font-size: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.7rem;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(235, 97, 0, 1);
   border-radius: 5px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 1px 3px 7px;
   text-align: center;
   margin: 0.3rem;
   cursor: pointer;
+
+  :hover {
+    transition: 0.1s ease-in-out;
+    transform: scale(1.2, 1.2);
+  }
+
+  @media ${TABLET} {
+    padding-bottom: 0.6rem;
+    padding-top: 0.6rem;
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+    font-size: 0.8rem;
+  }
+`;
+
+export const ProjectButtonSave = styled(ButtonAddExtra)`
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(235, 97, 0, 1);
+  color: rgba(235, 97, 0, 1);
+
+  padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 0.75rem;
+  opacity: 0.9;
+
+  :hover {
+    background-color: rgba(235, 97, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    opacity: 1;
+    transition: 0.1s ease-in-out;
+    transform: scale(1.02, 1.02);
+  }
+
+  @media ${TABLET} {
+    font-size: 1.2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 `;
 
 export const RemoveButton = styled.span`
@@ -65,6 +108,13 @@ export const ProfileButton = styled.button`
   text-align: center;
   border: none;
   cursor: pointer;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+
+  :hover {
+    transition: 0.1s ease-in-out;
+    transform: scale(1.1, 1.1);
+  }
 
   @media ${TABLET} {
     border-radius: 10px;

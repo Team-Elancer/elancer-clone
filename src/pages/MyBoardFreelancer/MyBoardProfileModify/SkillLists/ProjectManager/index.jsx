@@ -4,7 +4,13 @@ import * as S from '../../style';
 
 import { PLANNER_DETAIL_FIELD_FRONT, PLANNER_DETAIL_FIELD_DB } from 'utils/constants/freelancerPosition/planner';
 
-const ProjectManager = ({ PlannerDetailSkillSTATE, plannerEtcField, setPlannerEtcField, handleThreeJobField }) => {
+const ProjectManager = ({
+  PlannerDetailSkillSTATE,
+  plannerEtcField,
+  setPlannerEtcField,
+  handleThreeJobField,
+  submitPlanner,
+}) => {
   // Filter the database index for CSS(active)
   const PlannerDetailFilteredIndex = PlannerDetailSkillSTATE.map((frontIndex) =>
     PLANNER_DETAIL_FIELD_DB.indexOf(frontIndex),
@@ -59,6 +65,11 @@ const ProjectManager = ({ PlannerDetailSkillSTATE, plannerEtcField, setPlannerEt
         value={plannerEtcField || ''}
         onChange={(e) => setPlannerEtcField(e.target.value)}
       />
+      <S.FlexCenter>
+        <S.ProfileButton type="button" onClick={submitPlanner}>
+          스킬 저장
+        </S.ProfileButton>
+      </S.FlexCenter>
     </>
   );
 };
