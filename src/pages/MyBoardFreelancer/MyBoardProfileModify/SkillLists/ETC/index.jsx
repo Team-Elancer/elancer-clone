@@ -2,7 +2,7 @@ import * as S from '../../style';
 
 import { ETC_DETAIL_ROLE_FRONT, ETC_DETAIL_ROLE_DB } from 'utils/constants/freelancerPosition/etc';
 
-const ETC = ({ ETCDetailRoleSTATE, positionEtcRole, setPositionEtcRole, handleThreeJobField }) => {
+const ETC = ({ ETCDetailRoleSTATE, positionEtcRole, setPositionEtcRole, handleThreeJobField, submitETC }) => {
   // Filter the database index for CSS(active)
   const ETCDetailFilteredIndex = ETCDetailRoleSTATE.map((frontIndex) => ETC_DETAIL_ROLE_DB.indexOf(frontIndex));
 
@@ -55,6 +55,11 @@ const ETC = ({ ETCDetailRoleSTATE, positionEtcRole, setPositionEtcRole, handleTh
         value={positionEtcRole || ''}
         onChange={(e) => setPositionEtcRole(e.target.value)}
       />
+      <S.FlexCenter>
+        <S.ProfileButton type="button" onClick={submitETC}>
+          스킬 저장
+        </S.ProfileButton>
+      </S.FlexCenter>
     </>
   );
 };

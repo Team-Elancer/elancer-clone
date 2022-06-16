@@ -3,32 +3,7 @@ import { useEffect, useState } from 'react';
 
 import * as S from '../../style';
 
-// #info
-// # DevelopField 구성{
-// #    ("산업"),
-// #    APPLICATION("응용")
-// #}
-
-// #req
-// {
-//   "projectTitle": "프로젝트명",
-//   "projectStartDate": "2020-01-01",
-//   "projectEndDate": "2020-03-01",
-//   "clientCompany": "고객사",
-//   "workCompany": "상주사",
-//   "developField": "INDUSTRY",
-//   "developRole": "백엔드 개발자",
-//   "developEnvironmentModel": "개발환경 기종",
-//   "developEnvironmentOS": "개발환경 os",
-//   "developEnvironmentLanguage": "개발언어",
-//   "developEnvironmentDBName": "개발 디비",
-//   "developEnvironmentTool": "개발 툴",
-//   "developEnvironmentCommunication": "개발 통신",
-//   "developEnvironmentEtc": "기타",
-//   "responsibilityTask": "담당업무 입니다."
-// }
-
-const ProjectHistoryTemplate = ({ PROJECT_HISTORY }) => {
+const ProjectHistoryTemplate = ({ state, index, onDeleteTemplate, handleProjectHistoryState }) => {
   const {
     projectTitle,
     projectStartDate,
@@ -45,41 +20,77 @@ const ProjectHistoryTemplate = ({ PROJECT_HISTORY }) => {
     developEnvironmentCommunication,
     developEnvironmentEtc,
     responsibilityTask,
-  } = PROJECT_HISTORY;
-
-  const handleChangeValue = (e) => {
-    console.log('textarea bugs -> no need enclosing tag');
-  };
+  } = state;
 
   return (
     <>
+      {/* ====== 프로젝트명 ====== */}
       <S.EducationContainer>
         <S.TextLabel>프로젝트명</S.TextLabel>
         <S.ContainerSelectOption width="300">
-          <S.IntroInputName type="text" placeholder="프로젝트명을 입력하세요" />
+          <S.IntroInputName
+            placeholder="프로젝트명을 입력하세요"
+            type="text"
+            name="projectTitle"
+            value={projectTitle || ''}
+            onChange={(e) => handleProjectHistoryState(e, index)}
+          />
         </S.ContainerSelectOption>
       </S.EducationContainer>
 
-      {/* 기간 */}
+      {/* ====== 기간 ====== */}
 
       <S.EducationContainer>
         <S.TextLabel>기간</S.TextLabel>
         <S.ContainerSelectOption width="130">
-          <S.IntroInputName type="text" placeholder="2000.03" />
+          <label htmlFor="projectStartDate">
+            <S.IntroInputNameDate
+              name="projectStartDate"
+              type="date"
+              style={{ width: '200px', fontSize: '1rem' }}
+              value={projectStartDate || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+              required
+            />
+          </label>
           <S.BetweenInputSpan> ~ </S.BetweenInputSpan>
-          <S.IntroInputName type="text" placeholder="2003.02" />
+          <label htmlFor="projectEndDate">
+            <S.IntroInputNameDate
+              name="projectEndDate"
+              type="date"
+              style={{ width: '200px', fontSize: '1rem' }}
+              value={projectEndDate || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+              required
+            />
+          </label>
         </S.ContainerSelectOption>
       </S.EducationContainer>
+
+      {/* ====== 고객사 ====== */}
       <S.EducationContainer>
         <S.TextLabel>고객사</S.TextLabel>
-        <S.ContainerSelectOption width="130">
-          <S.IntroInputName type="text" placeholder="고객사" />
-          <S.IntroInputName type="text" placeholder="근무사를 입력하세요" />
+        <S.ContainerSelectOption width="300">
+          <S.IntroInputName
+            type="text"
+            placeholder="고객사"
+            name="clientCompany"
+            onChange={(e) => handleProjectHistoryState(e, index)}
+            value={clientCompany || ''}
+            required
+          />
+          <S.IntroInputName
+            type="text"
+            placeholder="근무사 입력하세요"
+            name="workCompany"
+            value={workCompany || ''}
+            onChange={(e) => handleProjectHistoryState(e, index)}
+            required
+          />
         </S.ContainerSelectOption>
       </S.EducationContainer>
 
-      {/* 개발분야 */}
-
+      {/* ====== 개발분야 ====== */}
       <S.EducationContainer>
         <S.TextLabel>개발분야</S.TextLabel>
         <S.ContainerSelectOption width="500">
@@ -87,42 +98,106 @@ const ProjectHistoryTemplate = ({ PROJECT_HISTORY }) => {
             <S.EmailFlex>
               <S.InputDiv>
                 <S.FlexDiv>
-                  <S.RadioDiv>
-                    <S.RadioInput type="radio" name="job" value="POSSIBLE" />
-                    <S.RadioText>산업</S.RadioText>
-                  </S.RadioDiv>
-                  <S.RadioDiv>
-                    <S.RadioInput type="radio" name="job" value="IMPOSSIBLE" />
-                    <S.RadioText>응용</S.RadioText>
-                  </S.RadioDiv>
+                  <form>
+                    <S.RadioDiv>
+                      <S.RadioInput
+                        type="radio"
+                        name="developField"
+                        value="INDUSTRY"
+                        checked={developField === 'INDUSTRY'}
+                        onChange={(e) => handleProjectHistoryState(e, index)}
+                      />
+                      <S.RadioText>산업</S.RadioText>
+                    </S.RadioDiv>
+                  </form>
+                  <form>
+                    <S.RadioDiv>
+                      <S.RadioInput
+                        type="radio"
+                        name="developField"
+                        value="APPLICATION"
+                        checked={developField === 'APPLICATION'}
+                        onChange={(e) => handleProjectHistoryState(e, index)}
+                      />
+                      <S.RadioText>응용</S.RadioText>
+                    </S.RadioDiv>
+                  </form>
                 </S.FlexDiv>
               </S.InputDiv>
             </S.EmailFlex>
           </S.MarginAutoDiv>
-          <S.IntroInputName type="text" placeholder="역할을 입력하세요" />
+          <S.IntroInputName
+            type="text"
+            placeholder="역할을 입력하세요"
+            name="developRole"
+            value={developRole || ''}
+            onChange={(e) => handleProjectHistoryState(e, index)}
+          />
         </S.ContainerSelectOption>
       </S.EducationContainer>
 
-      {/* 개발환경 */}
+      {/* ====== 개발환경 ====== */}
 
       <S.EducationContainer noFlex>
         <S.TextLabel marginTop="0.5">개발환경</S.TextLabel>
         <div>
           <S.ContainerSelectOption width="500">
-            <S.InputText type="text" placeholder="기종" />
-            <S.InputText type="text" placeholder="OS" />
-            <S.InputText type="text" placeholder="언어" />
-            <S.InputText type="text" placeholder="DBMS" />
+            <S.InputText
+              type="text"
+              placeholder="기종"
+              name="developEnvironmentModel"
+              value={developEnvironmentModel || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
+            <S.InputText
+              type="text"
+              placeholder="OS"
+              name="developEnvironmentOS"
+              value={developEnvironmentOS || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
+            <S.InputText
+              type="text"
+              placeholder="언어"
+              name="developEnvironmentLanguage"
+              value={developEnvironmentLanguage || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
+            <S.InputText
+              type="text"
+              placeholder="DBMS"
+              name="developEnvironmentDBName"
+              value={developEnvironmentDBName || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
           </S.ContainerSelectOption>
           <S.ContainerSelectOption width="500">
-            <S.InputText type="text" placeholder="TOOL" />
-            <S.InputText type="text" placeholder="통신" />
-            <S.InputText type="text" placeholder="기타" />
+            <S.InputText
+              type="text"
+              placeholder="TOOL"
+              name="developEnvironmentTool"
+              value={developEnvironmentTool || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
+            <S.InputText
+              type="text"
+              placeholder="통신"
+              name="developEnvironmentCommunication"
+              value={developEnvironmentCommunication || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
+            <S.InputText
+              type="text"
+              placeholder="기타"
+              name="developEnvironmentEtc"
+              value={developEnvironmentEtc || ''}
+              onChange={(e) => handleProjectHistoryState(e, index)}
+            />
           </S.ContainerSelectOption>
         </div>
       </S.EducationContainer>
 
-      {/* 담당업무 */}
+      {/* ====== 담당업무 ====== */}
 
       <S.EducationContainer>
         <S.TextLabel marginTop="0.5">담당업무</S.TextLabel>
@@ -131,11 +206,17 @@ const ProjectHistoryTemplate = ({ PROJECT_HISTORY }) => {
           <S.InputTextArea
             placeholder="담당업무를 상세하게 적어주시면 프로젝트 추천 시 도움이 됩니다."
             name="responsibilityTask"
-            value={responsibilityTask}
-            onChange={(e) => handleChangeValue(e)}
+            value={responsibilityTask || ''}
+            onChange={(e) => handleProjectHistoryState(e, index)}
           />
         </S.ContainerSelectOption>
       </S.EducationContainer>
+
+      <S.FlexCenter>
+        <S.ButtonAddExtra type="button" onClick={() => onDeleteTemplate(index)}>
+          프로젝트 삭제
+        </S.ButtonAddExtra>
+      </S.FlexCenter>
     </>
   );
 };

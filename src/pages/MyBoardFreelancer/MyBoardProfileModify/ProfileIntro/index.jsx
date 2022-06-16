@@ -5,13 +5,14 @@ import * as S from '../style';
 
 const ProfileIntro = () => {
   const [intro, setIntro] = useState({
+    greeting: '',
     introName: '',
     introBackGround: '',
     introVideoUrl: '',
     introContent: '',
   });
 
-  const { introName, introBackGround, introVideoUrl, introContent } = intro;
+  const { greeting, introName, introBackGround, introVideoUrl, introContent } = intro;
 
   const handleProfileIntroState = (e) => {
     const { value, name } = e.target;
@@ -25,7 +26,7 @@ const ProfileIntro = () => {
   const submitIntro = (e) => {
     e.preventDefault();
 
-    const newData = intro;
+    const newData = { ...intro };
 
     axios({
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/intro',
@@ -54,7 +55,13 @@ const ProfileIntro = () => {
       </S.ContainerImageProfile>
       <S.ContainerSubject>
         <S.FontLargeSubject>프로필 제목</S.FontLargeSubject>
-        <S.SubjectInput type="text" name="introSubject" id="introSubject" placeholder="프로필 제목을 입력해주세요" />
+        <S.SubjectInput
+          type="text"
+          name="greeting"
+          placeholder="프로필 제목을 입력해주세요"
+          value={greeting || ''}
+          onChange={(e) => handleProfileIntroState(e)}
+        />
       </S.ContainerSubject>
       <S.FontLarge>소개정보</S.FontLarge>
       <S.BoxFrame>

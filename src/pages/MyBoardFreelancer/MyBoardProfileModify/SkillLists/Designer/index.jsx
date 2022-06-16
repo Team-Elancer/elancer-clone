@@ -15,6 +15,7 @@ const Designer = ({
   designEtcSkill,
   setDesignEtcSkill,
   handleThreeJobField,
+  submitDesigner,
 }) => {
   // Filter the database index for CSS(active)
   const DesignDetailRoleFilteredIndex = DesignDetailRolesSTATE.map((frontIndex) =>
@@ -117,6 +118,11 @@ const Designer = ({
         value={designEtcSkill || ''}
         onChange={(e) => setDesignEtcSkill(e.target.value)}
       />
+      <S.FlexCenter>
+        <S.ProfileButton type="button" onClick={submitDesigner}>
+          스킬 저장
+        </S.ProfileButton>
+      </S.FlexCenter>
     </>
   );
 };
