@@ -2,14 +2,18 @@ import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CompanyHeader from './Company';
+import FreelancerHeader from './Freelancer';
+
 import * as S from './style';
+
 import Logo from 'assets/images/elancer_logo.png';
 import LogoFreelancer from 'assets/images/freelancer-logo.png';
+
 import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const Header = ({ freelancerBoard, MEMBERSHIP_FREELANCER }) => {
+const Header = () => {
   const [checkBool, setCeckBool] = useState(true);
 
   const changeBool = () => {
@@ -18,7 +22,7 @@ const Header = ({ freelancerBoard, MEMBERSHIP_FREELANCER }) => {
   return (
     <>
       {window.localStorage.accessToken === undefined && (
-        <S.Container freelancerBoard={freelancerBoard}>
+        <S.Container>
           {checkBool === false && (
             <>
               <MainMenu setCeckBool={setCeckBool} />
@@ -27,11 +31,7 @@ const Header = ({ freelancerBoard, MEMBERSHIP_FREELANCER }) => {
           )}
           <S.HeaderDiv>
             <Link to="/">
-              {window.localStorage.getItem('memberType') === '"FREELANCER"' ? (
-                <S.Img src={LogoFreelancer} alt="Logo" />
-              ) : (
-                <S.Img src={Logo} alt="Logo" />
-              )}
+              <S.Img src={Logo} alt="Logo" />
             </Link>
             <S.Text>
               <Link to="/partner-list">
@@ -53,6 +53,8 @@ const Header = ({ freelancerBoard, MEMBERSHIP_FREELANCER }) => {
           </S.HeaderDiv>
         </S.Container>
       )}
+
+      {window.localStorage.memberType === '"FREELANCER"' && <FreelancerHeader width="830px" />}
       {window.localStorage.memberType === '"ENTERPRISE"' && <CompanyHeader width="830px" />}
     </>
   );

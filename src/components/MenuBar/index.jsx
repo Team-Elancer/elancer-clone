@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import FreelancerMenuBar from './Freelancer';
+
 import * as S from './style';
 import BackButton from 'assets/images/ic-back.png';
 import RightButton from 'assets/images/ic-right.png';
@@ -43,18 +46,18 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
             <S.ImgLi onClick={changeBool}>
               <S.ButtonImg src={BackButton} alt="button" />
             </S.ImgLi>
-            <S.UpLiTag>
-              <Link to="/login">
+            <Link to="/login">
+              <S.UpLiTag>
                 <span>로그인</span>
-              </Link>
-              <S.ButtonImg src={RightButton} alt="button" />
-            </S.UpLiTag>
-            <S.UpLiTag>
-              <Link to="/signup/main">
+                <S.ButtonImg src={RightButton} alt="button" />
+              </S.UpLiTag>
+            </Link>
+            <Link to="/signup/main">
+              <S.UpLiTag>
                 <span>회원가입</span>
-              </Link>
-              <S.ButtonImg src={RightButton} alt="button" />
-            </S.UpLiTag>
+                <S.ButtonImg src={RightButton} alt="button" />
+              </S.UpLiTag>
+            </Link>
             <S.LineTag />
             <S.DownLiTag>
               <a href="/#">커뮤니티</a>
@@ -74,7 +77,12 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
             </S.DownLiTag>
           </>
         )}
-        {window.localStorage.accessToken !== undefined && (
+
+        {window.localStorage.memberType === '"FREELANCER"' && (
+          <FreelancerMenuBar changeBool={changeBool} setCeckBool={setCeckBool} />
+        )}
+
+        {window.localStorage.accessToken === '"ENTERPRISE"' && (
           <EnterpriseMenuBar changeBool={changeBool} setCeckBool={setCeckBool} />
         )}
       </S.Ultag>

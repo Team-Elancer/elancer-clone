@@ -7,7 +7,7 @@ const MyBoardManageProject = () => {
   return (
     <div>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
-        클론코딩님 이랜서가 응원해요
+        KH님 이랜서가 응원해요
       </S.H1>
       <BoardCardSpan />
       <OnGoingCard />

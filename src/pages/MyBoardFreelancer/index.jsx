@@ -63,7 +63,7 @@ const MyBoardFreelancer = () => {
     try {
       const response = await CLIENT_FREELANCER('/freelancer');
 
-      if (response.data.message === '.refresh가 만료되었습니다. 다시 로그인해주세요') {
+      if (response.data.message === '.refresh가 만료되었습니다.') {
         console.log('refresh token 만료. 다시 로그인 필요함.');
         alert('다시 로그인해주세요');
 
