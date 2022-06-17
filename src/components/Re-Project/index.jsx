@@ -7,7 +7,7 @@ import companyLogo from 'assets/images/company-logo_1.png';
 import kbLogo from 'assets/images/kbkookmin.png';
 import samsung from 'assets/images/samsung.png';
 
-const ReProject = () => {
+const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (alt) => {
     if (alt === 'left') {
@@ -89,7 +89,7 @@ const ReProject = () => {
   return (
     <S.Container>
       <S.FirstDiv>
-        <S.H1>추천 프로젝트</S.H1>
+        <S.H1 color={color}>{title}</S.H1>
         <S.ButtonDiv>
           <S.Img src={left} alt="left" direction="left" onClick={() => handleClick('left')} />
           <S.Img src={right} alt="right" direction="right" onClick={() => handleClick('right')} />
