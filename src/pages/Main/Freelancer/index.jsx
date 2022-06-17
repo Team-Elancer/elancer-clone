@@ -74,10 +74,9 @@ const MainFreelancer = () => {
                 onClick={() => {
                   setSerchBarBool('select');
                 }}
+                style={{ overflow: 'hidden' }}
               >
-                <S.Span color={changeBack === false ? 'black' : 'white'} style={{ overflow: 'hidden;' }}>
-                  스킬
-                </S.Span>
+                <S.Span color={changeBack === false ? 'black' : 'white'}>스킬</S.Span>
                 <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{skillState}</S.ButtonP>
               </S.jobButton>
               <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
