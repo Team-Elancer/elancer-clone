@@ -35,6 +35,8 @@ export const ButtonAddExtra = styled.button`
   margin: 0.3rem;
   cursor: pointer;
 
+  margin-right: 0.7rem;
+
   :hover {
     transition: 0.1s ease-in-out;
     transform: scale(1.2, 1.2);

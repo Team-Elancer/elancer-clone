@@ -48,12 +48,17 @@ const Login = () => {
         if (window.localStorage !== undefined) {
           navi(`/`);
         }
+
+        if (window.localStorage.memberType === '"FREELANCER"') {
+          navi('/freelancer');
+        }
       })
       .catch((err) => {
         alert(err.message);
         setLoginFail('로그인에 실패 했습니다. 아이디와 패스워드를 다시 확인 하세요.');
       });
   };
+
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {

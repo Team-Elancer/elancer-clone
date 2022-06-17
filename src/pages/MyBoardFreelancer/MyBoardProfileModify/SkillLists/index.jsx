@@ -413,7 +413,7 @@ const SkillLists = () => {
     console.log(newData);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/planner',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/etc',
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

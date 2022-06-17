@@ -19,6 +19,7 @@ import Login from 'pages/Login';
 import Main from 'pages/Main';
 
 import MainEnterprise from 'pages/Main/Enterprise';
+import MainFreelancer from 'pages/Main/Freelancer';
 import MyBoardFreelancer from 'pages/MyBoardFreelancer';
 import MyBoardAccount from 'pages/MyBoardFreelancer/MyBoardAccount';
 import MyBoardCareer from 'pages/MyBoardFreelancer/MyBoardCareer';
@@ -45,6 +46,7 @@ const App = () => {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="freelancer" element={<MainFreelancer />} />
         <Route path="enterprise" element={<MainEnterprise />} />
         <Route path="partner-list" element={<PartnerList />} />
         <Route path="partner-detail" element={<PartnerDetail />} />
