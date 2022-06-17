@@ -14,6 +14,7 @@ export const H1 = styled.h1`
   font-size: 0.875rem;
   font-weight: 600;
   padding-bottom: 25px;
+  color: ${(props) => props.color};
   @media ${TABLET} {
     font-size: 1.8rem;
   }
@@ -241,7 +242,7 @@ export const TextaTag = styled.a`
 `;
 export const Ptag = styled.p`
   color: #a5a5a5;
-  top: 90%;
+  top: 85%;
   font-size: 0.1rem;
   position: absolute;
   overflow: hidden;

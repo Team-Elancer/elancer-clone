@@ -5,7 +5,8 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   color: ${(props) => props.color};
-  background-color: #0000;
+  background-color: ${(props) => props.bgColor};
+  padding-bottom: 1rem;
 `;
 
 export const HeaderDiv = styled.div`
