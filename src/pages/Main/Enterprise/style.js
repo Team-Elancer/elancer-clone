@@ -120,6 +120,7 @@ export const Span = styled.span`
   }
 `;
 export const ButtonP = styled.p`
+  overflow: hidden;
   @media ${TABLET} {
     font-size: 1.3rem;
     color: ${(props) => props.color};

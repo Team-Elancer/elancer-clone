@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CompanyHeader from './Company';
 import FreelancerHeader from './Freelancer';
 
@@ -12,8 +12,9 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const Header = () => {
+const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', logo }) => {
   const [checkBool, setCeckBool] = useState(true);
+  const location = useLocation();
 
   const changeBool = () => {
     return setCeckBool(false);
@@ -21,16 +22,19 @@ const Header = () => {
   return (
     <>
       {window.localStorage.accessToken === undefined && (
-        <S.Container>
+        <S.Container bgColor={bgColor} color={color}>
           {checkBool === false && (
             <>
               <MainMenu setCeckBool={setCeckBool} />
               <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
             </>
           )}
-          <S.HeaderDiv>
+          <S.HeaderDiv margin={margin}>
             <Link to="/">
-              <S.Img src={Logo} alt="Logo" />
+              <S.Img
+                src={location.pathname === '/enterprise' || location.pathname === '/project/newdetail' ? logo : Logo}
+                alt="Logo"
+              />
             </Link>
             <S.Text>
               <Link to="/partner-list">

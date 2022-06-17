@@ -4,8 +4,8 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background: ${(props) => (props.freelancerBoard ? '#252525' : '#0000')};
-  color: ${(props) => (props.freelancerBoard ? 'white' : 'black')};
+  background: ${(props) => props.bgColor};
+  color: ${(props) => props.color};
 `;
 
 export const HeaderDiv = styled.div`
@@ -13,7 +13,7 @@ export const HeaderDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px auto;
+  margin: ${(props) => props.margin} auto;
   overflow: hidden;
   margin-top: 0;
   padding-bottom: 2.25rem;

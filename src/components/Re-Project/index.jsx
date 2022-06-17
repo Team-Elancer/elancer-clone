@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
+
 import left from 'assets/images/bt-left.png';
 import right from 'assets/images/bt-right.png';
 import cjLogo from 'assets/images/cj-logo.png';
@@ -106,7 +108,9 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                     <S.HearDiv>{item.icon}</S.HearDiv>
                   </S.HeartBackDiv>
                 </S.DivTag>
-                <S.BackImg url={item.url} />
+                <Link to="/project/newdetail">
+                  <S.BackImg url={item.url} />
+                </Link>
               </S.UpDiv>
               <S.DownDiv>
                 <S.DownSmallDiv>
@@ -115,9 +119,11 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                     <S.MiniSecond>{item.language}</S.MiniSecond>
                     <S.MiniSecond>{item.language2}</S.MiniSecond>
                   </S.BigSpan>
-                  <S.hiddenP>
-                    <S.TextaTag href="#">{item.title}</S.TextaTag>
-                  </S.hiddenP>
+                  <Link to="/project/newdetail">
+                    <S.hiddenP>
+                      <S.TextaTag href="#">{item.title}</S.TextaTag>
+                    </S.hiddenP>
+                  </Link>
                   <S.Ptag>{item.subTitle}</S.Ptag>
                 </S.DownSmallDiv>
               </S.DownDiv>
