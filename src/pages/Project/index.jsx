@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Logo from 'assets/images/logo_white.png';
 
 import GridBottom from 'components/Modal/GridBottom';
-import ProjectDetailModal from 'components/Modal/ProjectDetail';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 import CompanyHeader from 'layouts/Header/Company';
@@ -20,7 +19,6 @@ const Project = () => {
         <Header margin="0" bgColor="#252525" color="white" width="840px" logo={Logo} />
       )}
       <Outlet />
-      <ProjectDetailModal />
       <Footer />
       <GridBottom />
     </Container>
