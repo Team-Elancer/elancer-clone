@@ -7,7 +7,6 @@ import FreelancerHeader from './Freelancer';
 import * as S from './style';
 
 import Logo from 'assets/images/elancer_logo.png';
-import LogoFreelancer from 'assets/images/freelancer-logo.png';
 
 import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
