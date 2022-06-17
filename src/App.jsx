@@ -31,8 +31,10 @@ import MyBoardProfileModify from 'pages/MyBoardFreelancer/MyBoardProfileModify';
 
 import PartnerDetail from 'pages/Partner/PartnerDetail';
 import PartnerList from 'pages/Partner/PartnerList';
+import Project from 'pages/Project';
 import ProjectDetail from 'pages/Project/ProjectDetail';
 import ProjectList from 'pages/Project/ProjectList';
+import ProjectNewDetail from 'pages/Project/ProjectNewDetail';
 import SignUp from 'pages/SignUp';
 import SignUpCompany from 'pages/SignUp/Company';
 import SignUpFinish from 'pages/SignUp/Finish';
@@ -53,6 +55,9 @@ const App = () => {
         <Route path="project-list" element={<ProjectList />} />
         <Route path="project-detail" element={<ProjectDetail />} />
         <Route path="login" element={<Login />} />
+        <Route path="project" element={<Project />}>
+          <Route path="newdetail" element={<ProjectNewDetail />} />
+        </Route>
         <Route path="signup" element={<SignUp />}>
           <Route path="main" element={<SignUpMain />} />
           <Route path="freelancer" element={<SignUpFreeLancer />} />

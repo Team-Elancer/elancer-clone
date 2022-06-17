@@ -7,7 +7,7 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const CompanyHeader = ({ width, bgColor = 'white', color = 'black', logo }) => {
+const CompanyHeader = ({ width, bgColor = '#0000', color = 'black', logo }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
 
@@ -26,7 +26,10 @@ const CompanyHeader = ({ width, bgColor = 'white', color = 'black', logo }) => {
       <S.HeaderDiv width={width}>
         <S.FlexDiv>
           <Link to="/">
-            <S.Img src={location.pathname === '/enterprise' ? logo : Logo} alt="Logo" />
+            <S.Img
+              src={location.pathname === '/enterprise' || location.pathname === '/project/newdetail' ? logo : Logo}
+              alt="Logo"
+            />
           </Link>
           <div>
             <Link to="/enterprise">
