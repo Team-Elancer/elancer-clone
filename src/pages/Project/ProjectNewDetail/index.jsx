@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import * as S from './style';
 
 import CompanyLogo from 'assets/images/company-logo_87.png';
 import ProjectButton from 'components/Button/ProjectButton';
+import ProjectDetailModal from 'components/Modal/ProjectDetail';
 import ReProject from 'components/Re-Project';
 
 const ProjectNewDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <S.Container>
       <S.ImgDiv>
@@ -83,6 +89,7 @@ const ProjectNewDetail = () => {
           </S.FlexDiv>
         </S.SizeDiv>
       </S.DetailDiv>
+      <ProjectDetailModal />
     </S.Container>
   );
 };

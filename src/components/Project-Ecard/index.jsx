@@ -11,7 +11,7 @@ const Ecard = ({ darkMode }) => {
     <>
       {eCard.map((item) => {
         return (
-          <Link to="/project-detail" key={item}>
+          <Link to="/project/newdetail" key={item}>
             <S.EcardDiv key={item} darkMode={darkMode}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
