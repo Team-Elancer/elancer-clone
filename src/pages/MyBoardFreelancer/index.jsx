@@ -57,7 +57,7 @@ const MyBoardFreelancer = () => {
 
     window.location.reload();
 
-    console.log('access token 재발급 완료');
+    console.log('access token 재발급 완료', data);
   };
 
   const fetchFreelancerData = async () => {
@@ -86,7 +86,6 @@ const MyBoardFreelancer = () => {
       }
 
       const fetchedData = await data;
-      console.log(fetchedData);
 
       if (fetchedData) {
         setUserData(fetchedData);
