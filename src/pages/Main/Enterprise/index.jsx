@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 import arrowLeft from 'assets/images/arrow_left.png';
@@ -19,6 +20,7 @@ import Footer from 'layouts/Footer';
 import CompanyHeader from 'layouts/Header/Company';
 
 const MainEnterprise = () => {
+  const navi = useNavigate();
   const [changeBack, setChangeBack] = useState(true);
   const [serchBarBool, setSerchBarBool] = useState();
   const [jobField, setJobField] = useState('개발');
@@ -80,11 +82,50 @@ const MainEnterprise = () => {
       setSkillState([...skillState, e.target.htmlFor, ',']);
     }
   };
-  console.log(ecardMap[0].skils);
+  const [Datas, setUserDatas] = useState({});
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+  const refreshAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+      RefreshAuthorization: `${window.localStorage.refreshToken}`,
+    },
+  });
+
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/enterprise');
+      console.log(res);
+      if (res.data.code === '401') {
+        console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
+        const res = await refreshAxios('/reissue');
+        window.localStorage.setItem('accessToken', res.data.accessToken);
+        window.localStorage.setItem('refreshToken', res.data.refreshToken);
+        console.log('이상무');
+      }
+      const Data = await res.data;
+      setUserDatas(Data);
+    } catch (err) {
+      if (err.message === 'Request failed with status code 500') {
+        window.localStorage.clear();
+        alert('다시 로그인해주세요.');
+        navi('/login');
+      }
+      console.log(err.message);
+    }
+  };
+
+  console.log(Datas);
 
   useEffect(() => {
     setSkillState(['선택']);
-    console.log(fullStack);
+    fetchData();
   }, [jobField, fullStack]);
 
   return (
