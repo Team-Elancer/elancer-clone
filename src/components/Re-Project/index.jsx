@@ -119,11 +119,9 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                     <S.MiniSecond>{item.language}</S.MiniSecond>
                     <S.MiniSecond>{item.language2}</S.MiniSecond>
                   </S.BigSpan>
-                  <Link to="/project/newdetail">
-                    <S.hiddenP>
-                      <S.TextaTag href="#">{item.title}</S.TextaTag>
-                    </S.hiddenP>
-                  </Link>
+                  <S.hiddenP>
+                    <S.TextaTag href="#">{item.title}</S.TextaTag>
+                  </S.hiddenP>
                   <S.Ptag>{item.subTitle}</S.Ptag>
                 </S.DownSmallDiv>
               </S.DownDiv>

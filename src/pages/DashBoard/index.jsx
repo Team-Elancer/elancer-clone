@@ -40,18 +40,18 @@ const Dashboard = () => {
   return (
     <S.Container>
       <CompanyHeader width="1224px" />
-      {/* {Datas === '' ? (
+      {Datas.code === '401' || Datas.code === undefined ? (
         <Loading />
-      ) : ( */}
-      <S.SizeDiv>
-        <S.FlexDiv>
-          <LeftMenu />
-          <S.BoardDiv>
-            <Outlet context={[Datas, setDatas, axiosUrl, setaxiosUrl, fetchData]} />
-          </S.BoardDiv>
-        </S.FlexDiv>
-      </S.SizeDiv>
-      {/* )} */}
+      ) : (
+        <S.SizeDiv>
+          <S.FlexDiv>
+            <LeftMenu />
+            <S.BoardDiv>
+              <Outlet context={[Datas, setDatas, axiosUrl, setaxiosUrl, fetchData]} />
+            </S.BoardDiv>
+          </S.FlexDiv>
+        </S.SizeDiv>
+      )}
       <Footer toBottom="static" />
       <GridBottom />
     </S.Container>
