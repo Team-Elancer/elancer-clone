@@ -49,8 +49,12 @@ const Login = () => {
           navi(`/`);
         }
 
-        if (window.localStorage.accessToken === res.data.accessToken) {
+        if (window.localStorage.memberType === '"FREELANCER"') {
           navi('/freelancer');
+          window.location.reload();
+        }
+        if (window.localStorage.memberType === '"ENTERPRISE"') {
+          navi('/enterprise');
           window.location.reload();
         }
       })
