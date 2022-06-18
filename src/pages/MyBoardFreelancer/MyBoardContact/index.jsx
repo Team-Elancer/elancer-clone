@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 import ContactQneOnOne from './ContactOneOnOne';
 
@@ -16,12 +16,13 @@ import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const MyBoardContact = () => {
   const [modalBool, setModalBool] = useState(false);
-  const [ContactData, setContactData] = useState('');
+  const [ContactData, setContactData] = useState([]);
 
-  const FetchData = async () => {
+  const [userData] = useOutletContext();
+
+  const fetchContactData = async () => {
     try {
-      const res = await CLIENT_FREELANCER('/contacts');
-      const data = await res.data;
+      const { data } = await CLIENT_FREELANCER('/contacts');
 
       setContactData(data);
     } catch (err) {
@@ -30,14 +31,24 @@ const MyBoardContact = () => {
   };
 
   useEffect(() => {
-    if (ContactData === '') {
-      FetchData();
-    }
-  }, [ContactData]);
+    let isMounted = true;
+
+    fetchContactData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <S.Container>
-      {modalBool === true && <ModalFreelancerContactModal setModalBool={setModalBool} FetchData={FetchData} />}
+      {modalBool === true && (
+        <ModalFreelancerContactModal
+          setModalBool={setModalBool}
+          fetchContactData={fetchContactData}
+          userData={userData}
+        />
+      )}
       <S.FlexDiv>
         <S.H1 size="2.4rem">문의/요청</S.H1>
         <S.H1
@@ -109,14 +120,15 @@ const MyBoardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         1:1 문의 (0)
       </S.H1>
-      {ContactData &&
+
+      {ContactData.length > 0 &&
         ContactData.map((data, idx) => {
           return (
             <ContactQneOnOne
               key={data.num}
               ContactData={ContactData}
               contactNum={data.num}
-              FetchData={FetchData}
+              fetchContactData={fetchContactData}
               idx={idx}
             />
           );

@@ -8,7 +8,14 @@ import useCloseOutside from 'hooks/useCloseOutside';
 
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
-const ModalFreelancerContactModal = ({ setModalBool, FetchData, setPutModalBool, ContactData, contactNum }) => {
+const ModalFreelancerContactModal = ({
+  setModalBool,
+  fetchContactData,
+  setPutModalBool,
+  ContactData,
+  contactNum,
+  userData,
+}) => {
   const domNode = useCloseOutside(() => {
     if (setPutModalBool) {
       setPutModalBool(false);
@@ -18,23 +25,6 @@ const ModalFreelancerContactModal = ({ setModalBool, FetchData, setPutModalBool,
       setModalBool(false);
     }
   });
-
-  const [userData, setUserData] = useState('');
-
-  const fetchFreelancerData = async () => {
-    try {
-      const res = await CLIENT_FREELANCER('/freelancer');
-      const data = await res.data;
-
-      setUserData(data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
 
   const [title, setTitle] = useState(ContactData?.title);
   const [content, setContent] = useState(ContactData?.content);
@@ -55,7 +45,7 @@ const ModalFreelancerContactModal = ({ setModalBool, FetchData, setPutModalBool,
     })
       .then((res) => {
         alert('1:1 문의가 등록되었습니다.');
-        FetchData();
+        fetchContactData();
         setModalBool(false);
       })
       .catch((err) => {
@@ -80,25 +70,13 @@ const ModalFreelancerContactModal = ({ setModalBool, FetchData, setPutModalBool,
     })
       .then((res) => {
         alert('수정됐습니다.');
-        FetchData();
+        fetchContactData();
         setPutModalBool(false);
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
-
-  useEffect(() => {
-    if (userData.length < 1) {
-      fetchFreelancerData();
-    }
-
-    if (userData) {
-      setName(userData.name);
-      setPhone(userData.phone);
-      setEmail(userData.email);
-    }
-  }, [userData]);
 
   const cancelModal = () => {
     if (setPutModalBool) {
@@ -130,19 +108,19 @@ const ModalFreelancerContactModal = ({ setModalBool, FetchData, setPutModalBool,
           <S.H2 width="200px" tabletWidth="151px">
             성명
           </S.H2>
-          <S.Input defaultValue={name || ''} readOnly />
+          <S.Input defaultValue={userData.name || ''} readOnly />
         </S.FlexInputDiv>
         <S.FlexInputDiv top="0.8rem">
           <S.H2 width="198px" tabletWidth="150px">
             휴대폰
           </S.H2>
-          <S.Input defaultValue={phone || ''} readOnly />
+          <S.Input defaultValue={userData.phone || ''} readOnly />
         </S.FlexInputDiv>
         <S.FlexInputDiv top="0.8rem">
           <S.H2 width="198px" tabletWidth="150px">
             이메일
           </S.H2>
-          <S.Input defaultValue={email || ''} readonly />
+          <S.Input defaultValue={userData.email || ''} readonly />
         </S.FlexInputDiv>
         <S.FlexInputDiv top="0.8rem">
           <S.H2 width="200px" tabletWidth="150px">
