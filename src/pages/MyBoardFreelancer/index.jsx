@@ -63,7 +63,19 @@ const MyBoardFreelancer = () => {
     try {
       const response = await CLIENT_FREELANCER('/freelancer');
 
-      if (response.data.message === '.refresh가 만료되었습니다.') {
+      if (response.data.code === '401') {
+        console.log('accessToken 만료');
+
+        if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
+          getNewToken();
+        } else {
+          window.localStorage.clear();
+          navigate('/login');
+          window.location.reload();
+        }
+      }
+
+      if (response.data.code === '402') {
         console.log('refresh token 만료. 다시 로그인 필요함.');
         alert('다시 로그인해주세요');
 
@@ -72,18 +84,9 @@ const MyBoardFreelancer = () => {
         return;
       }
 
-      if (response.data.code === '402') {
-        console.log('402 checked - accessToken 만료');
-
-        if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
-          getNewToken();
-        } else {
-          window.localStorage.clear();
-          navigate('/login');
-        }
-      }
-
+      console.log(response);
       const fetchedData = await response.data;
+      console.log(fetchedData);
 
       if (fetchedData) {
         setUserData(fetchedData);

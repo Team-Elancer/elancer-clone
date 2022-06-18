@@ -49,8 +49,9 @@ const Login = () => {
           navi(`/`);
         }
 
-        if (window.localStorage.memberType === '"FREELANCER"') {
+        if (window.localStorage.accessToken === res.data.accessToken) {
           navi('/freelancer');
+          window.location.reload();
         }
       })
       .catch((err) => {
