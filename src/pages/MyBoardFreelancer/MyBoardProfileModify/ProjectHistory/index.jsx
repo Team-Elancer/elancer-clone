@@ -76,7 +76,7 @@ const ProjectHistory = () => {
   };
 
   return (
-    <form action="">
+    <div>
       {PROJECT_HISTORY_STATE &&
         PROJECT_HISTORY_STATE.map((state, index) => {
           return (
@@ -103,7 +103,7 @@ const ProjectHistory = () => {
           </S.ProjectButtonSave>
         </S.FlexCenter>
       )}
-    </form>
+    </div>
   );
 };
 
