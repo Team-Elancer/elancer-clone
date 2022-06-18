@@ -28,7 +28,7 @@ const MyBoardAccount = () => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [website, setWebsite] = useState('');
-  const [countryType, setCountryType] = useState('');
+  const [countryType, setCountryType] = useState('KR');
   const [zipcode, setZipcode] = useState('');
   const [mainAddress, setMainAddress] = useState('');
   const [detailAddress, setDetailAddress] = useState('');

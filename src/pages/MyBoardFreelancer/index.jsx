@@ -48,22 +48,23 @@ const MyBoardFreelancer = () => {
   const getNewToken = async () => {
     console.log('access token 재발급 시작');
 
-    const response = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
-    const TOKEN = await response.data;
+    const { data } = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
 
     console.log('localstorage에 새로운 토큰 저장 시작');
 
-    localStorage.setItem('accessToken', TOKEN?.accessToken);
-    localStorage.setItem('refreshToken', TOKEN?.refreshToken);
+    localStorage.setItem('accessToken', data?.accessToken);
+    localStorage.setItem('refreshToken', data?.refreshToken);
 
-    console.log('access token 재발급 완료', TOKEN);
+    window.location.reload();
+
+    console.log('access token 재발급 완료');
   };
 
-  const fetchData = async () => {
+  const fetchFreelancerData = async () => {
     try {
-      const response = await CLIENT_FREELANCER('/freelancer');
+      const { data } = await CLIENT_FREELANCER('/freelancer');
 
-      if (response.data.code === '401') {
+      if (data.code === '401') {
         console.log('accessToken 만료');
 
         if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
@@ -71,21 +72,20 @@ const MyBoardFreelancer = () => {
         } else {
           window.localStorage.clear();
           navigate('/login');
-          window.location.reload();
         }
       }
 
-      if (response.data.code === '402') {
-        console.log('refresh token 만료. 다시 로그인 필요함.');
+      if (data.code === '402' || data.code === '403') {
+        console.log('refresh token 만료 or 서버에러. 다시 로그인 필요함.');
         alert('다시 로그인해주세요');
 
         window.localStorage.clear();
         navigate('/login');
+
         return;
       }
 
-      console.log(response);
-      const fetchedData = await response.data;
+      const fetchedData = await data;
       console.log(fetchedData);
 
       if (fetchedData) {
@@ -99,7 +99,7 @@ const MyBoardFreelancer = () => {
   useEffect(() => {
     let isMounted = true;
 
-    fetchData();
+    fetchFreelancerData();
 
     return () => {
       isMounted = false;
@@ -113,7 +113,7 @@ const MyBoardFreelancer = () => {
         <S.FlexDiv>
           <LeftMenuMyBoard />
           <S.BoardDiv>
-            <Outlet context={[userData, setUserData]} />
+            <Outlet context={[userData, setUserData, fetchFreelancerData]} />
           </S.BoardDiv>
         </S.FlexDiv>
       </S.SizeDiv>

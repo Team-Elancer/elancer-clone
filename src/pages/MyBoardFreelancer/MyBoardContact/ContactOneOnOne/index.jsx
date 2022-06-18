@@ -7,7 +7,7 @@ import * as S from './style';
 
 import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact';
 
-const ContactQneOnOne = ({ ContactData, contactNum, FetchData, idx }) => {
+const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx }) => {
   const [contentBool, setContentBool] = useState(false);
   const [putmodalBool, setPutModalBool] = useState(false);
 
@@ -28,7 +28,7 @@ const ContactQneOnOne = ({ ContactData, contactNum, FetchData, idx }) => {
       })
         .then((res) => {
           alert('문의가 삭제되었습니다.');
-          FetchData();
+          fetchContactData();
         })
         .catch((err) => {
           console.log(err.message);
@@ -62,7 +62,7 @@ const ContactQneOnOne = ({ ContactData, contactNum, FetchData, idx }) => {
               setPutModalBool={setPutModalBool}
               ContactData={ContactData[idx]}
               contactNum={contactNum}
-              FetchData={FetchData}
+              fetchContactData={fetchContactData}
             />
           )}
           <S.DisplayFlexDiv>
