@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 
@@ -13,6 +13,7 @@ import CompanyHeader from 'layouts/Header/Company';
 const Dashboard = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
+  const navi = useNavigate();
 
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
@@ -44,6 +45,11 @@ const Dashboard = () => {
         setDatas(data);
       }
     } catch (error) {
+      if (error.message === 'Request failed with status code 500') {
+        window.localStorage.clear();
+        alert('다시 로그인해주세요.');
+        navi('/login');
+      }
       console.log(error.message);
     }
   };
