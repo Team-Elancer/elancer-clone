@@ -31,6 +31,7 @@ export const CardSpan = styled.span`
   margin-right: 0.5rem;
   border-radius: 0.3rem;
   text-align: center;
+  cursor: pointer;
   @media ${TABLET} {
   }
   @media ${LAPTOP} {

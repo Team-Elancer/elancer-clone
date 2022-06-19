@@ -1,12 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 import CompanyLogo from 'assets/images/company-logo_87.png';
 import ProjectButton from 'components/Button/ProjectButton';
 import ProjectDetailModal from 'components/Modal/ProjectDetail';
+import ShareModal from 'components/Modal/Share';
 import ReProject from 'components/Re-Project';
 
 const ProjectNewDetail = () => {
+  const navi = useNavigate();
+
+  const token = window.localStorage.accessToken;
+  const member = window.localStorage.memberType;
+
+  const [shareModal, setShareModal] = useState(true);
+
+  const changeShareModal = () => {
+    setShareModal(false);
+  };
+
+  const checkToken = () => {
+    if (!token) {
+      navi('/login');
+    }
+    if (member === '"ENTERPRISE"') {
+      alert('기업회원은 해당 기능사용이 불가능합니다.');
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -84,12 +106,13 @@ const ProjectNewDetail = () => {
           </S.FreelancerUl>
           <ReProject color="white" title="스마트 프로젝트 추천" />
           <S.FlexDiv content="center" padding="3rem" tabletPadding="9rem">
-            <ProjectButton right="0.5rem" text="🤍프로젝트 찜" />
-            <ProjectButton text="프로젝트 공유" />
+            <ProjectButton right="0.5rem" text="🤍프로젝트 찜" checkToken={checkToken} />
+            <ProjectButton text="프로젝트 공유" checkToken={changeShareModal} />
+            {shareModal === false && <ShareModal setShareModal={setShareModal} />}
           </S.FlexDiv>
         </S.SizeDiv>
       </S.DetailDiv>
-      <ProjectDetailModal />
+      <ProjectDetailModal checkToken={checkToken} />
     </S.Container>
   );
 };
