@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 350px;
   bottom: 0;
   background-color: #3c3c3c;
-  z-index: 50;
+  z-index: 1;
   position: relative;
   @media ${TABLET} {
     height: 319px;

@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: #252525;
+  position: relative;
 `;
 
 export const ImgDiv = styled.div`

@@ -228,7 +228,7 @@ export const hiddenP = styled.p`
     height: 2.4rem;
   }
 `;
-export const TextaTag = styled.a`
+export const TextaTag = styled.span`
   color: white;
   text-decoration: none;
   font-size: 0.6875rem;
