@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from 'components/PrivateRoute';
+import ProtectedRoute from 'components/ProtectedRoute';
 import ContactFAQ from 'pages/ContactFAQ';
 
 import FAQLists from 'pages/ContactFAQ/FAQLists';
@@ -65,7 +66,14 @@ const App = () => {
           <Route path="company" element={<SignUpCompany />} />
           <Route path="/signup" element={<SignUpMain />} />
         </Route>
-        <Route path="dashboard" element={<Dashboard />}>
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
           <Route path="enterprise" element={<DashBoardEnterprise />} />
           <Route path="profile" element={<DashBoardProfile />} />
           <Route path="modify" element={<DashBoardModify />} />
