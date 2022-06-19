@@ -194,16 +194,6 @@ const MyBoardAccount = () => {
     editFreelancerAccount();
   };
 
-  // ======== Handle state (onChange) ========
-  const handleStateChange = (e) => {
-    const { name, value } = e.target;
-
-    const STATE_LIST = [...userData];
-
-    STATE_LIST[name] = value;
-    setUserData(STATE_LIST);
-  };
-
   return (
     <S.FrameAccount>
       <S.FirstContainer>

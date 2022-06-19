@@ -7,10 +7,12 @@ import * as S from './style';
 import GridBottom from 'components/Modal/GridBottom';
 import LeftMenuMyBoard from 'components/Myboard/LeftMenu/Freelancer';
 
+import useFetchRefreshToken from 'hooks/useFetchRefreshToken';
+
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
-import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
+import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const MyBoardFreelancer = () => {
   const navigate = useNavigate();
@@ -45,21 +47,6 @@ const MyBoardFreelancer = () => {
     zipcode: null,
   });
 
-  const getNewToken = async () => {
-    console.log('access token 재발급 시작');
-
-    const { data } = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
-
-    console.log('localstorage에 새로운 토큰 저장 시작');
-
-    localStorage.setItem('accessToken', data?.accessToken);
-    localStorage.setItem('refreshToken', data?.refreshToken);
-
-    window.location.reload();
-
-    console.log('access token 재발급 완료', data);
-  };
-
   const fetchFreelancerData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer');
@@ -68,21 +55,29 @@ const MyBoardFreelancer = () => {
         console.log('accessToken 만료');
 
         if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
-          getNewToken();
+          useFetchRefreshToken();
+          window.location.reload();
         } else {
           window.localStorage.clear();
           navigate('/login');
         }
       }
 
-      if (data.code === '402' || data.code === '403') {
-        console.log('refresh token 만료 or 서버에러. 다시 로그인 필요함.');
+      if (data.code === '402') {
+        console.log('변조된 토큰 에러. 다시 로그인 필요함.');
         alert('다시 로그인해주세요');
 
-        window.localStorage.clear();
         navigate('/login');
+        window.localStorage.clear();
 
         return;
+      }
+      if (data.code === '403') {
+        console.log('refresh token 만료 다시 로그인 필요함.');
+        alert('다시 로그인해주세요');
+
+        navigate('/login');
+        window.localStorage.clear();
       }
 
       const fetchedData = await data;
