@@ -109,6 +109,12 @@ export const JobInput = styled.input`
   outline: none;
   appearance: none;
 
+  border-top-left-radius: ${({ radius }) => (radius === 0 ? '0.5rem' : 0)};
+  border-bottom-left-radius: ${({ radius }) => (radius === 0 ? '0.5rem' : 0)};
+
+  border-top-right-radius: ${({ radius }) => (radius === 2 ? '0.5rem' : 0)};
+  border-bottom-right-radius: ${({ radius }) => (radius === 2 ? '0.5rem' : 0)};
+
   @media ${TABLET} {
     background-color: ${(props) => props.tabletColor};
   }

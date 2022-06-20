@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 
 import * as S from './style';

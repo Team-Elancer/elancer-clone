@@ -24,9 +24,7 @@ const MyBoardProfileModify = () => {
 
       <S.FontLarge>스킬</S.FontLarge>
       <S.BoxFrame>
-        <form action="">
-          <SkillLists />
-        </form>
+        <SkillLists />
       </S.BoxFrame>
 
       {/* ============== EducationInfo 학력사항 ============== */}

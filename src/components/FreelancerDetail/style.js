@@ -75,7 +75,7 @@ export const ContainerStacks = styled.div`
 `;
 
 export const LanguageStackBtn = styled.span`
-  background-color: rgba(255, 107, 107, 1);
+  background-color: ${({ backgroundColor }) => backgroundColor};
   border-color: rgba(255, 107, 107, 1);
   border-width: 1px;
   color: rgba(255, 255, 255, 1);
