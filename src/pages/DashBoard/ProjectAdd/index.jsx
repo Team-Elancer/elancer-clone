@@ -16,7 +16,7 @@ const DashboardProjectAdd = () => {
   const navi = useNavigate();
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
-  const [titleName, setTitleName] = useState('');
+  const [titleName, setTitleName] = useState('WORKING');
   const [textArea, setTextArea] = useState(
     '1.프로젝트명: 2.현재개발진행사항 1총투입인력: 2현재설계개발상태: 3.담당업무 1 4.업무범위:5.전달사항또는(개발)우대사항: 1 6.필요인력: 명 7.개발자필요Spec 1 2 8.근무지: 9.개발기간: 10.월단가:제시바람 11.장비지참여부:',
   );
@@ -37,7 +37,7 @@ const DashboardProjectAdd = () => {
     { jobId: 'job5', jobValue: 'DEVELOP', jobName: '개발' },
   ]);
 
-  const [bgColor, setBgColor] = useState('');
+  const [bgColor, setBgColor] = useState('WHITE');
   const [logoBgColor, setLogoBgColor] = useState('');
   const [projectColor, setProjectColor] = useState('');
   const [jobfield, setJobfield] = useState('');
@@ -52,16 +52,16 @@ const DashboardProjectAdd = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const [userCountry, setUserCountry] = useState('');
+  const [userCountry, setUserCountry] = useState('KR');
   const [placePostcode, setPlacePostcode] = useState('우편번호');
   const [placeAddress, setPlaceAddress] = useState('우편번호 찾기를 통해 입력하세요.');
   const [userAddress, setUserAddress] = useState('');
   const [changeBool, setChangeBool] = useState(false);
 
-  const [miniMoney, setMiniMoney] = useState('');
-  const [bigMoney, setBigMoney] = useState('');
-  const [careYear, setcareYear] = useState('');
-  const [careMonth, setCareMonth] = useState('');
+  const [miniMoney, setMiniMoney] = useState(0);
+  const [bigMoney, setBigMoney] = useState(0);
+  const [careYear, setcareYear] = useState(0);
+  const [careMonth, setCareMonth] = useState(0);
   const [miniAge, setMiniAge] = useState('');
   const [bigAge, setBigAge] = useState('');
 
@@ -131,6 +131,7 @@ const DashboardProjectAdd = () => {
 
   const PostProject = (e) => {
     e.preventDefault();
+    console.log(bgColor);
     axios({
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/project-save',
@@ -299,7 +300,7 @@ const DashboardProjectAdd = () => {
                 </S.JobRadioLi>
                 {jobChoiceArray.map((data) => {
                   return (
-                    <S.JobRadioLi left="-0.5rem">
+                    <S.JobRadioLi left="-0.5rem" key={data.jobId}>
                       <S.JobInput
                         name="job"
                         id={data.jobId}
@@ -548,7 +549,7 @@ const DashboardProjectAdd = () => {
                     <S.InputTag
                       Mobilesize="7rem"
                       laptopSize="9rem"
-                      type="number"
+                      type=" "
                       placeholder="6,000,000"
                       value={miniMoney}
                       onChange={(e) => {

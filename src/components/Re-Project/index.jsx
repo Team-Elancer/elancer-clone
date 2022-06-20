@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 
@@ -9,14 +9,40 @@ import companyLogo from 'assets/images/company-logo_1.png';
 import kbLogo from 'assets/images/kbkookmin.png';
 import samsung from 'assets/images/samsung.png';
 
-const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
+const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData, setaxiosUrl, Datas }) => {
   const [slideIndex, setSlideIndex] = useState(0);
+
   const handleClick = (alt) => {
     if (alt === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 1);
     } else {
       setSlideIndex(slideIndex < 1 ? slideIndex + 1 : 0);
     }
+  };
+
+  const checkColor = (data) => {
+    if (data === 'BLACK') {
+      return '#181818';
+    }
+    if (data === 'BLUE') {
+      return '#7485c9';
+    }
+    if (data === 'INDIGO') {
+      return '#8a7fa4';
+    }
+    if (data === 'ROSSYBROWN') {
+      return '#9d7985';
+    }
+    if (data === 'BROWN') {
+      return '#b57360';
+    }
+    if (data === 'CHOCOLATE') {
+      return '#d56b2d';
+    }
+    if (data === 'ORANGE') {
+      return '#f16300';
+    }
+    return '#FFFFFF';
   };
 
   const mapData = [
@@ -88,6 +114,15 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
     },
   ];
 
+  console.log(Datas);
+
+  useEffect(() => {
+    if (Datas.length < 1) {
+      setaxiosUrl('/recommend-project');
+      fetchData();
+    }
+  }, [axiosUrl]);
+
   return (
     <S.Container>
       <S.FirstDiv>
@@ -98,38 +133,91 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
         </S.ButtonDiv>
       </S.FirstDiv>
       <S.SecondDiv>
-        {mapData.map((item) => {
-          return (
-            <S.ProjectDiv key={item.id} slideIndex={slideIndex}>
-              <S.UpDiv>
-                <S.DivTag>
-                  <S.SpanTag>{item.name}</S.SpanTag>
-                  <S.HeartBackDiv>
-                    <S.HearDiv>{item.icon}</S.HearDiv>
-                  </S.HeartBackDiv>
-                </S.DivTag>
-                <Link to="/project/newdetail">
-                  <S.BackImg url={item.url} />
-                </Link>
-              </S.UpDiv>
-              <S.DownDiv>
-                <S.DownSmallDiv>
-                  <S.BigSpan>
-                    <S.MiniSpan>{item.endDay}</S.MiniSpan>
-                    <S.MiniSecond>{item.language}</S.MiniSecond>
-                    <S.MiniSecond>{item.language2}</S.MiniSecond>
-                  </S.BigSpan>
-                  <Link to="/project/newdetail">
-                    <S.hiddenP>
-                      <S.TextaTag>{item.title}</S.TextaTag>
-                    </S.hiddenP>
-                  </Link>
-                  <S.Ptag>{item.subTitle}</S.Ptag>
-                </S.DownSmallDiv>
-              </S.DownDiv>
-            </S.ProjectDiv>
-          );
-        })}
+        {Datas.length < 1 ? (
+          <>
+            {mapData.map((item) => {
+              return (
+                <S.ProjectDiv key={item.id} slideIndex={slideIndex}>
+                  <S.UpDiv>
+                    <S.DivTag>
+                      <S.SpanTag>{item.name}</S.SpanTag>
+                      <S.HeartBackDiv>
+                        <S.HearDiv>🤍</S.HearDiv>
+                      </S.HeartBackDiv>
+                    </S.DivTag>
+                    <Link to="/project/newdetail">
+                      <S.BackImg url={item.url} />
+                    </Link>
+                  </S.UpDiv>
+                  <S.DownDiv>
+                    <S.DownSmallDiv>
+                      <S.BigSpan>
+                        <S.MiniSpan>{item.endDay}</S.MiniSpan>
+                        <S.MiniSecond>{item.language}</S.MiniSecond>
+                        <S.MiniSecond>{item.language2}</S.MiniSecond>
+                      </S.BigSpan>
+                      <Link to="/project/newdetail">
+                        <S.hiddenP>
+                          <S.TextaTag>{item.title}</S.TextaTag>
+                        </S.hiddenP>
+                      </Link>
+                      <S.Ptag>{item.subTitle}</S.Ptag>
+                    </S.DownSmallDiv>
+                  </S.DownDiv>
+                </S.ProjectDiv>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            {Datas.map((data) => {
+              return (
+                <S.ProjectDiv key={data.projectName} slideIndex={slideIndex}>
+                  <S.UpDiv bgColor={checkColor(data.projectBackGround)}>
+                    <S.DivTag>
+                      <S.SpanTag>
+                        {data.positionKind === 'DEVELOPER' && '개발자'}
+                        {data.positionKind === 'PUBLISHER' && '퍼블리셔'}
+                        {data.positionKind === 'DESIGNER' && '디자이너'}
+                        {data.positionKind === 'PLANNER' && '기획자'}
+                        {data.positionKind === 'ETC' && '기타'} {data.projectType === 'WORKING' ? '상주' : '재택'}{' '}
+                        프로그램
+                      </S.SpanTag>
+                      <S.HeartBackDiv>
+                        <S.HearDiv>🤍</S.HearDiv>
+                      </S.HeartBackDiv>
+                    </S.DivTag>
+                    <Link to="/project/newdetail">
+                      <S.BackImg url={companyLogo} />
+                    </Link>
+                  </S.UpDiv>
+                  <S.DownDiv>
+                    <S.DownSmallDiv>
+                      <S.BigSpan>
+                        <S.MiniSpan>마감{data.endDays}전</S.MiniSpan>\
+                        {data.skills.map((data) => {
+                          return <S.MiniSecond key={data}>{data}</S.MiniSecond>;
+                        })}
+                      </S.BigSpan>
+                      <Link to="/project/newdetail">
+                        <S.hiddenP>
+                          <S.TextaTag>{data.projectName}</S.TextaTag>
+                        </S.hiddenP>
+                      </Link>
+                      <S.Ptag>
+                        {data.freelancerWorkmanShip === 'JUNIOR' && '초급'}
+                        {data.freelancerWorkmanShip === 'MIDDLE' && '중급'}
+                        {data.freelancerWorkmanShip === 'SENIOR' && '고급'}/{data.projectPeriod}/
+                        {data.projectType === 'WORKING' ? '상주 프로그램' : '재택 프로그램'}/{data.pay}
+                        {data.pay !== '비공개' || data.pay !== '협의가능' ? '만원' : ''}
+                      </S.Ptag>
+                    </S.DownSmallDiv>
+                  </S.DownDiv>
+                </S.ProjectDiv>
+              );
+            })}
+          </>
+        )}
       </S.SecondDiv>
     </S.Container>
   );

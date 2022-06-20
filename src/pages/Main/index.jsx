@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
+
 import programmer from 'assets/images/programmer.png';
 import Eblock from 'components/Arround-Project';
 import ChoiceProject from 'components/Choice-Project';
@@ -13,6 +15,31 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const Main = () => {
+  const [Datas, setDatas] = useState('');
+  const [axiosUrl, setaxiosUrl] = useState('');
+  const navi = useNavigate();
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+  });
+  // /recommend-project
+
+  const fetchData = async () => {
+    try {
+      if (axiosUrl) {
+        const res = await authAxios(axiosUrl);
+        const data = await res.data;
+        setDatas(data);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <S.Container>
       <S.BackImg>
@@ -33,7 +60,7 @@ const Main = () => {
       <S.ThirdDiv>
         <Count />
         <Eblock />
-        <ReProject />
+        <ReProject fetchData={fetchData} setaxiosUrl={setaxiosUrl} axiosUrl={axiosUrl} Datas={Datas} />
         <ChoiceProject />
         <ReFreelancer />
       </S.ThirdDiv>

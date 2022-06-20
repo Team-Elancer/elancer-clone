@@ -76,7 +76,7 @@ export const UpDiv = styled.div`
   height: 50%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-color: #181818;
+  background-color: ${(props) => props.bgColor};
   @media ${TABLET} {
     width: 16.4rem;
     border-top-left-radius: 12px;
@@ -179,7 +179,7 @@ export const BigSpan = styled.span`
   display: flex;
   align-items: center;
   justify-content: start;
-
+  overflow: hidden;
   white-space: nowrap;
 `;
 export const MiniSpan = styled.span`
