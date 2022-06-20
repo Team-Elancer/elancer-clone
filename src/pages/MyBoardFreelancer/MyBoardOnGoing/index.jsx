@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
 import OnGoingCard from 'components/Card/OnGoingCard';
@@ -6,15 +6,17 @@ import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const MyBoardOnGoing = () => {
+  const [userData] = useOutletContext();
+
   return (
     <>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
-        KH님 이랜서가 응원해요
+        {userData.name}님 이랜서가 응원해요
       </S.H1>
       <BoardCardSpan />
       <OnGoingCard />
       <S.H1 top="3rem" bottom="1rem" laptoptop="8rem" laptopBottom="2.5rem">
-        KH 마이보드
+        {userData.name} 마이보드
       </S.H1>
       <S.UlTag display="flex">
         <S.LiTag>

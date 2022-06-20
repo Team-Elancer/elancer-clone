@@ -16,6 +16,8 @@ const useFetchRefreshToken = async () => {
 
   console.log('access token 재발급 완료', data);
 
+  window.location.reload();
+
   return data;
 };
 
