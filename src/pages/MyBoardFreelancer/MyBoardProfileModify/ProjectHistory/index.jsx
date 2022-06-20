@@ -1,13 +1,67 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import * as S from '../style';
 
 import ProjectHistoryTemplate from './ProjectHistoryTemplate';
 
 const ProjectHistory = () => {
+  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
+    useOutletContext();
+
   const [PROJECT_HISTORY_STATE, SET_PROJECT_HISTORY_STATE] = useState([]);
 
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (detailProfileData.projectHistoryResponses) {
+      const newLists = detailProfileData.projectHistoryResponses.map((state) => {
+        const {
+          projectTitle,
+          projectStartDate,
+          projectEndDate,
+          clientCompany,
+          workCompany,
+          developField,
+          developRole,
+          developEnvironment: {
+            developEnvironmentModel,
+            developEnvironmentOS,
+            developEnvironmentLanguage,
+            developEnvironmentDBName,
+            developEnvironmentTool,
+            developEnvironmentCommunication,
+            developEnvironmentEtc,
+          },
+          responsibilityTask,
+        } = state;
+
+        const newData = {
+          projectTitle,
+          projectStartDate,
+          projectEndDate,
+          clientCompany,
+          workCompany,
+          developField,
+          developRole,
+          developEnvironmentModel,
+          developEnvironmentOS,
+          developEnvironmentLanguage,
+          developEnvironmentDBName,
+          developEnvironmentTool,
+          developEnvironmentCommunication,
+          developEnvironmentEtc,
+          responsibilityTask,
+        };
+
+        return newData;
+      });
+
+      SET_PROJECT_HISTORY_STATE(newLists);
+    }
+  }, [detailProfileData]);
+
+  // ======== handle state ========
   const handleProjectHistoryState = (e, index) => {
     const { value, name } = e.target;
 
@@ -68,6 +122,7 @@ const ProjectHistory = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
@@ -89,20 +144,17 @@ const ProjectHistory = () => {
             />
           );
         })}
-
       <S.FlexCenter>
         <S.ProfileButton type="button" onClick={onAddProjectHistoryTemplate}>
           프로젝트 이력 추가 +
         </S.ProfileButton>
       </S.FlexCenter>
 
-      {PROJECT_HISTORY_STATE.length > 0 && (
-        <S.FlexCenter>
-          <S.ProjectButtonSave type="button" onClick={handleSubmit}>
-            프로젝트 저장
-          </S.ProjectButtonSave>
-        </S.FlexCenter>
-      )}
+      <S.FlexCenter>
+        <S.ProjectButtonSave type="button" onClick={handleSubmit}>
+          프로젝트 수행이력 저장
+        </S.ProjectButtonSave>
+      </S.FlexCenter>
     </div>
   );
 };

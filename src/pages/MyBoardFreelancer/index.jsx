@@ -21,7 +21,7 @@ const MyBoardFreelancer = () => {
   const [detailProfileData, setDetailProfileData] = useState({});
   const [profileSimpleData, setProfileSimpleData] = useState({});
 
-  // =============== fetch account detail (이랜서 계정) ===============
+  // =============== fetch account detail (이랜서 계정) && userData ===============
   const fetchFreelancerData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer');
@@ -64,7 +64,7 @@ const MyBoardFreelancer = () => {
     }
   };
 
-  //  =============== detail profile (프로필 세부 정보) ===============
+  //  =============== detail profile (프로필 세부 정보) && detailProfileData ===============
   const getDetailProfileData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile');
@@ -107,7 +107,7 @@ const MyBoardFreelancer = () => {
     }
   };
 
-  // =============== detail profile (프로필 요약 정보) ===============
+  // =============== detail profile (프로필 요약 정보) && profileSimpleData ===============
   const fetchFreelancerSimpleData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile/simple');

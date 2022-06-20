@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import * as S from '../style';
 
 import CareerTemplate from './CareerTemplate';
 
 const CareerInfo = () => {
+  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
+    useOutletContext();
+
   const [CAREER_STATE, SET_CAREER_STATE] = useState([
     {
       companyName: '',
@@ -15,6 +19,27 @@ const CareerInfo = () => {
       careerEndDate: '',
     },
   ]);
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (detailProfileData.careerResponses) {
+      const newLists = detailProfileData.careerResponses?.map((state) => {
+        const { careerStartDate, careerEndDate, companyName, companyPosition, departmentName } = state;
+
+        const newData = {
+          companyName,
+          departmentName,
+          companyPosition,
+          careerStartDate,
+          careerEndDate,
+        };
+
+        return newData;
+      });
+
+      SET_CAREER_STATE(newLists);
+    }
+  }, [detailProfileData]);
 
   // ======== Remove the clicked state + component ========
   const onDeleteTemplate = (index) => {
@@ -73,6 +98,7 @@ const CareerInfo = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
