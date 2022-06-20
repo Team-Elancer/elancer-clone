@@ -84,16 +84,22 @@ const App = () => {
           <Route path="account" element={<DashBoardAccount />} />
           <Route path="/dashboard" element={<DashBoardEnterprise />} />
         </Route>
-        <Route path="/myboard-freelancer" element={<PrivateRoute />}>
-          <Route path="/myboard-freelancer" element={<MyBoardFreelancer freelancerBoard />}>
-            <Route path="ongoing" element={<MyBoardOnGoing />} />
-            <Route path="profile" element={<MyBoardProfile />} />
-            <Route path="profile-modify" element={<MyBoardProfileModify />} />
-            <Route path="project" element={<MyBoardManageProject />} />
-            <Route path="career" element={<MyBoardCareer />} />
-            <Route path="contact" element={<MyBoardContact />} />
-            <Route path="account" element={<MyBoardAccount />} />
-          </Route>
+        <Route
+          path="/myboard-freelancer"
+          element={
+            <PrivateRoute>
+              <MyBoardFreelancer />
+            </PrivateRoute>
+          }
+        >
+          <Route path="ongoing" element={<MyBoardOnGoing />} />
+          <Route path="profile" element={<MyBoardProfile />} />
+          <Route path="profile-modify" element={<MyBoardProfileModify />} />
+          <Route path="project" element={<MyBoardManageProject />} />
+          <Route path="career" element={<MyBoardCareer />} />
+          <Route path="contact" element={<MyBoardContact />} />
+          <Route path="account" element={<MyBoardAccount />} />
+          <Route path="/myboard-freelancer" element={<MyBoardOnGoing />} />
         </Route>
         <Route path="/contact-faq" element={<ContactFAQ />}>
           <Route path="project" element={<FAQLists />} />

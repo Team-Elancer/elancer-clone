@@ -1,10 +1,18 @@
-import { useState } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+const PrivateRoute = ({ children }) => {
+  const token = window.localStorage.accessToken;
+  const member = localStorage.getItem('memberType');
 
-  return loggedIn ? <Outlet /> : <Navigate to="/login" />;
+  let isFreelancerLoggedIn = false;
+
+  if (token && member === '"FREELANCER"') {
+    isFreelancerLoggedIn = true;
+  } else {
+    isFreelancerLoggedIn = false;
+  }
+
+  return isFreelancerLoggedIn ? children : <Navigate to="/" />;
 };
 
 export default PrivateRoute;
