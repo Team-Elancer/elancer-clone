@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import * as S from '../style';
 
 const ProfileIntro = () => {
+  const [userData, setUserData, detailProfileData] = useOutletContext();
+
   const [intro, setIntro] = useState({
     greeting: '',
     introName: '',
@@ -13,6 +16,22 @@ const ProfileIntro = () => {
   });
 
   const { greeting, introName, introBackGround, introVideoUrl, introContent } = intro;
+
+  useEffect(() => {
+    if (detailProfileData.introduceResponse) {
+      const {
+        introduceResponse: { introduceName, introBackGround, introduceVideoURL, introduceContent },
+      } = detailProfileData;
+
+      setIntro({
+        greeting: detailProfileData.greeting,
+        introBackGround,
+        introName: introduceName,
+        introVideoUrl: introduceVideoURL,
+        introContent: introduceContent,
+      });
+    }
+  }, [detailProfileData]);
 
   const handleProfileIntroState = (e) => {
     const { value, name } = e.target;
@@ -40,6 +59,7 @@ const ProfileIntro = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);

@@ -1,11 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 import * as S from './style';
 import ProfilePicture from 'assets/images/profile.png';
 import InfoDetail from 'components/FreelancerDetail';
 
 const MyBoardProfile = () => {
+  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
+    useOutletContext();
+
   return (
     <S.FrameProfile>
       <S.ContainerTop>
@@ -21,7 +23,7 @@ const MyBoardProfile = () => {
               <S.EcardProfileLeft>
                 <S.ContainerEcardProfileImg>
                   <S.ImgFile src={ProfilePicture} alt="profile" />
-                  <S.EcardProfileName>김경현</S.EcardProfileName>
+                  <S.EcardProfileName>{profileSimpleData.name}</S.EcardProfileName>
                 </S.ContainerEcardProfileImg>
                 <S.ContainerEcardDescription>
                   <S.EcardFirstDescription>
@@ -76,10 +78,11 @@ const MyBoardProfile = () => {
           </section>
           <section>
             <S.FontSmall>소개</S.FontSmall>
-            <S.ContainerTitle>
-              <S.PersonFlexCenter>개발자 Frank Kim</S.PersonFlexCenter>
+
+            <S.ContainerTitle introBackGround={profileSimpleData.introBackGround}>
+              <S.PersonFlexCenter>{profileSimpleData.name}</S.PersonFlexCenter>
             </S.ContainerTitle>
-            <S.FontSmall style={{ marginBottom: '6rem' }}>준비된 개발자 김경현</S.FontSmall>
+            <S.FontSmall style={{ marginBottom: '6rem' }}>{profileSimpleData.greeting}</S.FontSmall>
           </section>
           <section>
             <InfoDetail />

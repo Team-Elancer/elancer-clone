@@ -1,13 +1,17 @@
+import { useOutletContext } from 'react-router-dom';
+
 import * as S from './style';
 
 import OnGoingCard from 'components/Card/OnGoingCard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const MyBoardManageProject = () => {
+  const [userData, setUserData, detailProfileData, setDetailProfileData] = useOutletContext();
+
   return (
     <div>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
-        KH님 이랜서가 응원해요
+        {userData.name} 님 이랜서가 응원해요
       </S.H1>
       <BoardCardSpan />
       <OnGoingCard />
