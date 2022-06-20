@@ -45,6 +45,35 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
     return '#FFFFFF';
   };
 
+  const checkCareer = (data) => {
+    if (data === 'JUNIOR') {
+      return '초급';
+    }
+    if (data === 'MIDDLE') {
+      return '중급';
+    }
+    return '고급';
+  };
+
+  const checkAddress = (data) => {
+    const addressArray = [];
+    addressArray.push(data.split(' '));
+    if (addressArray[0][0] === '우편번호') {
+      return '재택';
+    }
+    const selectArray = addressArray[0].filter((a, i) => i < 2);
+    return selectArray.join('|');
+  };
+
+  const checkPay = (data) => {
+    if (data.length > 5) {
+      const fontNumber = data.substr(0, 4);
+      const numArray = fontNumber.split('');
+      return fontNumber.padStart(4, ',');
+    }
+    return data;
+  };
+
   const mapData = [
     {
       id: 1,
@@ -194,7 +223,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
                   <S.DownDiv>
                     <S.DownSmallDiv>
                       <S.BigSpan>
-                        <S.MiniSpan>마감{data.endDays}전</S.MiniSpan>\
+                        <S.MiniSpan>마감{data.endDays}일전</S.MiniSpan>\
                         {data.skills.map((data) => {
                           return <S.MiniSecond key={data}>{data}</S.MiniSecond>;
                         })}
@@ -205,11 +234,9 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
                         </S.hiddenP>
                       </Link>
                       <S.Ptag>
-                        {data.freelancerWorkmanShip === 'JUNIOR' && '초급'}
-                        {data.freelancerWorkmanShip === 'MIDDLE' && '중급'}
-                        {data.freelancerWorkmanShip === 'SENIOR' && '고급'}/{data.projectPeriod}/
-                        {data.projectType === 'WORKING' ? '상주 프로그램' : '재택 프로그램'}/{data.pay}
-                        {data.pay !== '비공개' || data.pay !== '협의가능' ? '만원' : ''}
+                        {checkCareer(data.freelancerWorkmanShip)} / {data.projectPeriod}개월 /{' '}
+                        {checkAddress(data.address.mainAddress)} / {checkPay(data.pay)}
+                        {data.pay !== '비공개' && data.pay !== '협의가능' ? '만원' : ''}
                       </S.Ptag>
                     </S.DownSmallDiv>
                   </S.DownDiv>
