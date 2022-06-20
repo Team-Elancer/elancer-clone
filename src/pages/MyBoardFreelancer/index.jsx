@@ -56,7 +56,6 @@ const MyBoardFreelancer = () => {
 
         if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
           useFetchRefreshToken();
-          window.location.reload();
         } else {
           window.localStorage.clear();
           navigate('/login');
