@@ -7,7 +7,7 @@ import * as S from './style';
 
 import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact';
 
-const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx }) => {
+const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx, userData }) => {
   const [contentBool, setContentBool] = useState(false);
   const [putmodalBool, setPutModalBool] = useState(false);
 
@@ -63,6 +63,7 @@ const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx }) => 
               ContactData={ContactData[idx]}
               contactNum={contactNum}
               fetchContactData={fetchContactData}
+              userData={userData}
             />
           )}
           <S.DisplayFlexDiv>

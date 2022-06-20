@@ -130,6 +130,7 @@ const MyBoardContact = () => {
               contactNum={data.num}
               fetchContactData={fetchContactData}
               idx={idx}
+              userData={userData}
             />
           );
         })}
