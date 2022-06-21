@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+
 import * as S from '../../style';
 
 import {
@@ -16,7 +19,38 @@ const Designer = ({
   setDesignEtcSkill,
   handleThreeJobField,
   submitDesigner,
+  setDesignDetailRolesSTATE,
+  setDesignDetailSkillsSTATE,
 }) => {
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+    profileDesignerData,
+  ] = useOutletContext();
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (
+      profileDesignerData?.designDetailRoles ||
+      profileDesignerData?.etcRole ||
+      profileDesignerData?.designDetailSkills ||
+      profileDesignerData?.etcSkill
+    ) {
+      const { designDetailRoles, etcRole, designDetailSkills, etcSkill } = profileDesignerData;
+
+      setDesignDetailRolesSTATE(designDetailRoles);
+      setDesignDetailSkillsSTATE(designDetailSkills);
+
+      setDesignEtcRole(etcRole);
+      setDesignEtcSkill(etcSkill);
+    }
+  }, [profileDesignerData]);
+
   // Filter the database index for CSS(active)
   const DesignDetailRoleFilteredIndex = DesignDetailRolesSTATE.map((frontIndex) =>
     DESIGN_DETAIL_ROLE_DB.indexOf(frontIndex),

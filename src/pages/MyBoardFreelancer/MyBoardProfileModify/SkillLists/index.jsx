@@ -1,10 +1,8 @@
 import axios from 'axios';
-import { useState } from 'react';
-
-import * as S from '../style';
+import { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import Designer from './Designer';
-
 import Developer from './Developer';
 import ETC from './ETC';
 import JobSkill from './JobSkill';
@@ -12,9 +10,22 @@ import ProjectManager from './ProjectManager';
 import Publisher from './Publisher';
 
 const SkillLists = () => {
-  /* ======= */
-
   const [positionKeyword, setPositionKeyword] = useState('DEVELOPER');
+
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+    profileDesignerData,
+  ] = useOutletContext();
+
+  useEffect(() => {
+    setPositionKeyword(detailProfileData.positionType || 'DEVELOPER');
+  }, [detailProfileData.positionType]);
 
   /* =========  /freelancer-profile/developer  ========= */
   const [JavaDetailSkillSTATE, setJavaDetailSkillSTATE] = useState([]);
@@ -41,12 +52,10 @@ const SkillLists = () => {
   const [designEtcSkill, setDesignEtcSkill] = useState('');
 
   /* =========  /freelancer-profile/planner  ========= */
-
   const [PlannerDetailSkillSTATE, setPlannerDetailSkillSTATE] = useState([]);
   const [plannerEtcField, setPlannerEtcField] = useState('');
 
   /* =========  /freelancer-profile/etc  ========= */
-
   const [ETCDetailRoleSTATE, setETCDetailRoleSTATE] = useState([]);
   const [positionEtcRole, setPositionEtcRole] = useState('');
 
@@ -451,6 +460,13 @@ const SkillLists = () => {
           JavaScriptDetailSkillSTATE={JavaScriptDetailSkillSTATE}
           CDetailSkillSTATE={CDetailSkillSTATE}
           DBDetailSkillSTATE={DBDetailSkillSTATE}
+          setJavaDetailSkillSTATE={setJavaDetailSkillSTATE}
+          setMobileAppDetailSkillSTATE={setMobileAppDetailSkillSTATE}
+          setPhpOrAspDetailSkillSTATE={setPhpOrAspDetailSkillSTATE}
+          setDotNetDetailSkillSTATE={setDotNetDetailSkillSTATE}
+          setJavaScriptDetailSkillSTATE={setJavaScriptDetailSkillSTATE}
+          setCDetailSkillSTATE={setCDetailSkillSTATE}
+          setDBDetailSkillSTATE={setDBDetailSkillSTATE}
           focusSkills={focusSkills}
           setFocusSkills={setFocusSkills}
           roles={roles}
@@ -485,6 +501,8 @@ const SkillLists = () => {
           setDesignEtcSkill={setDesignEtcSkill}
           handleThreeJobField={handleThreeJobField}
           submitDesigner={submitDesigner}
+          setDesignDetailRolesSTATE={setDesignDetailRolesSTATE}
+          setDesignDetailSkillsSTATE={setDesignDetailSkillsSTATE}
         />
       )}
 
@@ -493,6 +511,7 @@ const SkillLists = () => {
       {positionKeyword === 'PLANNER' && (
         <ProjectManager
           PlannerDetailSkillSTATE={PlannerDetailSkillSTATE}
+          setPlannerDetailSkillSTATE={setPlannerDetailSkillSTATE}
           plannerEtcField={plannerEtcField}
           setPlannerEtcField={setPlannerEtcField}
           handleThreeJobField={handleThreeJobField}
@@ -508,6 +527,7 @@ const SkillLists = () => {
       {positionKeyword === 'ETC' && (
         <ETC
           ETCDetailRoleSTATE={ETCDetailRoleSTATE}
+          setETCDetailRoleSTATE={setETCDetailRoleSTATE}
           positionEtcRole={positionEtcRole}
           setPositionEtcRole={setPositionEtcRole}
           handleThreeJobField={handleThreeJobField}

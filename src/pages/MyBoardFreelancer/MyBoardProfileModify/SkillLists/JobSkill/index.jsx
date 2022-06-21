@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import * as S from './style';
 
 const JobSkill = ({ positionKeyword, setPositionKeyword }) => {
@@ -12,7 +10,7 @@ const JobSkill = ({ positionKeyword, setPositionKeyword }) => {
           name="DEVELOPER"
           value="DEVELOPER"
           bgColor={positionKeyword === 'DEVELOPER' ? '#f16300' : '#f2f2f2'}
-          tabletColor={positionKeyword === 'DEVELOPER' ? '#f16300' : '#f2f2f2'}
+          tabletColor={positionKeyword === 'DEVELOPER' ? '#f16300' : 'white'}
           onClick={(e) => setPositionKeyword(e.target.name)}
         />
 
@@ -25,7 +23,7 @@ const JobSkill = ({ positionKeyword, setPositionKeyword }) => {
           id="PUBLISHER"
           name="PUBLISHER"
           type="radio"
-          // value="PUBLISHER"
+          value="PUBLISHER"
           bgColor={positionKeyword === 'PUBLISHER' ? '#f16300' : '#f2f2f2'}
           tabletColor={positionKeyword === 'PUBLISHER' ? '#f16300' : 'white'}
           onClick={(e) => setPositionKeyword(e.target.name)}
