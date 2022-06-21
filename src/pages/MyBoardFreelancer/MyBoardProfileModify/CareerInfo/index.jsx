@@ -7,7 +7,16 @@ import * as S from '../style';
 import CareerTemplate from './CareerTemplate';
 
 const CareerInfo = () => {
-  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+    profileDesignerData,
+  ] = useOutletContext();
 
   const [CAREER_STATE, SET_CAREER_STATE] = useState([
     {

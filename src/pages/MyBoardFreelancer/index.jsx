@@ -38,6 +38,7 @@ const MyBoardFreelancer = () => {
 
   // =============== Handle Error Code ===============
   const handleErrorCode = (code) => {
+    console.log(code);
     if (code === '401') {
       console.log('accessToken 만료');
 
@@ -73,7 +74,7 @@ const MyBoardFreelancer = () => {
       const { data } = await CLIENT_FREELANCER('/freelancer');
 
       if (data.code === '401' || data.code === '402' || data.code === '403') {
-        handleErrorCode(data);
+        handleErrorCode(data.code);
       }
 
       const fetchedData = await data;
@@ -222,15 +223,24 @@ const MyBoardFreelancer = () => {
     }
   };
 
+  //  =============== 계정 & 세부정보 & 요약정보 ===============
   useEffect(() => {
     let isMounted = true;
-
     // fetch account detail (이랜서 계정)
     fetchFreelancerData();
     //  detail profile (프로필 세부 정보)
     getDetailProfileData();
     //  detail profile (프로필 요약 정보)
     fetchFreelancerSimpleData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  //  =============== 스킬 & 포지션 타입 ===============
+  useEffect(() => {
+    let isMounted = true;
 
     //  freelancer profile PUBLISHER profile (프로필 세부 정보)
     if (detailProfileData.positionType === 'PUBLISHER') {
