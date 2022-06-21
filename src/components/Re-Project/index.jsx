@@ -8,6 +8,7 @@ import cjLogo from 'assets/images/cj-logo.png';
 import companyLogo from 'assets/images/company-logo_1.png';
 import kbLogo from 'assets/images/kbkookmin.png';
 import samsung from 'assets/images/samsung.png';
+import Loading from 'components/Loading';
 
 const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData, setaxiosUrl, Datas }) => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -143,10 +144,8 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
     },
   ];
 
-  console.log(Datas);
-
   useEffect(() => {
-    if (Datas.length < 1) {
+    if (Datas === '') {
       setaxiosUrl('/recommend-project');
       fetchData();
     }
@@ -162,41 +161,8 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
         </S.ButtonDiv>
       </S.FirstDiv>
       <S.SecondDiv>
-        {Datas.length < 1 ? (
-          <>
-            {mapData.map((item) => {
-              return (
-                <S.ProjectDiv key={item.id} slideIndex={slideIndex}>
-                  <S.UpDiv>
-                    <S.DivTag>
-                      <S.SpanTag>{item.name}</S.SpanTag>
-                      <S.HeartBackDiv>
-                        <S.HearDiv>🤍</S.HearDiv>
-                      </S.HeartBackDiv>
-                    </S.DivTag>
-                    <Link to="/project/newdetail">
-                      <S.BackImg url={item.url} />
-                    </Link>
-                  </S.UpDiv>
-                  <S.DownDiv>
-                    <S.DownSmallDiv>
-                      <S.BigSpan>
-                        <S.MiniSpan>{item.endDay}</S.MiniSpan>
-                        <S.MiniSecond>{item.language}</S.MiniSecond>
-                        <S.MiniSecond>{item.language2}</S.MiniSecond>
-                      </S.BigSpan>
-                      <Link to="/project/newdetail">
-                        <S.hiddenP>
-                          <S.TextaTag>{item.title}</S.TextaTag>
-                        </S.hiddenP>
-                      </Link>
-                      <S.Ptag>{item.subTitle}</S.Ptag>
-                    </S.DownSmallDiv>
-                  </S.DownDiv>
-                </S.ProjectDiv>
-              );
-            })}
-          </>
+        {!Datas ? (
+          <Loading />
         ) : (
           <>
             {Datas.map((data) => {

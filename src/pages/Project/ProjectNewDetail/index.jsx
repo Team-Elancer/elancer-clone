@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
@@ -14,7 +15,22 @@ const ProjectNewDetail = () => {
   const token = window.localStorage.accessToken;
   const member = window.localStorage.memberType;
 
+  const [Datas, setDatas] = useState('');
   const [shareModal, setShareModal] = useState(true);
+
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+  });
+
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/recommend-project');
+      const data = await res.data;
+      setDatas(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const changeShareModal = () => {
     setShareModal(false);
@@ -31,6 +47,7 @@ const ProjectNewDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchData();
   }, []);
 
   return (
@@ -104,7 +121,7 @@ const ProjectNewDetail = () => {
             가장먼저 참여자가 되보세요.
             <S.FreelancerLi>홍*동</S.FreelancerLi>
           </S.FreelancerUl>
-          <ReProject color="white" title="스마트 프로젝트 추천" />
+          <ReProject color="white" title="스마트 프로젝트 추천" Datas={Datas} />
           <S.FlexDiv content="center" padding="3rem" tabletPadding="9rem">
             <ProjectButton right="0.5rem" text="🤍프로젝트 찜" checkToken={checkToken} />
             <ProjectButton text="프로젝트 공유" checkToken={changeShareModal} />
