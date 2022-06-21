@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import * as S from '../style';
 
 const ProfileIntro = () => {
-  const [userData, setUserData, detailProfileData] = useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   const [intro, setIntro] = useState({
     greeting: '',

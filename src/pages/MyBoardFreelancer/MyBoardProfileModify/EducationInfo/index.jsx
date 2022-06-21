@@ -6,8 +6,7 @@ import EducationInfoTemplate from './EducationInfoTemplate';
 import * as S from './style';
 
 const EducationInfo = () => {
-  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
-    useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   const [userSchoolData, setUserSchoolData] = useState([
     {

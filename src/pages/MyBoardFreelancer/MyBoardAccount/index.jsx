@@ -17,7 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const MyBoardAccount = () => {
   const [changeBool, setChangeBool] = useState(false);
 
-  const [userData, setUserData] = useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');

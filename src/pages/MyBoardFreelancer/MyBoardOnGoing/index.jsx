@@ -6,7 +6,7 @@ import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const MyBoardOnGoing = () => {
-  const [userData] = useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   return (
     <>

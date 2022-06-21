@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import * as S from '../../style';
 
@@ -9,15 +11,28 @@ import {
 
 const Publisher = ({
   PublishingDetailSkillSTATE,
+  setPublishingDetailSkillSTATE,
   publishingEtcSkill,
   setPublishingEtcSkill,
   handleThreeJobField,
   submitPublisher,
 }) => {
-  // Filter the database index for CSS(active)
+  const [userData, setUserData, detailProfileData, profileSimpleData, profilePublisherData] = useOutletContext();
+
+  // ======== Filter the database index for CSS(active) ========
   const PublishingDetailFilteredIndex = PublishingDetailSkillSTATE.map((frontIndex) =>
     PUBLISHING_DETAIL_SKILL_DB.indexOf(frontIndex),
   );
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (profilePublisherData) {
+      const { publishingDetailSkills, etcSkill } = profilePublisherData;
+
+      setPublishingDetailSkillSTATE(publishingDetailSkills);
+      setPublishingEtcSkill(etcSkill);
+    }
+  }, [profilePublisherData]);
 
   return (
     <>

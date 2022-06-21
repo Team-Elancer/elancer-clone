@@ -18,7 +18,7 @@ const MyBoardContact = () => {
   const [modalBool, setModalBool] = useState(false);
   const [ContactData, setContactData] = useState([]);
 
-  const [userData] = useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   const fetchContactData = async () => {
     try {

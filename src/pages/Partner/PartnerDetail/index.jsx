@@ -87,7 +87,7 @@ const PartnerDetail = () => {
               <S.FontSmall style={{ marginBottom: '6rem' }}>준비된 개발자 김*현</S.FontSmall>
             </section>
             <section>
-              <InfoDetail />
+              {/* <InfoDetail /> */}
               <DetailShare />
             </section>
           </S.FrameList>
