@@ -101,13 +101,10 @@ const MainEnterprise = () => {
   const fetchData = async () => {
     try {
       const res = await authAxios('/enterprise');
-      console.log(res);
       if (res.data.code === '401') {
-        console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
         const res = await refreshAxios('/reissue');
         window.localStorage.setItem('accessToken', res.data.accessToken);
         window.localStorage.setItem('refreshToken', res.data.refreshToken);
-        console.log('이상무');
       }
       const Data = await res.data;
       setUserDatas(Data);
@@ -120,8 +117,6 @@ const MainEnterprise = () => {
       console.log(err.message);
     }
   };
-
-  console.log(Datas);
 
   useEffect(() => {
     setSkillState(['선택']);

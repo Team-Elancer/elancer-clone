@@ -1,26 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from './style';
 
+import Loading from 'components/Loading';
 import ProjectInterview from 'components/Modal/ProjectInterview';
 
-const ProjectList = () => {
+const ProjectList = ({ data }) => {
   const [interviewModal, setInterviewModal] = useState(true);
 
   return (
     <S.Container>
-      {interviewModal === false && <ProjectInterview setInterviewModal={setInterviewModal} />}
       <S.ColorDiv>
+        {interviewModal === false && <ProjectInterview setInterviewModal={setInterviewModal} />}
         <S.BetweenDiv>
           <S.SpanTag bgColor="#8a7fa4">지원현황 프로젝트</S.SpanTag>
           <S.SpanTag bgColor="#3c3c3c" cursor="pointer">
             등록 취소
           </S.SpanTag>
         </S.BetweenDiv>
-        <S.Title>test11</S.Title>
+        <S.Title>{data.projectName}</S.Title>
         <S.FlexDiv>
-          <S.ProjectSpan bgColor="#6b9bff">기타/무관 10명</S.ProjectSpan>
-          <S.ProjectSpan bgColor="#6b9bff">2022-06-09 ~ 2022-06-29</S.ProjectSpan>
-          <S.ProjectSpan bgColor="#6b9bff">월단가: 10~1만원</S.ProjectSpan>
+          <S.ProjectSpan bgColor="#6b9bff">
+            {data.positionKind}/{data.demandCareer} {data.headCount}명
+          </S.ProjectSpan>
+          <S.ProjectSpan bgColor="#6b9bff">
+            {data.projectStateDate} ~ {data.projectEndDate}
+          </S.ProjectSpan>
+          <S.ProjectSpan bgColor="#6b9bff">
+            월단가: {data.minMoney}~{data.maxMoney}만원
+          </S.ProjectSpan>
         </S.FlexDiv>
         <S.UlTag>
           <S.RelativeLi>
@@ -85,7 +92,7 @@ const ProjectList = () => {
           </S.RelativeLi>
         </S.UlTag>
         <S.BetweenDiv top="1rem">
-          <S.DayPTag>프로젝트를 20222-06-08에 등록하였습니다.</S.DayPTag>
+          <S.DayPTag>프로젝트를 {data.createdDate}에 등록하였습니다.</S.DayPTag>
           <S.FlexDiv>
             <S.ProjectSpan
               bgColor="#ff6b6b"

@@ -13,6 +13,7 @@ export const ColorDiv = styled.div`
   background-color: #f2f2f2;
   padding: 1rem;
   border-radius: 0.5rem;
+  margin-top: 1rem;
   @media ${TABLET} {
     padding: 1rem 1.5rem;
   }
@@ -45,6 +46,7 @@ export const Title = styled.div`
   margin: 1rem 0 0.5rem 0;
   font-size: 0.85rem;
   font-weight: 800;
+  overflow: hidden;
   @media ${TABLET} {
     margin: 1rem 0 0.7rem 0;
     font-size: 1.75rem;
