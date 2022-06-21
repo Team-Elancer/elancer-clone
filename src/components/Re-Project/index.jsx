@@ -10,7 +10,7 @@ import kbLogo from 'assets/images/kbkookmin.png';
 import samsung from 'assets/images/samsung.png';
 import Loading from 'components/Loading';
 
-const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData, setaxiosUrl, Datas }) => {
+const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData = '', setaxiosUrl = '', Datas }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const handleClick = (alt) => {
