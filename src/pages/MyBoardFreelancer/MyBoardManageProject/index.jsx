@@ -6,7 +6,7 @@ import OnGoingCard from 'components/Card/OnGoingCard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const MyBoardManageProject = () => {
-  const [userData, setUserData, detailProfileData, setDetailProfileData] = useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   return (
     <div>

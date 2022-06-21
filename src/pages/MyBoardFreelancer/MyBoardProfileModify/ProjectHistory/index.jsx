@@ -7,8 +7,7 @@ import * as S from '../style';
 import ProjectHistoryTemplate from './ProjectHistoryTemplate';
 
 const ProjectHistory = () => {
-  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
-    useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   const [PROJECT_HISTORY_STATE, SET_PROJECT_HISTORY_STATE] = useState([]);
 

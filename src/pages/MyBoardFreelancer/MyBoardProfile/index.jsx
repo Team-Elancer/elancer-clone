@@ -6,8 +6,7 @@ import ProfilePicture from 'assets/images/profile.png';
 import InfoDetail from 'components/FreelancerDetail';
 
 const MyBoardProfile = () => {
-  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
-    useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   return (
     <S.FrameProfile>
@@ -24,7 +23,7 @@ const MyBoardProfile = () => {
               <S.EcardProfileLeft>
                 <S.ContainerEcardProfileImg>
                   <S.ImgFile src={ProfilePicture} alt="profile" />
-                  <S.EcardProfileName>{profileSimpleData.name}</S.EcardProfileName>
+                  <S.EcardProfileName>{profileSimpleData?.name}</S.EcardProfileName>
                 </S.ContainerEcardProfileImg>
                 <S.ContainerEcardDescription>
                   <S.EcardFirstDescription>
@@ -80,10 +79,10 @@ const MyBoardProfile = () => {
           <section>
             <S.FontSmall>소개</S.FontSmall>
 
-            <S.ContainerTitle introBackGround={profileSimpleData.introBackGround}>
-              <S.PersonFlexCenter>{profileSimpleData.name}</S.PersonFlexCenter>
+            <S.ContainerTitle introBackGround={profileSimpleData?.introBackGround}>
+              <S.PersonFlexCenter>{profileSimpleData?.name}</S.PersonFlexCenter>
             </S.ContainerTitle>
-            <S.FontSmall style={{ marginBottom: '6rem' }}>{profileSimpleData.greeting}</S.FontSmall>
+            <S.FontSmall style={{ marginBottom: '6rem' }}>{profileSimpleData?.greeting}</S.FontSmall>
           </section>
           <section>
             <InfoDetail />

@@ -21,38 +21,46 @@ const MyBoardFreelancer = () => {
   const [detailProfileData, setDetailProfileData] = useState({});
   const [profileSimpleData, setProfileSimpleData] = useState({});
 
+  // profile-modify/skill/publisher
+  const [profilePublisherData, setProfilePublisherData] = useState({});
+
+  // =============== Handle Error Code ===============
+  const handleErrorCode = (data) => {
+    if (data.code === '401') {
+      console.log('accessToken 만료');
+
+      if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
+        useFetchRefreshToken();
+      } else {
+        window.localStorage.clear();
+        navigate('/login');
+      }
+    }
+
+    if (data.code === '402') {
+      console.log('변조된 토큰 에러. 다시 로그인 필요함.');
+      alert('다시 로그인해주세요');
+
+      navigate('/login');
+      window.localStorage.clear();
+
+      return;
+    }
+    if (data.code === '403') {
+      console.log('refresh token 만료 다시 로그인 필요함.');
+      alert('다시 로그인해주세요');
+
+      navigate('/login');
+      window.localStorage.clear();
+    }
+  };
+
   // =============== fetch account detail (이랜서 계정) && userData ===============
   const fetchFreelancerData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer');
 
-      if (data.code === '401') {
-        console.log('accessToken 만료');
-
-        if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
-          useFetchRefreshToken();
-        } else {
-          window.localStorage.clear();
-          navigate('/login');
-        }
-      }
-
-      if (data.code === '402') {
-        console.log('변조된 토큰 에러. 다시 로그인 필요함.');
-        alert('다시 로그인해주세요');
-
-        navigate('/login');
-        window.localStorage.clear();
-
-        return;
-      }
-      if (data.code === '403') {
-        console.log('refresh token 만료 다시 로그인 필요함.');
-        alert('다시 로그인해주세요');
-
-        navigate('/login');
-        window.localStorage.clear();
-      }
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 
       const fetchedData = await data;
 
@@ -60,6 +68,10 @@ const MyBoardFreelancer = () => {
         setUserData(fetchedData);
       }
     } catch (err) {
+      alert('다시 로그인해주세요');
+      navigate('/login');
+      window.localStorage.clear();
+
       console.log(err);
     }
   };
@@ -69,33 +81,7 @@ const MyBoardFreelancer = () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile');
 
-      if (data.code === '401') {
-        console.log('accessToken 만료');
-
-        if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
-          useFetchRefreshToken();
-        } else {
-          window.localStorage.clear();
-          navigate('/login');
-        }
-      }
-
-      if (data.code === '402') {
-        console.log('변조된 토큰 에러. 다시 로그인 필요함.');
-        alert('다시 로그인해주세요');
-
-        navigate('/login');
-        window.localStorage.clear();
-
-        return;
-      }
-      if (data.code === '403') {
-        console.log('refresh token 만료 다시 로그인 필요함.');
-        alert('다시 로그인해주세요');
-
-        navigate('/login');
-        window.localStorage.clear();
-      }
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 
       const fetchedData = await data;
 
@@ -103,6 +89,10 @@ const MyBoardFreelancer = () => {
         setDetailProfileData(data);
       }
     } catch (err) {
+      alert('다시 로그인해주세요');
+      navigate('/login');
+      window.localStorage.clear();
+
       console.log(err);
     }
   };
@@ -112,33 +102,7 @@ const MyBoardFreelancer = () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile/simple');
 
-      if (data.code === '401') {
-        console.log('accessToken 만료');
-
-        if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
-          useFetchRefreshToken();
-        } else {
-          window.localStorage.clear();
-          navigate('/login');
-        }
-      }
-
-      if (data.code === '402') {
-        console.log('변조된 토큰 에러. 다시 로그인 필요함.');
-        alert('다시 로그인해주세요');
-
-        navigate('/login');
-        window.localStorage.clear();
-
-        return;
-      }
-      if (data.code === '403') {
-        console.log('refresh token 만료 다시 로그인 필요함.');
-        alert('다시 로그인해주세요');
-
-        navigate('/login');
-        window.localStorage.clear();
-      }
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 
       const fetchedData = await data;
 
@@ -146,6 +110,31 @@ const MyBoardFreelancer = () => {
         setProfileSimpleData(fetchedData);
       }
     } catch (err) {
+      alert('다시 로그인해주세요');
+      navigate('/login');
+      window.localStorage.clear();
+
+      console.log(err);
+    }
+  };
+
+  // =============== detail profile (프로필 요약 정보) && profileSimpleData ===============
+  const fetchProfilePublisherData = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/freelancer-profile/publisher');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setProfilePublisherData(fetchedData);
+      }
+    } catch (err) {
+      alert('다시 로그인해주세요');
+      navigate('/login');
+      window.localStorage.clear();
+
       console.log(err);
     }
   };
@@ -159,6 +148,8 @@ const MyBoardFreelancer = () => {
     getDetailProfileData();
     //  detail profile (프로필 요약 정보)
     fetchFreelancerSimpleData();
+    //  freelancer profile publisher profile (프로필 요약 정보)
+    fetchProfilePublisherData();
 
     return () => {
       isMounted = false;
@@ -172,16 +163,7 @@ const MyBoardFreelancer = () => {
         <S.FlexDiv>
           <LeftMenuMyBoard />
           <S.BoardDiv>
-            <Outlet
-              context={[
-                userData,
-                setUserData,
-                detailProfileData,
-                setDetailProfileData,
-                profileSimpleData,
-                setProfileSimpleData,
-              ]}
-            />
+            <Outlet context={[userData, setUserData, detailProfileData, profileSimpleData, profilePublisherData]} />
           </S.BoardDiv>
         </S.FlexDiv>
       </S.SizeDiv>

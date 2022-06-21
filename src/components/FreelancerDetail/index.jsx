@@ -4,8 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
 const InfoDetail = () => {
-  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
-    useOutletContext();
+  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
   const [isCheckedProject, setIsCheckedProject] = useState('#project');
 
@@ -19,8 +18,8 @@ const InfoDetail = () => {
           이력서
         </S.EcardInfo>
       </S.ContainerEcardInfoOption>
-      {isCheckedProject === '#project' && profileSimpleData.projectHistoryResponses ? (
-        profileSimpleData.projectHistoryResponses.map(
+      {isCheckedProject === '#project' && profileSimpleData?.projectHistoryResponses ? (
+        profileSimpleData?.projectHistoryResponses?.map(
           (
             {
               developRole,
@@ -103,5 +102,3 @@ const InfoDetail = () => {
 };
 
 export default InfoDetail;
-
-// key={`Profile_Career_Education${index + 1}`}

@@ -338,6 +338,7 @@ const SkillLists = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
@@ -367,6 +368,7 @@ const SkillLists = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
@@ -396,6 +398,7 @@ const SkillLists = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
@@ -425,6 +428,7 @@ const SkillLists = () => {
       .then(() => {
         console.log(newData);
         alert('정보를 수정했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
@@ -461,6 +465,7 @@ const SkillLists = () => {
       {positionKeyword === 'PUBLISHER' && (
         <Publisher
           PublishingDetailSkillSTATE={PublishingDetailSkillSTATE}
+          setPublishingDetailSkillSTATE={setPublishingDetailSkillSTATE}
           publishingEtcSkill={publishingEtcSkill}
           setPublishingEtcSkill={setPublishingEtcSkill}
           handleThreeJobField={handleThreeJobField}
