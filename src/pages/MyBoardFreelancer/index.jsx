@@ -22,11 +22,23 @@ const MyBoardFreelancer = () => {
   const [profileSimpleData, setProfileSimpleData] = useState({});
 
   // profile-modify/skill/publisher
+  const [profileDeveloperData, setProfileDeveloperData] = useState({});
+
+  // profile-modify/skill/publisher
   const [profilePublisherData, setProfilePublisherData] = useState({});
 
+  // profile-modify/skill/etc
+  const [profileETCData, setProfileETCData] = useState({});
+
+  // profile-modify/skill/planner
+  const [profilePlannerData, setPlannerData] = useState({});
+
+  // profile-modify/skill/designer
+  const [profileDesignerData, setProfileDesignerData] = useState({});
+
   // =============== Handle Error Code ===============
-  const handleErrorCode = (data) => {
-    if (data.code === '401') {
+  const handleErrorCode = (code) => {
+    if (code === '401') {
       console.log('accessToken 만료');
 
       if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
@@ -37,7 +49,7 @@ const MyBoardFreelancer = () => {
       }
     }
 
-    if (data.code === '402') {
+    if (code === '402') {
       console.log('변조된 토큰 에러. 다시 로그인 필요함.');
       alert('다시 로그인해주세요');
 
@@ -46,7 +58,7 @@ const MyBoardFreelancer = () => {
 
       return;
     }
-    if (data.code === '403') {
+    if (code === '403') {
       console.log('refresh token 만료 다시 로그인 필요함.');
       alert('다시 로그인해주세요');
 
@@ -60,7 +72,9 @@ const MyBoardFreelancer = () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer');
 
-      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+      if (data.code === '401' || data.code === '402' || data.code === '403') {
+        handleErrorCode(data);
+      }
 
       const fetchedData = await data;
 
@@ -118,12 +132,14 @@ const MyBoardFreelancer = () => {
     }
   };
 
-  // =============== detail profile (프로필 요약 정보) && profileSimpleData ===============
+  // =============== detail profile (프로필 세부 정보) && profilePublisherData ===============
   const fetchProfilePublisherData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer-profile/publisher');
 
-      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+      if (data.code === '401' || data.code === '402' || data.code === '403') {
+        handleErrorCode(data.code);
+      }
 
       const fetchedData = await data;
 
@@ -131,10 +147,77 @@ const MyBoardFreelancer = () => {
         setProfilePublisherData(fetchedData);
       }
     } catch (err) {
-      alert('다시 로그인해주세요');
-      navigate('/login');
-      window.localStorage.clear();
+      console.log(err);
+    }
+  };
 
+  // =============== detail profile (프로필 세부 정보) && profileETCData ===============
+  const fetchProfileETCData = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/freelancer-profile/etc');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setProfileETCData(fetchedData);
+        console.log(fetchedData);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // =============== detail profile (프로필 세부 정보) && profileDesignerData ===============
+  const fetchProfileDesignerData = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/freelancer-profile/designer');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') {
+        handleErrorCode(data);
+      }
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setProfileDesignerData(fetchedData);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // =============== detail profile (프로필 세부 정보) && profileETCData ===============
+  const fetchProfilePlannerData = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/freelancer-profile/planner');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setPlannerData(fetchedData);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // =============== detail profile (프로필 세부 정보) && profileETCData ===============
+  const fetchProfileDeveloperData = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/freelancer-profile/developer');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setProfileDeveloperData(fetchedData);
+      }
+    } catch (err) {
       console.log(err);
     }
   };
@@ -148,13 +231,36 @@ const MyBoardFreelancer = () => {
     getDetailProfileData();
     //  detail profile (프로필 요약 정보)
     fetchFreelancerSimpleData();
-    //  freelancer profile publisher profile (프로필 요약 정보)
-    fetchProfilePublisherData();
+
+    //  freelancer profile PUBLISHER profile (프로필 세부 정보)
+    if (detailProfileData.positionType === 'PUBLISHER') {
+      fetchProfilePublisherData();
+    }
+
+    // freelancer profile ETC profile (프로필 세부 정보)
+    if (detailProfileData.positionType === 'ETC') {
+      fetchProfileETCData();
+    }
+
+    //  freelancer profile PLANNER profile (프로필 세부 정보)
+    if (detailProfileData.positionType === 'PLANNER') {
+      fetchProfilePlannerData();
+    }
+
+    //  freelancer profile DESIGNER profile (프로필 세부 정보)
+    if (detailProfileData.positionType === 'DESIGNER') {
+      fetchProfileDesignerData();
+    }
+
+    //  freelancer profile DEVELOPER profile (프로필 세부 정보)
+    if (detailProfileData.positionType === 'DEVELOPER') {
+      fetchProfileDeveloperData();
+    }
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [detailProfileData.positionType]);
 
   return (
     <S.Container>
@@ -163,7 +269,19 @@ const MyBoardFreelancer = () => {
         <S.FlexDiv>
           <LeftMenuMyBoard />
           <S.BoardDiv>
-            <Outlet context={[userData, setUserData, detailProfileData, profileSimpleData, profilePublisherData]} />
+            <Outlet
+              context={[
+                userData,
+                setUserData,
+                detailProfileData,
+                profileSimpleData,
+                profilePublisherData,
+                profileETCData,
+                profilePlannerData,
+                profileDesignerData,
+                profileDeveloperData,
+              ]}
+            />
           </S.BoardDiv>
         </S.FlexDiv>
       </S.SizeDiv>

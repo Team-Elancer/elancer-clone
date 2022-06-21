@@ -1,8 +1,31 @@
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+
 import * as S from '../../style';
 
 import { ETC_DETAIL_ROLE_FRONT, ETC_DETAIL_ROLE_DB } from 'utils/constants/freelancerPosition/etc';
 
-const ETC = ({ ETCDetailRoleSTATE, positionEtcRole, setPositionEtcRole, handleThreeJobField, submitETC }) => {
+const ETC = ({
+  ETCDetailRoleSTATE,
+  positionEtcRole,
+  setPositionEtcRole,
+  handleThreeJobField,
+  submitETC,
+  setETCDetailRoleSTATE,
+}) => {
+  const [userData, setUserData, detailProfileData, profileSimpleData, profilePublisherData, profileETCData] =
+    useOutletContext();
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (profileETCData?.etcDetailRoles || profileETCData?.positionEtcRole) {
+      const { etcDetailRoles, positionEtcRole } = profileETCData;
+
+      setETCDetailRoleSTATE(etcDetailRoles);
+      setPositionEtcRole(positionEtcRole);
+    }
+  }, [profileETCData]);
+
   // Filter the database index for CSS(active)
   const ETCDetailFilteredIndex = ETCDetailRoleSTATE.map((frontIndex) => ETC_DETAIL_ROLE_DB.indexOf(frontIndex));
 

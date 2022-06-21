@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
@@ -17,22 +16,30 @@ const Publisher = ({
   handleThreeJobField,
   submitPublisher,
 }) => {
-  const [userData, setUserData, detailProfileData, profileSimpleData, profilePublisherData] = useOutletContext();
-
-  // ======== Filter the database index for CSS(active) ========
-  const PublishingDetailFilteredIndex = PublishingDetailSkillSTATE.map((frontIndex) =>
-    PUBLISHING_DETAIL_SKILL_DB.indexOf(frontIndex),
-  );
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+  ] = useOutletContext();
 
   // ======== Get DATA from Database ========
   useEffect(() => {
-    if (profilePublisherData) {
+    if (profilePublisherData?.publishingDetailSkills || profilePublisherData?.etcSkill) {
       const { publishingDetailSkills, etcSkill } = profilePublisherData;
 
       setPublishingDetailSkillSTATE(publishingDetailSkills);
       setPublishingEtcSkill(etcSkill);
     }
   }, [profilePublisherData]);
+
+  // ======== Filter the database index for CSS(active) ========
+  const PublishingDetailFilteredIndex = PublishingDetailSkillSTATE.map((frontIndex) =>
+    PUBLISHING_DETAIL_SKILL_DB.indexOf(frontIndex),
+  );
 
   return (
     <>
@@ -56,22 +63,23 @@ const Publisher = ({
       <S.FrameLists>
         <S.FrameOptions>
           <S.ContainerOptions>
-            {PUBLISHING_DETAIL_SKILL_FRONT.map((type, index) => (
-              <S.ContainerList key={type}>
-                <S.ButtonLabel
-                  id={index}
-                  htmlFor={PUBLISHING_DETAIL_SKILL_DB[index]}
-                  // Compare front[index] with back[index]
-                  active={PublishingDetailFilteredIndex.includes(index)}
-                  onClick={(e) => {
-                    handleThreeJobField(e, 'publisher');
-                  }}
-                >
-                  {type}
-                  <S.ButtonOption type="radio" value="2" name="career" />
-                </S.ButtonLabel>
-              </S.ContainerList>
-            ))}
+            {profilePublisherData &&
+              PUBLISHING_DETAIL_SKILL_FRONT?.map((type, index) => (
+                <S.ContainerList key={type}>
+                  <S.ButtonLabel
+                    id={index}
+                    htmlFor={PUBLISHING_DETAIL_SKILL_DB[index]}
+                    // Compare front[index] with back[index]
+                    active={PublishingDetailFilteredIndex.includes(index)}
+                    onClick={(e) => {
+                      handleThreeJobField(e, 'publisher');
+                    }}
+                  >
+                    {type}
+                    <S.ButtonOption type="radio" value="2" name="career" />
+                  </S.ButtonLabel>
+                </S.ContainerList>
+              ))}
           </S.ContainerOptions>
         </S.FrameOptions>
       </S.FrameLists>

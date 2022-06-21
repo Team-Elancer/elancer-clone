@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import * as S from '../../style';
 
@@ -35,7 +36,68 @@ const Developer = ({
   etcSkill,
   setEtcSkill,
   submitDeveloper,
+  setJavaDetailSkillSTATE,
+  setMobileAppDetailSkillSTATE,
+  setPhpOrAspDetailSkillSTATE,
+  setDotNetDetailSkillSTATE,
+  setJavaScriptDetailSkillSTATE,
+  setCDetailSkillSTATE,
+  setDBDetailSkillSTATE,
 }) => {
+  // setJavaDetailSkillSTATE, setMobileAppDetailSkillSTATE, setPhpOrAspDetailSkillSTATE, setDotNetDetailSkillSTATE, setJavaScriptDetailSkillSTATE, setCDetailSkillSTATE, setDBDetailSkillSTATE
+
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+    profileDesignerData,
+    profileDeveloperData,
+  ] = useOutletContext();
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (
+      profileDeveloperData?.focusSkills ||
+      profileDeveloperData?.etcSkill ||
+      profileDeveloperData?.roles ||
+      profileDeveloperData?.javaDetailSkills ||
+      profileDeveloperData?.mobileAppDetailSkills ||
+      profileDeveloperData?.phpOrAspDetailSkills ||
+      profileDeveloperData?.dotNetDetailSkills ||
+      profileDeveloperData?.javaScriptDetailSkills ||
+      profileDeveloperData?.cdetailSkills ||
+      profileDeveloperData?.dbDetailSkills
+    ) {
+      const {
+        focusSkills,
+        roles,
+        etcSkill,
+        javaDetailSkills,
+        mobileAppDetailSkills,
+        phpOrAspDetailSkills,
+        dotNetDetailSkills,
+        javaScriptDetailSkills,
+        cdetailSkills,
+        dbDetailSkills,
+      } = profileDeveloperData;
+
+      setFocusSkills(focusSkills);
+      setRoles(roles);
+      setEtcSkill(etcSkill);
+      setJavaDetailSkillSTATE(javaDetailSkills);
+      setMobileAppDetailSkillSTATE(mobileAppDetailSkills);
+      setPhpOrAspDetailSkillSTATE(phpOrAspDetailSkills);
+      setDotNetDetailSkillSTATE(dotNetDetailSkills);
+      setJavaScriptDetailSkillSTATE(javaScriptDetailSkills);
+      setCDetailSkillSTATE(cdetailSkills);
+      setDBDetailSkillSTATE(dbDetailSkills);
+    }
+  }, [profileDeveloperData]);
+
   // Filter the database index for CSS(active)
   const JavaDetailFilteredIndex = JavaDetailSkillSTATE.map((frontIndex) => JAVA_DETAIL_SKILL_DB.indexOf(frontIndex));
 

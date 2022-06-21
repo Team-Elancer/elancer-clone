@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import * as S from '../../style';
 
@@ -6,11 +7,32 @@ import { PLANNER_DETAIL_FIELD_FRONT, PLANNER_DETAIL_FIELD_DB } from 'utils/const
 
 const ProjectManager = ({
   PlannerDetailSkillSTATE,
+  setPlannerDetailSkillSTATE,
   plannerEtcField,
   setPlannerEtcField,
   handleThreeJobField,
   submitPlanner,
 }) => {
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+  ] = useOutletContext();
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    if (profilePlannerData?.plannerDetailFields || profilePlannerData?.etcField) {
+      const { plannerDetailFields, etcField } = profilePlannerData;
+
+      setPlannerDetailSkillSTATE(plannerDetailFields);
+      setPlannerEtcField(etcField);
+    }
+  }, [profilePlannerData]);
+
   // Filter the database index for CSS(active)
   const PlannerDetailFilteredIndex = PlannerDetailSkillSTATE.map((frontIndex) =>
     PLANNER_DETAIL_FIELD_DB.indexOf(frontIndex),
