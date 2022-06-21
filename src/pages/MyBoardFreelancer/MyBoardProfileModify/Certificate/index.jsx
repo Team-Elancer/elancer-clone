@@ -8,6 +8,8 @@ import EducationTemplate from './EducationTemplate';
 import LanguageTemplate from './LanguageTemplate';
 import LicenseTemplate from './LicenseTemplate';
 
+import Loader from 'components/Loader';
+
 const Certificate = () => {
   const [EDUCATION_STATE, SET_EDUCATION_STATE] = useState([
     {
@@ -222,65 +224,71 @@ const Certificate = () => {
 
   return (
     <form action="">
-      {/* ========== EDUCATION_STATE ========== */}
-      {EDUCATION_STATE &&
-        EDUCATION_STATE.map((state, index) => {
-          return (
-            <EducationTemplate
-              key={`EDUCATION_STATE${index + 1}`}
-              state={state}
-              index={index}
-              handleStateChange={handleStateChange}
-              onDeleteTemplate={onDeleteTemplate}
-            />
-          );
-        })}
+      {!detailProfileData ? (
+        <Loader />
+      ) : (
+        <>
+          {/* ========== EDUCATION_STATE ========== */}
+          {EDUCATION_STATE &&
+            EDUCATION_STATE.map((state, index) => {
+              return (
+                <EducationTemplate
+                  key={`EDUCATION_STATE${index + 1}`}
+                  state={state}
+                  index={index}
+                  handleStateChange={handleStateChange}
+                  onDeleteTemplate={onDeleteTemplate}
+                />
+              );
+            })}
 
-      <S.HRline />
+          <S.HRline />
 
-      {/* ========== LICENSE_STATE ========== */}
-      {LICENSE_STATE &&
-        LICENSE_STATE.map((state, index) => {
-          return (
-            <LicenseTemplate
-              key={`LICENSE_STATE${index + 1}`}
-              state={state}
-              index={index}
-              handleStateChange={handleStateChange}
-              onDeleteTemplate={onDeleteTemplate}
-            />
-          );
-        })}
-      <S.HRline />
+          {/* ========== LICENSE_STATE ========== */}
+          {LICENSE_STATE &&
+            LICENSE_STATE.map((state, index) => {
+              return (
+                <LicenseTemplate
+                  key={`LICENSE_STATE${index + 1}`}
+                  state={state}
+                  index={index}
+                  handleStateChange={handleStateChange}
+                  onDeleteTemplate={onDeleteTemplate}
+                />
+              );
+            })}
+          <S.HRline />
 
-      {/* ========== LANGUAGE_STATE ========== */}
-      {LANGUAGE_STATE &&
-        LANGUAGE_STATE.map((state, index) => {
-          return (
-            <LanguageTemplate
-              key={`LANGUAGE_STATE${index + 1}`}
-              state={state}
-              index={index}
-              handleStateChange={handleStateChange}
-              onDeleteTemplate={onDeleteTemplate}
-            />
-          );
-        })}
+          {/* ========== LANGUAGE_STATE ========== */}
+          {LANGUAGE_STATE &&
+            LANGUAGE_STATE.map((state, index) => {
+              return (
+                <LanguageTemplate
+                  key={`LANGUAGE_STATE${index + 1}`}
+                  state={state}
+                  index={index}
+                  handleStateChange={handleStateChange}
+                  onDeleteTemplate={onDeleteTemplate}
+                />
+              );
+            })}
 
-      <S.FlexCenter>
-        <S.ButtonAddExtra type="button" onClick={() => onAddCareerTemplate('EDUCATION_STATE')}>
-          교육 추가+
-        </S.ButtonAddExtra>
-        <S.ButtonAddExtra type="button" onClick={() => onAddCareerTemplate('LICENSE_STATE')}>
-          자격증 추가+
-        </S.ButtonAddExtra>
-        <S.ButtonAddExtra type="button" onClick={() => onAddCareerTemplate('LANGUAGE_STATE')}>
-          어학 추가+
-        </S.ButtonAddExtra>
-      </S.FlexCenter>
-      <S.FlexCenter>
-        <S.ProfileButton onClick={submitCareer}>교육 및 자격사항 저장</S.ProfileButton>
-      </S.FlexCenter>
+          <S.FlexCenter>
+            <S.ButtonAddExtra type="button" onClick={() => onAddCareerTemplate('EDUCATION_STATE')}>
+              교육 추가+
+            </S.ButtonAddExtra>
+            <S.ButtonAddExtra type="button" onClick={() => onAddCareerTemplate('LICENSE_STATE')}>
+              자격증 추가+
+            </S.ButtonAddExtra>
+            <S.ButtonAddExtra type="button" onClick={() => onAddCareerTemplate('LANGUAGE_STATE')}>
+              어학 추가+
+            </S.ButtonAddExtra>
+          </S.FlexCenter>
+          <S.FlexCenter>
+            <S.ProfileButton onClick={submitCareer}>교육 및 자격사항 저장</S.ProfileButton>
+          </S.FlexCenter>
+        </>
+      )}
     </form>
   );
 };

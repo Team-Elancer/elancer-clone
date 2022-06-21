@@ -6,6 +6,8 @@ import * as S from '../style';
 
 import CareerTemplate from './CareerTemplate';
 
+import Loader from 'components/Loader';
+
 const CareerInfo = () => {
   const [
     userData,
@@ -116,7 +118,10 @@ const CareerInfo = () => {
 
   return (
     <>
-      {CAREER_STATE &&
+      {!detailProfileData ? (
+        <Loader />
+      ) : (
+        CAREER_STATE &&
         CAREER_STATE.map((state, index) => {
           return (
             <CareerTemplate
@@ -127,7 +132,8 @@ const CareerInfo = () => {
               onDeleteTemplate={onDeleteTemplate}
             />
           );
-        })}
+        })
+      )}
 
       <S.HRline />
 

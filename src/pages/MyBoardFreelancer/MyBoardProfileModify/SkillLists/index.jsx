@@ -9,6 +9,8 @@ import JobSkill from './JobSkill';
 import ProjectManager from './ProjectManager';
 import Publisher from './Publisher';
 
+import Loader from 'components/Loader';
+
 const SkillLists = () => {
   const [positionKeyword, setPositionKeyword] = useState('DEVELOPER');
 
@@ -446,95 +448,102 @@ const SkillLists = () => {
   };
 
   return (
-    <>
-      <JobSkill positionKeyword={positionKeyword} setPositionKeyword={setPositionKeyword} />
+    <div>
+      {!positionKeyword ? (
+        <Loader />
+      ) : (
+        <div>
+          <JobSkill positionKeyword={positionKeyword} setPositionKeyword={setPositionKeyword} />
 
-      {/* =========  /freelancer-profile/developer ========= */}
-      {positionKeyword === 'DEVELOPER' && (
-        <Developer
-          handleTwoJobField={handleTwoJobField}
-          JavaDetailSkillSTATE={JavaDetailSkillSTATE}
-          MobileAppDetailSkillSTATE={MobileAppDetailSkillSTATE}
-          PhpOrAspDetailSkillSTATE={PhpOrAspDetailSkillSTATE}
-          DotNetDetailSkillSTATE={DotNetDetailSkillSTATE}
-          JavaScriptDetailSkillSTATE={JavaScriptDetailSkillSTATE}
-          CDetailSkillSTATE={CDetailSkillSTATE}
-          DBDetailSkillSTATE={DBDetailSkillSTATE}
-          setJavaDetailSkillSTATE={setJavaDetailSkillSTATE}
-          setMobileAppDetailSkillSTATE={setMobileAppDetailSkillSTATE}
-          setPhpOrAspDetailSkillSTATE={setPhpOrAspDetailSkillSTATE}
-          setDotNetDetailSkillSTATE={setDotNetDetailSkillSTATE}
-          setJavaScriptDetailSkillSTATE={setJavaScriptDetailSkillSTATE}
-          setCDetailSkillSTATE={setCDetailSkillSTATE}
-          setDBDetailSkillSTATE={setDBDetailSkillSTATE}
-          focusSkills={focusSkills}
-          setFocusSkills={setFocusSkills}
-          roles={roles}
-          setRoles={setRoles}
-          etcSkill={etcSkill}
-          setEtcSkill={setEtcSkill}
-          submitDeveloper={submitDeveloper}
-        />
-      )}
+          {/* =========  /freelancer-profile/developer ========= */}
 
-      {/* =========  /freelancer-profile/publisher ========= */}
-      {positionKeyword === 'PUBLISHER' && (
-        <Publisher
-          PublishingDetailSkillSTATE={PublishingDetailSkillSTATE}
-          setPublishingDetailSkillSTATE={setPublishingDetailSkillSTATE}
-          publishingEtcSkill={publishingEtcSkill}
-          setPublishingEtcSkill={setPublishingEtcSkill}
-          handleThreeJobField={handleThreeJobField}
-          submitPublisher={submitPublisher}
-        />
-      )}
+          {positionKeyword === 'DEVELOPER' && (
+            <Developer
+              handleTwoJobField={handleTwoJobField}
+              JavaDetailSkillSTATE={JavaDetailSkillSTATE}
+              MobileAppDetailSkillSTATE={MobileAppDetailSkillSTATE}
+              PhpOrAspDetailSkillSTATE={PhpOrAspDetailSkillSTATE}
+              DotNetDetailSkillSTATE={DotNetDetailSkillSTATE}
+              JavaScriptDetailSkillSTATE={JavaScriptDetailSkillSTATE}
+              CDetailSkillSTATE={CDetailSkillSTATE}
+              DBDetailSkillSTATE={DBDetailSkillSTATE}
+              setJavaDetailSkillSTATE={setJavaDetailSkillSTATE}
+              setMobileAppDetailSkillSTATE={setMobileAppDetailSkillSTATE}
+              setPhpOrAspDetailSkillSTATE={setPhpOrAspDetailSkillSTATE}
+              setDotNetDetailSkillSTATE={setDotNetDetailSkillSTATE}
+              setJavaScriptDetailSkillSTATE={setJavaScriptDetailSkillSTATE}
+              setCDetailSkillSTATE={setCDetailSkillSTATE}
+              setDBDetailSkillSTATE={setDBDetailSkillSTATE}
+              focusSkills={focusSkills}
+              setFocusSkills={setFocusSkills}
+              roles={roles}
+              setRoles={setRoles}
+              etcSkill={etcSkill}
+              setEtcSkill={setEtcSkill}
+              submitDeveloper={submitDeveloper}
+            />
+          )}
 
-      {/* =========  /freelancer-profile/designer ========= */}
+          {/* =========  /freelancer-profile/publisher ========= */}
+          {positionKeyword === 'PUBLISHER' && (
+            <Publisher
+              PublishingDetailSkillSTATE={PublishingDetailSkillSTATE}
+              setPublishingDetailSkillSTATE={setPublishingDetailSkillSTATE}
+              publishingEtcSkill={publishingEtcSkill}
+              setPublishingEtcSkill={setPublishingEtcSkill}
+              handleThreeJobField={handleThreeJobField}
+              submitPublisher={submitPublisher}
+            />
+          )}
 
-      {positionKeyword === 'DESIGNER' && (
-        <Designer
-          DesignDetailRolesSTATE={DesignDetailRolesSTATE}
-          DesignDetailSkillsSTATE={DesignDetailSkillsSTATE}
-          designEtcRole={designEtcRole}
-          setDesignEtcRole={setDesignEtcRole}
-          designEtcSkill={designEtcSkill}
-          setDesignEtcSkill={setDesignEtcSkill}
-          handleThreeJobField={handleThreeJobField}
-          submitDesigner={submitDesigner}
-          setDesignDetailRolesSTATE={setDesignDetailRolesSTATE}
-          setDesignDetailSkillsSTATE={setDesignDetailSkillsSTATE}
-        />
-      )}
+          {/* =========  /freelancer-profile/designer ========= */}
 
-      {/* =========  /freelancer-profile/planner ========= */}
+          {positionKeyword === 'DESIGNER' && (
+            <Designer
+              DesignDetailRolesSTATE={DesignDetailRolesSTATE}
+              DesignDetailSkillsSTATE={DesignDetailSkillsSTATE}
+              designEtcRole={designEtcRole}
+              setDesignEtcRole={setDesignEtcRole}
+              designEtcSkill={designEtcSkill}
+              setDesignEtcSkill={setDesignEtcSkill}
+              handleThreeJobField={handleThreeJobField}
+              submitDesigner={submitDesigner}
+              setDesignDetailRolesSTATE={setDesignDetailRolesSTATE}
+              setDesignDetailSkillsSTATE={setDesignDetailSkillsSTATE}
+            />
+          )}
 
-      {positionKeyword === 'PLANNER' && (
-        <ProjectManager
-          PlannerDetailSkillSTATE={PlannerDetailSkillSTATE}
-          setPlannerDetailSkillSTATE={setPlannerDetailSkillSTATE}
-          plannerEtcField={plannerEtcField}
-          setPlannerEtcField={setPlannerEtcField}
-          handleThreeJobField={handleThreeJobField}
-          submitPlanner={submitPlanner}
-        />
-      )}
+          {/* =========  /freelancer-profile/planner ========= */}
 
-      {/* {positionKeyword === 'CROWD_WORKER' && (
+          {positionKeyword === 'PLANNER' && (
+            <ProjectManager
+              PlannerDetailSkillSTATE={PlannerDetailSkillSTATE}
+              setPlannerDetailSkillSTATE={setPlannerDetailSkillSTATE}
+              plannerEtcField={plannerEtcField}
+              setPlannerEtcField={setPlannerEtcField}
+              handleThreeJobField={handleThreeJobField}
+              submitPlanner={submitPlanner}
+            />
+          )}
+
+          {/* {positionKeyword === 'CROWD_WORKER' && (
         <CrowdWorker/>
         )}
     */}
 
-      {positionKeyword === 'ETC' && (
-        <ETC
-          ETCDetailRoleSTATE={ETCDetailRoleSTATE}
-          setETCDetailRoleSTATE={setETCDetailRoleSTATE}
-          positionEtcRole={positionEtcRole}
-          setPositionEtcRole={setPositionEtcRole}
-          handleThreeJobField={handleThreeJobField}
-          submitETC={submitETC}
-        />
+          {positionKeyword === 'ETC' && (
+            <ETC
+              ETCDetailRoleSTATE={ETCDetailRoleSTATE}
+              setETCDetailRoleSTATE={setETCDetailRoleSTATE}
+              positionEtcRole={positionEtcRole}
+              setPositionEtcRole={setPositionEtcRole}
+              handleThreeJobField={handleThreeJobField}
+              submitETC={submitETC}
+            />
+          )}
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -11,6 +11,7 @@ import ContactQneOnOne from './ContactOneOnOne';
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
 
+import Loader from 'components/Loader';
 import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact';
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
@@ -18,7 +19,17 @@ const MyBoardContact = () => {
   const [modalBool, setModalBool] = useState(false);
   const [ContactData, setContactData] = useState([]);
 
-  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+    profileDesignerData,
+    profileDeveloperData,
+  ] = useOutletContext();
 
   const fetchContactData = async () => {
     try {
@@ -121,7 +132,7 @@ const MyBoardContact = () => {
         1:1 문의 (0)
       </S.H1>
 
-      {ContactData.length > 0 &&
+      {ContactData.length > 0 ? (
         ContactData.map((data, idx) => {
           return (
             <ContactQneOnOne
@@ -133,7 +144,10 @@ const MyBoardContact = () => {
               userData={userData}
             />
           );
-        })}
+        })
+      ) : (
+        <Loader />
+      )}
       <S.BorderDiv />
     </S.Container>
   );

@@ -6,6 +6,8 @@ import * as S from '../style';
 
 import ProjectHistoryTemplate from './ProjectHistoryTemplate';
 
+import Loader from 'components/Loader';
+
 const ProjectHistory = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
@@ -131,7 +133,10 @@ const ProjectHistory = () => {
 
   return (
     <div>
-      {PROJECT_HISTORY_STATE &&
+      {!detailProfileData ? (
+        <Loader />
+      ) : (
+        PROJECT_HISTORY_STATE &&
         PROJECT_HISTORY_STATE.map((state, index) => {
           return (
             <ProjectHistoryTemplate
@@ -142,7 +147,8 @@ const ProjectHistory = () => {
               onDeleteTemplate={onDeleteTemplate}
             />
           );
-        })}
+        })
+      )}
       <S.FlexCenter>
         <S.ProfileButton type="button" onClick={onAddProjectHistoryTemplate}>
           프로젝트 이력 추가 +
