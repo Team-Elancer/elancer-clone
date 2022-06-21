@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const index = () => {
+const Loader = () => {
   return <SLoader />;
 };
 
@@ -26,4 +26,4 @@ const SLoader = styled.div`
   }
 `;
 
-export default index;
+export default Loader;
