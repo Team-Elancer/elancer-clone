@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 import ProjectFinish from './Finish';
 import ProjectInterview from './Interview';
@@ -19,8 +18,11 @@ const DashBoardProject = () => {
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
   useEffect(() => {
-    setaxiosUrl('/project-save');
-  }, [Datas]);
+    setaxiosUrl('/enterprise-project');
+    if (Datas === '') {
+      fetchData();
+    }
+  }, [axiosUrl, Datas]);
 
   return (
     <>
@@ -31,12 +33,12 @@ const DashBoardProject = () => {
         </Link>
       </S.SpacebetweenDiv>
       <BoardCardSpan setChangeList={setChangeList} />
-      {changeList === '' && <ProjectMain />}
-      {changeList === '지원현황' && <ProjectParticipate />}
-      {changeList === '인터뷰요청' && <ProjectInterview />}
-      {changeList === '조율중' && <ProjectTuning />}
-      {changeList === '진행중' && <ProjectProceeding />}
-      {changeList === '완료프로젝트' && <ProjectFinish />}
+      {changeList === '' && <ProjectMain Datas={Datas} />}
+      {changeList === '지원현황' && <ProjectParticipate Datas={Datas} />}
+      {changeList === '인터뷰요청' && <ProjectInterview Datas={Datas} />}
+      {changeList === '조율중' && <ProjectTuning Datas={Datas} />}
+      {changeList === '진행중' && <ProjectProceeding Datas={Datas} />}
+      {changeList === '완료프로젝트' && <ProjectFinish Datas={Datas} />}
     </>
   );
 };
