@@ -1,6 +1,9 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
+
 import * as S from '../style';
+
 import EducationTemplate from './EducationTemplate';
 import LanguageTemplate from './LanguageTemplate';
 import LicenseTemplate from './LicenseTemplate';
@@ -29,6 +32,72 @@ const Certificate = () => {
       languageAbility: 'MIDDLE',
     },
   ]);
+
+  const [
+    userData,
+    setUserData,
+    detailProfileData,
+    profileSimpleData,
+    profilePublisherData,
+    profileETCData,
+    profilePlannerData,
+    profileDesignerData,
+  ] = useOutletContext();
+
+  // ======== Get DATA from Database ========
+  useEffect(() => {
+    // ======== Eucation Responses ========
+    if (detailProfileData.educationResponses) {
+      const newEducataionLists = detailProfileData.educationResponses?.map((state) => {
+        const { educationTitle, educationOrganization, educationStartDate, educationEndDate } = state;
+
+        const newData = {
+          educationTitle,
+          educationOrganization,
+          educationStartDate,
+          educationEndDate,
+        };
+
+        return newData;
+      });
+
+      SET_EDUCATION_STATE(newEducataionLists);
+    }
+
+    // ======== License Responses ========
+    if (detailProfileData.licenseResponses) {
+      const newLicenseLists = detailProfileData.licenseResponses?.map((state) => {
+        const { licenseTitle, licenseIssuer, acquisitionDate } = state;
+
+        const newData = {
+          licenseTitle,
+          licenseIssuer,
+          acquisitionDate,
+        };
+
+        return newData;
+      });
+
+      SET_LICENSE_STATE(newLicenseLists);
+    }
+
+    // ======== language Responses ========
+    if (detailProfileData.languageResponses) {
+      const newLanguageLists = detailProfileData.languageResponses?.map((state) => {
+        const { languageName, languageAbility, languageAbilityDescription } = state;
+
+        const newData = {
+          languageName,
+          languageAbility,
+          languageAbilityDescription,
+        };
+
+        return newData;
+      });
+
+      SET_LANGUAGE_STATE(newLanguageLists);
+    }
+  }, [detailProfileData]);
 
   // ======== Remove the clicked state + component ========
   const onDeleteTemplate = (index, STATE) => {
