@@ -1,7 +1,5 @@
 import * as S from './style';
 
-import ProjectButton from 'components/Button/ProjectButton';
-
 const ProjectDetailModal = ({ checkToken }) => {
   return (
     <S.BackColorDiv>

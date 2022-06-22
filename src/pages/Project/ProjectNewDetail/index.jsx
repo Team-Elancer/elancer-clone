@@ -21,6 +21,9 @@ const ProjectNewDetail = () => {
 
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
   });
 
   const fetchData = async () => {
@@ -46,6 +49,22 @@ const ProjectNewDetail = () => {
     if (member === '"ENTERPRISE"') {
       alert('기업회원은 해당 기능사용이 불가능합니다.');
     }
+    axios({
+      method: 'POST',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/apply-project',
+      headers: {
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: {
+        projectNum: 17,
+      },
+    })
+      .then((res) => {
+        alert('지원이 완료되었습니다.');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   useEffect(() => {

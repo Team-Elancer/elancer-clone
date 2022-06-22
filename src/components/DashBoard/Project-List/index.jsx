@@ -10,7 +10,7 @@ const ProjectList = ({ data }) => {
   return (
     <S.Container>
       <S.ColorDiv>
-        {interviewModal === false && <ProjectInterview setInterviewModal={setInterviewModal} />}
+        {interviewModal === false && <ProjectInterview data={data} setInterviewModal={setInterviewModal} />}
         <S.BetweenDiv>
           <S.SpanTag bgColor="#8a7fa4">지원현황 프로젝트</S.SpanTag>
           <S.SpanTag bgColor="#3c3c3c" cursor="pointer">
@@ -100,7 +100,7 @@ const ProjectList = ({ data }) => {
                 setInterviewModal(false);
               }}
             >
-              지원자 0
+              지원자 {data.applicantList.length}
             </S.ProjectSpan>
             <S.ProjectSpan
               bgColor="#ff6b6b"
@@ -108,7 +108,7 @@ const ProjectList = ({ data }) => {
                 setInterviewModal(false);
               }}
             >
-              인터뷰요청자 0
+              인터뷰요청자 {data.interviewRequestList.length}
             </S.ProjectSpan>
           </S.FlexDiv>
         </S.BetweenDiv>
