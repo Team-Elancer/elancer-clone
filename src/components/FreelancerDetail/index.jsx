@@ -59,9 +59,10 @@ const InfoDetail = () => {
         )
       ) : (
         <>
+          {/* ========== 학력 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
-              <S.EcardResumeWork>학력</S.EcardResumeWork>
+              <S.EcardResumeWork>{profileSimpleData.academicAbilityResponses.length > 0 && '학력'} </S.EcardResumeWork>
               {profileSimpleData.academicAbilityResponses?.map(
                 ({ enterSchoolDate, graduationDate, schoolName, schoolLevelDescription }, index) => (
                   <S.ContainerWorkDetail key={`Profile_Education${index + 1}`}>
@@ -78,6 +79,7 @@ const InfoDetail = () => {
             </S.EcardResume>
           </S.ContainerEcardResume>
 
+          {/* ========== 경력 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
               <S.EcardResumeWork>경력</S.EcardResumeWork>
@@ -92,11 +94,66 @@ const InfoDetail = () => {
             </S.EcardResume>
           </S.ContainerEcardResume>
 
-          {!profileSimpleData.careerResponses && !profileSimpleData.academicAbilityResponses && (
-            <div>등록된 데이터가 없습니다.</div>
-          )}
+          {/* ========== 자격증 ========== */}
+          <S.ContainerEcardResume>
+            <S.EcardResume>
+              <S.EcardResumeWork>{profileSimpleData.licenseResponses.length > 0 && '자격증'}</S.EcardResumeWork>
+              {profileSimpleData.licenseResponses?.map(({ acquisitionDate, licenseIssuer, licenseTitle }, index) => (
+                <S.ContainerWorkDetail key={`Profile_License${index + 1}`}>
+                  <S.WorkTime>{acquisitionDate}</S.WorkTime>
+                  <S.WorkName>
+                    {licenseIssuer && '*자격증명: '} {licenseIssuer}, {licenseTitle && '*발행처: '} {licenseTitle}
+                  </S.WorkName>
+                </S.ContainerWorkDetail>
+              ))}
+            </S.EcardResume>
+          </S.ContainerEcardResume>
+
+          {/* ========== 교육 ========== */}
+          <S.ContainerEcardResume>
+            <S.EcardResume>
+              <S.EcardResumeWork>{profileSimpleData.educationResponses.length > 0 && '교육'}</S.EcardResumeWork>
+              {profileSimpleData.educationResponses?.map(
+                ({ educationEndDate, educationOrganization, educationStartDate, educationTitle }, index) => (
+                  <S.ContainerWorkDetail key={`Profile_License${index + 1}`}>
+                    <S.WorkTime>
+                      {educationStartDate} {educationStartDate && '~'} {educationEndDate}
+                    </S.WorkTime>
+                    <S.WorkName>
+                      {educationTitle && '*교육명: '} {educationTitle}, {educationOrganization && '*교육기관: '}
+                      {educationOrganization}
+                    </S.WorkName>
+                  </S.ContainerWorkDetail>
+                ),
+              )}
+            </S.EcardResume>
+          </S.ContainerEcardResume>
+
+          {/* ========== 외국어 능력 ========== */}
+          <S.ContainerEcardResume>
+            <S.EcardResume>
+              <S.EcardResumeWork>{profileSimpleData.languageResponses.length > 0 && '외국어 능력'}</S.EcardResumeWork>
+              {profileSimpleData.languageResponses?.map(
+                ({ languageName, languageAbilityDescription, languageAbility }, index) => (
+                  <S.ContainerWorkDetail key={`Profile_License${index + 1}`}>
+                    <S.WorkTime>{languageName}</S.WorkTime>
+                    <S.WorkName>
+                      {languageAbilityDescription && '*'}
+                      {languageAbilityDescription} {languageAbility && `(${languageAbility})`}
+                    </S.WorkName>
+                  </S.ContainerWorkDetail>
+                ),
+              )}
+            </S.EcardResume>
+          </S.ContainerEcardResume>
         </>
       )}
+
+      {!profileSimpleData.careerResponses &&
+        !profileSimpleData.academicAbilityResponses &&
+        !profileSimpleData.licenseResponses &&
+        !profileSimpleData.educationResponses &&
+        !profileSimpleData.languageResponses && <S.EcardResumeWork>등록된 이력이 없습니다.</S.EcardResumeWork>}
     </main>
   );
 };
