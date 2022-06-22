@@ -14,15 +14,17 @@ import BoardCardSpan from 'components/Myboard/CardSpan';
 const DashBoardProject = () => {
   const [refresh, setRefresh] = useState(null);
   const [changeList, setChangeList] = useState('');
+  const [newReloading, setNewReloading] = useState(true);
 
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
   useEffect(() => {
     setaxiosUrl('/enterprise-project');
-    if (Datas === '') {
+    if (Datas === '' || newReloading === false) {
       fetchData();
+      setNewReloading(true);
     }
-  }, [axiosUrl, Datas]);
+  }, [axiosUrl, Datas, newReloading]);
 
   return (
     <>
@@ -33,7 +35,7 @@ const DashBoardProject = () => {
         </Link>
       </S.SpacebetweenDiv>
       <BoardCardSpan setChangeList={setChangeList} />
-      {changeList === '' && <ProjectMain Datas={Datas} />}
+      {changeList === '' && <ProjectMain Datas={Datas} newReloading={newReloading} setNewReloading={setNewReloading} />}
       {changeList === '지원현황' && <ProjectParticipate Datas={Datas} />}
       {changeList === '인터뷰요청' && <ProjectInterview Datas={Datas} />}
       {changeList === '조율중' && <ProjectTuning Datas={Datas} />}
