@@ -131,3 +131,32 @@ export const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
 `;
+
+export const Ul = styled.ul`
+  overflow-y: auto;
+  padding-top: 0.5rem;
+`;
+
+export const Li = styled.li`
+  display: flex;
+  align-items: center;
+`;
+
+export const InputCheck = styled.input`
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
+    zoom: 1.5;
+  }
+`;
+
+export const Name = styled.h1`
+  font-size: 0.5rem;
+  font-weight: 600;
+  @media ${TABLET} {
+    font-size: 0.8rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 1.2rem;
+  }
+`;
