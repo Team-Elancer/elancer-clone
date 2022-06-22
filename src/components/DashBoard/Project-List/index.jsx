@@ -4,13 +4,21 @@ import * as S from './style';
 import Loading from 'components/Loading';
 import ProjectInterview from 'components/Modal/ProjectInterview';
 
-const ProjectList = ({ data }) => {
+const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
   const [interviewModal, setInterviewModal] = useState(true);
 
   return (
     <S.Container>
       <S.ColorDiv>
-        {interviewModal === false && <ProjectInterview data={data} setInterviewModal={setInterviewModal} />}
+        {interviewModal === false && (
+          <ProjectInterview
+            setHello={setHello}
+            newReloading={newReloading}
+            setNewReloading={setNewReloading}
+            Datas={data}
+            setInterviewModal={setInterviewModal}
+          />
+        )}
         <S.BetweenDiv>
           <S.SpanTag bgColor="#8a7fa4">지원현황 프로젝트</S.SpanTag>
           <S.SpanTag bgColor="#3c3c3c" cursor="pointer">

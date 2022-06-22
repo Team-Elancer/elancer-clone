@@ -5,7 +5,7 @@ import * as S from './style';
 import ProjectList from 'components/DashBoard/Project-List';
 import Loading from 'components/Loading';
 
-const ProjectMain = ({ Datas }) => {
+const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
   return (
     <>
       <S.H1 top="4rem" laptoptop="4rem">
@@ -13,7 +13,14 @@ const ProjectMain = ({ Datas }) => {
       </S.H1>
       {Datas.length > 1 &&
         Datas.map((data) => {
-          return <ProjectList data={data} key={data.projectName} />;
+          return (
+            <ProjectList
+              data={data}
+              key={data.projectName}
+              newReloading={newReloading}
+              setNewReloading={setNewReloading}
+            />
+          );
         })}
       <S.H1 top="4rem" laptoptop="4rem">
         헤드헌팅 리스트 (0)
