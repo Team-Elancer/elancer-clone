@@ -140,6 +140,7 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   display: flex;
   align-items: center;
+  padding-top: 0.5rem;
 `;
 
 export const InputCheck = styled.input`
@@ -151,12 +152,24 @@ export const InputCheck = styled.input`
 `;
 
 export const Name = styled.h1`
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   font-weight: 600;
   @media ${TABLET} {
     font-size: 0.8rem;
   }
   @media ${LAPTOP} {
     font-size: 1.2rem;
+  }
+`;
+export const ViewBlock = styled.span`
+  background-color: ${(props) => props.color};
+  padding: 0.5rem 0.5rem;
+  margin: 0 0.5rem;
+  font-size: 0.5rem;
+  font-weight: 600;
+  border-radius: 0.3rem;
+  @media ${TABLET} {
+  }
+  @media ${LAPTOP} {
   }
 `;
