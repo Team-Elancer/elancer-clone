@@ -48,5 +48,13 @@ export const AnswerLetter = styled.span`
 
 export const ArrowButton = styled.div`
   cursor: pointer;
-  font-size: 0.7rem;
+  font-size: 1.3rem;
+`;
+
+export const ArrowModalButton = styled.button`
+  cursor: pointer;
+  border: none;
+  :hover {
+    opacity: 0.7;
+  }
 `;
