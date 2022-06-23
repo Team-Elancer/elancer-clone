@@ -35,33 +35,35 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
     }
   };
 
-  console.log(newArray);
-
   const addApplicant = () => {
     const newData = checkedInputs.join();
-    axios({
-      method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/interview-project',
-      headers: {
-        Authorization: `${window.localStorage.accessToken}`,
-      },
-      data: {
-        projectNum: Datas.projectNum,
-        freelancerNum: newData,
-      },
-    })
-      .then((res) => {
-        alert('인터뷰요청이 완료되었습니다.');
-        setNewReloading(false);
+    const checkUuplicate = newArray.interviewRequestList.map((a) => a.num);
+    if (checkUuplicate.includes(Number(newData))) {
+      alert('이미 있는 지원자입니다.');
+    } else {
+      axios({
+        method: 'POST',
+        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/interview-project',
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: Datas.projectNum,
+          freelancerNum: newData,
+        },
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+        .then((res) => {
+          alert('인터뷰요청이 완료되었습니다.');
+          setNewReloading(false);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
   };
 
   const deleteInterview = () => {
     const newData = checkedInterview.join();
-    console.log(newData);
     axios({
       method: 'DELETE',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/reject-interview-project',
