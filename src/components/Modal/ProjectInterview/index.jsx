@@ -8,6 +8,7 @@ import useCloseOutside from 'hooks/useCloseOutside';
 
 const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReloading }) => {
   const [checkedInputs, setCheckedInputs] = useState('');
+  const [checkedInterview, setCheckedInterview] = useState('');
   const [newArray, setNewArray] = useState([]);
 
   const domNode = useCloseOutside(() => {
@@ -24,9 +25,20 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
     }
   };
 
+  const changeInterview = (e) => {
+    const num = Number(e.target.id);
+    if (e.currentTarget.checked) {
+      setCheckedInterview([...checkedInterview, num]);
+    } else {
+      // 체크 해제
+      setCheckedInterview(checkedInterview.filter((a) => a !== num));
+    }
+  };
+
+  console.log(newArray);
+
   const addApplicant = () => {
     const newData = checkedInputs.join();
-    console.log(newData);
     axios({
       method: 'POST',
       url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/interview-project',
@@ -47,9 +59,31 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
       });
   };
 
+  const deleteInterview = () => {
+    const newData = checkedInterview.join();
+    console.log(newData);
+    axios({
+      method: 'DELETE',
+      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/reject-interview-project',
+      headers: {
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: {
+        projectNum: Datas.projectNum,
+        freelancerNum: newData,
+      },
+    })
+      .then((res) => {
+        alert('인터뷰를 취소했습니다.');
+        setNewReloading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   useEffect(() => {
     setNewArray(Datas);
-    console.log('리로딩');
   }, [Datas, newReloading]);
 
   return (
@@ -72,9 +106,20 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
         {newArray.length === undefined &&
           newArray.interviewRequestList.map((data) => {
             return (
-              <S.Li>
-                <S.InputCheck type="checkbox" name="applicant" id={data.num} value={data.num} />
-                <S.Name>{data.name}</S.Name>
+              <S.Li key={data.num}>
+                <S.InputCheck
+                  type="checkbox"
+                  name="applicant"
+                  id={data.num}
+                  value={data.num}
+                  onChange={(e) => changeInterview(e)}
+                />
+                <S.ViewBlock color={data.interviewStatus === 'WAITING' ? '#f2f2f2' : '#eb6100'}>
+                  {data.interviewStatus === 'WAITING' ? '요청' : '수락'}
+                </S.ViewBlock>
+                <S.Name>
+                  {data.name}[{data.positionType}] 경력{data.careerYear}년
+                </S.Name>
               </S.Li>
             );
           })}
@@ -84,13 +129,13 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
         <S.MobileButonDiv>
           <S.Button>지원자 투입</S.Button>
           <S.PaddingLeftDiv>
-            <S.Button>인터뷰 취소</S.Button>
+            <S.Button onClick={deleteInterview}>인터뷰 취소</S.Button>
           </S.PaddingLeftDiv>
         </S.MobileButonDiv>
         <S.ButtonDiv>
           <SubmitButton text="지원자 투입" heights="0.8rem" sides="1.8rem" />
           <S.PaddingLeftDiv>
-            <SubmitButton text="인터뷰 취소" heights="0.8rem" sides="1.8rem" />
+            <SubmitButton text="인터뷰 취소" heights="0.8rem" sides="1.8rem" click={deleteInterview} />
           </S.PaddingLeftDiv>
         </S.ButtonDiv>
       </S.FirstSubmitDiv>
@@ -112,7 +157,9 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
                       changeHandler(e);
                     }}
                   />
-                  <S.Name>{data.name}</S.Name>
+                  <S.Name>
+                    {data.name}[{data.positionType}] 경력{data.careerYear}년
+                  </S.Name>
                 </S.Li>
               );
             })}

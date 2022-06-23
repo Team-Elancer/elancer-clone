@@ -11,7 +11,7 @@ const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
       <S.H1 top="4rem" laptoptop="4rem">
         프로젝트 리스트 ({Datas && Datas.length})
       </S.H1>
-      {Datas.length > 1 &&
+      {Datas.length > 0 &&
         Datas.map((data) => {
           return (
             <ProjectList
