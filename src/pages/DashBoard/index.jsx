@@ -55,7 +55,6 @@ const Dashboard = () => {
     }
   };
 
-  console.log(Datas);
   useEffect(() => {
     fetchData();
   }, [axiosUrl]);

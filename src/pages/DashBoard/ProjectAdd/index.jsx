@@ -483,7 +483,7 @@ const DashboardProjectAdd = () => {
                   </div>
                   <S.FlexDiv flex="flex">
                     <S.InputTag Mobilesize="8rem" laptopSize="15rem" type="number" placeholder={startDate} />
-                    <S.DateDiv top="-0.9rem" left="-8rem" width="8rem" dateTop="2rem">
+                    <S.DateDiv top="-0.9rem" left="-8rem" width="8rem" dateTop="-0.5rem">
                       <DatePicker
                         onChange={(date) => {
                           startDateFunction(date);
