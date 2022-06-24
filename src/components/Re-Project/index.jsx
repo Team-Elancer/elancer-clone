@@ -10,7 +10,7 @@ import kbLogo from 'assets/images/kbkookmin.png';
 import samsung from 'assets/images/samsung.png';
 import Loading from 'components/Loading';
 
-const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData = '', setaxiosUrl = '', Datas }) => {
+const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData, setaxiosUrl, Datas }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const handleClick = (alt) => {
@@ -75,74 +75,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
     return data;
   };
 
-  const mapData = [
-    {
-      id: 1,
-      name: '개발자 상주 프로젝트',
-      icon: '🤍',
-      url: `${companyLogo}`,
-      endDay: '마감8일전',
-      language: 'JAVA',
-      language2: 'Spring',
-      title: '[중급/JAVA/3개월/신도림역] 프롭테스 플랫폼 스마트워킹',
-      subTitle: '중급 / 1개월 / 서울/신도림 / 300 만원',
-    },
-    {
-      id: 2,
-      name: '개발자 상주 프로젝트',
-      icon: '🤍',
-      url: `${companyLogo}`,
-      endDay: '마감8일전',
-      language: 'React',
-      language2: 'Javascript',
-      title: '[중급~고급/JAVA/4개월/압구정역] LF 패션몰 구착, [중급~고급/JAVA/4개월/압구정역] LF 패션몰 구착',
-      subTitle: '중급 / 4개월 / 서울/상남구 / 가격제안',
-    },
-    {
-      id: 3,
-      name: '개발자 상주 프로젝트',
-      icon: '🤍',
-      url: `${samsung}`,
-      endDay: '마감8일전',
-      language: 'JAVA',
-      language2: 'Spring',
-      title: '[중급/JAVA/3개월/재택] 프롭테스 플랫폼 스마트워킹',
-      subTitle: '중급 / 1개월 / 재택 / 300 만원',
-    },
-    {
-      id: 4,
-      name: '개발자 재텍 프로젝트',
-      icon: '🤍',
-      url: `${cjLogo}`,
-      endDay: '마감8일전',
-      language: 'JAVA',
-      language2: 'Spring',
-      title: '[중급/JAVA/3개월/재택] 프롭테스 플랫폼 스마트워킹',
-      subTitle: '중급 / 1개월 / 재택 / 300 만원',
-    },
-    {
-      id: 5,
-      name: '퍼블리셔 상주 프로젝트',
-      icon: '🤍',
-      url: `${kbLogo}`,
-      endDay: '마감8일전',
-      language: 'JAVA',
-      language2: 'Spring',
-      title: '[중급/JAVA/3개월/재택] 프롭테스 플랫폼 스마트워킹',
-      subTitle: '중급 / 1개월 / 재택 / 300 만원',
-    },
-    {
-      id: 6,
-      name: '디자이너 재택 프로젝트',
-      icon: '🤍',
-      url: `${companyLogo}`,
-      endDay: '마감8일전',
-      language: 'JAVA',
-      language2: 'Spring',
-      title: '[중급/JAVA/3개월/재택] 프롭테스 플랫폼 스마트워킹',
-      subTitle: '중급 / 1개월 / 재택 / 300 만원',
-    },
-  ];
+  console.log(Datas);
 
   useEffect(() => {
     if (Datas === '') {

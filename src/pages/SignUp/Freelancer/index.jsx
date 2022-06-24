@@ -139,17 +139,29 @@ const SignUpFreeLancer = () => {
       },
     })
       .then((res) => {
+        axios({
+          method: 'POST',
+          url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
+          data: {
+            userId: id,
+            password: passwordConfirm,
+          },
+        })
+          .then((res) => {
+            console.log('완료');
+            window.localStorage.setItem('accessToken', res.data.accessToken);
+            window.localStorage.setItem('refreshToken', res.data.refreshToken);
+            window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
+          })
+          .catch((err) => {
+            console.log(err.message);
+            navi('/login');
+          });
         alert('생성이 완료되었습니다.');
-        window.localStorage.setItem('accessToken', res.data.accessToken);
-        window.localStorage.setItem('refreshToken', res.data.refreshToken);
-        window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
         navi('/signup/finish');
       })
       .catch((err) => {
-        console.log(err.response);
-        console.log(err.response.data);
-        console.log('error');
-        console.log(err.message);
+        return alert('별표시가 있는곳은 모두 입력해주세요.');
       });
   };
 

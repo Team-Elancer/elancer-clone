@@ -18,8 +18,8 @@ const SignUpFinish = () => {
             이랜서가 열어가는 IT전문가 세상에서 회원님의 시간이 더욱 빛나길 바랍니다.
           </S.Ptag>
           <S.ButtonSizeDiv>
-            <Link to="/">
-              <SubmitButton text="이랜서 둘러보기" heights="1rem" sides="3rem" />
+            <Link to={window.localStorage.memberType === '"ENTERPRISE"' ? '/enterprise' : '/freelancer'}>
+              <SubmitButton text="둘러보기" heights="1rem" sides="3rem" />
             </Link>
           </S.ButtonSizeDiv>
         </div>
