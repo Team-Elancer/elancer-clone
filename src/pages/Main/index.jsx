@@ -35,8 +35,6 @@ const Main = () => {
     }
   };
 
-  console.log(Datas);
-
   useEffect(() => {
     fetchData();
   }, []);

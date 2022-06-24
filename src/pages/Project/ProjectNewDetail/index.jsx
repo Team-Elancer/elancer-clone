@@ -19,6 +19,10 @@ const ProjectNewDetail = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
 
+  const noHeaderAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+  });
+
   const authAxios = axios.create({
     baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
     headers: {
@@ -26,18 +30,44 @@ const ProjectNewDetail = () => {
     },
   });
 
+  const refreshAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+      RefreshAuthorization: `${window.localStorage.refreshToken}`,
+    },
+  });
+
+  console.log(Datas);
+
   const fetchData = async () => {
     try {
-      if (axiosUrl) {
+      if (window.localStorage.accessToken === undefined && axiosUrl) {
+        const res = await noHeaderAxios(axiosUrl);
+        const data = await res.data;
+        setDatas(data);
+      }
+      if (window.localStorage.accessToken !== undefined && axiosUrl) {
         const res = await authAxios(axiosUrl);
+        if (res.data.code === '401') {
+          console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
+          const res = await refreshAxios('/reissue');
+          window.localStorage.setItem('accessToken', res.data.accessToken);
+          window.localStorage.setItem('refreshToken', res.data.refreshToken);
+          console.log('이상무');
+        }
         const data = await res.data;
         setDatas(data);
       }
     } catch (error) {
+      if (error.message === 'Request failed with status code 500') {
+        window.localStorage.clear();
+        alert('다시 로그인해주세요.');
+        navi('/login');
+      }
       console.log(error.message);
     }
   };
-
   const changeShareModal = () => {
     setShareModal(false);
   };
