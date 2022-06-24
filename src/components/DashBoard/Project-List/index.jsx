@@ -7,6 +7,16 @@ import ProjectInterview from 'components/Modal/ProjectInterview';
 const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
   const [interviewModal, setInterviewModal] = useState(true);
 
+  const [newApplicant, setNewApplicant] = useState([]);
+  const [newInterview, setNewInterview] = useState([]);
+
+  useEffect(() => {
+    if (newApplicant.length < 1) {
+      setNewApplicant(data.applicantList);
+      setNewInterview(data.interviewRequestList);
+    }
+  }, [data]);
+
   return (
     <S.Container>
       <S.ColorDiv>
@@ -108,7 +118,7 @@ const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
                 setInterviewModal(false);
               }}
             >
-              지원자 {data.applicantList.length}
+              지원자 {newApplicant === undefined ? 0 : newApplicant.length}
             </S.ProjectSpan>
             <S.ProjectSpan
               bgColor="#ff6b6b"
@@ -116,7 +126,7 @@ const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
                 setInterviewModal(false);
               }}
             >
-              인터뷰요청자 {data.interviewRequestList.length}
+              인터뷰요청자 {newInterview === undefined ? 0 : newInterview.length}
             </S.ProjectSpan>
           </S.FlexDiv>
         </S.BetweenDiv>

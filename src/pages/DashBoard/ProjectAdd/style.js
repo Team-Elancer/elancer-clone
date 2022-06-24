@@ -499,6 +499,7 @@ export const DateDiv = styled.div`
       width: 15rem;
       opacity: 0;
       height: 2rem;
+      left: -13rem;
       cursor: pointer;
     }
   }
