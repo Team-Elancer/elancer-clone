@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
@@ -8,28 +8,21 @@ import Loader from 'components/Loader';
 
 import useCloseOutside from 'hooks/useCloseOutside';
 
-const ModalFreelancerContactModal = ({
-  setModalBool,
-  fetchContactData,
-  setPutModalBool,
-  ContactData,
-  contactNum,
-  userData,
-}) => {
+const ModalFreelancerContactModal = ({ setIsShowing, isSetEdingShowing, contactData, contactNum, userData }) => {
   const domNode = useCloseOutside(() => {
-    if (setPutModalBool) {
-      setPutModalBool(false);
+    if (isSetEdingShowing) {
+      isSetEdingShowing(false);
     }
 
-    if (setModalBool) {
-      setModalBool(false);
+    if (setIsShowing) {
+      setIsShowing(false);
     }
   });
 
-  const [title, setTitle] = useState(ContactData?.title);
-  const [content, setContent] = useState(ContactData?.content);
+  const [title, setTitle] = useState(contactData?.title);
+  const [content, setContent] = useState(contactData?.content);
 
-  const submitQuestion = (e) => {
+  const handleSubmitQuestion = (e) => {
     e.preventDefault();
 
     axios({
@@ -45,15 +38,14 @@ const ModalFreelancerContactModal = ({
     })
       .then((res) => {
         alert('1:1 문의가 등록되었습니다.');
-        fetchContactData();
-        setModalBool(false);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  const ReSubmitQuestion = async (e) => {
+  const handleResubmitQuestion = async (e) => {
     e.preventDefault();
 
     axios({
@@ -70,21 +62,20 @@ const ModalFreelancerContactModal = ({
     })
       .then((res) => {
         alert('수정됐습니다.');
-        fetchContactData();
-        setPutModalBool(false);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  const cancelModal = () => {
-    if (setPutModalBool) {
-      setPutModalBool(false);
+  const handleCancelButton = () => {
+    if (isSetEdingShowing) {
+      isSetEdingShowing(false);
     }
 
-    if (setModalBool) {
-      setModalBool(false);
+    if (setIsShowing) {
+      setIsShowing(false);
     }
   };
 
@@ -96,15 +87,9 @@ const ModalFreelancerContactModal = ({
       {!userData ? (
         <Loader />
       ) : (
-        <form onSubmit={submitQuestion}>
+        <form onSubmit={handleSubmitQuestion}>
           <S.FlexDiv>
-            <S.Img
-              src={Cancel}
-              alt="cancel"
-              onClick={() => {
-                cancelModal();
-              }}
-            />
+            <S.Img src={Cancel} alt="cancel" onClick={handleCancelButton} />
             <S.H1>1:1 문의/요청</S.H1>
           </S.FlexDiv>
           <S.FlexInputDiv top="0.3rem">
@@ -150,8 +135,8 @@ const ModalFreelancerContactModal = ({
             />
           </S.FlexInputDiv>
           <S.BorderDiv>
-            {ContactData?.title || ContactData?.content ? (
-              <S.SubmitButton type="button" onClick={ReSubmitQuestion}>
+            {contactData?.title || contactData?.content ? (
+              <S.SubmitButton type="button" onClick={handleResubmitQuestion}>
                 수정하기
               </S.SubmitButton>
             ) : (

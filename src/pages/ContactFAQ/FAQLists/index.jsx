@@ -21,48 +21,48 @@ const FAQLists = ({ isCheckedProject, defaultPrimary, setDefaultPrimary }) => {
     <S.ContainerUl>
       {(isCheckedProject === '#project' || project) && (
         <div>
-          {PROJECT_LIST.map((section) => (
-            <ProjectQNA section={section} />
+          {PROJECT_LIST.map((section, index) => (
+            <ProjectQNA section={section} key={`ProjectQNA${index + 1}`} />
           ))}
         </div>
       )}
 
       {(isCheckedProject === '#career' || career) && (
         <div>
-          {CAREER_LIST.map((section) => (
-            <CareerQNA section={section} />
+          {CAREER_LIST.map((section, index) => (
+            <CareerQNA section={section} key={`CareerQNA${index + 1}`} />
           ))}
         </div>
       )}
 
       {(isCheckedProject === '#account' || account) && (
         <div>
-          {MODIFY_ACCOUNT_LIST.map((section) => (
-            <ModifyAccountQNA section={section} />
+          {MODIFY_ACCOUNT_LIST.map((section, index) => (
+            <ModifyAccountQNA section={section} key={`ModifyAccountQNA${index + 1}`} />
           ))}
         </div>
       )}
 
       {isCheckedProject === '#signup' && (
         <div>
-          {SIGNUP_LIST.map((section) => (
-            <SignupQNA section={section} />
+          {SIGNUP_LIST.map((section, index) => (
+            <SignupQNA section={section} key={`SignupQNA${index + 1}`} />
           ))}
         </div>
       )}
 
       {isCheckedProject === '#id-password' && (
         <div>
-          {FIND_ACCOUNT_LIST.map((section) => (
-            <FindAccountQNA section={section} />
+          {FIND_ACCOUNT_LIST.map((section, index) => (
+            <FindAccountQNA section={section} key={`FindAccountQNA${index + 1}`} />
           ))}
         </div>
       )}
 
       {isCheckedProject === '#etc' && (
         <div>
-          {ETC_LIST.map((section) => (
-            <EtcQNA section={section} />
+          {ETC_LIST.map((section, index) => (
+            <EtcQNA section={section} key={`EtcQNA${index + 1}`} />
           ))}
         </div>
       )}

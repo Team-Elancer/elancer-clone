@@ -7,9 +7,12 @@ import * as S from './style';
 
 import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact';
 
-const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx, userData }) => {
-  const [contentBool, setContentBool] = useState(false);
-  const [putmodalBool, setPutModalBool] = useState(false);
+import useModal from 'hooks/useModal';
+
+const ContactQneOnOne = ({ contactData, contactNum, idx, userData }) => {
+  const { isShowing, toggle } = useModal();
+
+  const [isEditShowing, isSetEdingShowing] = useState(false);
 
   const deleteContact = (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx, userD
       })
         .then((res) => {
           alert('문의가 삭제되었습니다.');
-          fetchContactData();
+          window.location.reload();
         })
         .catch((err) => {
           console.log(err.message);
@@ -41,43 +44,32 @@ const ContactQneOnOne = ({ ContactData, contactNum, fetchContactData, idx, userD
       <S.FlexDiv>
         <S.DisplayFlexDiv>
           <S.NoAnwser>미답변</S.NoAnwser>
-          <S.TitleP>{ContactData[idx].title}</S.TitleP>
+          <S.TitleP>{contactData[idx].title}</S.TitleP>
         </S.DisplayFlexDiv>
         <S.DisplayFlexDiv>
-          <S.DateP>{ContactData[idx].localDate}</S.DateP>
-          <S.ButtonP
-            onClick={(e) => {
-              e.preventDefault();
-              setContentBool(!contentBool);
-            }}
-          >
-            {contentBool ? <IoArrowUpCircleOutline fontSize="32px" /> : <IoArrowDownCircleOutline fontSize="32px" />}
+          <S.DateP>{contactData[idx].localDate}</S.DateP>
+          <S.ButtonP onClick={toggle}>
+            {isShowing ? <IoArrowUpCircleOutline fontSize="32px" /> : <IoArrowDownCircleOutline fontSize="32px" />}
           </S.ButtonP>
         </S.DisplayFlexDiv>
       </S.FlexDiv>
-      {contentBool === true && (
+      {isShowing === true && (
         <S.SecondDiv>
-          {putmodalBool === true && (
+          {isEditShowing === true && (
             <ModalFreelancerContactModal
-              setPutModalBool={setPutModalBool}
-              ContactData={ContactData[idx]}
+              isSetEdingShowing={isSetEdingShowing}
+              contactData={contactData[idx]}
               contactNum={contactNum}
-              fetchContactData={fetchContactData}
               userData={userData}
             />
           )}
           <S.DisplayFlexDiv>
             <S.BlueSpan>[문의내용]</S.BlueSpan>
-            <S.TitleP>{ContactData[idx].content}</S.TitleP>
+            <S.TitleP>{contactData[idx].content}</S.TitleP>
           </S.DisplayFlexDiv>
           <S.BorderDiv />
           <S.FlexEndDiv>
-            <S.ButtonDiv
-              color="#7485c9"
-              onClick={() => {
-                setPutModalBool(!putmodalBool);
-              }}
-            >
+            <S.ButtonDiv color="#7485c9" onClick={() => isSetEdingShowing((prev) => !prev)}>
               수정
             </S.ButtonDiv>
             <S.ButtonDiv color="#b7b7b7" onClick={deleteContact}>

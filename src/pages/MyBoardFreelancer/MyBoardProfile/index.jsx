@@ -6,6 +6,8 @@ import ProfilePicture from 'assets/images/profile.png';
 import InfoDetail from 'components/FreelancerDetail';
 import Loader from 'components/Loader';
 
+import useBeforeUnload from 'hooks/useBeforeUnload';
+
 const MyBoardProfile = () => {
   const [
     userData,
@@ -18,6 +20,8 @@ const MyBoardProfile = () => {
     profileDesignerData,
     profileDeveloperData,
   ] = useOutletContext();
+
+  useBeforeUnload();
 
   return (
     <S.FrameProfile>
