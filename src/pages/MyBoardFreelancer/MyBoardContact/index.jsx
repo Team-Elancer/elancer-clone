@@ -1,6 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
 import { CgFileDocument } from 'react-icons/cg';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdDesktop } from 'react-icons/io';
@@ -11,13 +8,12 @@ import ContactQneOnOne from './ContactOneOnOne';
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
 
-import Loader from 'components/Loader';
 import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact';
-import { CLIENT_FREELANCER } from 'utils/config/api';
+
+import useModal from 'hooks/useModal';
 
 const MyBoardContact = () => {
-  const [modalBool, setModalBool] = useState(false);
-  const [ContactData, setContactData] = useState([]);
+  const { isShowing, setIsShowing, toggle } = useModal();
 
   const [
     userData,
@@ -29,46 +25,15 @@ const MyBoardContact = () => {
     profilePlannerData,
     profileDesignerData,
     profileDeveloperData,
+    contactData,
   ] = useOutletContext();
-
-  const fetchContactData = async () => {
-    try {
-      const { data } = await CLIENT_FREELANCER('/contacts');
-
-      setContactData(data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  useEffect(() => {
-    let isMounted = true;
-
-    fetchContactData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   return (
     <S.Container>
-      {modalBool === true && (
-        <ModalFreelancerContactModal
-          setModalBool={setModalBool}
-          fetchContactData={fetchContactData}
-          userData={userData}
-        />
-      )}
+      {isShowing === true && <ModalFreelancerContactModal setIsShowing={setIsShowing} userData={userData} />}
       <S.FlexDiv>
         <S.H1 size="2.4rem">문의/요청</S.H1>
-        <S.H1
-          size="1.4rem"
-          cursor="pointer"
-          onClick={() => {
-            setModalBool(!modalBool);
-          }}
-        >
+        <S.H1 size="1.4rem" cursor="pointer" onClick={toggle}>
           문의하기
         </S.H1>
       </S.FlexDiv>
@@ -131,22 +96,21 @@ const MyBoardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         1:1 문의 (0)
       </S.H1>
-
-      {ContactData.length > 0 ? (
-        ContactData.map((data, idx) => {
+      {contactData.length === 0 ? (
+        <S.H5>등록된 문의가 없습니다.</S.H5>
+      ) : (
+        contactData.length > 0 &&
+        contactData.map((data, idx) => {
           return (
             <ContactQneOnOne
               key={data.num}
-              ContactData={ContactData}
-              contactNum={data.num}
-              fetchContactData={fetchContactData}
-              idx={idx}
               userData={userData}
+              contactData={contactData}
+              contactNum={data.num}
+              idx={idx}
             />
           );
         })
-      ) : (
-        <Loader />
       )}
       <S.BorderDiv />
     </S.Container>

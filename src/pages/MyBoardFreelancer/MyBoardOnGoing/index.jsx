@@ -5,8 +5,12 @@ import OnGoingCard from 'components/Card/OnGoingCard';
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
+import useBeforeUnload from 'hooks/useBeforeUnload';
+
 const MyBoardOnGoing = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
+
+  useBeforeUnload();
 
   return (
     <>

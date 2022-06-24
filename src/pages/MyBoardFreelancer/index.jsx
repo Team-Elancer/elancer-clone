@@ -7,6 +7,7 @@ import * as S from './style';
 import GridBottom from 'components/Modal/GridBottom';
 import LeftMenuMyBoard from 'components/Myboard/LeftMenu/Freelancer';
 
+import useConfirm from 'hooks/useConfirm';
 import useFetchRefreshToken from 'hooks/useFetchRefreshToken';
 
 import Footer from 'layouts/Footer';
@@ -18,6 +19,8 @@ const MyBoardFreelancer = () => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
+  const [contactData, setContactData] = useState([]);
+
   const [detailProfileData, setDetailProfileData] = useState({});
   const [profileSimpleData, setProfileSimpleData] = useState({});
 
@@ -38,34 +41,26 @@ const MyBoardFreelancer = () => {
 
   // =============== Handle Error Code ===============
   const handleErrorCode = (code) => {
-    console.log(code);
+    const handleLogin = () => useFetchRefreshToken();
+    const rejectLogin = () => {
+      window.localStorage.clear();
+      navigate('/login');
+    };
+
+    const confirmLogin = useConfirm(
+      '로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.',
+      handleLogin,
+      rejectLogin,
+    );
+
     if (code === '401') {
       console.log('accessToken 만료');
-
-      if (window.confirm('로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.')) {
-        useFetchRefreshToken();
-      } else {
-        window.localStorage.clear();
-        navigate('/login');
-      }
+      confirmLogin();
     }
 
-    if (code === '402') {
-      console.log('변조된 토큰 에러. 다시 로그인 필요함.');
-      alert('다시 로그인해주세요');
+    if (code === '402') console.log('변조된 토큰 에러.');
 
-      navigate('/login');
-      window.localStorage.clear();
-
-      return;
-    }
-    if (code === '403') {
-      console.log('refresh token 만료 다시 로그인 필요함.');
-      alert('다시 로그인해주세요');
-
-      navigate('/login');
-      window.localStorage.clear();
-    }
+    if (code === '403') console.log('refresh token 만료.');
   };
 
   // =============== fetch account detail (이랜서 계정) && userData ===============
@@ -83,11 +78,11 @@ const MyBoardFreelancer = () => {
         setUserData(fetchedData);
       }
     } catch (err) {
-      alert('다시 로그인해주세요');
-      navigate('/login');
-      window.localStorage.clear();
-
       console.log(err);
+
+      alert('다시 로그인해주세요');
+      window.localStorage.clear();
+      navigate('/login');
     }
   };
 
@@ -223,7 +218,23 @@ const MyBoardFreelancer = () => {
     }
   };
 
-  //  =============== 계정 & 세부정보 & 요약정보 ===============
+  const fetchContactData = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/contacts');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setContactData(data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //  =============== 계정 & 세부정보 & 요약정보 & 문의===============
   useEffect(() => {
     let isMounted = true;
     // fetch account detail (이랜서 계정)
@@ -232,6 +243,8 @@ const MyBoardFreelancer = () => {
     getDetailProfileData();
     //  detail profile (프로필 요약 정보)
     fetchFreelancerSimpleData();
+
+    fetchContactData();
 
     return () => {
       isMounted = false;
@@ -290,6 +303,7 @@ const MyBoardFreelancer = () => {
                 profilePlannerData,
                 profileDesignerData,
                 profileDeveloperData,
+                contactData,
               ]}
             />
           </S.BoardDiv>

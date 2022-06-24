@@ -156,6 +156,23 @@ export const H4 = styled.h4`
   }
 `;
 
+export const H5 = styled.h4`
+  font-size: 1rem;
+  font-weight: 800;
+  padding-top: 0.2rem;
+  margin-top: 2rem;
+
+  color: #4b4b4b;
+
+  @media ${TABLET} {
+    letter-spacing: -0.07rem;
+    line-height: 1rem;
+    padding-top: ${(props) => props.top};
+  }
+  @media ${LAPTOP} {
+  }
+`;
+
 export const RelativeDiv = styled.div`
   position: relative;
   width: 100%;
