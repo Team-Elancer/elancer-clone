@@ -1,3 +1,4 @@
+import { SkeletonTheme } from 'react-loading-skeleton';
 import { Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from 'components/PrivateRoute';
@@ -47,67 +48,69 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="freelancer" element={<MainFreelancer />} />
-        <Route path="enterprise" element={<MainEnterprise />} />
-        <Route path="partner-list" element={<PartnerList />} />
-        <Route path="partner-detail" element={<PartnerDetail />} />
-        <Route path="project-list" element={<ProjectList />} />
-        <Route path="project-detail" element={<ProjectDetail />} />
-        <Route path="login" element={<Login />} />
-        <Route path="project" element={<Project />}>
-          <Route path="newdetail" element={<ProjectNewDetail />} />
-        </Route>
-        <Route path="signup" element={<SignUp />}>
-          <Route path="main" element={<SignUpMain />} />
-          <Route path="freelancer" element={<SignUpFreeLancer />} />
-          <Route path="finish" element={<SignUpFinish />} />
-          <Route path="company" element={<SignUpCompany />} />
-          <Route path="/signup" element={<SignUpMain />} />
-        </Route>
-        <Route
-          path="dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="enterprise" element={<DashBoardEnterprise />} />
-          <Route path="profile" element={<DashBoardProfile />} />
-          <Route path="modify" element={<DashBoardModify />} />
-          <Route path="project" element={<DashBoardProject />} />
-          <Route path="projectadd" element={<DashboardProjectAdd />} />
-          <Route path="scrap" element={<DashBoardScrap />} />
-          <Route path="contact" element={<DashboardContact />} />
-          <Route path="account" element={<DashBoardAccount />} />
-          <Route path="/dashboard" element={<DashBoardEnterprise />} />
-        </Route>
-        <Route
-          path="/myboard-freelancer"
-          element={
-            <PrivateRoute>
-              <MyBoardFreelancer />
-            </PrivateRoute>
-          }
-        >
-          <Route path="ongoing" element={<MyBoardOnGoing />} />
-          <Route path="profile" element={<MyBoardProfile />} />
-          <Route path="profile-modify" element={<MyBoardProfileModify />} />
-          <Route path="project" element={<MyBoardManageProject />} />
-          <Route path="career" element={<MyBoardCareer />} />
-          <Route path="contact" element={<MyBoardContact />} />
-          <Route path="account" element={<MyBoardAccount />} />
-          <Route path="/myboard-freelancer" element={<MyBoardOnGoing />} />
-        </Route>
-        <Route path="/contact-faq" element={<ContactFAQ />}>
-          <Route path="project" element={<FAQLists />} />
-          <Route path="account" element={<FAQLists />} />
-          <Route path="career" element={<FAQLists />} />
-          <Route path="/contact-faq/*" element={<ContactFAQ />} />
-        </Route>
-      </Routes>
+      <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="freelancer" element={<MainFreelancer />} />
+          <Route path="enterprise" element={<MainEnterprise />} />
+          <Route path="partner-list" element={<PartnerList />} />
+          <Route path="partner-detail" element={<PartnerDetail />} />
+          <Route path="project-list" element={<ProjectList />} />
+          <Route path="project-detail" element={<ProjectDetail />} />
+          <Route path="login" element={<Login />} />
+          <Route path="project" element={<Project />}>
+            <Route path="newdetail" element={<ProjectNewDetail />} />
+          </Route>
+          <Route path="signup" element={<SignUp />}>
+            <Route path="main" element={<SignUpMain />} />
+            <Route path="freelancer" element={<SignUpFreeLancer />} />
+            <Route path="finish" element={<SignUpFinish />} />
+            <Route path="company" element={<SignUpCompany />} />
+            <Route path="/signup" element={<SignUpMain />} />
+          </Route>
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="enterprise" element={<DashBoardEnterprise />} />
+            <Route path="profile" element={<DashBoardProfile />} />
+            <Route path="modify" element={<DashBoardModify />} />
+            <Route path="project" element={<DashBoardProject />} />
+            <Route path="projectadd" element={<DashboardProjectAdd />} />
+            <Route path="scrap" element={<DashBoardScrap />} />
+            <Route path="contact" element={<DashboardContact />} />
+            <Route path="account" element={<DashBoardAccount />} />
+            <Route path="/dashboard" element={<DashBoardEnterprise />} />
+          </Route>
+          <Route
+            path="/myboard-freelancer"
+            element={
+              <PrivateRoute>
+                <MyBoardFreelancer />
+              </PrivateRoute>
+            }
+          >
+            <Route path="ongoing" element={<MyBoardOnGoing />} />
+            <Route path="profile" element={<MyBoardProfile />} />
+            <Route path="profile-modify" element={<MyBoardProfileModify />} />
+            <Route path="project" element={<MyBoardManageProject />} />
+            <Route path="career" element={<MyBoardCareer />} />
+            <Route path="contact" element={<MyBoardContact />} />
+            <Route path="account" element={<MyBoardAccount />} />
+            <Route path="/myboard-freelancer" element={<MyBoardOnGoing />} />
+          </Route>
+          <Route path="/contact-faq" element={<ContactFAQ />}>
+            <Route path="project" element={<FAQLists />} />
+            <Route path="account" element={<FAQLists />} />
+            <Route path="career" element={<FAQLists />} />
+            <Route path="/contact-faq/*" element={<ContactFAQ />} />
+          </Route>
+        </Routes>
+      </SkeletonTheme>
     </>
   );
 };
