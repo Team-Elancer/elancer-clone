@@ -3,7 +3,7 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
   width: 360px;
-  height: 440px;
+  height: 240px;
   padding: 1.5rem 1.5rem;
   position: absolute;
   background-color: #e7e7e7;
@@ -12,7 +12,7 @@ export const Container = styled.div`
   top: 10rem;
   @media ${TABLET} {
     width: 780px;
-    height: 750px;
+    height: 450px;
     padding: 3rem 3rem;
   }
   @media ${LAPTOP} {
@@ -34,6 +34,7 @@ export const Title = styled.h1`
   padding-left: 3.7rem;
   @media ${TABLET} {
     font-size: 1.4rem;
+    padding-left: 12.7rem;
   }
   @media ${LAPTOP} {
   }
@@ -71,7 +72,6 @@ export const RequesterUl = styled.ul`
   }
 `;
 export const FirstSubmitDiv = styled.div`
-  border-bottom: 1px solid #c4c4c4;
   padding: 1rem 0;
   text-align: center;
 `;

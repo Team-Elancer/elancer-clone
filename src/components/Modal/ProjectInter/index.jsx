@@ -6,7 +6,7 @@ import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
 
-const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReloading }) => {
+const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading }) => {
   const [checkedInputs, setCheckedInputs] = useState('');
   const [checkedInterview, setCheckedInterview] = useState('');
   const [newArray, setNewArray] = useState([]);
@@ -41,7 +41,6 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
     if (checkUuplicate.includes(Number(newData))) {
       alert('이미 있는 지원자입니다.');
     } else {
-      console.log(newData);
       axios({
         method: 'POST',
         url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/interview-project',
@@ -204,4 +203,4 @@ const ProjectInterview = ({ setInterviewModal, Datas, newReloading, setNewReload
   );
 };
 
-export default ProjectInterview;
+export default ProjectInter;

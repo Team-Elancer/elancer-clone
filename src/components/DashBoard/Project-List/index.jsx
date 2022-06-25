@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import * as S from './style';
 
-import Loading from 'components/Loading';
-import ProjectInterview from 'components/Modal/ProjectInterView';
+import ProjectInter from 'components/Modal/ProjectInter';
+import ProjectWait from 'components/Modal/ProjectWait';
 
-const ProjectList = ({ data, setHello, newReloading, setNewReloading, display = 'none', spanDisplay = 'none' }) => {
+const ProjectList = ({ data, newReloading, setNewReloading, display = 'none', spanDisplay = 'none' }) => {
   const [interviewModal, setInterviewModal] = useState(true);
+  const [waitModal, setWaitModal] = useState(true);
 
   const [newApplicant, setNewApplicant] = useState('');
   const [newInterview, setNewInterview] = useState('');
@@ -25,12 +26,19 @@ const ProjectList = ({ data, setHello, newReloading, setNewReloading, display = 
     <S.Container>
       <S.ColorDiv>
         {interviewModal === false && (
-          <ProjectInterview
-            setHello={setHello}
+          <ProjectInter
             newReloading={newReloading}
             setNewReloading={setNewReloading}
             Datas={data}
             setInterviewModal={setInterviewModal}
+          />
+        )}
+        {waitModal === false && (
+          <ProjectWait
+            newReloading={newReloading}
+            setNewReloading={setNewReloading}
+            Datas={data}
+            setWaitModal={setWaitModal}
           />
         )}
         <S.BetweenDiv>
@@ -138,7 +146,7 @@ const ProjectList = ({ data, setHello, newReloading, setNewReloading, display = 
               display={spanDisplay}
               bgColor="#ff6b6b"
               onClick={() => {
-                setInterviewModal(false);
+                setWaitModal(false);
               }}
             >
               수락한 지원자 {newTurning === undefined ? 0 : newTurning}
