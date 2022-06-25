@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import ProjectList from 'components/DashBoard/Project-List';
 
-const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading }) => {
+const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNewReloading }) => {
   const [newTuning, setNewTuning] = useState('');
   console.log(Datas, newTuning, newReloading);
 
@@ -20,7 +20,17 @@ const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading }) => 
       </S.H1>
       {newTuning !== '' &&
         newTuning.map((data) => {
-          return data.waitFreelancerCount > 0 && <ProjectList data={data} key={data.projectName} spanDisplay="block" />;
+          return (
+            data.waitFreelancerCount > 0 && (
+              <ProjectList
+                data={data}
+                key={data.projectName}
+                newReloading={newReloading}
+                setNewReloading={setNewReloading}
+                spanDisplay="block"
+              />
+            )
+          );
         })}
     </>
   );

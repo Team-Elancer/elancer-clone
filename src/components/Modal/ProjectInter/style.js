@@ -34,6 +34,7 @@ export const Title = styled.h1`
   padding-left: 3.7rem;
   @media ${TABLET} {
     font-size: 1.4rem;
+    padding-left: 10.7rem;
   }
   @media ${LAPTOP} {
   }

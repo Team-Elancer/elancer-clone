@@ -76,6 +76,24 @@ export const ProjectSpan = styled.span`
   @media ${LAPTOP} {
   }
 `;
+export const OtherSpan = styled.span`
+  display: ${(props) => props.spanDisplay};
+  padding: 0.4rem 0.4rem;
+  background-color: ${(props) => props.bgColor};
+  color: white;
+  font-size: 0.2rem;
+  font-weight: 800;
+  border-radius: 0.2rem;
+  margin-right: 0.3rem;
+  cursor: pointer;
+  @media ${TABLET} {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.4rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
 export const DayPTag = styled.p`
   color: #8c8c8c;
   font-weight: 600;
