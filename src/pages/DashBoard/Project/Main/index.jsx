@@ -15,6 +15,7 @@ const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
         Datas.map((data) => {
           return (
             <ProjectList
+              display="block"
               data={data}
               key={data.projectName}
               newReloading={newReloading}

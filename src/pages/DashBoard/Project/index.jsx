@@ -12,19 +12,21 @@ import ProjectTuning from './Tuning';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 const DashBoardProject = () => {
-  const [refresh, setRefresh] = useState(null);
   const [changeList, setChangeList] = useState('');
   const [newReloading, setNewReloading] = useState(true);
+  const [newArray, setNewArray] = useState([]);
+  const [newAxiosUrl, setNewAxiosUrl] = useState('/enterprise-project');
 
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
   useEffect(() => {
-    setaxiosUrl('/enterprise-project');
+    setaxiosUrl(newAxiosUrl);
+    setNewArray(Datas);
     if (Datas === '' || newReloading === false) {
       fetchData();
       setNewReloading(true);
     }
-  }, [axiosUrl, Datas, newReloading]);
+  }, [newAxiosUrl, Datas, newReloading]);
 
   return (
     <>
@@ -35,12 +37,38 @@ const DashBoardProject = () => {
         </Link>
       </S.SpacebetweenDiv>
       <BoardCardSpan setChangeList={setChangeList} />
-      {changeList === '' && <ProjectMain Datas={Datas} newReloading={newReloading} setNewReloading={setNewReloading} />}
-      {changeList === '지원현황' && <ProjectParticipate Datas={Datas} />}
-      {changeList === '인터뷰요청' && <ProjectInterview Datas={Datas} />}
-      {changeList === '조율중' && <ProjectTuning Datas={Datas} />}
-      {changeList === '진행중' && <ProjectProceeding Datas={Datas} />}
-      {changeList === '완료프로젝트' && <ProjectFinish Datas={Datas} />}
+      {changeList === '' && (
+        <ProjectMain Datas={newArray} newReloading={newReloading} setNewReloading={setNewReloading} />
+      )}
+      {changeList === '지원현황' && (
+        <ProjectParticipate
+          Datas={newArray}
+          setNewAxiosUrl={setNewAxiosUrl}
+          newAxiosUrl={newAxiosUrl}
+          setNewReloading={setNewReloading}
+          newReloading={newReloading}
+        />
+      )}
+      {changeList === '인터뷰요청' && (
+        <ProjectInterview
+          Datas={newArray}
+          setNewAxiosUrl={setNewAxiosUrl}
+          newAxiosUrl={newAxiosUrl}
+          setNewReloading={setNewReloading}
+          newReloading={newReloading}
+        />
+      )}
+      {changeList === '조율중' && (
+        <ProjectTuning
+          Datas={newArray}
+          setNewAxiosUrl={setNewAxiosUrl}
+          newAxiosUrl={newAxiosUrl}
+          setNewReloading={setNewReloading}
+          newReloading={newReloading}
+        />
+      )}
+      {changeList === '진행중' && <ProjectProceeding Datas={newArray} />}
+      {changeList === '완료프로젝트' && <ProjectFinish Datas={newArray} />}
     </>
   );
 };
