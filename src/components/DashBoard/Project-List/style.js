@@ -59,6 +59,7 @@ export const FlexDiv = styled.div`
   align-items: center;
 `;
 export const ProjectSpan = styled.span`
+  display: ${(props) => props.display};
   padding: 0.4rem 0.4rem;
   background-color: ${(props) => props.bgColor};
   color: white;

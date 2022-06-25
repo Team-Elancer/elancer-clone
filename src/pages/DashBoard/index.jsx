@@ -13,7 +13,6 @@ import CompanyHeader from 'layouts/Header/Company';
 const Dashboard = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
-  const [hello, setHello] = useState(true);
   const navi = useNavigate();
 
   const authAxios = axios.create({
@@ -69,7 +68,7 @@ const Dashboard = () => {
           <S.FlexDiv>
             <LeftMenu />
             <S.BoardDiv>
-              <Outlet context={[Datas, setDatas, axiosUrl, setaxiosUrl, fetchData, hello, setHello]} />
+              <Outlet context={[Datas, setDatas, axiosUrl, setaxiosUrl, fetchData]} />
             </S.BoardDiv>
           </S.FlexDiv>
         </S.SizeDiv>

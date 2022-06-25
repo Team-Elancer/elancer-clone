@@ -2,18 +2,22 @@ import { useState, useEffect } from 'react';
 import * as S from './style';
 
 import Loading from 'components/Loading';
-import ProjectInterview from 'components/Modal/ProjectInterview';
+import ProjectInterview from 'components/Modal/ProjectInterView';
 
-const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
+const ProjectList = ({ data, setHello, newReloading, setNewReloading, display = 'none', spanDisplay = 'none' }) => {
   const [interviewModal, setInterviewModal] = useState(true);
 
-  const [newApplicant, setNewApplicant] = useState([]);
-  const [newInterview, setNewInterview] = useState([]);
+  const [newApplicant, setNewApplicant] = useState('');
+  const [newInterview, setNewInterview] = useState('');
+  const [newTurning, setNewTurning] = useState('');
 
   useEffect(() => {
-    if (newApplicant.length < 1) {
+    if (newApplicant === '') {
       setNewApplicant(data.applicantList);
       setNewInterview(data.interviewRequestList);
+    }
+    if (newTurning === '') {
+      setNewTurning(data.waitFreelancerCount);
     }
   }, [data]);
 
@@ -113,6 +117,7 @@ const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
           <S.DayPTag>프로젝트를 {data.createdDate}에 등록하였습니다.</S.DayPTag>
           <S.FlexDiv>
             <S.ProjectSpan
+              display={display}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
@@ -121,12 +126,22 @@ const ProjectList = ({ data, setHello, newReloading, setNewReloading }) => {
               지원자 {newApplicant === undefined ? 0 : newApplicant.length}
             </S.ProjectSpan>
             <S.ProjectSpan
+              display={display}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
               }}
             >
               인터뷰요청자 {newInterview === undefined ? 0 : newInterview.length}
+            </S.ProjectSpan>
+            <S.ProjectSpan
+              display={spanDisplay}
+              bgColor="#ff6b6b"
+              onClick={() => {
+                setInterviewModal(false);
+              }}
+            >
+              수락한 지원자 {newTurning === undefined ? 0 : newTurning}
             </S.ProjectSpan>
           </S.FlexDiv>
         </S.BetweenDiv>
