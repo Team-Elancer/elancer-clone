@@ -5,13 +5,23 @@ import * as S from './style';
 import ProjectInter from 'components/Modal/ProjectInter';
 import ProjectWait from 'components/Modal/ProjectWait';
 
-const ProjectList = ({ data, newReloading, setNewReloading, display = 'none', spanDisplay = 'none' }) => {
+const ProjectList = ({
+  data,
+  newReloading,
+  setNewReloading,
+  display = 'none',
+  spanDisplay = 'none',
+  start = 'none',
+  finish = 'none',
+}) => {
   const [interviewModal, setInterviewModal] = useState(true);
   const [waitModal, setWaitModal] = useState(true);
 
   const [newApplicant, setNewApplicant] = useState('');
   const [newInterview, setNewInterview] = useState('');
   const [newTurning, setNewTurning] = useState('');
+
+  console.log(data);
 
   const cancelProject = () => {
     const checkConfrim = window.confirm('삭제하시겠습니까?');
@@ -29,6 +39,76 @@ const ProjectList = ({ data, newReloading, setNewReloading, display = 'none', sp
       })
         .then((res) => {
           alert('프로젝트가 삭제 되었습니다.');
+          setNewReloading(false);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    } else {
+      console.log('취소');
+    }
+  };
+
+  const startProject = () => {
+    if (data.headCount !== data.waitFreelancerCount) {
+      const checkConfrim = window.confirm('프리랜서 목표인원이 채워지지 않았습니다. 그래도 진행하시겠습니까?');
+      if (checkConfrim) {
+        axios({
+          method: 'POST',
+          url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/start-project',
+          headers: {
+            Authorization: `${window.localStorage.accessToken}`,
+          },
+          data: {
+            projectNum: data.projectNum,
+          },
+        })
+          .then((res) => {
+            alert('프로젝트가 진행중으로 변경되었습니다.');
+            setNewReloading(false);
+          })
+          .catch((err) => {
+            alert(err.response.data.message);
+          });
+      } else {
+        console.log('취소');
+      }
+    } else {
+      axios({
+        method: 'POST',
+        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/start-project',
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: data.projectNum,
+        },
+      })
+        .then((res) => {
+          alert('프로젝트가 진행중으로 변경되었습니다.');
+          setNewReloading(false);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    }
+  };
+
+  const endProject = () => {
+    const checkConfrim = window.confirm('프로젝트를 완료하시겠습니까?');
+    if (checkConfrim) {
+      axios({
+        method: 'POST',
+        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/finish-project',
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: data.projectNum,
+        },
+      })
+        .then((res) => {
+          alert('프로젝트가 완료 되었습니다.');
           setNewReloading(false);
         })
         .catch((err) => {
@@ -74,6 +154,16 @@ const ProjectList = ({ data, newReloading, setNewReloading, display = 'none', sp
             등록 취소
           </S.SpanTag>
         </S.BetweenDiv>
+        <S.StartProject start={start}>
+          <S.SpanTag bgColor="#f16300" cursor="pointer" onClick={startProject}>
+            프로젝트 시작
+          </S.SpanTag>
+        </S.StartProject>
+        <S.StartProject start={finish}>
+          <S.SpanTag bgColor="#f16300" cursor="pointer" onClick={endProject}>
+            프로젝트 완료
+          </S.SpanTag>
+        </S.StartProject>
         <S.Title>{data.projectName}</S.Title>
         <S.FlexDiv>
           <S.ProjectSpan bgColor="#6b9bff">

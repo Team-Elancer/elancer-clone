@@ -42,6 +42,12 @@ export const SpanTag = styled.span`
   @media ${LAPTOP} {
   }
 `;
+export const StartProject = styled.div`
+  display: ${(props) => props.start};
+  align-items: center;
+  justify-content: end;
+  margin-top: 0.5rem;
+`;
 export const Title = styled.div`
   margin: 1rem 0 0.5rem 0;
   font-size: 0.85rem;
