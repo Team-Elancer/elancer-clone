@@ -53,9 +53,9 @@ const ContactModal = ({ setModalBool, index, setReLoading }) => {
       },
     })
       .then((res) => {
+        setReLoading(true);
         alert('문의가 등록되었습니다.');
         setModalBool(false);
-        setReLoading(true);
       })
       .catch((err) => {
         console.log(err.message);

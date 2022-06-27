@@ -17,12 +17,13 @@ const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
   const [reLoading, setReLoading] = useState(false);
   const [newArray, setNewArray] = useState([]);
-  const [Datas, setDatas, axiosUrl, setaxiosUrl, changeHello, setChangeHello, fetchData] = useOutletContext();
+  const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
   useEffect(() => {
     setaxiosUrl('/contacts');
     setNewArray(Datas);
-    if (Datas === '' || reLoading) {
+    if (Datas === '' || reLoading === true) {
+      fetchData();
       setReLoading(false);
     }
   }, [Datas, reLoading, axiosUrl]);
@@ -95,8 +96,8 @@ const DashboardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         나의 문의/요청 ({Datas.length})
       </S.H1>
-      {newArray.length > 1 &&
-        newArray.map((data, i) => {
+      {newArray.length > 0 &&
+        newArray.map((data) => {
           return (
             <MyContact
               key={data.num}
@@ -123,7 +124,7 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
   const deleteContact = (e) => {
     e.preventDefault();
     console.log(index);
-    const checkConfrim = window.confirm('삭제하시겠습니까?');
+    const checkConfrim = window.confirm('해당 문의를 삭제하시겠습니까?');
     if (checkConfrim) {
       axios({
         method: 'DELETE',
@@ -136,12 +137,14 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
         },
       })
         .then((res) => {
-          alert('문의가 삭제되었습니다.');
           setReLoading(true);
+          alert('문의가 삭제되었습니다.');
         })
         .catch((err) => {
-          console.log(err.message);
+          alert(err.response.data.message);
         });
+    } else {
+      console.log('취소');
     }
   };
 
