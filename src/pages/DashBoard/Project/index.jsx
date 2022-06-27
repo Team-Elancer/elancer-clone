@@ -67,8 +67,24 @@ const DashBoardProject = () => {
           newReloading={newReloading}
         />
       )}
-      {changeList === '진행중' && <ProjectProceeding Datas={newArray} />}
-      {changeList === '완료프로젝트' && <ProjectFinish Datas={newArray} />}
+      {changeList === '진행중' && (
+        <ProjectProceeding
+          Datas={newArray}
+          setNewAxiosUrl={setNewAxiosUrl}
+          newAxiosUrl={newAxiosUrl}
+          setNewReloading={setNewReloading}
+          newReloading={newReloading}
+        />
+      )}
+      {changeList === '완료프로젝트' && (
+        <ProjectFinish
+          Datas={newArray}
+          setNewAxiosUrl={setNewAxiosUrl}
+          newAxiosUrl={newAxiosUrl}
+          setNewReloading={setNewReloading}
+          newReloading={newReloading}
+        />
+      )}
     </>
   );
 };

@@ -4,7 +4,6 @@ import ProjectList from 'components/DashBoard/Project-List';
 
 const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNewReloading }) => {
   const [newTuning, setNewTuning] = useState('');
-  console.log(Datas, newTuning, newReloading);
 
   useEffect(() => {
     setNewAxiosUrl('/wait-project');
@@ -16,7 +15,7 @@ const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNe
   return (
     <>
       <S.H1 top="4rem" laptoptop="4rem">
-        조율중 프로젝트 리스트 ({newTuning.length})
+        조율중 프로젝트 리스트 ({newTuning !== '' && newTuning.length})
       </S.H1>
       {newTuning !== '' &&
         newTuning.map((data) => {
@@ -28,6 +27,7 @@ const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNe
                 newReloading={newReloading}
                 setNewReloading={setNewReloading}
                 spanDisplay="block"
+                start="flex"
               />
             )
           );
