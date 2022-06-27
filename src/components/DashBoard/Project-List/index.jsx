@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import * as S from './style';
 
@@ -11,6 +12,32 @@ const ProjectList = ({ data, newReloading, setNewReloading, display = 'none', sp
   const [newApplicant, setNewApplicant] = useState('');
   const [newInterview, setNewInterview] = useState('');
   const [newTurning, setNewTurning] = useState('');
+
+  const cancelProject = () => {
+    const checkConfrim = window.confirm('삭제하시겠습니까?');
+    if (checkConfrim) {
+      console.log(data.projectNum);
+      axios({
+        method: 'DELETE',
+        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/project-delete',
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: data.projectNum,
+        },
+      })
+        .then((res) => {
+          alert('프로젝트가 삭제 되었습니다.');
+          setNewReloading(false);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    } else {
+      console.log('취소');
+    }
+  };
 
   useEffect(() => {
     if (newApplicant === '') {
@@ -43,7 +70,7 @@ const ProjectList = ({ data, newReloading, setNewReloading, display = 'none', sp
         )}
         <S.BetweenDiv>
           <S.SpanTag bgColor="#8a7fa4">지원현황 프로젝트</S.SpanTag>
-          <S.SpanTag bgColor="#3c3c3c" cursor="pointer">
+          <S.SpanTag bgColor="#3c3c3c" cursor="pointer" onClick={cancelProject}>
             등록 취소
           </S.SpanTag>
         </S.BetweenDiv>
