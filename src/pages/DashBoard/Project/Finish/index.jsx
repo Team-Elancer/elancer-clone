@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as S from './style';
 import ProjectList from 'components/DashBoard/Project-List';
+import ProjectListSkeleton from 'components/Skeleton/ProjectList';
 
 const ProjectFinish = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNewReloading }) => {
   const [newEnd, setNewEnd] = useState('');
@@ -17,7 +18,7 @@ const ProjectFinish = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNe
       <S.H1 top="4rem" laptoptop="4rem">
         완료된 프로젝트 리스트 ({newEnd !== '' && newEnd.length})
       </S.H1>
-      {newEnd.length > 0 &&
+      {newEnd ? (
         newEnd.map((data) => {
           return (
             <ProjectList
@@ -27,7 +28,10 @@ const ProjectFinish = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNe
               setNewReloading={setNewReloading}
             />
           );
-        })}
+        })
+      ) : (
+        <ProjectListSkeleton />
+      )}
     </>
   );
 };
