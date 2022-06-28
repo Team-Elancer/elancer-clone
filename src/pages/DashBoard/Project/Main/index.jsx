@@ -4,6 +4,7 @@ import * as S from './style';
 
 import ProjectList from 'components/DashBoard/Project-List';
 import Loading from 'components/Loading';
+import ProjectListSkeleton from 'components/Skeleton/ProjectList';
 
 const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
   return (
@@ -11,7 +12,7 @@ const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
       <S.H1 top="4rem" laptoptop="4rem">
         프로젝트 리스트 ({Datas && Datas.length})
       </S.H1>
-      {Datas.length > 0 &&
+      {Datas.length > 0 ? (
         Datas.map((data) => {
           return (
             <ProjectList
@@ -22,7 +23,10 @@ const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
               setNewReloading={setNewReloading}
             />
           );
-        })}
+        })
+      ) : (
+        <ProjectListSkeleton />
+      )}
       <S.H1 top="4rem" laptoptop="4rem">
         헤드헌팅 리스트 (0)
       </S.H1>

@@ -12,6 +12,7 @@ import * as S from './style';
 import Search from 'assets/images/search_big.png';
 import ContactPutModal from 'components/Modal/ContactPut';
 import ContactModal from 'components/Modal/DashBoardContact';
+import MyContactSkeleton from 'components/Skeleton/Contact';
 
 const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
@@ -96,7 +97,7 @@ const DashboardContact = () => {
       <S.H1 top="3rem" size="2.4rem">
         나의 문의/요청 ({Datas.length})
       </S.H1>
-      {newArray.length > 0 &&
+      {newArray.length > 0 ? (
         newArray.map((data) => {
           return (
             <MyContact
@@ -111,7 +112,10 @@ const DashboardContact = () => {
               index={data.num}
             />
           );
-        })}
+        })
+      ) : (
+        <MyContactSkeleton />
+      )}
       <S.BorderDiv display="none" />
     </S.Container>
   );
