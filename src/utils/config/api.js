@@ -2,11 +2,13 @@ import axios from 'axios';
 
 const baseURL = 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080';
 
-const getAxios = (headers) =>
+export const getAxios = (headers) =>
   axios.create({
     baseURL,
     headers,
   });
+
+export const FILTERED_DATA = getAxios({});
 
 export const CLIENT_FREELANCER = getAxios({
   Authorization: `${window.localStorage.accessToken}`,

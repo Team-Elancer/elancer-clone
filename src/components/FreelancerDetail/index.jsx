@@ -6,6 +6,7 @@ import * as S from './style';
 const InfoDetail = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
+  console.log(profileSimpleData);
   const [isCheckedProject, setIsCheckedProject] = useState('#project');
 
   return (
@@ -62,8 +63,8 @@ const InfoDetail = () => {
           {/* ========== 학력 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
-              <S.EcardResumeWork>{profileSimpleData.academicAbilityResponses.length > 0 && '학력'} </S.EcardResumeWork>
-              {profileSimpleData.academicAbilityResponses?.map(
+              <S.EcardResumeWork>{profileSimpleData?.academicAbilityResponses?.length > 0 && '학력'}</S.EcardResumeWork>
+              {profileSimpleData?.academicAbilityResponses?.map(
                 ({ enterSchoolDate, graduationDate, schoolName, schoolLevelDescription }, index) => (
                   <S.ContainerWorkDetail key={`Profile_Education${index + 1}`}>
                     <S.WorkTime>
@@ -82,8 +83,8 @@ const InfoDetail = () => {
           {/* ========== 경력 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
-              <S.EcardResumeWork>경력</S.EcardResumeWork>
-              {profileSimpleData.careerResponses?.map(({ careerStartDate, careerEndDate, companyName }, index) => (
+              <S.EcardResumeWork>{profileSimpleData?.careerResponses?.length > 0 && '경력'}</S.EcardResumeWork>
+              {profileSimpleData?.careerResponses?.map(({ careerStartDate, careerEndDate, companyName }, index) => (
                 <S.ContainerWorkDetail key={`Profile_Career${index + 1}`}>
                   <S.WorkTime>
                     {careerStartDate} {careerStartDate && '~'} {careerEndDate}
@@ -97,7 +98,7 @@ const InfoDetail = () => {
           {/* ========== 자격증 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
-              <S.EcardResumeWork>{profileSimpleData.licenseResponses.length > 0 && '자격증'}</S.EcardResumeWork>
+              <S.EcardResumeWork>{profileSimpleData?.licenseResponses?.length > 0 && '자격증'}</S.EcardResumeWork>
               {profileSimpleData.licenseResponses?.map(({ acquisitionDate, licenseIssuer, licenseTitle }, index) => (
                 <S.ContainerWorkDetail key={`Profile_License${index + 1}`}>
                   <S.WorkTime>{acquisitionDate}</S.WorkTime>
@@ -112,7 +113,7 @@ const InfoDetail = () => {
           {/* ========== 교육 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
-              <S.EcardResumeWork>{profileSimpleData.educationResponses.length > 0 && '교육'}</S.EcardResumeWork>
+              <S.EcardResumeWork>{profileSimpleData?.educationResponses?.length > 0 && '교육'}</S.EcardResumeWork>
               {profileSimpleData.educationResponses?.map(
                 ({ educationEndDate, educationOrganization, educationStartDate, educationTitle }, index) => (
                   <S.ContainerWorkDetail key={`Profile_License${index + 1}`}>
@@ -132,7 +133,7 @@ const InfoDetail = () => {
           {/* ========== 외국어 능력 ========== */}
           <S.ContainerEcardResume>
             <S.EcardResume>
-              <S.EcardResumeWork>{profileSimpleData.languageResponses.length > 0 && '외국어 능력'}</S.EcardResumeWork>
+              <S.EcardResumeWork>{profileSimpleData?.languageResponses?.length > 0 && '외국어 능력'}</S.EcardResumeWork>
               {profileSimpleData.languageResponses?.map(
                 ({ languageName, languageAbilityDescription, languageAbility }, index) => (
                   <S.ContainerWorkDetail key={`Profile_License${index + 1}`}>
@@ -149,11 +150,13 @@ const InfoDetail = () => {
         </>
       )}
 
-      {!profileSimpleData.careerResponses &&
-        !profileSimpleData.academicAbilityResponses &&
-        !profileSimpleData.licenseResponses &&
-        !profileSimpleData.educationResponses &&
-        !profileSimpleData.languageResponses && <S.EcardResumeWork>등록된 이력이 없습니다.</S.EcardResumeWork>}
+      {profileSimpleData?.careerResponses?.length === 0 &&
+        profileSimpleData?.academicAbilityResponses?.length === 0 &&
+        profileSimpleData?.licenseResponses?.length === 0 &&
+        profileSimpleData?.educationResponses?.length === 0 &&
+        profileSimpleData?.languageResponses?.length === 0 && (
+          <S.EcardResumeWork>등록된 이력이 없습니다.</S.EcardResumeWork>
+        )}
     </main>
   );
 };
