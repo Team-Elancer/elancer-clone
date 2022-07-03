@@ -18,10 +18,40 @@ import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 import * as S from 'styles/MainContent';
 
-const ListFreelancer = () => {
+import { FILTERED_DATA } from 'utils/config/api';
+
+const ListFreelancer = ({ togglePositionType }) => {
+  const [developerState, setDeveloperState] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [{ developer, publisher, designer, planner }] = togglePositionType;
+
+  console.log(togglePositionType);
+
+  const getDeveloperLists = async () => {
+    try {
+      const {
+        data: { freelancerSimpleResponseList },
+      } = await FILTERED_DATA(
+        'developers?positionType=DEVELOPER&majorSkillKeywords=java&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=',
+      );
+
+      setDeveloperState(freelancerSimpleResponseList);
+      // setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (developer) {
+      getDeveloperLists();
+    }
+  }, [developer]);
+
   const [page, setPage] = useState(1);
 
-  const { loading, apiData, hasMore } = useInfiniteScroll(page);
+  const { loading, apiData, hasMore } = useInfiniteScroll(page, URL);
 
   const observer = useRef();
 

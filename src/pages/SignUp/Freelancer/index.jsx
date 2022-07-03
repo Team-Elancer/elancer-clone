@@ -158,6 +158,7 @@ const SignUpFreeLancer = () => {
             navi('/login');
           });
         alert('생성이 완료되었습니다.');
+        window.location.reload();
         navi('/signup/finish');
       })
       .catch((err) => {
