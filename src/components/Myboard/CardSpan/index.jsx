@@ -20,7 +20,7 @@ const BoardCardSpan = ({ setChangeList }) => {
       console.log(err.response.data.message);
     }
   };
-  console.log(newDatas);
+
   useEffect(() => {
     if (newDatas === '') {
       fetchData();

@@ -66,7 +66,7 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
       <S.RequesterDiv>
         <S.CountSpan>투입된 프리랜서 {Datas.waitFreelancerCount}명</S.CountSpan>
         {newArray.length === undefined &&
-          newArray.waitFreelancerLists.map((data) => {
+          newArray.waitFreelancerList.map((data) => {
             return (
               <S.Li key={data.num}>
                 <S.InputCheck
