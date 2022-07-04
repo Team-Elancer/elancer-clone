@@ -23,7 +23,7 @@ const ListFreelancer = ({ togglePositionType }) => {
   const [developerState, setDeveloperState] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [{ developer, publisher, designer, planner }] = togglePositionType;
+  const { developer, publisher, designer, planner } = togglePositionType;
 
   console.log(togglePositionType);
 

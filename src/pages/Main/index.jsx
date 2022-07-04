@@ -15,8 +15,6 @@ import SkeletonReProject from 'components/Skeleton/ReProject';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
-import { FILTERED_DATA } from 'utils/config/api';
-
 const Main = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
@@ -37,21 +35,6 @@ const Main = () => {
       console.log(error.message);
     }
   };
-
-  const filterData = async () => {
-    try {
-      const filtered = await FILTERED_DATA(
-        '/developers?positionType=DEVELOPER&majorSkillKeywords=java&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=',
-      );
-      console.log('baseURL', filtered);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    filterData();
-  }, []);
 
   useEffect(() => {
     fetchData();

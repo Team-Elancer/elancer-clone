@@ -14,59 +14,55 @@ const ListPartner = () => {
   const [designerLists, setDesignerLists] = useState(false);
   const [plannerLists, setPlannerLists] = useState(false);
 
-  const [togglePositionType, setTogglePositionType] = useState([
-    {
-      developer: true,
-      publisher: false,
-      designer: false,
-      planner: false,
-    },
-  ]);
+  const [togglePositionType, setTogglePositionType] = useState({
+    developer: true,
+    publisher: false,
+    designer: false,
+    planner: false,
+  });
 
   const handlePositionList = (e) => {
     if (e.target.name === 'developer') {
-      setTogglePositionType([
-        {
-          developer: true,
-          publisher: false,
-          designer: false,
-          planner: false,
-        },
-      ]);
+      setTogglePositionType({
+        developer: true,
+        publisher: false,
+        designer: false,
+        planner: false,
+      });
     }
 
-    if (e.target.name === 'publisher') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: true,
-          designer: false,
-          planner: false,
-        },
-      ]);
-    }
+    // if (e.target.name === 'publisher') {
+    //   setTogglePositionType([
+    //     {
+    //       developer: false,
+    //       publisher: true,
+    //       designer: false,
+    //       planner: false,
+    //     },
+    //   ]);
+    // }
 
-    if (e.target.name === 'designer') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: false,
-          designer: true,
-          planner: false,
-        },
-      ]);
-    }
+    // if (e.target.name === 'designer') {
+    //   setTogglePositionType([
+    //     {
+    //       developer: false,
+    //       publisher: false,
+    //       designer: true,
+    //       planner: false,
+    //     },
+    //   ]);
+    // }
 
-    if (e.target.name === 'planner') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: false,
-          designer: false,
-          planner: true,
-        },
-      ]);
-    }
+    // if (e.target.name === 'planner') {
+    //   setTogglePositionType([
+    //     {
+    //       developer: false,
+    //       publisher: false,
+    //       designer: false,
+    //       planner: true,
+    //     },
+    //   ]);
+    // }
   };
 
   return (
