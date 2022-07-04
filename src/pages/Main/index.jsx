@@ -11,7 +11,6 @@ import GridBottom from 'components/Modal/GridBottom';
 import ReFreelancer from 'components/Re-Freelancer';
 import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
-import SkeletonReProject from 'components/Skeleton/ReProject';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
