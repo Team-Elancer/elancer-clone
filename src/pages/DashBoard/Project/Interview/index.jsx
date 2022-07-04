@@ -6,6 +6,8 @@ import ProjectListSkeleton from 'components/Skeleton/ProjectList';
 const ProjectInterview = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
   const [newData, setNewData] = useState('');
 
+  console.log(newData);
+
   useEffect(() => {
     setNewAxiosUrl('/interview-project');
     if (newAxiosUrl === '/interview-project') {

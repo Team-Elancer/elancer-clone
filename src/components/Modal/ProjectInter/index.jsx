@@ -37,7 +37,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
 
   const addApplicant = () => {
     const newData = checkedInputs.join();
-    const checkUuplicate = newArray.interviewRequestList.map((a) => a.num);
+    const checkUuplicate = newArray.interviewFreelancerList.map((a) => a.num);
     if (checkUuplicate.includes(Number(newData))) {
       alert('이미 있는 지원자입니다.');
     } else {
@@ -127,12 +127,12 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
         <S.Title>프로젝트 지원,인터뷰 요청자</S.Title>
       </S.FlexDiv>
       <S.RequesterDiv>
-        <S.CountSpan>인터뷰 요청자 {Datas.interviewRequestList.length}명</S.CountSpan>
-        {Datas && Datas.interviewRequestList.length < 1 ? (
+        <S.CountSpan>인터뷰 요청자 {Datas.interviewFreelancerList.length}명</S.CountSpan>
+        {Datas && Datas.interviewFreelancerList.length < 1 ? (
           <S.RequesterUl>인터뷰 요청자가 없습니다.</S.RequesterUl>
         ) : null}
         {newArray.length === undefined &&
-          newArray.interviewRequestList.map((data) => {
+          newArray.interviewFreelancerList.map((data) => {
             return (
               <S.Li key={data.num}>
                 <S.InputCheck
@@ -168,11 +168,11 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
         </S.ButtonDiv>
       </S.FirstSubmitDiv>
       <S.RequesterDiv>
-        <S.CountSpan>지원자 {Datas.applicantList.length}명</S.CountSpan>
-        {Datas.applicantList.length < 1 && <S.RequesterUl>인터뷰 요청자가 없습니다.</S.RequesterUl>}
+        <S.CountSpan>지원자 {Datas.applyFreelancerList && Datas.applyFreelancerList.length}명</S.CountSpan>
+        {Datas.applyFreelancerList.length < 1 && <S.RequesterUl>인터뷰 요청자가 없습니다.</S.RequesterUl>}
         <S.Ul>
           {newArray.length === undefined &&
-            newArray.applicantList.map((data) => {
+            newArray.applyFreelancerList.map((data) => {
               return (
                 <S.Li key={data.num}>
                   <S.InputCheck

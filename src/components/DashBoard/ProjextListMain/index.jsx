@@ -5,7 +5,7 @@ import * as S from './style';
 import ProjectInter from 'components/Modal/ProjectInter';
 import ProjectWait from 'components/Modal/ProjectWait';
 
-const ProjectList = ({
+const ProjectListMain = ({
   data,
   newReloading,
   setNewReloading,
@@ -16,11 +16,37 @@ const ProjectList = ({
 }) => {
   const [interviewModal, setInterviewModal] = useState(true);
   const [waitModal, setWaitModal] = useState(true);
-  const [status, setStatus] = useState('지원현황 프로젝트');
+  const [status, setStatus] = useState('');
+  const [statusColor, setStatusColor] = useState('');
 
   const [newApplicant, setNewApplicant] = useState('');
   const [newInterview, setNewInterview] = useState('');
   const [newTurning, setNewTurning] = useState('');
+
+  console.log(data);
+
+  const checkStatus = () => {
+    if (data.projectStatus === 'COMPLETION') {
+      setStatus('완료 프로젝트');
+      setStatusColor('#f16300');
+    }
+    if (data.projectStatus === 'PROGRESS') {
+      setStatus('진행중 프로젝트');
+      setStatusColor('#d56b2d');
+    }
+    if (data.projectStatus === 'REGISTRATION' && data.waitFreelancerList.length > 0) {
+      setStatus('조율중 프로젝트');
+      setStatusColor('#b57360');
+    }
+    if (data.waitFreelancerList.length < 0 && data.interviewFreelancerList.length > 0) {
+      setStatus('인터뷰요청 프로젝트');
+      setStatusColor('#9f7985');
+    }
+    if (data.projectStatus === 'REGISTRATION' && data.interviewFreelancerList.length < 0) {
+      setStatus('지원요청 프로젝트');
+      setStatusColor('#8a7fa4');
+    }
+  };
 
   const cancelProject = () => {
     const checkConfrim = window.confirm('삭제하시겠습니까?');
@@ -119,6 +145,7 @@ const ProjectList = ({
   };
 
   useEffect(() => {
+    checkStatus();
     if (newApplicant === '') {
       setNewApplicant(data.applyFreelancerList);
       setNewInterview(data.interviewFreelancerList);
@@ -148,7 +175,7 @@ const ProjectList = ({
           />
         )}
         <S.BetweenDiv>
-          <S.SpanTag bgColor="#8a7fa4">{status !== '' && status}</S.SpanTag>
+          <S.SpanTag bgColor={statusColor !== '' && statusColor}>{status !== '' && status}</S.SpanTag>
           <S.SpanTag
             spanTag={data.projectStatus === 'COMPLETION' ? 'none' : 'block'}
             bgColor="#3c3c3c"
@@ -281,4 +308,4 @@ const ProjectList = ({
   );
 };
 
-export default ProjectList;
+export default ProjectListMain;

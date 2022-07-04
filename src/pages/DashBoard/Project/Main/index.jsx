@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
-import ProjectList from 'components/DashBoard/Project-List';
+import ProjectListMain from 'components/DashBoard/ProjextListMain';
 import ProjectListSkeleton from 'components/Skeleton/ProjectList';
 
 const ProjectMain = ({ Datas, newReloading, setNewReloading, setNewAxiosUrl, newAxiosUrl }) => {
@@ -23,7 +22,7 @@ const ProjectMain = ({ Datas, newReloading, setNewReloading, setNewAxiosUrl, new
       {newData.length > 0 ? (
         newData.map((data) => {
           return (
-            <ProjectList
+            <ProjectListMain
               display="block"
               data={data}
               key={data.projectName}
