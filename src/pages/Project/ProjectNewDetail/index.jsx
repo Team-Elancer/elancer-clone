@@ -86,7 +86,7 @@ const ProjectNewDetail = () => {
         Authorization: `${window.localStorage.accessToken}`,
       },
       data: {
-        projectNum: 25,
+        projectNum: 3,
       },
     })
       .then((res) => {

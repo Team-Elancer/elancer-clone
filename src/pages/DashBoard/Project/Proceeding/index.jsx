@@ -7,6 +7,8 @@ import ProjectListSkeleton from 'components/Skeleton/ProjectList';
 const ProjectProceeding = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNewReloading }) => {
   const [newProcessing, setNewProcessing] = useState('');
 
+  console.log(newProcessing);
+
   useEffect(() => {
     setNewAxiosUrl('/processing-project');
     if (newAxiosUrl === '/processing-project') {
