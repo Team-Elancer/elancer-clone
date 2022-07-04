@@ -1,6 +1,32 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import * as S from './style';
 
 const BoardCardSpan = ({ setChangeList }) => {
+  const [newDatas, setNewDatas] = useState('');
+  const authAxios = axios.create({
+    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
+    headers: {
+      Authorization: `${window.localStorage.accessToken}`,
+    },
+  });
+
+  const fetchData = async () => {
+    try {
+      const res = await authAxios('/project-list-count');
+      const data = await res.data;
+      setNewDatas(data);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
+  console.log(newDatas);
+  useEffect(() => {
+    if (newDatas === '') {
+      fetchData();
+    }
+  }, [newDatas]);
+
   return (
     <S.OverFlowDiv>
       <S.FlexDiv width="129%">
@@ -16,7 +42,7 @@ const BoardCardSpan = ({ setChangeList }) => {
           id="지원현황"
           onClick={(e) => setChangeList(e.target.id)}
         >
-          지원 현황 0
+          지원 현황 {newDatas !== '' && newDatas.applyProjectCount}
         </S.CardSpan>
         <S.CardSpan
           textSize="1.1rem"
@@ -27,7 +53,7 @@ const BoardCardSpan = ({ setChangeList }) => {
           id="인터뷰요청"
           onClick={(e) => setChangeList(e.target.id)}
         >
-          인터뷰 요청 0
+          인터뷰 요청 {newDatas !== '' && newDatas.interviewProjectCount}
         </S.CardSpan>
         <S.CardSpan
           textSize="1.1rem"
@@ -38,7 +64,7 @@ const BoardCardSpan = ({ setChangeList }) => {
           id="조율중"
           onClick={(e) => setChangeList(e.target.id)}
         >
-          조율중 0
+          조율중 {newDatas !== '' && newDatas.waitProjectCount}
         </S.CardSpan>
         <S.CardSpan
           textSize="1.1rem"
@@ -49,7 +75,7 @@ const BoardCardSpan = ({ setChangeList }) => {
           id="진행중"
           onClick={(e) => setChangeList(e.target.id)}
         >
-          진행중 0
+          진행중 {newDatas !== '' && newDatas.processingProjectCount}
         </S.CardSpan>
         <S.CardSpan
           textSize="1.1rem"
@@ -60,7 +86,7 @@ const BoardCardSpan = ({ setChangeList }) => {
           id="완료프로젝트"
           onClick={(e) => setChangeList(e.target.id)}
         >
-          완료 프로젝트 0
+          완료 프로젝트{newDatas !== '' && newDatas.completionProjectCount}
         </S.CardSpan>
       </S.FlexDiv>
     </S.OverFlowDiv>

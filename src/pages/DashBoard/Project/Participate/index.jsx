@@ -11,8 +11,8 @@ const ProjectParticipate = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
   console.log(newData);
 
   useEffect(() => {
-    setNewAxiosUrl('/enterprise-project');
-    if (newAxiosUrl === '/enterprise-project') {
+    setNewAxiosUrl('/apply-project');
+    if (newAxiosUrl === '/apply-project') {
       setNewData(Datas);
     }
   }, [Datas]);
@@ -20,11 +20,11 @@ const ProjectParticipate = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
   return (
     <>
       <S.H1 top="4rem" laptoptop="4rem">
-        지원현황 프로젝트 리스트 ({newData !== '' && newData.filter((data) => data.applicantList.length > 0).length})
+        지원현황 프로젝트 리스트 ({newData.length !== undefined ? newData.length : 0})
       </S.H1>
       {newData ? (
         newData.map((data) => {
-          return data.applicantList.length > 0 && <ProjectList data={data} key={data.projectName} display="block" />;
+          return <ProjectList data={data} key={data.projectName} display="block" />;
         })
       ) : (
         <ProjectListSkeleton />

@@ -38,7 +38,13 @@ const DashBoardProject = () => {
       </S.SpacebetweenDiv>
       <BoardCardSpan setChangeList={setChangeList} />
       {changeList === '' && (
-        <ProjectMain Datas={newArray} newReloading={newReloading} setNewReloading={setNewReloading} />
+        <ProjectMain
+          Datas={newArray}
+          setNewAxiosUrl={setNewAxiosUrl}
+          newAxiosUrl={newAxiosUrl}
+          setNewReloading={setNewReloading}
+          newReloading={newReloading}
+        />
       )}
       {changeList === '지원현황' && (
         <ProjectParticipate

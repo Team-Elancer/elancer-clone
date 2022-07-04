@@ -7,8 +7,8 @@ const ProjectInterview = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
   const [newData, setNewData] = useState('');
 
   useEffect(() => {
-    setNewAxiosUrl('/enterprise-project');
-    if (newAxiosUrl === '/enterprise-project') {
+    setNewAxiosUrl('/interview-project');
+    if (newAxiosUrl === '/interview-project') {
       setNewData(Datas);
     }
   }, [Datas]);
@@ -16,14 +16,11 @@ const ProjectInterview = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
   return (
     <>
       <S.H1 top="4rem" laptoptop="4rem">
-        인터뷰요청 프로젝트 리스트 (
-        {newData !== '' && newData.filter((data) => data.interviewRequestList.length > 0).length})
+        인터뷰요청 프로젝트 리스트 ({newData.length})
       </S.H1>
       {newData ? (
         newData.map((data) => {
-          return (
-            data.interviewRequestList.length > 0 && <ProjectList data={data} key={data.projectName} display="block" />
-          );
+          return <ProjectList data={data} key={data.projectName} display="block" />;
         })
       ) : (
         <ProjectListSkeleton />
