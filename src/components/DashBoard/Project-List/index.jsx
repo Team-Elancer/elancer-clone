@@ -121,8 +121,8 @@ const ProjectList = ({
 
   useEffect(() => {
     if (newApplicant === '') {
-      setNewApplicant(data.applicantList);
-      setNewInterview(data.interviewRequestList);
+      setNewApplicant(data.applyFreelancerList);
+      setNewInterview(data.interviewFreelancerList);
     }
     if (newTurning === '') {
       setNewTurning(data.waitFreelancerCount);

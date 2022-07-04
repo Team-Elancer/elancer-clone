@@ -3,17 +3,25 @@ import { useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
 import ProjectList from 'components/DashBoard/Project-List';
-import Loading from 'components/Loading';
 import ProjectListSkeleton from 'components/Skeleton/ProjectList';
 
-const ProjectMain = ({ Datas, newReloading, setNewReloading }) => {
+const ProjectMain = ({ Datas, newReloading, setNewReloading, setNewAxiosUrl, newAxiosUrl }) => {
+  const [newData, setNewData] = useState('');
+
+  useEffect(() => {
+    setNewAxiosUrl('/enterprise-project');
+    if (newAxiosUrl === '/enterprise-project') {
+      setNewData(Datas);
+    }
+  }, [Datas]);
+
   return (
     <>
       <S.H1 top="4rem" laptoptop="4rem">
         프로젝트 리스트 ({Datas && Datas.length})
       </S.H1>
-      {Datas.length > 0 ? (
-        Datas.map((data) => {
+      {newData.length > 0 ? (
+        newData.map((data) => {
           return (
             <ProjectList
               display="block"
