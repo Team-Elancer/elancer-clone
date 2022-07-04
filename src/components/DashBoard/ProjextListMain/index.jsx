@@ -5,15 +5,7 @@ import * as S from './style';
 import ProjectInter from 'components/Modal/ProjectInter';
 import ProjectWait from 'components/Modal/ProjectWait';
 
-const ProjectListMain = ({
-  data,
-  newReloading,
-  setNewReloading,
-  display = 'none',
-  spanDisplay = 'none',
-  start = 'none',
-  finish = 'none',
-}) => {
+const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', finish = 'none' }) => {
   const [interviewModal, setInterviewModal] = useState(true);
   const [waitModal, setWaitModal] = useState(true);
   const [status, setStatus] = useState('');
@@ -22,8 +14,6 @@ const ProjectListMain = ({
   const [newApplicant, setNewApplicant] = useState('');
   const [newInterview, setNewInterview] = useState('');
   const [newTurning, setNewTurning] = useState('');
-
-  console.log(data);
 
   const checkStatus = () => {
     if (data.projectStatus === 'COMPLETION') {
@@ -151,7 +141,7 @@ const ProjectListMain = ({
       setNewInterview(data.interviewFreelancerList);
     }
     if (newTurning === '') {
-      setNewTurning(data.waitFreelancerCount);
+      setNewTurning(data.waitFreelancerList.length);
     }
   }, [data]);
 
@@ -218,8 +208,35 @@ const ProjectListMain = ({
             </S.PTag>
           </S.RelativeLi>
           <S.RelativeLi>
-            <S.BorderTopDiv type="solid" color="#e1e1e1" left="2.88rem" laptopLeft="7.6rem" />
-            <S.Circlediv color="#e1e1e1" left="2.1rem" laptopLeft="6rem" />
+            <S.BorderTopDiv
+              type={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.applyFreelancerList.length > 0
+                  ? 'dotted'
+                  : 'solid'
+              }
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.applyFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="2.88rem"
+              laptopLeft="7.6rem"
+            />
+            <S.Circlediv
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.applyFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="2.1rem"
+              laptopLeft="6rem"
+            />
             <S.PTag left="1.45rem" laptopLeft="5.1rem">
               이력서
               <br />
@@ -227,8 +244,35 @@ const ProjectListMain = ({
             </S.PTag>
           </S.RelativeLi>
           <S.RelativeLi>
-            <S.BorderTopDiv type="solid" color="#e1e1e1" left="5.75rem" laptopLeft="14.3rem" />
-            <S.Circlediv color="#e1e1e1" left="4.95rem" laptopLeft="12.7rem" />
+            <S.BorderTopDiv
+              type={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.interviewFreelancerList.length > 0
+                  ? 'dotted'
+                  : 'solid'
+              }
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.interviewFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="5.75rem"
+              laptopLeft="14.3rem"
+            />
+            <S.Circlediv
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.interviewFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="4.95rem"
+              laptopLeft="12.7rem"
+            />
             <S.PTag left="4.45rem" laptopLeft="11.8rem">
               인터뷰
               <br />
@@ -236,8 +280,35 @@ const ProjectListMain = ({
             </S.PTag>
           </S.RelativeLi>
           <S.RelativeLi>
-            <S.BorderTopDiv type="solid" color="#e1e1e1" left="8.6rem" laptopLeft="20.1rem" />
-            <S.Circlediv color="#e1e1e1" left="7.8rem" laptopLeft="18.5rem" />
+            <S.BorderTopDiv
+              type={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.interviewFreelancerList.length > 0
+                  ? 'dotted'
+                  : 'solid'
+              }
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.interviewFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="8.6rem"
+              laptopLeft="20.1rem"
+            />
+            <S.Circlediv
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.interviewFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="7.8rem"
+              laptopLeft="18.5rem"
+            />
             <S.PTag left="7.35rem" laptopLeft="17.7rem">
               인터뷰
               <br />
@@ -247,8 +318,35 @@ const ProjectListMain = ({
             </S.PTag>
           </S.RelativeLi>
           <S.RelativeLi>
-            <S.BorderTopDiv type="solid" color="#e1e1e1" left="11.5rem" laptopLeft="26.8rem" />
-            <S.Circlediv color="#e1e1e1" left="10.65rem" laptopLeft="25.2rem" />
+            <S.BorderTopDiv
+              type={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.waitFreelancerList.length > 0
+                  ? 'dotted'
+                  : 'solid'
+              }
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.waitFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="11.5rem"
+              laptopLeft="26.8rem"
+            />
+            <S.Circlediv
+              color={
+                data.projectStatus === 'COMPLETION' ||
+                data.projectStatus === 'PROGRESS' ||
+                data.waitFreelancerList.length > 0
+                  ? '#f16300'
+                  : '#e1e1e1'
+              }
+              left="10.65rem"
+              laptopLeft="25.2rem"
+            />
             <S.PTag left="10.1rem" laptopLeft="24.4rem">
               투입
               <br />
@@ -256,14 +354,27 @@ const ProjectListMain = ({
             </S.PTag>
           </S.RelativeLi>
           <S.RelativeLi>
-            <S.BorderTopDiv type="solid" color="#e1e1e1" left="14.4rem" laptopLeft="33.5rem" />
-            <S.Circlediv color="#e1e1e1" left="13.55rem" laptopLeft="32rem" />
+            <S.BorderTopDiv
+              type={data.projectStatus === 'COMPLETION' || data.projectStatus === 'PROGRESS' ? 'dotted' : 'solid'}
+              color={data.projectStatus === 'COMPLETION' || data.projectStatus === 'PROGRESS' ? '#f16300' : '#e1e1e1'}
+              left="14.4rem"
+              laptopLeft="33.5rem"
+            />
+            <S.Circlediv
+              color={data.projectStatus === 'COMPLETION' || data.projectStatus === 'PROGRESS' ? '#f16300' : '#e1e1e1'}
+              left="13.55rem"
+              laptopLeft="32rem"
+            />
             <S.PTag left="12.9rem" laptopLeft="31.1rem">
               진행중
             </S.PTag>
           </S.RelativeLi>
           <S.RelativeLi>
-            <S.Circlediv color="#e1e1e1" left="16.45rem" laptopLeft="38.6rem" />
+            <S.Circlediv
+              color={data.projectStatus === 'COMPLETION' ? '#f16300' : '#e1e1e1'}
+              left="16.45rem"
+              laptopLeft="38.6rem"
+            />
             <S.PTag left="15.9rem" laptopLeft="37.8rem">
               완료
             </S.PTag>
@@ -275,7 +386,7 @@ const ProjectListMain = ({
             felxDisplay={data.projectStatus === 'COMPLETION' || data.projectStatus === 'PROGRESS' ? 'none' : 'flex'}
           >
             <S.ProjectSpan
-              display={display}
+              display={data.waitFreelancerList.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
@@ -284,7 +395,7 @@ const ProjectListMain = ({
               지원자 {newApplicant === undefined ? 0 : newApplicant.length}
             </S.ProjectSpan>
             <S.ProjectSpan
-              display={display}
+              display={data.waitFreelancerList.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
@@ -293,7 +404,7 @@ const ProjectListMain = ({
               인터뷰요청자 {newInterview === undefined ? 0 : newInterview.length}
             </S.ProjectSpan>
             <S.ProjectSpan
-              display={spanDisplay}
+              display={data.waitFreelancerList.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setWaitModal(false);

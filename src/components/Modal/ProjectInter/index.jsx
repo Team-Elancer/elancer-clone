@@ -146,7 +146,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
                   {data.interviewStatus === 'WAITING' ? '요청' : '수락'}
                 </S.ViewBlock>
                 <S.Name>
-                  {data.name}[{data.positionType}] 경력{data.careerYear}년
+                  {data.name}[{data.positionType}] 경력{data.careerYear}년 {data.phone}
                 </S.Name>
               </S.Li>
             );
