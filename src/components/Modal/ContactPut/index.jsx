@@ -5,6 +5,7 @@ import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
+import { BaseUrl, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ContactPutModal = ({ setReLoading, setPutModalBool, index, NumTitle, NumContent }) => {
   const domNode = useCloseOutside(() => {
@@ -13,16 +14,9 @@ const ContactPutModal = ({ setReLoading, setPutModalBool, index, NumTitle, NumCo
 
   const [userData, setUserData] = useState('');
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
   const fetchData = async () => {
     try {
-      const res = await authAxios('/enterprise');
+      const res = await CLIENT_FREELANCER('/enterprise');
       const data = await res.data;
       setUserData(data);
     } catch (err) {
@@ -42,7 +36,7 @@ const ContactPutModal = ({ setReLoading, setPutModalBool, index, NumTitle, NumCo
     console.log(index, contactTitle, contactContent);
     axios({
       method: 'PUT',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-cover',
+      url: `${BaseUrl}/contact-cover`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

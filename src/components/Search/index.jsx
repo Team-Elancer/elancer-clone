@@ -11,7 +11,7 @@ const SearchBar = () => {
       </S.FaBarDiv>
       <S.InputForm>
         <S.Input
-          placeholder="어떤 프로젝트를 찾으세요? 
+          placeholder="원하시는 언어를 영어로 검색해주세요. 
     "
         />
         <S.Img src={zoom} alt="zoom" />

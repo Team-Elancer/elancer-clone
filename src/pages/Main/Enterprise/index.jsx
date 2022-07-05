@@ -18,6 +18,7 @@ import ReFreelancer from 'components/Re-Freelancer';
 import EnterpriseSearchBar from 'components/Search/Enterprise';
 import Footer from 'layouts/Footer';
 import CompanyHeader from 'layouts/Header/Company';
+import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const MainEnterprise = () => {
   const navi = useNavigate();
@@ -84,25 +85,11 @@ const MainEnterprise = () => {
   };
   const [Datas, setUserDatas] = useState({});
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-  const refreshAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-      RefreshAuthorization: `${window.localStorage.refreshToken}`,
-    },
-  });
-
   const fetchData = async () => {
     try {
-      const res = await authAxios('/enterprise');
+      const res = await CLIENT_FREELANCER('/enterprise');
       if (res.data.code === '401') {
-        const res = await refreshAxios('/reissue');
+        const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
         window.localStorage.setItem('accessToken', res.data.accessToken);
         window.localStorage.setItem('refreshToken', res.data.refreshToken);
       }
@@ -428,7 +415,7 @@ const MainEnterprise = () => {
         <S.JobUl>
           {fullStackArray.map((data) => {
             return (
-              <S.LiTag right="1rem">
+              <S.LiTag right="1rem" key={data}>
                 <S.TypeInput
                   bgColor={fullStack === data ? '#e7e7e7' : 'white'}
                   brColor={fullStack === data ? 'black' : '#d7d7d7'}
@@ -504,9 +491,9 @@ const DevelopSkils = ({ skillState, skillFunction }) => {
 
   return (
     <>
-      {DevelopArray.map((data) => {
+      {DevelopArray.map((data, i) => {
         return (
-          <S.LiTag>
+          <S.LiTag key={data}>
             <S.Input
               bgColor={skillState.includes(data) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(data) ? 'black' : '#d7d7d7'}
@@ -546,7 +533,7 @@ const PublisingSkils = ({ skillState, skillFunction }) => {
     <>
       {PublisingArray.map((data) => {
         return (
-          <S.LiTag>
+          <S.LiTag key={data}>
             <S.Input
               bgColor={skillState.includes(data) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(data) ? 'black' : '#d7d7d7'}

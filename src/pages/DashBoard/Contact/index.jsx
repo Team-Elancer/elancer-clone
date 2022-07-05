@@ -13,6 +13,7 @@ import Search from 'assets/images/search_big.png';
 import ContactPutModal from 'components/Modal/ContactPut';
 import ContactModal from 'components/Modal/DashBoardContact';
 import MyContactSkeleton from 'components/Skeleton/Contact';
+import { BaseUrl } from 'utils/config/api';
 
 const DashboardContact = () => {
   const [modalBool, setModalBool] = useState(false);
@@ -132,7 +133,7 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
     if (checkConfrim) {
       axios({
         method: 'DELETE',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-delete',
+        url: `${BaseUrl}/contact-delete`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },

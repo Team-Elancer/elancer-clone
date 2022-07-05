@@ -11,6 +11,7 @@ import Logo from 'assets/images/logo-none.png';
 import 'react-datepicker/dist/react-datepicker.css';
 import SubmitButton from 'components/Button/SubmitButton';
 import PostCode from 'components/DashBoard/PostCode';
+import { BaseUrl } from 'utils/config/api';
 
 const DashboardProjectAdd = () => {
   const navi = useNavigate();
@@ -134,7 +135,7 @@ const DashboardProjectAdd = () => {
     console.log(bgColor);
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/project-save',
+      url: `${BaseUrl}/project-save`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

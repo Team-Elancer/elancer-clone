@@ -6,20 +6,14 @@ import * as S from './style';
 
 import Back from 'assets/images/arrowback.png';
 import CompanyAccount from 'components/DashBoard/Company-Account';
+import { BaseUrl, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const DashBoardAccount = () => {
   const [userData, setUserData] = useState('');
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
   const fetchData = async () => {
     try {
-      const res = await authAxios('/enterprise');
+      const res = await CLIENT_FREELANCER('/enterprise');
       const Data = await res.data;
       setUserData(Data);
     } catch (err) {
@@ -56,7 +50,7 @@ const DashBoardAccount = () => {
     e.preventDefault();
     axios({
       method: 'PUT',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
+      url: `${BaseUrl}/enterprise`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },
@@ -77,7 +71,7 @@ const DashBoardAccount = () => {
     if (checkConfrim) {
       axios({
         method: 'DELETE',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
+        url: `${BaseUrl}/enterprise`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },

@@ -9,34 +9,20 @@ import GridBottom from 'components/Modal/GridBottom';
 import LeftMenu from 'components/Myboard/LeftMenu';
 import Footer from 'layouts/Footer';
 import CompanyHeader from 'layouts/Header/Company';
+import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const Dashboard = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
   const navi = useNavigate();
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
-  const refreshAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-      RefreshAuthorization: `${window.localStorage.refreshToken}`,
-    },
-  });
-
   const fetchData = async () => {
     try {
       if (axiosUrl) {
-        const res = await authAxios(axiosUrl);
+        const res = await CLIENT_FREELANCER(axiosUrl);
         if (res.data.code === '401') {
           console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
-          const res = await refreshAxios('/reissue');
+          const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
           window.localStorage.setItem('accessToken', res.data.accessToken);
           window.localStorage.setItem('refreshToken', res.data.refreshToken);
           console.log('이상무');

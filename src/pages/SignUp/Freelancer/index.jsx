@@ -9,6 +9,8 @@ import OpenEye from 'assets/images/openEye.png';
 import Profile from 'assets/images/signin-profile.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import InlineBlock from 'components/Inline-Block';
+import { BaseUrl } from 'utils/config/api';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 const SignUpFreeLancer = () => {
@@ -76,10 +78,7 @@ const SignUpFreeLancer = () => {
     reader.readAsDataURL(file);
 
     try {
-      const res = await axios.post(
-        'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload',
-        formData,
-      );
+      const res = await axios.post(`${BaseUrl}/file/upload`, formData);
       console.log(res);
     } catch (err) {
       console.log(err);
@@ -123,7 +122,7 @@ const SignUpFreeLancer = () => {
 
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
+      url: `${BaseUrl}/freelancer`,
       data: {
         memberName: name,
         memberId: id,
@@ -141,7 +140,7 @@ const SignUpFreeLancer = () => {
       .then((res) => {
         axios({
           method: 'POST',
-          url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
+          url: `${BaseUrl}/login`,
           data: {
             userId: id,
             password: passwordConfirm,

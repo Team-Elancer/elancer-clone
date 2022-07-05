@@ -7,6 +7,7 @@ import Cancel from 'assets/images/cancel-dark.png';
 import Loader from 'components/Loader';
 
 import useCloseOutside from 'hooks/useCloseOutside';
+import { BaseUrl } from 'utils/config/api';
 
 const ModalFreelancerContactModal = ({ setIsShowing, isSetEdingShowing, contactData, contactNum, userData }) => {
   const domNode = useCloseOutside(() => {
@@ -27,7 +28,7 @@ const ModalFreelancerContactModal = ({ setIsShowing, isSetEdingShowing, contactD
 
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-save',
+      url: `${BaseUrl}/contact-save`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },
@@ -50,7 +51,7 @@ const ModalFreelancerContactModal = ({ setIsShowing, isSetEdingShowing, contactD
 
     axios({
       method: 'PUT',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-cover',
+      url: `${BaseUrl}/contact-cover`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

@@ -5,6 +5,7 @@ import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
+import { BaseUrl } from 'utils/config/api';
 
 const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading }) => {
   const [checkedInputs, setCheckedInputs] = useState('');
@@ -43,7 +44,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
     } else {
       axios({
         method: 'POST',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/interview-project',
+        url: `${BaseUrl}/interview-project`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },
@@ -68,7 +69,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
     const newData = checkedInterview.join();
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/wait-project',
+      url: `${BaseUrl}/wait-project`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },
@@ -91,7 +92,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
     const newData = checkedInterview.join();
     axios({
       method: 'DELETE',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/reject-interview-project',
+      url: `${BaseUrl}/reject-interview-project`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

@@ -5,6 +5,7 @@ import * as S from './style';
 import Back from 'assets/images/arrowback.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import SubmitButton from 'components/Button/SubmitButton';
+import { BaseUrl } from 'utils/config/api';
 
 const DashBoardModify = () => {
   const [check, setCheck] = useState(true);
@@ -99,7 +100,7 @@ const DashBoardModify = () => {
     e.preventDefault();
     axios({
       method: 'PUT',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise/profile',
+      url: `${BaseUrl}/enterprise/profile`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

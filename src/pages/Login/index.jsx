@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import GoogleLogin from 'react-google-login';
+import { useState } from 'react';
 import { ImBubble } from 'react-icons/im';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -13,6 +12,7 @@ import GridBottom from 'components/Modal/GridBottom';
 import MainMenu from 'components/Modal/MainMenu';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
+import { BaseUrl } from 'utils/config/api';
 
 const Login = () => {
   axios.defaults.withCredentials = true;
@@ -35,7 +35,7 @@ const Login = () => {
     event.preventDefault();
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
+      url: `${BaseUrl}/login`,
       data: {
         userId: Id,
         password: userPassword,
@@ -64,37 +64,30 @@ const Login = () => {
       });
   };
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
+  // const googleSuccess = async (a) => {
+  //   // const pageUrl =
+  //   //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google';
+  //   // document.location.href = pageUrl;
+  //   axios({
+  //     method: 'POST',
+  //     url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
+  //     headers: { 'Access-Control-Allow-Origin': '*' },
+  //     data: {
+  //       data: a,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       navi('http://localhost:3000/');
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       return alert(err.message);
+  //     });
+  // };
 
-  const googleSuccess = async (a) => {
-    // const pageUrl =
-    //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google';
-    // document.location.href = pageUrl;
-    axios({
-      method: 'POST',
-      url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      data: {
-        data: a,
-      },
-    })
-      .then((res) => {
-        navi('http://localhost:3000/');
-        console.log(res);
-      })
-      .catch((err) => {
-        return alert(err.message);
-      });
-  };
-
-  const googleFail = (respone) => {
-    console.log(respone);
-  };
+  // const googleFail = (respone) => {
+  //   console.log(respone);
+  // };
 
   return (
     <S.Container>

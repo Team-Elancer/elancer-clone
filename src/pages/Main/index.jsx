@@ -13,20 +13,17 @@ import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
+import { FILTERED_DATA } from 'utils/config/api';
 
 const Main = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
   const navi = useNavigate();
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-  });
-
   const fetchData = async () => {
     try {
       if (axiosUrl) {
-        const res = await authAxios(axiosUrl);
+        const res = await FILTERED_DATA(axiosUrl);
         const data = await res.data;
         setDatas(data);
       }
