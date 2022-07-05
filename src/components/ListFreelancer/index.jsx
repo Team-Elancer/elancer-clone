@@ -23,7 +23,7 @@ const ListFreelancer = ({ togglePositionType }) => {
   const [developerState, setDeveloperState] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { developer, publisher, designer, planner } = togglePositionType;
+  const [{ developer, publisher, designer, planner }] = togglePositionType;
 
   console.log(togglePositionType);
 
@@ -78,7 +78,9 @@ const ListFreelancer = ({ togglePositionType }) => {
               </S.ContainerSwiper>
               <S.ContainerExperience>
                 <S.ContainerNameHeart>
-                  <S.FreelancerName>{list.freelancerName} | 10년 경력 개발자</S.FreelancerName>
+                  <S.FreelancerName>
+                    {list.freelancerName} | {list.careerYear}년 경력 개발자
+                  </S.FreelancerName>
                   <S.FreelancerHeart>♡</S.FreelancerHeart>
                 </S.ContainerNameHeart>
                 <S.FreelancerTitle>{list.greeting}</S.FreelancerTitle>

@@ -21,6 +21,7 @@ const MyBoardProfile = () => {
     profileDeveloperData,
   ] = useOutletContext();
 
+  console.log(profileSimpleData);
   useBeforeUnload();
 
   return (
@@ -83,14 +84,9 @@ const MyBoardProfile = () => {
                   </S.ContainerEcardDescription>
                 </S.EcardProfileLeft>
                 <S.ContainerStackBtn>
-                  <S.StackBtn>MySql</S.StackBtn>
-                  <S.StackBtn>java</S.StackBtn>
-                  <S.StackBtn>Oracle</S.StackBtn>
-                  <S.StackBtn>Spring</S.StackBtn>
-                  <S.StackBtn>jquery</S.StackBtn>
-                  <S.StackBtn>javacript</S.StackBtn>
-                  <S.StackBtn>front-end</S.StackBtn>
-                  <S.StackBtn>node.js</S.StackBtn>
+                  {profileSimpleData?.allSkillNames.map((stack) => (
+                    <S.StackBtn>{stack}</S.StackBtn>
+                  ))}
                 </S.ContainerStackBtn>
               </S.ContainerEcardProfile>
             </section>

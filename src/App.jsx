@@ -16,6 +16,7 @@ import DashBoardProfile from 'pages/DashBoard/Profile';
 import DashBoardProject from 'pages/DashBoard/Project';
 import DashboardProjectAdd from 'pages/DashBoard/ProjectAdd';
 import DashBoardScrap from 'pages/DashBoard/Scrap';
+import ErrorPage from 'pages/ErrorPage';
 
 import Login from 'pages/Login';
 import Main from 'pages/Main';
@@ -42,6 +43,7 @@ import SignUpCompany from 'pages/SignUp/Company';
 import SignUpFinish from 'pages/SignUp/Finish';
 import SignUpFreeLancer from 'pages/SignUp/Freelancer';
 import SignUpMain from 'pages/SignUp/Main';
+
 import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
@@ -109,6 +111,7 @@ const App = () => {
             <Route path="career" element={<FAQLists />} />
             <Route path="/contact-faq/*" element={<ContactFAQ />} />
           </Route>
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </SkeletonTheme>
     </>
