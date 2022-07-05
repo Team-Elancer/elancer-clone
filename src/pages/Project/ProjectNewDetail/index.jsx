@@ -8,6 +8,7 @@ import ProjectButton from 'components/Button/ProjectButton';
 import ProjectDetailModal from 'components/Modal/ProjectDetail';
 import ShareModal from 'components/Modal/Share';
 import ReProject from 'components/Re-Project';
+import { FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const ProjectNewDetail = () => {
   const navi = useNavigate();
@@ -19,39 +20,18 @@ const ProjectNewDetail = () => {
   const [Datas, setDatas] = useState('');
   const [axiosUrl, setaxiosUrl] = useState('');
 
-  const noHeaderAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-  });
-
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
-  const refreshAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-      RefreshAuthorization: `${window.localStorage.refreshToken}`,
-    },
-  });
-
-  console.log(Datas);
-
   const fetchData = async () => {
     try {
       if (window.localStorage.accessToken === undefined && axiosUrl) {
-        const res = await noHeaderAxios(axiosUrl);
+        const res = await FILTERED_DATA(axiosUrl);
         const data = await res.data;
         setDatas(data);
       }
       if (window.localStorage.accessToken !== undefined && axiosUrl) {
-        const res = await authAxios(axiosUrl);
+        const res = await CLIENT_FREELANCER(axiosUrl);
         if (res.data.code === '401') {
           console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
-          const res = await refreshAxios('/reissue');
+          const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
           window.localStorage.setItem('accessToken', res.data.accessToken);
           window.localStorage.setItem('refreshToken', res.data.refreshToken);
           console.log('이상무');

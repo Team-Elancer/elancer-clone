@@ -4,6 +4,7 @@ import * as S from './style';
 
 import ProjectInter from 'components/Modal/ProjectInter';
 import ProjectWait from 'components/Modal/ProjectWait';
+import { BaseUrl } from 'utils/config/api';
 
 const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', finish = 'none' }) => {
   const [interviewModal, setInterviewModal] = useState(true);
@@ -44,7 +45,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
       console.log(data.projectNum);
       axios({
         method: 'DELETE',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/project-delete',
+        url: `${BaseUrl}/project-delete`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },
@@ -70,7 +71,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
       if (checkConfrim) {
         axios({
           method: 'POST',
-          url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/start-project',
+          url: `${BaseUrl}/start-project`,
           headers: {
             Authorization: `${window.localStorage.accessToken}`,
           },
@@ -91,7 +92,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
     } else {
       axios({
         method: 'POST',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/start-project',
+        url: `${BaseUrl}/start-project`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },
@@ -114,7 +115,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
     if (checkConfrim) {
       axios({
         method: 'POST',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/finish-project',
+        url: `${BaseUrl}/finish-project`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },

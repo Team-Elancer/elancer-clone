@@ -5,6 +5,7 @@ import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
+import { BaseUrl, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ContactModal = ({ setModalBool, index, setReLoading }) => {
   const domNode = useCloseOutside(() => {
@@ -15,16 +16,9 @@ const ContactModal = ({ setModalBool, index, setReLoading }) => {
 
   const [userData, setUserData] = useState('');
 
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
-
   const fetchData = async () => {
     try {
-      const res = await authAxios('/enterprise');
+      const res = await CLIENT_FREELANCER('/enterprise');
       const data = await res.data;
       setUserData(data);
     } catch (err) {
@@ -43,7 +37,7 @@ const ContactModal = ({ setModalBool, index, setReLoading }) => {
     e.preventDefault();
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-save',
+      url: `${BaseUrl}/contact-save`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

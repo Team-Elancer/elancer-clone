@@ -5,6 +5,7 @@ import * as S from './style';
 import Cancel from 'assets/images/cancel-dark.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import useCloseOutside from 'hooks/useCloseOutside';
+import { BaseUrl } from 'utils/config/api';
 
 const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => {
   const [checkedInterview, setCheckedInterview] = useState('');
@@ -28,7 +29,7 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
     const newData = checkedInterview.join();
     axios({
       method: 'DELETE',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/exclude-wait-project',
+      url: `${BaseUrl}/exclude-wait-project`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

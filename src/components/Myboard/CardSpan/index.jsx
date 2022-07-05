@@ -1,19 +1,14 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import * as S from './style';
+import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const BoardCardSpan = ({ setChangeList }) => {
   const [newDatas, setNewDatas] = useState('');
-  const authAxios = axios.create({
-    baseURL: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080',
-    headers: {
-      Authorization: `${window.localStorage.accessToken}`,
-    },
-  });
 
   const fetchData = async () => {
     try {
-      const res = await authAxios('/project-list-count');
+      const res = await CLIENT_FREELANCER('/project-list-count');
       const data = await res.data;
       setNewDatas(data);
     } catch (err) {

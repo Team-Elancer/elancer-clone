@@ -7,6 +7,7 @@ import Camera from 'assets/images/camera.png';
 import SubmitButton from 'components/Button/SubmitButton';
 import CompanyAccount from 'components/DashBoard/Company-Account';
 import InlineBlock from 'components/Inline-Block';
+import { BaseUrl } from 'utils/config/api';
 
 const SignUpCompany = () => {
   const navi = useNavigate();
@@ -37,13 +38,13 @@ const SignUpCompany = () => {
     event.preventDefault();
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/enterprise',
+      url: `${BaseUrl}/enterprise`,
       data: companyData,
     })
       .then((res) => {
         axios({
           method: 'POST',
-          url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login',
+          url: `${BaseUrl}/login`,
           data: {
             userId: companyData.userId,
             password: companyData.password1,
