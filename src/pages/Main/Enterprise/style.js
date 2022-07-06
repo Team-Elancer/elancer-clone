@@ -5,7 +5,6 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: ${(props) => props.top};
   position: ${(props) => props.relative};
 `;
 

@@ -32,7 +32,13 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
           <S.HeaderDiv margin={margin}>
             <Link to="/">
               <S.Img
-                src={location.pathname === '/enterprise' || location.pathname === '/project/newdetail' ? logo : Logo}
+                src={
+                  location.pathname === '/enterprise' ||
+                  location.pathname === `/project/1` ||
+                  location.pathname === '/project-list'
+                    ? logo
+                    : Logo
+                }
                 alt="Logo"
               />
             </Link>
@@ -57,8 +63,10 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
         </S.Container>
       )}
 
-      {window.localStorage.memberType === '"FREELANCER"' && <FreelancerHeader width="830px" />}
-      {window.localStorage.memberType === '"ENTERPRISE"' && <CompanyHeader width="830px" />}
+      {window.localStorage.memberType === '"FREELANCER"' && <FreelancerHeader width="830px" logo={logo} />}
+      {window.localStorage.memberType === '"ENTERPRISE"' && (
+        <CompanyHeader width="830px" margin={margin} bgColor={bgColor} logo={logo} color={color} />
+      )}
     </>
   );
 };

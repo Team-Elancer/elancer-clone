@@ -7,7 +7,7 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const CompanyHeader = ({ width, bgColor = '#0000', color = 'black', logo }) => {
+const CompanyHeader = ({ margin, width, bgColor, color, logo }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
 
@@ -27,7 +27,13 @@ const CompanyHeader = ({ width, bgColor = '#0000', color = 'black', logo }) => {
         <S.FlexDiv>
           <Link to="/">
             <S.Img
-              src={location.pathname === '/enterprise' || location.pathname === '/project/newdetail' ? logo : Logo}
+              src={
+                location.pathname === '/enterprise' ||
+                location.pathname === `/project/1` ||
+                location.pathname === '/project-list'
+                  ? logo
+                  : Logo
+              }
               alt="Logo"
             />
           </Link>

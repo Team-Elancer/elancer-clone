@@ -111,7 +111,7 @@ const MainEnterprise = () => {
   }, [jobField, fullStack]);
 
   return (
-    <S.Container top="-10px">
+    <S.Container>
       <S.BgDiv>
         <CompanyHeader bgColor="#0000" color="white" logo={Logo} width="840px" />
         <EnterpriseSearchBar />
