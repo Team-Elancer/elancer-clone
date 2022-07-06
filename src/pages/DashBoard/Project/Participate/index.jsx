@@ -27,7 +27,7 @@ const ProjectParticipate = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
       </S.H1>
       {newDatas ? (
         newDatas.map((data) => {
-          return <ProjectList data={data} key={data.projectName} display="block" />;
+          return <ProjectList data={data} key={data.projectName} status="지원현황 프로젝트" />;
         })
       ) : (
         <ProjectListSkeleton />

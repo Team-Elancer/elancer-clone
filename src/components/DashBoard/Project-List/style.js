@@ -62,7 +62,7 @@ export const Title = styled.div`
   }
 `;
 export const FlexDiv = styled.div`
-  display: ${(props) => props.felxDisplay};
+  display: flex;
   align-items: center;
 `;
 export const ProjectSpan = styled.span`
