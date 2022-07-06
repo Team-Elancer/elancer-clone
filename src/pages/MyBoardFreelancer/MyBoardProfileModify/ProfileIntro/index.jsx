@@ -6,6 +6,8 @@ import * as S from '../style';
 
 import Loader from 'components/Loader';
 
+import { BaseUrl } from 'utils/config/api';
+
 const ProfileIntro = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
@@ -50,7 +52,7 @@ const ProfileIntro = () => {
     const newData = { ...intro };
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/intro',
+      url: `${BaseUrl}/freelancer-profile/intro`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

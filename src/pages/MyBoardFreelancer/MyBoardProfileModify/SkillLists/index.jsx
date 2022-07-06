@@ -11,6 +11,8 @@ import Publisher from './Publisher';
 
 import Loader from 'components/Loader';
 
+import { BaseUrl } from 'utils/config/api';
+
 const SkillLists = () => {
   const [positionKeyword, setPositionKeyword] = useState('DEVELOPER');
 
@@ -308,7 +310,7 @@ const SkillLists = () => {
     };
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/developer',
+      url: `${BaseUrl}/freelancer-profile/developer`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -338,7 +340,7 @@ const SkillLists = () => {
     console.log(newData);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/publisher',
+      url: `${BaseUrl}/freelancer-profile/publisher`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -368,7 +370,7 @@ const SkillLists = () => {
     };
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/designer',
+      url: `${BaseUrl}/freelancer-profile/designer`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -398,7 +400,7 @@ const SkillLists = () => {
     console.log(newData);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/planner',
+      url: `${BaseUrl}/freelancer-profile/planner`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -428,7 +430,7 @@ const SkillLists = () => {
     console.log(newData);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/etc',
+      url: `${BaseUrl}/freelancer-profile/etc`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

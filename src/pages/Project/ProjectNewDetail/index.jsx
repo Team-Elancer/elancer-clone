@@ -8,7 +8,7 @@ import ProjectButton from 'components/Button/ProjectButton';
 import ProjectDetailModal from 'components/Modal/ProjectDetail';
 import ShareModal from 'components/Modal/Share';
 import ReProject from 'components/Re-Project';
-import { FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
+import { FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN, BaseUrl } from 'utils/config/api';
 
 const ProjectNewDetail = () => {
   const navi = useNavigate();
@@ -61,7 +61,7 @@ const ProjectNewDetail = () => {
     }
     axios({
       method: 'POST',
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/apply-project',
+      url: `${BaseUrl}/apply-project`,
       headers: {
         Authorization: `${window.localStorage.accessToken}`,
       },

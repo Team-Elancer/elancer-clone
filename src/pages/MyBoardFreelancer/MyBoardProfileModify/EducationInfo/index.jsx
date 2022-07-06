@@ -7,6 +7,8 @@ import * as S from './style';
 
 import Loader from 'components/Loader';
 
+import { BaseUrl } from 'utils/config/api';
+
 const EducationInfo = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
@@ -83,7 +85,7 @@ const EducationInfo = () => {
     console.log(newData);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/academic-ability',
+      url: `${BaseUrl}/freelancer-profile/academic-ability`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

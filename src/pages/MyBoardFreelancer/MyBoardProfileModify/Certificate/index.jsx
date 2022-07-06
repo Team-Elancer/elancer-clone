@@ -10,6 +10,8 @@ import LicenseTemplate from './LicenseTemplate';
 
 import Loader from 'components/Loader';
 
+import { BaseUrl } from 'utils/config/api';
+
 const Certificate = () => {
   const [EDUCATION_STATE, SET_EDUCATION_STATE] = useState([
     {
@@ -203,7 +205,7 @@ const Certificate = () => {
     };
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/education-license-language',
+      url: `${BaseUrl}/freelancer-profile/education-license-language`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
