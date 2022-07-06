@@ -8,6 +8,8 @@ import ProjectHistoryTemplate from './ProjectHistoryTemplate';
 
 import Loader from 'components/Loader';
 
+import { BaseUrl } from 'utils/config/api';
+
 const ProjectHistory = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
@@ -112,7 +114,7 @@ const ProjectHistory = () => {
     };
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/project-history ',
+      url: `${BaseUrl}/freelancer-profile/project-history`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

@@ -8,6 +8,8 @@ import CareerTemplate from './CareerTemplate';
 
 import Loader from 'components/Loader';
 
+import { BaseUrl } from 'utils/config/api';
+
 const CareerInfo = () => {
   const [
     userData,
@@ -97,7 +99,7 @@ const CareerInfo = () => {
     console.log(CAREER_STATE);
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer-profile/career',
+      url: `${BaseUrl}/freelancer-profile/career`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

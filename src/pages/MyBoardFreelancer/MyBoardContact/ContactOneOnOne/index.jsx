@@ -9,6 +9,8 @@ import ModalFreelancerContactModal from 'components/Modal/ModalFreelancerContact
 
 import useModal from 'hooks/useModal';
 
+import { BaseUrl } from 'utils/config/api';
+
 const ContactQneOnOne = ({ contactData, contactNum, idx, userData }) => {
   const { isShowing, toggle } = useModal();
 
@@ -21,7 +23,7 @@ const ContactQneOnOne = ({ contactData, contactNum, idx, userData }) => {
     if (checkConfrim) {
       axios({
         method: 'DELETE',
-        url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/contact-delete',
+        url: `${BaseUrl}/contact-delete`,
         headers: {
           Authorization: `${window.localStorage.accessToken}`,
         },

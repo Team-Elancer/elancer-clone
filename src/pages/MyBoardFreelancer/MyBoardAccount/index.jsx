@@ -14,6 +14,8 @@ import ProfileImgDefault from 'assets/images/signin-profile.png';
 import DaumPostcode from 'components/DaumPostCode';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import { BaseUrl } from 'utils/config/api';
+
 const MyBoardAccount = () => {
   const [changeBool, setChangeBool] = useState(false);
 
@@ -170,7 +172,7 @@ const MyBoardAccount = () => {
     };
 
     axios({
-      url: 'http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/freelancer',
+      url: `${BaseUrl}/freelancer`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
