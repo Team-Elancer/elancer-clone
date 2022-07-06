@@ -36,6 +36,7 @@ export const Ultag = styled.ul`
   list-style: none;
   color: black;
   font-size: 1rem;
+
   @media ${TABLET} {
     list-style: none;
     width: 85%;
