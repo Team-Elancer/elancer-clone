@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import CompanyHeader from './Company';
 import FreelancerHeader from './Freelancer';
 
@@ -15,6 +15,7 @@ import MainMenu from 'components/Modal/MainMenu';
 const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', logo }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
+  const { id } = useParams();
 
   const changeBool = () => {
     return setCeckBool(false);
@@ -34,7 +35,7 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
               <S.Img
                 src={
                   location.pathname === '/enterprise' ||
-                  location.pathname === `/project/1` ||
+                  location.pathname === `/project/${id}` ||
                   location.pathname === '/project-list'
                     ? logo
                     : Logo

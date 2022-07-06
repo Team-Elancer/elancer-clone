@@ -12,19 +12,57 @@ import { FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN, B
 
 const ProjectNewDetail = () => {
   const navi = useNavigate();
-  const { id } = useParams;
+  const { id } = useParams();
 
   const token = window.localStorage.accessToken;
   const member = window.localStorage.memberType;
-
-  const [shareModal, setShareModal] = useState(true);
   const [Datas, setDatas] = useState('');
+  const [shareModal, setShareModal] = useState(true);
+  const [workmanShip, setWorkmanShip] = useState('');
+  const [nowProjectStep, setNowProjectStep] = useState('');
+  const [detailAddress, setDetailAddress] = useState('');
 
   console.log(Datas);
 
+  const workmanShipSwitch = () => {
+    switch (Datas.freelancerWorkmanShip) {
+      case 'MIDDLE':
+        setWorkmanShip('중급');
+        break;
+      case 'SENIOR':
+        setWorkmanShip('고급');
+        break;
+      default:
+        setWorkmanShip('초급');
+        break;
+    }
+  };
+  const positionSwitch = () => {
+    switch (Datas.projectStep) {
+      case 'ANALYSIS':
+        setNowProjectStep('분석/설계');
+        break;
+      case 'PLAN':
+        setNowProjectStep('기획');
+        break;
+      case 'DESIGN':
+        setNowProjectStep('디자인');
+        break;
+      case 'PUBLISHING':
+        setNowProjectStep('퍼블리싱');
+        break;
+      case 'OPERATION':
+        setNowProjectStep('운영중');
+        break;
+      default:
+        setNowProjectStep('개발');
+        break;
+    }
+  };
+
   const fetchData = async () => {
     try {
-      const res = await FILTERED_DATA(`/project/1`);
+      const res = await FILTERED_DATA(`/project/${id}`);
       const data = await res.data;
       setDatas(data);
     } catch (error) {
@@ -49,7 +87,7 @@ const ProjectNewDetail = () => {
         Authorization: `${window.localStorage.accessToken}`,
       },
       data: {
-        projectNum: 3,
+        projectNum: { id },
       },
     })
       .then((res) => {
@@ -61,9 +99,17 @@ const ProjectNewDetail = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    fetchData();
-  }, []);
+    if (Datas === '') {
+      window.scrollTo(0, 0);
+      fetchData();
+      workmanShipSwitch();
+      positionSwitch();
+    }
+    if (detailAddress === '' && Datas.address !== undefined) {
+      const newString = Datas.address.mainAddress.split(' ');
+      setDetailAddress(newString);
+    }
+  }, [Datas]);
 
   return (
     <S.Container>
@@ -75,66 +121,47 @@ const ProjectNewDetail = () => {
       <S.DetailDiv>
         <S.SizeDiv>
           <S.FlexDiv content="center">
-            <S.H1>[중급~고급/Java/4개월/성수/2명] 그룹웨어 개발 및 마이그레이션</S.H1>
-            <S.DdaySpan>마감7일전</S.DdaySpan>
+            <S.H1>{Datas.projectName}</S.H1>
+            <S.DdaySpan>마감{Datas.endDays}일전</S.DdaySpan>
           </S.FlexDiv>
-          <S.PayH1>협의가능</S.PayH1>
+          <S.PayH1>{Datas.pay}</S.PayH1>
           <S.FlexDiv content="start">
-            <S.Colorspan color="white">고급 개발자</S.Colorspan>
-            <S.Colorspan color="white">8개월</S.Colorspan>
-            <S.Colorspan color="white">서울시|강남구</S.Colorspan>
-            <S.Colorspan color="white">개발</S.Colorspan>
+            <S.Colorspan color="white">{workmanShip !== '' && workmanShip} 개발자</S.Colorspan>
+            <S.Colorspan color="white">{Datas.projectPeriod === 0 ? 1 : Datas.projectPeriod}개월</S.Colorspan>
+            <S.Colorspan
+              color="white"
+              display={Datas.address !== undefined && Datas.address.detailAddress === '' ? 'none' : 'block'}
+            >
+              {detailAddress[0]}|{detailAddress[1]}
+            </S.Colorspan>
+            <S.Colorspan color="white">{nowProjectStep !== '' && nowProjectStep}</S.Colorspan>
           </S.FlexDiv>
           <S.FlexDiv content="start">
-            <S.Colorspan color="#ff6b6b">JAVA</S.Colorspan>
+            {Datas !== '' &&
+              Datas.skills.map((data) => {
+                return (
+                  <S.Colorspan color="#ff6b6b" key={data}>
+                    {data}
+                  </S.Colorspan>
+                );
+              })}
           </S.FlexDiv>
           <S.FlexDiv content="start">
-            <S.Colorspan color="white">모집인원|1인</S.Colorspan>
-            <S.Colorspan color="white">총 투입 인원|0인</S.Colorspan>
+            <S.Colorspan color="white">모집인원|{Datas.headCount}인</S.Colorspan>
+            <S.Colorspan color="white">총 투입 인원|{Datas.inputHeadCount}인</S.Colorspan>
           </S.FlexDiv>
           <S.ProjectTitle>프로젝트 내용</S.ProjectTitle>
-          <S.ProjectContents>
-            [고급/JAVA/7.5개월/선릉] 메트라이프생명 차세대콜센터 구축 개발 PL <br />
-            <br />
-            1.현재개발진행사항 <br />
-            1)총투입인력:
-            <br />
-            2)현재설계개발상태:
-            <br />
-            <br />
-            2.담당업무
-            <br /> 1) 메트라이프생명 차세대콜센터 구축 개발 PL
-            <br />
-            <br />
-            3.업무범위:메트라이프생명 차세대콜센터 구축 개발 PL
-            <br />
-            <br />
-            4.전달사항또는(개발)우대사항:
-            <br />
-            <br />
-            5.필요인력: 1명
-            <br />
-            <br />
-            6.개발자필요Spec
-            <br />
-            1) JAVA, Spring boot, NEXACRO <br />
-            2) 보험사 및 콜센터 경험자 우대
-            <br />
-            <br />
-            7.근무지: 선릉
-            <br />
-            <br />
-            8. 일정 : 즉시 ~ 23.02.21 (약7.5개월) <br />
-            <br />
-            9.월단가: 제시바람
-            <br />
-            <br />
-            10.장비지참여부: 지참
-          </S.ProjectContents>
-          <S.ProjectTitle>프로젝트 참여 신청 [ :0명 ]</S.ProjectTitle>
+          <S.ProjectContents>{Datas.content}</S.ProjectContents>
+          <S.ProjectTitle>프로젝트 참여 신청 [ :{Datas !== '' && Datas.simpleFreelancerList.length}명 ]</S.ProjectTitle>
+          <div>가장먼저 참여자가 되보세요.</div>
           <S.FreelancerUl>
-            가장먼저 참여자가 되보세요.
-            <S.FreelancerLi>홍*동</S.FreelancerLi>
+            {Datas.simpleFreelancerList.length > 0 ? (
+              Datas.simpleFreelancerList.map((data) => {
+                return <S.FreelancerLi key={data.username}>{data.username}</S.FreelancerLi>;
+              })
+            ) : (
+              <S.FreelancerLi>가장먼저 참여자가 되보세요.</S.FreelancerLi>
+            )}
           </S.FreelancerUl>
           <ReProject color="white" title="스마트 프로젝트 추천" />
           <S.FlexDiv content="center" padding="3rem" tabletPadding="9rem">

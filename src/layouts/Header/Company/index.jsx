@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import * as S from './style';
 import Logo from 'assets/images/elancer_logo.png';
 import Profile from 'assets/images/signin-profile.png';
@@ -10,6 +10,7 @@ import MainMenu from 'components/Modal/MainMenu';
 const CompanyHeader = ({ margin, width, bgColor, color, logo }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
+  const { id } = useParams();
 
   const changeBool = () => {
     return setCeckBool(false);
@@ -29,7 +30,7 @@ const CompanyHeader = ({ margin, width, bgColor, color, logo }) => {
             <S.Img
               src={
                 location.pathname === '/enterprise' ||
-                location.pathname === `/project/1` ||
+                location.pathname === `/project/${id}` ||
                 location.pathname === '/project-list'
                   ? logo
                   : Logo
