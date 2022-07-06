@@ -118,7 +118,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                       <S.HearDiv>🤍</S.HearDiv>
                     </S.HeartBackDiv>
                   </S.DivTag>
-                  <Link to="/project/newdetail">
+                  <Link to={`/project/${data.projectNum}`}>
                     <S.BackImg url={companyLogo} />
                   </Link>
                 </S.UpDiv>
@@ -130,7 +130,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                         return <S.MiniSecond key={data}>{data}</S.MiniSecond>;
                       })}
                     </S.BigSpan>
-                    <Link to="/project/newdetail">
+                    <Link to={`/project/${data.projectNum}`}>
                       <S.hiddenP>
                         <S.TextaTag>{data.projectName}</S.TextaTag>
                       </S.hiddenP>

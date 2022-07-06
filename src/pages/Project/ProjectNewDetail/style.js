@@ -121,6 +121,7 @@ export const Colorspan = styled.span`
   border-radius: 0.3rem;
   font-weight: 600;
   margin: 0 0.3rem 0.7rem 0;
+  display: ${(props) => props.display};
   @media ${TABLET} {
     font-size: 1.2rem;
     padding: 0.6rem;
@@ -162,6 +163,8 @@ export const FreelancerUl = styled.ul`
   color: white;
   font-size: 1rem;
   font-weight: 800;
+  display: flex;
+  align-items: center;
 `;
 export const FreelancerLi = styled.li`
   display: flex;
