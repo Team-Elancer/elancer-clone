@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './style';
 
 import CompanyLogo from 'assets/images/company-logo_87.png';
@@ -12,39 +12,22 @@ import { FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN, B
 
 const ProjectNewDetail = () => {
   const navi = useNavigate();
+  const { id } = useParams;
 
   const token = window.localStorage.accessToken;
   const member = window.localStorage.memberType;
 
   const [shareModal, setShareModal] = useState(true);
   const [Datas, setDatas] = useState('');
-  const [axiosUrl, setaxiosUrl] = useState('');
+
+  console.log(Datas);
 
   const fetchData = async () => {
     try {
-      if (window.localStorage.accessToken === undefined && axiosUrl) {
-        const res = await FILTERED_DATA(axiosUrl);
-        const data = await res.data;
-        setDatas(data);
-      }
-      if (window.localStorage.accessToken !== undefined && axiosUrl) {
-        const res = await CLIENT_FREELANCER(axiosUrl);
-        if (res.data.code === '401') {
-          console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
-          const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
-          window.localStorage.setItem('accessToken', res.data.accessToken);
-          window.localStorage.setItem('refreshToken', res.data.refreshToken);
-          console.log('이상무');
-        }
-        const data = await res.data;
-        setDatas(data);
-      }
+      const res = await FILTERED_DATA(`/project/1`);
+      const data = await res.data;
+      setDatas(data);
     } catch (error) {
-      if (error.message === 'Request failed with status code 500') {
-        window.localStorage.clear();
-        alert('다시 로그인해주세요.');
-        navi('/login');
-      }
       console.log(error.message);
     }
   };
@@ -153,14 +136,7 @@ const ProjectNewDetail = () => {
             가장먼저 참여자가 되보세요.
             <S.FreelancerLi>홍*동</S.FreelancerLi>
           </S.FreelancerUl>
-          <ReProject
-            color="white"
-            title="스마트 프로젝트 추천"
-            fetchData={fetchData}
-            setaxiosUrl={setaxiosUrl}
-            axiosUrl={axiosUrl}
-            Datas={Datas}
-          />
+          <ReProject color="white" title="스마트 프로젝트 추천" />
           <S.FlexDiv content="center" padding="3rem" tabletPadding="9rem">
             <ProjectButton right="0.5rem" text="🤍프로젝트 찜" checkToken={checkToken} />
             <ProjectButton text="프로젝트 공유" checkToken={changeShareModal} />

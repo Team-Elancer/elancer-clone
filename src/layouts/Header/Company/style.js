@@ -7,6 +7,8 @@ export const Container = styled.div`
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor};
   padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
 `;
 
 export const HeaderDiv = styled.div`
