@@ -32,8 +32,7 @@ const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNe
                 key={data.projectName}
                 newReloading={newReloading}
                 setNewReloading={setNewReloading}
-                spanDisplay="block"
-                start="flex"
+                status="조율중 프로젝트"
               />
             )
           );

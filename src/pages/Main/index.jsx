@@ -1,6 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 import programmer from 'assets/images/programmer.png';
@@ -13,29 +10,8 @@ import ReProject from 'components/Re-Project';
 import SearchBar from 'components/Search';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-import { FILTERED_DATA } from 'utils/config/api';
 
 const Main = () => {
-  const [Datas, setDatas] = useState('');
-  const [axiosUrl, setaxiosUrl] = useState('');
-  const navi = useNavigate();
-
-  const fetchData = async () => {
-    try {
-      if (axiosUrl) {
-        const res = await FILTERED_DATA(axiosUrl);
-        const data = await res.data;
-        setDatas(data);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
     <S.Container>
       <S.BackImg>
@@ -56,7 +32,7 @@ const Main = () => {
       <S.ThirdDiv>
         <Count />
         <Eblock />
-        <ReProject fetchData={fetchData} setaxiosUrl={setaxiosUrl} axiosUrl={axiosUrl} Datas={Datas} />
+        <ReProject />
         <ChoiceProject />
         <ReFreelancer />
       </S.ThirdDiv>

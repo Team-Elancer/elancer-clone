@@ -31,6 +31,7 @@ const ProjectFinish = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNe
               key={data.projectName}
               newReloading={newReloading}
               setNewReloading={setNewReloading}
+              status="완료 프로젝트"
             />
           );
         })

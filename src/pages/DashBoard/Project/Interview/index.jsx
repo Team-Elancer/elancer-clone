@@ -25,7 +25,7 @@ const ProjectInterview = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
       </S.H1>
       {newDatas ? (
         newDatas.map((data) => {
-          return <ProjectList data={data} key={data.projectName} display="block" />;
+          return <ProjectList data={data} key={data.projectName} status="인터뷰요청 프로젝트" />;
         })
       ) : (
         <ProjectListSkeleton />

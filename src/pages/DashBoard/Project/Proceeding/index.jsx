@@ -33,6 +33,7 @@ const ProjectProceeding = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, s
               newReloading={newReloading}
               setNewReloading={setNewReloading}
               finish="flex"
+              status="진행중 프로젝트"
             />
           );
         })

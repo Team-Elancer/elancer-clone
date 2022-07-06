@@ -6,9 +6,21 @@ import left from 'assets/images/bt-left.png';
 import right from 'assets/images/bt-right.png';
 import companyLogo from 'assets/images/company-logo_1.png';
 import SkeletonReProject from 'components/Skeleton/ReProject';
+import { BaseUrl, FILTERED_DATA } from 'utils/config/api';
 
-const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, fetchData, setaxiosUrl, Datas }) => {
+const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   const [slideIndex, setSlideIndex] = useState(0);
+  const [Datas, setDatas] = useState('');
+
+  const fetchData = async () => {
+    try {
+      const res = await FILTERED_DATA(`/recommend-project`);
+      const data = await res.data;
+      setDatas(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const handleClick = (alt) => {
     if (alt === 'left') {
@@ -72,14 +84,9 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트', axiosUrl, f
     return data;
   };
 
-  console.log(Datas);
-
   useEffect(() => {
-    if (Datas === '') {
-      setaxiosUrl('/recommend-project');
-      fetchData();
-    }
-  }, [axiosUrl]);
+    fetchData();
+  }, []);
 
   return (
     <S.Container>
