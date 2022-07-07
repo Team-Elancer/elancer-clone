@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import left from 'assets/images/bt-left.png';
@@ -8,9 +8,24 @@ import companyLogo from 'assets/images/company-logo_1.png';
 import kbLogo from 'assets/images/kbkookmin.png';
 import samsung from 'assets/images/samsung.png';
 import MoreButton from 'components/Button/MoreButton';
+import { BaseUrl, FILTERED_DATA } from 'utils/config/api';
 
 const ReFreelancer = () => {
   const [slideIndex, setSlideIndex] = useState(0);
+
+  const [Datas, setDatas] = useState('');
+  console.log(Datas.freelancerSimpleResponseList);
+
+  const fetchData = async () => {
+    try {
+      const res = await FILTERED_DATA(`/freelancers/freelancer-profiles`);
+      const data = await res.data;
+      setDatas(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleClick = (alt) => {
     if (alt === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
@@ -130,6 +145,10 @@ const ReFreelancer = () => {
     },
   ];
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <S.Container>
       <S.FirstDiv>
@@ -140,35 +159,45 @@ const ReFreelancer = () => {
         </S.ButtonDiv>
       </S.FirstDiv>
       <S.SecondDiv>
-        {mapData.map((item) => {
-          return (
-            <S.ProjectDiv slideIndex={slideIndex} key={item.title}>
-              <S.UpDiv color={item.color} border={item.border}>
-                <S.DivTag>
-                  <S.SpanTag>{item.name}</S.SpanTag>
-                  <S.HeartBackDiv>
-                    <S.HearDiv>{item.icon}</S.HearDiv>
-                  </S.HeartBackDiv>
-                </S.DivTag>
-              </S.UpDiv>
-              <S.DownDiv>
-                <S.DownSmallDiv>
-                  <S.BigSpan>
-                    <S.MiniSpan>{item.language}</S.MiniSpan>
-                    <S.MiniSpan>{item.language2}</S.MiniSpan>
-                  </S.BigSpan>
-                  <S.hiddenP>
-                    <S.TextaTag href="#">{item.title}</S.TextaTag>
-                  </S.hiddenP>
-                  <S.FlexDiv>
-                    <S.Ptag>{item.subTitle}</S.Ptag>
-                    <S.Ptag> ★{item.rank}</S.Ptag>
-                  </S.FlexDiv>
-                </S.DownSmallDiv>
-              </S.DownDiv>
-            </S.ProjectDiv>
-          );
-        })}
+        {Datas !== '' &&
+          Datas.freelancerSimpleResponseList.map((item) => {
+            return (
+              <S.ProjectDiv slideIndex={slideIndex} key={item.freelancerNum}>
+                <S.UpDiv
+                  color="LIGHT_ORANGE"
+                  border="LIGHT_ORANGE"
+                  // color={item.introBackGround === null ? 'white' : item.introBackGround}
+                  // border={item.introBackGround === null ? 'white' : item.introBackGround}
+                >
+                  <S.DivTag>
+                    <S.SpanTag>{item.positionName}</S.SpanTag>
+                    <S.HeartBackDiv>
+                      <S.HearDiv>🤍</S.HearDiv>
+                    </S.HeartBackDiv>
+                  </S.DivTag>
+                </S.UpDiv>
+                <S.DownDiv>
+                  <S.DownSmallDiv>
+                    <S.BigSpan>
+                      {item.skills &&
+                        item.skills.map((data) => {
+                          return <S.MiniSpan>{data}</S.MiniSpan>;
+                        })}
+                    </S.BigSpan>
+                    <S.hiddenP>
+                      <S.TextaTag href="#">{item.greeting}</S.TextaTag>
+                    </S.hiddenP>
+                    <S.FlexDiv>
+                      <S.Ptag>
+                        {item.careerYear}년 경력 {item.freelancerName}
+                      </S.Ptag>
+                      <S.Ptag> ★ 4.5</S.Ptag>
+                    </S.FlexDiv>
+                  </S.DownSmallDiv>
+                </S.DownDiv>
+              </S.ProjectDiv>
+            );
+          })}
         ;
       </S.SecondDiv>
       <Link to="/partner-list">

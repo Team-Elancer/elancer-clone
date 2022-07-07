@@ -76,7 +76,7 @@ export const UpDiv = styled.div`
   border: 1px solid ${(props) => props.border};
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-color: ${(props) => props.color};
+  background-color: '${(props) => props.color}';
   @media ${TABLET} {
     width: 16.4rem;
     height: 50%;
