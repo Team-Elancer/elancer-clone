@@ -14,7 +14,6 @@ const ReFreelancer = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const [Datas, setDatas] = useState('');
-  console.log(Datas.freelancerSimpleResponseList);
 
   const fetchData = async () => {
     try {

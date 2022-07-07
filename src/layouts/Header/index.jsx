@@ -49,7 +49,7 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
               </Link>
               <S.ThreeTag>|</S.ThreeTag>
               <Link to="/project-list">
-                <S.ThreeTag> 보기</S.ThreeTag>
+                <S.ThreeTag>프로젝트 보기</S.ThreeTag>
               </Link>
             </S.Text>
             <S.Menu onClick={changeBool}>
