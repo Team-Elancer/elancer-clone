@@ -21,7 +21,6 @@ const MyBoardProfile = () => {
     profileDeveloperData,
   ] = useOutletContext();
 
-  console.log(profileSimpleData);
   useBeforeUnload();
 
   return (
@@ -84,9 +83,9 @@ const MyBoardProfile = () => {
                   </S.ContainerEcardDescription>
                 </S.EcardProfileLeft>
                 <S.ContainerStackBtn>
-                  {profileSimpleData?.allSkillNames.map((stack) => (
-                    <S.StackBtn>{stack}</S.StackBtn>
-                  ))}
+                  {profileSimpleData?.allSkillNames?.map(
+                    (stack, index) => stack !== '' && <S.StackBtn key={`stack_${index + 1}`}>{stack}</S.StackBtn>,
+                  )}
                 </S.ContainerStackBtn>
               </S.ContainerEcardProfile>
             </section>

@@ -13,7 +13,7 @@ const ListProject = () => {
   return (
     <>
       <ST.Container>
-        <Header margin="0" bgColor="#252525" color="white" width="840px" logo={Logo} />
+        <Header margin="0" bgColor="#252525" color="white" width="840px" logo={Logo} projectList />
         <S.FrameList>
           <S.ContainerTopLetter>
             <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>

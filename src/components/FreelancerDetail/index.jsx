@@ -6,7 +6,6 @@ import * as S from './style';
 const InfoDetail = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
-  console.log(profileSimpleData);
   const [isCheckedProject, setIsCheckedProject] = useState('#project');
 
   return (

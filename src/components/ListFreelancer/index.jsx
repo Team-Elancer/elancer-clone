@@ -10,7 +10,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { v4 as uuidv4 } from 'uuid';
 import * as S from './style';
 
 import samsungImg from 'assets/images/samsung.png';
@@ -20,22 +19,23 @@ import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import { FILTERED_DATA } from 'utils/config/api';
 
 const ListFreelancer = ({ togglePositionType }) => {
-  const [developerState, setDeveloperState] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [{ developer, publisher, designer, planner }] = togglePositionType;
+  const [positionState, setPositionState] = useState([]);
 
-  console.log(togglePositionType);
+  const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
 
-  const getDeveloperLists = async () => {
+  const FILTERED_STATE = positionState;
+
+  const getPositionLists = async (positionList) => {
     try {
       const {
         data: { freelancerSimpleResponseList },
       } = await FILTERED_DATA(
-        'developers?positionType=DEVELOPER&majorSkillKeywords=java&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=',
+        `${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=JAVA&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=`,
       );
 
-      setDeveloperState(freelancerSimpleResponseList);
+      setPositionState(freelancerSimpleResponseList);
       // setIsLoading(false);
     } catch (err) {
       console.log(err);
@@ -43,15 +43,31 @@ const ListFreelancer = ({ togglePositionType }) => {
   };
 
   useEffect(() => {
-    if (developer) {
-      getDeveloperLists();
-    }
-  }, [developer]);
+    let positionList = [];
 
-  console.log(developerState);
+    if (developer) {
+      positionList = ['developers', 'DEVELOPER'];
+    }
+
+    if (publisher) {
+      positionList = ['publishers', 'PUBLISHER'];
+    }
+    if (designer) {
+      positionList = ['designers', 'DESIGNER'];
+    }
+    if (planner) {
+      positionList = ['planners', 'PLANNER'];
+    }
+    if (etc) {
+      positionList = ['positionEtcers', 'ETC'];
+    }
+
+    getPositionLists(positionList);
+  }, [developer, publisher, designer, planner, etc]);
+
   return (
     <S.FrameFreelancer>
-      {developerState.map((list, index) => {
+      {FILTERED_STATE.map((list, index) => {
         return (
           <S.ContainerFreelancer key={list.freelancerNum}>
             <S.ContainerLink to="/partner-detail">
@@ -85,9 +101,10 @@ const ListFreelancer = ({ togglePositionType }) => {
                 </S.ContainerNameHeart>
                 <S.FreelancerTitle>{list.greeting}</S.FreelancerTitle>
                 <S.ContainerFreelancerStack>
-                  {list?.skills.map((stack, index) => (
-                    <S.FreelancerStack key={`skills${index + 1}`}> {stack}</S.FreelancerStack>
-                  ))}
+                  {list?.skills?.map(
+                    (stack, index) =>
+                      stack && <S.FreelancerStack key={`skills${index + 1}`}> {stack}</S.FreelancerStack>,
+                  )}
                 </S.ContainerFreelancerStack>
 
                 {list?.projectNames.length > 0 && (

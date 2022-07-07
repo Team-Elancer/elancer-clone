@@ -12,7 +12,7 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', logo }) => {
+const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', logo, projectList }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
   const { id } = useParams();
@@ -49,7 +49,7 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
               </Link>
               <S.ThreeTag>|</S.ThreeTag>
               <Link to="/project-list">
-                <S.ThreeTag>프로젝트 보기</S.ThreeTag>
+                <S.ThreeTag> 보기</S.ThreeTag>
               </Link>
             </S.Text>
             <S.Menu onClick={changeBool}>
@@ -64,7 +64,9 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
         </S.Container>
       )}
 
-      {window.localStorage.memberType === '"FREELANCER"' && <FreelancerHeader width="830px" logo={logo} />}
+      {window.localStorage.memberType === '"FREELANCER"' && (
+        <FreelancerHeader width="830px" logo={logo} projectList={projectList} />
+      )}
       {window.localStorage.memberType === '"ENTERPRISE"' && (
         <CompanyHeader width="830px" margin={margin} bgColor={bgColor} logo={logo} color={color} />
       )}
