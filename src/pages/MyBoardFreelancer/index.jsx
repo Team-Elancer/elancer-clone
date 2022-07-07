@@ -89,7 +89,7 @@ const MyBoardFreelancer = () => {
   //  =============== detail profile (프로필 세부 정보) && detailProfileData ===============
   const getDetailProfileData = async () => {
     try {
-      const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile');
+      const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile/detail');
 
       if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 
@@ -115,6 +115,7 @@ const MyBoardFreelancer = () => {
       if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 
       const fetchedData = await data;
+      console.log(fetchedData);
 
       if (fetchedData) {
         setProfileSimpleData(fetchedData);

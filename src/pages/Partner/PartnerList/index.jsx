@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
 
 import FilterButton from 'components/Button/FilterButton';
 import ListFreelancer from 'components/ListFreelancer';
@@ -9,17 +8,13 @@ import Header from 'layouts/Header';
 import * as S from 'styles/Page';
 
 const ListPartner = () => {
-  const [developerLists, setDeveloperLists] = useState(false);
-  const [publisherLists, setPublisherLists] = useState(false);
-  const [designerLists, setDesignerLists] = useState(false);
-  const [plannerLists, setPlannerLists] = useState(false);
-
   const [togglePositionType, setTogglePositionType] = useState([
     {
       developer: true,
       publisher: false,
       designer: false,
       planner: false,
+      etc: false,
     },
   ]);
 
@@ -31,42 +26,57 @@ const ListPartner = () => {
           publisher: false,
           designer: false,
           planner: false,
+          etc: false,
         },
       ]);
     }
 
-    // if (e.target.name === 'publisher') {
-    //   setTogglePositionType([
-    //     {
-    //       developer: false,
-    //       publisher: true,
-    //       designer: false,
-    //       planner: false,
-    //     },
-    //   ]);
-    // }
+    if (e.target.name === 'publisher') {
+      setTogglePositionType([
+        {
+          developer: false,
+          publisher: true,
+          designer: false,
+          planner: false,
+          etc: false,
+        },
+      ]);
+    }
 
-    // if (e.target.name === 'designer') {
-    //   setTogglePositionType([
-    //     {
-    //       developer: false,
-    //       publisher: false,
-    //       designer: true,
-    //       planner: false,
-    //     },
-    //   ]);
-    // }
+    if (e.target.name === 'designer') {
+      setTogglePositionType([
+        {
+          developer: false,
+          publisher: false,
+          designer: true,
+          planner: false,
+          etc: false,
+        },
+      ]);
+    }
 
-    // if (e.target.name === 'planner') {
-    //   setTogglePositionType([
-    //     {
-    //       developer: false,
-    //       publisher: false,
-    //       designer: false,
-    //       planner: true,
-    //     },
-    //   ]);
-    // }
+    if (e.target.name === 'planner') {
+      setTogglePositionType([
+        {
+          developer: false,
+          publisher: false,
+          designer: false,
+          planner: true,
+          etc: false,
+        },
+      ]);
+    }
+    if (e.target.name === 'etc') {
+      setTogglePositionType([
+        {
+          developer: false,
+          publisher: false,
+          designer: false,
+          planner: false,
+          etc: true,
+        },
+      ]);
+    }
   };
 
   return (
@@ -82,22 +92,9 @@ const ListPartner = () => {
             </S.TopLetterSubject>
           </S.ContainerTopLetter>
           {/* =======  FilterButton Component ======= */}
-          <FilterButton
-            setTogglePositionType={setTogglePositionType}
-            handlePositionList={handlePositionList}
-            // setDeveloperLists={setDeveloperLists}
-            // setPublisherList={setPublisherLists}
-            // setDesignerLists={setDesignerLists}
-            // setPlannerList={setPlannerLists}
-          />
+          <FilterButton togglePositionType={togglePositionType} handlePositionList={handlePositionList} />
           {/* =======  ListFreelancer Component ======= */}
-          <ListFreelancer
-            togglePositionType={togglePositionType}
-            // developerLists={developerLists}
-            // publisherLists={publisherLists}
-            // designerLists={designerLists}
-            // plannerLists={plannerLists}
-          />
+          <ListFreelancer togglePositionType={togglePositionType} />
         </S.FrameList>
       </S.ContainerFrame>
       <Footer />

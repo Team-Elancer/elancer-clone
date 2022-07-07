@@ -7,7 +7,7 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const FreelancerHeader = ({ width, bgColor = 'white', color = 'black', logo }) => {
+const FreelancerHeader = ({ width, bgColor = 'white', color = 'black', logo, projectList }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
 
@@ -23,24 +23,24 @@ const FreelancerHeader = ({ width, bgColor = 'white', color = 'black', logo }) =
           <MenuBar checkBool={checkBool} setCeckBool={setCeckBool} />
         </>
       )}
-      <S.HeaderDiv width={width}>
+      <S.HeaderDiv width={width} projectList={projectList}>
         <S.FlexDiv>
           <Link to="/">
             <S.Img src={location.pathname === '/freelancer' ? logo : Logo} alt="Logo" />
           </Link>
           <div>
             <Link to="/freelancer">
-              <S.BigText>프리랜서</S.BigText>
+              <S.BigText projectList={projectList}>프리랜서</S.BigText>
             </Link>
           </div>
         </S.FlexDiv>
-        <S.Text>
+        <S.Text projectList={projectList}>
           <Link to="/partner-list">
             <S.ThreeTag>프리랜서 보기</S.ThreeTag>
           </Link>
           <S.ThreeTag>|</S.ThreeTag>
           <Link to="/project-list">
-            <S.ThreeTag>프로젝트 보기</S.ThreeTag>
+            <S.ThreeTag projectList={projectList}>프로젝트 보기</S.ThreeTag>
           </Link>
         </S.Text>
         <S.Menu onClick={changeBool}>

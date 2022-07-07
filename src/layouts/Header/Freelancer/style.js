@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const HeaderDiv = styled.div`
+  color: ${({ projectList }) => projectList && '#fff'};
   width: 360px;
   display: flex;
   align-items: center;

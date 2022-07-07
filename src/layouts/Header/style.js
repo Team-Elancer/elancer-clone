@@ -35,11 +35,13 @@ export const Img = styled.img`
     width: 187.78px;
   }
 `;
+
 export const Text = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
+
 export const ThreeTag = styled.div`
   padding: 0 5px;
   cursor: pointer;
