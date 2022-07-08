@@ -140,9 +140,11 @@ const ProjectNewDetail = () => {
             {Datas !== '' &&
               Datas.skills.map((data) => {
                 return (
-                  <S.Colorspan color="#ff6b6b" key={data}>
-                    {data}
-                  </S.Colorspan>
+                  data !== '' && (
+                    <S.Colorspan color="#ff6b6b" key={data}>
+                      {data}
+                    </S.Colorspan>
+                  )
                 );
               })}
           </S.FlexDiv>
@@ -153,9 +155,8 @@ const ProjectNewDetail = () => {
           <S.ProjectTitle>프로젝트 내용</S.ProjectTitle>
           <S.ProjectContents>{Datas.content}</S.ProjectContents>
           <S.ProjectTitle>프로젝트 참여 신청 [ :{Datas !== '' && Datas.simpleFreelancerList.length}명 ]</S.ProjectTitle>
-          <div>가장먼저 참여자가 되보세요.</div>
           <S.FreelancerUl>
-            {Datas.simpleFreelancerList.length > 0 ? (
+            {Datas.simpleFreelancerList && Datas.simpleFreelancerList.length > 0 ? (
               Datas.simpleFreelancerList.map((data) => {
                 return <S.FreelancerLi key={data.username}>{data.username}</S.FreelancerLi>;
               })

@@ -3,8 +3,8 @@ import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const EcardDiv = styled.div`
   width: 100%;
-  height: 250px;
-  border: ${({ darkMode }) => (darkMode === 'darkMode' ? 'none' : '2px solid #d7d7d7')};
+  height: 100%;
+  border: 2px solid #d7d7d7;
   border-radius: 7px;
   margin-top: 15px;
   display: flex;
@@ -52,11 +52,11 @@ export const HeartDiv = styled.div`
 export const FirstDiv = styled.div`
   width: 100%;
   height: 100%;
-  margin: 35px 0 0 10px;
+  margin: 35px 10px;
   cursor: pointer;
   @media ${TABLET} {
-    margin: 0;
-    padding: 25px 0 0 30px;
+    margin: 0 auto;
+    padding: 25px 30px;
   }
 `;
 export const EcardUlTag = styled.ul`
@@ -100,12 +100,18 @@ export const EcardRedLiTag = styled.li`
 export const HoneTag = styled.h1`
   font-weight: 700;
   font-size: 0.9375rem;
+  width: 100%;
+  height: 0.95rem;
+  overflow: hidden;
   @media ${TABLET} {
     font-size: 1.56rem;
+    height: 1.5rem;
   }
   @media ${LAPTOP} {
     font-size: 1.3rem;
     font-weight: 600;
+    margin-top: 1rem;
+    height: 1.3rem;
   }
 `;
 export const Ptag = styled.p`
@@ -114,6 +120,8 @@ export const Ptag = styled.p`
   font-weight: 600;
   line-height: 1.2rem;
   padding-top: 15px;
+  overflow-y: hidden;
+  height: 6.8rem;
   @media ${TABLET} {
     font-size: 0.9rem;
   }

@@ -179,7 +179,7 @@ const ReFreelancer = () => {
                   <S.DownSmallDiv>
                     <S.BigSpan>
                       {item.skills &&
-                        item.skills.map((data) => {
+                        item.skills.map((data, i) => {
                           return <S.MiniSpan>{data}</S.MiniSpan>;
                         })}
                     </S.BigSpan>
