@@ -29,12 +29,17 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
       setStatus('조율중 프로젝트');
       setStatusColor('#b57360');
     }
-    if (data.waitFreelancerList.length < 0 && data.interviewFreelancerList.length > 0) {
+    if (
+      data.waitFreelancerList &&
+      data.waitFreelancerList.length < 0 &&
+      data.interviewFreelancerList &&
+      data.interviewFreelancerList.length > 0
+    ) {
       setStatus('인터뷰요청 프로젝트');
       setStatusColor('#9f7985');
     }
     if (data.projectStatus === 'REGISTRATION' && data.interviewFreelancerList.length < 0) {
-      setStatus('지원요청 프로젝트');
+      setStatus('지원현황 프로젝트');
       setStatusColor('#8a7fa4');
     }
   };
@@ -142,7 +147,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
       setNewInterview(data.interviewFreelancerList);
     }
     if (newTurning === '') {
-      setNewTurning(data.waitFreelancerList.length);
+      setNewTurning(data.waitFreelancerList?.length);
     }
   }, [data]);
 
@@ -166,7 +171,9 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
           />
         )}
         <S.BetweenDiv>
-          <S.SpanTag bgColor={statusColor !== '' && statusColor}>{status !== '' && status}</S.SpanTag>
+          <S.SpanTag bgColor={statusColor === '' ? '#7485c9' : statusColor}>
+            {status === '' ? '등록된 프로젝트' : status}
+          </S.SpanTag>
           <S.SpanTag
             spanTag={data.projectStatus === 'COMPLETION' ? 'none' : 'block'}
             bgColor="#3c3c3c"
@@ -213,14 +220,14 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               type={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.applyFreelancerList.length > 0
+                data.applyFreelancerList?.length > 0
                   ? 'dotted'
                   : 'solid'
               }
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.applyFreelancerList.length > 0
+                data.applyFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -231,7 +238,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.applyFreelancerList.length > 0
+                data.applyFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -249,14 +256,14 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               type={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.interviewFreelancerList.length > 0
+                data.interviewFreelancerList?.length > 0
                   ? 'dotted'
                   : 'solid'
               }
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.interviewFreelancerList.length > 0
+                data.interviewFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -267,7 +274,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.interviewFreelancerList.length > 0
+                data.interviewFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -285,14 +292,14 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               type={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.interviewFreelancerList.length > 0
+                data.interviewFreelancerList?.length > 0
                   ? 'dotted'
                   : 'solid'
               }
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.interviewFreelancerList.length > 0
+                data.interviewFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -303,7 +310,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.interviewFreelancerList.length > 0
+                data.interviewFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -323,14 +330,14 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               type={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.waitFreelancerList.length > 0
+                data.waitFreelancerList?.length > 0
                   ? 'dotted'
                   : 'solid'
               }
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.waitFreelancerList.length > 0
+                data.waitFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -341,7 +348,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               color={
                 data.projectStatus === 'COMPLETION' ||
                 data.projectStatus === 'PROGRESS' ||
-                data.waitFreelancerList.length > 0
+                data.waitFreelancerList?.length > 0
                   ? '#f16300'
                   : '#e1e1e1'
               }
@@ -387,7 +394,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
             felxDisplay={data.projectStatus === 'COMPLETION' || data.projectStatus === 'PROGRESS' ? 'none' : 'flex'}
           >
             <S.ProjectSpan
-              display={data.waitFreelancerList.length > 0 ? 'block' : 'none'}
+              display={data.waitFreelancerList?.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
@@ -396,7 +403,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               지원자 {newApplicant === undefined ? 0 : newApplicant.length}
             </S.ProjectSpan>
             <S.ProjectSpan
-              display={data.waitFreelancerList.length > 0 ? 'block' : 'none'}
+              display={data.waitFreelancerList?.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
@@ -405,7 +412,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               인터뷰요청자 {newInterview === undefined ? 0 : newInterview.length}
             </S.ProjectSpan>
             <S.ProjectSpan
-              display={data.waitFreelancerList.length > 0 ? 'block' : 'none'}
+              display={data.waitFreelancerList?.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setWaitModal(false);

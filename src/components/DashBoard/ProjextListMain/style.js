@@ -53,6 +53,7 @@ export const Title = styled.div`
   margin: 1rem 0 0.5rem 0;
   font-size: 0.85rem;
   font-weight: 800;
+  line-height: 2rem;
   overflow: hidden;
   @media ${TABLET} {
     margin: 1rem 0 0.7rem 0;
