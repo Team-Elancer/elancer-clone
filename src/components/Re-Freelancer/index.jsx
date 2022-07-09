@@ -15,6 +15,8 @@ const ReFreelancer = () => {
 
   const [Datas, setDatas] = useState('');
 
+  console.log(Datas);
+
   const fetchData = async () => {
     try {
       const res = await FILTERED_DATA(`/freelancers/freelancer-profiles`);
@@ -163,9 +165,7 @@ const ReFreelancer = () => {
             return (
               <S.ProjectDiv slideIndex={slideIndex} key={item.freelancerNum}>
                 <S.UpDiv
-                  color="LIGHT_ORANGE"
-                  border="LIGHT_ORANGE"
-                  // color={item.introBackGround === null ? 'white' : item.introBackGround}
+                  introBackGround={item?.introBackGround}
                   // border={item.introBackGround === null ? 'white' : item.introBackGround}
                 >
                   <S.DivTag>
@@ -174,13 +174,16 @@ const ReFreelancer = () => {
                       <S.HearDiv>🤍</S.HearDiv>
                     </S.HeartBackDiv>
                   </S.DivTag>
+                  <S.TitleName>
+                    {item.positionName} {item.freelancerName}
+                  </S.TitleName>
                 </S.UpDiv>
                 <S.DownDiv>
                   <S.DownSmallDiv>
                     <S.BigSpan>
                       {item.skills &&
                         item.skills.map((data, i) => {
-                          return <S.MiniSpan>{data}</S.MiniSpan>;
+                          return data !== '' && data !== null ? <S.MiniSpan>{data}</S.MiniSpan> : <div />;
                         })}
                     </S.BigSpan>
                     <S.hiddenP>

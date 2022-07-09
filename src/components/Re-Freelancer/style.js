@@ -73,10 +73,36 @@ export const ProjectDiv = styled.div`
 export const UpDiv = styled.div`
   width: 180px;
   height: 45%;
-  border: 1px solid ${(props) => props.border};
+  border: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-color: '${(props) => props.color}';
+  background-image: url(${({ introBackGround }) => {
+    let DBURL = 'black';
+
+    if (introBackGround === 'PATTERN1') DBURL = 'https://www.elancer.co.kr/public/images/mask_01.png';
+    if (introBackGround === 'PATTERN2') DBURL = 'https://www.elancer.co.kr/public/images/mask_02.png';
+    if (introBackGround === 'PATTERN3') DBURL = 'https://www.elancer.co.kr/public/images/mask_03.png';
+    if (introBackGround === 'PATTERN4') DBURL = 'https://www.elancer.co.kr/public/images/mask_04.png';
+    if (introBackGround === 'PATTERN5') DBURL = 'https://www.elancer.co.kr/public/images/mask_05.png';
+
+    return DBURL;
+  }});
+  background-color: ${({ introBackGround }) => {
+    let DBColor = 'black';
+
+    if (introBackGround === 'WHITE') DBColor = '#FFFFFF';
+    if (introBackGround === 'COBALT_BLUE') DBColor = '#7485c9';
+    if (introBackGround === 'LIGHT_PURPLE') DBColor = '#8a7fa4';
+    if (introBackGround === 'DARK_PINK') DBColor = '#eb6100';
+    if (introBackGround === 'DARK_ORANGE') DBColor = '#b57360';
+    if (introBackGround === 'ORANGE') DBColor = '#d56b2d';
+    if (introBackGround === 'LIGHT_ORANGE') DBColor = '#f16300';
+
+    return DBColor;
+  }};
+  background-repeat: no-repeat;
+  background-size: cover;
+
   @media ${TABLET} {
     width: 16.4rem;
     height: 50%;
@@ -87,6 +113,23 @@ export const UpDiv = styled.div`
     width: 16rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+  }
+`;
+export const TitleName = styled.div`
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  @media ${TABLET} {
+    font-size: 2rem;
+  }
+  @media ${LAPTOP} {
   }
 `;
 export const DownDiv = styled.div`
