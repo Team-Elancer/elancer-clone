@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import ProjectSkeleton from 'components/Skeleton/Project';
+
 import * as S from 'styles/Ecard';
 
 const PlanEcard = ({ Datas }) => {
@@ -61,7 +64,9 @@ const PlanEcard = ({ Datas }) => {
   }, [Datas]);
   return (
     <div>
-      {Datas &&
+      {!Datas ? (
+        <ProjectSkeleton />
+      ) : (
         Datas.map((item) => {
           return (
             <S.EcardDiv>
@@ -95,7 +100,8 @@ const PlanEcard = ({ Datas }) => {
               </S.FirstDiv>
             </S.EcardDiv>
           );
-        })}
+        })
+      )}
     </div>
   );
 };

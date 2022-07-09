@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './style';
 import ProjectList from 'components/DashBoard/Project-List';
-import ProjectListSkeleton from 'components/Skeleton/ProjectList';
+import ProjectListSkeleton from 'components/Skeleton/Dashboard-ProjectList';
 
 const ProjectTuning = ({ Datas, setNewAxiosUrl, newAxiosUrl, newReloading, setNewReloading }) => {
   const [newTuning, setNewTuning] = useState('');
