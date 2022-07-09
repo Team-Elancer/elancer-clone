@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import * as ST from './style';
 
 import Logo from 'assets/images/logo_white.png';
@@ -8,8 +10,28 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 import * as S from 'styles/Page';
+import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 
 const ListProject = () => {
+  const [Datas, setDatas] = useState('');
+  const location = useLocation();
+
+  console.log(`${location.pathname}${location.search}`, Datas);
+
+  const fetchData = async () => {
+    try {
+      const res = await FILTERED_DATA(`${location.pathname}${location.search}`);
+      const data = await res.data;
+      setDatas(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [location]);
+
   return (
     <>
       <ST.Container>
@@ -25,7 +47,7 @@ const ListProject = () => {
           {/* =======  FilterButton Component ======= */}
           <FilterButtonDark />
           {/* =======  ListPortfolio(E-Card) Component ======= */}
-          <ListPortfolio />
+          <ListPortfolio Datas={Datas.projectBoxResponses} />
         </S.FrameList>
       </ST.Container>
       <Footer />
