@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import ProjectSkeleton from 'components/Skeleton/Project';
+
 import * as S from 'styles/Ecard';
 
 const PublishEcard = ({ Datas }) => {
@@ -60,7 +63,9 @@ const PublishEcard = ({ Datas }) => {
   }, [Datas]);
   return (
     <div>
-      {Datas &&
+      {!Datas ? (
+        <ProjectSkeleton />
+      ) : (
         Datas.map((item) => {
           return (
             <S.EcardDiv>
@@ -94,7 +99,8 @@ const PublishEcard = ({ Datas }) => {
               </S.FirstDiv>
             </S.EcardDiv>
           );
-        })}
+        })
+      )}
     </div>
   );
 };

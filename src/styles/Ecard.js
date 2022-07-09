@@ -13,6 +13,7 @@ export const EcardDiv = styled.div`
   position: relative;
   background-color: #fff;
   color: #000000;
+  font-family: inherit;
   @media ${LAPTOP} {
     height: 269px;
   }
@@ -78,7 +79,7 @@ export const EcardBlackLiTag = styled.li`
     padding: 6px 5px 5px 5px;
   }
   @media ${LAPTOP} {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
   }
 `;
 export const EcardRedLiTag = styled.li`
@@ -94,11 +95,11 @@ export const EcardRedLiTag = styled.li`
     padding: 6px 5px 5px 5px;
   }
   @media ${LAPTOP} {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
   }
 `;
 export const HoneTag = styled.h1`
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9375rem;
   width: 100%;
   height: 0.95rem;
@@ -108,16 +109,16 @@ export const HoneTag = styled.h1`
     height: 1.5rem;
   }
   @media ${LAPTOP} {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
     margin-top: 1rem;
-    height: 1.3rem;
+    height: 1.4rem;
   }
 `;
 export const Ptag = styled.p`
   color: #9e9e9e;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1.2rem;
   padding-top: 15px;
   overflow-y: hidden;
@@ -126,7 +127,7 @@ export const Ptag = styled.p`
     font-size: 0.9rem;
   }
   @media ${LAPTOP} {
-    font-size: 0.93rem;
+    font-size: 1rem;
   }
 `;
 export const LastDiv = styled.div`
@@ -143,11 +144,12 @@ export const SubDiv = styled.div`
   justify-content: end;
   font-size: 0.6875rem;
   padding-right: 10px;
+  font-weight: 800;
   @media ${TABLET} {
     font-size: 0.88rem;
   }
   @media ${LAPTOP} {
-    font-size: 11px;
+    font-size: 0.9rem;
   }
 `;
 export const BigSpan = styled.span`
@@ -167,13 +169,15 @@ export const DaySpan = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   border-radius: 5px;
+  font-weight: 600;
   @media ${TABLET} {
     font-size: 0.78rem;
     letter-spacing: 0px;
     margin-right: 20px;
   }
   @media ${LAPTOP} {
-    font-size: 9px;
+    padding: 8px;
     letter-spacing: 0px;
+    font-size: 0.7rem;
   }
 `;

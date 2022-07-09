@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 
 import ProjectListMain from 'components/DashBoard/ProjextListMain';
-import ProjectListSkeleton from 'components/Skeleton/ProjectList';
+import ProjectListSkeleton from 'components/Skeleton/Dashboard-ProjectList';
 
 const ProjectMain = ({ Datas, newReloading, setNewReloading, setNewAxiosUrl, newAxiosUrl }) => {
   const [newData, setNewData] = useState('');

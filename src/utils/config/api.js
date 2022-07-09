@@ -4,7 +4,7 @@ import axios from 'axios';
 const baseURL = 'http://ec2-3-37-88-44.ap-northeast-2.compute.amazonaws.com:8080';
 
 // ==============  BASE URL -> POST, PUT, DELETE ==============
-export const BaseUrl = 'http:/ec2-3-37-88-44.ap-northeast-2.compute.amazonaws.com:8080';
+export const BaseUrl = 'http://ec2-3-37-88-44.ap-northeast-2.compute.amazonaws.com:8080';
 
 // ==============  Axios config ==============
 
