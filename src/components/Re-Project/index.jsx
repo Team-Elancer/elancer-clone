@@ -127,7 +127,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                     <S.BigSpan>
                       <S.MiniSpan>마감{data.endDays}일전</S.MiniSpan>
                       {data.skills.map((data) => {
-                        return <S.MiniSecond key={data}>{data}</S.MiniSecond>;
+                        return data && <S.MiniSecond key={data}>{data}</S.MiniSecond>;
                       })}
                     </S.BigSpan>
                     <Link to={`/project/${data.projectNum}`}>
