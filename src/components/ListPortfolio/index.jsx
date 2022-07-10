@@ -58,6 +58,7 @@ const ListPortfolio = ({ Datas }) => {
 
   useEffect(() => {
     if (Datas !== undefined) {
+      window.scrollTo(0, 0);
       positionSwitch();
       chageWorkShip();
     }

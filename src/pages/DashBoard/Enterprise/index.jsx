@@ -1,17 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
+import { CLIENT_FREELANCER } from 'utils/config/api';
+
 const DashBoardEnterprise = () => {
+  const [newDatas, setNewDatas] = useState('');
+
+  console.log(newDatas?.applyProjectCount);
+
+  const fetchData = async () => {
+    try {
+      const res = await CLIENT_FREELANCER('/project-list-count');
+      const data = await res.data;
+      setNewDatas(data);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
+
   const [cardArray, setCardArray] = useState([
-    { backColor: '#7485c9', title: '헤드헌팅 0' },
-    { backColor: '#8a7fa4', title: '지원 현황 0' },
-    { backColor: '#9f7985', title: '인터뷰 요청 0' },
-    { backColor: '#d56b2d', title: '진행중 프로젝트 0' },
+    { backColor: '#8a7fa4', title: '지원 현황' },
+    { backColor: '#9f7985', title: '인터뷰 요청' },
+    { backColor: '#b57360', title: '조율중' },
+    { backColor: '#d56b2d', title: '진행중 프로젝트' },
   ]);
+
+  useEffect(() => {
+    setCardArray([
+      { backColor: '#8a7fa4', title: `지원 현황${newDatas.applyProjectCount}` },
+      { backColor: '#9f7985', title: `인터뷰 요청${newDatas.interviewProjectCount}` },
+      { backColor: '#b57360', title: `조율중${newDatas.waitProjectCount}` },
+      { backColor: '#d56b2d', title: `진행중 프로젝트${newDatas.processingProjectCount}` },
+    ]);
+    if (newDatas === '') {
+      fetchData();
+    }
+  }, [newDatas]);
 
   return (
     <>

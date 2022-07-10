@@ -50,6 +50,7 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
 
   useEffect(() => {
     setNewArray(Datas);
+    window.scrollTo(0, 0);
   }, [Datas, newReloading]);
 
   return (

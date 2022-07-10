@@ -112,6 +112,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setNewArray(Datas);
   }, [Datas, newReloading]);
 
