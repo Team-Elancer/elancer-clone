@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 
 import CompanyDashBoard from 'components/DashBoard/Comapany-Myboard';
+import EnterpriseContact from 'components/DashBoard/Contact';
 import BoardCardSpan from 'components/Myboard/CardSpan';
 
 import { CLIENT_FREELANCER } from 'utils/config/api';
@@ -31,10 +32,10 @@ const DashBoardEnterprise = () => {
 
   useEffect(() => {
     setCardArray([
-      { backColor: '#8a7fa4', title: `지원 현황${newDatas.applyProjectCount}` },
-      { backColor: '#9f7985', title: `인터뷰 요청${newDatas.interviewProjectCount}` },
-      { backColor: '#b57360', title: `조율중${newDatas.waitProjectCount}` },
-      { backColor: '#d56b2d', title: `진행중 프로젝트${newDatas.processingProjectCount}` },
+      { backColor: '#8a7fa4', title: `지원 현황 ${newDatas.applyProjectCount}` },
+      { backColor: '#9f7985', title: `인터뷰 요청 ${newDatas.interviewProjectCount}` },
+      { backColor: '#b57360', title: `조율중 ${newDatas.waitProjectCount}` },
+      { backColor: '#d56b2d', title: `진행중 프로젝트 ${newDatas.processingProjectCount}` },
     ]);
     if (newDatas === '') {
       fetchData();
@@ -97,7 +98,7 @@ const DashBoardEnterprise = () => {
           </Link>
           <S.EcardDiv>
             <S.EcarcdPaddingDiv>
-              <h1> </h1>
+              <EnterpriseContact />
             </S.EcarcdPaddingDiv>
           </S.EcardDiv>
         </S.LiTag>
