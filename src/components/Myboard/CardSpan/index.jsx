@@ -26,13 +26,11 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
 
   return (
     <S.OverFlowDiv>
-      <S.FlexDiv width="129%">
-        <Link to="/dashboard/project">
+      <Link to="/dashboard/project">
+        <S.FlexDiv width="129%">
           <S.CardSpan textSize="1.1rem" paddingHeight="1.2rem" paddingWidth="0.9rem" bgcolor="#7485c9" radiud="0.6rem">
             헤드헌팅 0
           </S.CardSpan>
-        </Link>
-        <Link to="/dashboard/project">
           <S.CardSpan
             textSize="1.1rem"
             paddingHeight="1.2rem"
@@ -44,8 +42,6 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
           >
             지원 현황 {newDatas !== '' && newDatas.applyProjectCount}
           </S.CardSpan>
-        </Link>
-        <Link to="/dashboard/project">
           <S.CardSpan
             textSize="1.1rem"
             paddingHeight="1.2rem"
@@ -57,8 +53,6 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
           >
             인터뷰 요청 {newDatas !== '' && newDatas.interviewProjectCount}
           </S.CardSpan>
-        </Link>
-        <Link to="/dashboard/project">
           <S.CardSpan
             textSize="1.1rem"
             paddingHeight="1.2rem"
@@ -70,8 +64,6 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
           >
             조율중 {newDatas !== '' && newDatas.waitProjectCount}
           </S.CardSpan>
-        </Link>
-        <Link to="/dashboard/project">
           <S.CardSpan
             textSize="1.1rem"
             paddingHeight="1.2rem"
@@ -83,8 +75,6 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
           >
             진행중 {newDatas !== '' && newDatas.processingProjectCount}
           </S.CardSpan>
-        </Link>
-        <Link to="/dashboard/project">
           <S.CardSpan
             textSize="1.1rem"
             paddingHeight="1.2rem"
@@ -96,8 +86,8 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
           >
             완료 프로젝트{newDatas !== '' && newDatas.completionProjectCount}
           </S.CardSpan>
-        </Link>
-      </S.FlexDiv>
+        </S.FlexDiv>
+      </Link>
     </S.OverFlowDiv>
   );
 };
