@@ -64,7 +64,7 @@ const MainEnterprise = () => {
         alert('다시 로그인해주세요.');
         navi('/login');
       }
-      console.log(err.message);
+      console.log(err.response.data.errorMessage);
     }
   };
 

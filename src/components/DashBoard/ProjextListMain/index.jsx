@@ -63,7 +63,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
           setNewReloading(false);
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          alert(err.response.data.errorMessage);
         });
     } else {
       console.log('취소');
@@ -89,7 +89,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
             setNewReloading(false);
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            alert(err.response.data.errorMessage);
           });
       } else {
         console.log('취소');
@@ -110,7 +110,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
           setNewReloading(false);
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          alert(err.response.data.errorMessage);
         });
     }
   };
@@ -133,7 +133,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
           setNewReloading(false);
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          alert(err.response.data.errorMessage);
         });
     } else {
       console.log('취소');

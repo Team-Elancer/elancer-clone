@@ -146,7 +146,7 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
           alert('문의가 삭제되었습니다.');
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          alert(err.response.data.errorMessage);
         });
     } else {
       console.log('취소');
