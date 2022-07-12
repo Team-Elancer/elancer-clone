@@ -19,7 +19,7 @@ const DashBoardEnterprise = () => {
       const data = await res.data;
       setNewDatas(data);
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err.response.data.errorMessage);
     }
   };
 
