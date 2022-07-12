@@ -1,3 +1,5 @@
+import { useParams, useNavigate } from 'react-router-dom';
+
 import * as S from './style';
 
 import ProfilePicture from 'assets/images/profile.png';
@@ -9,6 +11,9 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 const PartnerDetail = () => {
+  const { id } = useParams();
+  console.log(id);
+
   return (
     <>
       <Header />
