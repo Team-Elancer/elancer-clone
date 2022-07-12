@@ -26,7 +26,7 @@ export const FlexDiv = styled.div`
 export const CardSpan = styled.span`
   color: white;
   font-weight: 800;
-  padding: 0.7rem 0.6rem;
+  padding: 1rem 0.6rem;
   background-color: ${(props) => props.bgcolor};
   margin-right: 0.5rem;
   border-radius: 0.3rem;
