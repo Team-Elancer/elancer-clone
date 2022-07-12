@@ -1,4 +1,8 @@
+import axios from 'axios';
+
 import { useState, useEffect, useRef, useCallback } from 'react';
+
+import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
 // import Swiper core and required modules
 import { Navigation, Pagination } from 'swiper';
@@ -16,16 +20,19 @@ import samsungImg from 'assets/images/samsung.png';
 import Loader from 'components/Loader';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
-import { FILTERED_DATA } from 'utils/config/api';
+import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 
 const ListFreelancer = ({ togglePositionType }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [positionState, setPositionState] = useState([]);
+  const [wishState, setWishState] = useState(false);
 
   const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
 
   const FILTERED_STATE = positionState;
+
+  console.log(FILTERED_STATE);
 
   const getPositionLists = async (positionList) => {
     try {
@@ -65,12 +72,69 @@ const ListFreelancer = ({ togglePositionType }) => {
     getPositionLists(positionList);
   }, [developer, publisher, designer, planner, etc]);
 
+  const handleAddWishState = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      ...wishState,
+    };
+
+    console.log(newData);
+
+    axios({
+      url: `${BaseUrl}/wish-project`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      projectNum: newData,
+    })
+      .then(() => {
+        console.log(newData);
+
+        // setWishState(true);
+        alert('인재스크랩에 저장됐습니다.');
+        // window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const handleDeleteWishState = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      ...wishState,
+    };
+
+    axios({
+      url: `${BaseUrl}/wish-project`,
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: newData,
+    })
+      .then(() => {
+        console.log(newData);
+        // setWishState(false);
+        alert('인재스크랩에서 해제하였습니다');
+        // window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <S.FrameFreelancer>
       {FILTERED_STATE.map((list, index) => {
         return (
           <S.ContainerFreelancer key={list.freelancerNum}>
-            <S.ContainerLink to="/partner-detail">
+            <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
               <S.ContainerSwiper introBackGround={list?.introBackGround}>
                 <Swiper
                   navigation
@@ -97,7 +161,15 @@ const ListFreelancer = ({ togglePositionType }) => {
                   <S.FreelancerName>
                     {list.freelancerName} | {list.careerYear}년 경력 개발자
                   </S.FreelancerName>
-                  <S.FreelancerHeart>♡</S.FreelancerHeart>
+                  {wishState ? (
+                    <S.FreelancerHeart onClick={handleDeleteWishState}>
+                      <BsSuitHeartFill />
+                    </S.FreelancerHeart>
+                  ) : (
+                    <S.FreelancerHeart onClick={handleAddWishState}>
+                      <BsSuitHeart />
+                    </S.FreelancerHeart>
+                  )}
                 </S.ContainerNameHeart>
                 <S.FreelancerTitle>{list.greeting}</S.FreelancerTitle>
                 <S.ContainerFreelancerStack>

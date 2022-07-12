@@ -103,6 +103,7 @@ export const PersonFlexCenter = styled.div`
 `;
 
 export const ContainerExperience = styled.div`
+  width: 100%;
   @media ${TABLET} {
     display: flex;
     flex-direction: column;
