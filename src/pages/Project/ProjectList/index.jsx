@@ -14,28 +14,95 @@ import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 const ListProject = () => {
   const [Datas, setDatas] = useState('');
   const [selectType, setSelectType] = useState('⚙️ 개발');
+  const [selectType1, setSelectType1] = useState('');
+  const [selectBool, setSelectBool] = useState(false);
   const location = useLocation();
-  const [URL, setURL] = useState('');
+  const [URL, setURL] = useState(`${location.pathname}${location.search}`);
 
-  console.log(Datas);
+  const checkURL = () => {
+    switch (URL) {
+      case '/project-list?position=PUBLISHER':
+        setSelectType('🛠 퍼블리싱');
+        break;
+      case '/project-list?position=DESIGNER':
+        setSelectType('🎨 디자인');
+        break;
+      case '/project-list?position=PLANNER':
+        setSelectType('📝 기획');
+        break;
+      case '🔗 기타':
+        setSelectType('🔗 기타');
+        setURL('/project-list?position=ETC');
+        break;
+      default:
+        setURL('/project-list?position=DEVELOPER');
+        break;
+    }
+  };
 
+  const ChangeURL = () => {
+    switch (selectType) {
+      case '🛠 퍼블리싱':
+        setSelectType1('🛠 퍼블리싱');
+        setURL('/project-list?position=PUBLISHER');
+        break;
+      case '🎨 디자인':
+        setSelectType1('🎨 디자인');
+        setURL('/project-list?position=DESIGNER');
+        break;
+      case '📝 기획':
+        setSelectType1('📝 기획');
+        setURL('/project-list?position=PLANNER');
+        break;
+      case '🔗 기타':
+        setSelectType1('🔗 기타');
+        setURL('/project-list?position=ETC');
+        break;
+      case '⚙️ 개발':
+        setSelectType1('⚙️ 개발');
+        setURL('/project-list?position=DEVELOPER');
+        break;
+      default:
+        setURL('/project-list?position=DEVELOPER');
+        break;
+    }
+  };
+
+  console.log(Datas, selectBool);
   const checkSelectType = (e) => {
     setSelectType(e.target.innerHTML);
+    setSelectBool(true);
   };
 
   const fetchData = async () => {
-    try {
-      const res = await FILTERED_DATA(`${location.pathname}${location.search}`);
-      const data = await res.data;
-      setDatas(data);
-    } catch (error) {
-      console.log(error.message);
+    if (selectBool === true && selectType === selectType1) {
+      try {
+        const res = await FILTERED_DATA(URL);
+        const data = await res.data;
+        setDatas(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      try {
+        const res = await FILTERED_DATA(URL);
+        const data = await res.data;
+        setDatas(data);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
   useEffect(() => {
+    if (selectBool === true) {
+      ChangeURL();
+    }
+    if (selectBool === false) {
+      checkURL();
+    }
     fetchData();
-  }, [location, selectType]);
+  }, [location, selectType, URL]);
 
   return (
     <>
