@@ -18,45 +18,49 @@ const ProjectNewDetail = () => {
   const member = window.localStorage.memberType;
   const [Datas, setDatas] = useState('');
   const [shareModal, setShareModal] = useState(true);
-  const [workmanShip, setWorkmanShip] = useState('');
-  const [nowProjectStep, setNowProjectStep] = useState('');
   const [detailAddress, setDetailAddress] = useState('');
 
   console.log(Datas);
 
-  const workmanShipSwitch = () => {
-    switch (Datas.freelancerWorkmanShip) {
+  const workmanShipSwitch = (item) => {
+    switch (item) {
       case 'MIDDLE':
-        setWorkmanShip('중급');
-        break;
+        return '중급';
       case 'SENIOR':
-        setWorkmanShip('고급');
-        break;
+        return '고급';
       default:
-        setWorkmanShip('초급');
-        break;
+        return '초급';
     }
   };
-  const positionSwitch = () => {
-    switch (Datas.projectStep) {
-      case 'ANALYSIS':
-        setNowProjectStep('분석/설계');
-        break;
-      case 'PLAN':
-        setNowProjectStep('기획');
-        break;
-      case 'DESIGN':
-        setNowProjectStep('디자인');
-        break;
-      case 'PUBLISHING':
-        setNowProjectStep('퍼블리싱');
-        break;
-      case 'OPERATION':
-        setNowProjectStep('운영중');
-        break;
+  const positionKindSwitch = (item) => {
+    switch (item) {
+      case 'PLANNER':
+        return '기획자';
+      case 'DESIGNER':
+        return '디자이너';
+      case 'PUBLISHER':
+        return '퍼블리셔';
+      case 'ETC':
+        return '기타';
       default:
-        setNowProjectStep('개발');
-        break;
+        return '개발자';
+    }
+  };
+
+  const positionSwitch = (item) => {
+    switch (item) {
+      case 'ANALYSIS':
+        return '분석/설계';
+      case 'PLAN':
+        return '기획';
+      case 'DESIGN':
+        return '디자인';
+      case 'PUBLISHING':
+        return '퍼블리싱';
+      case 'OPERATION':
+        return '운영중';
+      default:
+        return '개발';
     }
   };
 
@@ -126,7 +130,9 @@ const ProjectNewDetail = () => {
           </S.FlexDiv>
           <S.PayH1>{Datas.pay}</S.PayH1>
           <S.FlexDiv content="start">
-            <S.Colorspan color="white">{workmanShip !== '' && workmanShip} 개발자</S.Colorspan>
+            <S.Colorspan color="white">
+              {workmanShipSwitch(Datas.freelancerWorkmanShip)} {positionKindSwitch(Datas.positionKind)}
+            </S.Colorspan>
             <S.Colorspan color="white">{Datas.projectPeriod === 0 ? 1 : Datas.projectPeriod}개월</S.Colorspan>
             <S.Colorspan
               color="white"
@@ -134,7 +140,7 @@ const ProjectNewDetail = () => {
             >
               {detailAddress[0]}|{detailAddress[1]}
             </S.Colorspan>
-            <S.Colorspan color="white">{nowProjectStep !== '' && nowProjectStep}</S.Colorspan>
+            <S.Colorspan color="white">{positionSwitch(Datas.projectStep)}</S.Colorspan>
           </S.FlexDiv>
           <S.FlexDiv content="start">
             {Datas !== '' &&
