@@ -4,7 +4,6 @@ import * as ST from './style';
 
 import Logo from 'assets/images/logo_white.png';
 
-import FilterButtonDark from 'components/Button/FilterButton/FilterButtonDark';
 import ListPortfolio from 'components/ListPortfolio';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
@@ -14,9 +13,15 @@ import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 
 const ListProject = () => {
   const [Datas, setDatas] = useState('');
+  const [selectType, setSelectType] = useState('⚙️ 개발');
   const location = useLocation();
+  const [URL, setURL] = useState('');
 
-  console.log(`${location.pathname}${location.search}`, Datas);
+  console.log(Datas);
+
+  const checkSelectType = (e) => {
+    setSelectType(e.target.innerHTML);
+  };
 
   const fetchData = async () => {
     try {
@@ -30,7 +35,7 @@ const ListProject = () => {
 
   useEffect(() => {
     fetchData();
-  }, [location]);
+  }, [location, selectType]);
 
   return (
     <>
@@ -44,8 +49,26 @@ const ListProject = () => {
               프로젝트 등록하면 <br /> 더 정확한 추천을 받을 수 있어요
             </S.TopLetterSubject>
           </S.ContainerTopLetter>
-          {/* =======  FilterButton Component ======= */}
-          <FilterButtonDark />
+          <ST.Ul>
+            <ST.Li color={selectType === '⚙️ 개발' ? 'white' : 'none'} onClick={checkSelectType}>
+              ⚙️ 개발
+            </ST.Li>
+            <ST.Li color={selectType === '🛠 퍼블리싱' ? 'white' : 'none'} onClick={checkSelectType}>
+              🛠 퍼블리싱
+            </ST.Li>
+            <ST.Li color={selectType === '🎨 디자인' ? 'white' : 'none'} onClick={checkSelectType}>
+              🎨 디자인
+            </ST.Li>
+            <ST.Li color={selectType === '📝 기획' ? 'white' : 'none'} onClick={checkSelectType}>
+              📝 기획
+            </ST.Li>
+            <ST.Li color={selectType === '🔗 기타' ? 'white' : 'none'} onClick={checkSelectType}>
+              🔗 기타
+            </ST.Li>
+            <ST.Li color={selectType === '🕹 필터 추가하기' ? 'white' : 'none'} onClick={checkSelectType}>
+              🕹 필터 추가하기
+            </ST.Li>
+          </ST.Ul>
           {/* =======  ListPortfolio(E-Card) Component ======= */}
           <ListPortfolio Datas={Datas.projectBoxResponses} />
         </S.FrameList>

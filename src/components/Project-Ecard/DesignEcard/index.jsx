@@ -6,44 +6,34 @@ import ProjectSkeleton from 'components/Skeleton/Project';
 import * as S from 'styles/Ecard';
 
 const DesignEcard = ({ Datas }) => {
-  const [nowWorkType, setNowWorkType] = useState('');
-  const [postionType, setPostionType] = useState('');
-
-  console.log(Datas);
-  const positionSwitch = () => {
-    switch (Datas.positionKind) {
+  const positionSwitch = (item) => {
+    switch (item) {
       case 'PUBLISHER':
-        setNowWorkType('퍼블리셔');
-        break;
+        return '퍼블리셔';
       case 'DESIGNER':
-        setNowWorkType('디자이너');
-        break;
+        return '디자이너';
       case 'PLANNER':
-        setNowWorkType('기획자');
-        break;
+        return '기획자';
+
       case 'CROWD_WORKER':
-        setNowWorkType('클라우드 워커');
-        break;
+        return '클라우드 워커';
       case 'ETC':
-        setNowWorkType('기타');
-        break;
+        return '기타';
       default:
-        setNowWorkType('개발자');
-        break;
+        return '개발자';
     }
   };
 
-  const chageWorkShip = () => {
-    switch (Datas.freelancerWorkmanShip) {
+  const chageWorkShip = (item) => {
+    switch (item) {
       case 'MIDDLE':
-        setPostionType('중급');
-        break;
+        return '중급';
+
       case 'SENIOR':
-        setPostionType('고급');
-        break;
+        return '고급';
+
       default:
-        setPostionType('초급');
-        break;
+        return '초급';
     }
   };
   const checkAddress = (data) => {
@@ -75,12 +65,12 @@ const DesignEcard = ({ Datas }) => {
                   <S.HeartDiv>🤍</S.HeartDiv>
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
-                  <S.EcardBlackLiTag>{nowWorkType}</S.EcardBlackLiTag>
+                  <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
                   <S.EcardBlackLiTag>{item.projectType === 'TELEWORKING' ? '상주' : '재택'}</S.EcardBlackLiTag>
                   <S.EcardBlackLiTag>{item.projectPeriod === 0 ? 1 : item.projectPeriod}개월</S.EcardBlackLiTag>
                   <S.EcardBlackLiTag>{checkAddress(item.address.mainAddress)}</S.EcardBlackLiTag>
                   <S.EcardBlackLiTag>{item.pay}</S.EcardBlackLiTag>
-                  <S.EcardRedLiTag>{postionType}</S.EcardRedLiTag>
+                  <S.EcardRedLiTag>{chageWorkShip(item.freelancerWorkmanShip)}</S.EcardRedLiTag>
                   {item.skills[0] !== '' &&
                     item.skills.map((skill) => {
                       return <S.EcardRedLiTag key={skill}>{skill}</S.EcardRedLiTag>;

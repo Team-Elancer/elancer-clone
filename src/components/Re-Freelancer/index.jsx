@@ -17,7 +17,7 @@ const ReFreelancer = () => {
 
   const fetchData = async () => {
     try {
-      const res = await FILTERED_DATA(`/freelancers/freelancer-profiles`);
+      const res = await FILTERED_DATA(`/freelancers`);
       const data = await res.data;
       setDatas(data);
     } catch (error) {
