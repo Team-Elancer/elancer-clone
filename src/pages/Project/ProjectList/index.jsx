@@ -6,6 +6,9 @@ import * as ST from './style';
 import Logo from 'assets/images/logo_white.png';
 
 import ListPortfolio from 'components/ListPortfolio';
+import ProjectListMainMenu from 'components/Modal/MainMenu/ProjectList';
+import ProjectListModal from 'components/Modal/ProjectListModal';
+
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
@@ -17,6 +20,7 @@ const ListProject = () => {
   const [selectType, setSelectType] = useState('⚙️ 개발');
   const [selectType1, setSelectType1] = useState('');
   const [selectBool, setSelectBool] = useState(false);
+  const [modalCheck, setModalCheck] = useState(false);
   const [checkpage, setCheckpage] = useState('');
   const [ref, inView] = useInView();
   const [loading, setLoading] = useState(false);
@@ -146,6 +150,12 @@ const ListProject = () => {
     <>
       <ST.Container>
         <Header margin="0" bgColor="#252525" color="white" width="840px" logo={Logo} projectList />
+        {modalCheck && (
+          <>
+            <ProjectListModal setModalCheck={setModalCheck} />
+            <ProjectListMainMenu setModalCheck={setModalCheck} />
+          </>
+        )}
         <S.FrameList>
           <S.ContainerTopLetter>
             <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
@@ -170,7 +180,12 @@ const ListProject = () => {
             <ST.Li color={selectType === '🔗 기타' ? 'white' : 'none'} onClick={checkSelectType}>
               🔗 기타
             </ST.Li>
-            <ST.Li color={selectType === '🕹 필터 추가하기' ? 'white' : 'none'} onClick={checkSelectType}>
+            <ST.Li
+              color={selectType === '🕹 필터 추가하기' ? 'white' : 'none'}
+              onClick={() => {
+                setModalCheck(true);
+              }}
+            >
               🕹 필터 추가하기
             </ST.Li>
           </ST.Ul>
