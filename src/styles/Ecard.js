@@ -19,6 +19,11 @@ export const EcardDiv = styled.div`
   }
 `;
 
+export const CheckDiv = styled.div`
+  font-size: 1rem;
+  color: black;
+`;
+
 export const HeartBackDiv = styled.div`
   padding: 5px;
   width: 28px;
