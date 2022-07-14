@@ -7,8 +7,6 @@ import { CLIENT_FREELANCER } from 'utils/config/api';
 const EnterpriseContact = () => {
   const [Datas, setDatas] = useState('');
 
-  console.log(Datas);
-
   const FetchData = async () => {
     try {
       const res = await CLIENT_FREELANCER('/contacts');
@@ -26,7 +24,7 @@ const EnterpriseContact = () => {
   }, [Datas]);
   return (
     <S.Container>
-      {Datas &&
+      {Datas !== '' &&
         Datas.map((data) => (
           <S.FlexDiv>
             <S.Text>

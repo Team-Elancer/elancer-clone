@@ -54,7 +54,7 @@ const ChoiceProject = () => {
         })}
       </S.UlTag>
       <Ecard selectId={selectId} />
-      <Link to="/list-project">
+      <Link to="/project-list">
         <MoreButton />
       </Link>
     </S.Container>

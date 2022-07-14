@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
 import * as ST from './style';
 
@@ -12,30 +13,34 @@ import * as S from 'styles/Page';
 import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 
 const ListProject = () => {
-  const [Datas, setDatas] = useState('');
+  const [Datas, setDatas] = useState([]);
   const [selectType, setSelectType] = useState('⚙️ 개발');
   const [selectType1, setSelectType1] = useState('');
   const [selectBool, setSelectBool] = useState(false);
+  const [checkpage, setCheckpage] = useState('');
+  const [ref, inView] = useInView();
+  const [loading, setLoading] = useState(false);
+
+  const [page, setPage] = useState(0);
   const location = useLocation();
   const [URL, setURL] = useState(`${location.pathname}${location.search}`);
 
   const checkURL = () => {
     switch (URL) {
-      case '/project-list?position=PUBLISHER':
+      case `/project-list?position=PUBLISHER`:
         setSelectType('🛠 퍼블리싱');
         break;
-      case '/project-list?position=DESIGNER':
+      case `/project-list?position=DESIGNER`:
         setSelectType('🎨 디자인');
         break;
-      case '/project-list?position=PLANNER':
+      case `/project-list?position=PLANNER`:
         setSelectType('📝 기획');
         break;
-      case '🔗 기타':
+      case `/project-list?position=ETC`:
         setSelectType('🔗 기타');
-        setURL('/project-list?position=ETC');
         break;
       default:
-        setURL('/project-list?position=DEVELOPER');
+        setURL(`/project-list?position=DEVELOPER`);
         break;
     }
   };
@@ -44,55 +49,88 @@ const ListProject = () => {
     switch (selectType) {
       case '🛠 퍼블리싱':
         setSelectType1('🛠 퍼블리싱');
-        setURL('/project-list?position=PUBLISHER');
+        setURL(`/project-list?position=PUBLISHER`);
         break;
       case '🎨 디자인':
         setSelectType1('🎨 디자인');
-        setURL('/project-list?position=DESIGNER');
+        setURL(`/project-list?position=DESIGNER`);
         break;
       case '📝 기획':
         setSelectType1('📝 기획');
-        setURL('/project-list?position=PLANNER');
+        setURL(`/project-list?position=PLANNER`);
         break;
       case '🔗 기타':
         setSelectType1('🔗 기타');
-        setURL('/project-list?position=ETC');
+        setURL(`/project-list?position=ETC`);
         break;
       case '⚙️ 개발':
         setSelectType1('⚙️ 개발');
-        setURL('/project-list?position=DEVELOPER');
+        setURL(`/project-list?position=DEVELOPER`);
         break;
       default:
-        setURL('/project-list?position=DEVELOPER');
+        setURL(`/project-list?position=DEVELOPER`);
         break;
     }
   };
 
-  console.log(Datas, selectBool);
   const checkSelectType = (e) => {
     setSelectType(e.target.innerHTML);
+    setPage(0);
     setSelectBool(true);
   };
 
   const fetchData = async () => {
-    if (selectBool === true && selectType === selectType1) {
-      try {
-        const res = await FILTERED_DATA(URL);
-        const data = await res.data;
-        setDatas(data);
-      } catch (error) {
-        console.log(error.message);
+    if (page < 1) {
+      if (selectBool === true && selectType === selectType1) {
+        console.log('hello');
+        try {
+          const res = await FILTERED_DATA(URL);
+          const data = await res.data;
+          setDatas(data.projectBoxResponses);
+          setCheckpage(data.hasNext);
+        } catch (error) {
+          console.log(error.message);
+        }
       }
-    } else {
-      try {
-        const res = await FILTERED_DATA(URL);
-        const data = await res.data;
-        setDatas(data);
-      } catch (error) {
-        console.log(error.message);
+      if (selectBool === false) {
+        try {
+          const res = await FILTERED_DATA(URL);
+          const data = await res.data;
+          setDatas(data.projectBoxResponses);
+          setCheckpage(data.hasNext);
+        } catch (error) {
+          console.log(error.message);
+        }
       }
     }
   };
+
+  const changePage = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await FILTERED_DATA(`${URL}&page=${page}`);
+      const data = await res.data;
+      setDatas((prevData) => [...prevData, ...data.projectBoxResponses]);
+      setCheckpage(data.hasNext);
+      setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (page > 0) {
+      changePage();
+      console.log('이펙트');
+    }
+  }, [changePage]);
+
+  useEffect(() => {
+    if (inView && !loading && checkpage) {
+      console.log('페이지');
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, loading]);
 
   useEffect(() => {
     if (selectBool === true) {
@@ -102,7 +140,7 @@ const ListProject = () => {
       checkURL();
     }
     fetchData();
-  }, [location, selectType, URL]);
+  }, [selectType, URL]);
 
   return (
     <>
@@ -137,9 +175,10 @@ const ListProject = () => {
             </ST.Li>
           </ST.Ul>
           {/* =======  ListPortfolio(E-Card) Component ======= */}
-          <ListPortfolio Datas={Datas.projectBoxResponses} />
+          <ListPortfolio Datas={Datas} />
         </S.FrameList>
       </ST.Container>
+      <div ref={ref} />
       <Footer />
     </>
   );
