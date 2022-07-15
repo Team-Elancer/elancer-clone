@@ -84,39 +84,40 @@ const ListProject = () => {
   };
 
   const fetchData = async () => {
-    if (page < 1) {
-      if (selectBool === true && selectType === selectType1) {
+    if (selectBool === true && selectType === selectType1) {
+      try {
+        const res = await FILTERED_DATA(URL);
+        const data = await res.data;
         console.log('hello');
-        try {
-          const res = await FILTERED_DATA(URL);
-          const data = await res.data;
-          setDatas(data.projectBoxResponses);
-          setCheckpage(data.hasNext);
-        } catch (error) {
-          console.log(error.message);
-        }
+        setDatas(data.projectBoxResponses);
+        setCheckpage(data.hasNext);
+        setLoading(false);
+        setLoading('');
+      } catch (error) {
+        console.log(error.message);
       }
-      if (selectBool === false) {
-        try {
-          const res = await FILTERED_DATA(URL);
-          const data = await res.data;
-          setDatas(data.projectBoxResponses);
-          setCheckpage(data.hasNext);
-        } catch (error) {
-          console.log(error.message);
-        }
+    }
+    if (selectBool === false) {
+      try {
+        const res = await FILTERED_DATA(URL);
+        const data = await res.data;
+        console.log('hello');
+        setDatas(data.projectBoxResponses);
+        setCheckpage(data.hasNext);
+        setLoading(false);
+        setLoading('');
+      } catch (error) {
+        console.log(error.message);
       }
     }
   };
 
   const changePage = useCallback(async () => {
-    setLoading(true);
     try {
       const res = await FILTERED_DATA(`${URL}&page=${page}`);
       const data = await res.data;
       setDatas((prevData) => [...prevData, ...data.projectBoxResponses]);
       setCheckpage(data.hasNext);
-      setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -125,25 +126,28 @@ const ListProject = () => {
   useEffect(() => {
     if (page > 0) {
       changePage();
-      console.log('이펙트');
     }
   }, [changePage]);
 
   useEffect(() => {
-    if (inView && !loading && checkpage) {
-      console.log('페이지');
+    if (inView && checkpage) {
       setPage((prevState) => prevState + 1);
     }
-  }, [inView, loading]);
+  }, [inView]);
 
   useEffect(() => {
-    if (selectBool === true) {
+    if (selectBool === true && !loading) {
+      console.log('첫번째');
       ChangeURL();
     }
-    if (selectBool === false) {
+    if (selectBool === false && !loading) {
+      console.log('두번째');
       checkURL();
     }
-    fetchData();
+    if (URL !== '') {
+      fetchData();
+    }
+    console.log(URL);
   }, [selectType, URL]);
 
   return (
@@ -152,7 +156,13 @@ const ListProject = () => {
         <Header margin="0" bgColor="#252525" color="white" width="840px" logo={Logo} projectList />
         {modalCheck && (
           <>
-            <ProjectListModal setModalCheck={setModalCheck} />
+            <ProjectListModal
+              setModalCheck={setModalCheck}
+              setURL={setURL}
+              setSelectType={setSelectType}
+              setLoading={setLoading}
+              setSelectType1={setSelectType1}
+            />
             <ProjectListMainMenu setModalCheck={setModalCheck} />
           </>
         )}

@@ -5,15 +5,15 @@ import Cancel from 'assets/images/cancel-dark.png';
 import FilterChoiceButton from 'components/Button/FilterChoiceButton';
 import ProjectListSearchBar from 'components/Search/ProjectList';
 
-const ProjectListModal = ({ setModalCheck }) => {
-  const [positionType, setPositionType] = useState('');
+const ProjectListModal = ({ setModalCheck, setURL, setSelectType, setLoading, setSelectType1 }) => {
+  const [positionType, setPositionType] = useState('⚙️ 개발');
   const [workState, setWorkState] = useState('');
   const [workSkill, setWorkSkill] = useState('');
   const [workPlace, setWorkPlace] = useState('');
   const [positionArray, setPositionArray] = useState([]);
 
   const createWork = ['⚙️ 개발', '🛠 퍼블리싱', '🎨 디자인', '📝 기획', '🔗 기타'];
-  const yourState = ['🏢 상주', '🏠 재택', '🔗 정규직'];
+  const yourState = ['🏢 상주', '🏠 재택', '🖥  상관없음'];
   const yourSkill = ['초급', '중급', '고급'];
   const wantPlace = [
     '서울',
@@ -53,19 +53,68 @@ const ProjectListModal = ({ setModalCheck }) => {
   };
   const positionArrayFunction = (e) => {
     if (positionArray.includes('선택')) {
-      setPositionArray([e.target.innerHTML, ',']);
+      setPositionArray([e.target.innerHTML]);
     } else if (positionArray.includes(e.target.innerHTML)) {
       const setIndex = positionArray.indexOf(e.target.innerHTML) + 1;
       setPositionArray(positionArray.splice(setIndex, 1));
       setPositionArray(positionArray.filter((element) => element !== e.target.innerHTML));
     } else {
-      setPositionArray([...positionArray, e.target.innerHTML, ',']);
+      setPositionArray([...positionArray, e.target.innerHTML]);
     }
   };
 
-  useEffect(() => {
-    console.log(positionType);
-  }, [positionType]);
+  const changeURl = () => {
+    const position = () => {
+      switch (positionType) {
+        case '⚙️ 개발':
+          return 'DEVELOPER';
+        case '🛠 퍼블리싱':
+          return 'PUBLISHER';
+        case '🎨 디자인':
+          return 'DESIGNER';
+        case '📝 기획':
+          return 'PLANNER';
+        case '🔗 기타':
+          return 'ETC';
+        default:
+          return 'DEVELOPER';
+      }
+    };
+    const state = () => {
+      switch (workState) {
+        case '🏢 상주':
+          return 'WORKING';
+        case '🏠 재택':
+          return 'TELEWORKING';
+        default:
+          return '';
+      }
+    };
+    const skills = () => {
+      switch (workSkill) {
+        case '초급':
+          return 'JUNIOR';
+        case '중급':
+          return 'MIDDLE';
+        case '고급':
+          return 'SENIOR';
+        default:
+          return '';
+      }
+    };
+    const newArray = positionArray.map((a) => {
+      return `&skills=${a}`;
+    });
+    setLoading(true);
+    setURL(
+      `/project-list?positionKind=${position()}${newArray.join(
+        '',
+      )}&projectType=${state()}&freelancerWorkmanShip=${skills()}&region=${workPlace}`,
+    );
+    setSelectType(positionType);
+    setSelectType1(positionType);
+    setModalCheck(false);
+  };
 
   return (
     <S.Container>
@@ -143,6 +192,7 @@ const ProjectListModal = ({ setModalCheck }) => {
             {yourSkill.map((data) => {
               return (
                 <S.Li
+                  key={data}
                   bgColor={workSkill === `${data}` ? '#e7e7e7' : 'white'}
                   color={workSkill === `${data}` ? 'black' : '#d7d7d7'}
                   onClick={(e) => changeWorkSkill(e)}
@@ -173,7 +223,7 @@ const ProjectListModal = ({ setModalCheck }) => {
       </S.ContentDiv>
 
       <S.ButtonDiv>
-        <FilterChoiceButton />
+        <FilterChoiceButton changeURl={changeURl} />
       </S.ButtonDiv>
     </S.Container>
   );

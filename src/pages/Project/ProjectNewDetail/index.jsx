@@ -20,8 +20,6 @@ const ProjectNewDetail = () => {
   const [shareModal, setShareModal] = useState(true);
   const [detailAddress, setDetailAddress] = useState('');
 
-  console.log(Datas);
-
   const workmanShipSwitch = (item) => {
     switch (item) {
       case 'MIDDLE':

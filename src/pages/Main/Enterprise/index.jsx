@@ -20,6 +20,7 @@ import CompanyHeader from 'layouts/Header/Company';
 import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const MainEnterprise = () => {
+  const [Datas, setUserDatas] = useState({});
   const navi = useNavigate();
   const [changeBack, setChangeBack] = useState(true);
   const [serchBarBool, setSerchBarBool] = useState();
@@ -46,7 +47,6 @@ const MainEnterprise = () => {
       setSkillState([...skillState, e.target.htmlFor, ',']);
     }
   };
-  const [Datas, setUserDatas] = useState({});
 
   const fetchData = async () => {
     try {

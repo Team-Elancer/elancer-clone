@@ -72,7 +72,7 @@ const ReFreelancer = () => {
                     <S.BigSpan>
                       {item.skills &&
                         item.skills.map((data, i) => {
-                          return data !== '' && data !== null ? <S.MiniSpan>{data}</S.MiniSpan> : <div />;
+                          return data !== '' && data !== null ? <S.MiniSpan key={data}>{data}</S.MiniSpan> : <div />;
                         })}
                     </S.BigSpan>
                     <S.hiddenP>
