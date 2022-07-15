@@ -60,7 +60,7 @@ const DevelopEcard = ({ Datas }) => {
       ) : (
         Datas.map((item) => {
           return (
-            <S.EcardDiv>
+            <S.EcardDiv key={item.projectNum}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
                   <S.HeartDiv>🤍</S.HeartDiv>

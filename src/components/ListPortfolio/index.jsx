@@ -68,13 +68,14 @@ const ListPortfolio = ({ Datas }) => {
               </S.HeartBackDiv>
               <S.EcardUlTag>
                 <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
-                <S.EcardBlackLiTag>{item.projectType === 'TELEWORKING' ? '상주' : '재택'}</S.EcardBlackLiTag>
+                <S.EcardBlackLiTag>{item.projectType === 'TELEWORKING' ? '재택' : '상주'}</S.EcardBlackLiTag>
                 <S.EcardBlackLiTag>{item.projectPeriod === 0 ? 1 : item.projectPeriod}개월</S.EcardBlackLiTag>
+                <S.EcardBlackLiTag>{checkAddress(item.address.mainAddress)}</S.EcardBlackLiTag>
                 <S.EcardBlackLiTag>{item.pay}</S.EcardBlackLiTag>
                 <S.EcardRedLiTag>{chageWorkShip(item.freelancerWorkmanShip)}</S.EcardRedLiTag>
                 {item.skills &&
                   item.skills.map((skill) => {
-                    return <S.EcardRedLiTag key={skill}>{skill}</S.EcardRedLiTag>;
+                    return skill && <S.EcardRedLiTag key={skill}>{skill}</S.EcardRedLiTag>;
                   })}
               </S.EcardUlTag>
               <Link to={`/project/${item.projectNum}`}>

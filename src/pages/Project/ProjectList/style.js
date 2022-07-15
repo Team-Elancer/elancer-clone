@@ -10,7 +10,7 @@ export const Container = styled.div`
     min-height: 750px;
   }
   @media ${LAPTOP} {
-    min-height: 800px;
+    min-height: 900px;
   }
 `;
 export const Ul = styled.ul`
