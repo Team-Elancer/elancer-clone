@@ -22,6 +22,8 @@ import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 
+import { extractSecureName } from 'utils/helpers';
+
 const ListFreelancer = ({ togglePositionType }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,14 +34,12 @@ const ListFreelancer = ({ togglePositionType }) => {
 
   const FILTERED_STATE = positionState;
 
-  console.log(FILTERED_STATE);
-
   const getPositionLists = async (positionList) => {
     try {
       const {
         data: { freelancerSimpleResponseList },
       } = await FILTERED_DATA(
-        `${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=JAVA&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=`,
+        `${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=`,
       );
 
       setPositionState(freelancerSimpleResponseList);
@@ -132,6 +132,8 @@ const ListFreelancer = ({ togglePositionType }) => {
   return (
     <S.FrameFreelancer>
       {FILTERED_STATE.map((list, index) => {
+        const securedName = extractSecureName(list?.freelancerName);
+
         return (
           <S.ContainerFreelancer key={list.freelancerNum}>
             <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
@@ -146,7 +148,7 @@ const ListFreelancer = ({ togglePositionType }) => {
                 >
                   <SwiperSlide>
                     <S.PersonFlexCenter>
-                      {list?.positionName} {list?.freelancerName}
+                      {list?.positionName} {securedName}
                     </S.PersonFlexCenter>
                   </SwiperSlide>
                   <SwiperSlide>
@@ -159,7 +161,7 @@ const ListFreelancer = ({ togglePositionType }) => {
               <S.ContainerExperience>
                 <S.ContainerNameHeart>
                   <S.FreelancerName>
-                    {list.freelancerName} | {list.careerYear}년 경력 개발자
+                    {securedName} | {list.careerYear}년 경력 {list?.positionName}
                   </S.FreelancerName>
                   {wishState ? (
                     <S.FreelancerHeart onClick={handleDeleteWishState}>
