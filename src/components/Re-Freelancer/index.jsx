@@ -63,9 +63,11 @@ const ReFreelancer = () => {
                       <S.HearDiv>🤍</S.HearDiv>
                     </S.HeartBackDiv>
                   </S.DivTag>
-                  <S.TitleName>
-                    {item.positionName} {item.freelancerName}
-                  </S.TitleName>
+                  <Link to={`/partner-detail/${item.freelancerNum}`}>
+                    <S.TitleName>
+                      {item.positionName} {item.freelancerName}
+                    </S.TitleName>
+                  </Link>
                 </S.UpDiv>
                 <S.DownDiv>
                   <S.DownSmallDiv>
@@ -76,7 +78,9 @@ const ReFreelancer = () => {
                         })}
                     </S.BigSpan>
                     <S.hiddenP>
-                      <S.TextaTag href="#">{item.greeting}</S.TextaTag>
+                      <Link to={`/partner-detail/${item.freelancerNum}`}>
+                        <S.TextaTag>{item.greeting}</S.TextaTag>
+                      </Link>
                     </S.hiddenP>
                     <S.FlexDiv>
                       <S.Ptag>

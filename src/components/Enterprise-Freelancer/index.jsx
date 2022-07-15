@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import arrowLeft from 'assets/images/arrow_left.png';
 import arrowRight from 'assets/images/arrow_right.png';
@@ -89,14 +90,18 @@ const EnterpriseFreelancer = ({ fullStack }) => {
                     handleClick('right');
                   }}
                 />
-                <S.Wrapper slideIndex={i === slidEach && slideIndex} color="red">
-                  <S.Slide bg="red">
-                    {data.positionName} {data.freelancerName}
-                  </S.Slide>
-                  <S.Slide bg="blue">
-                    <S.LogoImg src={Logo} alt="logo" />
-                  </S.Slide>
-                </S.Wrapper>
+                <Link to={`/partner-detail/${data.freelancerNum}`}>
+                  <S.Wrapper slideIndex={i === slidEach && slideIndex} color="red">
+                    <S.Slide introBackGround={data?.introBackGround}>
+                      {data.positionName}
+                      <br />
+                      {data.freelancerName}
+                    </S.Slide>
+                    <S.Slide bg="blue">
+                      <S.LogoImg src={Logo} alt="logo" />
+                    </S.Slide>
+                  </S.Wrapper>
+                </Link>
               </S.OverFlowDiv>
               <S.InfoDiv>
                 <S.InfoFlex content="space-between">
@@ -105,7 +110,9 @@ const EnterpriseFreelancer = ({ fullStack }) => {
                   </S.SubTitle>
                   <HeartButton position="static" />
                 </S.InfoFlex>
-                <S.EcardTitle>{data.greeting}</S.EcardTitle>
+                <Link to={`/partner-detail/${data.freelancerNum}`}>
+                  <S.EcardTitle>{data.greeting}</S.EcardTitle>
+                </Link>
                 <S.InfoFlex top="0.5rem">
                   {data.skills.map((a) => {
                     return a !== null && <S.SpanSkill key={a}>{a}</S.SpanSkill>;
