@@ -120,6 +120,7 @@ export const EcardResume = styled.div`
 export const EcardResumeWork = styled.div`
   font-size: 0.95rem;
   font-weight: 700;
+  margin-top: 1rem;
 `;
 
 export const ContainerWorkDetail = styled.div`

@@ -59,7 +59,7 @@ const ListPortfolio = ({ Datas }) => {
 
   return (
     <div>
-      {Datas.map((item, index) => {
+      {Datas?.map((item, index) => {
         return (
           <S.EcardDiv key={item.projectNum}>
             <S.FirstDiv>
