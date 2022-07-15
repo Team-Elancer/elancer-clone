@@ -1,106 +1,179 @@
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+import styled from 'styled-components';
 import * as S from './style';
 
 import ProfilePicture from 'assets/images/profile.png';
 
 import InfoDetail from 'components/FreelancerDetail';
 import DetailShare from 'components/FreelancerDetail/DetailShare';
+import Loader from 'components/Loader';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
+import { FILTERED_DATA } from 'utils/config/api';
+
+import { extractSecureName } from 'utils/helpers';
+
 const PartnerDetail = () => {
   const { id } = useParams();
-  console.log(id);
+  const [isLoading, setIsLoading] = useState(false);
+  const [freelanerDetail, setFreelanerDetail] = useState({});
+  const {
+    name,
+    academicAbilityResponses,
+    allSkillNames,
+    careerResponses,
+    careerYear,
+    communication,
+    educationResponses,
+    expertise,
+    greeting,
+    initiative,
+    introBackGround,
+    introduceContent,
+    introduceName,
+    introduceVideoUrl,
+    languageResponses,
+    licenseResponses,
+    positionType,
+    positionTypeDescription,
+    profileNum,
+    projectHistoryResponses,
+    reemploymentIntention,
+    scheduleAdherence,
+    thumbnailPath,
+    totalActiveScore,
+  } = freelanerDetail;
+
+  const [securedName, setSecuredName] = useState(name);
+
+  const getFreelancerDetail = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await FILTERED_DATA(`/freelancers/${id}`);
+      setFreelanerDetail(data);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getFreelancerDetail();
+
+    if (freelanerDetail.name) {
+      const data = extractSecureName(name);
+      setSecuredName(data);
+    }
+  }, [name]);
 
   return (
-    <>
+    <Wrapper>
       <Header />
-      <S.Main>
-        <S.ContainerTitle>
-          <S.PersonFlexCenter>개발자 Frank Kim</S.PersonFlexCenter>
-        </S.ContainerTitle>
-        <S.ContainerFrame>
-          <S.FrameList>
-            <S.FreelancerTitle>준비된 개발자 Frank Kim</S.FreelancerTitle>
-            <section>
-              <S.ContainerFreelancer>
-                <div>개발자 Frank Kim | ★ ★ ★ ★ ★ 5.0점 | 경력 10년</div>
-              </S.ContainerFreelancer>
-              <S.FreelancerCertificate>KOSA 보유</S.FreelancerCertificate>
-              <S.ContainerEcardProfile>
-                <S.EcardProfileLeft>
-                  <S.ContainerEcardProfileImg>
-                    <S.ImgFile src={ProfilePicture} alt="profile" />
-                    <S.EcardProfileName>김*현</S.EcardProfileName>
-                  </S.ContainerEcardProfileImg>
-                  <S.ContainerEcardDescription>
-                    <S.EcardFirstDescription>
-                      <S.EcardFirstSubject>활동평가</S.EcardFirstSubject>
-                      <div>
-                        <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
-                        <S.EcardFirstScore> 5.0 </S.EcardFirstScore>
-                      </div>
-                    </S.EcardFirstDescription>
-                    <span
-                      style={{
-                        backgroundColor: 'rgba(225, 225, 225, 1)',
-                        height: '1px',
-                        width: '100%',
-                        marginBottom: '0.8rem',
-                      }}
-                    />
-                    <S.EcardDescription>
-                      <S.EcardSubject>의사소통</S.EcardSubject>
-                      <div>
-                        <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
-                        <S.EcardScore> 100% </S.EcardScore>
-                      </div>
-                    </S.EcardDescription>
-                    <S.EcardDescription>
-                      <S.EcardSubject>적극성</S.EcardSubject>
-                      <div>
-                        <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
-                        <S.EcardScore> 100% </S.EcardScore>
-                      </div>
-                    </S.EcardDescription>
-                    <S.EcardDescription>
-                      <S.EcardSubject>전문성</S.EcardSubject>
-                      <div>
-                        <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
-                        <S.EcardScore> 100% </S.EcardScore>
-                      </div>
-                    </S.EcardDescription>
-                  </S.ContainerEcardDescription>
-                </S.EcardProfileLeft>
-                <S.ContainerStackBtn>
-                  <S.StackBtn>MySql</S.StackBtn>
-                  <S.StackBtn>java</S.StackBtn>
-                  <S.StackBtn>Oracle</S.StackBtn>
-                  <S.StackBtn>Spring</S.StackBtn>
-                  <S.StackBtn>jquery</S.StackBtn>
-                  <S.StackBtn>javacript</S.StackBtn>
-                  <S.StackBtn>front-end</S.StackBtn>
-                  <S.StackBtn>node.js</S.StackBtn>
-                </S.ContainerStackBtn>
-              </S.ContainerEcardProfile>
-            </section>
-            <section>
-              <S.FontSmall>소개</S.FontSmall>
-              <S.FontSmall style={{ marginBottom: '2rem' }}>개발자 김*현</S.FontSmall>
-              <S.FontSmall style={{ marginBottom: '6rem' }}>준비된 개발자 김*현</S.FontSmall>
-            </section>
-            <section>
-              {/* <InfoDetail /> */}
-              <DetailShare />
-            </section>
-          </S.FrameList>
-        </S.ContainerFrame>
-      </S.Main>
-      <Footer />
-    </>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <S.Main>
+          <S.ContainerTitle>
+            <S.PersonFlexCenter>
+              {positionTypeDescription} {securedName}
+            </S.PersonFlexCenter>
+          </S.ContainerTitle>
+          <S.ContainerFrame>
+            <S.FrameList>
+              <S.FreelancerTitle>{securedName}</S.FreelancerTitle>
+              <section>
+                <S.ContainerFreelancer>
+                  <div>
+                    {securedName} | ★ ★ ★ ★ ★ 5.0점 | 경력 {careerYear}년
+                  </div>
+                </S.ContainerFreelancer>
+                <S.FreelancerCertificate>KOSA 보유</S.FreelancerCertificate>
+                <S.ContainerEcardProfile>
+                  <S.EcardProfileLeft>
+                    <S.ContainerEcardProfileImg>
+                      <S.ImgFile src={ProfilePicture} alt="profile" />
+                      <S.EcardProfileName>{securedName}</S.EcardProfileName>
+                    </S.ContainerEcardProfileImg>
+                    <S.ContainerEcardDescription>
+                      <S.EcardFirstDescription>
+                        <S.EcardFirstSubject>활동평가</S.EcardFirstSubject>
+                        <div>
+                          <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
+                          <S.EcardFirstScore> 5.0 </S.EcardFirstScore>
+                        </div>
+                      </S.EcardFirstDescription>
+                      <span
+                        style={{
+                          backgroundColor: 'rgba(225, 225, 225, 1)',
+                          height: '1px',
+                          width: '100%',
+                          marginBottom: '0.8rem',
+                        }}
+                      />
+                      <S.EcardDescription>
+                        <S.EcardSubject>의사소통</S.EcardSubject>
+                        <div>
+                          <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
+                          <S.EcardScore> 100% </S.EcardScore>
+                        </div>
+                      </S.EcardDescription>
+                      <S.EcardDescription>
+                        <S.EcardSubject>적극성</S.EcardSubject>
+                        <div>
+                          <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
+                          <S.EcardScore> 100% </S.EcardScore>
+                        </div>
+                      </S.EcardDescription>
+                      <S.EcardDescription>
+                        <S.EcardSubject>전문성</S.EcardSubject>
+                        <div>
+                          <S.EcardStar> ★ ★ ★ ★ ★ </S.EcardStar>
+                          <S.EcardScore> 100% </S.EcardScore>
+                        </div>
+                      </S.EcardDescription>
+                    </S.ContainerEcardDescription>
+                  </S.EcardProfileLeft>
+                  <S.ContainerStackBtn>
+                    {allSkillNames?.map(
+                      (stack, index) =>
+                        stack !== '' && stack && <S.StackBtn key={`detail_stack_${index + 1}`}> {stack} </S.StackBtn>,
+                    )}
+                  </S.ContainerStackBtn>
+                </S.ContainerEcardProfile>
+              </section>
+              <section>
+                <S.FontSmall>소개</S.FontSmall>
+                <S.FontSmall style={{ marginBottom: '2rem' }}>
+                  {positionTypeDescription} {securedName}
+                </S.FontSmall>
+                <S.FontSmall style={{ marginBottom: '6rem' }}> {securedName}</S.FontSmall>
+              </section>
+              <section>
+                {/* <InfoDetail /> */}
+                <DetailShare />
+              </section>
+            </S.FrameList>
+          </S.ContainerFrame>
+        </S.Main>
+      )}
+      <Footer position={isLoading ? 'absolute' : 'relative'} />
+    </Wrapper>
   );
 };
 
 export default PartnerDetail;
+
+const Wrapper = styled.section`
+  height: 100%;
+  width: auto;
+
+  grid-column: 1;
+  grid-row: 2 / 5;
+
+  gap: 4px;
+`;

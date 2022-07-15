@@ -84,7 +84,8 @@ const MyBoardProfile = () => {
                 </S.EcardProfileLeft>
                 <S.ContainerStackBtn>
                   {profileSimpleData?.allSkillNames?.map(
-                    (stack, index) => stack !== '' && <S.StackBtn key={`stack_${index + 1}`}>{stack}</S.StackBtn>,
+                    (stack, index) =>
+                      stack !== '' && stack && <S.StackBtn key={`stack_${index + 1}`}>{stack}</S.StackBtn>,
                   )}
                 </S.ContainerStackBtn>
               </S.ContainerEcardProfile>

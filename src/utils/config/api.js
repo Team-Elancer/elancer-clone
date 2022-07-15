@@ -1,10 +1,17 @@
 import axios from 'axios';
 
 //  ============== MAIN BASE URL -> GET ==============
+<<<<<<< HEAD
 const baseURL = 'http://ec2-13-125-109-116.ap-northeast-2.compute.amazonaws.com:8080/';
 
 // ==============  BASE URL -> POST, PUT, DELETE ==============
 export const BaseUrl = 'http://ec2-13-125-109-116.ap-northeast-2.compute.amazonaws.com:8080';
+=======
+const baseURL = 'http://ec2-15-164-165-113.ap-northeast-2.compute.amazonaws.com:8080';
+
+// ==============  BASE URL -> POST, PUT, DELETE ==============
+export const BaseUrl = 'http://ec2-15-164-165-113.ap-northeast-2.compute.amazonaws.com:8080';
+>>>>>>> feat: adding page/partner-detail + adding helpers JS
 
 // ==============  Axios config ==============
 
