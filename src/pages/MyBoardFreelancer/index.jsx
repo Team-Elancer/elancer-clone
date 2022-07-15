@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import * as S from './style';
 
@@ -16,6 +16,7 @@ import Header from 'layouts/Header';
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const MyBoardFreelancer = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
@@ -110,7 +111,7 @@ const MyBoardFreelancer = () => {
   // =============== detail profile (프로필 요약 정보) && profileSimpleData ===============
   const fetchFreelancerSimpleData = async () => {
     try {
-      const { data } = await CLIENT_FREELANCER('/freelancer/freelancer-profile/simple');
+      const { data } = await CLIENT_FREELANCER(`/freelancer/freelancer-profile/simple`);
 
       if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 

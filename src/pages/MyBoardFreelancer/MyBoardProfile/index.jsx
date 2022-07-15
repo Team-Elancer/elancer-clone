@@ -3,7 +3,7 @@ import { Link, useOutletContext } from 'react-router-dom';
 
 import * as S from './style';
 import ProfilePicture from 'assets/images/profile.png';
-import InfoDetail from 'components/FreelancerDetail';
+import InfoDetail from 'components/FreelancerDetail/Auth';
 import Loader from 'components/Loader';
 
 import useBeforeUnload from 'hooks/useBeforeUnload';

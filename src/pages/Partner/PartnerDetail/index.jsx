@@ -6,7 +6,7 @@ import * as S from './style';
 
 import ProfilePicture from 'assets/images/profile.png';
 
-import InfoDetail from 'components/FreelancerDetail';
+import PartnerResume from 'components/FreelancerDetail';
 import DetailShare from 'components/FreelancerDetail/DetailShare';
 import Loader from 'components/Loader';
 
@@ -48,6 +48,8 @@ const PartnerDetail = () => {
     totalActiveScore,
   } = freelanerDetail;
 
+  console.log(freelanerDetail);
+
   const [securedName, setSecuredName] = useState(name);
 
   const getFreelancerDetail = async () => {
@@ -78,7 +80,7 @@ const PartnerDetail = () => {
         <Loader />
       ) : (
         <S.Main>
-          <S.ContainerTitle>
+          <S.ContainerTitle introBackGround={introBackGround}>
             <S.PersonFlexCenter>
               {positionTypeDescription} {securedName}
             </S.PersonFlexCenter>
@@ -86,7 +88,7 @@ const PartnerDetail = () => {
           <S.ContainerFrame>
             <S.FrameList>
               <S.FreelancerTitle>{securedName}</S.FreelancerTitle>
-              <section>
+              <SectionWrapper>
                 <S.ContainerFreelancer>
                   <div>
                     {securedName} | ★ ★ ★ ★ ★ 5.0점 | 경력 {careerYear}년
@@ -145,18 +147,17 @@ const PartnerDetail = () => {
                     )}
                   </S.ContainerStackBtn>
                 </S.ContainerEcardProfile>
-              </section>
-              <section>
+              </SectionWrapper>
+              <SectionWrapper>
                 <S.FontSmall>소개</S.FontSmall>
-                <S.FontSmall style={{ marginBottom: '2rem' }}>
+                <S.FontSmall style={{ marginTop: '1rem' }}>
                   {positionTypeDescription} {securedName}
                 </S.FontSmall>
-                <S.FontSmall style={{ marginBottom: '6rem' }}> {securedName}</S.FontSmall>
-              </section>
-              <section>
-                {/* <InfoDetail /> */}
+              </SectionWrapper>
+              <SectionWrapper>
+                <PartnerResume freelanerDetail={freelanerDetail} />
                 <DetailShare />
-              </section>
+              </SectionWrapper>
             </S.FrameList>
           </S.ContainerFrame>
         </S.Main>
@@ -176,4 +177,9 @@ const Wrapper = styled.section`
   grid-row: 2 / 5;
 
   gap: 4px;
+`;
+
+const SectionWrapper = styled.section`
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 `;
