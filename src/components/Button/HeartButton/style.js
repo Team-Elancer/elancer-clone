@@ -29,6 +29,7 @@ export const HeartDiv = styled.div`
     font-size: 0.87rem;
   }
   @media ${LAPTOP} {
-    font-size: 0.9rem;
+    margin-top: 3px;
+    font-size: 1rem;
   }
 `;
