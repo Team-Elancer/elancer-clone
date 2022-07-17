@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react';
 
 // https://jsonplaceholder.typicode.com/posts?_page=1
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-const useInfiniteScroll = (pageNumber) => {
+const useInfiniteScroll = (pageNumber, BASE_URL) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [apiData, setApiData] = useState([]);
@@ -13,10 +11,11 @@ const useInfiniteScroll = (pageNumber) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(BASE_URL, { params: { _page: pageNumber, _limit: 10 } });
+      const { data } = await axios.get(BASE_URL, { params: { page: pageNumber } });
 
-      setApiData((prev) => [...prev, ...response.data.map((item) => item)]);
-      setHasMore(response.data.length > 0);
+      setApiData((prev) => [...prev, ...data.freelancerSimpleResponseList.map((item) => item)]);
+      console.log(apiData);
+      // setHasMore(response.data.length > 0);
       setLoading(false);
     } catch (error) {
       setLoading(true);

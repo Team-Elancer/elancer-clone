@@ -35,8 +35,6 @@ export const FrameList = styled.div`
 `;
 
 export const ContainerTitle = styled.div`
-  border: 2px solid rgba(116, 133, 201, 1);
-
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
   display: flex;

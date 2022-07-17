@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
@@ -14,63 +14,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './style';
 
 import samsungImg from 'assets/images/samsung.png';
-import Loader from 'components/Loader';
-import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
-import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
+import { BaseUrl } from 'utils/config/api';
 
 import { extractSecureName } from 'utils/helpers';
 
-const ListFreelancer = ({ togglePositionType }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [positionState, setPositionState] = useState([]);
+const ListFreelancer = ({ filteredPosition, lastComponent }) => {
   const [wishState, setWishState] = useState(false);
-
-  const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
-
-  const FILTERED_STATE = positionState;
-
-  const getPositionLists = async (positionList) => {
-    try {
-      const {
-        data: { freelancerSimpleResponseList },
-      } = await FILTERED_DATA(
-        `${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=&minorSkill=&hopeWorkStates=&positionWorkManShips=&workArea=`,
-      );
-
-      setPositionState(freelancerSimpleResponseList);
-      // setIsLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    let positionList = [];
-
-    if (developer) {
-      positionList = ['developers', 'DEVELOPER'];
-    }
-
-    if (publisher) {
-      positionList = ['publishers', 'PUBLISHER'];
-    }
-    if (designer) {
-      positionList = ['designers', 'DESIGNER'];
-    }
-    if (planner) {
-      positionList = ['planners', 'PLANNER'];
-    }
-    if (etc) {
-      positionList = ['positionEtcers', 'ETC'];
-    }
-
-    getPositionLists(positionList);
-  }, [developer, publisher, designer, planner, etc]);
 
   const handleAddWishState = (e) => {
     e.preventDefault();
@@ -131,11 +86,79 @@ const ListFreelancer = ({ togglePositionType }) => {
 
   return (
     <S.FrameFreelancer>
-      {FILTERED_STATE.map((list, index) => {
+      {filteredPosition.map((list, index) => {
         const securedName = extractSecureName(list?.freelancerName);
 
+        if (filteredPosition.length === index + 1) {
+          return (
+            <S.ContainerFreelancer key={list.freelancerNum + uuidv4()} ref={lastComponent}>
+              <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
+                <S.ContainerSwiper introBackGround={list?.introBackGround}>
+                  <Swiper
+                    navigation
+                    // install Swiper modules
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    pagination={{ clickable: true }}
+                  >
+                    <SwiperSlide>
+                      <S.PersonFlexCenter>
+                        {list?.positionName} {securedName}
+                      </S.PersonFlexCenter>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <S.PersonFlexCenter>
+                        <img src={samsungImg} alt="" style={{ width: '100px', textAlign: 'center', display: 'flex' }} />
+                      </S.PersonFlexCenter>
+                    </SwiperSlide>
+                  </Swiper>
+                </S.ContainerSwiper>
+                <S.ContainerExperience>
+                  <S.ContainerNameHeart>
+                    <S.FreelancerName>
+                      {securedName} | {list.careerYear}년 경력 {list?.positionName}
+                    </S.FreelancerName>
+                    {wishState ? (
+                      <S.FreelancerHeart onClick={handleDeleteWishState}>
+                        <BsSuitHeartFill />
+                      </S.FreelancerHeart>
+                    ) : (
+                      <S.FreelancerHeart onClick={handleAddWishState}>
+                        <BsSuitHeart />
+                      </S.FreelancerHeart>
+                    )}
+                  </S.ContainerNameHeart>
+                  <S.FreelancerTitle>{list.greeting}</S.FreelancerTitle>
+                  <S.ContainerFreelancerStack>
+                    {list?.skills?.map(
+                      (stack, index) =>
+                        stack && (
+                          <S.FreelancerStack key={`skills${list.freelancerNum + index + 1 + uuidv4()}`}>
+                            {stack}
+                          </S.FreelancerStack>
+                        ),
+                    )}
+                  </S.ContainerFreelancerStack>
+
+                  {list?.projectNames.length > 0 && (
+                    <div>
+                      <S.FreelancerDescription> 수행 프로젝트: </S.FreelancerDescription>
+                      {list?.projectNames.map((project, index) => (
+                        <S.FreelancerDescription key={`projectNames${list.freelancerNum + index + 1 + uuidv4()}`}>
+                          {project}
+                        </S.FreelancerDescription>
+                      ))}
+                    </div>
+                  )}
+                </S.ContainerExperience>
+              </S.ContainerLink>
+            </S.ContainerFreelancer>
+          );
+        }
+
         return (
-          <S.ContainerFreelancer key={list.freelancerNum}>
+          <S.ContainerFreelancer key={list.freelancerNum + uuidv4()}>
             <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
               <S.ContainerSwiper introBackGround={list?.introBackGround}>
                 <Swiper
@@ -177,7 +200,11 @@ const ListFreelancer = ({ togglePositionType }) => {
                 <S.ContainerFreelancerStack>
                   {list?.skills?.map(
                     (stack, index) =>
-                      stack && <S.FreelancerStack key={`skills${index + 1}`}> {stack}</S.FreelancerStack>,
+                      stack && (
+                        <S.FreelancerStack key={`skills${list.freelancerNum + index + 1 + uuidv4()}`}>
+                          {stack}
+                        </S.FreelancerStack>
+                      ),
                   )}
                 </S.ContainerFreelancerStack>
 
@@ -185,7 +212,9 @@ const ListFreelancer = ({ togglePositionType }) => {
                   <div>
                     <S.FreelancerDescription> 수행 프로젝트: </S.FreelancerDescription>
                     {list?.projectNames.map((project, index) => (
-                      <S.FreelancerDescription key={`projectNames${index + 1}`}> {project} </S.FreelancerDescription>
+                      <S.FreelancerDescription key={`projectNames${list.freelancerNum + index + 1 + uuidv4()}`}>
+                        {project}
+                      </S.FreelancerDescription>
                     ))}
                   </div>
                 )}

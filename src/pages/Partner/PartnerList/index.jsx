@@ -1,13 +1,29 @@
-import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import FilterButton from 'components/Button/FilterButton';
 import ListFreelancer from 'components/ListFreelancer';
+
+import Loader from 'components/Loader';
+
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 import * as S from 'styles/Page';
 
+import { BaseUrl } from 'utils/config/api';
+
 const ListPartner = () => {
+  // For infinite scroll
+  const observer = useRef();
+  const [hasMore, setHasMore] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // For position API data
+  const [filteredPosition, setFilteredPosition] = useState([]);
+
   const [togglePositionType, setTogglePositionType] = useState([
     {
       developer: true,
@@ -17,7 +33,9 @@ const ListPartner = () => {
       etc: false,
     },
   ]);
+  const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
 
+  // ============ Set page to 0 for new category when clicked ============
   const handlePositionList = (e) => {
     if (e.target.name === 'developer') {
       setTogglePositionType([
@@ -30,7 +48,6 @@ const ListPartner = () => {
         },
       ]);
     }
-
     if (e.target.name === 'publisher') {
       setTogglePositionType([
         {
@@ -42,7 +59,6 @@ const ListPartner = () => {
         },
       ]);
     }
-
     if (e.target.name === 'designer') {
       setTogglePositionType([
         {
@@ -54,7 +70,6 @@ const ListPartner = () => {
         },
       ]);
     }
-
     if (e.target.name === 'planner') {
       setTogglePositionType([
         {
@@ -77,7 +92,85 @@ const ListPartner = () => {
         },
       ]);
     }
+
+    setPageNumber(0);
   };
+
+  // ============ Get default data  ============
+  const getPositionLists = async (URL) => {
+    setIsLoading(true);
+    try {
+      const {
+        data: { freelancerSimpleResponseList, hasNext },
+      } = await axios.get(URL);
+      setFilteredPosition([...freelancerSimpleResponseList]);
+      setHasMore(hasNext);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // ============ Get next page data => old data + new data ============
+  const getNextPage = async (URL) => {
+    if (pageNumber === 0) return;
+    setIsLoading(true);
+
+    try {
+      const {
+        data: { freelancerSimpleResponseList, hasNext },
+      } = await axios.get(`${URL}page=${pageNumber}`);
+
+      setFilteredPosition((prev) => [...prev, ...freelancerSimpleResponseList]);
+      setHasMore(hasNext);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  //  ============ Get the last component for infinite scroll ============
+  const lastComponent = useCallback(
+    (node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore) {
+            setPageNumber((prev) => prev + 1);
+          }
+        },
+        { threshold: 1 },
+      );
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore],
+  );
+
+  // ============ Check the position type + Hit API accordingly ============
+  useEffect(() => {
+    let positionList = [];
+
+    if (developer) {
+      positionList = ['developers', 'DEVELOPER'];
+    }
+    if (publisher) {
+      positionList = ['publishers', 'PUBLISHER'];
+    }
+    if (designer) {
+      positionList = ['designers', 'DESIGNER'];
+    }
+    if (planner) {
+      positionList = ['planners', 'PLANNER'];
+    }
+    if (etc) {
+      positionList = ['positionEtcers', 'ETC'];
+    }
+
+    const URL = `${BaseUrl}/${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=&minorSkillKeywords=&hopeWorkStates=&positionWorkManShips=&workArea=&`;
+
+    if (pageNumber === 0) getPositionLists(URL);
+    if (pageNumber > 0) getNextPage(URL);
+  }, [developer, publisher, designer, planner, etc, pageNumber]);
 
   return (
     <>
@@ -94,7 +187,9 @@ const ListPartner = () => {
           {/* =======  FilterButton Component ======= */}
           <FilterButton togglePositionType={togglePositionType} handlePositionList={handlePositionList} />
           {/* =======  ListFreelancer Component ======= */}
-          <ListFreelancer togglePositionType={togglePositionType} />
+
+          <ListFreelancer filteredPosition={filteredPosition} lastComponent={lastComponent} />
+          {isLoading && <Loader />}
         </S.FrameList>
       </S.ContainerFrame>
       <Footer />

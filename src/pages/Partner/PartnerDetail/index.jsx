@@ -48,8 +48,6 @@ const PartnerDetail = () => {
     totalActiveScore,
   } = freelanerDetail;
 
-  console.log(freelanerDetail);
-
   const [securedName, setSecuredName] = useState(name);
 
   const getFreelancerDetail = async () => {
