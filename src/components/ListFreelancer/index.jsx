@@ -14,8 +14,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import * as S from './style';
 
 import samsungImg from 'assets/images/samsung.png';
@@ -91,7 +89,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
 
         if (filteredPosition.length === index + 1) {
           return (
-            <S.ContainerFreelancer key={list.freelancerNum + uuidv4()} ref={lastComponent}>
+            <S.ContainerFreelancer key={list.freelancerNum} ref={lastComponent}>
               <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
                 <S.ContainerSwiper introBackGround={list?.introBackGround}>
                   <Swiper
@@ -134,9 +132,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                     {list?.skills?.map(
                       (stack, index) =>
                         stack && (
-                          <S.FreelancerStack key={`skills${list.freelancerNum + index + 1 + uuidv4()}`}>
-                            {stack}
-                          </S.FreelancerStack>
+                          <S.FreelancerStack key={`skills${list.freelancerNum + index + 1}`}>{stack}</S.FreelancerStack>
                         ),
                     )}
                   </S.ContainerFreelancerStack>
@@ -145,7 +141,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                     <div>
                       <S.FreelancerDescription> 수행 프로젝트: </S.FreelancerDescription>
                       {list?.projectNames.map((project, index) => (
-                        <S.FreelancerDescription key={`projectNames${list.freelancerNum + index + 1 + uuidv4()}`}>
+                        <S.FreelancerDescription key={`projectNames${list.freelancerNum + index + 1}`}>
                           {project}
                         </S.FreelancerDescription>
                       ))}
@@ -158,7 +154,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
         }
 
         return (
-          <S.ContainerFreelancer key={list.freelancerNum + uuidv4()}>
+          <S.ContainerFreelancer key={list.freelancerNum}>
             <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
               <S.ContainerSwiper introBackGround={list?.introBackGround}>
                 <Swiper
@@ -201,9 +197,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                   {list?.skills?.map(
                     (stack, index) =>
                       stack && (
-                        <S.FreelancerStack key={`skills${list.freelancerNum + index + 1 + uuidv4()}`}>
-                          {stack}
-                        </S.FreelancerStack>
+                        <S.FreelancerStack key={`skills${list.freelancerNum + index + 1}`}>{stack}</S.FreelancerStack>
                       ),
                   )}
                 </S.ContainerFreelancerStack>
@@ -212,7 +206,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                   <div>
                     <S.FreelancerDescription> 수행 프로젝트: </S.FreelancerDescription>
                     {list?.projectNames.map((project, index) => (
-                      <S.FreelancerDescription key={`projectNames${list.freelancerNum + index + 1 + uuidv4()}`}>
+                      <S.FreelancerDescription key={`projectNames${list.freelancerNum + index + 1}`}>
                         {project}
                       </S.FreelancerDescription>
                     ))}

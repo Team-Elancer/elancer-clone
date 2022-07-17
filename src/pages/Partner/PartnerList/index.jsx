@@ -35,6 +35,34 @@ const ListPartner = () => {
   ]);
   const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
 
+  // ============ Check the position type + Hit API accordingly ============
+  useEffect(() => {
+    let positionList = [];
+
+    if (developer) {
+      positionList = ['developers', 'DEVELOPER'];
+    }
+    if (publisher) {
+      positionList = ['publishers', 'PUBLISHER'];
+    }
+    if (designer) {
+      positionList = ['designers', 'DESIGNER'];
+    }
+    if (planner) {
+      positionList = ['planners', 'PLANNER'];
+    }
+    if (etc) {
+      positionList = ['positionEtcers', 'ETC'];
+    }
+
+    const URL = `${BaseUrl}/${positionList[0]}?positionType=${
+      positionList[1]
+    }&majorSkillKeywords=${null}&hopeWorkStates=&positionWorkManShips=&workArea=&`;
+
+    if (pageNumber === 0) getPositionLists(URL);
+    if (pageNumber > 0) getNextPage(URL);
+  }, [developer, publisher, designer, planner, etc, pageNumber]);
+
   // ============ Set page to 0 for new category when clicked ============
   const handlePositionList = (e) => {
     if (e.target.name === 'developer') {
@@ -128,6 +156,7 @@ const ListPartner = () => {
       console.log(err);
     }
   };
+
   //  ============ Get the last component for infinite scroll ============
   const lastComponent = useCallback(
     (node) => {
@@ -145,32 +174,6 @@ const ListPartner = () => {
     },
     [isLoading, hasMore],
   );
-
-  // ============ Check the position type + Hit API accordingly ============
-  useEffect(() => {
-    let positionList = [];
-
-    if (developer) {
-      positionList = ['developers', 'DEVELOPER'];
-    }
-    if (publisher) {
-      positionList = ['publishers', 'PUBLISHER'];
-    }
-    if (designer) {
-      positionList = ['designers', 'DESIGNER'];
-    }
-    if (planner) {
-      positionList = ['planners', 'PLANNER'];
-    }
-    if (etc) {
-      positionList = ['positionEtcers', 'ETC'];
-    }
-
-    const URL = `${BaseUrl}/${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=&minorSkillKeywords=&hopeWorkStates=&positionWorkManShips=&workArea=&`;
-
-    if (pageNumber === 0) getPositionLists(URL);
-    if (pageNumber > 0) getNextPage(URL);
-  }, [developer, publisher, designer, planner, etc, pageNumber]);
 
   return (
     <>

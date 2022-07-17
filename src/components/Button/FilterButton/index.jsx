@@ -1,8 +1,14 @@
+import { useState } from 'react';
+
 import * as S from './style';
+
+import FreelancerFilter from 'components/Modal/FreelancerFilter';
 
 // const FilterButton = ({ setDeveloperLists, setPublisherLists, setDesignerLists, setPlannerLists }) => {
 const FilterButton = ({ handlePositionList, togglePositionType }) => {
   const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
+
+  const [isModal, setIsModal] = useState(false);
 
   return (
     <S.ContainerTopButton>
@@ -21,7 +27,10 @@ const FilterButton = ({ handlePositionList, togglePositionType }) => {
       <S.TopButton name="etc" type="button" onClick={handlePositionList} primary={etc}>
         🔗 기타
       </S.TopButton>
-      <S.TopButton type="button">🕹 필터 추가하기</S.TopButton>
+      <S.TopButton type="button" onClick={() => setIsModal((prev) => !prev)}>
+        🕹 필터 추가하기
+      </S.TopButton>
+      {isModal && <FreelancerFilter setIsModal={setIsModal} />}
     </S.ContainerTopButton>
   );
 };

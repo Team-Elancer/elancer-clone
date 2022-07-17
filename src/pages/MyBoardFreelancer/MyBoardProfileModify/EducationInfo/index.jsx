@@ -5,12 +5,11 @@ import EducationInfoTemplate from './EducationInfoTemplate';
 
 import * as S from './style';
 
-import Loader from 'components/Loader';
-
 import { BaseUrl } from 'utils/config/api';
 
 const EducationInfo = () => {
-  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
+  const [userData, setUserData, detailProfileData, setDetailProfileData, profileSimpleData, setProfileSimpleData] =
+    useOutletContext();
 
   const [userSchoolData, setUserSchoolData] = useState([
     {
@@ -83,7 +82,6 @@ const EducationInfo = () => {
     };
 
     console.log(newData);
-
     axios({
       url: `${BaseUrl}/freelancer-profile/academic-ability`,
       method: 'PUT',
@@ -104,57 +102,49 @@ const EducationInfo = () => {
         if (newData) alert('필드값 다시 사용확인');
       });
   };
-
   return (
     <form>
-      {!detailProfileData ? (
-        <Loader />
-      ) : (
-        <>
-          <S.JobUl>
-            {detailProfileData &&
-              detailProfileData.academicAbilityResponses?.map((state, index) => (
-                <S.JobRadioLi left="-0.5rem" key={`education_radio${index + 1}`}>
-                  <S.JobInput
-                    radius={index}
-                    type="radio"
-                    name={index}
-                    id={`scope${index}`}
-                    value={index || ''}
-                    bgColor={educationType === index ? '#f16300' : '#f2f2f2'}
-                    tabletColor={educationType === index ? '#f16300' : 'white'}
-                    onClick={(e) => setEductionType(Number(e.target.name))}
-                  />
-                  <S.JobLabel color={educationType === index ? 'white' : 'black'} htmlFor={`scope${index}`}>
-                    {state.schoolLevelDescription}
-                  </S.JobLabel>
-                </S.JobRadioLi>
-              ))}
-          </S.JobUl>
+      <S.JobUl>
+        {detailProfileData &&
+          detailProfileData.academicAbilityResponses?.map((state, index) => (
+            <S.JobRadioLi left="-0.5rem" key={`education_radio${index + 1}`}>
+              <S.JobInput
+                radius={index}
+                type="radio"
+                name={index}
+                id={`scope${index}`}
+                value={index || ''}
+                bgColor={educationType === index ? '#f16300' : '#f2f2f2'}
+                tabletColor={educationType === index ? '#f16300' : 'white'}
+                onClick={(e) => setEductionType(Number(e.target.name))}
+              />
+              <S.JobLabel color={educationType === index ? 'white' : 'black'} htmlFor={`scope${index}`}>
+                {state.schoolLevelDescription}
+              </S.JobLabel>
+            </S.JobRadioLi>
+          ))}
+      </S.JobUl>
 
-          {userSchoolData.length > 0 &&
-            userSchoolData?.map(
-              (state, index) =>
-                index === educationType && (
-                  <EducationInfoTemplate
-                    key={`academic_response${index + 1}`}
-                    state={state}
-                    handleEducationState={handleEducationState}
-                    index={index}
-                  />
-                ),
-            )}
+      {userSchoolData.length > 0 &&
+        userSchoolData?.map(
+          (state, index) =>
+            index === educationType && (
+              <EducationInfoTemplate
+                key={`academic_response${index + 1}`}
+                state={state}
+                handleEducationState={handleEducationState}
+                index={index}
+              />
+            ),
+        )}
 
-          {/* ============= 저장 ============= */}
-          <S.FlexCenter>
-            <S.ProfileButton type="button" onClick={(e) => submitAcademicAbility(e)}>
-              학력사항 저장
-            </S.ProfileButton>
-          </S.FlexCenter>
-        </>
-      )}
+      {/* ============= 저장 ============= */}
+      <S.FlexCenter>
+        <S.ProfileButton type="button" onClick={(e) => submitAcademicAbility(e)}>
+          학력사항 저장
+        </S.ProfileButton>
+      </S.FlexCenter>
     </form>
   );
 };
-
 export default EducationInfo;

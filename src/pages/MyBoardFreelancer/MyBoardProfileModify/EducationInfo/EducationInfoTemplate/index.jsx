@@ -3,6 +3,7 @@ import * as S from '../../style';
 const EducationInfoTemplate = ({ handleEducationState, state, index }) => {
   const { schoolName, schoolLevel, enterSchoolDate, graduationDate, academicState, majorName } = state;
 
+  console.log('state', state);
   return (
     <div>
       {/* ====== 학교명 ====== */}
