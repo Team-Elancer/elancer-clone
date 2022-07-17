@@ -49,13 +49,11 @@ const EnterpriseFreelancer = ({ fullStack }) => {
       setDatas([]);
       const res = await CLIENT_FREELANCER(URL);
       const data = await res.data;
-      console.log(URL, data, Datas);
       while (Datas.length < 4) {
         const choiceDatas = data.freelancerSimpleResponseList.splice(
           Math.floor(Math.random() * data.freelancerSimpleResponseList.length),
           1,
         )[0];
-        console.log(Datas);
         setDatas([...Datas, Datas.push(choiceDatas)]);
       }
     } catch (err) {
