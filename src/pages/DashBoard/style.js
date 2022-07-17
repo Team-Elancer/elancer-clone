@@ -30,6 +30,7 @@ export const FlexDiv = styled.div`
 `;
 export const BoardDiv = styled.div`
   width: 100%;
+  min-height: 800px;
   height: 100%;
   @media ${TABLET} {
     width: 730px;

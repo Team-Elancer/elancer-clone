@@ -24,8 +24,11 @@ const HeartButton = ({ position = 'absolute', Data, setHeartBool }) => {
       } else {
         axios({
           method: 'POST',
-          url: `${BaseUrl}/wish-freelancer/${Data.freelancerNum}`,
+          url: `${BaseUrl}/wish-freelancer`,
           headers: { Authorization: window.localStorage.accessToken },
+          data: {
+            freelancerNum: Data.freelancerNum,
+          },
         })
           .then((res) => {
             alert('인재스크랩에 추가되었습니다.');
