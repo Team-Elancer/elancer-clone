@@ -15,6 +15,7 @@ const EnterpriseFreelancer = ({ fullStack }) => {
   const [Datas, setDatas] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   const [slidEach, setSlideEach] = useState('');
+  const [heartBool, setHeartBool] = useState(true);
   const [URL, setURL] = useState('/developers?positionType=DEVELOPER&hopeWorkState=AT_COMPANY');
 
   const handleClick = (alt) => {
@@ -65,7 +66,8 @@ const EnterpriseFreelancer = ({ fullStack }) => {
   useEffect(() => {
     FetchData();
     changeFullStack();
-  }, [fullStack, URL]);
+    setHeartBool(true);
+  }, [fullStack, URL, heartBool]);
 
   return (
     <div>
@@ -108,7 +110,7 @@ const EnterpriseFreelancer = ({ fullStack }) => {
                   <S.SubTitle>
                     {data.freelancerName} | {data.careerYear}년경력 {data.positionName}
                   </S.SubTitle>
-                  <HeartButton position="static" />
+                  <HeartButton position="static" Data={data} setHeartBool={setHeartBool} />
                 </S.InfoFlex>
                 <Link to={`/partner-detail/${data.freelancerNum}`}>
                   <S.EcardTitle>{data.greeting}</S.EcardTitle>
