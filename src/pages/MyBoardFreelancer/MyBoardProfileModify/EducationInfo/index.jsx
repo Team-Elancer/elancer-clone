@@ -56,7 +56,7 @@ const EducationInfo = () => {
     if (detailProfileData?.academicAbilityResponses?.length > 0) {
       const newLists = detailProfileData?.academicAbilityResponses?.map((state, index) => {
         const { schoolName, schoolLevel, enterSchoolDate, graduationDate, academicState, majorName } = state;
-        freelancer1003;
+
         const newData = {
           schoolName,
           schoolLevel,
