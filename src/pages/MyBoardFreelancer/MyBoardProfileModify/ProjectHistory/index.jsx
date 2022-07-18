@@ -17,7 +17,7 @@ const ProjectHistory = () => {
 
   // ======== Get DATA from Database ========
   useEffect(() => {
-    if (detailProfileData.projectHistoryResponses) {
+    if (detailProfileData?.projectHistoryResponses?.length > 0) {
       const newLists = detailProfileData.projectHistoryResponses.map((state) => {
         const {
           projectTitle,

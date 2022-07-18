@@ -34,7 +34,7 @@ const CareerInfo = () => {
 
   // ======== Get DATA from Database ========
   useEffect(() => {
-    if (detailProfileData.careerResponses) {
+    if (detailProfileData?.careerResponses?.length > 0) {
       const newLists = detailProfileData.careerResponses?.map((state) => {
         const { careerStartDate, careerEndDate, companyName, companyPosition, departmentName } = state;
 
