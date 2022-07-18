@@ -51,7 +51,8 @@ const Certificate = () => {
   // ======== Get DATA from Database ========
   useEffect(() => {
     // ======== Eucation Responses ========
-    if (detailProfileData.educationResponses) {
+
+    if (detailProfileData?.educationResponses?.length > 0) {
       const newEducataionLists = detailProfileData.educationResponses?.map((state) => {
         const { educationTitle, educationOrganization, educationStartDate, educationEndDate } = state;
 
@@ -69,7 +70,8 @@ const Certificate = () => {
     }
 
     // ======== License Responses ========
-    if (detailProfileData.licenseResponses) {
+
+    if (detailProfileData?.licenseResponses?.length > 0) {
       const newLicenseLists = detailProfileData.licenseResponses?.map((state) => {
         const { licenseTitle, licenseIssuer, acquisitionDate } = state;
 
@@ -86,7 +88,8 @@ const Certificate = () => {
     }
 
     // ======== language Responses ========
-    if (detailProfileData.languageResponses) {
+
+    if (detailProfileData?.languageResponses?.length > 0) {
       const newLanguageLists = detailProfileData.languageResponses?.map((state) => {
         const { languageName, languageAbility, languageAbilityDescription } = state;
 

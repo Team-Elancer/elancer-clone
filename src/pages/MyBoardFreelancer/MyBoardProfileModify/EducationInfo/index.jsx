@@ -53,10 +53,10 @@ const EducationInfo = () => {
 
   // ======== Get DATA from Database ========
   useEffect(() => {
-    if (detailProfileData.academicAbilityResponses) {
-      const newLists = detailProfileData.academicAbilityResponses?.map((state, index) => {
+    if (detailProfileData?.academicAbilityResponses?.length > 0) {
+      const newLists = detailProfileData?.academicAbilityResponses?.map((state, index) => {
         const { schoolName, schoolLevel, enterSchoolDate, graduationDate, academicState, majorName } = state;
-
+        freelancer1003;
         const newData = {
           schoolName,
           schoolLevel,
@@ -92,8 +92,7 @@ const EducationInfo = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
-        setUserSchoolData(newData);
+        setUserSchoolData(newData.academicAbilityCoverRequests);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
@@ -102,41 +101,44 @@ const EducationInfo = () => {
         if (newData) alert('필드값 다시 사용확인');
       });
   };
+
   return (
     <form>
       <S.JobUl>
-        {detailProfileData &&
-          detailProfileData.academicAbilityResponses?.map((state, index) => (
-            <S.JobRadioLi left="-0.5rem" key={`education_radio${index + 1}`}>
-              <S.JobInput
-                radius={index}
-                type="radio"
-                name={index}
-                id={`scope${index}`}
-                value={index || ''}
-                bgColor={educationType === index ? '#f16300' : '#f2f2f2'}
-                tabletColor={educationType === index ? '#f16300' : 'white'}
-                onClick={(e) => setEductionType(Number(e.target.name))}
-              />
-              <S.JobLabel color={educationType === index ? 'white' : 'black'} htmlFor={`scope${index}`}>
-                {state.schoolLevelDescription}
-              </S.JobLabel>
-            </S.JobRadioLi>
-          ))}
+        {userSchoolData?.map((state, index) => (
+          <S.JobRadioLi left="-0.5rem" key={`education_radio${index + 1}`}>
+            <S.JobInput
+              radius={index}
+              type="radio"
+              name={index}
+              id={`scope${index}`}
+              value={index || ''}
+              bgColor={educationType === index ? '#f16300' : '#f2f2f2'}
+              tabletColor={educationType === index ? '#f16300' : 'white'}
+              onClick={(e) => setEductionType(Number(e.target.name))}
+            />
+            <S.JobLabel color={educationType === index ? 'white' : 'black'} htmlFor={`scope${index}`}>
+              {state.schoolLevel === 'HIGH_SCHOOL' && '고등학교'}
+              {state.schoolLevel === 'COLLEGE' && '대학(2,3년)'}
+              {state.schoolLevel === 'UNIVERSITY' && '대학교(4년)'}
+              {state.schoolLevel === 'MASTER_DEGREE' && '대학원(석사)'}
+              {state.schoolLevel === 'DOCTORAL_DEGREE' && '대학원(박사)'}
+            </S.JobLabel>
+          </S.JobRadioLi>
+        ))}
       </S.JobUl>
 
-      {userSchoolData.length > 0 &&
-        userSchoolData?.map(
-          (state, index) =>
-            index === educationType && (
-              <EducationInfoTemplate
-                key={`academic_response${index + 1}`}
-                state={state}
-                handleEducationState={handleEducationState}
-                index={index}
-              />
-            ),
-        )}
+      {userSchoolData?.map(
+        (state, index) =>
+          index === educationType && (
+            <EducationInfoTemplate
+              key={`academic_response${index + 1}`}
+              state={state}
+              handleEducationState={handleEducationState}
+              index={index}
+            />
+          ),
+      )}
 
       {/* ============= 저장 ============= */}
       <S.FlexCenter>
