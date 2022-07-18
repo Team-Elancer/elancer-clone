@@ -153,6 +153,7 @@ export const DivTag = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `;
 export const SpanTag = styled.span`
   color: white;
@@ -183,14 +184,6 @@ export const HeartBackDiv = styled.div`
   @media ${TABLET} {
     width: 1.8rem;
     height: 1.8rem;
-  }
-`;
-export const HearDiv = styled.div`
-  font-size: 13px;
-  text-align: center;
-  margin-top: 3px;
-  @media ${TABLET} {
-    font-size: 0.9rem;
   }
 `;
 export const DownSmallDiv = styled.div`

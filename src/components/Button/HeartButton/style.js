@@ -9,14 +9,18 @@ export const HeartBackDiv = styled.div`
   background-color: #f5f5f5;
   text-align: center;
   position: ${(props) => props.position};
-  left: 90%;
+  left: 80%;
+  top: 20%;
   @media ${TABLET} {
     width: 2rem;
     height: 2rem;
+    left: 85%;
+    top: 2%;
   }
   @media ${LAPTOP} {
     width: 2rem;
     height: 2rem;
+    top: 20%;
   }
 `;
 export const HeartDiv = styled.div`

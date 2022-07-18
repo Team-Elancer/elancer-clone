@@ -38,6 +38,7 @@ import Project from 'pages/Project';
 import ProjectDetail from 'pages/Project/ProjectDetail';
 import ProjectList from 'pages/Project/ProjectList';
 import ProjectNewDetail from 'pages/Project/ProjectNewDetail';
+import SearchList from 'pages/Search';
 import SignUp from 'pages/SignUp';
 import SignUpCompany from 'pages/SignUp/Company';
 import SignUpFinish from 'pages/SignUp/Finish';
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="project-list" element={<ProjectList />} />
           <Route path="project-detail" element={<ProjectDetail />} />
           <Route path="login" element={<Login />} />
+          <Route path="search" element={<SearchList />} />
           <Route path="project" element={<Project />}>
             <Route path=":id" element={<ProjectNewDetail />} />
           </Route>
