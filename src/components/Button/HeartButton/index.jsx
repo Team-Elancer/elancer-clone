@@ -31,6 +31,7 @@ const HeartButton = ({ position = 'absolute', Data, setHeartBool }) => {
           },
         })
           .then((res) => {
+            console.log(Data.freelancerNum);
             alert('인재스크랩에 추가되었습니다.');
             setHeartBool(false);
           })

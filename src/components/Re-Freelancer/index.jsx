@@ -5,6 +5,7 @@ import * as S from './style';
 import left from 'assets/images/bt-left.png';
 import right from 'assets/images/bt-right.png';
 
+import HeartButton from 'components/Button/HeartButton';
 import MoreButton from 'components/Button/MoreButton';
 import SkeletonReProject from 'components/Skeleton/ReProject';
 
@@ -14,12 +15,16 @@ const ReFreelancer = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const [Datas, setDatas] = useState('');
+  const [heartBool, setHeartBool] = useState(true);
+
+  console.log(Datas);
 
   const fetchData = async () => {
     try {
       const res = await FILTERED_DATA(`/freelancers`);
       const data = await res.data;
       setDatas(data);
+      setHeartBool(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -35,7 +40,7 @@ const ReFreelancer = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [heartBool]);
 
   return (
     <S.Container>
@@ -59,9 +64,7 @@ const ReFreelancer = () => {
                 >
                   <S.DivTag>
                     <S.SpanTag>{item.positionName}</S.SpanTag>
-                    <S.HeartBackDiv>
-                      <S.HearDiv>🤍</S.HearDiv>
-                    </S.HeartBackDiv>
+                    <HeartButton Data={item} setHeartBool={setHeartBool} />
                   </S.DivTag>
                   <Link to={`/partner-detail/${item.freelancerNum}`}>
                     <S.TitleName>
