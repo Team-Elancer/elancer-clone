@@ -1,8 +1,8 @@
-import axios from 'axios';
-
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-import FilterButton from 'components/Button/FilterButton';
+import { useNavigate } from 'react-router-dom';
+
+import FilterButton from './FilterButton';
 import ListFreelancer from 'components/ListFreelancer';
 
 import Loader from 'components/Loader';
@@ -12,123 +12,74 @@ import Header from 'layouts/Header';
 
 import * as S from 'styles/Page';
 
-import { BaseUrl } from 'utils/config/api';
+import { FILTERED_DATA } from 'utils/config/api';
 
 const ListPartner = () => {
+  const token = window.localStorage.accessToken;
+  const member = localStorage.getItem('memberType');
+  const navigate = useNavigate();
+
   // For infinite scroll
   const observer = useRef();
   const [hasMore, setHasMore] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [URL, setURL] = useState(
+    `/developers?positionType=DEVELOPER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`,
+  );
+
+  const [matchPosition, setMatchPosition] = useState('⚙️ 개발자');
+
   // For position API data
   const [filteredPosition, setFilteredPosition] = useState([]);
 
-  const [togglePositionType, setTogglePositionType] = useState([
-    {
-      developer: true,
-      publisher: false,
-      designer: false,
-      planner: false,
-      etc: false,
-    },
-  ]);
-  const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
-
-  // ============ Set page to 0 for new category when clicked ============
-  const handlePositionList = (e) => {
-    if (e.target.name === 'developer') {
-      setTogglePositionType([
-        {
-          developer: true,
-          publisher: false,
-          designer: false,
-          planner: false,
-          etc: false,
-        },
-      ]);
+  // ============ Default API ============
+  useEffect(() => {
+    if (pageNumber === 0) {
+      getPositionLists();
     }
-    if (e.target.name === 'publisher') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: true,
-          designer: false,
-          planner: false,
-          etc: false,
-        },
-      ]);
-    }
-    if (e.target.name === 'designer') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: false,
-          designer: true,
-          planner: false,
-          etc: false,
-        },
-      ]);
-    }
-    if (e.target.name === 'planner') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: false,
-          designer: false,
-          planner: true,
-          etc: false,
-        },
-      ]);
-    }
-    if (e.target.name === 'etc') {
-      setTogglePositionType([
-        {
-          developer: false,
-          publisher: false,
-          designer: false,
-          planner: false,
-          etc: true,
-        },
-      ]);
-    }
-
-    setPageNumber(0);
-  };
+  }, [URL]);
 
   // ============ Check the position type + Hit API accordingly ============
   useEffect(() => {
-    let positionList = [];
+    if (pageNumber > 0 && hasMore) getNextPage();
+  }, [pageNumber, URL]);
 
-    if (developer) {
-      positionList = ['developers', 'DEVELOPER'];
-    }
-    if (publisher) {
-      positionList = ['publishers', 'PUBLISHER'];
-    }
-    if (designer) {
-      positionList = ['designers', 'DESIGNER'];
-    }
-    if (planner) {
-      positionList = ['planners', 'PLANNER'];
-    }
-    if (etc) {
-      positionList = ['positionEtcers', 'ETC'];
-    }
+  // ============ Set page to 0 for new category when clicked + active CSS ============
+  const handleDefaultPage = (e) => {
+    const type = e.target.innerHTML;
+    setMatchPosition(type);
+    setPageNumber(0);
 
-    const URL = `${BaseUrl}/${positionList[0]}?positionType=${positionList[1]}&majorSkillKeywords=&hopeWorkStates=&positionWorkManShips=&workArea=&`;
+    switch (type) {
+      case '🛠 퍼블리셔':
+        setURL(`/publishers?positionType=PUBLISHER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
 
-    if (pageNumber === 0) getPositionLists(URL);
-    if (pageNumber > 0) getNextPage(URL);
-  }, [developer, publisher, designer, planner, etc, pageNumber]);
+        break;
+      case '🎨 디자이너':
+        setURL(`/designers?positionType=DESIGNER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
+        break;
+      case '📝 기획자':
+        setURL(`/planners?positionType=PLANNER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
+        break;
+      case '🔗 기타':
+        setURL(`/positionEtcers?positionType=ETC&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
+        break;
+      default:
+        setURL(`/developers?positionType=DEVELOPER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
+        break;
+    }
+  };
 
   // ============ Get default data  ============
-  const getPositionLists = async (URL) => {
+  const getPositionLists = async () => {
     setIsLoading(true);
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
-      } = await axios.get(URL);
+      } = await FILTERED_DATA(URL);
+
       setFilteredPosition([...freelancerSimpleResponseList]);
       setHasMore(hasNext);
       setIsLoading(false);
@@ -138,22 +89,18 @@ const ListPartner = () => {
   };
 
   // ============ Get next page data => old data + new data ============
-  const getNextPage = async (URL) => {
-    if (pageNumber === 0) return;
-    setIsLoading(true);
-
+  const getNextPage = useCallback(async () => {
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
-      } = await axios.get(`${URL}page=${pageNumber}`);
+      } = await FILTERED_DATA(`${URL}page=${pageNumber}`);
 
       setFilteredPosition((prev) => [...prev, ...freelancerSimpleResponseList]);
       setHasMore(hasNext);
-      setIsLoading(false);
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [pageNumber]);
 
   //  ============ Get the last component for infinite scroll ============
   const lastComponent = useCallback(
@@ -173,20 +120,39 @@ const ListPartner = () => {
     [isLoading, hasMore],
   );
 
+  const addProject = () => {
+    if (token && member === '"FREELANCER"') {
+      navigate('/myboard-freelancer/profile-modify');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <>
-      <Header />
+      <S.ContainerHeader>
+        <Header />
+      </S.ContainerHeader>
       <S.ContainerFrame>
         <S.FrameList>
           <S.ContainerTopLetter>
             <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
             <br />
             <S.TopLetterSubject>
-              프로젝트 등록하면 <br /> 더 정확한 추천을 받을 수 있어요
+              <div>
+                프로젝트 등록하면 <br /> 더 정확한 추천을 받을 수 있어요
+              </div>
+              <S.RegisterButton onClick={addProject}>프로젝트 등록</S.RegisterButton>
             </S.TopLetterSubject>
           </S.ContainerTopLetter>
+
           {/* =======  FilterButton Component ======= */}
-          <FilterButton togglePositionType={togglePositionType} handlePositionList={handlePositionList} />
+          <FilterButton
+            matchPosition={matchPosition}
+            handleDefaultPage={handleDefaultPage}
+            setURL={setURL}
+            setIsLoading={setIsLoading}
+          />
           {/* =======  ListFreelancer Component ======= */}
 
           <ListFreelancer filteredPosition={filteredPosition} lastComponent={lastComponent} />
