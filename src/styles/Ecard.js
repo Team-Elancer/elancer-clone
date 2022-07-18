@@ -186,3 +186,14 @@ export const DaySpan = styled.span`
     font-size: 0.7rem;
   }
 `;
+
+export const Title = styled.h1`
+  font-size: 1rem;
+  font-weight: 800;
+  @media ${TABLET} {
+    font-size: 1.6rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 1.8rem;
+  }
+`;

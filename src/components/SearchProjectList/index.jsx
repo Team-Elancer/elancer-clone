@@ -12,10 +12,10 @@ const SearchProjectList = () => {
   const [Datas, setDatas] = useState('');
   const [nextPage, setNextPage] = useState('');
   const [Page, setPage] = useState(0);
-
   const location = useLocation();
 
-  console.log(location, Datas);
+  const [locationKey, setLocationKey] = useState(location.search.split('='));
+  const decode = decodeURI(locationKey[1]);
 
   const fetchData = async () => {
     try {
@@ -38,19 +38,21 @@ const SearchProjectList = () => {
   const MoreButtonFunction = () => {
     if (nextPage) {
       setPage((preView) => preView + 1);
+    } else {
+      alert('데이터가 더 없습니다.');
     }
   };
 
-  // const MoreData = useCallback(async () => {
-  //   try {
-  //     const res = await CLIENT_FREELANCER(`/project-list${location.search}&page=${Page}`);
-  //     const data = await res.data;
-  //     setDatas((prevData) => [...prevData, ...data.projectBoxResponses]);
-  //     setNextPage(data.hasNext);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }, [Page]);
+  const MoreData = useCallback(async () => {
+    try {
+      const res = await CLIENT_FREELANCER(`/project-list${location.search}&page=${Page}`);
+      const data = await res.data;
+      setDatas((prevData) => [...prevData, ...data.projectBoxResponses]);
+      setNextPage(data.hasNext);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [Page]);
 
   const positionSwitch = (item) => {
     switch (item) {
@@ -92,9 +94,11 @@ const SearchProjectList = () => {
     return selectArray.join('|');
   };
 
-  // useEffect(() => {
-  //   MoreData();
-  // }, [MoreData]);
+  useEffect(() => {
+    if (Page > 0) {
+      MoreData();
+    }
+  }, [MoreData]);
 
   useEffect(() => {
     fetchData();
@@ -102,8 +106,8 @@ const SearchProjectList = () => {
 
   return (
     <div>
-      <h1>{location.search}관련 프로젝트</h1>
-      {Datas !== '' &&
+      <S.Title>{decode} 관련 프로젝트</S.Title>
+      {Datas !== '' ? (
         Datas.map((item, index) => {
           return (
             <S.EcardDiv key={item.projectNum}>
@@ -137,8 +141,15 @@ const SearchProjectList = () => {
               </S.FirstDiv>
             </S.EcardDiv>
           );
-        })}
-      <MoreButton />
+        })
+      ) : (
+        <div>
+          <ProjectSkeleton />
+          <ProjectSkeleton />
+          <ProjectSkeleton />
+        </div>
+      )}
+      <MoreButton MoreButtonFunction={MoreButtonFunction} />
     </div>
   );
 };
