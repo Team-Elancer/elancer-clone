@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
+export const FlexAlignCenter = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const Wrapper = styled.div`
   max-width: 380px;
   height: 530px;
@@ -12,7 +17,7 @@ export const Wrapper = styled.div`
   margin: auto 0;
   border-radius: 2rem;
   color: black;
-  top: 50%;
+  top: 20%;
 
   @media ${TABLET} {
     min-width: 580px;
@@ -25,8 +30,8 @@ export const Wrapper = styled.div`
   @media ${LAPTOP} {
     min-width: 660px;
     max-width: 680px;
-    left: 19rem;
     top: 15rem;
+    left: 20rem;
   }
 `;
 
@@ -51,11 +56,6 @@ export const FlexDiv = styled.div`
   }
 `;
 
-export const FlexnoPadding = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const CancelButton = styled.span`
   width: 2rem;
   font-size: 1.3rem;
@@ -71,6 +71,20 @@ export const Title = styled.h1`
   }
   @media ${LAPTOP} {
     font-size: 1.3rem;
+  }
+`;
+
+export const SubTitle = styled.h2`
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #a5a5a5;
+  margin-left: 0.5rem;
+
+  @media ${TABLET} {
+    font-size: 1.2rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 0.9rem;
   }
 `;
 
@@ -108,8 +122,10 @@ export const ButtonSubmitContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
+
   @media ${TABLET} {
   }
+
   @media ${LAPTOP} {
     margin-right: 2.5rem;
   }
@@ -127,9 +143,39 @@ export const ButtonContainer = styled.div`
   border-radius: 1.5rem;
   font-size: 0.75rem;
   font-weight: 800;
+
   @media ${TABLET} {
     width: 150px;
     height: 50px;
+    font-size: 1rem;
+  }
+`;
+
+export const SectionContent = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+`;
+
+export const SectionContentItem = styled.div`
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0.7rem;
+  background-color: ${(props) => props.bgColor};
+  border: solid 2px ${(props) => props.color};
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin: 0.5rem 0.5rem 0 0;
+
+  @media ${TABLET} {
+    font-size: 1.3rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 1.3rem;
+  }
+
+  @media ${LAPTOP} {
     font-size: 1rem;
   }
 `;

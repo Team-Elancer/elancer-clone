@@ -4,7 +4,6 @@ import * as S from './style';
 
 import FreelancerFilter from 'components/Modal/FreelancerFilter';
 
-// const FilterButton = ({ setDeveloperLists, setPublisherLists, setDesignerLists, setPlannerLists }) => {
 const FilterButton = ({ handlePositionList, togglePositionType }) => {
   const [{ developer, publisher, designer, planner, etc }] = togglePositionType;
 
