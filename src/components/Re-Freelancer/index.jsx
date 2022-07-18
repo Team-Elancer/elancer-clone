@@ -9,7 +9,7 @@ import HeartButton from 'components/Button/HeartButton';
 import MoreButton from 'components/Button/MoreButton';
 import SkeletonReProject from 'components/Skeleton/ReProject';
 
-import { BaseUrl, FILTERED_DATA } from 'utils/config/api';
+import { BaseUrl, FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ReFreelancer = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -21,10 +21,16 @@ const ReFreelancer = () => {
 
   const fetchData = async () => {
     try {
-      const res = await FILTERED_DATA(`/freelancers`);
-      const data = await res.data;
-      setDatas(data);
-      setHeartBool(true);
+      if (window.localStorage.accessToken) {
+        const res = await CLIENT_FREELANCER(`/freelancers`);
+        const data = await res.data;
+        setDatas(data);
+        setHeartBool(true);
+      } else {
+        const res = await FILTERED_DATA('/freelancers');
+        const data = await res.data;
+        setDatas(data);
+      }
     } catch (error) {
       console.log(error.message);
     }
