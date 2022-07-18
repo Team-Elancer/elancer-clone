@@ -1,9 +1,9 @@
 import * as S from './style';
 
-const MoreButton = () => {
+const MoreButton = ({ MoreButtonFunction }) => {
   return (
     <S.Container>
-      <S.LastSpan>더보기</S.LastSpan>
+      <S.LastSpan onClick={MoreButtonFunction}>더보기</S.LastSpan>
     </S.Container>
   );
 };
