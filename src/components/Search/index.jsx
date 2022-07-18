@@ -13,6 +13,7 @@ const SearchBar = () => {
 
   const submitFunction = (e) => {
     e.preventDefault();
+
     if (value === '') {
       alert('검색어를 입력해주세요.');
     } else {

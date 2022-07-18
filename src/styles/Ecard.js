@@ -197,3 +197,15 @@ export const Title = styled.h1`
     font-size: 1.8rem;
   }
 `;
+
+export const SubTitle = styled.h3`
+  padding-top: 10rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+
+  @media ${TABLET} {
+    font-size: 1.2rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;

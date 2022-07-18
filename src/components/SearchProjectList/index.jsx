@@ -106,6 +106,7 @@ const SearchProjectList = () => {
 
   return (
     <div>
+      <S.SubTitle>이랜서가 보증하는 IT 파트너스 39만명</S.SubTitle>
       <S.Title>{decode} 관련 프로젝트</S.Title>
       {Datas !== '' ? (
         Datas.map((item, index) => {

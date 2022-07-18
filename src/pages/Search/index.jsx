@@ -1,3 +1,5 @@
+import FreelancerSearch from './FreelancerSearch';
+
 import * as S from './style';
 
 import GridBottom from 'components/Modal/GridBottom';
@@ -11,8 +13,8 @@ const SearchList = () => {
     <S.Container>
       <Header />
       <S.MarginDiv>
-        <S.SubTitle>이랜서가 보증하는 IT 파트너스 39만명</S.SubTitle>
         <S.ProjectDiv>
+          <FreelancerSearch />
           <SearchProjectList />
         </S.ProjectDiv>
       </S.MarginDiv>
