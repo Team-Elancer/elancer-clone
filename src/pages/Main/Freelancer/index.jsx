@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 
 import Designer from './Designer';
 import Developer from './Developer';
@@ -28,8 +28,8 @@ import Footer from 'layouts/Footer';
 import FreelancerHeader from 'layouts/Header/Freelancer';
 
 import { FILTERED_DATA } from 'utils/config/api';
-import { POSITION, HOPEWORK, WORKMANSHIP } from 'utils/constants/freelancerFilter';
-import { handlePosition, handleHopeWork, handleWorkManShip, handleWorkArea } from 'utils/helpers';
+import { POSITION, WORKMANSHIP, PROJECTTYPE } from 'utils/constants/freelancerFilter';
+import { handlePosition, handleWorkManShip, handleProjectType } from 'utils/helpers';
 
 const MainFreelancer = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,16 +37,18 @@ const MainFreelancer = () => {
   const [serchBarBool, setSerchBarBool] = useState();
 
   const [jobType, setjobType] = useState('개발');
-  const [locationState, setLocationState] = useState('선택');
-  const [careerState, setCareerState] = useState('선택');
-  const [skillSTATE, setSkillSTATE] = useState('선택');
+  const [locationState, setLocationState] = useState('');
+  const [careerState, setCareerState] = useState('');
+  const [skillSTATE, setSkillSTATE] = useState('');
 
-  const [projectType, setProjectType] = useState('⚙️ 개발 프로젝트');
+  const [projectType, setProjectType] = useState('⚙️ 개발');
 
   const [searchValue, setSearchValue] = useState('');
 
-  const [projectIndexList, setProjectIndexList] = useState('');
+  const [projectIndexList, setProjectIndexList] = useState([]);
   const [apiIndex, setApiIndex] = useState('developerProjectList');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProjectIndexList();
@@ -55,19 +57,19 @@ const MainFreelancer = () => {
 
   // ============== Empty the array(skillSTATE) when new type clicked ==============
   useEffect(() => {
-    setSkillSTATE(['선택']);
+    setSkillSTATE([]);
   }, [jobType]);
 
   // ============== For spreading data  <ListPortfolio Datas={projectIndexList[apiIndex]} />}==============
   const getPositionProject = (type) => {
     switch (type) {
-      case '🛠 퍼블리싱':
+      case '🛠 퍼블리싱':
         setApiIndex('publisherProjectList');
         break;
-      case '🎨 디자인':
+      case '🎨 디자인':
         setApiIndex('designerProjectList');
         break;
-      case '📝 기획':
+      case '📝 기획':
         setApiIndex('plannerProjectList');
         break;
       case '🕹 기타 프로젝트':
@@ -110,9 +112,32 @@ const MainFreelancer = () => {
     }
   };
 
-  const filterProject = (e) => {
+  const filterProject = async (e) => {
     e.preventDefault();
+
+    const skillArray = skillSTATE.map((item) => `&skills=${item}`).join('');
+
+    try {
+      if (searchValue.length === 0) {
+        navigate(
+          `/project-list?positionKind=${handlePosition(projectType)[1]}&freelancerWorkmanShip=${handleWorkManShip(
+            careerState,
+          )}&projectType=${handleProjectType(locationState)}${skillArray}`,
+        );
+      }
+
+      if (searchValue.length > 0) {
+        navigate(
+          `/project-list?positionKind=${handlePosition(projectType)[1]}&freelancerWorkmanShip=${handleWorkManShip(
+            careerState,
+          )}&projectType=${handleProjectType(locationState)}${skillArray}&searchKey=${searchValue}`,
+        );
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
+
   return (
     <S.Container top="-10px">
       <S.BgDiv>
@@ -140,7 +165,10 @@ const MainFreelancer = () => {
               style={{ overflow: 'hidden' }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>스킬</S.Span>
-              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{skillSTATE}</S.ButtonP>
+
+              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>
+                {skillSTATE.length > 0 ? skillSTATE : '선택'}
+              </S.ButtonP>
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
@@ -151,7 +179,7 @@ const MainFreelancer = () => {
               }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>근무 위치</S.Span>
-              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{locationState}</S.ButtonP>
+              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{locationState || '선택'}</S.ButtonP>
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
             <S.jobButton
@@ -162,7 +190,7 @@ const MainFreelancer = () => {
               }}
             >
               <S.Span color={changeBack === false ? 'black' : 'white'}>숙련도</S.Span>
-              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{careerState}</S.ButtonP>
+              <S.ButtonP color={changeBack === false ? '#969696' : '#ffc298'}>{careerState || '선택'}</S.ButtonP>
             </S.jobButton>
             <S.LineDiv color={changeBack === false ? '#969696' : 'white'} />
 
@@ -290,7 +318,7 @@ const MainFreelancer = () => {
             {/* ========== 근무 위치 ========== */}
             {changeBack === false && serchBarBool === 'location' && (
               <S.ModalDiv width="450px" height="105px" left="15rem" laptopLeft="19rem">
-                {HOPEWORK.map((item, index) => (
+                {PROJECTTYPE.map((item, index) => (
                   <S.UlTag key={`item_${index + 1}`}>
                     <S.LiTag>
                       <S.Input
