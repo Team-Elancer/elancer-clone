@@ -19,11 +19,11 @@ const FreelancerSearch = ({ searchValue }) => {
   const [filteredPosition, setFilteredPosition] = useState([]);
 
   // ============ Default API - testing ============
-  // useEffect(() => {
-  //   if (pageNumber === 0) {
-  //     getPositionLists();
-  //   }
-  // }, [URL]);
+  useEffect(() => {
+    if (pageNumber === 0) {
+      getPositionLists();
+    }
+  }, [URL]);
 
   // ============ Check the position type + Hit API accordingly ============
   useEffect(() => {
@@ -38,7 +38,7 @@ const FreelancerSearch = ({ searchValue }) => {
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
-      } = await FILTERED_DATA(URL);
+      } = await FILTERED_DATA(`URL/${searchValue}`);
 
       setFilteredPosition([...freelancerSimpleResponseList]);
       setHasMore(hasNext);

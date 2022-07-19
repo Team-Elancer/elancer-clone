@@ -77,7 +77,7 @@ export const DOT_NET_DETAIL_SKILL_DB = [
 
 // ============  JavaScriptDetailSkill 구성 ============
 export const JAVA_SCRIPT_DETAIL_FRONT = ['node.js', 'AngularJS', 'React.js', 'Vue.js', 'jQuery', 'JavaScript'];
-export const JAVA_SCRIPT_DETAIL_DB = ['NODE_JS', 'ANGULAR_JS', 'REACT_JS', 'VUE_JS', 'JQUERY', 'JAVASCRIPT'];
+export const JAVA_SCRIPT_DETAIL_DB = ['NODE_JS', 'ANGULAR_JS', 'REACT', 'VUE_JS', 'JQUERY', 'JAVASCRIPT'];
 
 // ============  CDetailSkill 구성 ============
 export const C_DETAIL_FRONT = [

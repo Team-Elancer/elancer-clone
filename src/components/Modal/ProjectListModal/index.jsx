@@ -102,15 +102,18 @@ const ProjectListModal = ({ setModalCheck, setURL, setSelectType, setLoading, se
           return '';
       }
     };
+
     const newArray = positionArray.map((a) => {
       return `&skills=${a}`;
     });
+
     setLoading(true);
     setURL(
       `/project-list?positionKind=${position()}${newArray.join(
         '',
       )}&projectType=${state()}&freelancerWorkmanShip=${skills()}&region=${workPlace}`,
     );
+
     setSelectType(positionType);
     setSelectType1(positionType);
     setModalCheck(false);

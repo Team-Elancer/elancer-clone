@@ -21,4 +21,6 @@ const WORKAREA = [
   '제주',
 ];
 
-export { POSITION, HOPEWORK, WORKMANSHIP, WORKAREA };
+const PROJECTTYPE = ['🏢 상주', '🖥  재택,상주', '🏠 재택'];
+
+export { POSITION, HOPEWORK, WORKMANSHIP, WORKAREA, PROJECTTYPE };

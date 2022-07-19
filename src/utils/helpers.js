@@ -47,6 +47,19 @@ export const handleHopeWork = (type) => {
   }
 };
 
+export const handleProjectType = (type) => {
+  switch (type) {
+    case '🏢 상주':
+      return 'WORKING';
+    case '🖥  재택,상주':
+      return 'BOTH_TELEWORKING_WORKING';
+    case '🏠 재택':
+      return 'TELEWORKING';
+    default:
+      return '';
+  }
+};
+
 export const handleWorkManShip = (type) => {
   switch (type) {
     case '초급 0~4년':

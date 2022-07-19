@@ -21,7 +21,7 @@ export const PUBLISHING_DETAIL_SKILL_DB = [
   'CSS',
   'ACTIONSCRIPT',
   'JQUERY',
-  'REACT_JS',
+  'REACT',
   'VUE_JS',
   'JAVASCRIPT',
   'WORDPRESS',

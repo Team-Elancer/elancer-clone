@@ -148,6 +148,12 @@ const ListProject = () => {
       fetchData();
     }
     console.log(URL);
+
+    const locationURL = `${location.pathname}${location.search}`;
+    if (locationURL.includes('positionKind')) {
+      setURL(locationURL);
+      fetchData(locationURL);
+    }
   }, [selectType, URL]);
 
   return (
