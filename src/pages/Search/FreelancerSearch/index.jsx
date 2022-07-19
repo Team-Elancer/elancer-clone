@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import ListFreelancer from 'components/ListFreelancer';
 
 import Loader from 'components/Loader';
@@ -10,9 +8,7 @@ import * as S from 'styles/Page';
 
 import { FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
-const FreelancerSearch = () => {
-  const navigate = useNavigate();
-
+const FreelancerSearch = ({ searchValue }) => {
   // For infinite scroll
   const observer = useRef();
   const [hasMore, setHasMore] = useState(false);
@@ -22,12 +18,12 @@ const FreelancerSearch = () => {
   // For position API data
   const [filteredPosition, setFilteredPosition] = useState([]);
 
-  // ============ Default API ============
-  useEffect(() => {
-    if (pageNumber === 0) {
-      getPositionLists();
-    }
-  }, [URL]);
+  // ============ Default API - testing ============
+  // useEffect(() => {
+  //   if (pageNumber === 0) {
+  //     getPositionLists();
+  //   }
+  // }, [URL]);
 
   // ============ Check the position type + Hit API accordingly ============
   useEffect(() => {
@@ -89,7 +85,7 @@ const FreelancerSearch = () => {
       <S.FrameList>
         <S.ContainerTopLetter>
           <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 39만명</S.TopLetterExtra>
-          <S.TopLetterSubject>**** 관련 프로젝트</S.TopLetterSubject>
+          <S.TopLetterSubject> {searchValue} 관련 프로젝트</S.TopLetterSubject>
         </S.ContainerTopLetter>
 
         {/* =======  ListFreelancer Component ======= */}
