@@ -16,8 +16,6 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
     }
   };
 
-  console.log(changeList);
-
   useEffect(() => {
     if (newDatas === '') {
       fetchData();

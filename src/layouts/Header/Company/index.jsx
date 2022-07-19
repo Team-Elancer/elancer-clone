@@ -1,20 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link, useLocation, useParams } from 'react-router-dom';
+
 import * as S from './style';
+
 import Logo from 'assets/images/elancer_logo.png';
 import Profile from 'assets/images/signin-profile.png';
+
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
+
+import { BaseUrl, CLIENT_FREELANCER } from 'utils/config/api';
 
 const CompanyHeader = ({ margin, width, bgColor, color, logo }) => {
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
   const { id } = useParams();
 
+  const [Datas, setDatas] = useState('');
+
+  const FetchData = async () => {
+    try {
+      const res = await CLIENT_FREELANCER('/enterprise-thumbnail');
+      const Data = await res.data;
+      setDatas(Data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const changeBool = () => {
     return setCeckBool(false);
   };
+
+  useEffect(() => {
+    FetchData();
+  }, []);
 
   return (
     <S.Container bgColor={bgColor} color={color}>
@@ -55,10 +76,10 @@ const CompanyHeader = ({ margin, width, bgColor, color, logo }) => {
         </S.Text>
         <S.Menu>
           <S.Span onClick={changeBool}>
-            <FaBars size="16" color="gray" />
+            <FaBars size="100%" color="gray" />
           </S.Span>
           <S.Span>
-            <S.Image src={Profile} alt="profile" />
+            <S.Image src={Datas !== '' ? Datas?.thumbnail : Profile} alt="profile" />
           </S.Span>
         </S.Menu>
       </S.HeaderDiv>

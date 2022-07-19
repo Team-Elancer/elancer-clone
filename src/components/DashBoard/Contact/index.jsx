@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 
@@ -6,10 +7,15 @@ import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const EnterpriseContact = () => {
   const [Datas, setDatas] = useState('');
+  const navi = useNavigate();
 
   const FetchData = async () => {
     try {
       const res = await CLIENT_FREELANCER('/contacts');
+      if (res.data.code === '401') {
+        window.localStorage.clear();
+        navi('/login');
+      }
       const data = await res.data;
       setDatas(data);
     } catch (error) {
@@ -25,7 +31,7 @@ const EnterpriseContact = () => {
   return (
     <S.Container>
       {Datas !== '' &&
-        Datas.map((data) => (
+        Datas?.map((data) => (
           <S.FlexDiv>
             <S.Text>
               {data.title} {`(${data.localDate})`}

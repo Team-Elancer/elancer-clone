@@ -59,7 +59,7 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        alert(err.message);
+        alert(err.response.data.errorMessage);
         setLoginFail('로그인에 실패 했습니다. 아이디와 패스워드를 다시 확인 하세요.');
       });
   };

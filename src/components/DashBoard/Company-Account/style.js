@@ -16,6 +16,19 @@ export const MobilePhoto = styled.div`
     display: none;
   }
 `;
+
+export const MobileFileInput = styled.input`
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  font-size: 500px;
+  z-index: 0;
+  left: 21.5rem;
+  top: 11rem;
+  opacity: 5;
+  position: absolute;
+`;
 export const ProfileMobileImg = styled.img`
   width: 100%;
   padding: 0.5rem 0 0 0;

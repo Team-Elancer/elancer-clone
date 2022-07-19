@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as S from './style';
 
 import left from 'assets/images/bt-left.png';
@@ -9,13 +9,14 @@ import HeartButton from 'components/Button/HeartButton';
 import MoreButton from 'components/Button/MoreButton';
 import SkeletonReProject from 'components/Skeleton/ReProject';
 
-import { BaseUrl, FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
+import { BaseUrl, FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const ReFreelancer = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const [Datas, setDatas] = useState('');
   const [heartBool, setHeartBool] = useState(true);
+  const location = useLocation();
 
   console.log(Datas);
 
@@ -23,6 +24,11 @@ const ReFreelancer = () => {
     try {
       if (window.localStorage.accessToken) {
         const res = await CLIENT_FREELANCER(`/freelancers`);
+        if (res.data.code === '401') {
+          window.localStorage.clear();
+          alert('토큰이 만료되어 로그인페이지로 이동합니다.');
+          location('/login');
+        }
         const data = await res.data;
         setDatas(data);
         setHeartBool(true);
@@ -61,7 +67,7 @@ const ReFreelancer = () => {
         {!Datas ? (
           <SkeletonReProject />
         ) : (
-          Datas.freelancerSimpleResponseList.map((item) => {
+          Datas?.freelancerSimpleResponseList.map((item) => {
             return (
               <S.ProjectDiv slideIndex={slideIndex} key={item.freelancerNum}>
                 <S.UpDiv

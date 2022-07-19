@@ -1,63 +1,81 @@
 import { useEffect, useState } from 'react';
+
 import { FaStar } from 'react-icons/fa';
+
+import { useNavigate } from 'react-router-dom';
+
 import * as S from './style';
 import Bici from 'assets/images/bici.png';
 
+import { CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
+
 const CompanyDashBoard = ({
-  Datas,
   EcardDiv = 'none',
   height = '0.7rem',
   topleft = '0',
   bottomleft = '0.4rem',
   right = '0.4rem',
 }) => {
-  const [htotalActiveScorello, setTotalActiveScore] = useState();
-  const [expertise, setExpertise] = useState();
-  const [scheduleAdherence, setScheduleAdherence] = useState();
-  const [initiative, setInitiative] = useState();
-  const [communication, setCommunication] = useState();
-  const [reEmploymentIntention, setReEmploymentIntention] = useState();
+  const [Data, setData] = useState('');
+  const navi = useNavigate();
+
+  console.log(Data);
+
+  const fetchData = async () => {
+    try {
+      const res = await CLIENT_FREELANCER('/enterprise-profile');
+      if (res.data.code === '401') {
+        console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
+        const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
+        window.localStorage.setItem('accessToken', res.data.accessToken);
+        window.localStorage.setItem('refreshToken', res.data.refreshToken);
+        console.log('이상무');
+      }
+      const data = await res.data;
+      setData(data);
+    } catch (error) {
+      if (error.message === 'Request failed with status code 500') {
+        window.localStorage.clear();
+        alert('다시 로그인해주세요.');
+        navi('/login');
+      }
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
-    if (Datas) {
-      setTotalActiveScore(Datas.totalActiveScore);
-      setExpertise(Datas.expertise);
-      setScheduleAdherence(Datas.scheduleAdherence);
-      setInitiative(Datas.initiative);
-      setCommunication(Datas.communication);
-      setReEmploymentIntention(Datas.reEmploymentIntention);
-    }
-  }, [Datas]);
+    fetchData();
+  }, []);
 
   return (
     <S.EcardDiv display={EcardDiv} topleft={topleft} bottomleft={bottomleft} right={right}>
       <S.EcarcdPaddingDiv height={height} display="flex">
         <div>
           <S.ImageDiv>
-            <S.Img src={Bici} alt="profile-photo" />
-            <S.NameP>종혁</S.NameP>
+            <S.Img src={Data?.thumbnail || Bici} alt="profile-photo" />
+            <S.NameP>{Data?.name}</S.NameP>
           </S.ImageDiv>
         </div>
         <S.RatingDiv>
           <S.Ratingspan>
             활동평가
             <S.RatingNumberP mobilesize="0.75rem" mobileleft="6.7rem" size="1.1rem" left="2rem">
-              <S.StarIcon color={htotalActiveScorello > 0 ? 'orange' : ''}>
+              <S.StarIcon color={Data?.htotalActiveScorello > 0 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={htotalActiveScorello > 1 ? 'orange' : ''}>
+              <S.StarIcon color={Data?.htotalActiveScorello > 1 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={htotalActiveScorello > 2 ? 'orange' : ''}>
+              <S.StarIcon color={Data?.htotalActiveScorello > 2 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={htotalActiveScorello > 3 ? 'orange' : ''}>
+              <S.StarIcon color={Data?.htotalActiveScorello > 3 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              <S.StarIcon color={htotalActiveScorello > 4 ? 'orange' : ''}>
+              <S.StarIcon color={Data?.htotalActiveScorello > 4 ? 'orange' : ''}>
                 <FaStar />
               </S.StarIcon>
-              {Datas ? htotalActiveScorello : '0'}
+              {Data ? Data?.htotalActiveScorello : '0'}
             </S.RatingNumberP>
           </S.Ratingspan>
           <RatingSmall
@@ -67,8 +85,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="4rem"
             color="orange"
-            persent={Datas ? `${expertise}%` : '0%'}
-            rank={expertise}
+            persent={Data ? `${Data?.expertise}%` : '0%'}
+            rank={Data?.expertise}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -77,8 +95,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="3.15rem"
             color="orange"
-            persent={Datas ? `${scheduleAdherence}%` : '0%'}
-            rank={scheduleAdherence}
+            persent={Data ? `${Data?.scheduleAdherence}%` : '0%'}
+            rank={Data?.scheduleAdherence}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -87,8 +105,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="4rem"
             color="orange"
-            persent={Datas ? `${initiative}%` : '0%'}
-            rank={initiative}
+            persent={Data ? `${Data?.initiative}%` : '0%'}
+            rank={Data?.initiative}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -97,8 +115,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="3.15rem"
             color="orange"
-            persent={Datas ? `${communication}%` : '0%'}
-            rank={communication}
+            persent={Data ? `${Data?.communication}%` : '0%'}
+            rank={Data?.communication}
           />
           <RatingSmall
             mobilesize="0.75rem"
@@ -107,8 +125,8 @@ const CompanyDashBoard = ({
             size="0.9rem"
             left="2rem"
             color="orange"
-            persent={Datas ? `${reEmploymentIntention}%` : '0%'}
-            rank={reEmploymentIntention}
+            persent={Data ? `${Data?.reEmploymentIntention}%` : '0%'}
+            rank={Data?.reEmploymentIntention}
           />
         </S.RatingDiv>
       </S.EcarcdPaddingDiv>
