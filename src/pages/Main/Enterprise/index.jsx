@@ -68,6 +68,14 @@ const MainEnterprise = () => {
     }
   };
 
+  // const submitSearch = ()=>{
+  //   setURL( `/${handlePosition(PositionType)[0]}?positionType=${
+  //     handlePosition(PositionType)[1]
+  //   }&majorSkillKeywords=${skillSTATE.join(',')}&hopeWorkState=${handleHopeWork(
+  //     HopeWorkState,
+  //   )}&positionWorkManShip=${handleWorkManShip(PositionWorkManShip)}&workArea=${handleWorkArea(WorkArea)}`,);
+  // }
+
   useEffect(() => {
     setSkillState(['선택']);
     fetchData();

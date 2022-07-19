@@ -11,8 +11,6 @@ import { CLIENT_FREELANCER } from 'utils/config/api';
 const DashBoardEnterprise = () => {
   const [newDatas, setNewDatas] = useState('');
 
-  console.log(newDatas?.applyProjectCount);
-
   const fetchData = async () => {
     try {
       const res = await CLIENT_FREELANCER('/project-list-count');

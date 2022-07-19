@@ -44,6 +44,7 @@ const DashBoardAccount = () => {
     bizContents: userData.bizContents,
     sales: userData.sales,
     idNumber: userData.idNumber,
+    thumbnail: null,
   });
 
   const changeUser = (e) => {
@@ -57,6 +58,7 @@ const DashBoardAccount = () => {
       data: companyDatas,
     })
       .then((res) => {
+        console.log(res);
         alert('정보를 수정했습니다.');
         setCheck(!check);
       })
@@ -93,6 +95,7 @@ const DashBoardAccount = () => {
     if (userData) {
       setUserAddress(Object.values(userData.address));
     }
+    console.log('hello');
   }, [check]);
 
   return (
@@ -109,6 +112,7 @@ const DashBoardAccount = () => {
         fetchData={fetchData}
         setCompanyDatas={setCompanyDatas}
         deleteUser={deleteUser}
+        companyDatas={companyDatas}
       />
     </form>
   );

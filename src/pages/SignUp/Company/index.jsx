@@ -32,6 +32,7 @@ const SignUpCompany = () => {
     bizContents: '주요 사업',
     sales: 10000000,
     idNumber: '0000000000',
+    thumbnail: null,
   });
 
   const CreateWrite = (event) => {

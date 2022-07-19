@@ -1,12 +1,19 @@
+import axios from 'axios';
+
 import { useEffect, useState } from 'react';
+
 import PostCode from '../PostCode';
 import * as S from './style';
+
 import Bici from 'assets/images/bici.png';
 import Camera from 'assets/images/camera.png';
 import Cancel from 'assets/images/cancel-orange.png';
 import CloseEye from 'assets/images/closeEye.png';
 import OpenEye from 'assets/images/openEye.png';
+
 import SubmitButton from 'components/Button/SubmitButton';
+
+import { BaseUrl } from 'utils/config/api';
 
 const CompanyAccount = ({
   display = 'none',
@@ -15,6 +22,7 @@ const CompanyAccount = ({
   setCompanyData,
   userData,
   setCompanyDatas,
+  companyDatas,
   deleteUser,
 }) => {
   const [placePostcode, setPlacePostcode] = useState('우편번호');
@@ -47,6 +55,57 @@ const CompanyAccount = ({
 
   const [capsLockFlag, setCapsLockFlag] = useState(false);
 
+  const [checkImg, setCheckImg] = useState(null);
+
+  const changeProfileImg = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const Header = { 'Content-Type': 'multipart/form-data' };
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        setCheckImg(res.data.filePath);
+        setCompanyDatas({
+          password1: password,
+          password2: passwordCheck,
+          name: userName,
+          phone: phoneNumber,
+          email: userEmail,
+          companyName: comName,
+          companyPeople: comCount,
+          position: userPosition,
+          telNumber: userPhoneNumber,
+          website: companyWebsite,
+          thumbnail: res.data.filePath,
+          address: {
+            country: userCountry,
+            zipcode: placePostcode,
+            mainAddress: placeAddress,
+            detailAddress: userAddress,
+          },
+          bizContents: business,
+          sales: yearSale,
+          idNumber: businessNumber,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   const changeData = () => {
     if (userData) {
       setCompanyDatas({
@@ -60,6 +119,7 @@ const CompanyAccount = ({
         position: userPosition,
         telNumber: userPhoneNumber,
         website: companyWebsite,
+        thumbnail: checkImg,
         address: {
           country: userCountry,
           zipcode: placePostcode,
@@ -83,6 +143,7 @@ const CompanyAccount = ({
         position: userPosition,
         telNumber: userPhoneNumber,
         website: companyWebsite,
+        thumbnail: checkImg,
         address: {
           country: userCountry,
           zipcode: placePostcode,
@@ -122,10 +183,11 @@ const CompanyAccount = ({
       setBusiness(userData.bizContents);
       setYearSale(userData.sales);
       setBusinessNumber(userData.idNumber);
-      setUserCountry(userData.address.country);
-      setPlacePostcode(userData.address.zipcode);
-      setPlaceAddress(userData.address.mainAddress);
-      setUserAddress(userData.address.detailAddress);
+      setUserCountry(userData?.address.country);
+      setPlacePostcode(userData?.address.zipcode);
+      setPlaceAddress(userData?.address.mainAddress);
+      setUserAddress(userData?.address.detailAddress);
+      setCheckImg(userData.thumbnail);
     }
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
@@ -143,17 +205,55 @@ const CompanyAccount = ({
     }
   }, [eyeCheck, eyeCheck2, userData]);
 
+  useEffect(() => {
+    if (checkImg !== null) {
+      setCompanyDatas({
+        password1: password,
+        password2: passwordCheck,
+        name: userName,
+        phone: phoneNumber,
+        email: userEmail,
+        companyName: comName,
+        companyPeople: comCount,
+        position: userPosition,
+        telNumber: userPhoneNumber,
+        website: companyWebsite,
+        thumbnail: checkImg,
+        address: {
+          country: userCountry,
+          zipcode: placePostcode,
+          mainAddress: placeAddress,
+          detailAddress: userAddress,
+        },
+        bizContents: business,
+        sales: yearSale,
+        idNumber: businessNumber,
+      });
+    }
+    console.log(companyDatas);
+  }, [checkImg]);
+
   return (
-    <S.ProfileDiv onChange={changeData}>
+    <S.ProfileDiv onChange={() => changeData()}>
       <S.MarginAutoDiv>
         <S.MobilePhoto display={display}>
-          <S.ProfileMobileImg src={Bici} alt="profile" />
+          <S.ProfileMobileImg src={checkImg !== null ? checkImg : Bici} alt="profile" />
           <S.CameraImg src={Camera} alt="Camera" />
         </S.MobilePhoto>
         <S.DisplayDiv>
-          <S.ProfileImg src={Bici} alt="profile" />
+          <S.ProfileImg src={checkImg !== null ? checkImg : Bici} alt="profile" />
           <div>
-            <S.FileInput type="file" width="234px" height="154px" left="30rem" top="3rem" laptopLeft="28rem" />
+            <S.FileInput
+              type="file"
+              width="234px"
+              height="154px"
+              left="30rem"
+              top="3rem"
+              laptopLeft="28rem"
+              onChange={(e) => {
+                changeProfileImg(e);
+              }}
+            />
           </div>
         </S.DisplayDiv>
         <S.InputDiv>

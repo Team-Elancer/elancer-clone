@@ -98,15 +98,26 @@ export const Menu = styled.div`
 
 export const Image = styled.img`
   width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-left: -8px;
   @media ${TABLET} {
-    width: 30px;
-    margin-right: -8px;
+    width: 35px;
+    height: 35px;
   }
   @media ${LAPTOP} {
-    margin: 3px -3px 0 0;
+    width: 35px;
+    height: 35px;
   }
 `;
 
 export const Span = styled.span`
+  width: 15px;
   margin: 0 auto;
+  @media ${TABLET} {
+    width: 25px;
+  }
+  @media ${LAPTOP} {
+    width: 20px;
+  }
 `;

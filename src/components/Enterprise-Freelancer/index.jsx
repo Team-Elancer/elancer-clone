@@ -18,8 +18,6 @@ const EnterpriseFreelancer = ({ fullStack }) => {
   const [heartBool, setHeartBool] = useState(true);
   const [URL, setURL] = useState('/developers?positionType=DEVELOPER&hopeWorkState=AT_COMPANY');
 
-  console.log(Datas);
-
   const handleClick = (alt) => {
     if (alt === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 1);

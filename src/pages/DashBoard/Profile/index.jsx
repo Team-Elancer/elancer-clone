@@ -25,14 +25,7 @@ const DashBoardProfile = () => {
           </S.SpacebetweenDiv>
           <S.FlexDiv display="block">
             <S.EcardSize>
-              <CompanyDashBoard
-                Datas={Datas}
-                fetchData={fetchData}
-                EcardDiv="block"
-                topleft="0.6rem"
-                bottomleft="0.6rem"
-                right="0"
-              />
+              <CompanyDashBoard EcardDiv="block" topleft="0.6rem" bottomleft="0.6rem" right="0" />
             </S.EcardSize>
             <S.EcardSize>
               <S.LineDiv />
