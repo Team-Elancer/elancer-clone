@@ -31,6 +31,8 @@ const ListPartner = () => {
 
   const [matchPosition, setMatchPosition] = useState('⚙️ 개발자');
 
+  const [PositionType, setPositionType] = useState('⚙️ 개발');
+
   // For position API data
   const [filteredPosition, setFilteredPosition] = useState([]);
 
@@ -54,19 +56,24 @@ const ListPartner = () => {
 
     switch (type) {
       case '🛠 퍼블리셔':
+        setPositionType('🛠 퍼블리싱');
         setURL(`/publishers?positionType=PUBLISHER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
 
         break;
       case '🎨 디자이너':
+        setPositionType('🎨 디자인');
         setURL(`/designers?positionType=DESIGNER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
         break;
       case '📝 기획자':
+        setPositionType('📝 기획');
         setURL(`/planners?positionType=PLANNER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
         break;
       case '🔗 기타':
+        setPositionType('🔗 기타');
         setURL(`/positionEtcers?positionType=ETC&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
         break;
       default:
+        setPositionType('⚙️ 개발');
         setURL(`/developers?positionType=DEVELOPER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`);
         break;
     }
@@ -149,9 +156,12 @@ const ListPartner = () => {
           {/* =======  FilterButton Component ======= */}
           <FilterButton
             matchPosition={matchPosition}
+            setMatchPosition={setMatchPosition}
             handleDefaultPage={handleDefaultPage}
             setURL={setURL}
             setIsLoading={setIsLoading}
+            PositionType={PositionType}
+            setPositionType={setPositionType}
           />
           {/* =======  ListFreelancer Component ======= */}
 

@@ -31,16 +31,19 @@ export const CenterDiv = styled.div`
   margin-left: 0.5rem;
   height: 100%;
   padding-bottom: 5rem;
+
   @media ${TABLET} {
     display: block;
     margin: 0 auto;
     padding-bottom: 8rem;
     width: 740px;
+    margin-top: 1rem;
   }
   @media ${LAPTOP} {
     margin: 0 auto;
     padding-bottom: 8rem;
     width: 840px;
+    margin-top: 1rem;
   }
 `;
 export const H1 = styled.h1`
@@ -81,6 +84,7 @@ export const PTag = styled.p`
 `;
 export const FlexDiv = styled.div`
   display: none;
+
   @media ${TABLET} {
     border-radius: 3rem;
     width: 740px;
@@ -98,6 +102,10 @@ export const FlexDiv = styled.div`
   }
 `;
 export const jobButton = styled.button`
+  position: relative;
+  overflow: hidden;
+  top: -10px;
+
   @media ${TABLET} {
     width: ${(props) => props.width};
     height: 98%;
@@ -121,6 +129,9 @@ export const Span = styled.span`
   }
 `;
 export const ButtonP = styled.p`
+  position: absolute;
+  width: 100%;
+  height: 20px;
   @media ${TABLET} {
     font-size: 1.3rem;
     color: ${(props) => props.color};
@@ -171,15 +182,20 @@ export const ModalDiv = styled.div`
     margin-left: ${(props) => props.laptopLeft};
   }
 `;
+
 export const UlTag = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  overflow: hidden;
 `;
+
 export const LiTag = styled.li`
   padding-right: 0.5rem;
   cursor: pointer;
+  overflow: hidden;
+
   @media ${TABLET} {
     padding-right: ${(props) => props.right};
   }
@@ -379,4 +395,86 @@ export const InfoPTag = styled.p`
   }
   @media ${LAPTOP} {
   }
+`;
+
+export const SectionContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  gap: 0.2rem;
+  margin: auto 0;
+`;
+
+export const SectionContentItem = styled.div`
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0.7rem;
+  background-color: ${(props) => props.bgColor};
+  border: solid 2px ${(props) => props.color};
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-right: 0.5rem;
+  /* margin: 1rem 1rem 0 0; */
+  height: 42px;
+
+  @media ${TABLET} {
+    font-size: 1rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 1.3rem;
+  }
+
+  @media ${LAPTOP} {
+    font-size: 1rem;
+  }
+`;
+
+// ========== Search bar ==========
+export const SearchContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  @media ${TABLET} {
+    display: ${(props) => props.display};
+  }
+`;
+
+export const SearchInputForm = styled.form`
+  width: ${(props) => props.width};
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: auto;
+  border-radius: 5vh;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #7485c9 0, #f16300 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  margin: 0 auto;
+`;
+
+export const SearchInput = styled.input`
+  margin-left: 15px;
+  padding-left: 8px;
+  width: 85%;
+  height: 90%;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 0.813rem;
+  &::placeholder {
+    font-size: 0.813rem;
+    font-weight: 600;
+  }
+`;
+
+export const SearchImg = styled.img`
+  width: 20px;
+  cursor: pointer;
+  margin-right: 15px;
 `;

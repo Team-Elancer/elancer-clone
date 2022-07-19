@@ -6,6 +6,10 @@ export const Container = styled.div`
   height: 100%;
   color: ${(props) => props.color};
   background-color: #0000;
+
+  @media ${TABLET} {
+    width: 100%;
+  }
 `;
 
 export const HeaderDiv = styled.div`
@@ -17,13 +21,16 @@ export const HeaderDiv = styled.div`
   margin: 10px auto;
   overflow: hidden;
   padding-top: 1.2rem;
+
   @media ${TABLET} {
     width: 730px;
   }
+
   @media ${LAPTOP} {
-    width: ${(props) => props.width};
+    width: 830px;
   }
 `;
+
 export const FlexDiv = styled.div`
   display: block;
   height: 100%;

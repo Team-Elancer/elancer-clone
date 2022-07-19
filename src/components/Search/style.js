@@ -2,21 +2,24 @@ import styled from 'styled-components';
 import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
 
 export const Container = styled.div`
-  width: 380px;
+  width: ${({ searchPage }) => !searchPage && '380px'};
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 30px auto;
+
   @media ${TABLET} {
-    width: 730px;
+    width: ${({ searchPage }) => (!searchPage ? '730px' : '400px')};
   }
+
   @media ${LAPTOP} {
-    width: 800px;
+    width: ${({ searchPage }) => (!searchPage ? '800px' : '500px')};
   }
 `;
 
 export const FaBarDiv = styled.div`
-  display: block;
+  display: ${({ searchPage }) => (searchPage ? 'none' : 'block')};
+
   @media ${MOBILE} {
     display: none;
   }
@@ -24,7 +27,9 @@ export const FaBarDiv = styled.div`
 
 export const InputForm = styled.form`
   width: 305px;
+  width: ${({ searchPage }) => (!searchPage ? '305px' : '305px')};
   height: 44px;
+  height: ${({ searchPage }) => !searchPage && '44px'};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,14 +40,15 @@ export const InputForm = styled.form`
   background-origin: border-box;
   background-clip: content-box, border-box;
   margin-left: 15px;
+
   @media ${TABLET} {
-    width: 747px;
-    height: 63px;
+    width: ${({ searchPage }) => (!searchPage ? '747px' : '305px')};
+    height: ${({ searchPage }) => (!searchPage ? '63px' : '50px')};
     margin: 0 auto;
   }
   @media ${LAPTOP} {
-    width: 840px;
-    height: 63px;
+    width: ${({ searchPage }) => (!searchPage ? '840px' : '305px')};
+    height: ${({ searchPage }) => (!searchPage ? '63px' : '50px')};
     margin: 0 auto;
     border: 3px solid transparent;
     border-radius: 8vh;
@@ -59,22 +65,22 @@ export const Input = styled.input`
   font-weight: bold;
   font-size: 0.813rem;
   @media ${TABLET} {
-    font-size: 1.2rem;
+    font-size: ${({ searchPage }) => !searchPage && '1.2rem'};
   }
   @media ${LAPTOP} {
-    font-size: 1.3rem;
+    font-size: ${({ searchPage }) => !searchPage && '1.3rem'};
   }
   &::placeholder {
     font-size: 0.813rem;
     font-weight: 600;
     @media ${TABLET} {
-      font-size: 1.2rem;
+      font-size: ${({ searchPage }) => !searchPage && '1.2rem'};
       font-weight: 800;
       text-align: start;
       word-spacing: 2px;
     }
     @media ${LAPTOP} {
-      font-size: 1.3rem;
+      font-size: ${({ searchPage }) => !searchPage && '1.3rem'};
       font-weight: 800;
       color: #6b7280;
       text-align: start;

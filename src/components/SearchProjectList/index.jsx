@@ -1,31 +1,27 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import MoreButton from 'components/Button/MoreButton';
 import ProjectSkeleton from 'components/Skeleton/Project';
 
 import * as S from 'styles/Ecard';
 
-import { BaseUrl, FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
+import { FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
-const SearchProjectList = () => {
+const SearchProjectList = ({ searchValue }) => {
   const [Datas, setDatas] = useState('');
   const [nextPage, setNextPage] = useState('');
   const [Page, setPage] = useState(0);
-  const location = useLocation();
-
-  const [locationKey, setLocationKey] = useState(location.search.split('='));
-  const decode = decodeURI(locationKey[1]);
 
   const fetchData = async () => {
     try {
       if (window.localStorage.accessToken) {
-        const res = await CLIENT_FREELANCER(`/project-list${location.search}`);
+        const res = await CLIENT_FREELANCER(`/project-list?searchKey=${searchValue}`);
         const data = await res.data;
         setDatas(data.projectBoxResponses);
         setNextPage(data.hasNext);
       } else {
-        const res = await FILTERED_DATA(`/project-list${location.search}`);
+        const res = await FILTERED_DATA(`/project-list?searchKey=${searchValue}`);
         const data = await res.data;
         setDatas(data.projectBoxResponses);
         setNextPage(data.hasNext);
@@ -45,7 +41,7 @@ const SearchProjectList = () => {
 
   const MoreData = useCallback(async () => {
     try {
-      const res = await CLIENT_FREELANCER(`/project-list${location.search}&page=${Page}`);
+      const res = await CLIENT_FREELANCER(`/project-list?searchKey=${searchValue}&page=${Page}`);
       const data = await res.data;
       setDatas((prevData) => [...prevData, ...data.projectBoxResponses]);
       setNextPage(data.hasNext);
@@ -102,12 +98,12 @@ const SearchProjectList = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [searchValue]);
 
   return (
     <div>
       <S.SubTitle>이랜서가 보증하는 IT 파트너스 39만명</S.SubTitle>
-      <S.Title>{decode} 관련 프로젝트</S.Title>
+      <S.Title>{searchValue} 관련 프로젝트</S.Title>
       {Datas !== '' ? (
         Datas.map((item, index) => {
           return (

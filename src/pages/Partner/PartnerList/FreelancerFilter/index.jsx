@@ -13,12 +13,11 @@ import useCloseOutside from 'hooks/useCloseOutside';
 import { POSITION, HOPEWORK, WORKMANSHIP, WORKAREA } from 'utils/constants/freelancerFilter';
 import { handlePosition, handleHopeWork, handleWorkManShip, handleWorkArea } from 'utils/helpers';
 
-const FreelancerFilter = ({ setIsModal, setURL, setIsLoading }) => {
+const FreelancerFilter = ({ setMatchPosition, setIsModal, setURL, setIsLoading, PositionType, setPositionType }) => {
   const domNode = useCloseOutside(() => {
     setIsModal(false);
   });
 
-  const [PositionType, setPositionType] = useState('⚙️ 개발');
   const [PositionWorkManShip, setPositionWorkManShip] = useState('');
   const [HopeWorkState, setHopeWorkState] = useState('');
   const [WorkArea, setWorkArea] = useState('');
@@ -26,7 +25,6 @@ const FreelancerFilter = ({ setIsModal, setURL, setIsLoading }) => {
   const [skillSTATE, setSkillSTATE] = useState([]);
 
   const handlePositionSkills = (e) => {
-    console.log(e.target.innerHTML);
     setSkillSTATE((prev) => [...prev, e.target.innerHTML]);
 
     if (skillSTATE && skillSTATE?.includes(e.target.innerHTML)) {
@@ -37,21 +35,13 @@ const FreelancerFilter = ({ setIsModal, setURL, setIsLoading }) => {
   const submitFilter = async () => {
     setIsLoading(true);
 
-    console.log(
-      `/${handlePosition()[0]}?positionType=${handlePosition()[1]}&majorSkillKeywords=${skillSTATE.join(
-        ',',
-      )}&hopeWorkState=${handleHopeWork(HopeWorkState)}&positionWorkManShip=${handleWorkManShip(
-        PositionWorkManShip,
-      )}&workArea=${handleWorkArea(WorkArea)}`,
-    );
-
     try {
       setURL(
-        `/${handlePosition()[0]}?positionType=${handlePosition()[1]}&majorSkillKeywords=${skillSTATE.join(
-          ',',
-        )}&hopeWorkState=${handleHopeWork(HopeWorkState)}&positionWorkManShip=${handleWorkManShip(
-          PositionWorkManShip,
-        )}&workArea=${handleWorkArea(WorkArea)}`,
+        `/${handlePosition(PositionType)[0]}?positionType=${
+          handlePosition(PositionType)[1]
+        }&majorSkillKeywords=${skillSTATE.join(',')}&hopeWorkState=${handleHopeWork(
+          HopeWorkState,
+        )}&positionWorkManShip=${handleWorkManShip(PositionWorkManShip)}&workArea=${handleWorkArea(WorkArea)}`,
       );
       setIsLoading(false);
       setIsModal(false);
@@ -60,6 +50,27 @@ const FreelancerFilter = ({ setIsModal, setURL, setIsLoading }) => {
     }
   };
 
+  const matchPositions = (type) => {
+    switch (type) {
+      case '🛠 퍼블리싱':
+        setMatchPosition('🛠 퍼블리셔');
+        break;
+      case '🎨 디자인':
+        setMatchPosition('🎨 디자이너');
+        break;
+      case '📝 기획':
+        setMatchPosition('📝 기획자');
+
+        break;
+      case '🔗 기타':
+        setMatchPosition('🔗 기타');
+
+        break;
+      default:
+        setMatchPosition('⚙️ 개발자');
+        break;
+    }
+  };
   return (
     <S.Wrapper ref={domNode}>
       <S.WrapperContainer>
@@ -93,6 +104,8 @@ const FreelancerFilter = ({ setIsModal, setURL, setIsLoading }) => {
                     onClick={(e) => {
                       // For CSS
                       setPositionType(e.target.innerHTML);
+                      matchPositions(e.target.innerHTML);
+
                       // To deliver new position
                       setSkillSTATE([]);
                     }}

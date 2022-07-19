@@ -1,3 +1,5 @@
+import { useSearchParams } from 'react-router-dom';
+
 import FreelancerSearch from './FreelancerSearch';
 
 import * as S from './style';
@@ -6,16 +8,20 @@ import GridBottom from 'components/Modal/GridBottom';
 import SearchProjectList from 'components/SearchProjectList';
 
 import Footer from 'layouts/Footer';
-import Header from 'layouts/Header';
+import SearchHeader from 'layouts/Header/Search';
 
 const SearchList = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchValue = searchParams.get('searchKey');
+
   return (
-    <S.Container>
-      <Header />
+    <S.Container searchPage>
+      <SearchHeader searchPage searchValue={searchValue} />
       <S.MarginDiv>
         <S.ProjectDiv>
-          <FreelancerSearch />
-          <SearchProjectList />
+          <FreelancerSearch searchValue={searchValue} />
+          <SearchProjectList searchValue={searchValue} />
         </S.ProjectDiv>
       </S.MarginDiv>
       <Footer />
