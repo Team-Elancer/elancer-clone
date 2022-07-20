@@ -117,6 +117,7 @@ export const InputTag = styled.input`
     font-size: 1.125rem;
     font-weight: 600;
   }
+  cursor: pointer;
   @media ${TABLET} {
     width: ${(props) => props.size};
     font-size: 0.9rem;

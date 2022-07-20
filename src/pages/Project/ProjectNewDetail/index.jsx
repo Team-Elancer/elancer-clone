@@ -89,7 +89,7 @@ const ProjectNewDetail = () => {
         Authorization: `${window.localStorage.accessToken}`,
       },
       data: {
-        projectNum: { id },
+        projectNum: id,
       },
     })
       .then((res) => {
@@ -122,9 +122,13 @@ const ProjectNewDetail = () => {
       </S.ImgDiv>
       <S.DetailDiv>
         <S.SizeDiv>
-          <S.FlexDiv content="center">
-            <S.H1>{Datas.projectName}</S.H1>
-            <S.DdaySpan>마감{Datas.endDays}일전</S.DdaySpan>
+          <S.FlexDiv content="space-between">
+            <div>
+              <S.H1>{Datas.projectName}</S.H1>
+            </div>
+            <div>
+              <S.DdaySpan>마감{Datas.endDays}일전</S.DdaySpan>
+            </div>
           </S.FlexDiv>
           <S.PayH1>{Datas.pay}</S.PayH1>
           <S.FlexDiv content="start">
@@ -170,7 +174,7 @@ const ProjectNewDetail = () => {
           </S.FreelancerUl>
           <ReProject color="white" title="스마트 프로젝트 추천" />
           <S.FlexDiv content="center" padding="3rem" tabletPadding="9rem">
-            <ProjectButton right="0.5rem" text="🤍프로젝트 찜" checkToken={checkToken} />
+            <ProjectButton right="0.5rem" text="🤍프로젝트 찜" />
             <ProjectButton text="프로젝트 공유" checkToken={changeShareModal} />
             {shareModal === false && <ShareModal setShareModal={setShareModal} />}
           </S.FlexDiv>
