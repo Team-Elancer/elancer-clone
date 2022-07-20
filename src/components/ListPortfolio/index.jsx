@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect } from 'react';
 
 import { IoMdHeartEmpty } from 'react-icons/io';
@@ -6,6 +7,8 @@ import { Link } from 'react-router-dom';
 import ProjectSkeleton from 'components/Skeleton/Project';
 
 import * as S from 'styles/Ecard';
+
+import { BaseUrl } from 'utils/config/api';
 
 const ListPortfolio = ({ Datas }) => {
   const positionSwitch = (item) => {
@@ -56,6 +59,27 @@ const ListPortfolio = ({ Datas }) => {
     }
   }, [Datas]);
 
+  const keepProject = (id) => {
+    console.log(id);
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/wish-project`,
+      headers: {
+        Authorization: `${window.localStorage.accessToken}`,
+      },
+      data: {
+        projectNum: id,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        alert('찜 성공! -> 마이보드 계정에서 확인하세요');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
     <div>
       {Datas !== undefined ? (
@@ -64,9 +88,13 @@ const ListPortfolio = ({ Datas }) => {
             <S.EcardDiv key={item.projectNum}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
+<<<<<<< HEAD
                   <S.HeartDiv>
                     <IoMdHeartEmpty size="100%" />
                   </S.HeartDiv>
+=======
+                  <S.HeartDiv onClick={() => keepProject(item.projectNum)}>🤍</S.HeartDiv>
+>>>>>>> feat: adding wish-list  API
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
