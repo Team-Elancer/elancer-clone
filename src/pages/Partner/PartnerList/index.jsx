@@ -97,6 +97,7 @@ const ListPartner = () => {
 
   // ============ Get next page data => old data + new data ============
   const getNextPage = useCallback(async () => {
+    setIsLoading(true);
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
@@ -104,7 +105,9 @@ const ListPartner = () => {
 
       setFilteredPosition((prev) => [...prev, ...freelancerSimpleResponseList]);
       setHasMore(hasNext);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   }, [pageNumber]);

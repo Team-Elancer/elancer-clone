@@ -87,7 +87,7 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
       {filteredPosition.map((list, index) => {
         const securedName = extractSecureName(list?.freelancerName);
 
-        if (filteredPosition.length === index + 1) {
+        if (filteredPosition.length === index + 1 && lastComponent) {
           return (
             <S.ContainerFreelancer key={list.freelancerNum} ref={lastComponent}>
               <S.ContainerLink to={`/partner-detail/${list.freelancerNum}`}>
