@@ -87,3 +87,34 @@ export const RegisterButton = styled.div`
     transition: 0.1s;
   }
 `;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 35px 0;
+`;
+
+export const ButtonLastSpan = styled.span`
+  border: 2px solid #d7d7d7;
+  border-radius: 25px;
+  padding: 10px 6px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid black;
+    background-color: #d7d7d7;
+  }
+  @media ${TABLET} {
+    padding: 15px 17px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  @media ${LAPTOP} {
+    padding: 12px 13px;
+    font-size: 1rem;
+  }
+`;

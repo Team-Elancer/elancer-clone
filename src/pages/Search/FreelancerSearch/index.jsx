@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import ListFreelancer from 'components/ListFreelancer';
 
@@ -6,11 +6,11 @@ import Loader from 'components/Loader';
 
 import * as S from 'styles/Page';
 
-import { FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
+import { FILTERED_DATA } from 'utils/config/api';
 
 const FreelancerSearch = ({ searchValue }) => {
   // For infinite scroll
-  const observer = useRef();
+
   const [hasMore, setHasMore] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,22 +23,26 @@ const FreelancerSearch = ({ searchValue }) => {
     if (pageNumber === 0) {
       getPositionLists();
     }
-  }, [URL]);
+  }, [searchValue]);
 
   // ============ Check the position type + Hit API accordingly ============
   useEffect(() => {
     if (pageNumber > 0 && hasMore) getNextPage();
-  }, [pageNumber, URL]);
+  }, [pageNumber]);
 
   // ============ Set page to 0 for new category when clicked + active CSS ============
 
   // ============ Get default data  ============
   const getPositionLists = async () => {
     setIsLoading(true);
+
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
-      } = await FILTERED_DATA(`URL/${searchValue}`);
+        data,
+      } = await FILTERED_DATA(`/freelancers/search?searchKey=${searchValue}`);
+
+      console.log(data);
 
       setFilteredPosition([...freelancerSimpleResponseList]);
       setHasMore(hasNext);
@@ -50,35 +54,28 @@ const FreelancerSearch = ({ searchValue }) => {
 
   // ============ Get next page data => old data + new data ============
   const getNextPage = useCallback(async () => {
+    setIsLoading(true);
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
-      } = await FILTERED_DATA(`${URL}page=${pageNumber}`);
+      } = await FILTERED_DATA(`/freelancers/search?searchKey=${searchValue}&page=${pageNumber}`);
 
       setFilteredPosition((prev) => [...prev, ...freelancerSimpleResponseList]);
       setHasMore(hasNext);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   }, [pageNumber]);
 
-  //  ============ Get the last component for infinite scroll ============
-  const lastComponent = useCallback(
-    (node) => {
-      if (isLoading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting && hasMore) {
-            setPageNumber((prev) => prev + 1);
-          }
-        },
-        { threshold: 1 },
-      );
-      if (node) observer.current.observe(node);
-    },
-    [isLoading, hasMore],
-  );
+  //  ============ Get more data when clicked ============
+
+  const onAddData = () => {
+    if (hasMore) {
+      setPageNumber((prev) => prev + 1);
+    }
+  };
 
   return (
     <S.ContainerFrame>
@@ -90,8 +87,19 @@ const FreelancerSearch = ({ searchValue }) => {
 
         {/* =======  ListFreelancer Component ======= */}
 
-        <ListFreelancer filteredPosition={filteredPosition} lastComponent={lastComponent} />
+        <ListFreelancer filteredPosition={filteredPosition} />
         {isLoading && <Loader />}
+
+        {filteredPosition.length === 0 && (
+          <S.TopLetterExtra style={{ borderBottom: '1px solid rgba(215,215,215,1)' }}>
+            검색 결과가 없습니다.
+          </S.TopLetterExtra>
+        )}
+        {filteredPosition.length > 0 && hasMore && (
+          <S.ButtonContainer onClick={onAddData}>
+            <S.ButtonLastSpan>더보기 </S.ButtonLastSpan>
+          </S.ButtonContainer>
+        )}
       </S.FrameList>
     </S.ContainerFrame>
   );
