@@ -19,8 +19,6 @@ const CompanyDashBoard = ({
   const [Data, setData] = useState('');
   const navi = useNavigate();
 
-  console.log(Data);
-
   const fetchData = async () => {
     try {
       const res = await CLIENT_FREELANCER('/enterprise-profile');

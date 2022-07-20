@@ -88,7 +88,6 @@ const ListProject = () => {
       try {
         const res = await FILTERED_DATA(URL);
         const data = await res.data;
-        console.log('hello');
         setDatas(data.projectBoxResponses);
         setCheckpage(data.hasNext);
         setLoading(false);
@@ -101,7 +100,6 @@ const ListProject = () => {
       try {
         const res = await FILTERED_DATA(URL);
         const data = await res.data;
-        console.log('hello');
         setDatas(data.projectBoxResponses);
         setCheckpage(data.hasNext);
         setLoading(false);
@@ -137,17 +135,14 @@ const ListProject = () => {
 
   useEffect(() => {
     if (selectBool === true && !loading) {
-      console.log('첫번째');
       ChangeURL();
     }
     if (selectBool === false && !loading) {
-      console.log('두번째');
       checkURL();
     }
     if (URL !== '') {
       fetchData();
     }
-    console.log(URL);
 
     const locationURL = `${location.pathname}${location.search}`;
     if (locationURL.includes('positionKind')) {

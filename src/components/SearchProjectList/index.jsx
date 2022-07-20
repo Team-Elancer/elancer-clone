@@ -1,5 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
+
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import MoreButton from 'components/Button/MoreButton';
 import ProjectSkeleton from 'components/Skeleton/Project';
@@ -107,10 +110,10 @@ const SearchProjectList = ({ searchValue }) => {
       {Datas !== '' ? (
         Datas.map((item, index) => {
           return (
-            <S.EcardDiv key={item.projectNum}>
+            <S.EcardDiv key={uuidv4()}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
-                  <S.HeartDiv>🤍</S.HeartDiv>
+                  <IoMdHeartEmpty size="100%" />
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
@@ -121,7 +124,7 @@ const SearchProjectList = ({ searchValue }) => {
                   <S.EcardRedLiTag>{chageWorkShip(item.freelancerWorkmanShip)}</S.EcardRedLiTag>
                   {item.skills &&
                     item.skills.map((skill) => {
-                      return skill && <S.EcardRedLiTag key={skill}>{skill}</S.EcardRedLiTag>;
+                      return skill && <S.EcardRedLiTag key={uuidv4()}>{skill}</S.EcardRedLiTag>;
                     })}
                 </S.EcardUlTag>
                 <Link to={`/project/${item.projectNum}`}>

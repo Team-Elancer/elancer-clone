@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
+
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import ProjectSkeleton from 'components/Skeleton/Project';
 
@@ -59,10 +62,10 @@ const PublishEcard = ({ Datas }) => {
       ) : (
         Datas.map((item) => {
           return (
-            <S.EcardDiv>
+            <S.EcardDiv key={uuidv4()}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
-                  <S.HeartDiv>🤍</S.HeartDiv>
+                  <IoMdHeartEmpty size="100%" />
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
@@ -73,7 +76,7 @@ const PublishEcard = ({ Datas }) => {
                   <S.EcardRedLiTag>{chageWorkShip(item.freelancerWorkmanShip)}</S.EcardRedLiTag>
                   {item.skills[0] !== '' &&
                     item.skills.map((skill) => {
-                      return <S.EcardRedLiTag key={skill}>{skill}</S.EcardRedLiTag>;
+                      return <S.EcardRedLiTag key={uuidv4()}>{skill}</S.EcardRedLiTag>;
                     })}
                 </S.EcardUlTag>
                 <Link to={`/project/${item.projectNum}`}>

@@ -8,6 +8,8 @@ import { IoArrowUpCircleOutline, IoArrowDownCircleOutline } from 'react-icons/io
 
 import { useOutletContext } from 'react-router-dom';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './style';
 import Search from 'assets/images/search_big.png';
 import ContactPutModal from 'components/Modal/ContactPut';
@@ -102,7 +104,7 @@ const DashboardContact = () => {
         newArray.map((data) => {
           return (
             <MyContact
-              key={data.num}
+              key={uuidv4()}
               ContactData={Datas}
               modalBool={modalBool}
               setModalBool={setModalBool}
@@ -115,7 +117,7 @@ const DashboardContact = () => {
           );
         })
       ) : (
-        <MyContactSkeleton />
+        <MyContactSkeleton key={uuidv4()} />
       )}
       <S.BorderDiv display="none" />
     </S.Container>

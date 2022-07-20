@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './style';
 
 import ProjectListMain from 'components/DashBoard/ProjextListMain';
@@ -30,14 +33,14 @@ const ProjectMain = ({ Datas, newReloading, setNewReloading, setNewAxiosUrl, new
             <ProjectListMain
               display="block"
               data={data}
-              key={data.projectName}
+              key={uuidv4()}
               newReloading={newReloading}
               setNewReloading={setNewReloading}
             />
           );
         })
       ) : (
-        <ProjectListSkeleton />
+        <ProjectListSkeleton key={uuidv4()} />
       )}
       <S.H1 top="4rem" laptoptop="4rem">
         헤드헌팅 리스트 (0)
