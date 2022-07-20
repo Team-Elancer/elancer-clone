@@ -136,3 +136,27 @@ export const ProfileAccountSpan = styled.span`
   padding-left: 0.4rem;
   padding-right: 0.4rem;
 `;
+
+export const ContactContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const FlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 1rem;
+`;
+
+export const ContactText = styled.p`
+  padding: 0.3rem;
+  font-size: 0.8rem;
+`;
+
+export const ContactColorBox = styled.div`
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.3rem 0.3rem;
+  border-radius: 0.5rem;
+`;

@@ -20,10 +20,14 @@ const MyBoardFreelancer = () => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
+
   const [contactData, setContactData] = useState([]);
 
   const [detailProfileData, setDetailProfileData] = useState({});
   const [profileSimpleData, setProfileSimpleData] = useState({});
+
+  // 수주관리
+  const [obtainOrderData, setObtainOrderData] = useState([]);
 
   // profile-modify/skill/publisher
   const [profileDeveloperData, setProfileDeveloperData] = useState({});
@@ -236,6 +240,21 @@ const MyBoardFreelancer = () => {
     }
   };
 
+  const fetchObtainOrder = async () => {
+    try {
+      const { data } = await CLIENT_FREELANCER('/freelancer/obtain-order');
+
+      if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
+
+      const fetchedData = await data;
+
+      if (fetchedData) {
+        setObtainOrderData(data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   //  =============== 계정 & 세부정보 & 요약정보 & 문의===============
   useEffect(() => {
     let isMounted = true;
@@ -247,6 +266,9 @@ const MyBoardFreelancer = () => {
     fetchFreelancerSimpleData();
 
     fetchContactData();
+
+    // 수주관리 데이터
+    fetchObtainOrder();
 
     return () => {
       isMounted = false;
@@ -306,6 +328,7 @@ const MyBoardFreelancer = () => {
                 profileDesignerData,
                 profileDeveloperData,
                 contactData,
+                obtainOrderData,
               ]}
             />
           </S.BoardDiv>
