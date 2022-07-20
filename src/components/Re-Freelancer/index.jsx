@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
+import { v4 as uuidv4 } from 'uuid';
 import * as S from './style';
 
 import left from 'assets/images/bt-left.png';
@@ -87,7 +89,7 @@ const ReFreelancer = () => {
                     <S.BigSpan>
                       {item.skills &&
                         item.skills.map((data, i) => {
-                          return data !== '' && data !== null && <S.MiniSpan key={data}>{data}</S.MiniSpan>;
+                          return data !== '' && data !== null && <S.MiniSpan key={uuidv4()}>{data}</S.MiniSpan>;
                         })}
                     </S.BigSpan>
                     <S.hiddenP>

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+import { v4 as uuidv4 } from 'uuid';
 import * as S from './style';
 
 import Cancel from 'assets/images/cancel-dark.png';
@@ -70,7 +72,7 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
         {newArray.length === undefined &&
           newArray.waitFreelancerList.map((data) => {
             return (
-              <S.Li key={data.num}>
+              <S.Li key={uuidv4()}>
                 <S.InputCheck
                   type="checkbox"
                   name="applicant"

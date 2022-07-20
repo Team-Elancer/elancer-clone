@@ -41,7 +41,6 @@ const ProjectList = ({ data, newReloading, setNewReloading, status, finish = 'no
   const cancelProject = () => {
     const checkConfrim = window.confirm('삭제하시겠습니까?');
     if (checkConfrim) {
-      console.log(data.projectNum);
       axios({
         method: 'DELETE',
         url: `${BaseUrl}/project-delete`,
@@ -145,7 +144,6 @@ const ProjectList = ({ data, newReloading, setNewReloading, status, finish = 'no
     }
   }, [data]);
 
-  console.log(data);
   return (
     <S.Container>
       <S.ColorDiv>

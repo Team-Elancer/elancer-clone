@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './style';
 
 import { CLIENT_FREELANCER } from 'utils/config/api';
@@ -32,7 +34,7 @@ const EnterpriseContact = () => {
     <S.Container>
       {Datas !== '' &&
         Datas?.map((data) => (
-          <S.FlexDiv>
+          <S.FlexDiv key={uuidv4()}>
             <S.Text>
               {data.title} {`(${data.localDate})`}
             </S.Text>

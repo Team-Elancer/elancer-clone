@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './style';
 
 import CompanyLogo from 'assets/images/company-logo_87.png';
@@ -149,7 +153,7 @@ const ProjectNewDetail = () => {
               Datas.skills.map((data) => {
                 return (
                   data !== '' && (
-                    <S.Colorspan color="#ff6b6b" key={data}>
+                    <S.Colorspan color="#ff6b6b" key={uuidv4()}>
                       {data}
                     </S.Colorspan>
                   )
@@ -166,7 +170,7 @@ const ProjectNewDetail = () => {
           <S.FreelancerUl>
             {Datas.simpleFreelancerList && Datas.simpleFreelancerList.length > 0 ? (
               Datas.simpleFreelancerList.map((data) => {
-                return <S.FreelancerLi key={data.username}>{data.username}</S.FreelancerLi>;
+                return <S.FreelancerLi key={uuidv4()}>{data.username}</S.FreelancerLi>;
               })
             ) : (
               <S.FreelancerLi>가장먼저 참여자가 되보세요.</S.FreelancerLi>

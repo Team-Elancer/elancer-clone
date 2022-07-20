@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import arrowLeft from 'assets/images/arrow_left.png';
 import arrowRight from 'assets/images/arrow_right.png';
 import Logo from 'assets/images/logo_white.png';
@@ -22,8 +24,6 @@ const DashBoardScrap = () => {
   const [page, setPage] = useState(0);
   const [ref, inView] = useInView();
 
-  console.log(Datas);
-
   const handleClick = (alt) => {
     if (alt === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 1);
@@ -31,8 +31,6 @@ const DashBoardScrap = () => {
       setSlideIndex(slideIndex < 1 ? slideIndex + 1 : 0);
     }
   };
-
-  console.log(Datas);
 
   const FetchData = async () => {
     try {
@@ -84,7 +82,7 @@ const DashBoardScrap = () => {
       ) : (
         Datas.freelancerSimpleResponseList.map((data, i) => {
           return (
-            <S.FreelancerFlexDiv key={data.freelancerNum}>
+            <S.FreelancerFlexDiv key={uuidv4()}>
               <S.OverFlowDiv>
                 <S.LeftButton
                   src={arrowLeft}
@@ -127,7 +125,7 @@ const DashBoardScrap = () => {
                 </Link>
                 <S.InfoFlex top="0.5rem">
                   {data.skills.map((a) => {
-                    return a !== null && <S.SpanSkill key={a}>{a}</S.SpanSkill>;
+                    return a !== null && <S.SpanSkill key={uuidv4()}>{a}</S.SpanSkill>;
                   })}
                 </S.InfoFlex>
                 <S.InfoPTag>{data.projectNames}</S.InfoPTag>

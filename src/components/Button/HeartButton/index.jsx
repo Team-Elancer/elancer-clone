@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
+
 import * as S from './style';
 
 import { BaseUrl } from 'utils/config/api';
@@ -45,7 +47,9 @@ const HeartButton = ({ position = 'absolute', Data, setHeartBool }) => {
 
   return (
     <S.HeartBackDiv position={position}>
-      <S.HeartDiv onClick={addFreelancer}>{Data && Data.wishState ? '💖' : '🤍'}</S.HeartDiv>
+      <S.HeartDiv onClick={addFreelancer}>
+        {Data.wishState ? <IoMdHeart size="100%" /> : <IoMdHeartEmpty size="100%" />}
+      </S.HeartDiv>
     </S.HeartBackDiv>
   );
 };

@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './style';
 
 import left from 'assets/images/bt-left.png';
@@ -115,7 +119,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                       프로그램
                     </S.SpanTag>
                     <S.HeartBackDiv>
-                      <S.HearDiv>🤍</S.HearDiv>
+                      <IoMdHeartEmpty size="100%" />
                     </S.HeartBackDiv>
                   </S.DivTag>
                   <Link to={`/project/${data.projectNum}`}>
@@ -127,7 +131,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                     <S.BigSpan>
                       <S.MiniSpan>마감{data.endDays}일전</S.MiniSpan>
                       {data.skills.map((data) => {
-                        return data && <S.MiniSecond key={data}>{data}</S.MiniSecond>;
+                        return data && <S.MiniSecond key={uuidv4()}>{data}</S.MiniSecond>;
                       })}
                     </S.BigSpan>
                     <Link to={`/project/${data.projectNum}`}>

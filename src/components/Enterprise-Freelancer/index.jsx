@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import arrowLeft from 'assets/images/arrow_left.png';
 import arrowRight from 'assets/images/arrow_right.png';
 import Logo from 'assets/images/logo_white.png';
@@ -72,7 +74,7 @@ const EnterpriseFreelancer = ({ fullStack }) => {
       {Datas && Datas.length > 2 ? (
         Datas.map((data, i) => {
           return data && data.freelancerNum !== undefined ? (
-            <S.FreelancerFlexDiv key={data.freelancerNum}>
+            <S.FreelancerFlexDiv key={uuidv4()}>
               <S.OverFlowDiv>
                 <S.LeftButton
                   src={arrowLeft}
@@ -115,18 +117,18 @@ const EnterpriseFreelancer = ({ fullStack }) => {
                 </Link>
                 <S.InfoFlex top="0.5rem">
                   {data.skills.map((a) => {
-                    return a !== null && <S.SpanSkill key={a}>{a}</S.SpanSkill>;
+                    return a !== null && <S.SpanSkill key={uuidv4()}>{a}</S.SpanSkill>;
                   })}
                 </S.InfoFlex>
                 <S.InfoPTag>{data.projectNames}</S.InfoPTag>
               </S.InfoDiv>
             </S.FreelancerFlexDiv>
           ) : (
-            <div />
+            <div key={uuidv4()} />
           );
         })
       ) : (
-        <div />
+        <div key={uuidv4()} />
       )}
     </div>
   );

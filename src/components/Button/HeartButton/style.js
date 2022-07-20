@@ -26,14 +26,14 @@ export const HeartBackDiv = styled.div`
 export const HeartDiv = styled.div`
   font-size: 0.775rem;
   color: #9e9e9e;
-  margin-top: 4px;
+  margin-top: 1px;
   cursor: pointer;
   @media ${TABLET} {
-    margin-top: 6px;
+    margin-top: 3px;
     font-size: 0.87rem;
   }
   @media ${LAPTOP} {
-    margin-top: 3px;
+    margin-top: 2px;
     font-size: 1rem;
   }
 `;

@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+
+import { IoMdHeartEmpty } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
 import ProjectSkeleton from 'components/Skeleton/Project';
@@ -62,7 +64,9 @@ const ListPortfolio = ({ Datas }) => {
             <S.EcardDiv key={item.projectNum}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
-                  <S.HeartDiv>🤍</S.HeartDiv>
+                  <S.HeartDiv>
+                    <IoMdHeartEmpty size="100%" />
+                  </S.HeartDiv>
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
