@@ -56,7 +56,9 @@ const CompanyAccount = ({
   const [capsLockFlag, setCapsLockFlag] = useState(false);
 
   const [checkImg, setCheckImg] = useState(null);
-  const [downloadImg, setDownloadImg] = useState(null);
+  const [downloadImg, setDownloadImg] = useState('');
+  const decode = decodeURI(downloadImg);
+  const imgName = decode.split('/')[3];
 
   const changeProfileImg = (e) => {
     const file = e.target.files[0];
@@ -90,6 +92,7 @@ const CompanyAccount = ({
           telNumber: userPhoneNumber,
           website: companyWebsite,
           thumbnail: res.data.filePath,
+          bizRegistration: downloadImg,
           address: {
             country: userCountry,
             zipcode: placePostcode,
@@ -99,7 +102,6 @@ const CompanyAccount = ({
           bizContents: business,
           sales: yearSale,
           idNumber: businessNumber,
-          bizRegistrationFile: downloadImg,
         });
       })
       .catch((err) => {
@@ -138,7 +140,8 @@ const CompanyAccount = ({
           position: userPosition,
           telNumber: userPhoneNumber,
           website: companyWebsite,
-          thumbnail: res.data.filePath,
+          bizRegistration: res.data.filePath,
+          thumbnail: checkImg,
           address: {
             country: userCountry,
             zipcode: placePostcode,
@@ -148,7 +151,6 @@ const CompanyAccount = ({
           bizContents: business,
           sales: yearSale,
           idNumber: businessNumber,
-          bizRegistrationFile: downloadImg,
         });
       })
       .catch((err) => {
@@ -170,6 +172,7 @@ const CompanyAccount = ({
         telNumber: userPhoneNumber,
         website: companyWebsite,
         thumbnail: checkImg,
+        bizRegistration: downloadImg,
         address: {
           country: userCountry,
           zipcode: placePostcode,
@@ -179,7 +182,6 @@ const CompanyAccount = ({
         bizContents: business,
         sales: yearSale,
         idNumber: businessNumber,
-        bizRegistrationFile: downloadImg,
       });
     } else {
       setCompanyData({
@@ -195,6 +197,7 @@ const CompanyAccount = ({
         telNumber: userPhoneNumber,
         website: companyWebsite,
         thumbnail: checkImg,
+        bizRegistration: downloadImg,
         address: {
           country: userCountry,
           zipcode: placePostcode,
@@ -238,7 +241,8 @@ const CompanyAccount = ({
       setPlacePostcode(userData?.address.zipcode);
       setPlaceAddress(userData?.address.mainAddress);
       setUserAddress(userData?.address.detailAddress);
-      setCheckImg(userData.thumbnail);
+      setCheckImg(userData?.thumbnail);
+      setDownloadImg(userData?.bizRegistration);
     }
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
@@ -270,6 +274,7 @@ const CompanyAccount = ({
         telNumber: userPhoneNumber,
         website: companyWebsite,
         thumbnail: checkImg,
+        bizRegistration: downloadImg,
         address: {
           country: userCountry,
           zipcode: placePostcode,
@@ -282,10 +287,6 @@ const CompanyAccount = ({
       });
     }
   }, [checkImg]);
-
-  useEffect(() => {
-    console.log(companyDatas);
-  }, [companyDatas]);
 
   return (
     <S.ProfileDiv onChange={() => changeData()}>
@@ -603,7 +604,14 @@ const CompanyAccount = ({
               </div>
               <S.CapsMessage Mobiledisplay="none" display="block" />
               <S.CancelImg src={Cancel} alt="cancel" />
-              <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="13.2rem" placeholder="사업자등록증" />
+              <a href={downloadImg}>
+                <S.InputTag
+                  Mobilesize="15.5rem"
+                  size="8rem"
+                  laptopSize="13.2rem"
+                  placeholder={imgName || '사업자등록증'}
+                />
+              </a>
               <S.BlacSpan>
                 <S.FileInput
                   type="file"

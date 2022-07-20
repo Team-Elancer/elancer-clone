@@ -45,7 +45,7 @@ const DashBoardAccount = () => {
     sales: userData.sales,
     idNumber: userData.idNumber,
     thumbnail: null,
-    downloadImg: null,
+    bizRegistrationFile: null,
   });
 
   const changeUser = (e) => {
@@ -59,7 +59,6 @@ const DashBoardAccount = () => {
       data: companyDatas,
     })
       .then((res) => {
-        console.log(res);
         alert('정보를 수정했습니다.');
         setCheck(!check);
       })
