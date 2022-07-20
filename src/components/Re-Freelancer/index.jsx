@@ -18,8 +18,6 @@ const ReFreelancer = () => {
   const [heartBool, setHeartBool] = useState(true);
   const location = useLocation();
 
-  console.log(Datas);
-
   const fetchData = async () => {
     try {
       if (window.localStorage.accessToken) {

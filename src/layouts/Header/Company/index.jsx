@@ -79,7 +79,7 @@ const CompanyHeader = ({ margin, width, bgColor, color, logo }) => {
             <FaBars size="100%" color="gray" />
           </S.Span>
           <S.Span>
-            <S.Image src={Datas !== '' ? Datas?.thumbnail : Profile} alt="profile" />
+            <S.Image src={Datas?.thumbnail || Profile} alt="profile" />
           </S.Span>
         </S.Menu>
       </S.HeaderDiv>

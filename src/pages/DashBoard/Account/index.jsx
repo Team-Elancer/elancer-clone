@@ -45,6 +45,7 @@ const DashBoardAccount = () => {
     sales: userData.sales,
     idNumber: userData.idNumber,
     thumbnail: null,
+    downloadImg: null,
   });
 
   const changeUser = (e) => {
@@ -95,7 +96,6 @@ const DashBoardAccount = () => {
     if (userData) {
       setUserAddress(Object.values(userData.address));
     }
-    console.log('hello');
   }, [check]);
 
   return (

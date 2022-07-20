@@ -63,57 +63,30 @@ const SignUpFreeLancer = () => {
   };
 
   const changeProfileImg = async (e) => {
-    const file = e.target?.files[0];
-    setCheckImg(e.target?.files[0]);
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
 
     const formData = new FormData();
     formData.append('file', file);
 
-    const reader = new FileReader();
+    const Header = { 'Content-Type': 'multipart/form-data' };
 
-    reader.onloadend = (e) => {
-      setSelectImg(e.target.result);
-    };
-
-    reader.readAsDataURL(file);
-
-    try {
-      const res = await axios.post(`${BaseUrl}/file/upload`, formData);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        setCheckImg(res.data.filePath);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
-
-  // const changeProfileImg = (e) => {
-  //   const file = e.target.files[0];
-  //   setCheckImg(e.target.files[0]);
-  //   const formData = new FormData();
-  //   formData.append('img', file);
-  //   console.log(formData);
-  //   const reader = new FileReader();
-  //   reader.onloadend = (e) => {
-  //     setSelectImg(e.target.result);
-  //   };
-  //   reader.readAsDataURL(file);
-  //   if (checkImg !== null) {
-  //     fetch('http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/file/upload', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data',
-  //       },
-  //       body: JSON.stringify({
-  //         file: checkImg,
-  //       }),
-  //     })
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((error) => {
-  //         alert(error.message);
-  //       });
-  //   }
-  // };
 
   const CreateWrite = (event) => {
     event.preventDefault();
@@ -134,7 +107,7 @@ const SignUpFreeLancer = () => {
         positionType: jobType,
         workPossibleState: jobRadio,
         workStartPossibleDate: '2022-06-01',
-        thumbnail: null,
+        thumbnail: checkImg,
       },
     })
       .then((res) => {
@@ -188,7 +161,7 @@ const SignUpFreeLancer = () => {
       <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
       <S.ButtonDiv>개인</S.ButtonDiv>
       <S.MobilePhoto>
-        <S.ProfileMobileImg src={selectImg !== null ? selectImg : Profile} alt="profile" />
+        <S.ProfileMobileImg src={checkImg !== null ? checkImg : Profile} alt="profile" />
         <S.CameraImg src={Camera} alt="Camera" />
         <S.MobileFileInput accept="image/*" type="file" onChange={changeProfileImg} />
       </S.MobilePhoto>
@@ -197,7 +170,7 @@ const SignUpFreeLancer = () => {
         <S.MarginAutoDiv>
           <S.ProfileImgDiv>
             <S.FileInput type="file" accept="image/*" onChange={changeProfileImg} />
-            <S.ProfileImg src={selectImg !== null ? selectImg : Profile} alt="profile" />
+            <S.ProfileImg src={checkImg !== null ? checkImg : Profile} alt="profile" />
             <S.BallDiv />
           </S.ProfileImgDiv>
           <S.InputDiv>
