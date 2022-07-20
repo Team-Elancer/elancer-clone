@@ -260,34 +260,6 @@ const CompanyAccount = ({
     }
   }, [eyeCheck, eyeCheck2, userData]);
 
-  useEffect(() => {
-    if (checkImg !== null) {
-      setCompanyDatas({
-        password1: password,
-        password2: passwordCheck,
-        name: userName,
-        phone: phoneNumber,
-        email: userEmail,
-        companyName: comName,
-        companyPeople: comCount,
-        position: userPosition,
-        telNumber: userPhoneNumber,
-        website: companyWebsite,
-        thumbnail: checkImg,
-        bizRegistration: downloadImg,
-        address: {
-          country: userCountry,
-          zipcode: placePostcode,
-          mainAddress: placeAddress,
-          detailAddress: userAddress,
-        },
-        bizContents: business,
-        sales: yearSale,
-        idNumber: businessNumber,
-      });
-    }
-  }, [checkImg]);
-
   return (
     <S.ProfileDiv onChange={() => changeData()}>
       <S.MarginAutoDiv>
