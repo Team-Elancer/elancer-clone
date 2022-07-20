@@ -40,7 +40,7 @@ export const ContainerTopLetter = styled.div`
 export const TopLetterExtra = styled.h3`
   font-size: 13.5px;
   font-weight: 600;
-
+  padding-top: 2rem;
   @media ${TABLET} {
     font-size: 17.5px;
   }

@@ -21,6 +21,8 @@ const MyBoardAccount = () => {
 
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
+  console.log(userData);
+
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [birthDate, setBirthDate] = useState('');

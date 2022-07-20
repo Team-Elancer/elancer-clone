@@ -115,6 +115,7 @@ export const ContainerNameHeart = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 export const FreelancerHeart = styled.div`
@@ -150,7 +151,7 @@ export const FreelancerTitle = styled.p`
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
 
   @media ${TABLET} {
     font-size: 1.5rem;

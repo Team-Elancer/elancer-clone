@@ -56,10 +56,10 @@ const CompanyAccount = ({
   const [capsLockFlag, setCapsLockFlag] = useState(false);
 
   const [checkImg, setCheckImg] = useState(null);
+  const [downloadImg, setDownloadImg] = useState(null);
 
   const changeProfileImg = (e) => {
     const file = e.target.files[0];
-    console.log(file);
 
     const reader = new FileReader();
 
@@ -99,6 +99,56 @@ const CompanyAccount = ({
           bizContents: business,
           sales: yearSale,
           idNumber: businessNumber,
+          bizRegistrationFile: downloadImg,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const changeUploadImg = (e) => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const Header = { 'Content-Type': 'multipart/form-data' };
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        setDownloadImg(res.data.filePath);
+        setCompanyDatas({
+          password1: password,
+          password2: passwordCheck,
+          name: userName,
+          phone: phoneNumber,
+          email: userEmail,
+          companyName: comName,
+          companyPeople: comCount,
+          position: userPosition,
+          telNumber: userPhoneNumber,
+          website: companyWebsite,
+          thumbnail: res.data.filePath,
+          address: {
+            country: userCountry,
+            zipcode: placePostcode,
+            mainAddress: placeAddress,
+            detailAddress: userAddress,
+          },
+          bizContents: business,
+          sales: yearSale,
+          idNumber: businessNumber,
+          bizRegistrationFile: downloadImg,
         });
       })
       .catch((err) => {
@@ -129,6 +179,7 @@ const CompanyAccount = ({
         bizContents: business,
         sales: yearSale,
         idNumber: businessNumber,
+        bizRegistrationFile: downloadImg,
       });
     } else {
       setCompanyData({
@@ -230,8 +281,11 @@ const CompanyAccount = ({
         idNumber: businessNumber,
       });
     }
-    console.log(companyDatas);
   }, [checkImg]);
+
+  useEffect(() => {
+    console.log(companyDatas);
+  }, [companyDatas]);
 
   return (
     <S.ProfileDiv onChange={() => changeData()}>
@@ -551,7 +605,14 @@ const CompanyAccount = ({
               <S.CancelImg src={Cancel} alt="cancel" />
               <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="13.2rem" placeholder="사업자등록증" />
               <S.BlacSpan>
-                <S.FileInput type="file" width="75px" height="45px" left="15.7rem" top="1.7rem" />
+                <S.FileInput
+                  type="file"
+                  width="75px"
+                  height="45px"
+                  left="15.7rem"
+                  top="1.7rem"
+                  onChange={changeUploadImg}
+                />
                 파일 등록
               </S.BlacSpan>
             </S.BlockDiv>
