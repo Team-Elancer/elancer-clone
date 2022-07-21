@@ -173,3 +173,19 @@ export const ViewBlock = styled.span`
   @media ${LAPTOP} {
   }
 `;
+export const ProfileSpan = styled.span`
+  font-size: 0.6rem;
+  color: white;
+  font-weight: 800;
+  padding: 0.6rem 0.4rem;
+  text-align: center;
+  background-color: #7485c9;
+  border-radius: 0.7rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  @media ${LAPTOP} {
+    font-size: 1rem;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
+  }
+`;

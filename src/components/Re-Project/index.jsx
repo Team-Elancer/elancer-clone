@@ -105,9 +105,9 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
         <SkeletonReProject />
       ) : (
         <S.SecondDiv>
-          {Datas.map((data) => {
+          {Datas.map((data, index) => {
             return (
-              <S.ProjectDiv key={data.projectName} slideIndex={slideIndex}>
+              <S.ProjectDiv key={`data.projectName${index + 1}`} slideIndex={slideIndex}>
                 <S.UpDiv bgColor={checkColor(data.projectBackGround)}>
                   <S.DivTag>
                     <S.SpanTag>

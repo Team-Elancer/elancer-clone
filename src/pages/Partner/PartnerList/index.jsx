@@ -12,7 +12,7 @@ import Header from 'layouts/Header';
 
 import * as S from 'styles/Page';
 
-import { FILTERED_DATA } from 'utils/config/api';
+import { FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ListPartner = () => {
   const token = window.localStorage.accessToken;
@@ -83,6 +83,11 @@ const ListPartner = () => {
   const getPositionLists = async () => {
     setIsLoading(true);
     try {
+      if (window.localStorage.accessToken) {
+        const {
+          data: { freelancerSimpleResponseList, hasNext },
+        } = await CLIENT_FREELANCER(URL);
+      }
       const {
         data: { freelancerSimpleResponseList, hasNext },
       } = await FILTERED_DATA(URL);
