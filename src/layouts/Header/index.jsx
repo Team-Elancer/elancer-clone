@@ -65,7 +65,7 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
       )}
 
       {window.localStorage.memberType === '"FREELANCER"' && (
-        <FreelancerHeader width="830px" logo={logo} projectList={projectList} />
+        <FreelancerHeader width="830px" logo={logo} bgColor={bgColor} color={color} projectList={projectList} />
       )}
       {window.localStorage.memberType === '"ENTERPRISE"' && (
         <CompanyHeader width="830px" margin={margin} bgColor={bgColor} logo={logo} color={color} />
