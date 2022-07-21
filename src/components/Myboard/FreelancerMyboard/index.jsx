@@ -41,6 +41,7 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
       .then((res) => {
         console.log(res);
         alert('인터뷰 수락했습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.message);
@@ -56,12 +57,13 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
         Authorization: `${window.localStorage.accessToken}`,
       },
       data: {
-        wishProjectNum: id,
+        projectNum: id,
       },
     })
       .then((res) => {
         console.log(res);
         alert('찜 해제 됐습니다.');
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.message);
@@ -81,7 +83,7 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
                 <EcardBlackLiTag> Minimum pay:{item.maxMoney}</EcardBlackLiTag>
                 <DaySpan>지원 마감일: {item.projectStateDate}</DaySpan>
                 {accept && <AcceptInterview onClick={() => acceptInterview(item.projectNum)}> 수락 </AcceptInterview>}
-                {remove && <AcceptInterview onClick={() => removeLikes(item.wishProjectNum)}> 찜해제 </AcceptInterview>}
+                {remove && <AcceptInterview onClick={() => removeLikes(item.projectNum)}> 찜해제 </AcceptInterview>}
               </EcardUlTag>
               <Link to={`/project/${item?.projectNum}`}>
                 <HoneTag>{item?.projectName}</HoneTag>

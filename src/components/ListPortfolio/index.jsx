@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-import { IoMdHeartEmpty } from 'react-icons/io';
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
 import ProjectSkeleton from 'components/Skeleton/Project';
@@ -74,6 +74,7 @@ const ListPortfolio = ({ Datas }) => {
       .then((res) => {
         console.log(res);
         alert('찜 성공! -> 마이보드 계정에서 확인하세요');
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.message);
@@ -88,9 +89,13 @@ const ListPortfolio = ({ Datas }) => {
             <S.EcardDiv key={item.projectNum}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
+<<<<<<< HEAD
                   <S.HeartDiv>
                     <IoMdHeartEmpty size="100%" />
                   </S.HeartDiv>
+=======
+                  <S.HeartDiv onClick={() => keepProject(item.projectNum)}>🤍</S.HeartDiv>
+>>>>>>> cf5fde895d0120a6a5ed1714ee96cff8f7c1f1ae
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
