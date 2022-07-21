@@ -24,6 +24,8 @@ const ProjectNewDetail = () => {
   const [shareModal, setShareModal] = useState(true);
   const [detailAddress, setDetailAddress] = useState('');
 
+  console.log(Datas);
+
   const workmanShipSwitch = (item) => {
     switch (item) {
       case 'MIDDLE':
@@ -121,7 +123,7 @@ const ProjectNewDetail = () => {
     <S.Container>
       <S.ImgDiv>
         <S.IntroImg>
-          <S.Img src={CompanyLogo} alt="companylog" />
+          <S.Img src={Datas?.enterpriseLogo || CompanyLogo} alt="companylog" />
         </S.IntroImg>
       </S.ImgDiv>
       <S.DetailDiv>

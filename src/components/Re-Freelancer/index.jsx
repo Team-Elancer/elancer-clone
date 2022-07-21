@@ -49,16 +49,22 @@ const ReFreelancer = () => {
   // =============== fetch account detail (이랜서 계정) && userData ===============
   const fetchFreelancerData = async () => {
     try {
-      const { data } = await CLIENT_FREELANCER('/freelancers');
+      if (window.localStorage.accessToken) {
+        const { data } = await CLIENT_FREELANCER('/freelancers');
 
-      if (data.code === '401' || data.code === '402' || data.code === '403') {
-        handleErrorCode(data.code);
-      }
+        if (data.code === '401' || data.code === '402' || data.code === '403') {
+          handleErrorCode(data.code);
+        }
+        setDatas(data);
+        setHeartBool(true);
+      } else {
+        const { data } = await FILTERED_DATA('/freelancers');
 
-      const fetchedData = await data;
+        if (data.code === '401' || data.code === '402' || data.code === '403') {
+          handleErrorCode(data.code);
+        }
 
-      if (fetchedData) {
-        setDatas(fetchedData);
+        setDatas(data);
         setHeartBool(true);
       }
     } catch (err) {

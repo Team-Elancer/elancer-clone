@@ -10,7 +10,6 @@ export const UlTag = styled.ul`
   display: inline-block;
   margin-bottom: 1rem;
 `;
-// #d7d7d7;
 export const LiTag = styled.li`
   display: inline-block;
   list-style: none;

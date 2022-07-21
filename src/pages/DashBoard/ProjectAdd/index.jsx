@@ -73,6 +73,8 @@ const DashboardProjectAdd = () => {
   const [comTele, setComTele] = useState('');
   const [comWebsite, setComWebsite] = useState('');
 
+  const [ProjectLogo, setProjectLogo] = useState('');
+
   const changeTitleColor = (e) => {
     setTitleName(e.target.value);
   };
@@ -129,6 +131,30 @@ const DashboardProjectAdd = () => {
         .join('-'),
     );
   };
+  const changeLogoImg = (e) => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const Header = { 'Content-Type': 'multipart/form-data' };
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        console.log(res);
+        setProjectLogo(res.data.filePath);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   const PostProject = (e) => {
     e.preventDefault();
@@ -141,8 +167,8 @@ const DashboardProjectAdd = () => {
       },
       data: {
         projectType: titleName,
+        enterpriseLogo: ProjectLogo,
         projectBackGround: bgColor,
-        enterpriseLogo: 'COUPANG',
         projectStep: projectColor,
         mainBiz: jobfield,
         positionKind: jobChoice,
@@ -194,6 +220,10 @@ const DashboardProjectAdd = () => {
       setComWebsite(Datas.website);
     }
   }, [Datas]);
+
+  useEffect(() => {
+    console.log(ProjectLogo);
+  }, []);
 
   return (
     <S.Container>
@@ -269,12 +299,20 @@ const DashboardProjectAdd = () => {
         <div>
           <S.H1 ftszie="1.2rem">기업로고</S.H1>
           <S.BlacSpan>
-            <S.FileInput type="file" width="110px" height="35px" laptopTop="45px" left="0.1rem" top="0" />
+            <S.FileInput
+              type="file"
+              width="110px"
+              height="35px"
+              laptopTop="45px"
+              left="0.1rem"
+              top="0"
+              onChange={changeLogoImg}
+            />
             로고 직접 등록
           </S.BlacSpan>
         </div>
         <S.ResultColor bgColor={logoBgColor}>
-          <S.LogImage src={Logo} alt="logo" />
+          <S.LogImage src={ProjectLogo !== '' ? ProjectLogo : Logo} alt="logo" />
         </S.ResultColor>
         <S.H1>기본정보 *</S.H1>
         <S.ColorDiv>

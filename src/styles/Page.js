@@ -11,8 +11,7 @@ export const ContainerFrame = styled.div`
   /* width: 100%; */
   width: 360px;
   height: 100%;
-  margin: auto;
-  margin-top: 5rem;
+  margin: 0 auto;
 
   @media ${TABLET} {
     width: 730px;
@@ -29,7 +28,7 @@ export const FrameList = styled.div`
   @media ${TABLET} {
     width: 100%;
     max-width: 55rem;
-    margin: auto;
+    margin: 0 auto;
   }
 `;
 
@@ -40,7 +39,7 @@ export const ContainerTopLetter = styled.div`
 export const TopLetterExtra = styled.h3`
   font-size: 13.5px;
   font-weight: 600;
-  padding-top: 2rem;
+  padding-top: ${(props) => props.top};
   @media ${TABLET} {
     font-size: 17.5px;
   }
@@ -60,7 +59,7 @@ export const TopLetterSubject = styled.div`
 `;
 
 export const RegisterButton = styled.div`
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 100px;
