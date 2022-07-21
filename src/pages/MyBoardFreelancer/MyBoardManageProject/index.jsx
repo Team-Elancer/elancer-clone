@@ -4,7 +4,6 @@ import { useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
 import OnGoingCard from 'components/Card/OnGoingCard';
-import ListPortfolio from 'components/ListPortfolio';
 import FreelancerMyboard from 'components/Myboard/FreelancerMyboard';
 import MyBoardEcards from 'components/Myboard/MyBoardEcards';
 
