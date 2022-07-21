@@ -128,6 +128,7 @@ export const FreelancerHeart = styled.div`
   border-radius: 50%;
   text-align: center;
   cursor: pointer;
+  color: ${(wishState) => wishState && 'red'};
   display: flex;
   justify-content: center;
   align-items: center;
