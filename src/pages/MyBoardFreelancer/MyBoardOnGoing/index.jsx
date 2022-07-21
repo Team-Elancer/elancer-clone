@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import * as S from './style';
 
+import ProfileImgDefault from 'assets/images/signin-profile.png';
+
 import OnGoingCard from 'components/Card/OnGoingCard';
 
 import FreelancerMyboard from 'components/Myboard/FreelancerMyboard';
@@ -25,8 +27,9 @@ const MyBoardOnGoing = () => {
   ] = useOutletContext();
 
   useBeforeUnload();
-  const [cardList, setCardList] = useState('새소식');
 
+  const [cardList, setCardList] = useState('새소식');
+  const { thumbnailPath } = userData;
   return (
     <>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
@@ -41,6 +44,23 @@ const MyBoardOnGoing = () => {
         <S.LiTag>
           <Link to="/myboard-freelancer/profile">
             <S.LiPtag>📍 프로필 관리 바로가기</S.LiPtag>
+            <S.EcardDiv>
+              <S.EcarcdPaddingDiv>
+                <S.ProjectDiv top="1rem">
+                  <S.EcardDiv>
+                    <S.EcarcdPaddingDiv>
+                      <S.ProfileImgDiv>
+                        <S.ProfileImg src={!thumbnailPath ? ProfileImgDefault : thumbnailPath} alt="profile" />
+                        <S.ProfileGo>
+                          <S.ProfileAccountSpan first> {userData.name} </S.ProfileAccountSpan>
+                        </S.ProfileGo>
+                        <S.BallDiv />
+                      </S.ProfileImgDiv>
+                    </S.EcarcdPaddingDiv>
+                  </S.EcardDiv>
+                </S.ProjectDiv>
+              </S.EcarcdPaddingDiv>
+            </S.EcardDiv>
           </Link>
           <FreelancerMyboard />
         </S.LiTag>

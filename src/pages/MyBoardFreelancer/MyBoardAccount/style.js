@@ -193,6 +193,23 @@ export const ProfileImgDiv = styled.div`
     left: 43rem;
   }
 `;
+
+export const FileInput = styled.input`
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1px;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
 export const ProfileImg = styled.img`
   position: relative;
   pointer-events: none;
@@ -202,6 +219,7 @@ export const ProfileImg = styled.img`
   min-height: 100%;
   border-radius: 50%;
   left: 0.2rem;
+  z-index: 10;
 `;
 export const BallDiv = styled.div`
   width: 22px;
@@ -211,19 +229,9 @@ export const BallDiv = styled.div`
   position: absolute;
   top: 3.7rem;
   left: 4rem;
+  z-index: 99;
 `;
-export const FileInput = styled.input`
-  width: 35px;
-  height: 35px;
-  background-color: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 500px;
-  z-index: 0;
-  left: 1rem;
-  top: 2rem;
-  position: absolute;
-`;
+
 export const SubmitDiv = styled.div`
   @media ${TABLET} {
     display: block;

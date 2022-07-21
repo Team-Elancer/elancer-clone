@@ -160,3 +160,40 @@ export const ContactColorBox = styled.div`
   padding: 0.3rem 0.3rem;
   border-radius: 0.5rem;
 `;
+
+export const ProfileImgDiv = styled.div`
+  position: relative;
+  display: none;
+
+  @media ${TABLET} {
+    display: block;
+
+    border: 5px solid #eb6100;
+    border-radius: 50%;
+    z-index: 99;
+    height: 6rem;
+    width: 6rem;
+    margin: auto;
+    cursor: pointer;
+  }
+`;
+export const ProfileImg = styled.img`
+  position: relative;
+  pointer-events: none;
+  max-height: 5rem;
+  min-width: 5rem;
+  max-width: 5rem;
+  min-height: 100%;
+  border-radius: 50%;
+  left: 0.2rem;
+  margin-bottom: 1.5rem;
+`;
+export const BallDiv = styled.div`
+  width: 22px;
+  height: 22px;
+  background-color: #eb6100;
+  border-radius: 50%;
+  position: absolute;
+  top: 3.7rem;
+  left: 4rem;
+`;

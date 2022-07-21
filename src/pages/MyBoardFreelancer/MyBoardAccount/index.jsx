@@ -59,8 +59,12 @@ const MyBoardAccount = () => {
   const [pwType, setPwType] = useState('password');
   const [commitType, setCommitType] = useState('password');
 
+  const [thumbnailPath, setThumbnailPath] = useState('');
+
   useEffect(() => {
     if (userData) {
+      setThumbnailPath(userData.thumbnailPath);
+
       setName(userData.name);
       setBirthDate(userData.birthDate);
       setPhoneNumber(userData.phone);
@@ -145,6 +149,7 @@ const MyBoardAccount = () => {
 
   const editFreelancerAccount = () => {
     const newData = {
+      thumbnailPath,
       name,
       password,
       passwordCheck: passwordConfirm,
@@ -197,7 +202,34 @@ const MyBoardAccount = () => {
     e.preventDefault();
     editFreelancerAccount();
   };
+  const changeProfileImg = (e) => {
+    const file = e.target.files[0];
 
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    const formData = new FormData();
+
+    formData.append('file', file);
+
+    console.log(file);
+    console.log(formData);
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      data: formData,
+    }).then((res) => {
+      console.log(res);
+      setThumbnailPath(res.data.filePath);
+    });
+  };
+
+  console.log(userData);
   return (
     <S.FrameAccount>
       <S.FirstContainer>
@@ -209,15 +241,21 @@ const MyBoardAccount = () => {
           </div>
           <S.SaveSpan type="submit">저장</S.SaveSpan>
         </S.ContainerAccountSave>
+
         <S.ContainerImageProfile>
-          <S.ImageProfile src="https://www.elancer.co.kr/public/images/img-user-none.png" alt="" />
+          <S.ImageProfile
+            src={!thumbnailPath ? 'https://www.elancer.co.kr/public/images/img-user-none.png' : thumbnailPath}
+            alt="profilePic"
+          />
           <S.ImageUpload src="https://www.elancer.co.kr/public/images/img-camera-wh.png" alt="" />
         </S.ContainerImageProfile>
+
         <S.FrameInfo>
           <S.ProfileDiv>
             <S.MarginAutoDiv>
               <S.ProfileImgDiv>
-                <S.ProfileImg src={selectImg !== null ? selectImg : ProfileImgDefault} alt="profile" />
+                <S.FileInput type="file" accept="image/*" readonly onChange={changeProfileImg} />
+                <S.ProfileImg src={!thumbnailPath ? ProfileImgDefault : thumbnailPath} alt="profile" />
                 <S.BallDiv />
               </S.ProfileImgDiv>
               <S.InputDiv top="3" bottom="3">
