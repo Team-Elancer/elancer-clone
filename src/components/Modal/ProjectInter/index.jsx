@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { v4 as uuidv4 } from 'uuid';
 import * as S from './style';
@@ -152,6 +153,9 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
                 <S.Name>
                   {data.name}[{data.positionType}] 경력{data.careerYear}년 {data.phone}
                 </S.Name>
+                <Link to={`/partner-detail/${data.num}`}>
+                  <S.ProfileSpan>프로필 보기</S.ProfileSpan>
+                </Link>
               </S.Li>
             );
           })}
@@ -192,6 +196,9 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
                   <S.Name>
                     {data.name}[{data.positionType}] 경력{data.careerYear}년
                   </S.Name>
+                  <Link to={`/partner-detail/${data.num}`}>
+                    <S.ProfileSpan>프로필 보기</S.ProfileSpan>
+                  </Link>
                 </S.Li>
               );
             })}

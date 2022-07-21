@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { v4 as uuidv4 } from 'uuid';
 import * as S from './style';
@@ -55,6 +56,8 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
     window.scrollTo(0, 0);
   }, [Datas, newReloading]);
 
+  console.log(newArray);
+
   return (
     <S.Container ref={domNode}>
       <S.FlexDiv>
@@ -68,7 +71,7 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
         <S.Title>조율중 투입된 프리랜서</S.Title>
       </S.FlexDiv>
       <S.RequesterDiv>
-        <S.CountSpan>투입된 프리랜서 {Datas.waitFreelancerCount}명</S.CountSpan>
+        <S.CountSpan>투입된 프리랜서 {newArray?.waitCount}명</S.CountSpan>
         {newArray.length === undefined &&
           newArray.waitFreelancerList.map((data) => {
             return (
@@ -84,6 +87,9 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
                 <S.Name>
                   {data.name}[{data.positionType}] 경력{data.careerYear}년 {data.phone}
                 </S.Name>
+                <Link to={`/partner-detail/${data.num}`}>
+                  <S.ProfileSpan>프로필 보기</S.ProfileSpan>
+                </Link>
               </S.Li>
             );
           })}

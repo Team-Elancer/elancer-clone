@@ -8,7 +8,8 @@ import * as S from './style';
 import { BaseUrl } from 'utils/config/api';
 
 const HeartButton = ({ position = 'absolute', Data, setHeartBool }) => {
-  const addFreelancer = () => {
+  const addFreelancer = (e) => {
+    e.preventDefault();
     if (window.localStorage.memberType === '"ENTERPRISE"') {
       if (Data.wishState === true) {
         axios({
@@ -47,7 +48,7 @@ const HeartButton = ({ position = 'absolute', Data, setHeartBool }) => {
 
   return (
     <S.HeartBackDiv position={position}>
-      <S.HeartDiv onClick={addFreelancer}>
+      <S.HeartDiv onClick={(e) => addFreelancer(e)}>
         {Data.wishState ? <IoMdHeart size="100%" /> : <IoMdHeartEmpty size="100%" />}
       </S.HeartDiv>
     </S.HeartBackDiv>
