@@ -88,13 +88,9 @@ const ListPortfolio = ({ Datas }) => {
             <S.EcardDiv key={item.projectNum}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
-<<<<<<< HEAD
                   <S.HeartDiv>
                     <IoMdHeartEmpty size="100%" />
                   </S.HeartDiv>
-=======
-                  <S.HeartDiv onClick={() => keepProject(item.projectNum)}>🤍</S.HeartDiv>
->>>>>>> feat: adding wish-list  API
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>

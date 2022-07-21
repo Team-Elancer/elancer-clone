@@ -84,7 +84,6 @@ const MyBoardManageProject = () => {
           <S.H1 marginTop="5rem" top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
             찜 리스트 ({wishProjectResponses?.length})
           </S.H1>
-
           <FreelancerMyboard Datas={wishProjectResponses} remove />
         </>
       )}
