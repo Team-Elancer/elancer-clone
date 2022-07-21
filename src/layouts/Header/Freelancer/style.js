@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 100%;
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor};
-
+  padding-bottom: 1.5rem;
   @media ${TABLET} {
     width: 100%;
   }
@@ -28,7 +28,7 @@ export const HeaderDiv = styled.div`
   }
 
   @media ${LAPTOP} {
-    width: 830px;
+    width: ${(props) => props.width};
   }
 `;
 

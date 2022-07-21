@@ -12,6 +12,7 @@ import useFetchRefreshToken from 'hooks/useFetchRefreshToken';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
+import FreelancerHeader from 'layouts/Header/Freelancer';
 
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
@@ -311,7 +312,7 @@ const MyBoardFreelancer = () => {
 
   return (
     <S.Container>
-      <Header freelancerBoard />
+      <FreelancerHeader width="1080px" />
       <S.SizeDiv>
         <S.FlexDiv>
           <LeftMenuMyBoard />

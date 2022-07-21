@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { v4 as uuidv4 } from 'uuid';
 import * as S from './style';
 
 import Logo from 'assets/images/logo_white.png';
@@ -384,9 +386,9 @@ const MainEnterprise = () => {
         <S.SubTitle>300명 이상의 개발자</S.SubTitle>
         <S.Title>풀 스택 개발자들</S.Title>
         <S.JobUl>
-          {fullStackArray.map((data) => {
+          {fullStackArray.map((data, i) => {
             return (
-              <S.LiTag right="1rem" key={data}>
+              <S.LiTag right="1rem" key={`data${i + 1}`}>
                 <S.TypeInput
                   bgColor={fullStack === data ? '#e7e7e7' : 'white'}
                   brColor={fullStack === data ? 'black' : '#d7d7d7'}
@@ -422,7 +424,7 @@ const DevelopSkils = ({ skillState, skillFunction }) => {
     <>
       {DevelopArray.map((data, i) => {
         return (
-          <S.LiTag key={data}>
+          <S.LiTag key={`data${i + 1}`}>
             <S.Input
               bgColor={skillState.includes(data) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(data) ? 'black' : '#d7d7d7'}
@@ -460,9 +462,9 @@ const PublisingSkils = ({ skillState, skillFunction }) => {
   ];
   return (
     <>
-      {PublisingArray.map((data) => {
+      {PublisingArray.map((data, i) => {
         return (
-          <S.LiTag key={data}>
+          <S.LiTag key={`data${i + 1}`}>
             <S.Input
               bgColor={skillState.includes(data) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(data) ? 'black' : '#d7d7d7'}
@@ -498,9 +500,9 @@ const DesignSkils = ({ skillState, skillFunction }) => {
 
   return (
     <>
-      {DesginArray.map((a) => {
+      {DesginArray.map((a, i) => {
         return (
-          <S.LiTag key={a}>
+          <S.LiTag key={`a${i + 1}`}>
             <S.Input
               bgColor={skillState.includes(a) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(a) ? 'black' : '#d7d7d7'}
@@ -547,9 +549,9 @@ const PlanSkils = ({ skillState, skillFunction }) => {
 
   return (
     <>
-      {palnArray.map((a) => {
+      {palnArray.map((a, i) => {
         return (
-          <S.LiTag key={a}>
+          <S.LiTag key={`a${i + 1}`}>
             <S.Input
               bgColor={skillState.includes(a) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(a) ? 'black' : '#d7d7d7'}
@@ -573,9 +575,9 @@ const EtcSkils = ({ skillState, skillFunction }) => {
 
   return (
     <>
-      {etcArray.map((a) => {
+      {etcArray.map((a, i) => {
         return (
-          <S.LiTag key={a}>
+          <S.LiTag key={`a${i + 1}`}>
             <S.Input
               bgColor={skillState.includes(a) ? '#e7e7e7' : 'white'}
               brColor={skillState.includes(a) ? 'black' : '#d7d7d7'}

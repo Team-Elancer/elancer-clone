@@ -8,6 +8,15 @@ export const FlexRow = styled.div`
   margin-top: 0.5rem;
 `;
 
+export const MobileDiv = styled.div`
+  display: block;
+  margin-top: 0.5rem;
+  @media ${TABLET} {
+    display: flex;
+    align-items: center;
+  }
+`;
+
 export const MobileFlexRow = styled.div`
   @media ${TABLET} {
     display: flex;
