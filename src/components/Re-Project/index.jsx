@@ -16,6 +16,8 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [Datas, setDatas] = useState('');
 
+  console.log(Datas);
+
   const fetchData = async () => {
     try {
       const res = await FILTERED_DATA(`/recommend-project`);
@@ -123,7 +125,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                     </S.HeartBackDiv>
                   </S.DivTag>
                   <Link to={`/project/${data.projectNum}`}>
-                    <S.BackImg url={companyLogo} />
+                    <S.BackImg url={data?.enterpriseLogo || companyLogo} />
                   </Link>
                 </S.UpDiv>
                 <S.DownDiv>

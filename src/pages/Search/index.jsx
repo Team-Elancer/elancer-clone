@@ -17,7 +17,7 @@ const SearchList = () => {
 
   return (
     <S.Container searchPage>
-      <SearchHeader searchPage searchValue={searchValue} />
+      <SearchHeader top="2rem" searchPage searchValue={searchValue} />
       <S.MarginDiv>
         <S.ProjectDiv>
           <FreelancerSearch searchValue={searchValue} />

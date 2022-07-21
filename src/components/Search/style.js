@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30px auto;
+  margin: 0 auto;
 
   @media ${TABLET} {
     width: ${({ searchPage }) => (!searchPage ? '730px' : '400px')};
@@ -26,8 +26,8 @@ export const FaBarDiv = styled.div`
 `;
 
 export const InputForm = styled.form`
-  width: 305px;
-  width: ${({ searchPage }) => (!searchPage ? '305px' : '305px')};
+  width: 160px;
+  width: ${({ searchPage }) => (!searchPage ? '305px' : '160px')};
   height: 44px;
   height: ${({ searchPage }) => !searchPage && '44px'};
   display: flex;

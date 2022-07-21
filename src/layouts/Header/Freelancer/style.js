@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 100%;
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor};
-  padding-bottom: 1.5rem;
+  padding-bottom: 0.6rem;
   @media ${TABLET} {
     width: 100%;
   }
