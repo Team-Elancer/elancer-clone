@@ -89,7 +89,9 @@ const ListPortfolio = ({ Datas }) => {
             <S.EcardDiv key={item.projectNum}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
-                  <S.HeartDiv onClick={() => keepProject(item.projectNum)}>🤍</S.HeartDiv>
+                  <S.HeartDiv>
+                    <IoMdHeartEmpty size="100%" />
+                  </S.HeartDiv>
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>
