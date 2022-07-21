@@ -223,6 +223,7 @@ export const ContainerEcardDescription = styled.div`
   width: 100%;
   padding-top: 0.4rem;
   padding-left: 0.4rem;
+  padding: 0 2rem;
 `;
 
 export const EcardDescription = styled.div`

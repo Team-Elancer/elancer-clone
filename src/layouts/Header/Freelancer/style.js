@@ -21,6 +21,7 @@ export const HeaderDiv = styled.div`
   margin: 0 auto;
   overflow: hidden;
   padding-top: 1.2rem;
+  padding: 2rem 0;
 
   @media ${TABLET} {
     width: 730px;

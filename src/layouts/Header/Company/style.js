@@ -16,7 +16,7 @@ export const HeaderDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px auto;
+  margin: 0 auto;
   overflow: hidden;
   padding-top: 1.2rem;
   @media ${TABLET} {

@@ -11,6 +11,8 @@ import { BaseUrl } from 'utils/config/api';
 const ProfileIntro = () => {
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
+  const { thumbnailPath } = userData;
+
   const [intro, setIntro] = useState({
     greeting: '',
     introName: '',
@@ -78,7 +80,10 @@ const ProfileIntro = () => {
       ) : (
         <>
           <S.ContainerImageProfile>
-            <S.ImageProfile src="https://www.elancer.co.kr/public/images/img-user-none.png" alt="" />
+            <S.ImageProfile
+              src={!thumbnailPath ? 'https://www.elancer.co.kr/public/images/img-user-none.png' : thumbnailPath}
+              alt="profilePic"
+            />
             <S.ImageUpload src="https://www.elancer.co.kr/public/images/img-camera-wh.png" alt="" />
           </S.ContainerImageProfile>
           <S.ContainerSubject>

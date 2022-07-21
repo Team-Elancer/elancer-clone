@@ -23,6 +23,8 @@ const MyBoardProfile = () => {
 
   useBeforeUnload();
 
+  const { thumbnailPath } = userData;
+
   return (
     <S.FrameProfile>
       <S.ContainerTop>
@@ -40,7 +42,7 @@ const MyBoardProfile = () => {
               <S.ContainerEcardProfile>
                 <S.EcardProfileLeft>
                   <S.ContainerEcardProfileImg>
-                    <S.ImgFile src={ProfilePicture} alt="profile" />
+                    <S.ImgFile src={!thumbnailPath ? ProfilePicture : thumbnailPath} alt="profile" />
                     <S.EcardProfileName>{profileSimpleData?.name}</S.EcardProfileName>
                   </S.ContainerEcardProfileImg>
                   <S.ContainerEcardDescription>
