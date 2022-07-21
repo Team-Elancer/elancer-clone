@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import * as S from './style';
-import Logo from 'assets/images/freelancer-logo.png';
+import Logo from 'assets/images/elancer_logo.png';
+import BlackLogo from 'assets/images/freelancer-black.png';
+import WhiteLogo from 'assets/images/freelancer.png';
 import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const FreelancerHeader = ({ width, bgColor = 'white', color = 'black', logo, projectList }) => {
+const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, projectList }) => {
   const [checkBool, setCeckBool] = useState(true);
+  const { id } = useParams();
   const location = useLocation();
 
   const changeBool = () => {
@@ -26,11 +29,30 @@ const FreelancerHeader = ({ width, bgColor = 'white', color = 'black', logo, pro
       <S.HeaderDiv width={width} projectList={projectList}>
         <S.FlexDiv>
           <Link to="/">
-            <S.Img src={location.pathname === '/freelancer' ? logo : Logo} alt="Logo" />
+            <S.Img
+              src={
+                location.pathname === '/freelancer' ||
+                // location.pathname === '/enterprise' ||
+                location.pathname === `/project/${id}` ||
+                location.pathname === '/project-list'
+                  ? logo
+                  : Logo
+              }
+              alt="Logo"
+            />
           </Link>
           <div>
             <Link to="/freelancer">
-              <S.BigText projectList={projectList}>프리랜서</S.BigText>
+              <S.LogoImage
+                src={
+                  location.pathname === '/freelancer' ||
+                  location.pathname === '/project-list' ||
+                  location.pathname === `/project/${id}`
+                    ? WhiteLogo
+                    : BlackLogo
+                }
+                alt="Logo"
+              />
             </Link>
           </div>
         </S.FlexDiv>

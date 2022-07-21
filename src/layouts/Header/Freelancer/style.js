@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   color: ${(props) => props.color};
-  background-color: #0000;
+  background-color: ${(props) => props.bgColor};
 
   @media ${TABLET} {
     width: 100%;
@@ -18,7 +18,7 @@ export const HeaderDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px auto;
+  margin: 0 auto;
   overflow: hidden;
   padding-top: 1.2rem;
 
@@ -105,6 +105,16 @@ export const Image = styled.img`
   width: 25px;
   @media ${TABLET} {
     width: 30px;
+    margin-right: -8px;
+  }
+  @media ${LAPTOP} {
+    margin: 3px -3px 0 0;
+  }
+`;
+export const LogoImage = styled.img`
+  width: 50px;
+  @media ${TABLET} {
+    width: 80px;
     margin-right: -8px;
   }
   @media ${LAPTOP} {
