@@ -82,7 +82,7 @@ const DashBoardScrap = () => {
       ) : (
         Datas.freelancerSimpleResponseList.map((data, i) => {
           return (
-            <S.FreelancerFlexDiv key={uuidv4()}>
+            <S.FreelancerFlexDiv key={`data.freelancerNum${i + 1}`}>
               <S.OverFlowDiv>
                 <S.LeftButton
                   src={arrowLeft}

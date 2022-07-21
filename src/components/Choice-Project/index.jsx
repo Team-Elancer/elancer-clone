@@ -8,6 +8,7 @@ const ChoiceProject = () => {
   const liTag = ['⚙️  개발 프로젝트', '🛠  퍼블리싱', '🎨  디자인', '📝  기획', '🕹  기타 프로젝트'];
 
   const [choiceTag, setChoiceTag] = useState('');
+
   const [selectId, setSelectId] = useState('');
 
   const changeTag = () => {
@@ -34,6 +35,7 @@ const ChoiceProject = () => {
 
   useEffect(() => {
     changeTag();
+    console.log(choiceTag);
   }, [choiceTag]);
 
   return (
@@ -44,6 +46,8 @@ const ChoiceProject = () => {
             <S.LiTag
               key={a}
               id={a}
+              boder={choiceTag === a ? 'black' : '#d7d7d7'}
+              bgColor={choiceTag === a ? '#e7e7e7' : 'white'}
               onClick={(e) => {
                 setChoiceTag(e.target.id);
               }}

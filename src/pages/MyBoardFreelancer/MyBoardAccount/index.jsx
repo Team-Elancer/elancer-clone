@@ -473,7 +473,7 @@ const MyBoardAccount = () => {
               <S.BlockDiv>
                 <S.FrameInputNumbers right="4.1rem">
                   <span>경력년수</span>
-                  <S.FlexRow>
+                  <S.MobileDiv>
                     <S.FlexRow>
                       <S.InputNumbers
                         type="text"
@@ -490,7 +490,7 @@ const MyBoardAccount = () => {
                       />
                       <S.SpanInput>개월</S.SpanInput>
                     </S.FlexRow>
-                  </S.FlexRow>
+                  </S.MobileDiv>
                 </S.FrameInputNumbers>
               </S.BlockDiv>
             </S.InputDiv>
@@ -500,7 +500,7 @@ const MyBoardAccount = () => {
               <S.BlockDiv>
                 <S.FrameInputNumbers right="4.1rem">
                   <span>희망 월단가</span>
-                  <S.FlexRow>
+                  <S.MobileDiv>
                     <S.FlexRow>
                       <S.InputNumbers
                         type="text"
@@ -517,7 +517,7 @@ const MyBoardAccount = () => {
                       />
                       <S.SpanInput>원</S.SpanInput>
                     </S.FlexRow>
-                  </S.FlexRow>
+                  </S.MobileDiv>
                 </S.FrameInputNumbers>
               </S.BlockDiv>
             </S.InputDiv>
