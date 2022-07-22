@@ -40,6 +40,30 @@ export const Img = styled.img`
     margin: 0 auto;
   }
 `;
+export const ImgDiv = styled.div`
+  border-radius: 70%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  margin-top: -0.5rem;
+  @media ${TABLET} {
+    margin-top: -1.3rem;
+    width: 150px;
+    height: 150px;
+  }
+  @media ${LAPTOP} {
+    margin-top: -1rem;
+  }
+`;
+export const ProfileImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 export const SecondDiv = styled.div`
   width: 100%;
   display: flex;
@@ -122,7 +146,7 @@ export const TitleName = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50%;
+  height: 70%;
   width: 100%;
   overflow: hidden;
   text-align: center;
@@ -197,6 +221,7 @@ export const BigSpan = styled.span`
   align-items: center;
   justify-content: start;
   margin: 0 auto;
+  overflow: hidden;
 `;
 export const MiniSpan = styled.span`
   color: white;
@@ -206,6 +231,8 @@ export const MiniSpan = styled.span`
   letter-spacing: 1px;
   padding: 5px;
   margin-right: 2px;
+  width: 100%;
+  height: 100%;
   @media ${TABLET} {
     font-size: 0.815rem;
   }

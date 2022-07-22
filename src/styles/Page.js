@@ -34,6 +34,7 @@ export const FrameList = styled.div`
 
 export const ContainerTopLetter = styled.div`
   margin-bottom: 24.5px;
+  padding-top: 2rem;
 `;
 
 export const TopLetterExtra = styled.h3`

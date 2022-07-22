@@ -340,6 +340,22 @@ export const Slide = styled.div`
   }};
 `;
 
+export const ImgDiv = styled.div`
+  border-radius: 70%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 180px;
+  height: 180px;
+`;
+export const ProfileImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const LeftButton = styled.img`
   top: 5.5rem;
   position: absolute;

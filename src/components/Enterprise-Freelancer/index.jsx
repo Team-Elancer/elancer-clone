@@ -100,7 +100,13 @@ const EnterpriseFreelancer = ({ fullStack }) => {
                       {data.freelancerName}
                     </S.Slide>
                     <S.Slide bg="blue">
-                      <S.LogoImg src={Logo} alt="logo" />
+                      {data?.thumbnailPath ? (
+                        <S.ImgDiv>
+                          <S.ProfileImg src={data?.thumbnailPath} alt="profile" />
+                        </S.ImgDiv>
+                      ) : (
+                        <S.LogoImg src={Logo} alt="logo" />
+                      )}
                     </S.Slide>
                   </S.Wrapper>
                 </Link>
