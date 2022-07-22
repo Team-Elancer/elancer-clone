@@ -12,8 +12,6 @@ import * as S from './style';
 
 import WishList from './WishList';
 
-import samsungImg from 'assets/images/samsung.png';
-
 import { extractSecureName } from 'utils/helpers';
 
 const ListFreelancer = ({ filteredPosition, lastComponent }) => {
@@ -40,11 +38,17 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                         {list?.positionName} {securedName}
                       </S.PersonFlexCenter>
                     </SwiperSlide>
-                    <SwiperSlide>
-                      <S.PersonFlexCenter>
-                        <img src={samsungImg} alt="" style={{ width: '100px', textAlign: 'center', display: 'flex' }} />
-                      </S.PersonFlexCenter>
-                    </SwiperSlide>
+                    {list?.thumbnailPath && (
+                      <SwiperSlide>
+                        <S.PersonFlexCenter>
+                          <img
+                            src={list?.thumbnailPath}
+                            alt="thumbnailPath"
+                            style={{ width: '100px', textAlign: 'center', display: 'flex' }}
+                          />
+                        </S.PersonFlexCenter>
+                      </SwiperSlide>
+                    )}
                   </Swiper>
                 </S.ContainerSwiper>
                 <S.ContainerExperience>
@@ -98,11 +102,17 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                       {list?.positionName} {securedName}
                     </S.PersonFlexCenter>
                   </SwiperSlide>
-                  <SwiperSlide>
-                    <S.PersonFlexCenter>
-                      <img src={samsungImg} alt="" style={{ width: '100px', textAlign: 'center', display: 'flex' }} />
-                    </S.PersonFlexCenter>
-                  </SwiperSlide>
+                  {list?.thumbnailPath && (
+                    <SwiperSlide>
+                      <S.PersonFlexCenter>
+                        <img
+                          src={list?.thumbnailPath}
+                          alt="thumbnailPath"
+                          style={{ width: '100px', textAlign: 'center', display: 'flex' }}
+                        />
+                      </S.PersonFlexCenter>
+                    </SwiperSlide>
+                  )}
                 </Swiper>
               </S.ContainerSwiper>
               <S.ContainerExperience>

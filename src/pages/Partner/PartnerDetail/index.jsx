@@ -96,7 +96,11 @@ const PartnerDetail = () => {
                 <S.ContainerEcardProfile>
                   <S.EcardProfileLeft>
                     <S.ContainerEcardProfileImg>
-                      <S.ImgFile src={ProfilePicture} alt="profile" />
+                      {thumbnailPath ? (
+                        <S.ImgFile src={thumbnailPath} alt="profile" />
+                      ) : (
+                        <S.ImgFile src={ProfilePicture} alt="profile" />
+                      )}
                       <S.EcardProfileName>{securedName}</S.EcardProfileName>
                     </S.ContainerEcardProfileImg>
                     <S.ContainerEcardDescription>

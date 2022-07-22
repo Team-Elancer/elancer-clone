@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import * as S from './style';
 
@@ -17,7 +17,6 @@ import FreelancerHeader from 'layouts/Header/Freelancer';
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
 const MyBoardFreelancer = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
@@ -312,7 +311,7 @@ const MyBoardFreelancer = () => {
 
   return (
     <S.Container>
-      <FreelancerHeader width="1080px" />
+      <Header freelancerUserData={userData} />
       <S.SizeDiv>
         <S.FlexDiv>
           <LeftMenuMyBoard />

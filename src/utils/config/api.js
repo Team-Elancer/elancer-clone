@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 //  ============== MAIN BASE URL -> GET ==============
-const baseURL = 'http://ec2-43-200-4-171.ap-northeast-2.compute.amazonaws.com:8080';
+const baseURL = 'http://ec2-52-78-122-251.ap-northeast-2.compute.amazonaws.com:8080';
 
 // ==============  BASE URL -> (GET), POST, PUT, DELETE ==============
-export const BaseUrl = 'http://ec2-43-200-4-171.ap-northeast-2.compute.amazonaws.com:8080';
+export const BaseUrl = 'http://ec2-52-78-122-251.ap-northeast-2.compute.amazonaws.com:8080';
 
 // ==============  Axios config ==============
 

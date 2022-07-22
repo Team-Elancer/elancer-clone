@@ -9,7 +9,7 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, projectList }) => {
+const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, projectList, freelancerUserData }) => {
   const [checkBool, setCeckBool] = useState(true);
   const { id } = useParams();
   const location = useLocation();
@@ -70,7 +70,11 @@ const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, pro
             <FaBars size="16" color="gray" />
           </S.Span>
           <S.Span>
-            <S.Image src={Profile} alt="profile" />
+            {freelancerUserData?.thumbnailPath ? (
+              <S.Image src={freelancerUserData.thumbnailPath} alt="profile" />
+            ) : (
+              <S.Image src={Profile} alt="profile" />
+            )}
           </S.Span>
         </S.Menu>
       </S.HeaderDiv>

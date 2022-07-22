@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import CompanyHeader from './Company';
@@ -12,7 +12,17 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
-const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', logo, projectList }) => {
+const Header = ({
+  width,
+  margin = '10px',
+  bgColor = '#0000',
+  color = 'black',
+  logo,
+  projectList,
+  freelancerUserData,
+}) => {
+  console.log(freelancerUserData);
+
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
   const { id } = useParams();
@@ -65,7 +75,14 @@ const Header = ({ width, margin = '10px', bgColor = '#0000', color = 'black', lo
       )}
 
       {window.localStorage.memberType === '"FREELANCER"' && (
-        <FreelancerHeader width="830px" logo={logo} bgColor={bgColor} color={color} projectList={projectList} />
+        <FreelancerHeader
+          width="830px"
+          logo={logo}
+          bgColor={bgColor}
+          color={color}
+          projectList={projectList}
+          freelancerUserData={freelancerUserData}
+        />
       )}
       {window.localStorage.memberType === '"ENTERPRISE"' && (
         <CompanyHeader width="830px" margin={margin} bgColor={bgColor} logo={logo} color={color} />

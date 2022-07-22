@@ -21,7 +21,8 @@ const MyBoardAccount = () => {
 
   const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
 
-  console.log(userData);
+  const [capsLockFlag, setCapsLockFlag] = useState(false);
+  const [capsLockFlagConfirm, setCapsLockFlagConfirm] = useState(false);
 
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -59,12 +60,15 @@ const MyBoardAccount = () => {
   const [pwType, setPwType] = useState('password');
   const [commitType, setCommitType] = useState('password');
 
-  const [thumbnailPath, setThumbnailPath] = useState('');
+  const [thumbnailPath, setThumbnailPath] = useState(null);
+
+  const [confirmEmailType, setConfirmEmailType] = useState(true);
+
+  // console.log(userData);
 
   useEffect(() => {
     if (userData) {
       setThumbnailPath(userData.thumbnailPath);
-
       setName(userData.name);
       setBirthDate(userData.birthDate);
       setPhoneNumber(userData.phone);
@@ -178,6 +182,8 @@ const MyBoardAccount = () => {
       hopeWorkCity,
     };
 
+    console.log('newData thumbnailPath', newData.thumbnailPath);
+
     axios({
       url: `${BaseUrl}/freelancer`,
       method: 'PUT',
@@ -189,19 +195,18 @@ const MyBoardAccount = () => {
     })
       .then(() => {
         setUserData(newData);
+        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
       .catch((err) => {
         console.log(err.message);
-        if (newData) alert('필드값 다시 사용확인');
+        if (newData) alert('필드값 PUT 에러.');
+        // window.location.reload();
       });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    editFreelancerAccount();
-  };
+  //  ========== handle profile img ==========
   const changeProfileImg = (e) => {
     const file = e.target.files[0];
 
@@ -224,12 +229,33 @@ const MyBoardAccount = () => {
       },
       data: formData,
     }).then((res) => {
-      console.log(res);
+      console.log(res.data.filePath);
       setThumbnailPath(res.data.filePath);
     });
   };
 
-  console.log(userData);
+  //  ========== validate capslock ==========
+  const checkCapsLock = (e, str) => {
+    if (str === 'confirmPassword') {
+      const capsLock = e.getModifierState('CapsLock');
+      setCapsLockFlagConfirm(capsLock);
+    } else {
+      const capsLock = e.getModifierState('CapsLock');
+      setCapsLockFlag(capsLock);
+    }
+  };
+
+  //  ========== validate email ==========
+  const validateEmail = () => {
+    const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    setConfirmEmailType(regExp.test(email));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editFreelancerAccount();
+  };
+
   return (
     <S.FrameAccount>
       <S.FirstContainer>
@@ -287,10 +313,13 @@ const MyBoardAccount = () => {
                     placeholder="비밀번호"
                     value={password || ''}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={(e) => {
+                      checkCapsLock(e);
+                    }}
                   />
                 </S.BlockDiv>
-                <S.ErrorMessage>* 6~15자 영문, 숫자, 특수문자를 사용하세요.</S.ErrorMessage>
-                <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+                <S.ErrorMessage>{password === '' && '* 6~15자 영문, 숫자, 특수문자를 사용하세요.'}</S.ErrorMessage>
+                <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
                 <S.EyeImg src={firstEyeImg} alt="eye" onClick={(e) => setEyeCheck(!eyeCheck)} />
               </S.InputDiv>
               <S.InputDiv>
@@ -307,10 +336,15 @@ const MyBoardAccount = () => {
                     placeholder="비밀번호 확인"
                     value={passwordConfirm || ''}
                     onChange={(e) => setPasswordConfirm(e.target.value)}
+                    onKeyDown={(e) => {
+                      checkCapsLock(e, 'confirmPassword');
+                    }}
                   />
                 </S.BlockDiv>
-                <S.ErrorMessage>* 비밀번호가 일치하지 않습니다.</S.ErrorMessage>
-                <S.CapsMessage>Caps Lock이 켜져 있습니다.</S.CapsMessage>
+                <S.ErrorMessage> {password !== passwordConfirm && '* 비밀번호가 일치하지 않습니다.'}</S.ErrorMessage>
+
+                <S.CapsMessage>{capsLockFlagConfirm && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
+
                 <S.EyeImg src={secondEyeImg} alt="eye" onClick={(e) => setEyeCheck2(!eyeCheck2)} />
               </S.InputDiv>
 
@@ -343,10 +377,15 @@ const MyBoardAccount = () => {
                       laptopSize="18rem"
                       placeholder="name@example.com"
                       value={email || ''}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        validateEmail(e.target.value);
+                      }}
                     />
                   </S.BlockDiv>
-                  <S.ErrorMessage>* 이메일 주소 형식이 아닙니다.</S.ErrorMessage>
+                  <S.ErrorMessage>
+                    {(!confirmEmailType || email === '') && '* 이메일 주소 형식이 아닙니다.'}
+                  </S.ErrorMessage>
                   <S.CapsMessage />
                 </S.InputDiv>
               </S.EmailFlex>
@@ -774,9 +813,39 @@ const MyBoardAccount = () => {
           <S.MarginAutoDiv last>
             <S.ContainerDeactivateSave>
               <S.ButtonDeactivate type="submit">회원탈퇴</S.ButtonDeactivate>
-              <S.ButtonSave type="button" onClick={handleSubmit} style={{ cursor: 'pointer' }}>
-                저장하기
-              </S.ButtonSave>
+              {name &&
+              password &&
+              passwordConfirm &&
+              birthDate &&
+              email &&
+              phoneNumber &&
+              website &&
+              countryType &&
+              zipcode &&
+              mainAddress &&
+              detailAddress &&
+              workTypeField.length > 0 &&
+              workEtcField &&
+              careerMonth &&
+              careerYear &&
+              hopeMonthMaxPay &&
+              hopeMonthMinPay &&
+              kosaState &&
+              mailReceptionState &&
+              presentWorkState &&
+              hopeWorkState &&
+              workPossibleState &&
+              workStartPossibleDate &&
+              hopeWorkCountry &&
+              hopeWorkCity ? (
+                <S.ButtonSave type="button" onClick={handleSubmit} style={{ cursor: 'pointer' }}>
+                  저장하기
+                </S.ButtonSave>
+              ) : (
+                <S.ButtonSave type="button" onClick={() => alert('필드확인하세요')} style={{ cursor: 'pointer' }}>
+                  저장하기
+                </S.ButtonSave>
+              )}
             </S.ContainerDeactivateSave>
           </S.MarginAutoDiv>
         </S.ProfileDiv>
