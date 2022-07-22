@@ -16,8 +16,6 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [Datas, setDatas] = useState('');
 
-  console.log(Datas);
-
   const fetchData = async () => {
     try {
       const res = await FILTERED_DATA(`/recommend-project`);

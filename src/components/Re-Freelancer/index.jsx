@@ -96,7 +96,7 @@ const ReFreelancer = () => {
   //   } catch (error) {
   //     console.log(error.message);
   //   }
-  // };
+  // }
 
   const handleClick = (alt) => {
     if (alt === 'left') {
@@ -135,9 +135,15 @@ const ReFreelancer = () => {
                     <HeartButton Data={item} setHeartBool={setHeartBool} />
                   </S.DivTag>
                   <Link to={`/partner-detail/${item?.freelancerNum}`}>
-                    <S.TitleName>
-                      {item?.positionName} {item?.freelancerName}
-                    </S.TitleName>
+                    {item?.thumbnailPath ? (
+                      <S.ImgDiv>
+                        <S.ProfileImg src={item?.thumbnailPath} alt="thumnail" />
+                      </S.ImgDiv>
+                    ) : (
+                      <S.TitleName>
+                        {item?.positionName} {item?.freelancerName}
+                      </S.TitleName>
+                    )}
                   </Link>
                 </S.UpDiv>
                 <S.DownDiv>
