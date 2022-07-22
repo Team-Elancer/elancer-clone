@@ -12,6 +12,7 @@ export const ContainerFrame = styled.div`
   width: 360px;
   height: 100%;
   margin: 0 auto;
+  margin-top: 1.2rem;
 
   @media ${TABLET} {
     width: 730px;

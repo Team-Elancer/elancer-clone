@@ -84,7 +84,6 @@ const ProfileIntro = () => {
               src={!thumbnailPath ? 'https://www.elancer.co.kr/public/images/img-user-none.png' : thumbnailPath}
               alt="profilePic"
             />
-            <S.ImageUpload src="https://www.elancer.co.kr/public/images/img-camera-wh.png" alt="" />
           </S.ContainerImageProfile>
           <S.ContainerSubject>
             <S.FontLargeSubject>프로필 제목</S.FontLargeSubject>

@@ -102,16 +102,6 @@ export const Menu = styled.div`
   }
 `;
 
-export const Image = styled.img`
-  width: 25px;
-  @media ${TABLET} {
-    width: 30px;
-    margin-right: -8px;
-  }
-  @media ${LAPTOP} {
-    margin: 3px -3px 0 0;
-  }
-`;
 export const LogoImage = styled.img`
   width: 50px;
   @media ${TABLET} {
@@ -123,6 +113,39 @@ export const LogoImage = styled.img`
   }
 `;
 
-export const Span = styled.span`
+export const Span = styled.div`
   margin: 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
+
+  display: flex;
+  align-items: center;
+`;
+
+export const ContainerFabars = styled(Span)`
+  font-size: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Image = styled.img`
+  width: 22px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 2px;
+  border-width: 1px;
+  background-color: rgba(225, 225, 225, 1);
+
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+
+  @media ${TABLET} {
+    width: 100%;
+    height: 100%;
+  }
+  @media ${TABLET} {
+    margin-right: -8px;
+  }
 `;
