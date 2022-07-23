@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { GoogleLogin } from 'react-google-login';
 import { ImBubble } from 'react-icons/im';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -64,30 +65,36 @@ const Login = () => {
       });
   };
 
-  // const googleSuccess = async (a) => {
-  //   // const pageUrl =
-  //   //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google';
-  //   // document.location.href = pageUrl;
-  //   axios({
-  //     method: 'POST',
-  //     url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
-  //     headers: { 'Access-Control-Allow-Origin': '*' },
-  //     data: {
-  //       data: a,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       navi('http://localhost:3000/');
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       return alert(err.message);
-  //     });
+  // const login = () => {
+  //   document.location.(
+  //     'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-52-78-122-251.ap-northeast-2.compute.amazonaws.com:8080/login/google',
+  //   );
   // };
 
-  // const googleFail = (respone) => {
-  //   console.log(respone);
-  // };
+  const googleSuccess = async (a) => {
+    // const pageUrl =
+    //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google';
+    // document.location.href = pageUrl;
+    axios({
+      method: 'POST',
+      url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      data: {
+        data: a,
+      },
+    })
+      .then((res) => {
+        navi('http://localhost:3000/');
+        console.log(res);
+      })
+      .catch((err) => {
+        return alert(err.message);
+      });
+  };
+
+  const googleFail = (respone) => {
+    console.log(respone);
+  };
 
   return (
     <S.Container>
@@ -152,23 +159,24 @@ const Login = () => {
                 </S.LoginButton>
               </S.SpanTag>
               <S.SpanTag>
-                <S.LoginButton
+                {/* <S.LoginButton
                   border="#f16300"
                   mobileBg="white"
                   tabletBg="#f16300"
                   mobileColor="#f16300"
                   tabletColor="white"
                   content="center"
-                >
-                  {/* <GoogleLogin
+                  onClick={login}
+                > */}
+                <GoogleLogin
                   clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
                   buttonText="Login"
                   onSuccess={googleSuccess}
                   onFailure={googleFail}
                   cookiePolicy="single_host_origin"
-                /> */}
-                  로그인
-                </S.LoginButton>
+                />
+                로그인
+                {/* </S.LoginButton> */}
               </S.SpanTag>
               <S.SpanTag>
                 <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">
