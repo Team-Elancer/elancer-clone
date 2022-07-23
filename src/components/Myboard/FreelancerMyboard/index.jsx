@@ -7,8 +7,6 @@ import { BaseUrl } from 'utils/config/api';
 import { MOBILE, TABLET, LAPTOP } from 'utils/constants/responsive';
 
 const FreelancerMyboard = ({ Datas, accept, remove }) => {
-  console.log('Datas', Datas);
-
   const positionSwitch = (item) => {
     switch (item) {
       case 'PUBLISHER':

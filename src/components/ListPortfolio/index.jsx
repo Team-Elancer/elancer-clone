@@ -90,6 +90,31 @@ const ListPortfolio = ({ Datas }) => {
     }
   };
 
+  const deleteProject = (id) => {
+    if (token && member === '"FREELANCER"') {
+      axios({
+        method: 'DELETE',
+        url: `${BaseUrl}/wish-project`,
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: id,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert('해제 되었습니다.');
+          window.location.reload();
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else {
+      alert('프리랜서 아이디로 로그인하세요.');
+    }
+  };
+
   return (
     <div>
       {Datas !== undefined ? (
@@ -99,7 +124,11 @@ const ListPortfolio = ({ Datas }) => {
               <S.FirstDiv>
                 <S.HeartBackDiv>
                   <S.HeartDiv>
-                    <IoMdHeartEmpty size="100%" onClick={() => keepProject(item.projectNum)} />
+                    {item?.wishState ? (
+                      <IoMdHeart size="100%" onClick={() => deleteProject(item.projectNum)} />
+                    ) : (
+                      <IoMdHeartEmpty size="100%" onClick={() => keepProject(item.projectNum)} />
+                    )}
                   </S.HeartDiv>
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
