@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 
@@ -27,7 +29,7 @@ import Footer from 'layouts/Footer';
 
 import FreelancerHeader from 'layouts/Header/Freelancer';
 
-import { FILTERED_DATA } from 'utils/config/api';
+import { CLIENT_FREELANCER } from 'utils/config/api';
 import { POSITION, WORKMANSHIP, PROJECTTYPE } from 'utils/constants/freelancerFilter';
 import { handlePosition, handleWorkManShip, handleProjectType } from 'utils/helpers';
 
@@ -86,7 +88,7 @@ const MainFreelancer = () => {
   const fetchProjectIndexList = async () => {
     setIsLoading(true);
     try {
-      const { data } = await FILTERED_DATA(`/project-index-list`);
+      const { data } = await CLIENT_FREELANCER(`/project-index-list`);
       setProjectIndexList(data);
       setIsLoading(false);
     } catch (error) {

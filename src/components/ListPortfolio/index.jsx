@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ProjectSkeleton from 'components/Skeleton/Project';
 
@@ -11,8 +11,6 @@ import * as S from 'styles/Ecard';
 import { BaseUrl } from 'utils/config/api';
 
 const ListPortfolio = ({ Datas }) => {
-  const navigate = useNavigate();
-
   const token = window.localStorage.accessToken;
   const member = window.localStorage.memberType;
 
