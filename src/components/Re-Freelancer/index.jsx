@@ -23,80 +23,23 @@ const ReFreelancer = () => {
   const [heartBool, setHeartBool] = useState(true);
   const navigate = useNavigate();
 
-  const handleErrorCode = (code) => {
-    const handleLogin = () => useFetchRefreshToken();
-    const rejectLogin = () => {
-      window.localStorage.clear();
-      navigate('/login');
-    };
-
-    const confirmLogin = useConfrim(
-      '로그인 시간 연장하시겠습니까? 새로고침 필요할수도 있음.',
-      handleLogin,
-      rejectLogin,
-    );
-
-    if (code === '401') {
-      console.log('accessToken 만료');
-      confirmLogin();
-    }
-
-    if (code === '402') console.log('변조된 토큰 에러.');
-
-    if (code === '403') console.log('refresh token 만료.');
-  };
-
-  // =============== fetch account detail (이랜서 계정) && userData ===============
-  const fetchFreelancerData = async () => {
+  const fetchData = async () => {
     try {
       if (window.localStorage.accessToken) {
-        const { data } = await CLIENT_FREELANCER('/freelancers');
-
-        if (data.code === '401' || data.code === '402' || data.code === '403') {
-          handleErrorCode(data.code);
-        }
+        const res = await CLIENT_FREELANCER(`/freelancers`);
+        const data = await res.data;
         setDatas(data);
         setHeartBool(true);
       } else {
-        const { data } = await FILTERED_DATA('/freelancers');
-
-        if (data.code === '401' || data.code === '402' || data.code === '403') {
-          handleErrorCode(data.code);
-        }
-
+        const res = await FILTERED_DATA('/freelancers');
+        const data = await res.data;
         setDatas(data);
         setHeartBool(true);
       }
-    } catch (err) {
-      console.log(err);
-
-      alert('다시 로그인해주세요');
-      window.localStorage.clear();
-      navigate('/login');
+    } catch (error) {
+      console.log(error.message);
     }
   };
-
-  // const fetchData = async () => {
-  //   try {
-  //     if (window.localStorage.accessToken) {
-  //       const res = await CLIENT_FREELANCER(`/freelancers`);
-  //       if (res.data.code === '401') {
-  //         window.localStorage.clear();
-  //         alert('토큰이 만료되어 로그인페이지로 이동합니다.');
-  //         navi('/login');
-  //       }
-  //       const data = await res.data;
-  //       setDatas(data);
-  //       setHeartBool(true);
-  //     } else {
-  //       const res = await FILTERED_DATA('/freelancers');
-  //       const data = await res.data;
-  //       setDatas(data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
 
   const handleClick = (alt) => {
     if (alt === 'left') {
@@ -107,7 +50,7 @@ const ReFreelancer = () => {
   };
 
   useEffect(() => {
-    fetchFreelancerData();
+    fetchData();
   }, [heartBool]);
 
   return (
