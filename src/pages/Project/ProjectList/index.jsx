@@ -99,7 +99,7 @@ const ListProject = () => {
           setLoading('');
         }
 
-        if (!token) {
+        if (!token || member === '"ENTERPRISE"') {
           const { data } = await FILTERED_DATA(URL);
           console.log(data);
 
@@ -124,7 +124,7 @@ const ListProject = () => {
           setLoading('');
         }
 
-        if (!token) {
+        if (!token || member === '"ENTERPRISE"') {
           const { data } = await FILTERED_DATA(URL);
           setDatas(data.projectBoxResponses);
           setCheckpage(data.hasNext);

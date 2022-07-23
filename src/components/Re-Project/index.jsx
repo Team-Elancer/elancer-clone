@@ -26,7 +26,7 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
         const { data } = await CLIENT_FREELANCER(`/recommend-project`);
         setDatas(data);
       }
-      if (!token) {
+      if (!token || member === '"ENTERPRISE"') {
         const { data } = await FILTERED_DATA(`/recommend-project`);
         setDatas(data);
       }

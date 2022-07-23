@@ -86,7 +86,6 @@ const ListPortfolio = ({ Datas }) => {
         });
     } else {
       alert('프리랜서 아이디로 로그인하세요.');
-      navigate('/login');
     }
   };
 

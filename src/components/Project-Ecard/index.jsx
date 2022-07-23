@@ -22,8 +22,9 @@ const Ecard = ({ selectId }) => {
         const { data } = await CLIENT_FREELANCER(`/project-index-list`);
         setDatas(data);
       }
-      if (!token) {
+      if (!token || member === '"ENTERPRISE"') {
         const { data } = await FILTERED_DATA(`/project-index-list`);
+
         setDatas(data);
       }
     } catch (error) {
