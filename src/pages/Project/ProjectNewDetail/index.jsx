@@ -129,9 +129,9 @@ const ProjectNewDetail = () => {
       <S.DetailDiv>
         <S.SizeDiv>
           <S.FlexDiv content="space-between">
-            <div>
+            <S.TitleDiv>
               <S.H1>{Datas.projectName}</S.H1>
-            </div>
+            </S.TitleDiv>
             <div>
               <S.DdaySpan>마감{Datas.endDays}일전</S.DdaySpan>
             </div>
