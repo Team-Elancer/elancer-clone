@@ -24,6 +24,7 @@ const ListPartner = () => {
   const [hasMore, setHasMore] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [heartBool, setHeartBool] = useState(true);
 
   const [URL, setURL] = useState(
     `/developers?positionType=DEVELOPER&majorSkillKeywords=&hopeWorkState=&positionWorkManShip=&workArea=&`,
@@ -41,7 +42,7 @@ const ListPartner = () => {
     if (pageNumber === 0) {
       getPositionLists();
     }
-  }, [URL]);
+  }, [URL, heartBool]);
 
   // ============ Check the position type + Hit API accordingly ============
   useEffect(() => {
@@ -83,18 +84,21 @@ const ListPartner = () => {
   const getPositionLists = async () => {
     setIsLoading(true);
     try {
-      if (window.localStorage.accessToken) {
+      if (window.localStorage.memberType === '"ENTERPRISE"') {
+        const res = await CLIENT_FREELANCER(URL);
+        const data = await res.data;
+        setFilteredPosition(data.freelancerSimpleResponseList);
+        setHasMore(data.hasNext);
+        setIsLoading(false);
+        setHeartBool(true);
+      } else {
         const {
           data: { freelancerSimpleResponseList, hasNext },
-        } = await CLIENT_FREELANCER(URL);
+        } = await FILTERED_DATA(URL);
+        setFilteredPosition([...freelancerSimpleResponseList]);
+        setHasMore(hasNext);
+        setIsLoading(false);
       }
-      const {
-        data: { freelancerSimpleResponseList, hasNext },
-      } = await FILTERED_DATA(URL);
-
-      setFilteredPosition([...freelancerSimpleResponseList]);
-      setHasMore(hasNext);
-      setIsLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -104,13 +108,22 @@ const ListPartner = () => {
   const getNextPage = useCallback(async () => {
     setIsLoading(true);
     try {
-      const {
-        data: { freelancerSimpleResponseList, hasNext },
-      } = await FILTERED_DATA(`${URL}page=${pageNumber}`);
+      if (window.localStorage.memberType === '"ENTERPRISE"') {
+        const res = await CLIENT_FREELANCER(`${URL}page=${pageNumber}`);
+        const data = await res.data;
+        setFilteredPosition((prev) => [...prev, ...data.freelancerSimpleResponseList]);
+        setHasMore(data.hasNext);
+        setIsLoading(false);
+        setHeartBool(true);
+      } else {
+        const {
+          data: { freelancerSimpleResponseList, hasNext },
+        } = await FILTERED_DATA(`${URL}page=${pageNumber}`);
 
-      setFilteredPosition((prev) => [...prev, ...freelancerSimpleResponseList]);
-      setHasMore(hasNext);
-      setIsLoading(false);
+        setFilteredPosition((prev) => [...prev, ...freelancerSimpleResponseList]);
+        setHasMore(hasNext);
+        setIsLoading(false);
+      }
     } catch (err) {
       setIsLoading(false);
       console.log(err);
@@ -173,7 +186,11 @@ const ListPartner = () => {
           />
           {/* =======  ListFreelancer Component ======= */}
 
-          <ListFreelancer filteredPosition={filteredPosition} lastComponent={lastComponent} />
+          <ListFreelancer
+            filteredPosition={filteredPosition}
+            setHeartBool={setHeartBool}
+            lastComponent={lastComponent}
+          />
           {isLoading && <Loader />}
         </S.FrameList>
       </S.ContainerFrame>

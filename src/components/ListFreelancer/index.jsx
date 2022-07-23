@@ -11,10 +11,11 @@ import 'swiper/css/scrollbar';
 import * as S from './style';
 
 import WishList from './WishList';
+import HeartButton from 'components/Button/HeartButton';
 
 import { extractSecureName } from 'utils/helpers';
 
-const ListFreelancer = ({ filteredPosition, lastComponent }) => {
+const ListFreelancer = ({ filteredPosition, lastComponent, setHeartBool }) => {
   return (
     <S.FrameFreelancer>
       {filteredPosition.map((list, index) => {
@@ -121,7 +122,11 @@ const ListFreelancer = ({ filteredPosition, lastComponent }) => {
                     {securedName} | {list.careerYear}년 경력 {list?.positionName}
                   </S.FreelancerName>
                   {/* ====== Wish List ======== */}
-                  <WishList />
+                  {window.localStorage.memberType === '"ENTERPRISE"' ? (
+                    <HeartButton Data={list} setHeartBool={setHeartBool} />
+                  ) : (
+                    <WishList />
+                  )}
                 </S.ContainerNameHeart>
                 <S.FreelancerTitle>{list.greeting}</S.FreelancerTitle>
                 <S.ContainerFreelancerStack>
