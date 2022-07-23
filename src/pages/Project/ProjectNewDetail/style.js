@@ -64,7 +64,7 @@ export const SizeDiv = styled.div`
 `;
 export const FlexDiv = styled.div`
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: ${(props) => props.content};
   padding: ${(props) => props.padding} 0;
   @media ${TABLET} {
@@ -72,6 +72,10 @@ export const FlexDiv = styled.div`
   }
   @media ${LAPTOP} {
   }
+`;
+
+export const TitleDiv = styled.div`
+  width: 85%;
 `;
 
 export const H1 = styled.h1`

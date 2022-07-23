@@ -58,7 +58,11 @@ const ListFreelancer = ({ filteredPosition, lastComponent, setHeartBool }) => {
                       {securedName} | {list.careerYear}년 경력 {list?.positionName}
                     </S.FreelancerName>
                     {/* ====== Wish List ======== */}
-                    <WishList />
+                    {window.localStorage.memberType === '"ENTERPRISE"' ? (
+                      <HeartButton Data={list} setHeartBool={setHeartBool} />
+                    ) : (
+                      <WishList />
+                    )}
                   </S.ContainerNameHeart>
                   <S.FreelancerTitle>{list.greeting}</S.FreelancerTitle>
                   <S.ContainerFreelancerStack>
