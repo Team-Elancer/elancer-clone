@@ -18,8 +18,6 @@ const MyBoardEcards = ({ setCardList }) => {
     obtainOrderData,
   ] = useOutletContext();
 
-  console.log(obtainOrderData);
-
   return (
     <S.OverFlowDiv>
       <Link to="/myboard-freelancer/project">

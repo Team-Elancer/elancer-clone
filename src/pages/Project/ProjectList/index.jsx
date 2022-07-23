@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
@@ -13,7 +14,7 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 import * as S from 'styles/Page';
-import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
+import { FILTERED_DATA, BaseUrl, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ListProject = () => {
   const [Datas, setDatas] = useState([]);
@@ -28,6 +29,9 @@ const ListProject = () => {
   const [page, setPage] = useState(0);
   const location = useLocation();
   const [URL, setURL] = useState(`${location.pathname}${location.search}`);
+
+  const token = window.localStorage.accessToken;
+  const member = window.localStorage.memberType;
 
   const checkURL = () => {
     switch (URL) {
@@ -86,24 +90,47 @@ const ListProject = () => {
   const fetchData = async () => {
     if (selectBool === true && selectType === selectType1) {
       try {
-        const res = await FILTERED_DATA(URL);
-        const data = await res.data;
-        setDatas(data.projectBoxResponses);
-        setCheckpage(data.hasNext);
-        setLoading(false);
-        setLoading('');
+        if (token && member === '"FREELANCER"') {
+          const { data } = await CLIENT_FREELANCER(URL);
+          console.log(data);
+          setDatas(data.projectBoxResponses);
+          setCheckpage(data.hasNext);
+          setLoading(false);
+          setLoading('');
+        }
+
+        if (!token) {
+          const { data } = await FILTERED_DATA(URL);
+          console.log(data);
+
+          setDatas(data.projectBoxResponses);
+          setCheckpage(data.hasNext);
+          setLoading(false);
+          setLoading('');
+        }
       } catch (error) {
         console.log(error.message);
       }
     }
     if (selectBool === false) {
       try {
-        const res = await FILTERED_DATA(URL);
-        const data = await res.data;
-        setDatas(data.projectBoxResponses);
-        setCheckpage(data.hasNext);
-        setLoading(false);
-        setLoading('');
+        if (token && member === '"FREELANCER"') {
+          const { data } = await CLIENT_FREELANCER(URL);
+          console.log(data);
+
+          setDatas(data.projectBoxResponses);
+          setCheckpage(data.hasNext);
+          setLoading(false);
+          setLoading('');
+        }
+
+        if (!token) {
+          const { data } = await FILTERED_DATA(URL);
+          setDatas(data.projectBoxResponses);
+          setCheckpage(data.hasNext);
+          setLoading(false);
+          setLoading('');
+        }
       } catch (error) {
         console.log(error.message);
       }

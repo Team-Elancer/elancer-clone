@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
@@ -9,7 +10,14 @@ import ProjectSkeleton from 'components/Skeleton/Project';
 
 import * as S from 'styles/Ecard';
 
+import { BaseUrl } from 'utils/config/api';
+
 const DevelopEcard = ({ Datas }) => {
+  console.log(Datas);
+
+  const token = window.localStorage.accessToken;
+  const member = window.localStorage.memberType;
+
   const positionSwitch = (item) => {
     switch (item) {
       case 'PUBLISHER':
@@ -57,17 +65,72 @@ const DevelopEcard = ({ Datas }) => {
     }
   }, [Datas]);
 
+  const keepProject = (id) => {
+    if (token && member === '"FREELANCER"') {
+      axios({
+        method: 'POST',
+        url: `${BaseUrl}/wish-project`,
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: id,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert('찜 성공! -> 마이보드 계정에서 확인하세요');
+          window.location.reload();
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else {
+      alert('프리랜서 아이디로 로그인하세요.');
+    }
+  };
+
+  const deleteProject = (id) => {
+    if (token && member === '"FREELANCER"') {
+      axios({
+        method: 'DELETE',
+        url: `${BaseUrl}/wish-project`,
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: id,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert('해제 되었습니다.');
+          window.location.reload();
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else {
+      alert('프리랜서 아이디로 로그인하세요.');
+    }
+  };
+
   return (
     <div>
       {!Datas ? (
         <ProjectSkeleton />
       ) : (
         Datas.map((item) => {
+          console.log(item.projectNum);
           return (
             <S.EcardDiv key={uuidv4()}>
               <S.FirstDiv>
                 <S.HeartBackDiv>
-                  <IoMdHeartEmpty size="100%" />
+                  {item.wishState ? (
+                    <IoMdHeart size="100%" onClick={() => deleteProject(item.projectNum)} />
+                  ) : (
+                    <IoMdHeartEmpty size="100%" onClick={() => keepProject(item.projectNum)} />
+                  )}
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
                   <S.EcardBlackLiTag>{positionSwitch(item.positionKind)}</S.EcardBlackLiTag>

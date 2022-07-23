@@ -64,8 +64,6 @@ const MyBoardAccount = () => {
 
   const [confirmEmailType, setConfirmEmailType] = useState(true);
 
-  // console.log(userData);
-
   useEffect(() => {
     if (userData) {
       setThumbnailPath(userData.thumbnailPath);

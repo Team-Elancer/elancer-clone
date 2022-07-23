@@ -17,7 +17,6 @@ const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, pro
   const location = useLocation();
 
   const [freelancerThumbnailPath, setFreelancerThumbnailPath] = useState(null);
-  console.log(freelancerThumbnailPath, 'freelancerThumbnailPath');
 
   useEffect(() => {
     if (window.localStorage.memberType === '"FREELANCER"') {
@@ -27,7 +26,6 @@ const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, pro
 
   const getFreelancerData = async () => {
     const { data } = await CLIENT_FREELANCER('/freelancer');
-    console.log(data.thumbnailPath);
 
     setFreelancerThumbnailPath(data.thumbnailPath);
   };

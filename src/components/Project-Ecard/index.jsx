@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { useState, useEffect } from 'react';
 
 import DesignEcard from './DesignEcard';
@@ -6,16 +8,24 @@ import EtcEcard from './EtcEcard';
 import PlanEcard from './PlanEcard';
 import PublishEcard from './PublishEcard';
 
-import { FILTERED_DATA } from 'utils/config/api';
+import { FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
 const Ecard = ({ selectId }) => {
   const [Datas, setDatas] = useState('');
 
+  const token = window.localStorage.accessToken;
+  const member = window.localStorage.memberType;
+
   const fetchData = async () => {
     try {
-      const res = await FILTERED_DATA(`/project-index-list`);
-      const data = await res.data;
-      setDatas(data);
+      if (token && member === '"FREELANCER"') {
+        const { data } = await CLIENT_FREELANCER(`/project-index-list`);
+        setDatas(data);
+      }
+      if (!token) {
+        const { data } = await FILTERED_DATA(`/project-index-list`);
+        setDatas(data);
+      }
     } catch (error) {
       console.log(error.message);
     }

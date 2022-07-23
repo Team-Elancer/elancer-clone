@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
@@ -10,17 +11,25 @@ import left from 'assets/images/bt-left.png';
 import right from 'assets/images/bt-right.png';
 import companyLogo from 'assets/images/company-logo_1.png';
 import SkeletonReProject from 'components/Skeleton/ReProject';
-import { BaseUrl, FILTERED_DATA } from 'utils/config/api';
+import { BaseUrl, FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [Datas, setDatas] = useState('');
 
+  const token = window.localStorage.accessToken;
+  const member = window.localStorage.memberType;
+
   const fetchData = async () => {
     try {
-      const res = await FILTERED_DATA(`/recommend-project`);
-      const data = await res.data;
-      setDatas(data);
+      if (token && member === '"FREELANCER"') {
+        const { data } = await CLIENT_FREELANCER(`/recommend-project`);
+        setDatas(data);
+      }
+      if (!token) {
+        const { data } = await FILTERED_DATA(`/recommend-project`);
+        setDatas(data);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -92,6 +101,62 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
     fetchData();
   }, []);
 
+  const keepProject = (id) => {
+    console.log(id);
+    console.log(member);
+    if (token && member === '"FREELANCER"') {
+      axios({
+        method: 'POST',
+        url: `${BaseUrl}/wish-project`,
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: id,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert('찜 성공! -> 마이보드 계정에서 확인하세요');
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else {
+      alert('프리랜서 아이디로 로그인하세요.');
+    }
+  };
+
+  const deleteProject = (id) => {
+    console.log(id);
+    console.log(member);
+    if (token && member === '"FREELANCER"') {
+      axios({
+        method: 'DELETE',
+        url: `${BaseUrl}/wish-project`,
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: id,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert('해제 되었습니다.');
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else {
+      alert('프리랜서 아이디로 로그인하세요.');
+    }
+  };
+
   return (
     <S.Container>
       <S.FirstDiv>
@@ -119,7 +184,11 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
                       프로그램
                     </S.SpanTag>
                     <S.HeartBackDiv>
-                      <IoMdHeartEmpty size="100%" />
+                      {data.wishState ? (
+                        <IoMdHeart onClick={() => deleteProject(data.projectNum)} size="100%" />
+                      ) : (
+                        <IoMdHeartEmpty onClick={() => keepProject(data.projectNum)} size="100%" />
+                      )}
                     </S.HeartBackDiv>
                   </S.DivTag>
                   <Link to={`/project/${data.projectNum}`}>
