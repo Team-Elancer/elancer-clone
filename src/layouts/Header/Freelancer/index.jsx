@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import * as S from './style';
@@ -9,10 +9,28 @@ import Profile from 'assets/images/signin-profile.png';
 import MenuBar from 'components/MenuBar';
 import MainMenu from 'components/Modal/MainMenu';
 
+import { CLIENT_FREELANCER } from 'utils/config/api';
+
 const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, projectList, freelancerUserData }) => {
   const [checkBool, setCeckBool] = useState(true);
   const { id } = useParams();
   const location = useLocation();
+
+  const [freelancerThumbnailPath, setFreelancerThumbnailPath] = useState(null);
+  console.log(freelancerThumbnailPath, 'freelancerThumbnailPath');
+
+  useEffect(() => {
+    if (window.localStorage.memberType === '"FREELANCER"') {
+      getFreelancerData();
+    }
+  }, []);
+
+  const getFreelancerData = async () => {
+    const { data } = await CLIENT_FREELANCER('/freelancer');
+    console.log(data.thumbnailPath);
+
+    setFreelancerThumbnailPath(data.thumbnailPath);
+  };
 
   const changeBool = () => {
     return setCeckBool(false);
@@ -66,12 +84,12 @@ const FreelancerHeader = ({ width, bgColor = '#0000', color = 'black', logo, pro
           </Link>
         </S.Text>
         <S.Menu onClick={changeBool}>
-          <S.Span>
+          <S.ContainerFabars>
             <FaBars size="16" color="gray" />
-          </S.Span>
+          </S.ContainerFabars>
           <S.Span>
-            {freelancerUserData?.thumbnailPath ? (
-              <S.Image src={freelancerUserData.thumbnailPath} alt="profile" />
+            {freelancerThumbnailPath ? (
+              <S.Image src={freelancerThumbnailPath} alt="profile" />
             ) : (
               <S.Image src={Profile} alt="profile" />
             )}

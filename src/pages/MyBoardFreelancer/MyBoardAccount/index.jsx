@@ -269,6 +269,7 @@ const MyBoardAccount = () => {
         </S.ContainerAccountSave>
 
         <S.ContainerImageProfile>
+          <S.FileInput type="file" accept="image/*" readonly onChange={changeProfileImg} />
           <S.ImageProfile
             src={!thumbnailPath ? 'https://www.elancer.co.kr/public/images/img-user-none.png' : thumbnailPath}
             alt="profilePic"
@@ -842,9 +843,13 @@ const MyBoardAccount = () => {
                   저장하기
                 </S.ButtonSave>
               ) : (
-                <S.ButtonSave type="button" onClick={() => alert('필드확인하세요')} style={{ cursor: 'pointer' }}>
+                <S.ButtonSaveDoubleCheck
+                  type="button"
+                  onClick={() => alert('필드확인하세요')}
+                  style={{ cursor: 'pointer' }}
+                >
                   저장하기
-                </S.ButtonSave>
+                </S.ButtonSaveDoubleCheck>
               )}
             </S.ContainerDeactivateSave>
           </S.MarginAutoDiv>

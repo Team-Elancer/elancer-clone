@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import CompanyHeader from './Company';
@@ -21,11 +21,9 @@ const Header = ({
   projectList,
   freelancerUserData,
 }) => {
-  console.log(freelancerUserData);
-
+  const { id } = useParams();
   const [checkBool, setCeckBool] = useState(true);
   const location = useLocation();
-  const { id } = useParams();
 
   const changeBool = () => {
     return setCeckBool(false);

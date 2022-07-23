@@ -71,6 +71,10 @@ export const ContainerImageProfile = styled.div`
   align-items: center;
   position: relative;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   @media ${TABLET} {
     display: none;
   }
@@ -79,6 +83,9 @@ export const ContainerImageProfile = styled.div`
 export const ImageProfile = styled.img`
   bottom: 0.875rem;
   height: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
 `;
 
 export const ImageUpload = styled.img`
@@ -197,6 +204,10 @@ export const ProfileImgDiv = styled.div`
     height: 6rem;
     width: 6rem;
     cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   @media ${LAPTOP} {
     left: 43rem;
@@ -222,13 +233,13 @@ export const FileInput = styled.input`
 export const ProfileImg = styled.img`
   position: relative;
   pointer-events: none;
-  max-height: 5rem;
-  min-width: 5rem;
-  max-width: 5rem;
-  min-height: 100%;
+  max-height: 5.12rem;
+  min-width: 5.12rem;
+  max-width: 5.12rem;
+  min-height: 5.12rem;
   border-radius: 50%;
-  left: 0.2rem;
   z-index: 10;
+  object-fit: cover;
 `;
 export const BallDiv = styled.div`
   width: 22px;
@@ -733,6 +744,16 @@ export const ButtonSave = styled.button`
   border-radius: 5px;
   width: 100px;
   border: none;
+
+  :hover {
+    transform: scale(1.02, 1.02);
+    opacity: 0.9;
+  }
+`;
+
+export const ButtonSaveDoubleCheck = styled(ButtonSave)`
+  background-color: #cccccc;
+  color: #666666;
 `;
 
 export const ContainerCountryType = styled.div`

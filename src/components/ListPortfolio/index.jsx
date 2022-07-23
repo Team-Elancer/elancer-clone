@@ -99,7 +99,7 @@ const ListPortfolio = ({ Datas }) => {
               <S.FirstDiv>
                 <S.HeartBackDiv>
                   <S.HeartDiv>
-                    <IoMdHeartEmpty size="100%" />
+                    <IoMdHeartEmpty size="100%" onClick={() => keepProject(item.projectNum)} />
                   </S.HeartDiv>
                 </S.HeartBackDiv>
                 <S.EcardUlTag>
