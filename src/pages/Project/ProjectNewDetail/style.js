@@ -181,11 +181,35 @@ export const FreelancerLi = styled.li`
   border-radius: 50%;
   font-size: 1.2rem;
   margin-top: 0.5rem;
+  overflow: hidden;
   @media ${TABLET} {
     width: 6rem;
     height: 6rem;
     font-size: 1.6rem;
     margin-top: 0.7rem;
+  }
+  @media ${LAPTOP} {
+    font-size: 1rem;
+  }
+`;
+export const ProfileDiv = styled.div`
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media ${TABLET} {
+    width: 4rem;
+    height: 4rem;
+  }
+  @media ${LAPTOP} {
+  }
+`;
+export const ProfileImg = styled.img`
+  width: 3rem;
+  @media ${TABLET} {
+    width: 4rem;
   }
   @media ${LAPTOP} {
   }

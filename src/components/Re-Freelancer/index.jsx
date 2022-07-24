@@ -23,9 +23,11 @@ const ReFreelancer = () => {
   const [heartBool, setHeartBool] = useState(true);
   const navigate = useNavigate();
 
+  console.log(Datas);
+
   const fetchData = async () => {
     try {
-      if (window.localStorage.accessToken) {
+      if (window.localStorage.memberType === '"ENTERPRISE"') {
         const res = await CLIENT_FREELANCER(`/freelancers`);
         const data = await res.data;
         setDatas(data);

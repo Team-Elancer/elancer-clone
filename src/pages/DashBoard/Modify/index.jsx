@@ -22,6 +22,18 @@ const DashBoardModify = () => {
   const [workCodes, setWorkCodes] = useState([]);
   const [workEtc, setWorkEtc] = useState('');
 
+  const [BusinessRegistration, setBusinessRegistration] = useState('');
+  const decodeRegistration = decodeURI(BusinessRegistration);
+  const RegistrationName = decodeRegistration.split('/')[3];
+
+  const [CareerImg, setCareerImg] = useState('');
+  const decodeCareerImg = decodeURI(CareerImg);
+  const careerImgName = decodeCareerImg.split('/')[3];
+
+  const [PortFoiloImg, setPortFoiloImg] = useState('');
+  const decodePortFoiloImg = decodeURI(PortFoiloImg);
+  const portFoiloImgName = decodePortFoiloImg.split('/')[3];
+
   const [businessArray, setBusinessArray] = useState([
     { mobileRight: '3rem', lapRight: '8rem', type: '웹개발', value: 'main_biz1' },
     { mobileRight: '3rem', lapRight: '7rem', type: '솔루션개발', value: 'main_biz3' },
@@ -55,8 +67,6 @@ const DashBoardModify = () => {
     { mobileRight: '2.1rem', lapRight: '7rem', type: '블록체인', value: 'sub_biz22' },
     { mobileRight: '1rem', lapRight: '1rem', type: '기타', value: 'sub_biz23' },
   ]);
-
-  console.log(bizCodes, workCodes);
 
   const changeMainEtc = (e) => {
     setBusinessEtc(e.target.value);
@@ -113,6 +123,9 @@ const DashBoardModify = () => {
         mainEtc: businessEtc,
         subBizCodes: workCodes,
         subEtc: workEtc,
+        bizRegistration: BusinessRegistration,
+        careerStatementPath: CareerImg,
+        portfolioPath: PortFoiloImg,
       },
     })
       .then((res) => {
@@ -123,19 +136,101 @@ const DashBoardModify = () => {
         setCheck(!check);
       });
   };
-  console.log(Datas);
+
+  const changeRegistration = (e) => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const Header = { 'Content-Type': 'multipart/form-data' };
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        setBusinessRegistration(res.data.filePath);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const changeCareerImg = (e) => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const Header = { 'Content-Type': 'multipart/form-data' };
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        setCareerImg(res.data.filePath);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const changePortFoiloImg = (e) => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const Header = { 'Content-Type': 'multipart/form-data' };
+
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/file/upload`,
+      header: Header,
+      data: formData,
+    })
+      .then((res) => {
+        setPortFoiloImg(res.data.filePath);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  console.log(BusinessRegistration);
 
   useEffect(() => {
     setaxiosUrl('/enterprise/profile');
     if (Datas) {
-      setBusinessTitle(Datas.introTitle);
-      setBusiness(Datas.bizContents);
-      setBusinessSale(Number(Datas.sales));
-      setBusinessNumber(Datas.idNumber);
-      setBizCodes(Datas.mainBizCodes);
-      setBusinessEtc(Datas.mainEtc);
-      setWorkCodes(Datas.subBizCodes);
-      setWorkEtc(Datas.subEtc);
+      setBusinessTitle(Datas?.introTitle);
+      setBusiness(Datas?.bizContents);
+      setBusinessSale(Number(Datas?.sales));
+      setBusinessNumber(Datas?.idNumber);
+      setBizCodes(Datas?.mainBizCodes);
+      setBusinessEtc(Datas?.mainEtc);
+      setWorkCodes(Datas?.subBizCodes);
+      setWorkEtc(Datas?.subEtc);
+      setBusinessRegistration(Datas?.bizRegistration);
+      setCareerImg(Datas?.careerStatementPath);
+      setPortFoiloImg(Datas?.portfolioPath);
     }
   }, [Datas, axiosUrl]);
 
@@ -230,10 +325,29 @@ const DashBoardModify = () => {
                   left="13rem"
                   laptopTop="0.8rem"
                   laptopLeft="40rem"
+                  onClick={() => {
+                    setBusinessRegistration('');
+                  }}
                 />
-                <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="32.2rem" placeholder="사업자등록증" />
+                <a href={BusinessRegistration}>
+                  <S.InputTag
+                    Mobilesize="15.5rem"
+                    size="8rem"
+                    laptopSize="32.2rem"
+                    placeholder={RegistrationName || '사업자등록증'}
+                  />
+                </a>
                 <S.BlacSpan>
-                  <S.FileInput type="file" width="85px" height="35px" left="0" top="0" />
+                  <S.FileInput
+                    type="file"
+                    width="85px"
+                    height="35px"
+                    left="0"
+                    top="0"
+                    onChange={(e) => {
+                      changeRegistration(e);
+                    }}
+                  />
                   파일 등록
                 </S.BlacSpan>
               </S.BlockDiv>
@@ -318,15 +432,28 @@ const DashBoardModify = () => {
                   경력기술서
                 </S.SpanTag>
               </div>
-              <S.CancelImg src={Cancel} alt="cancel" top="1.8rem" left="22rem" laptopTop="0.8rem" laptopLeft="31rem" />
-              <S.InputTag size="14.5rem" laptopSize="25rem" placeholder="팀 소개서" />
+              <S.CancelImg
+                src={Cancel}
+                alt="cancel"
+                top="1.8rem"
+                left="22rem"
+                laptopTop="0.8rem"
+                laptopLeft="31rem"
+                onClick={() => {
+                  setCareerImg('');
+                }}
+              />
+              <S.InputTag size="14.5rem" laptopSize="25rem" placeholder={careerImgName || '팀소개서'} />
               <S.MarginTopDiv>
-                <S.BlacSpan margiRight="0.5rem">
-                  <S.FileInput type="file" width="105px" height="45px" left="0.1rem" top="-0.3rem" />
-                  양식 다운로드
-                </S.BlacSpan>
                 <S.BlacSpan>
-                  <S.FileInput type="file" width="65px" height="35px" left="0.1rem" top="-0.3rem" />
+                  <S.FileInput
+                    type="file"
+                    width="65px"
+                    height="35px"
+                    left="0.1rem"
+                    top="-0.3rem"
+                    onChange={(e) => changeCareerImg(e)}
+                  />
                   업로드
                 </S.BlacSpan>
               </S.MarginTopDiv>
@@ -341,11 +468,28 @@ const DashBoardModify = () => {
                   포트폴리오
                 </S.SpanTag>
               </div>
-              <S.CancelImg src={Cancel} alt="cancel" top="1.8rem" left="22rem" laptopTop="0.8rem" laptopLeft="31rem" />
-              <S.InputTag size="14.5rem" laptopSize="25rem" placeholder="팀 포트폴리오" />
+              <S.CancelImg
+                src={Cancel}
+                alt="cancel"
+                top="1.8rem"
+                left="22rem"
+                laptopTop="0.8rem"
+                laptopLeft="31rem"
+                onClick={() => setPortFoiloImg('')}
+              />
+              <S.InputTag size="14.5rem" laptopSize="25rem" placeholder={portFoiloImgName || '팀 포트폴리오'} />
               <S.MarginTopDiv>
                 <S.BlacSpan>
-                  <S.FileInput type="file" width="65px" height="35px" left="0.1rem" top="-0.3rem" />
+                  <S.FileInput
+                    type="file"
+                    width="65px"
+                    height="35px"
+                    left="0.1rem"
+                    top="-0.3rem"
+                    onChange={(e) => {
+                      changePortFoiloImg(e);
+                    }}
+                  />
                   업로드
                 </S.BlacSpan>
               </S.MarginTopDiv>
