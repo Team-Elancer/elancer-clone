@@ -24,6 +24,8 @@ const Login = () => {
   const [userPassword, setUserPassword] = useState('');
   const [loginFail, setLoginFail] = useState('');
 
+  const CLIENT_ID = '428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com';
+
   const idChange = (e) => {
     setId(e.target.value);
   };
@@ -65,10 +67,15 @@ const Login = () => {
       });
   };
 
-  const login = () => {
+  const LogInGoogle = () => {
+    console.log('google test');
+
     document.location.assign(
-      `https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=${BaseUrl}/login/google`,
+      `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=code&approval_prompt=force&access_type=offline&scope=email%20profile&redirect_uri=${BaseUrl}/login/google`,
     );
+
+    const queryString = window.location.search;
+    console.log(queryString);
   };
 
   // const googleSuccess = async (a) => {
@@ -143,6 +150,7 @@ const Login = () => {
           </S.AlignCenter>
           <S.MarginAuto>
             <S.CenterDiv>
+              {/* ============= 일반 로그인 ============= */}
               <S.SpanTag>
                 <S.LoginButton
                   border="#f16300"
@@ -158,6 +166,8 @@ const Login = () => {
                   {/* </a> */}
                 </S.LoginButton>
               </S.SpanTag>
+
+              {/* ============= Google 로그인 ============= */}
               <S.SpanTag>
                 <S.LoginButton
                   border="#f16300"
@@ -166,7 +176,7 @@ const Login = () => {
                   mobileColor="#f16300"
                   tabletColor="white"
                   content="center"
-                  onClick={login}
+                  onClick={LogInGoogle}
                 >
                   {/* <GoogleLogin
                   clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
