@@ -99,10 +99,11 @@ const ProjectNewDetail = () => {
       },
     })
       .then((res) => {
+        console.log(res);
         alert('지원이 완료되었습니다.');
       })
       .catch((err) => {
-        alert(err.message);
+        alert(err.response.data.errorMessage);
       });
   };
 

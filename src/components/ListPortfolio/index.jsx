@@ -80,7 +80,7 @@ const ListPortfolio = ({ Datas }) => {
           window.location.reload();
         })
         .catch((err) => {
-          alert(err.message);
+          console.log(err);
         });
     } else {
       alert('프리랜서 아이디로 로그인하세요.');
