@@ -94,6 +94,7 @@ export const InputTag = styled.input`
   color: #707070;
   width: ${(props) => props.Mobilesize};
   border-bottom: 1px solid #c4c4c4;
+  cursor: pointer;
   &::placeholder {
     font-size: 1.125rem;
     font-weight: 600;

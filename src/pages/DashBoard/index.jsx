@@ -27,16 +27,16 @@ const Dashboard = () => {
           window.localStorage.setItem('refreshToken', res.data.refreshToken);
           console.log('이상무');
         }
+        if (res.data.code === '402') {
+          window.localStorage.clear();
+          alert('다시 로그인해주세요.');
+          navi('/login');
+        }
         const data = await res.data;
         setDatas(data);
       }
     } catch (error) {
-      if (error.message === 'Request failed with status code 500') {
-        window.localStorage.clear();
-        alert('다시 로그인해주세요.');
-        navi('/login');
-      }
-      console.log(error.message);
+      console.log(error.response.data.errorMessage);
     }
   };
 

@@ -120,6 +120,8 @@ const ProjectNewDetail = () => {
     }
   }, [Datas]);
 
+  console.log(Datas);
+
   return (
     <S.Container>
       <S.ImgDiv>
@@ -173,10 +175,18 @@ const ProjectNewDetail = () => {
           <S.FreelancerUl>
             {Datas.simpleFreelancerList && Datas.simpleFreelancerList.length > 0 ? (
               Datas.simpleFreelancerList.map((data) => {
-                return <S.FreelancerLi key={uuidv4()}>{data.username}</S.FreelancerLi>;
+                return (
+                  <S.FreelancerLi key={uuidv4()}>
+                    {data?.thumbnailUrl !== null ? (
+                      <S.ProfileImg src={data?.thumbnailUrl} alt="profileimg" />
+                    ) : (
+                      <S.ProfileDiv>{data.username}</S.ProfileDiv>
+                    )}
+                  </S.FreelancerLi>
+                );
               })
             ) : (
-              <S.FreelancerLi>가장먼저 참여자가 되보세요.</S.FreelancerLi>
+              <h1>가장먼저 참여자가 되보세요.</h1>
             )}
           </S.FreelancerUl>
           <ReProject color="white" title="스마트 프로젝트 추천" />

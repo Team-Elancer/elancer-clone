@@ -303,7 +303,7 @@ const DashboardProjectAdd = () => {
               type="file"
               width="110px"
               height="35px"
-              laptopTop="45px"
+              laptopTop="5px"
               left="0.1rem"
               top="0"
               onChange={changeLogoImg}
