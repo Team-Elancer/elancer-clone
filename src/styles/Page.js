@@ -23,11 +23,12 @@ export const ContainerFrame = styled.div`
 `;
 
 export const FrameList = styled.div`
-  width: 100%;
+  width: 360px;
   max-width: 64rem;
+  margin: auto;
 
   @media ${TABLET} {
-    width: 100%;
+    width: 840px;
     max-width: 55rem;
     margin: 0 auto;
   }

@@ -197,8 +197,8 @@ const MyBoardAccount = () => {
       })
       .catch((err) => {
         console.log(err.message);
-        if (newData) alert('필드값 PUT 에러.');
-        // window.location.reload();
+        if (newData) alert('Error. 다시 작성하세요.');
+        window.location.reload();
       });
   };
 
