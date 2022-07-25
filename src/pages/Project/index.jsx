@@ -6,10 +6,8 @@ import Logo from 'assets/images/logo_white.png';
 import GridBottom from 'components/Modal/GridBottom';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-import CompanyHeader from 'layouts/Header/Company';
-import FreelancerHeader from 'layouts/Header/Freelancer';
 
-import { MOBILE, TABLET, LAPTOP, DESKTOP } from 'utils/constants/responsive';
+import { TABLET, LAPTOP } from 'utils/constants/responsive';
 
 const Project = () => {
   return (
