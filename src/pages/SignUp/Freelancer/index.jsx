@@ -123,14 +123,16 @@ const SignUpFreeLancer = () => {
             window.localStorage.setItem('accessToken', res.data.accessToken);
             window.localStorage.setItem('refreshToken', res.data.refreshToken);
             window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
+            window.localStorage.setItem('name', JSON.stringify(name));
+            window.localStorage.setItem('id', JSON.stringify(id));
           })
           .catch((err) => {
             console.log(err.message);
             navi('/login');
           });
         alert('생성이 완료되었습니다.');
-        window.location.reload();
         navi('/signup/finish');
+        window.location.reload();
       })
       .catch((err) => {
         return alert('별표시가 있는곳은 모두 입력해주세요.');
