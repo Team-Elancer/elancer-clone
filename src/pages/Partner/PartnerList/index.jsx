@@ -191,6 +191,8 @@ const ListPartner = () => {
             setHeartBool={setHeartBool}
             lastComponent={lastComponent}
           />
+
+          {/*  ======= infinite scroll =======  */}
           {isLoading && <Loader />}
         </S.FrameList>
       </S.ContainerFrame>
