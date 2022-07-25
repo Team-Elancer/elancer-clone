@@ -40,7 +40,7 @@ export const MobilePhoto = styled.div`
 export const ProfileMobileImg = styled.img`
   width: 100%;
   padding: 0.5rem 0 0 0;
-  z-index: 99;
+  z-index: 98;
   height: 100%;
   opacity: 0.6;
   background-color: none;

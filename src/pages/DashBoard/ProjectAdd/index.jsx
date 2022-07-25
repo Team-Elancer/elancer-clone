@@ -681,19 +681,6 @@ const DashboardProjectAdd = () => {
               </S.InputDiv>
             </S.FlexDiv>
             <S.BorderDiv />
-            <S.InputDiv>
-              <S.BlockDiv>
-                <div>
-                  <S.SpanTag right="2rem">요구사항 정의서</S.SpanTag>
-                </div>
-                <S.CancelImg src={Cancel} alt="cancel" />
-                <S.InputTag Mobilesize="15.5rem" size="8rem" laptopSize="13.2rem" placeholder="사업자등록증" />
-                <S.BlacSpan>
-                  <S.FileInput type="file" width="110px" height="35px" laptopTop="0" left="0.1rem" top="0" />
-                  파일 등록
-                </S.BlacSpan>
-              </S.BlockDiv>
-            </S.InputDiv>
           </S.MarginAutoDiv>
         </S.ColorDiv>
         <S.FlexDiv flex="flex">

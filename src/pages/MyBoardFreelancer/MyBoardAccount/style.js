@@ -135,7 +135,7 @@ export const MobilePhoto = styled.div`
   background-image: linear-gradient(to bottom, white 0%, #a5a5a5 100%);
   opacity: 0.5;
   position: relative;
-  z-index: 99;
+  z-index: 98;
   cursor: none;
   @media ${TABLET} {
     display: none;
@@ -146,7 +146,7 @@ export const ProfileMobileImg = styled.img`
   padding: 0.5rem 0 0 0;
   opacity: 1;
   max-height: 13.5rem;
-  z-index: 99;
+  z-index: 98;
 `;
 export const CameraImg = styled.img`
   position: absolute;
@@ -200,7 +200,7 @@ export const ProfileImgDiv = styled.div`
     border: 5px solid #eb6100;
     border-radius: 50%;
     left: 38rem;
-    z-index: 99;
+    z-index: 98;
     height: 6rem;
     width: 6rem;
     cursor: pointer;
@@ -228,6 +228,10 @@ export const FileInput = styled.input`
   left: 0;
   border-radius: 50%;
   cursor: pointer;
+  @media ${LAPTOP} {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
 `;
 
 export const ProfileImg = styled.img`
@@ -249,7 +253,7 @@ export const BallDiv = styled.div`
   position: absolute;
   top: 3.7rem;
   left: 4rem;
-  z-index: 99;
+  z-index: 98;
 `;
 
 export const SubmitDiv = styled.div`

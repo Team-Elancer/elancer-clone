@@ -111,6 +111,7 @@ export const BackImg = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url(${(props) => props.url});
+  background-position: center;
   cursor: pointer;
   @media ${LAPTOP} {
     border-bottom-left-radius: 10px;
