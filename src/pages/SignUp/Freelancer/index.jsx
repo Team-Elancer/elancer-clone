@@ -132,7 +132,6 @@ const SignUpFreeLancer = () => {
           });
         alert('생성이 완료되었습니다.');
         navi('/signup/finish');
-        window.location.reload();
       })
       .catch((err) => {
         return alert('별표시가 있는곳은 모두 입력해주세요.');

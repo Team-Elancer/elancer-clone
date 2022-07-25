@@ -33,7 +33,7 @@ export const MobilePhoto = styled.div`
   background-image: linear-gradient(to bottom, white 0%, #a5a5a5 100%);
   opacity: 0.5;
   position: relative;
-  z-index: 99;
+  z-index: 98;
   cursor: none;
   @media ${TABLET} {
     display: none;
@@ -44,7 +44,7 @@ export const ProfileMobileImg = styled.img`
   padding: 0.5rem 0 0 0;
   opacity: 1;
   max-height: 13.5rem;
-  z-index: 99;
+  z-index: 98;
 `;
 export const CameraImg = styled.img`
   position: absolute;

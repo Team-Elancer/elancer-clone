@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 
+import google from 'assets/images/google.png';
 import naver from 'assets/images/naver.png';
 
 import MenuBar from 'components/MenuBar';
@@ -166,24 +167,23 @@ const Login = () => {
 
               {/* ============= Google 로그인 ============= */}
               <S.SpanTag>
-                <S.LoginButton
-                  border="#f16300"
-                  mobileBg="white"
-                  tabletBg="#f16300"
-                  mobileColor="#f16300"
-                  tabletColor="white"
-                  content="center"
-                  onClick={LogInGoogle}
-                >
-                  {/* <GoogleLogin
-                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={googleSuccess}
-                  onFailure={googleFail}
-                  cookiePolicy="single_host_origin"
-                /> */}
-                  로그인
-                </S.LoginButton>
+                <a href="https://nid.naver.com/nidlogin.login">
+                  <S.LoginButton
+                    border="white"
+                    mobileBg="white"
+                    tabletBg="white"
+                    mobileColor="black"
+                    tabletColor="black"
+                    content="start"
+                  >
+                    <S.Icon>
+                      <S.NaverImg src={google} alt="google" />
+                    </S.Icon>
+                    <S.TextSpan mobilePadding="7.5rem" tabletPadding="3.5rem" laptoppadding="4.5rem">
+                      구글 간편 로그인
+                    </S.TextSpan>
+                  </S.LoginButton>
+                </a>
               </S.SpanTag>
               <S.SpanTag>
                 <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">
