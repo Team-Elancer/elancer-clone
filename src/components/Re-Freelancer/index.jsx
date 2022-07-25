@@ -14,6 +14,7 @@ import SkeletonReProject from 'components/Skeleton/ReProject';
 import useConfrim from 'hooks/useConfirm';
 
 import useFetchRefreshToken from 'hooks/useFetchRefreshToken';
+
 import { BaseUrl, FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
 
 const ReFreelancer = () => {
@@ -21,9 +22,6 @@ const ReFreelancer = () => {
 
   const [Datas, setDatas] = useState('');
   const [heartBool, setHeartBool] = useState(true);
-  const navigate = useNavigate();
-
-  console.log(Datas);
 
   const fetchData = async () => {
     try {

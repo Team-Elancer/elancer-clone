@@ -86,6 +86,7 @@ const PartnerDetail = () => {
           <S.ContainerFrame>
             <S.FrameList>
               <S.FreelancerTitle>{securedName}</S.FreelancerTitle>
+              <S.FontSmall style={{ marginTop: '1rem' }}>{introduceContent}</S.FontSmall>
               <SectionWrapper>
                 <S.ContainerFreelancer>
                   <div>
@@ -151,10 +152,11 @@ const PartnerDetail = () => {
                 </S.ContainerEcardProfile>
               </SectionWrapper>
               <SectionWrapper>
-                <S.FontSmall>소개</S.FontSmall>
-                <S.FontSmall style={{ marginTop: '1rem' }}>
-                  {positionTypeDescription} {securedName}
+                <S.FontSmall>
+                  소개: {positionTypeDescription} {securedName}
                 </S.FontSmall>
+                <S.FontSmall style={{ marginTop: '1rem' }}> About Me: {introduceContent}</S.FontSmall>
+                <S.FontSmall style={{ marginTop: '1rem' }}> URL: {introduceVideoUrl}</S.FontSmall>
               </SectionWrapper>
               <SectionWrapper>
                 <PartnerResume freelanerDetail={freelanerDetail} />

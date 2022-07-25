@@ -33,7 +33,13 @@ const PartnerResume = ({ freelanerDetail }) => {
               projectStartDate,
               projectEndDate,
               responsibilityTask,
-              developEnvironment: { developEnvironmentLanguage, developEnvironmentDBName },
+              developEnvironment: {
+                developEnvironmentLanguage,
+                developEnvironmentDBName,
+                developEnvironmentTool,
+                developEnvironmentOS,
+                developEnvironmentCommunication,
+              },
             },
             index,
           ) => (
@@ -41,10 +47,10 @@ const PartnerResume = ({ freelanerDetail }) => {
               <S.EcardProject>
                 <S.EcardProjectIndustry>{developRole}</S.EcardProjectIndustry>
                 <S.EcardProjectTitle> {projectTitle} </S.EcardProjectTitle>
-                <S.ProjectDuration>
+                <S.ProjectDuration style={{ marginTop: '1rem' }}>
                   {projectStartDate} ~ {projectEndDate} | 기여 100%
                 </S.ProjectDuration>
-                <S.EcardProjectContent>{responsibilityTask}</S.EcardProjectContent>
+                <S.EcardProjectContent style={{ marginTop: '1rem' }}>{responsibilityTask}</S.EcardProjectContent>
                 <S.ContainerStacks>
                   <S.LanguageStackBtn backgroundColor="rgba(255, 107, 107, 1)">
                     언어: {developEnvironmentLanguage}
@@ -53,10 +59,10 @@ const PartnerResume = ({ freelanerDetail }) => {
                     DB: {developEnvironmentDBName}
                   </S.LanguageStackBtn>
                   <S.LanguageStackBtn backgroundColor="rgba(60, 60, 60, 1)">
-                    TOOL: {developEnvironmentDBName}
+                    TOOL: {developEnvironmentTool}
                   </S.LanguageStackBtn>
                   <S.LanguageStackBtn backgroundColor="rgba(60, 60, 60, 1)">
-                    통신: {developEnvironmentDBName}
+                    통신: {developEnvironmentCommunication}
                   </S.LanguageStackBtn>
                 </S.ContainerStacks>
               </S.EcardProject>
