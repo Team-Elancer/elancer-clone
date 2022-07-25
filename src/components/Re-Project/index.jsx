@@ -102,8 +102,6 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   }, []);
 
   const keepProject = (id) => {
-    console.log(id);
-    console.log(member);
     if (token && member === '"FREELANCER"') {
       axios({
         method: 'POST',
@@ -117,7 +115,6 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
         },
       })
         .then((res) => {
-          console.log(res);
           alert('찜 성공! -> 마이보드 계정에서 확인하세요');
           window.location.reload();
         })
@@ -130,8 +127,6 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
   };
 
   const deleteProject = (id) => {
-    console.log(id);
-    console.log(member);
     if (token && member === '"FREELANCER"') {
       axios({
         method: 'DELETE',
@@ -145,7 +140,6 @@ const ReProject = ({ color = 'black', title = '추천 프로젝트' }) => {
         },
       })
         .then((res) => {
-          console.log(res);
           alert('해제 되었습니다.');
           window.location.reload();
         })

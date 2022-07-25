@@ -23,11 +23,9 @@ const CompanyDashBoard = ({
     try {
       const res = await CLIENT_FREELANCER('/enterprise-profile');
       if (res.data.code === '401') {
-        console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
         const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
         window.localStorage.setItem('accessToken', res.data.accessToken);
         window.localStorage.setItem('refreshToken', res.data.refreshToken);
-        console.log('이상무');
       }
       const data = await res.data;
       setData(data);
@@ -37,7 +35,6 @@ const CompanyDashBoard = ({
         alert('다시 로그인해주세요.');
         navi('/login');
       }
-      console.log(error.message);
     }
   };
 

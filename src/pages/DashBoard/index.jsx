@@ -21,11 +21,9 @@ const Dashboard = () => {
       if (axiosUrl) {
         const res = await CLIENT_FREELANCER(axiosUrl);
         if (res.data.code === '401') {
-          console.log('이슈', window.localStorage.accessToken, window.localStorage.refreshToken);
           const res = await CLIENT_FREELANCER_GET_REFRESHTOKEN('/reissue');
           window.localStorage.setItem('accessToken', res.data.accessToken);
           window.localStorage.setItem('refreshToken', res.data.refreshToken);
-          console.log('이상무');
         }
         if (res.data.code === '402') {
           window.localStorage.clear();

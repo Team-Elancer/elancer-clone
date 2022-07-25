@@ -12,8 +12,6 @@ const ContactModal = ({ setModalBool, index, setReLoading }) => {
     setModalBool(false);
   });
 
-  console.log(index);
-
   const [userData, setUserData] = useState('');
 
   const fetchData = async () => {

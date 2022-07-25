@@ -92,7 +92,7 @@ const ListProject = () => {
       try {
         if (token && member === '"FREELANCER"') {
           const { data } = await CLIENT_FREELANCER(URL);
-          console.log(data);
+
           setDatas(data.projectBoxResponses);
           setCheckpage(data.hasNext);
           setLoading(false);
@@ -101,7 +101,6 @@ const ListProject = () => {
 
         if (!token || member === '"ENTERPRISE"') {
           const { data } = await FILTERED_DATA(URL);
-          console.log(data);
 
           setDatas(data.projectBoxResponses);
           setCheckpage(data.hasNext);
@@ -116,7 +115,6 @@ const ListProject = () => {
       try {
         if (token && member === '"FREELANCER"') {
           const { data } = await CLIENT_FREELANCER(URL);
-          console.log(data);
 
           setDatas(data.projectBoxResponses);
           setCheckpage(data.hasNext);

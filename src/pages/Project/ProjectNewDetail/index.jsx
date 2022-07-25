@@ -12,7 +12,7 @@ import ProjectButton from 'components/Button/ProjectButton';
 import ProjectDetailModal from 'components/Modal/ProjectDetail';
 import ShareModal from 'components/Modal/Share';
 import ReProject from 'components/Re-Project';
-import { FILTERED_DATA, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN, BaseUrl } from 'utils/config/api';
+import { FILTERED_DATA, BaseUrl } from 'utils/config/api';
 
 const ProjectNewDetail = () => {
   const navi = useNavigate();
@@ -23,8 +23,6 @@ const ProjectNewDetail = () => {
   const [Datas, setDatas] = useState('');
   const [shareModal, setShareModal] = useState(true);
   const [detailAddress, setDetailAddress] = useState('');
-
-  console.log(Datas);
 
   const workmanShipSwitch = (item) => {
     switch (item) {
@@ -99,7 +97,6 @@ const ProjectNewDetail = () => {
       },
     })
       .then((res) => {
-        console.log(res);
         alert('지원이 완료되었습니다.');
       })
       .catch((err) => {

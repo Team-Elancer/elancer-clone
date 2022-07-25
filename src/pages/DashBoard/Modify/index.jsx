@@ -215,8 +215,6 @@ const DashBoardModify = () => {
       });
   };
 
-  console.log(BusinessRegistration);
-
   useEffect(() => {
     setaxiosUrl('/enterprise/profile');
     if (Datas) {

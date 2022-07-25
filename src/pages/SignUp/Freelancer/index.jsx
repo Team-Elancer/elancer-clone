@@ -120,7 +120,6 @@ const SignUpFreeLancer = () => {
           },
         })
           .then((res) => {
-            console.log('완료');
             window.localStorage.setItem('accessToken', res.data.accessToken);
             window.localStorage.setItem('refreshToken', res.data.refreshToken);
             window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
@@ -139,7 +138,6 @@ const SignUpFreeLancer = () => {
   };
 
   useEffect(() => {
-    console.log(selectedDate);
     if (eyeCheck === true) {
       setFirsEyeImg(CloseEye);
       setPwType('password');

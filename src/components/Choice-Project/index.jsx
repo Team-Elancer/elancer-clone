@@ -35,7 +35,6 @@ const ChoiceProject = () => {
 
   useEffect(() => {
     changeTag();
-    console.log(choiceTag);
   }, [choiceTag]);
 
   return (

@@ -52,7 +52,6 @@ const SignUpCompany = () => {
           },
         })
           .then((res) => {
-            console.log('hello');
             window.localStorage.setItem('accessToken', res.data.accessToken);
             window.localStorage.setItem('refreshToken', res.data.refreshToken);
             window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));

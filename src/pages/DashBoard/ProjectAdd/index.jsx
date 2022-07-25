@@ -80,7 +80,6 @@ const DashboardProjectAdd = () => {
   };
 
   const changeBgColor = (e) => {
-    console.log(e.target);
     setBgColor(e.target.value);
     setLogoBgColor(e.target.id);
   };
@@ -148,7 +147,6 @@ const DashboardProjectAdd = () => {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
         setProjectLogo(res.data.filePath);
       })
       .catch((err) => {
@@ -158,7 +156,7 @@ const DashboardProjectAdd = () => {
 
   const PostProject = (e) => {
     e.preventDefault();
-    console.log(bgColor);
+
     axios({
       method: 'POST',
       url: `${BaseUrl}/project-save`,
@@ -220,10 +218,6 @@ const DashboardProjectAdd = () => {
       setComWebsite(Datas.website);
     }
   }, [Datas]);
-
-  useEffect(() => {
-    console.log(ProjectLogo);
-  }, []);
 
   return (
     <S.Container>

@@ -130,7 +130,7 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
 
   const deleteContact = (e) => {
     e.preventDefault();
-    console.log(index);
+
     const checkConfrim = window.confirm('해당 문의를 삭제하시겠습니까?');
     if (checkConfrim) {
       axios({

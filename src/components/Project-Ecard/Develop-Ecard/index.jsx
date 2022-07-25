@@ -13,8 +13,6 @@ import * as S from 'styles/Ecard';
 import { BaseUrl } from 'utils/config/api';
 
 const DevelopEcard = ({ Datas }) => {
-  console.log(Datas);
-
   const token = window.localStorage.accessToken;
   const member = window.localStorage.memberType;
 
@@ -78,7 +76,6 @@ const DevelopEcard = ({ Datas }) => {
         },
       })
         .then((res) => {
-          console.log(res);
           alert('찜 성공! -> 마이보드 계정에서 확인하세요');
           window.location.reload();
         })
@@ -103,7 +100,6 @@ const DevelopEcard = ({ Datas }) => {
         },
       })
         .then((res) => {
-          console.log(res);
           alert('해제 되었습니다.');
           window.location.reload();
         })
@@ -121,7 +117,6 @@ const DevelopEcard = ({ Datas }) => {
         <ProjectSkeleton />
       ) : (
         Datas.map((item) => {
-          console.log(item.projectNum);
           return (
             <S.EcardDiv key={uuidv4()}>
               <S.FirstDiv>

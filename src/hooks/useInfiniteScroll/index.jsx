@@ -14,8 +14,7 @@ const useInfiniteScroll = (pageNumber, BASE_URL) => {
       const { data } = await axios.get(BASE_URL, { params: { page: pageNumber } });
 
       setApiData((prev) => [...prev, ...data.freelancerSimpleResponseList.map((item) => item)]);
-      console.log(apiData);
-      // setHasMore(response.data.length > 0);
+
       setLoading(false);
     } catch (error) {
       setLoading(true);

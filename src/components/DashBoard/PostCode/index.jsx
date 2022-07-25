@@ -74,7 +74,6 @@ const PostCode = ({
             readOnly
             placeholder={placeAddress}
             onChange={(e) => {
-              console.log(placeAddress);
               if (placeAddress === e.target.value) {
                 setPlaceAddress(e.target.value);
               } else {

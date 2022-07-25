@@ -120,7 +120,6 @@ const MyBoardFreelancer = () => {
       if (data.code === '401' || data.code === '402' || data.code === '403') handleErrorCode(data);
 
       const fetchedData = await data;
-      console.log(fetchedData);
 
       if (fetchedData) {
         setProfileSimpleData(fetchedData);
@@ -164,7 +163,6 @@ const MyBoardFreelancer = () => {
 
       if (fetchedData) {
         setProfileETCData(fetchedData);
-        console.log(fetchedData);
       }
     } catch (err) {
       console.log(err);

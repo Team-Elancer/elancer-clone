@@ -27,10 +27,4 @@ const FilterButtonDark = () => {
   );
 };
 
-// const TopButtonDark = styled.div(TopButtonDark)`
-//   background: 'red';
-// `;
-
-// console.log(TopButtonDark);
-
 export default FilterButtonDark;
