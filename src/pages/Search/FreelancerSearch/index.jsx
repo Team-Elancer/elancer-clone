@@ -35,7 +35,6 @@ const FreelancerSearch = ({ searchValue }) => {
   // ============ Get default data  ============
   const getPositionLists = async () => {
     setIsLoading(true);
-
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
@@ -46,6 +45,7 @@ const FreelancerSearch = ({ searchValue }) => {
       setHasMore(hasNext);
       setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };
@@ -85,8 +85,7 @@ const FreelancerSearch = ({ searchValue }) => {
 
         {/* =======  ListFreelancer Component ======= */}
 
-        <ListFreelancer filteredPosition={filteredPosition} />
-        {isLoading && <Loader />}
+        {isLoading ? <Loader /> : <ListFreelancer filteredPosition={filteredPosition} />}
 
         {filteredPosition.length === 0 && (
           <S.TopLetterExtra style={{ borderBottom: '1px solid rgba(215,215,215,1)' }}>

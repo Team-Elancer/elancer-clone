@@ -24,15 +24,25 @@ export const Ultag = styled.ul`
   justify-content: space-between;
 `;
 export const Litag = styled.li`
+  cursor: pointer;
   text-align: center;
   color: #969696;
   margin: 6px auto;
+
+  &:hover {
+    color: rgba(213, 107, 45, 1);
+    font-weight: bold;
+  }
 `;
 export const Img = styled.img`
   width: 1.75rem;
   display: block;
   margin: 0 auto;
   padding-bottom: 5px;
+
+  &:hover {
+    color: rgba(213, 107, 45, 1);
+  }
 `;
 export const Spantag = styled.span`
   font-size: 0.5rem;
