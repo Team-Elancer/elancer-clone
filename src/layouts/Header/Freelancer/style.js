@@ -24,7 +24,7 @@ export const HeaderDiv = styled.div`
   padding: 2rem 0;
 
   @media ${TABLET} {
-    width: 730px;
+    width: 830px;
   }
 
   @media ${LAPTOP} {
