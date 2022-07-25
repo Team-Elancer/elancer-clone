@@ -154,6 +154,15 @@ const SignUpFreeLancer = () => {
     }
   }, [eyeCheck, eyeCheck2, selectedDate]);
 
+  useEffect(() => {
+    if (phoneNumber?.length === 10) {
+      setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+    }
+    if (phoneNumber?.length === 13) {
+      setPhoneNumber(phoneNumber.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+    }
+  }, [phoneNumber]);
+
   return (
     <form onSubmit={CreateWrite}>
       <InlineBlock h1="프리랜서 회원가입" text="회원정보" pages="2 / 3" />
@@ -329,8 +338,8 @@ const SignUpFreeLancer = () => {
                 size="14.5rem"
                 laptopSize="19rem"
                 placeholder="숫자만 입력"
-                type="number"
-                value={phoneNumber}
+                type="text"
+                value={phoneNumber || ''}
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
                 }}
