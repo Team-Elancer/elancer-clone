@@ -217,7 +217,6 @@ const Certificate = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })

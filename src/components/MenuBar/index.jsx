@@ -16,7 +16,6 @@ const MenuBar = ({ checkBool, setCeckBool }) => {
     if (timeOut > -26) {
       setCeckBool(true);
     }
-    console.log(timeOut);
   };
 
   const timeSet = () => {

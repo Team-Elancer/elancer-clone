@@ -75,7 +75,6 @@ const EtcEcard = ({ Datas }) => {
         },
       })
         .then((res) => {
-          console.log(res);
           alert('찜 성공! -> 마이보드 계정에서 확인하세요');
           window.location.reload();
         })
@@ -100,7 +99,6 @@ const EtcEcard = ({ Datas }) => {
         },
       })
         .then((res) => {
-          console.log(res);
           alert('해제 되었습니다.');
           window.location.reload();
         })

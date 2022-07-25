@@ -319,7 +319,6 @@ const SkillLists = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
@@ -337,8 +336,6 @@ const SkillLists = () => {
       etcSkill: publishingEtcSkill,
     };
 
-    console.log(newData);
-
     axios({
       url: `${BaseUrl}/freelancer-profile/publisher`,
       method: 'PUT',
@@ -349,7 +346,6 @@ const SkillLists = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
@@ -379,7 +375,6 @@ const SkillLists = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
@@ -397,8 +392,6 @@ const SkillLists = () => {
       etcField: plannerEtcField,
     };
 
-    console.log(newData);
-
     axios({
       url: `${BaseUrl}/freelancer-profile/planner`,
       method: 'PUT',
@@ -409,7 +402,6 @@ const SkillLists = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
@@ -427,8 +419,6 @@ const SkillLists = () => {
       positionEtcRole,
     };
 
-    console.log(newData);
-
     axios({
       url: `${BaseUrl}/freelancer-profile/etc`,
       method: 'PUT',
@@ -439,7 +429,6 @@ const SkillLists = () => {
       data: newData,
     })
       .then(() => {
-        console.log(newData);
         alert('정보를 수정했습니다.');
         window.location.reload();
       })

@@ -25,7 +25,6 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
   };
 
   const acceptInterview = (id) => {
-    console.log(id);
     axios({
       method: 'POST',
       url: `${BaseUrl}/accept-interview-project`,
@@ -37,7 +36,6 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
       },
     })
       .then((res) => {
-        console.log(res);
         alert('인터뷰 수락했습니다.');
         window.location.reload();
       })
@@ -47,7 +45,6 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
   };
 
   const removeLikes = (id) => {
-    console.log(id);
     axios({
       method: 'DELETE',
       url: `${BaseUrl}/wish-project`,
@@ -59,7 +56,6 @@ const FreelancerMyboard = ({ Datas, accept, remove }) => {
       },
     })
       .then((res) => {
-        console.log(res);
         alert('찜 해제 됐습니다.');
         window.location.reload();
       })

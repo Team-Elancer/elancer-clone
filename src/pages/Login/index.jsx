@@ -68,14 +68,11 @@ const Login = () => {
   };
 
   const LogInGoogle = () => {
-    console.log('google test');
-
     document.location.assign(
       `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=code&approval_prompt=force&access_type=offline&scope=email%20profile&redirect_uri=${BaseUrl}/login/google`,
     );
 
     const queryString = window.location.search;
-    console.log(queryString);
   };
 
   // const googleSuccess = async (a) => {

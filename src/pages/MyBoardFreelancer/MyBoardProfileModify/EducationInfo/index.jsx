@@ -81,7 +81,6 @@ const EducationInfo = () => {
       academicAbilityCoverRequests: userSchoolData,
     };
 
-    console.log(newData);
     axios({
       url: `${BaseUrl}/freelancer-profile/academic-ability`,
       method: 'PUT',

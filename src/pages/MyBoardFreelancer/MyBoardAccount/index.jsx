@@ -180,8 +180,6 @@ const MyBoardAccount = () => {
       hopeWorkCity,
     };
 
-    console.log('newData thumbnailPath', newData.thumbnailPath);
-
     axios({
       url: `${BaseUrl}/freelancer`,
       method: 'PUT',
@@ -193,7 +191,7 @@ const MyBoardAccount = () => {
     })
       .then(() => {
         setUserData(newData);
-        console.log(newData);
+
         alert('정보를 수정했습니다.');
         window.location.reload();
       })
@@ -216,9 +214,6 @@ const MyBoardAccount = () => {
 
     formData.append('file', file);
 
-    console.log(file);
-    console.log(formData);
-
     axios({
       method: 'POST',
       url: `${BaseUrl}/file/upload`,
@@ -227,7 +222,6 @@ const MyBoardAccount = () => {
       },
       data: formData,
     }).then((res) => {
-      console.log(res.data.filePath);
       setThumbnailPath(res.data.filePath);
     });
   };

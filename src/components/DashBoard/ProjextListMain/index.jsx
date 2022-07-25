@@ -47,7 +47,6 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
   const cancelProject = () => {
     const checkConfrim = window.confirm('삭제하시겠습니까?');
     if (checkConfrim) {
-      console.log(data.projectNum);
       axios({
         method: 'DELETE',
         url: `${BaseUrl}/project-delete`,

@@ -42,8 +42,6 @@ const FreelancerSearch = ({ searchValue }) => {
         data,
       } = await FILTERED_DATA(`/freelancers/search?searchKey=${searchValue}`);
 
-      console.log(data);
-
       setFilteredPosition([...freelancerSimpleResponseList]);
       setHasMore(hasNext);
       setIsLoading(false);

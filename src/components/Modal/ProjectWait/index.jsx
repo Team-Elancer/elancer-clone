@@ -56,8 +56,6 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
     window.scrollTo(0, 0);
   }, [Datas, newReloading]);
 
-  console.log(newArray);
-
   return (
     <S.Container ref={domNode}>
       <S.FlexDiv>

@@ -33,7 +33,7 @@ const ContactPutModal = ({ setReLoading, setPutModalBool, index, NumTitle, NumCo
 
   const SubmitContact = (e) => {
     e.preventDefault();
-    console.log(index, contactTitle, contactContent);
+
     axios({
       method: 'PUT',
       url: `${BaseUrl}/contact-cover`,
