@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
-const BoardCardSpan = ({ changeList, setChangeList }) => {
+const BoardCardSpan = ({ changeList, setChangeList, newReloading }) => {
   const [newDatas, setNewDatas] = useState('');
 
   const fetchData = async () => {
@@ -17,10 +17,10 @@ const BoardCardSpan = ({ changeList, setChangeList }) => {
   };
 
   useEffect(() => {
-    if (newDatas === '') {
+    if (newDatas === '' || newReloading === false) {
       fetchData();
     }
-  }, [newDatas]);
+  }, [newDatas, newReloading]);
 
   return (
     <S.OverFlowDiv>

@@ -25,24 +25,15 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
       setStatus('진행중 프로젝트');
       setStatusColor('#d56b2d');
     }
-    if (data.projectStatus === 'REGISTRATION' && data.waitFreelancerList.length > 0) {
+    if (data.projectStatus === 'REGISTRATION' && data?.waitFreelancerList?.length > 0) {
       setStatus('조율중 프로젝트');
       setStatusColor('#b57360');
     }
-    if (
-      data.waitFreelancerList &&
-      data.waitFreelancerList.length < 0 &&
-      data.interviewFreelancerList &&
-      data.interviewFreelancerList.length > 0
-    ) {
+    if (data?.waitFreelancerList?.length < 1 && data?.interviewFreelancerList?.length > 0) {
       setStatus('인터뷰요청 프로젝트');
       setStatusColor('#9f7985');
     }
-    if (
-      data.projectStatus === 'REGISTRATION' &&
-      data?.applyFreelancerList > 0 &&
-      data?.interviewFreelancerList.length < 1
-    ) {
+    if (data?.applyFreelancerList > 0 && data?.interviewFreelancerList.length < 1) {
       setStatus('지원현황 프로젝트');
       setStatusColor('#8a7fa4');
     }

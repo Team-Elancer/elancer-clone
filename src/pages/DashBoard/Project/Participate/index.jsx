@@ -5,7 +5,7 @@ import * as S from './style';
 import ProjectList from 'components/DashBoard/Project-List';
 import ProjectListSkeleton from 'components/Skeleton/Dashboard-ProjectList';
 
-const ProjectParticipate = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
+const ProjectParticipate = ({ Datas, setNewAxiosUrl, newAxiosUrl, setNewReloading }) => {
   const [newData, setNewData] = useState('');
   const [newDatas, setNewDatas] = useState('');
 
@@ -27,7 +27,14 @@ const ProjectParticipate = ({ Datas, setNewAxiosUrl, newAxiosUrl }) => {
       </S.H1>
       {newDatas ? (
         newDatas.map((data) => {
-          return <ProjectList data={data} key={data.projectName} status="지원현황 프로젝트" />;
+          return (
+            <ProjectList
+              data={data}
+              key={data.projectName}
+              setNewReloading={setNewReloading}
+              status="지원현황 프로젝트"
+            />
+          );
         })
       ) : (
         <ProjectListSkeleton />
