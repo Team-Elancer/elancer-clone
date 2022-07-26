@@ -75,7 +75,7 @@ export const FlexDiv = styled.div`
 `;
 
 export const TitleDiv = styled.div`
-  width: 85%;
+  width: 75%;
 `;
 
 export const H1 = styled.h1`
@@ -208,10 +208,15 @@ export const ProfileDiv = styled.div`
 `;
 export const ProfileImg = styled.img`
   width: 3rem;
+  height: 3rem;
+  border-radius: 70%;
   @media ${TABLET} {
+    width: 4rem;
     width: 4rem;
   }
   @media ${LAPTOP} {
+    width: 5rem;
+    height: 5rem;
   }
 `;
 export const SpanButton = styled.span`

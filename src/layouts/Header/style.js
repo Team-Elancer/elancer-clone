@@ -28,6 +28,10 @@ export const HeaderDiv = styled.div`
 `;
 export const Img = styled.img`
   width: 95px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   @media ${TABLET} {
     width: 187.78px;
   }

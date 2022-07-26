@@ -12,6 +12,8 @@ const DashBoardModify = () => {
 
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
+  console.log(Datas);
+
   const [businessTitle, setBusinessTitle] = useState('');
   const [business, setBusiness] = useState('');
   const [businessSale, setBusinessSale] = useState(0);
@@ -100,9 +102,8 @@ const DashBoardModify = () => {
     if (workCodes.filter((a) => a === e.target.id).length === 1) {
       setWorkCodes(workCodes.filter((element) => e.target.id !== element));
     }
-    if (workCodes.length > 3) {
+    if (workCodes.length > 2) {
       alert('최대3개만 선택이 가능합니다.');
-      setWorkCodes(workCodes.filter((element) => e.target.id !== element));
     }
   };
 
@@ -162,6 +163,8 @@ const DashBoardModify = () => {
         console.log(err.message);
       });
   };
+
+  console.log(bizCodes);
 
   const changeCareerImg = (e) => {
     const file = e.target.files[0];
