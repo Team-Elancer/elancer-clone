@@ -7,9 +7,6 @@ const SignUpFinish = () => {
   const memberName = JSON.parse(localStorage.getItem('name'));
   const memberID = JSON.parse(localStorage.getItem('id'));
 
-  console.log(memberName);
-  console.log(memberID);
-
   return (
     <>
       <InlineBlock h1="회원가입" text="회원선택" pages="3 / 3" />
@@ -19,10 +16,12 @@ const SignUpFinish = () => {
             함께 나눌수록 더욱 커지는 가치, <br />
             이랜서의 회원이 되신 것을 환영합니다!
           </S.H1>
+
           <S.Ptag>
             {memberName} ({memberID}) 님은 이랜서의 가족이 되었습니다. <br />
             이랜서가 열어가는 IT전문가 세상에서 회원님의 시간이 더욱 빛나길 바랍니다.
           </S.Ptag>
+
           <S.ButtonSizeDiv>
             <Link to={window.localStorage.memberType === '"ENTERPRISE"' ? '/enterprise' : '/freelancer'}>
               <SubmitButton text="둘러보기" heights="1rem" sides="3rem" />
