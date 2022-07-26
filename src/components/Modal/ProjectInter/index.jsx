@@ -15,6 +15,8 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
   const [checkedInterview, setCheckedInterview] = useState('');
   const [newArray, setNewArray] = useState([]);
 
+  console.log(Datas);
+
   const domNode = useCloseOutside(() => {
     setInterviewModal(true);
   });
@@ -31,6 +33,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
 
   const changeInterview = (e) => {
     const num = Number(e.target.id);
+    console.log(e.target);
     if (e.currentTarget.checked) {
       setCheckedInterview([...checkedInterview, num]);
     } else {
@@ -62,14 +65,13 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
           setNewReloading(false);
         })
         .catch((error) => {
-          alert(error.response.data.errorMessage);
-          console.log(error);
+          alert(error.errorMessage);
         });
     }
   };
 
-  const addWaitList = () => {
-    const newData = checkedInterview.join();
+  const addWaitList = (e) => {
+    const newData = checkedInterview?.join();
     axios({
       method: 'POST',
       url: `${BaseUrl}/wait-project`,
@@ -77,7 +79,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
         Authorization: `${window.localStorage.accessToken}`,
       },
       data: {
-        projectNum: Datas.projectNum,
+        projectNum: Datas?.projectNum,
         freelancerNum: newData,
       },
     })
@@ -86,13 +88,14 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
         setNewReloading(false);
       })
       .catch((error) => {
-        alert(error.response.data.errorMessage);
-        console.log(error);
+        alert('수락한 지원자만 투입이 가능합니다.');
+        console.log(error.errorMessage);
       });
   };
 
   const deleteInterview = () => {
     const newData = checkedInterview.join();
+
     axios({
       method: 'DELETE',
       url: `${BaseUrl}/reject-interview-project`,
@@ -109,7 +112,6 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
         setNewReloading(false);
       })
       .catch((err) => {
-        alert(err.response.data.errorMessage);
         console.log(err.message);
       });
   };
@@ -145,6 +147,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
                   name="applicant"
                   id={data.num}
                   value={data.num}
+                  checked={checkedInterview !== undefined && checkedInterview.includes(data.num) ? true : null}
                   onChange={(e) => changeInterview(e)}
                 />
                 <S.ViewBlock color={data.interviewStatus === 'WAITING' ? '#f2f2f2' : '#eb6100'}>
@@ -163,7 +166,7 @@ const ProjectInter = ({ setInterviewModal, Datas, newReloading, setNewReloading 
       <S.FirstSubmitDiv border="1px">
         <S.InfoPTag>※ 인터뷰 요청자 중 수락한 프리랜서에 대해서만, 경력기술서를 받아 보실 수 있습니다.</S.InfoPTag>
         <S.MobileButonDiv>
-          <S.Button onClick={addWaitList}>지원자 투입</S.Button>
+          <S.Button onClick={(e) => addWaitList(e)}>지원자 투입</S.Button>
           <S.PaddingLeftDiv>
             <S.Button onClick={deleteInterview}>인터뷰 취소</S.Button>
           </S.PaddingLeftDiv>

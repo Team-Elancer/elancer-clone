@@ -79,6 +79,7 @@ const ProjectWait = ({ setWaitModal, Datas, newReloading, setNewReloading }) => 
                   name="applicant"
                   id={data.num}
                   value={data.num}
+                  checked={checkedInterview !== undefined && checkedInterview.includes(data.num) ? true : null}
                   onChange={(e) => changeWait(e)}
                 />
                 <S.ViewBlock color="#b57360">투입</S.ViewBlock>

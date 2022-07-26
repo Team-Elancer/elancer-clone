@@ -23,6 +23,8 @@ const DashboardContact = () => {
   const [newArray, setNewArray] = useState([]);
   const [Datas, setDatas, axiosUrl, setaxiosUrl, fetchData] = useOutletContext();
 
+  console.log(Datas);
+
   useEffect(() => {
     setaxiosUrl('/contacts');
     setNewArray(Datas);
@@ -160,7 +162,7 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
       <S.FlexDiv>
         <S.DisplayFlexDiv>
           <S.NoAnwser>미답변</S.NoAnwser>
-          <S.TitleP>{ContactData.length > 1 ? title : ''}</S.TitleP>
+          <S.TitleP>{ContactData.length > 0 ? title : ''}</S.TitleP>
         </S.DisplayFlexDiv>
         <S.DisplayFlexDiv>
           <S.DateP>{Date}</S.DateP>
@@ -187,7 +189,7 @@ const MyContact = ({ ContactData, title, content, Date, index, setReLoading }) =
           )}
           <S.DisplayFlexDiv>
             <S.BlueSpan>[문의내용]</S.BlueSpan>
-            <S.TitleP>{ContactData.length > 1 ? content : ''}</S.TitleP>
+            <S.TitleP>{ContactData.length > 0 ? content : ''}</S.TitleP>
           </S.DisplayFlexDiv>
           <S.BorderDiv />
           <S.FlexEndDiv>

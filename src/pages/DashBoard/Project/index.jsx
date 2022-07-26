@@ -36,7 +36,12 @@ const DashBoardProject = () => {
           <S.LinkP>프로젝트 등록</S.LinkP>
         </Link>
       </S.SpacebetweenDiv>
-      <BoardCardSpan setChangeList={setChangeList} changeList={changeList} />
+      <BoardCardSpan
+        setChangeList={setChangeList}
+        changeList={changeList}
+        setNewReloading={setNewReloading}
+        newReloading={newReloading}
+      />
       {changeList === '' && (
         <ProjectMain
           Datas={newArray}
