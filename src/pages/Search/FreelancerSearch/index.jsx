@@ -38,7 +38,6 @@ const FreelancerSearch = ({ searchValue }) => {
     try {
       const {
         data: { freelancerSimpleResponseList, hasNext },
-        data,
       } = await FILTERED_DATA(`/freelancers/search?searchKey=${searchValue}`);
 
       setFilteredPosition([...freelancerSimpleResponseList]);
@@ -85,7 +84,9 @@ const FreelancerSearch = ({ searchValue }) => {
 
         {/* =======  ListFreelancer Component ======= */}
 
-        {isLoading ? <Loader /> : <ListFreelancer filteredPosition={filteredPosition} />}
+        <ListFreelancer filteredPosition={filteredPosition} />
+
+        {isLoading && <Loader />}
 
         {filteredPosition.length === 0 && (
           <S.TopLetterExtra style={{ borderBottom: '1px solid rgba(215,215,215,1)' }}>
