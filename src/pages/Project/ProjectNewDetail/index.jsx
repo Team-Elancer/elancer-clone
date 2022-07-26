@@ -79,29 +79,40 @@ const ProjectNewDetail = () => {
     setShareModal(false);
   };
 
-  const checkToken = () => {
+  const checkButton = () => {
     if (!token) {
-      navi('/login');
+      alert('프리랜서 회원으로 로그인후 사용이 가능합니다.');
     }
     if (member === '"ENTERPRISE"') {
       alert('기업회원은 해당 기능사용이 불가능합니다.');
     }
-    axios({
-      method: 'POST',
-      url: `${BaseUrl}/apply-project`,
-      headers: {
-        Authorization: `${window.localStorage.accessToken}`,
-      },
-      data: {
-        projectNum: id,
-      },
-    })
-      .then((res) => {
-        alert('지원이 완료되었습니다.');
+  };
+
+  const checkToken = () => {
+    if (!token) {
+      alert('프리랜서 회원으로 로그인후 사용이 가능합니다.');
+    }
+    if (member === '"ENTERPRISE"') {
+      alert('기업회원은 해당 기능사용이 불가능합니다.');
+    }
+    if (member === '"FREELANCER"') {
+      axios({
+        method: 'POST',
+        url: `${BaseUrl}/apply-project`,
+        headers: {
+          Authorization: `${window.localStorage.accessToken}`,
+        },
+        data: {
+          projectNum: id,
+        },
       })
-      .catch((err) => {
-        alert(err.response.data.errorMessage);
-      });
+        .then((res) => {
+          alert('지원이 완료되었습니다.');
+        })
+        .catch((err) => {
+          alert(err.response.data.errorMessage);
+        });
+    }
   };
 
   useEffect(() => {
@@ -116,8 +127,6 @@ const ProjectNewDetail = () => {
       setDetailAddress(newString);
     }
   }, [Datas]);
-
-  console.log(Datas);
 
   return (
     <S.Container>
@@ -188,13 +197,13 @@ const ProjectNewDetail = () => {
           </S.FreelancerUl>
           <ReProject color="white" title="스마트 프로젝트 추천" />
           <S.FlexDiv content="center" padding="3rem" tabletPadding="9rem">
-            <ProjectButton right="0.5rem" text="🤍프로젝트 찜" />
+            <ProjectButton right="0.5rem" text="🤍프로젝트 찜" checkToken={checkButton} />
             <ProjectButton text="프로젝트 공유" checkToken={changeShareModal} />
             {shareModal === false && <ShareModal setShareModal={setShareModal} />}
           </S.FlexDiv>
         </S.SizeDiv>
       </S.DetailDiv>
-      <ProjectDetailModal checkToken={checkToken} />
+      <ProjectDetailModal checkToken={checkToken} checkButton={checkButton} />
     </S.Container>
   );
 };

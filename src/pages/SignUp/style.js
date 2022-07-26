@@ -12,8 +12,10 @@ export const SizeDiv = styled.div`
   padding: 3rem 0 8rem 0;
   @media ${TABLET} {
     width: 747px;
+    min-height: 600px;
   }
   @media ${LAPTOP} {
     width: 830px;
+    min-height: 550px;
   }
 `;

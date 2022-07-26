@@ -17,7 +17,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
   const [newTurning, setNewTurning] = useState('');
 
   const checkStatus = () => {
-    if (data.projectStatus === 'COMPLETION') {
+    if (data?.projectStatus === 'COMPLETION') {
       setStatus('완료 프로젝트');
       setStatusColor('#f16300');
     }
@@ -38,7 +38,11 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
       setStatus('인터뷰요청 프로젝트');
       setStatusColor('#9f7985');
     }
-    if (data.projectStatus === 'REGISTRATION' && data.interviewFreelancerList.length < 0) {
+    if (
+      data.projectStatus === 'REGISTRATION' &&
+      data?.applyFreelancerList > 0 &&
+      data?.interviewFreelancerList.length < 1
+    ) {
       setStatus('지원현황 프로젝트');
       setStatusColor('#8a7fa4');
     }
@@ -393,7 +397,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
             felxDisplay={data.projectStatus === 'COMPLETION' || data.projectStatus === 'PROGRESS' ? 'none' : 'flex'}
           >
             <S.ProjectSpan
-              display={data.waitFreelancerList?.length > 0 ? 'block' : 'none'}
+              display={data.applyFreelancerList?.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);
@@ -402,7 +406,7 @@ const ProjectListMain = ({ data, newReloading, setNewReloading, start = 'none', 
               지원자 {newApplicant === undefined ? 0 : newApplicant.length}
             </S.ProjectSpan>
             <S.ProjectSpan
-              display={data.waitFreelancerList?.length > 0 ? 'block' : 'none'}
+              display={data.applyFreelancerList?.length > 0 ? 'block' : 'none'}
               bgColor="#ff6b6b"
               onClick={() => {
                 setInterviewModal(false);

@@ -1,6 +1,6 @@
 import * as S from './style';
 
-const ProjectDetailModal = ({ checkToken }) => {
+const ProjectDetailModal = ({ checkToken, checkButton }) => {
   return (
     <S.BackColorDiv>
       <S.TextDiv>
@@ -13,7 +13,7 @@ const ProjectDetailModal = ({ checkToken }) => {
         <S.SpanButton bgColor="#cc3838" right="0.5rem" border="none" padding="1.5rem" onClick={checkToken}>
           바로 지원하기
         </S.SpanButton>
-        <S.SpanButton bgColor="#3c3c3c" border="white" padding="3rem">
+        <S.SpanButton bgColor="#3c3c3c" border="white" padding="3rem" onClick={checkButton}>
           문의하기
         </S.SpanButton>
       </div>

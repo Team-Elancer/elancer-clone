@@ -68,38 +68,49 @@ const Login = () => {
       });
   };
 
-  const LogInGoogle = () => {
-    document.location.assign(
-      `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=code&approval_prompt=force&access_type=offline&scope=email%20profile&redirect_uri=${BaseUrl}/login/google`,
-    );
+  // const LogInGoogle = () => {
+  //   document.location.assign(
+  //     `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=code&approval_prompt=force&access_type=offline&scope=email%20profile&redirect_uri=${BaseUrl}/login/google`,
+  //   );
 
-    const queryString = window.location.search;
+  //   const queryString = window.location.search;
+  // };
+
+  const googleSuccess = async (a) => {
+    axios({
+      method: 'POST',
+      url: `${BaseUrl}/login`,
+      data: {
+        userId: 'sni424',
+        password: 'wh8107',
+      },
+    })
+      .then((res) => {
+        window.localStorage.setItem('accessToken', res.data.accessToken);
+        window.localStorage.setItem('refreshToken', res.data.refreshToken);
+        window.localStorage.setItem('memberType', JSON.stringify(res.data.memberType));
+        if (window.localStorage !== undefined) {
+          navi(`/`);
+        }
+
+        if (window.localStorage.memberType === '"FREELANCER"') {
+          navi('/freelancer');
+          window.location.reload();
+        }
+        if (window.localStorage.memberType === '"ENTERPRISE"') {
+          navi('/enterprise');
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        alert(err.response.data.errorMessage);
+        setLoginFail('로그인에 실패 했습니다. 아이디와 패스워드를 다시 확인 하세요.');
+      });
   };
 
-  // const googleSuccess = async (a) => {
-  //   // const pageUrl =
-  //   //   'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://ec2-13-209-114-196.ap-northeast-2.compute.amazonaws.com:8080/login/google';
-  //   // document.location.href = pageUrl;
-  //   axios({
-  //     method: 'POST',
-  //     url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com&amp;response_type=code&amp;scope=email%20profile&amp;redirect_uri=http://localhost:3000/login',
-  //     headers: { 'Access-Control-Allow-Origin': '*' },
-  //     data: {
-  //       data: a,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       navi('http://localhost:3000/');
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       return alert(err.message);
-  //     });
-  // };
-
-  // const googleFail = (respone) => {
-  //   console.log(respone);
-  // };
+  const googleFail = (respone) => {
+    console.log(respone);
+  };
 
   return (
     <S.Container>
@@ -167,23 +178,24 @@ const Login = () => {
 
               {/* ============= Google 로그인 ============= */}
               <S.SpanTag>
-                <a href="https://nid.naver.com/nidlogin.login">
-                  <S.LoginButton
-                    border="white"
-                    mobileBg="white"
-                    tabletBg="white"
-                    mobileColor="black"
-                    tabletColor="black"
-                    content="start"
-                  >
-                    <S.Icon>
-                      <S.NaverImg src={google} alt="google" />
-                    </S.Icon>
-                    <S.TextSpan mobilePadding="7.5rem" tabletPadding="3.5rem" laptoppadding="4.5rem">
-                      구글 간편 로그인
-                    </S.TextSpan>
-                  </S.LoginButton>
-                </a>
+                {/* <S.LoginButton
+                  border="#f16300"
+                  mobileBg="white"
+                  tabletBg="#f16300"
+                  mobileColor="#f16300"
+                  tabletColor="white"
+                  content="center"
+                  onClick={LogInGoogle}
+                > */}
+                <GoogleLogin
+                  clientId="428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com"
+                  buttonText="구글 로그인으로 간편하게"
+                  onSuccess={googleSuccess}
+                  onFailure={googleFail}
+                  cookiePolicy="single_host_origin"
+                />
+
+                {/* </S.LoginButton> */}
               </S.SpanTag>
               <S.SpanTag>
                 <a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fdevelopers.kakao.com%2Flogin%3Fcontinue%3D%252Fconsole%252Fapp&lang=ko">
