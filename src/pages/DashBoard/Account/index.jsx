@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 
 import Back from 'assets/images/arrowback.png';
 import CompanyAccount from 'components/DashBoard/Company-Account';
-import { BaseUrl, CLIENT_FREELANCER, CLIENT_FREELANCER_GET_REFRESHTOKEN } from 'utils/config/api';
+import { BaseUrl, CLIENT_FREELANCER } from 'utils/config/api';
 
 const DashBoardAccount = () => {
   const [userData, setUserData] = useState('');
@@ -58,7 +57,7 @@ const DashBoardAccount = () => {
       },
       data: companyDatas,
     })
-      .then((res) => {
+      .then(() => {
         alert('정보를 수정했습니다.');
         setCheck(!check);
       })
@@ -78,7 +77,7 @@ const DashBoardAccount = () => {
           Authorization: `${window.localStorage.accessToken}`,
         },
       })
-        .then((res) => {
+        .then(() => {
           alert('삭제가 완료되었습니다.');
         })
         .catch((err) => {
@@ -101,7 +100,7 @@ const DashBoardAccount = () => {
     <form onSubmit={changeUser}>
       <S.SpacebetweenDiv>
         <S.Img src={Back} alt="arrowback" />
-        <S.H1>이랜서 계정</S.H1>
+        <S.H1>Encer 계정</S.H1>
       </S.SpacebetweenDiv>
       <CompanyAccount
         display="block"

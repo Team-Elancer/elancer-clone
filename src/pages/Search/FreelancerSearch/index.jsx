@@ -78,7 +78,7 @@ const FreelancerSearch = ({ searchValue }) => {
     <S.ContainerFrame>
       <S.FrameList>
         <S.ContainerTopLetter>
-          <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 39만명</S.TopLetterExtra>
+          <S.TopLetterExtra>Encer가 보증하는 IT 파트너스 39만명</S.TopLetterExtra>
           <S.TopLetterSubject> {searchValue} 관련 프로젝트</S.TopLetterSubject>
         </S.ContainerTopLetter>
 

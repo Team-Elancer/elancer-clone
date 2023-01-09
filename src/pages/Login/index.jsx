@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 
-import google from 'assets/images/google.png';
 import naver from 'assets/images/naver.png';
 
 import MenuBar from 'components/MenuBar';
@@ -25,7 +24,7 @@ const Login = () => {
   const [userPassword, setUserPassword] = useState('');
   const [loginFail, setLoginFail] = useState('');
 
-  const CLIENT_ID = '428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com';
+  // const CLIENT_ID = '428541390243-7cevccqe0afejrec8et1025hbk8v36p0.apps.googleusercontent.com';
 
   const idChange = (e) => {
     setId(e.target.value);
@@ -76,7 +75,7 @@ const Login = () => {
   //   const queryString = window.location.search;
   // };
 
-  const googleSuccess = async (a) => {
+  const googleSuccess = async () => {
     axios({
       method: 'POST',
       url: `${BaseUrl}/login`,
@@ -126,10 +125,10 @@ const Login = () => {
         <S.TextDiv>
           함께 나눌수록 더욱 커지는 가치,
           <br />
-          IT 전문가 세상 이랜서에 오신것을 환영합니다.
+          IT 전문가 세상 Encer에 오신것을 환영합니다.
           <br />
           <br />
-          이랜서는 기업과 프리랜서를 <br />
+          Encer 기업과 프리랜서를 <br />
           연결합니다
         </S.TextDiv>
         <S.IdForm>

@@ -14,12 +14,12 @@ const SignUpFinish = () => {
         <div>
           <S.H1>
             함께 나눌수록 더욱 커지는 가치, <br />
-            이랜서의 회원이 되신 것을 환영합니다!
+            Encer의 회원이 되신 것을 환영합니다!
           </S.H1>
 
           <S.Ptag>
-            {memberName} ({memberID}) 님은 이랜서의 가족이 되었습니다. <br />
-            이랜서가 열어가는 IT전문가 세상에서 회원님의 시간이 더욱 빛나길 바랍니다.
+            {memberName} ({memberID}) 님은 Encer의 가족이 되었습니다. <br />
+            Encer가 열어가는 IT전문가 세상에서 회원님의 시간이 더욱 빛나길 바랍니다.
           </S.Ptag>
 
           <S.ButtonSizeDiv>

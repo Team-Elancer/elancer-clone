@@ -50,7 +50,7 @@ const LeftMenuMyBoard = () => {
           </Link>
           <Link to="/myboard-freelancer/account">
             <S.MenuLi bgColor={location.pathname === '/myboard-freelancer/account' ? '#f2f2f2' : 'white'}>
-              이랜서 계정
+              encer 계정
             </S.MenuLi>
           </Link>
         </S.UlTag>
