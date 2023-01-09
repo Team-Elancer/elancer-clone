@@ -164,7 +164,7 @@ const ListPartner = () => {
       <S.ContainerFrame>
         <S.FrameList>
           <S.ContainerTopLetter>
-            <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
+            <S.TopLetterExtra> Encer가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
             <br />
             <S.TopLetterSubject>
               <div>

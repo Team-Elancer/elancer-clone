@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
@@ -14,7 +13,7 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 
 import * as S from 'styles/Page';
-import { FILTERED_DATA, BaseUrl, CLIENT_FREELANCER } from 'utils/config/api';
+import { FILTERED_DATA, CLIENT_FREELANCER } from 'utils/config/api';
 
 const ListProject = () => {
   const [Datas, setDatas] = useState([]);
@@ -194,7 +193,7 @@ const ListProject = () => {
         )}
         <S.FrameList>
           <S.ContainerTopLetter>
-            <S.TopLetterExtra>이랜서가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
+            <S.TopLetterExtra>Encer가 보증하는 IT 파트너스 38만명</S.TopLetterExtra>
             <br />
             <S.TopLetterSubject>
               프로젝트 등록하면 <br /> 더 정확한 추천을 받을 수 있어요

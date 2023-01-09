@@ -19,7 +19,7 @@ import { BaseUrl } from 'utils/config/api';
 const MyBoardAccount = () => {
   const [changeBool, setChangeBool] = useState(false);
 
-  const [userData, setUserData, detailProfileData, profileSimpleData] = useOutletContext();
+  const [userData, setUserData] = useOutletContext();
 
   const [capsLockFlag, setCapsLockFlag] = useState(false);
   const [capsLockFlagConfirm, setCapsLockFlagConfirm] = useState(false);
@@ -50,8 +50,6 @@ const MyBoardAccount = () => {
   const [workStartPossibleDate, setWorkStartPossibleDate] = useState('');
   const [hopeWorkCountry, setHopeWorkCountry] = useState('');
   const [hopeWorkCity, setHopeWorkCity] = useState('');
-
-  const [selectImg, setSelectImg] = useState(null);
 
   const [eyeCheck, setEyeCheck] = useState(true);
   const [eyeCheck2, setEyeCheck2] = useState(true);
@@ -255,7 +253,7 @@ const MyBoardAccount = () => {
           <div>&nbsp; </div>
           <div>
             <span>⬅ &nbsp; </span>
-            <span>이랜서 계정</span>
+            <span>Encer 계정</span>
           </div>
           <S.SaveSpan type="submit">저장</S.SaveSpan>
         </S.ContainerAccountSave>
@@ -313,7 +311,7 @@ const MyBoardAccount = () => {
                 </S.BlockDiv>
                 <S.ErrorMessage>{password === '' && '* 6~15자 영문, 숫자, 특수문자를 사용하세요.'}</S.ErrorMessage>
                 <S.CapsMessage>{capsLockFlag && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
-                <S.EyeImg src={firstEyeImg} alt="eye" onClick={(e) => setEyeCheck(!eyeCheck)} />
+                <S.EyeImg src={firstEyeImg} alt="eye" onClick={() => setEyeCheck(!eyeCheck)} />
               </S.InputDiv>
               <S.InputDiv>
                 <S.BlockDiv>
@@ -338,7 +336,7 @@ const MyBoardAccount = () => {
 
                 <S.CapsMessage>{capsLockFlagConfirm && 'Caps Lock이 켜져 있습니다.'}</S.CapsMessage>
 
-                <S.EyeImg src={secondEyeImg} alt="eye" onClick={(e) => setEyeCheck2(!eyeCheck2)} />
+                <S.EyeImg src={secondEyeImg} alt="eye" onClick={() => setEyeCheck2(!eyeCheck2)} />
               </S.InputDiv>
 
               <S.InputDiv>

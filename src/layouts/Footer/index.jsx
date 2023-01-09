@@ -3,23 +3,17 @@ import Logo from 'assets/images/footer-logo.png';
 
 const Footer = ({ position }) => {
   const liItem = [
-    { id: 1, name: '(주)이랜서', site: 'https://www.elancer.co.kr/company-main' },
-    { id: 2, name: '이용약관', site: 'https://www.elancer.co.kr/terms' },
-    { id: 3, name: '개인정보처리방침', site: 'https://www.elancer.co.kr/policy' },
+    { id: 1, name: '(주)encer', site: 'https://encer.vercel.app/' },
+    { id: 2, name: '이용약관', site: 'https://encer.vercel.app/' },
+    { id: 3, name: '개인정보처리방침', site: 'https://encer.vercel.app/' },
   ];
 
-  const firstTag = [
-    '(주)이랜서',
-    '대표이사 | 박우진',
-    '주소 | 서울 강남구 테헤란로 410.금강타워 11층',
-    '전화 | 02-545-0042',
-    '팩스 | 02-6008-2059',
-  ];
+  const firstTag = ['(주)encer', '대표이사 | encer', '주소 | Korea', '전화 | 02-1234', '팩스 | 02-4569-1234'];
 
   const secondTag = [
-    '사업자번호 | 209-81-25311',
-    '직업소개사업 등록번호 | 제2004-3220081-11-500078',
-    '개인정보보호적책 책임자 | 송상권',
+    '사업자번호 | 11111-22222',
+    '직업소개사업 등록번호 | 제1233-41234-123123',
+    '개인정보보호적책 책임자 | encer',
   ];
 
   return (
@@ -30,7 +24,7 @@ const Footer = ({ position }) => {
             <S.MarginBottomP>
               <S.Img src={Logo} alt="footer-logo" />
               <br />
-              <S.Span>Copyright © 2000 - 2022 ELANCER All Rights Reserved.</S.Span>
+              <S.Span>Copyright © 2023 encer All Rights Reserved.</S.Span>
             </S.MarginBottomP>
             <S.UlTag>
               {liItem.map((item) => (

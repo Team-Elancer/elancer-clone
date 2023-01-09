@@ -30,12 +30,12 @@ const MyBoardCareer = () => {
   return (
     <S.FrameContainer>
       <S.ContainerH1>
-        이랜서에서 쉽고 편하게
+        Encer에서 쉽고 편하게
         <br />
         체계적인 커리어 관리해보세요
       </S.ContainerH1>
       <S.ContainerH2>
-        이랜서의
+        Encer의
         <AutoFolioSpan>AutoFolio</AutoFolioSpan>
         기술은 프리랜서가 쉽게 커리어를 등록하고
         <br />
@@ -82,7 +82,7 @@ const MyBoardCareer = () => {
         누릴 수 있는 혜택
       </S.ContainerH1>
       <S.ContainerH2>
-        이랜서의
+        Encer의
         <AutoFolioSpan>AutoFolio</AutoFolioSpan>
         기술은 프리랜서가 쉽게 커리어를 등록하고 <br />
         더욱 빠르게 공유할 수 있도록 돕습니다

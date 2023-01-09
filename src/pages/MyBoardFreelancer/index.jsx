@@ -12,7 +12,6 @@ import useFetchRefreshToken from 'hooks/useFetchRefreshToken';
 
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-import FreelancerHeader from 'layouts/Header/Freelancer';
 
 import { CLIENT_FREELANCER } from 'utils/config/api';
 
@@ -68,7 +67,7 @@ const MyBoardFreelancer = () => {
     if (code === '403') console.log('refresh token 만료.');
   };
 
-  // =============== fetch account detail (이랜서 계정) && userData ===============
+  // =============== fetch account detail (Encer 계정) && userData ===============
   const fetchFreelancerData = async () => {
     try {
       const { data } = await CLIENT_FREELANCER('/freelancer');
@@ -256,7 +255,7 @@ const MyBoardFreelancer = () => {
   //  =============== 계정 & 세부정보 & 요약정보 & 문의===============
   useEffect(() => {
     let isMounted = true;
-    // fetch account detail (이랜서 계정)
+    // fetch account detail (Encer 계정)
     fetchFreelancerData();
     //  detail profile (프로필 세부 정보)
     getDetailProfileData();

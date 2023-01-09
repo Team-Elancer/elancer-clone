@@ -33,7 +33,7 @@ const MyBoardOnGoing = () => {
   return (
     <>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
-        {userData.name}님 이랜서가 응원해요
+        {userData.name}님 Encer가 응원해요
       </S.H1>
       <MyBoardEcards setCardList={setCardList} />
       <OnGoingCard />
@@ -124,7 +124,7 @@ const MyBoardOnGoing = () => {
           <S.EcardDiv>
             <S.EcarcdPaddingDiv>
               <h1>
-                이랜서의 AutoFolio 기술은 <br />
+                Encer의 AutoFolio 기술은 <br />
                 프리랜서가 쉽게 커리어를 등록하고 <br />
                 더욱 빠르게 공유할 수 있도록 돕습니다.
               </h1>
@@ -150,7 +150,7 @@ const MyBoardOnGoing = () => {
         </S.LiTag>
         <S.LiTag>
           <Link to="/myboard-freelancer/account">
-            <S.LiPtag>👤 이랜서 계정 바로가기</S.LiPtag>
+            <S.LiPtag>👤 Encer 계정 바로가기</S.LiPtag>
           </Link>
           <S.EcardDiv>
             <S.EcarcdPaddingDiv>

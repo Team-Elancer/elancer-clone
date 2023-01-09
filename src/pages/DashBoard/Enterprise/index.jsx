@@ -43,7 +43,7 @@ const DashBoardEnterprise = () => {
   return (
     <>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
-        클론코딩님 이랜서가 응원해요
+        클론코딩님 Encer가 응원해요
       </S.H1>
       <BoardCardSpan />
       <S.H1 top="3rem" bottom="1rem" laptoptop="8rem" laptopBottom="2.5rem">
@@ -102,12 +102,12 @@ const DashBoardEnterprise = () => {
         </S.LiTag>
         <S.LiTag>
           <Link to="/dashboard/account">
-            <S.LiPtag>👤 이랜서 계정 바로가기</S.LiPtag>
+            <S.LiPtag>👤 Encer 계정 바로가기</S.LiPtag>
           </Link>
           <S.EcardDiv>
             <S.EcarcdPaddingDiv>
               <Link to="/dashboard/account">
-                <S.ProfileGo>이랜서 계정 수정 </S.ProfileGo>
+                <S.ProfileGo>Encer 계정 수정 </S.ProfileGo>
               </Link>
             </S.EcarcdPaddingDiv>
           </S.EcardDiv>

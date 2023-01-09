@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as S from './style';
 
@@ -29,7 +29,7 @@ const LeftMenu = () => {
             <S.MenuLi bgColor={lcation.pathname === '/dashboard/contact' ? '#f2f2f2' : 'white'}>문의/요청</S.MenuLi>
           </Link>
           <Link to="/dashboard/account">
-            <S.MenuLi bgColor={lcation.pathname === '/dashboard/account' ? '#f2f2f2' : 'white'}>이랜서 계정</S.MenuLi>
+            <S.MenuLi bgColor={lcation.pathname === '/dashboard/account' ? '#f2f2f2' : 'white'}>Encer 계정</S.MenuLi>
           </Link>
         </S.UlTag>
       </S.MenuDiv>

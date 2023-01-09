@@ -39,7 +39,7 @@ const MyBoardManageProject = () => {
   return (
     <div>
       <S.H1 top="2rem" bottom="4rem" laptoptop="2rem" laptopBottom="4rem">
-        {userData.name} 님 이랜서가 응원해요
+        {userData.name} 님 Encer가 응원해요
       </S.H1>
       <MyBoardEcards cardList={cardList} setCardList={setCardList} />
       <OnGoingCard />
